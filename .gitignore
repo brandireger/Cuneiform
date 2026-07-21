@@ -18,3 +18,8 @@ __pycache__/
 
 # Ad-hoc local backups, not project content
 results.zip
+
+# Model checkpoints -- large binaries, never exchanged per P4 spec
+# ("Small artifacts back... No checkpoints, no parquet")
+runs/
+*.pt
