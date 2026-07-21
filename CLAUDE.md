@@ -69,7 +69,11 @@ full-corpus scale, with leakage-safe methodology?
     (`sign_damage_states` in `corpus.parquet`, produced by a document-
     order state machine over `<del_in>/<del_fin>`/`<laes_in>/
     <laes_fin>`, since those spans cross word and line boundaries),
-    not from `cu`.
+    not from `cu`. **`cu` is not cleanroom-safe (P2.5 A5 restatement):
+    because it silently mixes in editor-restored content as real
+    glyphs, never feed `cu` or any `cu`-derived feature to any
+    evaluated model, at train time or test time** — it is a display/
+    preview field, not a corpus signal.
   - `<w trans mrp0sel mrp1..mrp7>` = word. `trans` = transliterated
     form (the primary text signal); `mrp*` = ranked morphological
     parse candidates (lemma@gloss@paradigm@class) — rich, but this
@@ -135,6 +139,42 @@ full-corpus scale, with leakage-safe methodology?
   model.** This separation is a standing user decision.
 - Metrics: recall@k (k=1,5,10,100), MRR; stratify by fragment length
   and by genre where CTH metadata allows.
+
+### Bin reframe (P2.5 A1/A2, accepted 2026-07-21 — "let the artifacts
+speak, not editors")
+
+114 of 657 CTH numbers are fragment **catch-all bins**, not real
+compositions (e.g. CTH 832 "Hethitische Fragmente verschiedenen
+Inhaltes" — 3,583 unrelated fragments filed under one number for lack
+of a better home; CTH 470 "Ritualfragmente"; CTH 670
+"Festritualfragmente"). Identified via the real CTH catalogue title
+(single bulk fetch from an archived hethport.uni-wuerzburg.de/CTH/
+snapshot — see `p25_out/bins_report.md`), not guessed from doc counts.
+Consequence, binding on both tasks above:
+- **Bin documents (14,046) are EXCLUDED from Task A labels, Task B
+  duplicate-positive generation, contrastive negative sampling, and
+  all reported metrics' truth sets.** A bin fragment may secretly
+  belong to any composition, including a test-side one — it is
+  unlabeled, not negative.
+- Bin documents instead form the **discovery pool**
+  (`p25_out/discovery_pool.parquet`) — inference-time queries only,
+  never scored as ground truth. Model-proposed assignments of
+  discovery-pool fragments to real compositions are a P7 deliverable
+  for expert verification (see Cleanroom rule 5, "novel suggestions
+  are quarantined").
+- Impact was not cosmetic: naive same-CTH-folder duplicate-positive
+  pairs = 13,451,014; bins-excluded (real compositions only) =
+  234,263 — a 98.3% drop. Without this reframe, duplicate-witness
+  supervision would have been almost entirely noise from catch-all
+  bins, dominated by CTH 832 alone.
+- **Physical joins are unaffected by bin status**: a composite join
+  document whose parent CTH folder happens to be a bin still yields a
+  valid join pair (the physical fit is real regardless of catalogue
+  assignment) — tagged `parent_is_bin=True` in
+  `p2_out/join_pairs.jsonl`, reported both included and excluded.
+- 543 real compositions remain supervision-eligible. `main_split`
+  (train/dev/test) is assigned over real compositions only; bin
+  documents carry `main_split='discovery'`, never train/dev/test.
 
 ## The fragment-as-matrix model (core design requirement)
 
@@ -274,22 +314,30 @@ Provincial + multilingual material also supplies hard negatives.
   LATER DESIGN.
 - **P2 Parser + dataset builder** — leakage-safe splits per cleanroom
   rules; three-way label structure (join / duplicate / negative).
-  **DONE (2026-07-20)**, per `P2_PARSER_SPEC.md`. Scripts
-  `02_parse.py` → `03_unjoin.py` → `04_edges.py` → `05_splits.py` →
-  `06_dataset_report.py`, outputs in `p2_out/`. All 5 acceptance
-  checks passed: word/line counts within 0.03% of P1's raw tag
-  census; damage-state oracle agreement confirmed at 75.2% exact
-  match (after correcting the initial `cu`-semantics hypothesis, see
-  above and `p2_out/parse_report.md`); 100% of 659 composite docs
-  reconstructed or quarantined with reason; zero composition leakage
-  across splits (asserted); FULL/ATTESTED sample renderings sanity-
-  checked. Key numbers: 21,639 parsed docs / 657 compositions /
-  1,521,968 word-tokens / 1,581 join pairs (659 composite-doc
-  candidates, vs. P1's looser 866 "+"-notation scan — reconciled in
-  `p2_out/join_stats.md`) / main_split 15,358 train + 4,919 dev +
-  1,362 test docs (composition-disjoint) / site_split 201
-  provincial-eval docs. Full detail in `p2_out/dataset_report.md`.
+  **DONE (2026-07-20)**, per `P2_PARSER_SPEC.md`. All 5 acceptance
+  checks passed. Superseded/amended by P2.5 below — see
+  `p2_out/dataset_report.md` for the original P2-only numbers.
+- **P2.5 Amendments** — **DONE, ACCEPTED, FROZEN (2026-07-21)**, per
+  `P2.5_AMENDMENTS.md`. Scripts `07_metadata_patch.py` → `08_bins.py`
+  → `09_join_tiers.py` → `10_resplit.py`, outputs in `p25_out/` (plus
+  amended files in `p2_out/`). All 6 acceptance checks passed. Key
+  numbers (supersede the P2 block above): 543 real compositions /
+  14,046 bin (discovery-pool) documents, bin reframe above; duplicate
+  pairs naive 13,451,014 → bins-excluded 234,263; join pairs 1,581,
+  now tiered (478 A / 185 B / 918 C, 431 tier-C testable after the
+  exclusive-content degenerate guard) — see `p25_out/join_tiers_report.md`;
+  **`main_split` FROZEN 2026-07-21, no further re-rolls**: train 6,073
+  / dev 760 / test 760 docs (80.0/10.0/10.0 by documents, greedy
+  doc-count-balanced re-roll — see `p2_out/split_report.md`), bin docs
+  carry `main_split='discovery'`; `site_split` provincial-eval grew
+  201 → 314 docs after the verified DAAM/Kp provenance patch (DAAM is
+  a multi-site series — see `p25_out/provenance_patch.md`); repo
+  git-initialized, commit hash logged in `p2_out/splits.json`. Full
+  detail in `p25_out/p25_report.md`.
 - **P3 Baselines** — BM25, Tyndall replication. First real numbers.
+  MUST consume `p2_out/splits.parquet`'s frozen `main_split` /
+  `site_split` columns and respect the bin reframe (discovery-pool
+  docs excluded from all supervision and metrics).
 - **P4 Sign tokenizer + masked-span pre-training.**
 - **P5 Bi-encoder + edge-continuation scorer + rerankers.**
 - **P6 Evaluation matrix + ablations** (restorations, pre-training,

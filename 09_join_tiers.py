@@ -26,6 +26,7 @@ dropped).
 """
 
 import json
+import random
 from collections import Counter
 from pathlib import Path
 
@@ -33,6 +34,7 @@ import pandas as pd
 
 OUT_DIR = Path("p2_out")
 P25_OUT = Path("p25_out")
+SEED = 20260721
 DEGENERATE_MIN_SIGNS = 8
 DEGENERATE_MIN_LINES = 2
 
@@ -96,6 +98,7 @@ def main() -> None:
     n_exclusive_untestable = 0
     n_tier_c = 0
     worked_examples = {}
+    tier_c_spotcheck = []
 
     enriched = []
     for p in pairs:
@@ -152,6 +155,8 @@ def main() -> None:
 
                 if tier not in worked_examples and not untestable:
                     worked_examples[tier] = p
+                if not untestable:
+                    tier_c_spotcheck.append(p)
             else:
                 p["members_exclusive"] = False
                 p["exclusive_untestable"] = None
@@ -224,6 +229,38 @@ def main() -> None:
                               f"({ec['member_b_n_lines']} lines, "
                               f"{ec['member_b_n_attested_signs']} signs): "
                               f"{' / '.join(ec['member_b_attested'][:3])}")
+        lines_out.append("")
+
+    lines_out += [
+        "## Tier-C exclusive-content spot-check (3 pairs, acceptance check 4)",
+        "",
+        f"Seeded random sample (seed={SEED}) from "
+        f"{len(tier_c_spotcheck)} testable tier-C pairs, showing full "
+        "reconstruction (contaminated by the shared overlap) vs. "
+        "exclusive-content rendering (shared lines removed) side by "
+        "side, to make visible exactly what the exclusive variant "
+        "strips out.", "",
+    ]
+    rng = random.Random(SEED)
+    spotcheck_sample = rng.sample(tier_c_spotcheck, min(3, len(tier_c_spotcheck)))
+    for i, ex in enumerate(spotcheck_sample, 1):
+        ec = ex["exclusive_content"]
+        lines_out.append(f"### Spot-check {i}/3 -- {ex['parent_doc']} "
+                          f"({ex['member_a']['manuscript']} <-> {ex['member_b']['manuscript']})")
+        lines_out.append(f"- n_shared_lines: {ex['n_shared_lines']}, "
+                          f"join_type: {ex['join_type']}, parent_is_bin: {ex['parent_is_bin']}")
+        lines_out.append(f"- member_a FULL ({ec['member_a_n_lines']} exclusive "
+                          f"+ {ex['n_shared_lines']} shared lines total): "
+                          f"{' / '.join(ec['member_a_full'][:4])}")
+        lines_out.append(f"- member_a EXCLUSIVE ATTESTED "
+                          f"({ec['member_a_n_lines']} lines, "
+                          f"{ec['member_a_n_attested_signs']} signs, shared "
+                          f"lines removed): {' / '.join(ec['member_a_attested'][:4])}")
+        lines_out.append(f"- member_b FULL: {' / '.join(ec['member_b_full'][:4])}")
+        lines_out.append(f"- member_b EXCLUSIVE ATTESTED "
+                          f"({ec['member_b_n_lines']} lines, "
+                          f"{ec['member_b_n_attested_signs']} signs): "
+                          f"{' / '.join(ec['member_b_attested'][:4])}")
         lines_out.append("")
 
     with open(P25_OUT / "join_tiers_report.md", "w", encoding="utf-8") as f:

@@ -99,3 +99,28 @@
 - join_type: direct, n_shared_lines: 11, parent_is_bin: False
 - member_a exclusive ATTESTED (149 lines, 1873 signs): x-zi / li-in-ki-ia / zi nu te-ez-zi
 - member_b exclusive ATTESTED (8 lines, 53 signs): QA-TI-ŠU-NU da-a-i / ia-an-zi nu e-ek-ta-an / aš-nu-zi nu-uš-ma-aš te-ez-zi
+
+## Tier-C exclusive-content spot-check (3 pairs, acceptance check 4)
+
+Seeded random sample (seed=20260721) from 431 testable tier-C pairs, showing full reconstruction (contaminated by the shared overlap) vs. exclusive-content rendering (shared lines removed) side by side, to make visible exactly what the exclusive variant strips out.
+
+### Spot-check 1/3 -- KBo 43.44+ (KBo 43.44 <-> KBo 24.62)
+- n_shared_lines: 5, join_type: direct, parent_is_bin: True
+- member_a FULL (5 exclusive + 5 shared lines total): x A-NA / ši-pa-an-ti na-aš / EGIR-ŠU-ma la-aḫ / na-aš-kán ta-pu-ú-ša
+- member_a EXCLUSIVE ATTESTED (5 lines, 10 signs, shared lines removed): x A-NA / ti na-aš / ŠU-ma la-aḫ
+- member_b FULL: I-NAÉ D10 ta-pu-ú-ša zé-an-da-az / nu A-NAD10 UD-aš NINDAga-ag-ga-ri-uš pár-ši-ia / 5 NINDA.SIG-ma A-NADta-aš-mi-šu pár-ši-ia x / EGIR-ŠU-ma la-ḫa-an-ni-uš ši-pa-an-ti 5 NINDA.SIG
+- member_b EXCLUSIVE ATTESTED (10 lines, 26 signs): D10 ta-pu-ú-ša zé-an-da-az / x / x / ta GAL Dḫé-pát šu-un-na-an-zi
+
+### Spot-check 2/3 -- KBo 25.12+ (ABoT 1.5 <-> KBo 17.9)
+- n_shared_lines: 8, join_type: inferred_from_shared_lines, parent_is_bin: False
+- member_a FULL (24 exclusive + 8 shared lines total): LÚMEŠ˽GIŠ.DINANNAḪI.A ka-ni-iš SÌR-RU / LUGAL-uš MUNUS.LUGAL-aš-ša TUŠ-aš Dḫu-ul-la-a-an a-ku-an-zi / LÚ.MEŠGI.GÍD SÌR-RU 10 NINDAḪI.A 2 ḫu-up-pár KAŠ.GEŠTIN A-NALÚ.MEŠGI.GÍD pí-an-zi / LUGAL-uš MUNUS.LUGAL-aš-ša TUŠ-aš Dte-li-pí-nu-un a-ku-an-zi
+- member_a EXCLUSIVE ATTESTED (24 lines, 160 signs, shared lines removed): ka-ni SÌR-RU / LUGAL-uš MUNUS.LUGAL-aš-ša TUŠ-aš Dḫu-ul-la-a-an a-ku / LÚ.MEŠGI.GÍD SÌR-RU 10 NINDAḪI.A 2 ḫu-up-pár KAŠ.GEŠTIN / LUGAL-uš MUNUS.LUGAL-aš-ša TUŠ-aš Dte-li-pí-nu
+- member_b FULL: GIŠ.DINANNA TUR Ú-UL / a-aš-ki 2 e-ku-zi / zi GIŠ.DINANNA TUR LÚ.MEŠḫal-li-ri-eš SÌR-RU / ta a-ri 1 e-ku-zi
+- member_b EXCLUSIVE ATTESTED (23 lines, 116 signs): TUR Ú-UL / a-aš-ki 2 e-ku / GIŠ.DINANNA TUR LÚ.MEŠḫal-li-ri / a-ri 1 e-ku-zi
+
+### Spot-check 3/3 -- KBo 29.65+ (KBo 29.65 <-> KBo 41.12)
+- n_shared_lines: 5, join_type: direct, parent_is_bin: True
+- member_a FULL (52 exclusive + 5 shared lines total): nu 3 / zi ŠÀ.BA x / DUGšu-ú-wa-at-raḪI.A ti / ku-it-ta ŠA1 PA-RI-SI
+- member_a EXCLUSIVE ATTESTED (52 lines, 714 signs, shared lines removed): nu 3 / ŠÀ.BA x / ú-wa-at-raḪI.A ti / ta ŠA1 PA-RI-SI
+- member_b FULL: na-at x / i-mi-e-zi / ŠA DUGšu / NINDAḪI.A-ma x
+- member_b EXCLUSIVE ATTESTED (19 lines, 50 signs): na-at x / i-mi-e-zi / ŠA DUGšu / NINDAḪI.A-ma x

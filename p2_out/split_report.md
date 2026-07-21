@@ -1,54 +1,40 @@
-# P2 Deliverable 4 -- Splits Report
+# P2.5 A4 -- Resplit Report (FROZEN)
 
-- Seed: 20260720 | Corpus version: TLHdig_0.2.0-beta | Git commit: N/A (not a git repository)
-- Compositions (CTH) split: 657
-- Documents split: 21639
+- Seed: 20260721 (new for this re-roll, distinct from P2's 20260720) | Corpus version: TLHdig_0.2.0-beta
+- Git commit: `7b010cde8096e1a12b19f9926b72c92b5ae048ac`
+- **splits.json is now FROZEN -- this is the LAST re-roll per P2.5_AMENDMENTS.md.**
 
-## Acceptance check #4 -- composition leakage
-**PASS (0 compositions span multiple splits)** (programmatically asserted; 0 leaking compositions found)
+## Acceptance check -- composition leakage & bin isolation
+- Composition leakage: **PASS** (0 of 543 real compositions span multiple splits)
+- Bin isolation: **PASS** (0 of 14046 bin documents carry a train/dev/test label; all get `main_split='discovery'`)
 
-## main_split (train/dev/test, composition-disjoint)
+## main_split (real compositions only, doc-count-balanced)
 
 | split | documents | doc share | compositions |
 |---|---|---|---|
-| train | 15358 | 71.0% | 518 |
-| dev | 4919 | 22.7% | 70 |
-| test | 1362 | 6.3% | 69 |
+| train | 6073 | 80.0% | 437 |
+| dev | 760 | 10.0% | 53 |
+| test | 760 | 10.0% | 53 |
+| discovery (bins) | 14046 | 64.9% of ALL docs | 114 |
 
-**Caveat: document-count shares deviate from the nominal 80/10/10 target** (stratification balances *composition* count per (size_band, genre_band) stratum, not document count) -- composition size is heavy-tailed (65 compositions have 51+ docs, some far more), so which large compositions land in dev vs test by chance swings doc-count share noticeably even with matched composition counts. This is a known, documented consequence of composition-level splitting being required for leakage safety, not a bug -- report doc counts per split alongside any dev/test metric rather than assuming parity.
+**Compare to P2's original composition-count-only stratified split (05_splits.py): train 71.0% / dev 22.7% / test 6.3% by docs despite balanced composition counts. This greedy doc-count-aware re-roll targets the nominal 80/10/10 directly.**
 
-## site_split (Hattusa -> provincial generalization axis)
+## site_split (regenerated post-A5 provenance patch)
 
 | bucket | documents |
 |---|---|
-| train_hattusa | 19175 |
-| test_provincial | 201 |
-| excluded_unknown_site | 2263 |
+| train_hattusa | 19228 |
+| test_provincial | 314 |
+| excluded_unknown_site | 2097 |
 
-**Caveat (per CLAUDE.md open question 3, restated):** test_provincial = 201 documents total -- a small held-out set. Report this generalization experiment's results with wide uncertainty framing; do not oversell precision on a test set this size.
+- Provincial count: 201 (P2) -> 314 (post-A5 DAAM/Kp verification)
 
-## Composition size-band distribution (stratification input)
+## Size-band / genre-band representation across splits (informational, not a hard constraint on the greedy pass)
 
-| size_band | compositions |
-|---|---|
-| 1 | 122 |
-| 2-5 | 194 |
-| 21-50 | 94 |
-| 51+ | 65 |
-| 6-20 | 182 |
-
-## Genre-band distribution (CTH//100, coarse proxy only)
-
-| genre_band | compositions | docs |
-|---|---|---|
-| 0 | 65 | 450 |
-| 100 | 72 | 434 |
-| 200 | 83 | 1759 |
-| 300 | 79 | 960 |
-| 400 | 87 | 3062 |
-| 500 | 70 | 2806 |
-| 600 | 82 | 5705 |
-| 700 | 87 | 2383 |
-| 800 | 32 | 4080 |
-
-*Full per-document assignment in splits.parquet.*
+| size_band | train | dev | test |
+|---|---|---|---|
+| 1 | 93 | 11 | 11 |
+| 2-5 | 141 | 18 | 18 |
+| 21-50 | 55 | 6 | 6 |
+| 51+ | 24 | 3 | 3 |
+| 6-20 | 124 | 15 | 15 |
