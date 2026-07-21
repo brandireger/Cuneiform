@@ -1,0 +1,64 @@
+{
+  "seed": 20260722,
+  "n_train_fragments_used": 6726,
+  "del_span_length": {
+    "mean": 4.712673103670705,
+    "median": 2.0,
+    "p90": 10.0,
+    "histogram": {
+      "1": 33297,
+      "2": 18919,
+      "19": 244,
+      "4": 8004,
+      "3": 11935,
+      "5": 5507,
+      "9": 1777,
+      "8": 2308,
+      "11": 1182,
+      "20": 3171,
+      "14": 675,
+      "13": 787,
+      "15": 560,
+      "6": 4119,
+      "7": 3072,
+      "10": 1492,
+      "16": 461,
+      "12": 1006,
+      "17": 375,
+      "18": 327
+    },
+    "n_spans": 99218
+  },
+  "left_edge_state_dist": {
+    "illegible_x": 0.13917979721045365,
+    "laes": 0.04890631694197172,
+    "restored": 0.41418336744894557,
+    "attested": 0.39773051839862905
+  },
+  "right_edge_state_dist": {
+    "illegible_x": 0.11741919360213263,
+    "attested": 0.5224984528966535,
+    "restored": 0.3089208359118389,
+    "laes": 0.05116151758937497
+  },
+  "top_edge_lost_rate": 0.7650906928337794,
+  "bottom_edge_lost_rate": 0.9781445138269402,
+  "illegible_x_rate_of_nonrestored": 0.041442833885805073,
+  "line_count_dist": {
+    "mean": 25.3966696402022,
+    "median": 15.0,
+    "p10": 6.0,
+    "p90": 52.0
+  },
+  "attested_sign_count_dist": {
+    "mean": 181.64629794826047,
+    "median": 62.0,
+    "p10": 11.0,
+    "p90": 379.0
+  },
+  "real_seam_geometry_share": {
+    "horizontal": 0.5806451612903226,
+    "vertical": 0.41935483870967744
+  },
+  "vertical_seam_n_shared_lines_dist_NOTE": "tier A/B n_shared_lines is ~always 0 by definition (that IS the no-overlap seam signature) -- true real vertical GAP WIDTH (how many whole lines are lost between two stacked members) is not directly measurable from this field; the fracture engine's gap-line-count sampling below is a documented modeling assumption (Poisson), not corpus-calibrated, and is flagged as such rather than silently presented as measured."
+}
