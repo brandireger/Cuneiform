@@ -1,0 +1,17 @@
+# Raw corpus and extracted tree -- large, and re-downloadable from the
+# pinned Zenodo DOI (see CLAUDE.md / README.md). Never ship raw corpus
+# data through the repo, per CLAUDE.md's standing rule.
+TLHdig_0.2.0-beta.zip
+TLHdig_0.2.0-beta/
+
+# Derived parquet/binary artifacts -- large, fully regenerable by
+# re-running the numbered pipeline scripts against the pinned corpus.
+# Small human-readable reports (.md/.csv/.json/.jsonl) ARE tracked.
+*.parquet
+
+# Python
+__pycache__/
+*.pyc
+
+# Local Claude Code session config, not project content
+.claude/

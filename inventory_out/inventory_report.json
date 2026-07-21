@@ -1,0 +1,1162 @@
+{
+  "zip": "TLHdig_0.2.0-beta.zip",
+  "xml_file_count": 21868,
+  "junk_files_excluded": 320,
+  "non_xml_files": [
+    "TLHbasisONLINE25.1_ZENODO/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 433_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 396_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 631_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 625_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 745_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 786_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 590_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 81_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 591_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 208_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 750_XML/KBo 17.35+.log",
+    "TLHbasisONLINE25.1_ZENODO/CTH 744_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 618_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 426_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 342_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 424_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 381_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 626_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 140_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 785_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 544_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 40_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 578_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 41_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 627_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 394_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 419_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 343_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 425_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 421_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 347_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 353_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 757_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 743_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 780_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 51_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 86_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 92_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 582_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 583_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 78_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 568_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 756_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 346_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 408_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 350_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 344_XML/.DS_Store",
+    "TLHbasisONLINE25.1_ZENODO/CTH 422_XML/.DS_Store"
+  ],
+  "total_xml_bytes": 324816301,
+  "doc_size_bytes": {
+    "min": 0,
+    "median": 5877,
+    "max": 899284
+  },
+  "parse_errors": 229,
+  "parse_error_examples": [
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 22.91.xml",
+      "mismatched tag: line 76, column 2"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KUB 60.14.xml",
+      "mismatched tag: line 14, column 2"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 10.47c.xml",
+      "mismatched tag: line 155, column 2"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 547_XML/KBo 8.8.xml",
+      "not well-formed (invalid token): line 4, column 30"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 209_XML/KBo 12.55.xml",
+      "not well-formed (invalid token): line 10, column 93"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 585_XML/585_u+.xml",
+      "not well-formed (invalid token): line 24, column 1132"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 546_XML/KUB 4.43.xml",
+      "not well-formed (invalid token): line 6, column 231"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 546_XML/KUB 4.44.xml",
+      "not well-formed (invalid token): line 16, column 300"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 381_XML/KBo 54.281.xml",
+      "mismatched tag: line 10, column 523"
+    ],
+    [
+      "TLHbasisONLINE25.1_ZENODO/CTH 381_XML/KUB 6.46.xml",
+      "mismatched tag: line 123, column 2830"
+    ]
+  ],
+  "root_tags": {
+    "AOxml": 21639
+  },
+  "top_tags": [
+    [
+      "w",
+      1522256
+    ],
+    [
+      "del_in",
+      411747
+    ],
+    [
+      "lb",
+      384667
+    ],
+    [
+      "del_fin",
+      363540
+    ],
+    [
+      "sGr",
+      308087
+    ],
+    [
+      "space",
+      182299
+    ],
+    [
+      "d",
+      176543
+    ],
+    [
+      "laes_in",
+      132926
+    ],
+    [
+      "laes_fin",
+      132736
+    ],
+    [
+      "aGr",
+      121335
+    ],
+    [
+      "clb",
+      75942
+    ],
+    [
+      "parsep",
+      68280
+    ],
+    [
+      "corr",
+      58711
+    ],
+    [
+      "num",
+      54987
+    ],
+    [
+      "gap",
+      53375
+    ],
+    [
+      "annot",
+      48110
+    ],
+    [
+      "TxtPubl",
+      22635
+    ],
+    [
+      "Manuscripts",
+      22133
+    ],
+    [
+      "meta",
+      21702
+    ],
+    [
+      "AOxml",
+      21639
+    ],
+    [
+      "body",
+      21639
+    ],
+    [
+      "div1",
+      21639
+    ],
+    [
+      "text",
+      21639
+    ],
+    [
+      "AOHeader",
+      21639
+    ],
+    [
+      "docID",
+      21639
+    ],
+    [
+      "creation-date",
+      21620
+    ],
+    [
+      "annotation",
+      21614
+    ],
+    [
+      "AOxml-creation",
+      21596
+    ],
+    [
+      "kor2",
+      21550
+    ],
+    [
+      "note",
+      10399
+    ],
+    [
+      "ras_in",
+      5774
+    ],
+    [
+      "ras_fin",
+      5767
+    ],
+    [
+      "c",
+      4954
+    ],
+    [
+      "subscr",
+      4885
+    ],
+    [
+      "parsep_dbl",
+      2893
+    ],
+    [
+      "ParagrNr",
+      2887
+    ],
+    [
+      "kor",
+      1943
+    ],
+    [
+      "tabsep",
+      1538
+    ],
+    [
+      "InvNr",
+      1461
+    ],
+    [
+      "format",
+      642
+    ]
+  ],
+  "top_parent_child_edges": [
+    [
+      "text > w",
+      1521733
+    ],
+    [
+      "text > lb",
+      384222
+    ],
+    [
+      "w > del_in",
+      366096
+    ],
+    [
+      "w > del_fin",
+      318273
+    ],
+    [
+      "w > sGr",
+      307912
+    ],
+    [
+      "w > space",
+      182189
+    ],
+    [
+      "w > d",
+      176438
+    ],
+    [
+      "w > aGr",
+      121270
+    ],
+    [
+      "w > laes_in",
+      106260
+    ],
+    [
+      "w > laes_fin",
+      104890
+    ],
+    [
+      "text > clb",
+      75903
+    ],
+    [
+      "text > parsep",
+      68203
+    ],
+    [
+      "w > corr",
+      58071
+    ],
+    [
+      "w > num",
+      54945
+    ],
+    [
+      "text > gap",
+      50576
+    ],
+    [
+      "annotation > annot",
+      48107
+    ],
+    [
+      "sGr > del_in",
+      26029
+    ],
+    [
+      "sGr > del_fin",
+      25977
+    ],
+    [
+      "Manuscripts > TxtPubl",
+      22630
+    ],
+    [
+      "text > Manuscripts",
+      22058
+    ],
+    [
+      "AOxml > body",
+      21639
+    ],
+    [
+      "body > div1",
+      21639
+    ],
+    [
+      "div1 > text",
+      21639
+    ],
+    [
+      "AOxml > AOHeader",
+      21639
+    ],
+    [
+      "AOHeader > meta",
+      21639
+    ],
+    [
+      "AOHeader > docID",
+      21639
+    ],
+    [
+      "meta > creation-date",
+      21620
+    ],
+    [
+      "meta > annotation",
+      21614
+    ],
+    [
+      "meta > AOxml-creation",
+      21596
+    ],
+    [
+      "meta > kor2",
+      21550
+    ],
+    [
+      "sGr > laes_fin",
+      14183
+    ],
+    [
+      "aGr > del_in",
+      13388
+    ],
+    [
+      "sGr > laes_in",
+      12785
+    ],
+    [
+      "aGr > del_fin",
+      10736
+    ],
+    [
+      "w > note",
+      10021
+    ],
+    [
+      "aGr > laes_in",
+      9279
+    ],
+    [
+      "aGr > laes_fin",
+      7957
+    ],
+    [
+      "d > del_fin",
+      7466
+    ],
+    [
+      "d > del_in",
+      4974
+    ],
+    [
+      "w > c",
+      4944
+    ]
+  ],
+  "top_attributes": [
+    [
+      "w@mrp0sel",
+      981815,
+      [
+        " ",
+        " 1 ",
+        " ???",
+        "1",
+        "1a",
+        "1c",
+        "???",
+        "AKK"
+      ]
+    ],
+    [
+      "w@trans",
+      862823,
+      [
+        "GAL",
+        "KA×Uaz",
+        "LÚ˽IŠKURma",
+        "PA-NI 10",
+        "karimmi",
+        "kuapi",
+        "laḫlaḫḫi",
+        "nua"
+      ]
+    ],
+    [
+      "w@mrp1",
+      694327,
+      [
+        "10@Wettergott@{ a → …:D/L.SG_vor:POSP} { b → …:D/L.PL_vor:PO",
+        "GAL@Großer@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P",
+        "KA×U@Mund@ABL@28.11.4@",
+        "LÚ˽°D°IŠKUR@Wettergott-Mann@{ a → NOM.SG(UNM)} { b → ACC.SG(",
+        "karimme@Tempel@{ a → NOM.SG.N} { b → ACC.SG.N} { c → D/L.SG}",
+        "kattan@unten@@ ADV@",
+        "kuwapi@sobald als@@ CNJ@",
+        "laḫlaḫḫ=iye/a-@erregt sein@2SG.IMP@I.7@"
+      ]
+    ],
+    [
+      "lb@lnr",
+      384663,
+      [
+        "Rs.?",
+        "Rs.? 10′",
+        "Rs.? 11′",
+        "Rs.? 1′",
+        "Rs.? 2′",
+        "Rs.? 3′",
+        "Rs.? 4′",
+        "Rs.? 5′"
+      ]
+    ],
+    [
+      "lb@txtid",
+      384643,
+      [
+        "KBo 12.96",
+        "KBo 17.105+",
+        "KBo 34.46+",
+        "KBo 34.48",
+        "KBo 43.277",
+        "KBo 49.259",
+        "KBo 58.13",
+        "KBo 60.25"
+      ]
+    ],
+    [
+      "lb@cu",
+      384633,
+      [
+        "",
+        "▒",
+        "▒▒▒𒉿▒▒",
+        "▒▒▒𒊭𒀭𒁺",
+        "▒𒀀",
+        "▒𒃲𒋗𒌦𒈾𒄴𒄭𒆇𒄭𒀀▒𒊍",
+        "▒𒄭𒀀𒀀▒",
+        "𒁕𒀀𒉡𒉿𒉺𒉌𒀭𒌋"
+      ]
+    ],
+    [
+      "lb@lg",
+      384572,
+      [
+        "",
+        "Akk",
+        "Hat",
+        "Hattian",
+        "Hit",
+        "Hit> <w><del_in/> … <del_fin/></w",
+        "Hit> <w><note n='15' c=",
+        "Hur"
+      ]
+    ],
+    [
+      "w@mrp2",
+      317148,
+      [
+        "10@Heldenmut(?)@{ a → …:D/L.SG_vor:POSP} { b → …:D/L.PL_vor:",
+        "GAL@Becher@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P",
+        "KAL@Hirschgott@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ALL}@",
+        "KA×U@Mund@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL",
+        "NÍG.GIG@Leber@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NO",
+        "URU@Stadt@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL",
+        "a=a-@warm sein@{ a → PTCP.NOM.PL.N} { b → PTCP.ACC.PL.N} { c",
+        "dā-/d-@nehmen@2SG.IMP@II.2@"
+      ]
+    ],
+    [
+      "w@mrp3",
+      185482,
+      [
+        "10=@Tarḫuntašša@{ a → …:D/L.SG_vor:POSP} { b → …:D/L.PL_vor:",
+        "GAL@Becher@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P",
+        "KAL@Hirschgott@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ALL}@",
+        "URU@Stadt@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL",
+        "anda@darin@@ ADV@",
+        "da=@gesamt@{ a → NOM.SG(ABBR)} { b → ACC.SG(ABBR)} { c → NOM",
+        "kattan@unter-@@ PREV@",
+        "kurš=a-@Kurša@{ a → DN.NOM.SG(UNM)} { b → DN.ACC.SG(UNM)} { "
+      ]
+    ],
+    [
+      "space@c",
+      182298,
+      [
+        "10",
+        "12",
+        "13",
+        "14",
+        "16",
+        "17",
+        "19",
+        "20"
+      ]
+    ],
+    [
+      "w@mrp4",
+      117032,
+      [
+        "DINGIR-LIM@Gott@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → ",
+        "GAL@groß@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(",
+        "GÌR@fußförmiges Gefäß@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} ",
+        "KAL=@KAL@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ALL}@38.1@m",
+        "URU=(e)-@Stadt@{ a → HURR.ABS.SG} { b → STF}@30.10.4.2 += ya",
+        "anda@in@@ POSP@",
+        "arḫa@weg-@@ PREV@",
+        "da=@Verdickung(?)@{ a → NOM.SG(ABBR)} { b → ACC.SG(ABBR)} { "
+      ]
+    ],
+    [
+      "w@mrp5",
+      74425,
+      [
+        "DINGIR-LIM@Gott@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → ",
+        "DINGIR-LIM@Gott@{ a → …:D/L.SG_vor:POSP} { b → …:D/L.PL_vor:",
+        "GAL=@GAL@{ a → PNm.NOM.SG(UNM)} { b → PNm.ACC.SG(UNM)} { c →",
+        "GÌR@Fuß@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(U",
+        "KAL=a-@Kurunta@{ a → PNm.NOM.SG(UNM)} { b → PNm.ACC.SG(UNM)}",
+        "KAL=a-@Kurunta@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ALL}@",
+        "anda@hinein-@@ PREV@",
+        "arḫ=a-@Grenze@{ a → NOM.COLL.C} { b → ACC.COLL.C}@1.1@"
+      ]
+    ],
+    [
+      "clb@id",
+      72115,
+      [
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "182",
+        "183",
+        "184"
+      ]
+    ],
+    [
+      "corr@c",
+      58711,
+      [
+        "",
+        "!",
+        "!(?)",
+        "!?",
+        "(?)",
+        "?",
+        "?!",
+        "?."
+      ]
+    ],
+    [
+      "gap@c",
+      53328,
+      [
+        "(Rasur)",
+        "Ende Rs. III",
+        "Rs. IV bricht ab",
+        "Rs. IV!, soweit erhalten, unbeschrieben",
+        "Rs. bricht ab",
+        "Rs.? bricht ab",
+        "Text bricht ab",
+        "Vs. I bricht ab"
+      ]
+    ],
+    [
+      "annot@editor",
+      47641,
+      [
+        "",
+        "AK",
+        "AT",
+        "CB",
+        "CS",
+        "Daniel Schwemer",
+        "JD",
+        "JG"
+      ]
+    ],
+    [
+      "annot@date",
+      45451,
+      [
+        "",
+        "2023-02-01T14:49:48.153Z",
+        "2023-02-01T16:10:11.058Z",
+        "2023-02-08T16:04:25.258Z",
+        "2023-02-17T16:17:07.574Z",
+        "2023-02-18T06:24:52.797Z",
+        "2023-02-18T06:25:26.870Z",
+        "2023-02-20T12:05:04.307Z"
+      ]
+    ],
+    [
+      "w@mrp6",
+      42852,
+      [
+        "EGIR@hinterer@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NO",
+        "GÙB-laz@links von@POSP@ += ma@CNJctr@@ ",
+        "arḫ=a-@Grenze@{ a → VOC.SG} { b → ALL} { c → STF}@1.1@",
+        "kaša@REF1@@ INDCL += wa=tta@{ R → QUOT=PPRO.2SG.DAT} { S → Q",
+        "kiš@Wohlbefinden@@ HITT.NOM.SG.C(ABBR) += ššan@OBPs@@ ",
+        "laḫḫurnuz=i-@Laubwerk@{ a → D/L.SG} { b → ALL}@2.1.1 += ššan",
+        "nuwan@nicht (volitiv)@@ INDCL += šše=ššan@PPRO.3SG.D/L=OBPs@",
+        "par=a-@Para(?)@{ a → DN.STF} { b → DN.HURR.ABS} { c → DN.NOM"
+      ]
+    ],
+    [
+      "clb@nr",
+      34474,
+      [
+        "175",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "181",
+        "182"
+      ]
+    ],
+    [
+      "gap@t",
+      30906,
+      [
+        "line"
+      ]
+    ],
+    [
+      "w@mrp7",
+      27218,
+      [
+        "GÙB@linker@FNL(l).ABL@28.1.3.1 += ma@CNJctr@@ ",
+        "PÚ@Quelle@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL",
+        "gi=@Elle@{ a → NOM.SG(ABBR)} { b → ACC.SG(ABBR)} { c → NOM.P",
+        "ka-@dieser@{ a → DEM1.NOM.SG.N} { b → DEM1.ACC.SG.N}@19 += š",
+        "laḫḫurnuz=i-@Laubwerk@{ a → D/L.SG} { b → ALL} { c → NOM.PL.",
+        "nu=wa@@ CONNn=QUOT@ += šše=ššan@PPRO.3SG.D/L=OBPs@@ ",
+        "par=a-@Para(?)@{ a → DN.NOM.SG(UNM)} { b → DN.ACC.SG(UNM)} {",
+        "ŠE@günstig@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P"
+      ]
+    ],
+    [
+      "div1@type",
+      21639,
+      [
+        "transliteration"
+      ]
+    ],
+    [
+      "AOxml@space",
+      21618,
+      [
+        "preserve"
+      ]
+    ],
+    [
+      "creation-date@date",
+      21616,
+      [
+        "",
+        "2005-11-07T16:50:58",
+        "2007-03-27T11:06:04",
+        "2007-11-04T19:00:24",
+        "2016-02-10T12:47:52.643014513",
+        "2016-04-15T16:55:36.58",
+        "2016-06-30T16:40:22.847000000",
+        "2016-07-13T21:11:17.271000000"
+      ]
+    ],
+    [
+      "text@lang",
+      21610,
+      [
+        "30lang",
+        "Akk",
+        "Hat",
+        "Hit",
+        "Hitt",
+        "Hur",
+        "Luw",
+        "Pal"
+      ]
+    ],
+    [
+      "AOxml-creation@date",
+      21596,
+      [
+        "2023-04-21T22:37:44",
+        "2023-04-21T22:47:31",
+        "2023-05-16T13:44:18",
+        "2023-07-26T16:01:37",
+        "2023-07-26T16:01:38",
+        "2023-07-26T16:01:39",
+        "2023-07-26T16:01:41",
+        "2023-07-26T16:27:34"
+      ]
+    ],
+    [
+      "kor2@date",
+      21550,
+      [
+        "2023-04-21T22:37:44",
+        "2023-04-21T22:47:31",
+        "2023-05-16T13:44:16",
+        "2023-07-26T16:01:37",
+        "2023-07-26T16:01:38",
+        "2023-07-26T16:01:39",
+        "2023-07-26T16:01:41",
+        "2023-07-26T16:27:34"
+      ]
+    ],
+    [
+      "w@mrp8",
+      21315,
+      [
+        "GÙB-la@links@ADV@ += za@REFL@@ ",
+        "PÚ@Quelle@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL",
+        "gi=@Elle@{ a → NOM.SG(ABBR)} { b → ACC.SG(ABBR)} { c → NOM.P",
+        "ka-@dieser@{ a → DEM1.NOM.SG.N} { b → DEM1.ACC.SG.N}@19 += š",
+        "laḫḫurnuzz=i-@Laubwerk@{ a → D/L.SG} { b → ALL} { c → NOM.PL",
+        "ne=@(sich) drehen@2SG.IMP@I.1.1 += ya@CNJadd@",
+        "ne=@(sich) drehen@{ a → PTCP.NOM.SG.N} { b → PTCP.ACC.SG.N} ",
+        "nuwa@noch@@ INDCL += šše=ššan@PPRO.3SG.D/L=OBPs@@ "
+      ]
+    ],
+    [
+      "w@mrp9",
+      14689,
+      [
+        "PÚ@Arinna@{ a → GN.FNL(a).NOM.SG(UNM)} { b → GN.FNL(a).ACC.S",
+        "SANGA@Priester@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → N",
+        "SIG₅@in Ordnung bringen; gut werden@3SG.PRS.MP@III.29.1@",
+        "kiš@Wohlbefinden@@ HITT.NOM.SG.C(ABBR)@ += ya=an@CNJadd=PPRO",
+        "kiš@Wohlbefinden@@ HITT.NOM.SG.C(ABBR)@+= ya=an@CNJadd=PPRO.",
+        "laḫḫurnuz=i-@Laubwerk@{ a → GEN.SG} { b → NOM.PL.C} { c → GE",
+        "ne=@Ne@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → GN.",
+        "nu=i-@(Opferterminus)@HURR.ESS||HITT.D/L.SG@30.10.1 += šše=š"
+      ]
+    ],
+    [
+      "w@mrp10",
+      11485,
+      [
+        "PÚ@Arinna@{ a → GN.FNL(a).NOM.SG(UNM)} { b → GN.FNL(a).ACC.S",
+        "SIG₅=iye/a-@in Ordnung bringen; gut werden@PTCP.NOM.SG.C@III",
+        "TI@Leben@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(",
+        "TI@lebendig@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.",
+        "laḫḫurnuz=i-@Laubwerk@{ a → GEN.SG} { b → GEN.PL} { c → D/L.",
+        "ne=@Niya@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → G",
+        "nu=wa@@ CONNn=QUOT@ += šši=ššan@PPRO.3SG.D/L=OBPs@@ ",
+        "tur=i-@Mann@{ a → HURR.ABS.SG} { b → STF}@30.10.1 += aš@{ R "
+      ]
+    ],
+    [
+      "w@lg",
+      10846,
+      [
+        "",
+        "Akk",
+        "Hat",
+        "Hit",
+        "Hur",
+        "Lin",
+        "Luw",
+        "Pal"
+      ]
+    ],
+    [
+      "note@c",
+      10399,
+      [
+        "<P_f_Footnote>Vgl. Kolon 64.</P_f_Footnote>",
+        "Ergänzt nach Vs. II 2-3.",
+        "Ergänzt nach Vs. II 23, Rs. III 32′.",
+        "Ergänzt nach Vs. II 24.",
+        "Rs. mit Zeichenspuren mehrerer Zeilenanfänge.",
+        "Vgl. Vs. III 26′.",
+        "Vs.? Zeichenspuren von 3 Zeilen.",
+        "Wie schon in der Inhaltsübersicht von KBo 60 (S. V <SP_f_AO_"
+      ]
+    ],
+    [
+      "note@n",
+      9435,
+      [
+        "",
+        "1",
+        "10",
+        "11",
+        "15",
+        "2",
+        "3",
+        "55"
+      ]
+    ],
+    [
+      "w@mrp11",
+      8534,
+      [
+        "PÚ@Quelle@{ a → ALL} { b → VOC.SG}@29.1.2 += za@REFL@@ ",
+        "SIG₅@Gunst@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P",
+        "TI=@Leben@{ a → HURR.ABS.SG} { b → STF}@30.10.4.2 += aš@{ R ",
+        "TI@leben@3SG.PRS@I.29.1.3 += za@REFL@@ ",
+        "ann=a-@Anna@PNm.D/L.SG@38.2 += ššan@OBPs@@ m",
+        "gar=a-@Gara@{ a → GN.NOM.SG.C} { b → GN.GEN.SG}@39.2 += (a)š",
+        "laḫḫurnuzz=i-@Laubwerk@{ a → GEN.SG} { b → GEN.PL} { c → D/L",
+        "nea=@Niya@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → "
+      ]
+    ],
+    [
+      "w@mrp12",
+      6950,
+      [
+        "SIG₅@gut@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(",
+        "TI@Leben@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(",
+        "ap=a-@fertig sein@2SG.IMP@II.7.1 += ya@CNJadd@",
+        "man@wie@@ CNJ += mu=(a)pa@{ R → PPRO.1SG.ACC=OBPp} { S → PPR",
+        "n=e@@ { a → CONNn=PPRO.3PL.C.NOM} { b → CONNn=PPRO.3PL.N.NOM",
+        "nu=i-@(Opferterminus)@HURR.ESS||HITT.D/L.SG@30.10.1 += šši=š",
+        "parš=@zerbrechen@2SG.IMP@I.1.2 += ya@CNJadd@",
+        "šupp=a-@Fleisch@{ a → ALL} { b → VOC.SG} { c → NOM.PL.N} { d"
+      ]
+    ],
+    [
+      "w@mrp13",
+      5880,
+      [
+        "MUNUS.LUGAL@Ḫaššušara@{ a → DN.FNL(ma).NOM.SG.C} { b → DN.FN",
+        "TI@Leben@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(",
+        "ZAG@rechts@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.P",
+        "ap=i-@Api@{ a → DN.STF} { b → DN.HURR.ABS} { c → DN.NOM.SG(U",
+        "man@wie@@ POSP += mu=(a)pa@{ R → PPRO.1SG.ACC=OBPp} { S → PP",
+        "n@n@QUANcar@33.5 += wa=šši=ššan@QUOT=PPRO.3SG.D/L=OBPs@@ ",
+        "ne=@(sich) drehen@2SG.IMP@I.1.1 += ya@CNJadd@",
+        "parš=iye/a-@zerbrechen@2SG.IMP@I.7 += ya@CNJadd@"
+      ]
+    ],
+    [
+      "w@mrp14",
+      5401,
+      [
+        "MUNUS.LUGAL@Ḫaššušara@{ a → DN.FNL(ma).NOM.SG.C} { b → DN.FN",
+        "TI=@Leben@{ a → HURR.ABS.SG} { b → STF}@30.10.4.2 += za@REFL",
+        "ZAG@rechts; günstig@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { ",
+        "ap=a-@Apa@PNm.D/L.SG@38.2 += ya@CNJadd@m",
+        "mali=a-@Maliya@GN.D/L.SG@39.2 += ya@CNJadd@ÍD",
+        "n@(unbekannte Zahl)@@ QUANcar += wa=šši=ššan@QUOT=PPRO.3SG.D",
+        "ne=@Ne@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → GN.",
+        "parš=a-@Brocken@D/L.SG@1.1 += ya@CNJadd@(NINDA)"
+      ]
+    ],
+    [
+      "c@type",
+      4954,
+      [
+        "sign"
+      ]
+    ],
+    [
+      "w@mrp15",
+      4935,
+      [
+        "MUNUS.LUGAL@Ḫaššušara@{ a → DN.FNL(ma).NOM.SG(UNM)} { b → DN",
+        "ZAG@Schulter@{ a → ALL} { b → VOC.SG}@29.1.1 += za@REFL@UZU",
+        "ap=i-@vorderer@{ a → HURR.ABS.SG} { b → STF}@30.10.1 += ya@C",
+        "mal=ia-@Maliya@DN.D/L.SG@35.1.4 += ya@CNJadd@D",
+        "ne=@Niya@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → G",
+        "parš=@fliehen@2SG.IMP@I.1.2 += ya@CNJadd@",
+        "ta=aš@@{ a → CONNt=PPRO.3SG.C.NOM} { b → CONNt=PPRO.3PL.C.AC",
+        "zaḫḫ=@schlagen@{ a → 3SG.PRS} { b → 2SG.IMP}@II.1.3 += ya@CN"
+      ]
+    ],
+    [
+      "subscr@c",
+      4885,
+      [
+        "(9)",
+        "X",
+        "a",
+        "ap",
+        "e",
+        "e(",
+        "e?",
+        "i"
+      ]
+    ]
+  ],
+  "cth": {
+    "docs_with_cth_folder": 21868,
+    "distinct_cth_folders": 662,
+    "docs_with_cth_text_reference": 530,
+    "distinct_cth_numbers_in_text": 159,
+    "top_cth_folders": [
+      [
+        "832",
+        3609
+      ],
+      [
+        "670",
+        3068
+      ],
+      [
+        "470",
+        1810
+      ],
+      [
+        "500",
+        463
+      ],
+      [
+        "582",
+        383
+      ],
+      [
+        "215",
+        335
+      ],
+      [
+        "628",
+        301
+      ],
+      [
+        "791",
+        262
+      ],
+      [
+        "530",
+        255
+      ],
+      [
+        "627",
+        188
+      ],
+      [
+        "209",
+        178
+      ],
+      [
+        "819",
+        172
+      ],
+      [
+        "626",
+        170
+      ],
+      [
+        "701",
+        164
+      ],
+      [
+        "458",
+        159
+      ],
+      [
+        "212",
+        151
+      ],
+      [
+        "790",
+        145
+      ],
+      [
+        "745",
+        143
+      ],
+      [
+        "528",
+        142
+      ],
+      [
+        "590",
+        141
+      ]
+    ]
+  },
+  "joins": {
+    "docs_with_join_notation_authoritative": 866,
+    "docs_with_plus_notation_noisy_all_fields": 13981,
+    "note": "authoritative = '+' found only in docID / AO:TxtPubl / lb@txtid; noisy = any '+' anywhere including w@mrp* clitic-attachment notation ('POSP += ma'), which is not a join marker.",
+    "examples": [
+      "TLHbasisONLINE25.1_ZENODO/CTH 433_XML/KBo 64.15+.xml :: TxtPubl text = KBo 64.15 {€1} + KUB 7.38 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 427_XML/KBo 53.33+.xml :: TxtPubl text = KBo 53.33 {€1} + KBo 6.34 {€2} + KUB 48.76 {€3} + CHDS 3.51 {€4}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 427_XML/342_u+.xml :: TxtPubl text = + KUB 40.16 {€5} + KUB 7.59 {€6} + CHDS 2.20 {€7}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 32.131+.xml :: TxtPubl text = KBo 32.131 {€2} + KBo 32.128 {€1} + KBo 32.130 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 51.228+.xml :: TxtPubl text = KBo 51.228 {€3} (+) KUB 8.60 {€1} (+) KUB 47.9 {€2} (+) KBo 68.145 {€4}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 8.144+.xml :: TxtPubl text = KBo 8.144 {€2} + KBo 6.33 {€1} + KUB 52.111 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 341_XML/KBo 33.10+.xml :: TxtPubl text = KBo 33.10 {€1} (+) KBo 19.124 {€2} + KBo 54.5 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 631_XML/KBo 17.74+.xml :: TxtPubl text = KBo 17.74 {€1} + KUB 34.123 {€2} + KBo 21.25 {€3} + KBo 38.32 {€4} + KBo 30.66 {€5} + KBo 39.76 {€6}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 631_XML/KBo 25.51+.xml :: TxtPubl text = KBo 25.51 {€1} + KBo 30.31 {€2} + FHL 117 {€3} + VSNF 12.53 {€4}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 631_XML/KBo 20.61+.xml :: TxtPubl text = KBo 20.61 {€1} + KBo 34.185 {€2} + KBo 41.77 {€3} + KBo 39.112 {€4} + KBo 39.286 {€5} + KBo 31.183 {",
+      "TLHbasisONLINE25.1_ZENODO/CTH 157_XML/KBo 28.21+.xml :: TxtPubl text = KBo 28.21 {€1} + KBo 1.9 {€2} + Durham 2463 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 625_XML/KBo 19.128+.xml :: TxtPubl text = KBo 19.128 {€1} + KUB 20.58 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 625_XML/KUB 53.57+.xml :: TxtPubl text = KUB 53.57 {€1} + IBoT 3.35 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 625_XML/IBoT 2.61+.xml :: TxtPubl text = IBoT 2.61 {€1} + IBoT 4.276 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 786_XML/KBo 17.86+.xml :: TxtPubl text = KBo 17.86 {€1}+KBo 15.62 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 553_XML/KUB 37.172+.xml :: TxtPubl text = KUB 37.172 {€3} + 168 {€2} (+) 167 {€1}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 209_XML/Or. 90_431+.xml :: TxtPubl text = Or. 90_431 + Or. 90_1517",
+      "TLHbasisONLINE25.1_ZENODO/CTH 209_XML/KUB 23.109+.xml :: TxtPubl text = KUB 23.109 {€1} (+) VSNF 12.130 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 209_XML/Or. 90_1600+.xml :: TxtPubl text = Or. 90/1600 + Or. 90/1706",
+      "TLHbasisONLINE25.1_ZENODO/CTH 584_XML/KBo 60.99+.xml :: TxtPubl text = KBo 60.99 {€1} + KUB 15.11 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 584_XML/KUB 15.1+.xml :: TxtPubl text = KUB 15.1 {€1} + DBH 43/2.14 {€2} + CHDS 2.145 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 81_XML/KUB 1.2+.xml :: TxtPubl text = KUB 1.2 {€1} + KUB 19.58 {€2} + KUB 19.59 {€3}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 81_XML/248_w+.xml :: TxtPubl text = 248/w {€1} + KBo 59.239 {€2}",
+      "TLHbasisONLINE25.1_ZENODO/CTH 81_XML/KBo 3.6+.xml :: TxtPubl text = KBo 3.6 {€1} + ABoT 1.62 {€2} + KUB 1.7 {€3} + KUB 19.70 {€4} + KUB 1.4 {€5} + 674/v {€6} + KUB 26.4",
+      "TLHbasisONLINE25.1_ZENODO/CTH 81_XML/KUB 19.67+.xml :: TxtPubl text = KUB 19.67 {€1} + 1513/u {€2} + KUB 19.64 {€3} + Bo 69/995 {€4} + 1102/v {€5} + KUB 1.10 {€6} + 511/v"
+    ]
+  },
+  "provenance_prefix_histogram": [
+    [
+      "KBo (Hattusa)",
+      13894
+    ],
+    [
+      "KUB (Hattusa)",
+      4042
+    ],
+    [
+      "(no known prefix)",
+      2297
+    ],
+    [
+      "IBoT (Hattusa)",
+      573
+    ],
+    [
+      "ABoT (Hattusa)",
+      391
+    ],
+    [
+      "Bo (Hattusa)",
+      278
+    ],
+    [
+      "VBoT (Hattusa)",
+      113
+    ],
+    [
+      "HKM (Masat/Tapikka)",
+      110
+    ],
+    [
+      "HT (Hattusa(coll.))",
+      79
+    ],
+    [
+      "Or (Ortakoy/Sapinuwa)",
+      34
+    ],
+    [
+      "KuSa (Kusakli/Sarissa)",
+      30
+    ],
+    [
+      "KuT (Kusakli/Sarissa)",
+      12
+    ],
+    [
+      "Msk (Emar)",
+      7
+    ],
+    [
+      "RS (Ugarit)",
+      7
+    ],
+    [
+      "AT (Alalakh)",
+      1
+    ]
+  ],
+  "bracket_marker_frequencies": {
+    "[": 4,
+    "]": 0,
+    "⸢": 0,
+    "⸣": 0,
+    "〈": 0,
+    "〉": 0,
+    "<": 0,
+    ">": 76,
+    "(": 12336,
+    ")": 12339
+  },
+  "total_text_chars": 10797764
+}

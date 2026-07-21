@@ -1,0 +1,47 @@
+{
+  "seed": 20260720,
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "git_commit": "N/A -- working directory is not a git repository",
+  "split_fractions": {
+    "train": 0.8,
+    "dev": 0.1,
+    "test": 0.1
+  },
+  "genre_band_definition": "CTH // 100 * 100 -- coarse numeric-range proxy only, not a scholarly genre catalog lookup",
+  "main_split": {
+    "unit": "CTH composition (all docs + all reconstructed join members of a composition land on one side)",
+    "doc_counts": {
+      "train": 15358,
+      "dev": 4919,
+      "test": 1362
+    },
+    "composition_counts": {
+      "train": 518,
+      "dev": 70,
+      "test": 69
+    },
+    "composition_leakage_check": "PASS (0 compositions span multiple splits)"
+  },
+  "site_split": {
+    "unit": "document (NOT composition-disjoint by design -- see docstring)",
+    "doc_counts": {
+      "train_hattusa": 19175,
+      "excluded_unknown_site": 2263,
+      "test_provincial": 201
+    },
+    "provincial_sites_included": [
+      "Alalakh",
+      "Emar",
+      "Kayalipinar/Samuha",
+      "Kusakli/Sarissa",
+      "Masat/Tapikka",
+      "Ortakoy/Sapinuwa",
+      "Ugarit"
+    ],
+    "hattusa_sites_included": [
+      "Hattusa",
+      "Hattusa(coll.)"
+    ],
+    "excluded_note": "'unknown'-site docs (museum/series sigla not yet mapped, e.g. CHDS/DBH/FHL/VSNF/HFAC) are excluded from this axis, not guessed into either bucket -- likely mostly Hattusa material under unmapped sigla, needs expert prefix review before inclusion."
+  }
+}
