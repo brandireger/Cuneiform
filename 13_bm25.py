@@ -74,7 +74,7 @@ def apply_bigrams(token_lists, use_bigrams):
 
 
 def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
-                      join_pairs, dup_pairs, line_index, reconstructed):
+                      join_pairs, dup_pairs, line_index, reconstructed, family_map=None):
     out = {"index_variants": {}}
     test_join_pairs = [p for p in join_pairs if p["test_side"]]
     dup_by_frag = {}
@@ -106,7 +106,8 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
             qtoks = apply_bigrams(
                 [json.loads(s) for s in frag_lookup.loc[qids, f"{tok_field}_attested"]],
                 use_bigrams)
-            per_q, agg = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pos, method=method)
+            per_q, agg = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pos, method=method,
+                                           family_map=family_map)
             agg["by_join_type"] = {}
             for jt in set(p["join_type"] for p in tier_pairs):
                 jt_pairs = [p for p in tier_pairs if p["join_type"] == jt]
@@ -118,7 +119,8 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
                 jt_qtoks = apply_bigrams(
                     [json.loads(s) for s in frag_lookup.loc[jt_qids, f"{tok_field}_attested"]],
                     use_bigrams)
-                _, jt_agg = eh.run_retrieval(jt_qids, jt_qtoks, cand_ids, cand_toks, jt_pos, method=method)
+                _, jt_agg = eh.run_retrieval(jt_qids, jt_qtoks, cand_ids, cand_toks, jt_pos,
+                                              method=method, family_map=family_map)
                 agg["by_join_type"][jt] = jt_agg
             variant_out[f"joins_tier_{tier}"] = agg
             if tier == "A":
@@ -133,7 +135,8 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
         qids = [q for q in pos_c_full if q in frag_lookup.index]
         qtoks = apply_bigrams(
             [json.loads(s) for s in frag_lookup.loc[qids, f"{tok_field}_attested"]], use_bigrams)
-        _, agg_full = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pos_c_full, method=method)
+        _, agg_full = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pos_c_full,
+                                        method=method, family_map=family_map)
         variant_out["joins_tier_C_full_UPPER_BOUND_contaminated"] = agg_full
 
         subs, eval_pairs = eh.tier_c_exclusive_tokens(join_pairs, line_index, reconstructed)
@@ -159,6 +162,10 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
                           (eh.add_bigrams(subs[q][f"{excl_field}_attested"]) if use_bigrams
                            else subs[q][f"{excl_field}_attested"])
                           for q in excl_qids]
+            # NOTE: no family_map here deliberately -- tier-C pair members
+            # share the same parent_doc/family by construction (that's the
+            # positive being tested), so family-exclusion would remove the
+            # intended answer, not a spurious near-duplicate.
             _, agg_excl = eh.run_retrieval(excl_qids, excl_qtoks, sub_ids, sub_toks, pos_excl, method=method)
             variant_out["joins_tier_C_exclusive_HONEST"] = agg_excl
         else:
@@ -168,7 +175,8 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
         qids = [q for q in dup_by_frag if q in frag_lookup.index]
         qtoks = apply_bigrams(
             [json.loads(s) for s in frag_lookup.loc[qids, f"{tok_field}_attested"]], use_bigrams)
-        per_q_dup, agg_dup = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, dup_by_frag, method=method)
+        per_q_dup, agg_dup = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, dup_by_frag,
+                                               method=method, family_map=family_map)
         variant_out["duplicates"] = agg_dup
 
         # ---- POOLED (union)
@@ -178,7 +186,8 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
         pqids = [q for q in pooled_pos if q in frag_lookup.index]
         pqtoks = apply_bigrams(
             [json.loads(s) for s in frag_lookup.loc[pqids, f"{tok_field}_attested"]], use_bigrams)
-        per_q_pooled, agg_pooled = eh.run_retrieval(pqids, pqtoks, cand_ids, cand_toks, pooled_pos, method=method)
+        per_q_pooled, agg_pooled = eh.run_retrieval(pqids, pqtoks, cand_ids, cand_toks, pooled_pos,
+                                                     method=method, family_map=family_map)
         variant_out["pooled"] = agg_pooled
 
         # ---- stratification (pooled, this index variant)
@@ -209,7 +218,7 @@ def run_task_b_suite(scorer_name, method, tok_field, use_bigrams, frags,
     return out, cand_render_lookup
 
 
-def run_leakage_2x2(method, tok_field, use_bigrams, frags, join_pairs, dup_pairs):
+def run_leakage_2x2(method, tok_field, use_bigrams, frags, join_pairs, dup_pairs, family_map=None):
     """FULL/FULL, FULL/ATTESTED, ATTESTED/FULL, ATTESTED/ATTESTED on
     the POOLED task, test_only index."""
     test_join_pairs = [p for p in join_pairs if p["test_side"]]
@@ -234,18 +243,20 @@ def run_leakage_2x2(method, tok_field, use_bigrams, frags, join_pairs, dup_pairs
             qids = [q for q in pooled_pos if q in test_frags.index]
             qtoks = apply_bigrams(
                 [json.loads(s) for s in test_frags.loc[qids, f"{tok_field}_{q_render}"]], use_bigrams)
-            _, agg = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pooled_pos, method=method)
+            _, agg = eh.run_retrieval(qids, qtoks, cand_ids, cand_toks, pooled_pos,
+                                       method=method, family_map=family_map)
             results[f"query_{q_render}_index_{c_render}"] = agg
     return results
 
 
-def run_task_a_suite(method, tok_field, use_bigrams, frags):
+def run_task_a_suite(method, tok_field, use_bigrams, frags, family_map=None):
     test_real = frags[(frags["main_split"] == "test") & (~frags["is_bin"])]
     qids = test_real["fragment_id"].tolist()
     qtoks = apply_bigrams([json.loads(s) for s in test_real[f"{tok_field}_attested"]], use_bigrams)
     q_parent = test_real["parent_doc"].tolist()
     q_cth = test_real["cth"].tolist()
-    per_q, agg = eh.run_task_a(qids, qtoks, q_parent, q_cth, qids, qtoks, q_parent, q_cth, method=method)
+    per_q, agg = eh.run_task_a(qids, qtoks, q_parent, q_cth, qids, qtoks, q_parent, q_cth,
+                                method=method, family_map=family_map)
     return per_q, agg
 
 
@@ -293,10 +304,14 @@ def write_report(scorer_name, dedup, task_b, task_a, leakage, out_dir):
 
 
 def main():
+    patched = "--patched" in sys.argv
+    results_root = Path("results_p3_patched") if patched else RESULTS
+
     frags, splits, doc_table = eh.load_fragment_universe()
     join_pairs = eh.build_join_positives(frags)
     join_pair_set = {frozenset((p["fragment_id_a"], p["fragment_id_b"])) for p in join_pairs}
     dup_pairs = eh.build_duplicate_positives(frags, join_pair_set)
+    family_map = eh.build_family_map(frags) if patched else None
 
     corpus = pd.read_parquet(eh.P2_OUT / "corpus.parquet")
     line_index = eh.build_line_index(corpus)
@@ -305,6 +320,10 @@ def main():
 
     dedup = dedup_guard(frags)
     print("Dedup guard:", dedup)
+    if patched:
+        n_families = sum(1 for k, v in family_map.items() if k != v)
+        print(f"H1 patch active: {n_families} doc_ids collapsed into a "
+              f"docID-family (i.e. {n_families} sibling pairs found).")
 
     scorers = [
         ("bm25_sign", "bm25", "sign", True),
@@ -313,19 +332,22 @@ def main():
     ]
 
     summary = {"dedup_guard": dedup, "scorers": {}}
+    if patched:
+        eh._exclusion_log["count"] = 0
     for name, method, tok_field, use_bigrams in scorers:
         print(f"\n=== {name} ===")
-        out_dir = RESULTS / name
+        out_dir = results_root / name
         out_dir.mkdir(parents=True, exist_ok=True)
 
         task_b, cand_render_lookup = run_task_b_suite(
             name, method, tok_field, use_bigrams, frags, join_pairs, dup_pairs,
-            line_index, reconstructed)
+            line_index, reconstructed, family_map=family_map)
         per_q_tierA = task_b["index_variants"]["test_only"].pop("_per_query_tierA", [])
         fail_source = task_b["index_variants"]["test_only"].pop("_failures_source", {})
 
-        per_q_a, task_a = run_task_a_suite(method, tok_field, use_bigrams, frags)
-        leakage = run_leakage_2x2(method, tok_field, use_bigrams, frags, join_pairs, dup_pairs)
+        per_q_a, task_a = run_task_a_suite(method, tok_field, use_bigrams, frags, family_map=family_map)
+        leakage = run_leakage_2x2(method, tok_field, use_bigrams, frags, join_pairs, dup_pairs,
+                                   family_map=family_map)
 
         with open(out_dir / "metrics.json", "w", encoding="utf-8") as f:
             json.dump({"task_b": task_b, "task_a": task_a, "leakage_2x2": leakage,
@@ -363,10 +385,17 @@ def main():
         print(f"{name}: Task A recall@1={summary['scorers'][name]['task_a_recall@1']:.3f}, "
               f"Task B pooled recall@1={summary['scorers'][name]['task_b_pooled_test_only_recall@1']:.3f}")
 
-    with open(RESULTS / "p3_summary.json", "w", encoding="utf-8") as f:
+    if patched:
+        summary["h1_family_exclusion_count"] = eh._exclusion_log["count"]
+        summary["h1_family_pairs"] = n_families
+
+    with open(results_root / "p3_summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2, default=str)
 
-    print("\nDone. Results in:", RESULTS.resolve())
+    print("\nDone. Results in:", results_root.resolve())
+    if patched:
+        print(f"Total same-family candidate exclusions applied during ranking: "
+              f"{eh._exclusion_log['count']}")
 
 
 if __name__ == "__main__":

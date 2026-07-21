@@ -28,10 +28,28 @@ in p3_report.md rather than guessed silently):
   level count used here are reported side by side for transparency.
 - POOLED: union of JOINS and DUPLICATES positive sets per query,
   scored against the single fragment index above.
+
+P4 H1 PATCH (2026-07): docID-family normalization. A handful of
+corpus docIDs are catalogued TWICE -- once for the whole tablet, once
+for a side/column sub-edition of the SAME physical object (e.g.
+"KUB 7.58" and "KUB 7.58 Vs. I" -- confirmed byte-identical ATTESTED
+content in P3's failure analysis). Exhaustively found via regex sweep
+over all 21,583 doc_ids: exactly 5 such family pairs exist (see
+h1_patch_report.md). Same-family candidates are excluded from ranking
+entirely (neither positive nor negative -- they're not independent
+objects, scoring against them either way would be meaningless), via
+`family_key()`/`build_family_map()` below, applied inside
+`top_k_ranking()`. Composite-member "::N" suffixes are NOT collapsed
+into their parent's family (different members are genuinely different
+physical fragments) -- family normalization operates on the parent_doc
+part only. This does NOT touch the 98 exact-dedup groups from
+unrelated objects with coincidentally-identical (near-empty/degenerate)
+content -- those stay in ranking as real formulaic collisions, per spec.
 """
 
 import json
 import random
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -399,38 +417,86 @@ def tfidf_score_matrix(index_tokens, query_tokens):
     return scores.tocsr(), vec
 
 
+# ---------------------------------------------------------------- H1: docID-family normalization
+
+FAMILY_SUFFIX_RE = re.compile(
+    r"^(.*?)(\+)?\s+(Vs\.?\??|Rs\.?\??|obv\.?\??|rev\.?\??)(\s*[IVX]+\.?)?$",
+    re.IGNORECASE)
+
+
+def build_family_map(frags: pd.DataFrame):
+    """doc_id -> family_key. Strips a trailing side/column suffix only
+    when the base form ALSO exists as an independent doc_id in the
+    corpus (i.e. it's a real catalogued sibling, not just a fragment
+    whose own line_label-derived name happens to look suffix-like)."""
+    all_ids = set(frags["parent_doc"].unique())
+    fam = {}
+    for did in all_ids:
+        m = FAMILY_SUFFIX_RE.match(did)
+        base = m.group(1).strip() if m else None
+        fam[did] = base if (base and base in all_ids and base != did) else did
+    return fam
+
+
+def fragment_family(fragment_id, family_map):
+    parent = fragment_id.split("::")[0]
+    return family_map.get(parent, parent)
+
+
 # ---------------------------------------------------------------- task runner
 
-def top_k_ranking(scores_row, candidate_ids, exclude_id, k=100):
+_exclusion_log = {"count": 0}
+
+
+def top_k_ranking(scores_row, candidate_ids, exclude_id, family_map=None,
+                   query_family=None, candidate_families=None, k=100):
     """scores_row: 1 x n_docs sparse row. Returns candidate_ids sorted
     best-first (score desc, ties broken by candidate_id for
-    determinism), excluding exclude_id, truncated to a generous cutoff
-    (only need positions up to the largest k we report, but callers
-    may want the raw rank of a positive beyond that -- so this returns
-    ALL candidates ranked, not just top k; k here only bounds a fast
-    path when the caller truly only needs the head)."""
+    determinism), excluding exclude_id AND (H1 patch) every candidate
+    in the same docID-family as the query -- logged via
+    _exclusion_log for h1_patch_report.md. Family args are optional so
+    non-H1 callers (e.g. determinism re-checks against pre-patch
+    numbers) still work unchanged."""
     row = scores_row.toarray().ravel() if sp.issparse(scores_row) else np.asarray(scores_row)
     order = np.argsort(-row, kind="stable")
-    ranked = [candidate_ids[i] for i in order if candidate_ids[i] != exclude_id]
-    return ranked
+    if query_family is not None and candidate_families is not None:
+        ranked = []
+        for i in order:
+            cid = candidate_ids[i]
+            if cid == exclude_id:
+                continue
+            if candidate_families[i] == query_family:
+                _exclusion_log["count"] += 1
+                continue
+            ranked.append(cid)
+        return ranked
+    return [candidate_ids[i] for i in order if candidate_ids[i] != exclude_id]
 
 
 def run_retrieval(query_ids, query_tokens, candidate_ids, candidate_tokens,
-                   positives_by_query, method="bm25", ks=(1, 5, 10, 100)):
+                   positives_by_query, method="bm25", ks=(1, 5, 10, 100),
+                   family_map=None):
     """Core Task B runner for one (scorer, index_variant, rendering)
     combination. positives_by_query: dict query_id -> set(candidate_id).
-    Returns (per_query_rows, aggregate_metrics)."""
+    Returns (per_query_rows, aggregate_metrics). Pass family_map (from
+    build_family_map) to apply the H1 same-family exclusion."""
     if method == "bm25":
         scores, _ = bm25_score_matrix(candidate_tokens, query_tokens)
     else:
         scores, _ = tfidf_score_matrix(candidate_tokens, query_tokens)
+
+    cand_families = ([fragment_family(c, family_map) for c in candidate_ids]
+                      if family_map is not None else None)
 
     per_query = []
     for qi, qid in enumerate(query_ids):
         positives = positives_by_query.get(qid, set())
         if not positives:
             continue
-        ranked = top_k_ranking(scores[qi], candidate_ids, exclude_id=qid)
+        q_fam = fragment_family(qid, family_map) if family_map is not None else None
+        ranked = top_k_ranking(scores[qi], candidate_ids, exclude_id=qid,
+                                family_map=family_map, query_family=q_fam,
+                                candidate_families=cand_families)
         m = recall_and_rank(ranked, positives, ks=ks)
         m["query_id"] = qid
         m["n_positives"] = len(positives)
@@ -442,15 +508,19 @@ def run_retrieval(query_ids, query_tokens, candidate_ids, candidate_tokens,
 
 def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
                candidate_ids, candidate_tokens, candidate_parent_doc, candidate_cth,
-               method="bm25", ks=(1, 5, 10)):
+               method="bm25", ks=(1, 5, 10), family_map=None):
     """Zero-shot composition assignment, leave-one-out. A query's
     candidate pool excludes ALL fragments sharing its parent_doc (not
     just itself) -- otherwise a sibling join-member of the same
-    physical object would trivially "prove" the composition. Ranks
-    COMPOSITIONS by the best-scoring candidate fragment belonging to
-    that composition. Compositions with zero eligible same-CTH
-    candidates after this exclusion (single-witness on test side) are
-    counted and excluded from the metric, never silently dropped."""
+    physical object would trivially "prove" the composition. With
+    family_map (H1 patch), also excludes fragments from a docID-family
+    sibling parent_doc (e.g. "KUB 7.58 Vs. I" when the query is from
+    "KUB 7.58") for the same reason -- they're not independent
+    evidence either. Ranks COMPOSITIONS by the best-scoring candidate
+    fragment belonging to that composition. Compositions with zero
+    eligible same-CTH candidates after this exclusion (single-witness
+    on test side) are counted and excluded from the metric, never
+    silently dropped."""
     if method == "bm25":
         scores, _ = bm25_score_matrix(candidate_tokens, query_tokens)
     else:
@@ -458,6 +528,8 @@ def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
 
     cand_cth_arr = np.asarray(candidate_cth)
     cand_parent_arr = np.asarray(candidate_parent_doc)
+    if family_map is not None:
+        cand_family_arr = np.asarray([family_map.get(p, p) for p in candidate_parent_doc])
 
     per_query = []
     n_excluded_single_witness = 0
@@ -465,7 +537,11 @@ def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
         q_parent = query_parent_doc[qi]
         q_cth = query_cth[qi]
         row = scores[qi].toarray().ravel()
-        mask = cand_parent_arr != q_parent
+        if family_map is not None:
+            q_family = family_map.get(q_parent, q_parent)
+            mask = cand_family_arr != q_family
+        else:
+            mask = cand_parent_arr != q_parent
         if not mask.any() or q_cth not in set(cand_cth_arr[mask]):
             n_excluded_single_witness += 1
             continue
