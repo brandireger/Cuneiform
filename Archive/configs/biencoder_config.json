@@ -1,0 +1,22 @@
+{
+  "seed": 20260722,
+  "seq_len": 512,
+  "batch_size": 16,
+  "lr": 0.0001,
+  "warmup_steps": 200,
+  "max_steps": 5000,
+  "checkpoint_every": 250,
+  "eval_every": 250,
+  "wall_clock_budget_hours": 12,
+  "temperature": 0.05,
+  "hard_neg_k": 4,
+  "hard_neg_pool_k": 20,
+  "positive_mix": "balanced",
+  "init_checkpoint": "runs/pretrain_base/checkpoint.pt",
+  "dev_synthetic_n": 300,
+  "n_layers": 6,
+  "d_model": 384,
+  "n_heads": 6,
+  "d_ff": 1536,
+  "dropout": 0.1
+}

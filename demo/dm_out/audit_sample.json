@@ -1,0 +1,4522 @@
+[
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 24.124",
+    "line_index_in_doc": 20,
+    "line_label": "rev.",
+    "cu": "▒▒▒",
+    "tokens_with_states": [],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 24.124\" lnr=\"rev.\" lg=\"Hit\" cu=\"▒▒▒\"/> <gap c=\"blank line\"/> \n<gap t=\"line\" c=\"end of tablet\"/> \n</text></div1></body></AOxml> "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 69.44",
+    "line_index_in_doc": 3,
+    "line_label": "4′",
+    "cu": "▒𒅀𒈪",
+    "tokens_with_states": [
+      [
+        "ia",
+        "attested"
+      ],
+      [
+        "mi",
+        "laes"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "mi",
+        "damage_state": "laes"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 69.44\" lnr=\"4′\" lg=\"Hit\" cu=\"▒𒅀𒈪\"/> <w trans=\"~iami\" mrp0sel=\"DEL\" >-i<del_fin/>a<corr c=\"?\"/>-<laes_in/>mi<laes_fin/></w> \n<gap t=\"line\" c=\"Text bricht ab\"/> \n</text></div1></body></AOxml> "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 25.81",
+    "line_index_in_doc": 3,
+    "line_label": "Vs. 4",
+    "cu": "𒄭𒀀𒁹𒁹𒂁𒄷𒌒𒁇𒀸𒁇▒",
+    "tokens_with_states": [
+      [
+        "ḪI",
+        "laes"
+      ],
+      [
+        "A",
+        "laes"
+      ],
+      [
+        "<NUM>",
+        "attested"
+      ],
+      [
+        "DUG",
+        "laes"
+      ],
+      [
+        "ḫu",
+        "laes"
+      ],
+      [
+        "up",
+        "laes"
+      ],
+      [
+        "pár",
+        "attested"
+      ],
+      [
+        "aš",
+        "attested"
+      ],
+      [
+        "pár",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "ḪI",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "DUG",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ḫu",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "up",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "pár",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pár",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 25.81\" lnr=\"Vs. 4\" lg=\"Hit\" cu=\"𒄭𒀀𒁹𒁹𒂁𒄷𒌒𒁇𒀸𒁇▒\"/> <w><del_in/></w> <w><space c=\"7\"/></w> <w><del_fin/><laes_in/><d>ḪI</d><corr c=\"?\"/><d>.A</d><corr c=\"?\"/></w> <w trans=\"2\" mrp0sel=\" 1 \" mrp1=\"2@zwei@@ QUANcar@\" ><num>2</num><corr c=\"?\"/></w> <w trans=\"ḫupparaš\" mrp0sel=\" \" mrp1=\"ḫuppa=r-@Schale@{ a → GEN.SG} { b → GEN.PL} { c → D/L.PL}@10.1.2@(GIŠ/DUG)\" mrp2=\"ḫuppar=a-@Schale@{ a → NOM.SG.C} { b → GEN.SG} { c → VOC.SG} { d → GEN.PL} { e → D/L.PL}@1.1@(GIŠ/DUG)\" mrp3=\"ḫuppa=r-@Schal"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 8.86+",
+    "line_index_in_doc": 14,
+    "line_label": "Vs. 15′",
+    "cu": "▒𒊻𒍣𒆠𒁉𒉌𒀭𒌋𒌒𒁉𒄩𒉡𒈠𒀸𒅆𒍑𒋫𒀸𒅆",
+    "tokens_with_states": [
+      [
+        "uz",
+        "restored"
+      ],
+      [
+        "zi",
+        "attested"
+      ],
+      [
+        "ki",
+        "attested"
+      ],
+      [
+        "pí",
+        "attested"
+      ],
+      [
+        "ni",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "10",
+        "attested"
+      ],
+      [
+        "up",
+        "laes"
+      ],
+      [
+        "pí",
+        "attested"
+      ],
+      [
+        "ḫa",
+        "attested"
+      ],
+      [
+        "nu",
+        "attested"
+      ],
+      [
+        "ma",
+        "laes"
+      ],
+      [
+        "aš",
+        "attested"
+      ],
+      [
+        "ši",
+        "attested"
+      ],
+      [
+        "uš",
+        "attested"
+      ],
+      [
+        "ta",
+        "attested"
+      ],
+      [
+        "aš",
+        "restored"
+      ],
+      [
+        "ši",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "uz",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ki",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pí",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ni",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "10",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "up",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "pí",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "nu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "uš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 8.86+\" lnr=\"{€1} Vs. 15′\" lg=\"Hit\" cu=\"▒𒊻𒍣𒆠𒁉𒉌𒀭𒌋𒌒𒁉𒄩𒉡𒈠𒀸𒅆𒍑𒋫𒀸𒅆\"/> <w lg=\"Hur\"><del_in/></w> <w trans=\"~uzi\" mrp0sel=\"DEL\" lg=\"Hur\">-u<del_fin/>z-zi</w> <w trans=\"kipini\" mrp0sel=\"1a \" mrp1=\"kipin=i-@(Opferterminus)@{ a → HURR.ABS.SG} { b → STF}@30.10.1@\" lg=\"Hur\">ki-pí-ni</w> <w trans=\"10uppi\" mrp0sel=\"1 \" mrp1=\"10=@Wettergott@DN.FNL(up).HURR.GEN@35.10.1@D\" lg=\"Hur\"><d>D</d><sGr>10</sGr>-<laes_in/>up<laes_fin/>-pí</w> <w trans=\"ḫanumašši\" mrp0sel=\"1a \" mrp1=\"ḫanumašš=i-@(Opferterminus"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 37.87",
+    "line_index_in_doc": 5,
+    "line_label": "6′",
+    "cu": "▒𒍣𒁉𒂊𒁕▒",
+    "tokens_with_states": [
+      [
+        "zi",
+        "attested"
+      ],
+      [
+        "pé",
+        "attested"
+      ],
+      [
+        "e",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pé",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 37.87\" lnr=\"6′\" lg=\"Hit\" cu=\"▒𒍣𒁉𒂊𒁕▒\"/> <w><space c=\"6\"/></w> <w trans=\"~zi\" mrp0sel=\"DEL\" ><del_fin/>-zi</w> <w mrp0sel=\"DEL\" >pé-e-da-x<del_in/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 25.171",
+    "line_index_in_doc": 10,
+    "line_label": "Vs.? I 11′",
+    "cu": "▒▒𒋫𒀀𒄑𒍣",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "ta",
+        "restored"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "ez",
+        "attested"
+      ],
+      [
+        "zi",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ez",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 25.171\" lnr=\"Vs.? I 11′\" lg=\"Hit\" cu=\"▒▒𒋫𒀀𒄑𒍣\"/> <w><del_in/></w> <w><space c=\"6\"/></w> <w mrp0sel=\"DEL\" ><del_fin/>x<del_in/></w> <w trans=\"~taizi\" mrp0sel=\"DEL\" >-t<del_fin/>a-a-ez-<del_in/>z<del_fin/>i</w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 51.49",
+    "line_index_in_doc": 1,
+    "line_label": "2′",
+    "cu": "▒▒▒▒▒▒▒▒▒▒",
+    "tokens_with_states": [
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "…",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 51.49\" lnr=\"2′\" lg=\"Hit\" cu=\"▒▒▒▒▒▒▒▒▒▒\"/> <clb id=\"2\"/> <w><del_in/>…</w> <w><del_fin/>x</w> <gap c=\"unbeschrieben\"/> <w><del_in/>…<del_fin/></w> <parsep/> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 45.72+",
+    "line_index_in_doc": 24,
+    "line_label": "13′",
+    "cu": "▒𒊩𒁖▒",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "MUNUS",
+        "attested"
+      ],
+      [
+        "ták",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "MUNUS",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ták",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 45.72+\" lnr=\"{€2}13′\" lg=\"Hit\" cu=\"▒𒊩𒁖▒\"/> <clb id=\"29\" nr=\"29\"/> <w><del_in/></w> <w><space c=\"20\"/></w> <w mrp0sel=\"DEL\"><del_fin/>x</w> <w trans=\"tak~\" mrp0sel=\"DEL\"><d>MUNUS</d>ták-<del_in/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 26.19",
+    "line_index_in_doc": 16,
+    "line_label": "Vs. I 17′",
+    "cu": "▒▒▒▒▒▒▒𒋼𒈨𒌍𒂕𒉺𒁉𒅖𒋼",
+    "tokens_with_states": [
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "TE",
+        "attested"
+      ],
+      [
+        "MEŠ",
+        "attested"
+      ],
+      [
+        "EGIR",
+        "attested"
+      ],
+      [
+        "pa",
+        "attested"
+      ],
+      [
+        "pí",
+        "attested"
+      ],
+      [
+        "iš",
+        "attested"
+      ],
+      [
+        "ten",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "TE",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "MEŠ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "EGIR",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pí",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "iš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ten",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 26.19\" lnr=\"Vs. I 17′\" lg=\"Hit\" cu=\"▒▒▒▒▒▒▒𒋼𒈨𒌍𒂕𒉺𒁉𒅖𒋼\"/> <clb id=\"19\"/> <w><del_in/>…</w> <w>…</w> <w><del_fin/><aGr>-TE</aGr><d>MEŠ</d></w> <w><sGr>EGIR</sGr>-pa</w> <w>pí-iš-ten</w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 63.41",
+    "line_index_in_doc": 2,
+    "line_label": "3′",
+    "cu": "𒁇𒅆𒅀𒀭▒",
+    "tokens_with_states": [
+      [
+        "pár",
+        "restored"
+      ],
+      [
+        "ši",
+        "restored"
+      ],
+      [
+        "ia",
+        "restored"
+      ],
+      [
+        "an",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "pár",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 63.41\" lnr=\"3′\" lg=\"Hit\" cu=\"𒁇𒅆𒅀𒀭▒\"/> <w trans=\"paršian~\" mrp0sel=\"DEL\" >pár-ši-ia-a<del_in/>n-</w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 50.88",
+    "line_index_in_doc": 4,
+    "line_label": "lk. Kol. 5′",
+    "cu": "𒈬𒄰▒𒍝▒▒",
+    "tokens_with_states": [
+      [
+        "MU",
+        "restored"
+      ],
+      [
+        "KAM",
+        "restored"
+      ],
+      [
+        "za",
+        "restored"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "MU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "KAM",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "za",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 50.88\" lnr=\"lk. Kol. 5′\" lg=\"Hit\" cu=\"𒈬𒄰▒𒍝▒▒\"/> <w trans=\"MUza\" mrp0sel=\" \" mrp1=\"MU@Jahr; zum Jahr gehörig@{ a → FNL(t).NOM.SG.C} { b → VOC.SG}@28.12.1@\" mrp2=\"MU@Jahr; zum Jahr gehörig@ABL@28.12.1@\" mrp3=\"MU@Jahr; zum Jahr gehörig@{ a → FNL(t).NOM.SG.C} { b → VOC.SG}@28.12.1 += ma@CNJctr@@ \" mrp4=\"MU@Jahr; zum Jahr gehörig@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(UNM)} { d → ACC.PL(UNM)} { e → GEN.SG(UNM)} { f → GEN.PL(UNM)} { g → D/L.SG(UNM)} { h → D/L.PL(UNM)} { i → "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "ABoT 2.146",
+    "line_index_in_doc": 8,
+    "line_label": "9′",
+    "cu": "𒅗𒀀𒀸𒌓𒀜𒆷𒁀𒅈▒▒▒▒",
+    "tokens_with_states": [
+      [
+        "ka",
+        "restored"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "aš",
+        "attested"
+      ],
+      [
+        "UD",
+        "attested"
+      ],
+      [
+        "at",
+        "attested"
+      ],
+      [
+        "la",
+        "attested"
+      ],
+      [
+        "ba",
+        "attested"
+      ],
+      [
+        "ar",
+        "attested"
+      ],
+      [
+        "…",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "ka",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "UD",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "la",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ba",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ar",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"ABoT 2.146\" lnr=\"9′\" lg=\"Hit\" cu=\"𒅗𒀀𒀸𒌓𒀜𒆷𒁀𒅈▒▒▒▒\"/> <clb id=\"91\" nr=\"11\"/> <w><del_in/></w> <w><del_fin/></w> <clb id=\"92\" nr=\"12\"/> <w><del_in/>k<del_fin/>a-a-aš</w> <w><sGr>UD</sGr>-at</w> <w>la-ba-a<del_in/>r-</w> <w>…<del_fin/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 36.86",
+    "line_index_in_doc": 0,
+    "line_label": "1′",
+    "cu": "▒▒𒋻𒀝𒍣",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "tar",
+        "attested"
+      ],
+      [
+        "ak",
+        "attested"
+      ],
+      [
+        "zi",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "tar",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ak",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 36.86\" lnr=\"1′\" lg=\"Hit\" cu=\"▒▒𒋻𒀝𒍣\"/> <clb id=\"1\"/> <w><del_in/></w> <w><del_fin/></w> <w mrp0sel=\"DEL\" >x</w> <w><del_in/></w> <w trans=\"~tarakzi\" mrp0sel=\"DEL\" ><del_fin/>-tar-ak-zi</w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 29.23",
+    "line_index_in_doc": 5,
+    "line_label": "6′",
+    "cu": "▒▒▒𒀀▒▒▒",
+    "tokens_with_states": [
+      [
+        "a?",
+        "laes"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "a?",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 29.23\" lnr=\"6′\" lg=\"Luw\" cu=\"▒▒▒𒀀▒▒▒\"/> <w><del_in/><gap c=\"…\"/><del_fin/></w> <w><c type=\"sign\"><laes_in/>A?<laes_fin/></c></w> <w><del_in/><gap c=\"…\"/><del_fin/></w> \n</text></div1></body></AOxml> "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 11.48",
+    "line_index_in_doc": 21,
+    "line_label": "Rs. 8",
+    "cu": "▒𒅆𒀭𒌋𒀭𒃲𒍪𒊩𒈨𒌍𒂡𒊒",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "ši",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "10",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "GAL",
+        "attested"
+      ],
+      [
+        "ZU",
+        "attested"
+      ],
+      [
+        "MUNUS",
+        "attested"
+      ],
+      [
+        "MEŠ",
+        "attested"
+      ],
+      [
+        "SÌR",
+        "laes"
+      ],
+      [
+        "RU",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "10",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "GAL",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ZU",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "MUNUS",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "MEŠ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "SÌR",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "RU",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 11.48\" lnr=\"Rs. 8\" lg=\"Hit\" cu=\"▒𒅆𒀭𒌋𒀭𒃲𒍪𒊩𒈨𒌍𒂡𒊒\"/> <w><del_in/></w> <w><space c=\"16\"/></w> <w mrp0sel=\"DEL\" ><del_fin/>x-ši</w> <w trans=\"10\" mrp0sel=\" \" mrp1=\"10@Wettergott@{ a → DN.HURR.ABS} { b → DN.NOM.SG(UNM)} { c → DN.ACC.SG(UNM)} { d → DN.GEN.SG(UNM)} { e → DN.D/L.SG(UNM)} { f → DN.ABL(UNM)} { g → DN.INS(UNM)} { h → DN.VOC.SG(UNM)}@35.10.1@D\" mrp2=\"10@Heldenmut(?)@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(UNM)} { d → ACC.PL(UNM)} { e → GEN.SG(UNM)} { f → GEN.PL(UNM)} "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 54.1+",
+    "line_index_in_doc": 146,
+    "line_label": "Rs. III 26′",
+    "cu": "𒉡𒉿𒈬𒊺▒▒▒▒▒▒▒▒▒",
+    "tokens_with_states": [
+      [
+        "nu",
+        "attested"
+      ],
+      [
+        "wa",
+        "attested"
+      ],
+      [
+        "mu",
+        "attested"
+      ],
+      [
+        "še",
+        "attested"
+      ],
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "x x",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "nu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "mu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "še",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "x x",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 54.1+\" lnr=\" {€1} Rs. III 26′\" lg=\"Hit\" cu=\"𒉡𒉿𒈬𒊺▒▒▒▒▒▒▒▒▒\"/> <clb id=\"171\"/> <w trans=\"nuamu\" mrp0sel=\" \" mrp1=\"nu=wa=mu@@ { a → CONNn=QUOT=PPRO.1SG.ACC} { b → CONNn=QUOT=PPRO.1SG.DAT}@@ \" >nu-wa-mu</w> <w trans=\"še~\" mrp0sel=\"DEL\" >še-<del_in/></w> <w trans=\"…\" mrp0sel=\"DEL\" >…</w> <w trans=\"…\" mrp0sel=\"DEL\" >…<del_fin/></w> <w mrp0sel=\"DEL\" >x x</w> <w><del_in/></w> <w><del_fin/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "HT 57",
+    "line_index_in_doc": 7,
+    "line_label": "8′",
+    "cu": "▒▒▒▒▒▒▒▒",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"HT 57\" lnr=\"8′\" lg=\"Hit\" cu=\"▒▒▒▒▒▒▒▒\"/> <w><del_in/></w> <gap c=\"…\"/> <w mrp0sel=\"DEL\" ><del_fin/>x</w> <w mrp0sel=\"DEL\" >x<del_in/></w> <gap c=\"…\"/> <w><del_fin/></w> \n<gap t=\"line\" c=\"(breaks off)\"/> \n</text></div1></body></AOxml> "
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 1.1+",
+    "line_index_in_doc": 231,
+    "line_label": "III 74′",
+    "cu": "▒𒀜𒊑𒌍𒆠𒉡𒌦𒉡𒈠𒀀𒀭𒆧𒀭𒂉𒅖",
+    "tokens_with_states": [
+      [
+        "at",
+        "restored"
+      ],
+      [
+        "ri",
+        "attested"
+      ],
+      [
+        "eš",
+        "attested"
+      ],
+      [
+        "ke",
+        "attested"
+      ],
+      [
+        "nu",
+        "attested"
+      ],
+      [
+        "un",
+        "attested"
+      ],
+      [
+        "nu",
+        "attested"
+      ],
+      [
+        "ma",
+        "attested"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "kiš",
+        "attested"
+      ],
+      [
+        "an",
+        "restored"
+      ],
+      [
+        "ku",
+        "attested"
+      ],
+      [
+        "iš",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ri",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ke",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "nu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "un",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "nu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "kiš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ku",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "iš",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 1.1+\" lnr=\" {€7+1} III 74′\" lg=\"Hit\" cu=\"▒𒀜𒊑𒌍𒆠𒉡𒌦𒉡𒈠𒀀𒀭𒆧𒀭𒂉𒅖\"/> <w><del_in/></w> <w><space c=\"10\"/></w> <w trans=\"~atriškenun\" mrp0sel=\"DEL\" >-a<del_fin/>t-ri-eš-ke-nu-un</w> <w trans=\"nu\" mrp0sel=\" 1 \" mrp1=\"nu@@ CONNn@@ \" >nu</w> <w trans=\"mân\" mrp0sel=\" \" mrp1=\"mân@wie@@ CNJ@\" mrp2=\"mân@wie@@ POSP@\" >ma-a-an</w> <w trans=\"kišan\" mrp0sel=\" \" mrp1=\"kišan@in dieser Weise@@ DEMadv@\" mrp2=\"kiš=@werden@{ a → PTCP.NOM.SG.N} { b → PTCP.ACC.SG.N} { c → PTCP.INDCL}@III.1@\" mrp3=\"kiš=ā(e)-@kä"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 9.25+",
+    "line_index_in_doc": 245,
+    "line_label": "Rs. 1′/Rs. IV 43′",
+    "cu": "▒▒▒▒▒▒▒▒▒𒈾𒀜𒅈𒄩𒀀𒁕𒀭𒍣",
+    "tokens_with_states": [
+      [
+        "x x",
+        "attested"
+      ],
+      [
+        "x x",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "…",
+        "restored"
+      ],
+      [
+        "na",
+        "laes"
+      ],
+      [
+        "at",
+        "laes"
+      ],
+      [
+        "ar",
+        "attested"
+      ],
+      [
+        "ḫa",
+        "attested"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "zi",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x x",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x x",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ar",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 9.25+\" lnr=\" {€1+2} Rs. 1′/Rs. IV 43′\" lg=\"Hit\" cu=\"▒▒▒▒▒▒▒▒▒𒈾𒀜𒅈𒄩𒀀𒁕𒀭𒍣\"/> <clb id=\"258\" nr=\"258\"/> <w>x x</w> <w>x x</w> <w>x</w> <w>x<del_in/></w> <w>…<del_fin/></w> <clb id=\"259\" nr=\"259\"/> <w><laes_in/>na-at<laes_fin/></w> <w>ar-ḫa</w> <w>a-da-an-zi</w> <parsep_dbl/> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "VBoT 68",
+    "line_index_in_doc": 5,
+    "line_label": "Vs. II 6′",
+    "cu": "𒌷𒄭𒅁𒁍𒊑𒅀𒅋𒌷𒁖𒂵𒁍▒",
+    "tokens_with_states": [
+      [
+        "URU",
+        "restored"
+      ],
+      [
+        "ḫi",
+        "laes"
+      ],
+      [
+        "ip",
+        "laes"
+      ],
+      [
+        "pu",
+        "attested"
+      ],
+      [
+        "ri",
+        "attested"
+      ],
+      [
+        "ia",
+        "attested"
+      ],
+      [
+        "il",
+        "attested"
+      ],
+      [
+        "URU",
+        "attested"
+      ],
+      [
+        "tág",
+        "attested"
+      ],
+      [
+        "ga",
+        "attested"
+      ],
+      [
+        "pu",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "URU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḫi",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ip",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "pu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ri",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "il",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "URU",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "tág",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ga",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"VBoT 68\" lnr=\"Vs. II 6′\" lg=\"Hat\" cu=\"𒌷𒄭𒅁𒁍𒊑𒅀𒅋𒌷𒁖𒂵𒁍▒\"/> <w trans=\"ḫippuriail\" mrp0sel=\"HAT\"><del_in/><d>UR<del_fin/>U</d><laes_in/>ḫi-ip<laes_fin/>-pu-ri-ia-il</w> <w trans=\"takkapu~\" mrp0sel=\"DEL\"><d>URU</d>tág-ga-pu-<del_in/></w> <w><space c=\"4\"/></w> <w><del_fin/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "IBoT 3.42",
+    "line_index_in_doc": 11,
+    "line_label": "Rs. 2′",
+    "cu": "𒄩𒀸▒",
+    "tokens_with_states": [
+      [
+        "ḫa",
+        "restored"
+      ],
+      [
+        "aš",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "ḫa",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"IBoT 3.42\" lnr=\"Rs. 2′\" lg=\"Hit\" cu=\"𒄩𒀸▒\"/> <w trans=\"ḫaš~\" mrp0sel=\"DEL\" ><laes_in/>ḫa<laes_fin/>-aš-<del_in/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 52.40",
+    "line_index_in_doc": 17,
+    "line_label": "Rs. 1′",
+    "cu": "𒌷𒍣𒀉𒄩𒊏𒉡𒋼𒈨𒌍▒",
+    "tokens_with_states": [
+      [
+        "URU",
+        "restored"
+      ],
+      [
+        "zi",
+        "restored"
+      ],
+      [
+        "it",
+        "attested"
+      ],
+      [
+        "ḫa",
+        "attested"
+      ],
+      [
+        "ra",
+        "attested"
+      ],
+      [
+        "nu",
+        "attested"
+      ],
+      [
+        "TE",
+        "attested"
+      ],
+      [
+        "MEŠ",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "URU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ra",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "nu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "TE",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "MEŠ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 52.40\" lnr=\"Rs. 1′\" lg=\"Hit\" cu=\"𒌷𒍣𒀉𒄩𒊏𒉡𒋼𒈨𒌍▒\"/> <w><del_in/></w> <w><space c=\"6\"/></w> <w trans=\"zitḫara\" mrp0sel=\" \" mrp1=\"zitḫar=a-@Zitḫara@{ a → GN.NOM.SG(UNM)} { b → GN.ACC.SG(UNM)} { c → GN.GEN.SG(UNM)} { d → GN.D/L.SG(UNM)} { e → GN.ALL(UNM)} { f → GN.ABL(UNM)} { g → GN.INS(UNM)} { h → GN.VOC.SG} { i → GN.STF} { j → GN.HURR.ABS.SG}@39.2@URU\" ><d>URU</d>z<del_fin/>i-it-ḫa-ra</w> <w trans=\"nu\" mrp0sel=\" 1 \" mrp1=\"nu@@ CONNn@@ \" >nu</w> <w trans=\"TE\" mrp0sel=\" \" mrp1=\"TÊRTU@Opfe"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "ABoT 2.154",
+    "line_index_in_doc": 4,
+    "line_label": "5′",
+    "cu": "▒𒊒𒀀𒈾𒌉𒂍𒃲",
+    "tokens_with_states": [
+      [
+        "ru",
+        "attested"
+      ],
+      [
+        "A",
+        "attested"
+      ],
+      [
+        "NA",
+        "attested"
+      ],
+      [
+        "DUMU",
+        "laes"
+      ],
+      [
+        "É",
+        "laes"
+      ],
+      [
+        "GAL",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ru",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "NA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "DUMU",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "É",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "GAL",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"ABoT 2.154\" lnr=\"5′\" lg=\"Hit\" cu=\"▒𒊒𒀀𒈾𒌉𒂍𒃲\"/> <w><space c=\"7\"/></w> <w trans=\"~ru\" mrp0sel=\"DEL\" ><del_fin/>-ru<corr c=\"?\"/></w> <w trans=\"A-NA DUMU.É.GAL\" mrp0sel=\" \" mrp1=\"DUMU.É.GAL@Palastbediensteter@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ALL}@28.2.1.1@\"><aGr>A-NA</aGr> <sGr><laes_in/>DUMU.É<laes_fin/>.GAL<del_in/></sGr></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 3.6+",
+    "line_index_in_doc": 107,
+    "line_label": "II 30",
+    "cu": "▒𒅅𒋡𒀭𒈾𒌑𒂊𒋼𒀉𒈾𒀸𒅈𒄩𒁁𒉺𒀉",
+    "tokens_with_states": [
+      [
+        "ik",
+        "restored"
+      ],
+      [
+        "ka₄",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "na",
+        "attested"
+      ],
+      [
+        "ú",
+        "attested"
+      ],
+      [
+        "e",
+        "attested"
+      ],
+      [
+        "te",
+        "attested"
+      ],
+      [
+        "et",
+        "attested"
+      ],
+      [
+        "na",
+        "attested"
+      ],
+      [
+        "aš",
+        "attested"
+      ],
+      [
+        "ar",
+        "attested"
+      ],
+      [
+        "ḫa",
+        "attested"
+      ],
+      [
+        "pát",
+        "attested"
+      ],
+      [
+        "pa",
+        "attested"
+      ],
+      [
+        "it",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ik",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ka₄",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ú",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "te",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "et",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ar",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pát",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 3.6+\" lnr=\" {€1} II 30\" lg=\"Hit\" cu=\"▒𒅅𒋡𒀭𒈾𒌑𒂊𒋼𒀉𒈾𒀸𒅈𒄩𒁁𒉺𒀉\"/> <w><del_in/></w> <w><space c=\"11\"/></w> <w trans=\"~ikkanna\" mrp0sel=\"DEL\" >-i<del_fin/>k-ka₄-an-na</w> <w trans=\"wetet\" mrp0sel=\" \" mrp1=\"wed=a-@(her)bringen@3SG.PST@II.3@\" mrp2=\"we=te-@bauen@{ a → 2SG.PST} { b → 3SG.PST}@I.6.1@\" mrp3=\"we=te-@bauen@2SG.IMP@I.6.1@\" >ú-e-te-et</w> <w trans=\"naš\" mrp0sel=\" \" mrp1=\"n=aš@@ { a → CONNn=PPRO.3SG.C.NOM} { b → CONNn=PPRO.3PL.C.ACC}@@ \" >na-aš</w> <w trans=\"arḫapat\" mrp0sel=\" \" mrp1=\""
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 56.19",
+    "line_index_in_doc": 23,
+    "line_label": "Vs. I 24",
+    "cu": "▒𒀀𒁍𒌋𒌦𒈾􀀉𒋼𒄴𒄭𒂍𒅕𒊏𒍝𒃷𒂉𒀉▒▒𒅀",
+    "tokens_with_states": [
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "pu",
+        "attested"
+      ],
+      [
+        "u",
+        "attested"
+      ],
+      [
+        "un",
+        "attested"
+      ],
+      [
+        "na",
+        "attested"
+      ],
+      [
+        "EZEN₄",
+        "attested"
+      ],
+      [
+        "te",
+        "attested"
+      ],
+      [
+        "eḫ",
+        "attested"
+      ],
+      [
+        "ḫi",
+        "attested"
+      ],
+      [
+        "é",
+        "attested"
+      ],
+      [
+        "ir",
+        "attested"
+      ],
+      [
+        "ra",
+        "attested"
+      ],
+      [
+        "za",
+        "attested"
+      ],
+      [
+        "kán",
+        "laes"
+      ],
+      [
+        "ku",
+        "attested"
+      ],
+      [
+        "it",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "ia",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "u",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "un",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "EZEN₄",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "te",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eḫ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "é",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ir",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ra",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "za",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "kán",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ku",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 56.19\" lnr=\"Vs. I 24\" lg=\"Hit\" cu=\"▒𒀀𒁍𒌋𒌦𒈾􀀉𒋼𒄴𒄭𒂍𒅕𒊏𒍝𒃷𒂉𒀉▒▒𒅀\"/> <w><space c=\"6\"/></w> <w mrp0sel=\"DEL\" ><del_fin/>x</w> <w trans=\"apunna\" mrp0sel=\" \" mrp1=\"apa-@er@DEM2/3.ACC.SG.C@20@+= ya@CNJadd@\" mrp2=\"ap=u-@Apu@DN.ACC.SG.C@35.3.1@D += ya@CNJadd@\" >a-pu-u-un-na</w> <w trans=\"EZEN₄\" mrp0sel=\" \" mrp1=\"EZEN₄@kultisches Fest@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(UNM)} { d → ACC.PL(UNM)} { e → GEN.SG(UNM)} { f → GEN.PL(UNM)} { g → D/L.SG(UNM)} { h → D/L.PL(UNM)} { i → ALL(UNM"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 32.58+",
+    "line_index_in_doc": 90,
+    "line_label": "Rs. (III) 20′!",
+    "cu": "▒𒂊𒉈𒌍▒▒𒊄𒉈𒌍",
+    "tokens_with_states": [
+      [
+        "e",
+        "laes"
+      ],
+      [
+        "ne",
+        "attested"
+      ],
+      [
+        "eš",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "we",
+        "attested"
+      ],
+      [
+        "ne",
+        "attested"
+      ],
+      [
+        "eš",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ne",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "x",
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "we",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ne",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eš",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 32.58+\" lnr=\" {€2} Rs. (III) 20′!\" lg=\"Hur\" cu=\"▒𒂊𒉈𒌍▒▒𒊄𒉈𒌍\"/> <w><del_in/></w> <w><space c=\"76\"/></w> <w trans=\"~eneš\" mrp0sel=\"DEL\"><del_fin/>-<laes_in/>e<laes_fin/>-ne-eš</w> <w mrp0sel=\"DEL\">x<del_in/></w> <w><space c=\"24\"/></w> <w mrp0sel=\"DEL\"><del_fin/>x-we<subscr c=\"e\"/>-ne-eš</w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 34.140",
+    "line_index_in_doc": 2,
+    "line_label": "3′",
+    "cu": "▒𒊍𒅖𒌅𒂍",
+    "tokens_with_states": [
+      [
+        "az",
+        "restored"
+      ],
+      [
+        "IŠ",
+        "attested"
+      ],
+      [
+        "TU",
+        "attested"
+      ],
+      [
+        "É",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "az",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "IŠ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "TU",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "É",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 34.140\" lnr=\"3′\" lg=\"Hit\" cu=\"▒𒊍𒅖𒌅𒂍\"/> <w><space c=\"21\"/></w> <w trans=\"~az\" mrp0sel=\"DEL\" >-a<del_fin/>z</w> <w trans=\"IŠ-TU É\" mrp0sel=\" \" mrp1=\"É@Haus@{ a → …:ABL} { b → …:INS}@28.16@\" mrp2=\"É=@Haus@{ a → …:ABL} { b → …:INS}@30.10.4.2@\"><aGr>IŠ-TU</aGr> <sGr>É</sGr><del_in/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KBo 70.109+",
+    "line_index_in_doc": 155,
+    "line_label": "{A1} rev. iv 5′",
+    "cu": "𒁹􀀉𒍢𒈾𒀸𒁹􀀉𒋼𒅆▒▒▒",
+    "tokens_with_states": [
+      [
+        "<NUM>",
+        "attested"
+      ],
+      [
+        "EZEN₄",
+        "restored"
+      ],
+      [
+        "zé",
+        "restored"
+      ],
+      [
+        "na",
+        "restored"
+      ],
+      [
+        "aš",
+        "restored"
+      ],
+      [
+        "<NUM>",
+        "attested"
+      ],
+      [
+        "EZEN₄",
+        "attested"
+      ],
+      [
+        "DI₁₂",
+        "attested"
+      ],
+      [
+        "ŠI",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "EZEN₄",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "zé",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "EZEN₄",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "DI₁₂",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ŠI",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 70.109+\" lnr=\"{A1} rev. iv 5′\" lg=\"Hit\" cu=\"𒁹􀀉𒍢𒈾𒀸𒁹􀀉𒋼𒅆▒▒▒\"/> <w><del_in/><num>1</num></w> <w><sGr>EZEN₄</sGr></w> <w>zé-na-aš<del_fin/></w> <w><laes_in/><num>1</num><laes_fin/></w> <w><sGr>EZEN₄</sGr></w> <w><aGr>DI₁₂-ŠI</aGr></w> <w><del_in/></w> <gap c=\"(vacat)\"/> <w><del_fin/></w> <parsep/> <AO:ParagrNr c=\"25″\"/> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "KUB 43.59+",
+    "line_index_in_doc": 9,
+    "line_label": "Vs. I 10",
+    "cu": "𒈾𒀜𒃲𒇷𒁁𒁕𒉌𒋼𒄴𒄭▒▒▒",
+    "tokens_with_states": [
+      [
+        "na",
+        "attested"
+      ],
+      [
+        "at",
+        "attested"
+      ],
+      [
+        "GAL",
+        "attested"
+      ],
+      [
+        "li",
+        "attested"
+      ],
+      [
+        "pád",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "ni",
+        "attested"
+      ],
+      [
+        "te",
+        "attested"
+      ],
+      [
+        "eḫ",
+        "laes"
+      ],
+      [
+        "ḫi",
+        "restored"
+      ],
+      [
+        "…",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "GAL",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "li",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pád",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ni",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "te",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eḫ",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ḫi",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 43.59+\" lnr=\"{€1} Vs. I 10\" lg=\"Hit\" cu=\"𒈾𒀜𒃲𒇷𒁁𒁕𒉌𒋼𒄴𒄭▒▒▒\"/> <clb id=\"14\" nr=\"14\"/> <w>na-at</w> <w><sGr>GAL</sGr>-li</w> <w>pád-da-ni</w> <w>te-<laes_in/>eḫ<laes_fin/>-<del_in/>ḫi</w> <clb id=\"15\" nr=\"15\"/> <w>…<del_fin/></w> \n"
+  },
+  {
+    "tier": "edge_trim",
+    "doc_id": "VBoT 58",
+    "line_index_in_doc": 15,
+    "line_label": "Vs. I 16′",
+    "cu": "𒀀𒉺𒀀𒊭𒉺𒀉𒀭𒅎𒉌𒋼𒀉𒆠𒄿𒂉𒀉𒆠𒊭𒀜▒▒▒",
+    "tokens_with_states": [
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "pa",
+        "attested"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "ša",
+        "attested"
+      ],
+      [
+        "pa",
+        "attested"
+      ],
+      [
+        "it",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "IŠKUR",
+        "attested"
+      ],
+      [
+        "ni",
+        "attested"
+      ],
+      [
+        "te",
+        "attested"
+      ],
+      [
+        "et",
+        "attested"
+      ],
+      [
+        "ki",
+        "attested"
+      ],
+      [
+        "i",
+        "attested"
+      ],
+      [
+        "ku",
+        "attested"
+      ],
+      [
+        "it",
+        "attested"
+      ],
+      [
+        "ki",
+        "attested"
+      ],
+      [
+        "ša",
+        "attested"
+      ],
+      [
+        "at",
+        "attested"
+      ],
+      [
+        "…",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ša",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "IŠKUR",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ni",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "te",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "et",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ki",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "i",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ku",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ki",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ša",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "…",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"VBoT 58\" lnr=\"Vs. I 16′\" lg=\"Hit\" cu=\"𒀀𒉺𒀀𒊭𒉺𒀉𒀭𒅎𒉌𒋼𒀉𒆠𒄿𒂉𒀉𒆠𒊭𒀜▒▒▒\"/> <clb id=\"54\"/> <w trans=\"apaša\" mrp0sel=\" \" mrp1=\"apa-@er@DEM2/3.NOM.SG.C@20 += ma@CNJctr@@ \" mrp2=\"ap=a-@fertig sein@3SG.PST@II.7.1 += ma@CNJctr@@ \" mrp3=\"ap=a-@Apa@{ a → PNm.NOM.SG.C} { b → PNm.GEN.SG}@38.2 += ma@CNJctr@@ m\" >a-pa-a-ša</w> <w trans=\"pait\" mrp0sel=\" 1 \" mrp1=\"pai-/pā-@gehen@3SG.PST@I.11@\" >pa-it</w> <w trans=\"IŠKURni\" mrp0sel=\" 1 \" mrp1=\"IŠKUR@Wettergott@DN.FNL(n).HITT.D/L.SG@35.10.4@D\" ><d>D</d><sGr>IŠKU"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "Bo 6675",
+    "line_index_in_doc": 0,
+    "line_label": "1′",
+    "cu": "▒𒀜𒋫𒅆𒄭𒀀▒𒉿",
+    "tokens_with_states": [
+      [
+        "at",
+        "attested"
+      ],
+      [
+        "ta",
+        "attested"
+      ],
+      [
+        "IGI",
+        "laes"
+      ],
+      [
+        "ḪI",
+        "laes"
+      ],
+      [
+        "A",
+        "laes"
+      ],
+      [
+        "wa",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "at",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "IGI",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ḪI",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"Bo 6675\" lnr=\"1′\" lg=\"Hit\" cu=\"▒𒀜𒋫𒅆𒄭𒀀▒𒉿\"/> <clb id=\"1\"/> <w><del_in/></w> <w trans=\"~atta\" mrp0sel=\"DEL\" ><del_fin/>-at-ta</w> <w trans=\"IGIua\" mrp0sel=\" \" mrp1=\"IGI@Auge@{ a → FNL(u).NOM.PL.N} { b → FNL(u).ACC.PL.N}@28.1.2.1@\" ><laes_in/><sGr>IGI</sGr><d>ḪI.A</d><laes_fin/>-wa</w> <w><del_in/></w> <w><del_fin/></w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 48.112",
+    "line_index_in_doc": 13,
+    "line_label": "Rs. 3′",
+    "cu": "𒁹𒈾𒊏𒄠▒𒀭𒌍𒀸𒊭",
+    "tokens_with_states": [
+      [
+        "m",
+        "restored"
+      ],
+      [
+        "NA",
+        "laes"
+      ],
+      [
+        "RA",
+        "attested"
+      ],
+      [
+        "AM",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "30",
+        "attested"
+      ],
+      [
+        "aš",
+        "attested"
+      ],
+      [
+        "ša",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "m",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "NA",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "RA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "AM",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "30",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "aš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ša",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 48.112\" lnr=\"Rs. 3′\" lg=\"Hit\" cu=\"𒁹𒈾𒊏𒄠▒𒀭𒌍𒀸𒊭\"/> <w trans=\"NA-RA-AM-30ašša\" mrp0sel=\"???\" ><del_in/><d>m<del_fin/></d><aGr><laes_in/>NA<laes_fin/>-RA-AM</aGr>-<d>D</d><sGr>30</sGr>-aš-ša</w> <w><del_in/></w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 17.65+",
+    "line_index_in_doc": 32,
+    "line_label": "Vs. 33",
+    "cu": "▒𒅅𒃷▒▒𒁉𒂊𒅆𒉺𒀭𒁕𒀭𒍣",
+    "tokens_with_states": [
+      [
+        "ek",
+        "restored"
+      ],
+      [
+        "kán",
+        "attested"
+      ],
+      [
+        "pé",
+        "restored"
+      ],
+      [
+        "e",
+        "attested"
+      ],
+      [
+        "ši",
+        "attested"
+      ],
+      [
+        "pa",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "zi",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ek",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "kán",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "pé",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "(file not found)"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 16.54+",
+    "line_index_in_doc": 12,
+    "line_label": "13′/Rs. 13′",
+    "cu": "𒀀𒉌𒅀𒀜𒁺𒄿𒈾𒌓𒐼𒄰▒𒈠",
+    "tokens_with_states": [
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "ni",
+        "attested"
+      ],
+      [
+        "ia",
+        "attested"
+      ],
+      [
+        "ad",
+        "attested"
+      ],
+      [
+        "du",
+        "attested"
+      ],
+      [
+        "I",
+        "attested"
+      ],
+      [
+        "NA",
+        "attested"
+      ],
+      [
+        "UD",
+        "attested"
+      ],
+      [
+        "<NUM>",
+        "attested"
+      ],
+      [
+        "KAM",
+        "attested"
+      ],
+      [
+        "ma",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ni",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ad",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "du",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "I",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "NA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "UD",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "KAM",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 16.54+\" lnr=\" {€1+2} 13′/Rs. 13′\" lg=\"Hit\" cu=\"𒀀𒉌𒅀𒀜𒁺𒄿𒈾𒌓𒐼𒄰▒𒈠\"/> <w trans=\"aniattu\" mrp0sel=\" 1 \" mrp1=\"an=iye/a-@wirken@3SG.IMP@I.7@\" >a-ni-ia-ad-du</w> <w trans=\"I-NA UD\" mrp0sel=\" \" mrp1=\"UD@(Mond)licht(?)@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ABL}@36.6@(D)\" mrp2=\"UD@Tag (vergöttlicht)@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ABL}@36.1.1@(D)\" mrp3=\"UD@(Mond)licht(?) in UD SAKAR „Mondsichel“@{ a → …:D/L.SG} { b → …:D/L.PL} { c → …:ABL}@29.1.1@(URUDU)\" mrp4=\"UD@Tag@{ a → …:D/L.SG}"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 47.84",
+    "line_index_in_doc": 38,
+    "line_label": "Rs. IV 2′",
+    "cu": "𒈗𒍑𒅆𒄭𒀀▒𒀉𒄿𒅀𒍣",
+    "tokens_with_states": [
+      [
+        "LUGAL",
+        "restored"
+      ],
+      [
+        "uš",
+        "restored"
+      ],
+      [
+        "IGI",
+        "restored"
+      ],
+      [
+        "ḪI",
+        "restored"
+      ],
+      [
+        "A",
+        "restored"
+      ],
+      [
+        "it",
+        "restored"
+      ],
+      [
+        "i",
+        "restored"
+      ],
+      [
+        "ia",
+        "restored"
+      ],
+      [
+        "zi",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "LUGAL",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "uš",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "IGI",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḪI",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "it",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "i",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 47.84\" lnr=\"Rs. IV 2′\" lg=\"Hit\" cu=\"𒈗𒍑𒅆𒄭𒀀▒𒀉𒄿𒅀𒍣\"/> <clb id=\"26\"/><w trans=\"LUGALuš\" mrp0sel=\"2a\" mrp2=\"LUGAL=u-@König@{a → FNL(u).NOM.SG.C}@28.3.1.1@\"><sGr>LUGAL</sGr>-<laes_in/>uš<laes_fin/></w> <w trans=\"IGIit\" mrp0sel=\"1\" mrp1=\"IGI=@Auge@INS@28.1.2.1@\"><sGr>IGI</sGr><d>ḪI.A</d>-it</w> <w trans=\"iazi\" mrp0sel=\"1\" mrp1=\"iye/a-@machen@3SG.PRS@I.7.1@\"><laes_in/>i<laes_fin/>-<del_in/>ia-zi<del_fin/></w><parsep/> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 15.42",
+    "line_index_in_doc": 80,
+    "line_label": "Rs. III 11′",
+    "cu": "𒄷𒌒𒊒𒍑𒄭𒅀𒁉𒌍𒅆𒅀𒊍𒍣𒃻𒆸𒊏𒄭𒀀▒𒈠",
+    "tokens_with_states": [
+      [
+        "ḫu",
+        "attested"
+      ],
+      [
+        "up",
+        "attested"
+      ],
+      [
+        "ru",
+        "attested"
+      ],
+      [
+        "uš",
+        "attested"
+      ],
+      [
+        "ḫi",
+        "attested"
+      ],
+      [
+        "ia",
+        "attested"
+      ],
+      [
+        "pé",
+        "attested"
+      ],
+      [
+        "eš",
+        "attested"
+      ],
+      [
+        "ši",
+        "attested"
+      ],
+      [
+        "ia",
+        "attested"
+      ],
+      [
+        "az",
+        "attested"
+      ],
+      [
+        "zi",
+        "attested"
+      ],
+      [
+        "NINDA",
+        "attested"
+      ],
+      [
+        "GUR₄",
+        "attested"
+      ],
+      [
+        "RA",
+        "attested"
+      ],
+      [
+        "ḪI",
+        "attested"
+      ],
+      [
+        "A",
+        "attested"
+      ],
+      [
+        "ma",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "ḫu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "up",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ru",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "uš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pé",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "eš",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ia",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "az",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "zi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "NINDA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "GUR₄",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "RA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḪI",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 15.42\" lnr=\"Rs. III 11′\" lg=\"Hit\" cu=\"𒄷𒌒𒊒𒍑𒄭𒅀𒁉𒌍𒅆𒅀𒊍𒍣𒃻𒆸𒊏𒄭𒀀▒𒈠\"/> <w trans=\"ḫuprušḫia\" mrp0sel=\" \" mrp1=\"ḫuprušḫ=i(t)-@Räucheraltar(?)@HITT.D/L.SG@30.4.5@DUG/GIŠ/NA₄\" mrp2=\"ḫuprušḫ=i(t)-@Räucheraltar(?)@{ a → LUW.NOM.SG.N} { b → LUW.ACC.SG.N} { c → HITT.D/L.SG} { d → HITT.STF}@30.4.5 += ya@CNJadd@DUG/GIŠ/NA₄\" mrp3=\"ḫuprušḫ=a/i-@Räucheraltar(?)@D/L.SG@1.1.1 += ya@CNJadd@DUG/GIŠ/NA₄\" mrp4=\"ḫuprušḫ=i-@Ḫuprušḫi@{ a → DN.STF} { b → DN.HURR.ABS} { c → DN.NOM.SG(UNM)} { d → DN.ACC.SG(UNM)} { "
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 41.186+",
+    "line_index_in_doc": 12,
+    "line_label": "obv. I 13′",
+    "cu": "𒀀𒈾𒀉𒄷▒𒈠𒃰𒋫𒀭𒋾𒄿𒂊𒅕",
+    "tokens_with_states": [
+      [
+        "A",
+        "restored"
+      ],
+      [
+        "NA",
+        "restored"
+      ],
+      [
+        "TI₈",
+        "restored"
+      ],
+      [
+        "MUŠEN",
+        "restored"
+      ],
+      [
+        "ma",
+        "restored"
+      ],
+      [
+        "kat",
+        "restored"
+      ],
+      [
+        "ta",
+        "restored"
+      ],
+      [
+        "an",
+        "restored"
+      ],
+      [
+        "ti",
+        "restored"
+      ],
+      [
+        "i",
+        "restored"
+      ],
+      [
+        "e",
+        "restored"
+      ],
+      [
+        "er",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "NA",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "TI₈",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "MUŠEN",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "kat",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ti",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "i",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "er",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 41.186+\" lnr=\"{€2} obv. I 13′\" lg=\"Hit\" cu=\"𒀀𒈾𒀉𒄷▒𒈠𒃰𒋫𒀭𒋾𒄿𒂊𒅕\"/> <clb id=\"17\" nr=\"17\"/> <w trans=\"A-NA TI₈ma\" mrp0sel=\" 3a\" mrp3=\"TI₈@Adler@{a → …:D/L.SG}@28.2.1.1 += ma@CNJctr@@\"><aGr>A-NA</aGr> <sGr>TI₈</sGr><d>MUŠEN</d>-ma</w> <w trans=\"kattan\" mrp0sel=\" 1\" mrp1=\"kattan@unten@@ADV@\">kat-ta-an</w> <w trans=\"tier\" mrp0sel=\" 2\" mrp2=\"tiye/a-@treten@3PL.PST@I.7.2@\">ti-i-<laes_in/>e<laes_fin/>-<del_in/>er</w> <clb id=\"18\" nr=\"18\"/> <w><space c=\"1\"/></w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 9.31",
+    "line_index_in_doc": 1,
+    "line_label": "Vs. I 2",
+    "cu": "𒈠𒀀𒀭𒈬𒄰▒𒍝𒄯𒊏𒀀𒀭𒍝𒆳𒂊𒃷𒀭𒁕𒀝𒆠𒅖𒆠𒀉𒋫𒊑",
+    "tokens_with_states": [
+      [
+        "ma",
+        "restored"
+      ],
+      [
+        "a",
+        "restored"
+      ],
+      [
+        "an",
+        "restored"
+      ],
+      [
+        "MU",
+        "restored"
+      ],
+      [
+        "KAM",
+        "restored"
+      ],
+      [
+        "za",
+        "restored"
+      ],
+      [
+        "ḫar",
+        "attested"
+      ],
+      [
+        "ra",
+        "attested"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "za",
+        "attested"
+      ],
+      [
+        "KUR",
+        "attested"
+      ],
+      [
+        "e",
+        "attested"
+      ],
+      [
+        "kán",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "ak",
+        "laes"
+      ],
+      [
+        "ki",
+        "laes"
+      ],
+      [
+        "iš",
+        "laes"
+      ],
+      [
+        "ke",
+        "laes"
+      ],
+      [
+        "et",
+        "laes"
+      ],
+      [
+        "ta",
+        "laes"
+      ],
+      [
+        "ri",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "ma",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "MU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "KAM",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "za",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḫar",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ra",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "za",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "KUR",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "e",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "kán",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ak",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ki",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "iš",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ke",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "et",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "ri",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 9.31\" lnr=\"Vs. I 2\" lg=\"Hit\" cu=\"𒈠𒀀𒀭𒈬𒄰▒𒍝𒄯𒊏𒀀𒀭𒍝𒆳𒂊𒃷𒀭𒁕𒀝𒆠𒅖𒆠𒀉𒋫𒊑\"/> <clb id=\"2\" nr=\"2\"/> <w><del_in/>ma-a-an</w> <w><sGr>MU</sGr><d>KAM</d>-z<del_fin/>a</w> <w>ḫar-ra-a-an-za</w> <clb id=\"3\" nr=\"3\"/> <w><sGr>KUR</sGr>-e-kán</w> <w>an-da</w> <w><laes_in/>ak-ki-iš-ke-et-ta<laes_fin/>-<del_in/>ri<del_fin/></w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 27.32",
+    "line_index_in_doc": 5,
+    "line_label": "6′",
+    "cu": "𒀀𒈾𒊩𒊇𒁺▒𒀭𒃶𒉺",
+    "tokens_with_states": [
+      [
+        "A",
+        "laes"
+      ],
+      [
+        "NA",
+        "attested"
+      ],
+      [
+        "F",
+        "attested"
+      ],
+      [
+        "wu",
+        "attested"
+      ],
+      [
+        "du",
+        "attested"
+      ],
+      [
+        "D",
+        "attested"
+      ],
+      [
+        "ḫé",
+        "attested"
+      ],
+      [
+        "pa",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "NA",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "F",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "wu",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "du",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫé",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "pa",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 27.32\" lnr=\"6′\" lg=\"Hur\" cu=\"𒀀𒈾𒊩𒊇𒁺▒𒀭𒃶𒉺\"/> <w><space c=\"9\"/></w> <w><del_fin/></w> <w trans=\"A-NA wutuḫepa\" mrp0sel=\"HURRHURR\"><aGr><laes_in/>A<laes_fin/>-NA</aGr> <d>F</d>wu<subscr c=\"u\"/>-du-<d>D</d>ḫé-<del_in/>pa</w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "ABoT 2.52",
+    "line_index_in_doc": 10,
+    "line_label": "11′",
+    "cu": "𒍜𒃻𒈪𒉭▒▒▒𒂃▒",
+    "tokens_with_states": [
+      [
+        "UZU",
+        "restored"
+      ],
+      [
+        "NÍG",
+        "attested"
+      ],
+      [
+        "GIG",
+        "attested"
+      ],
+      [
+        "x x",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "DUḪ",
+        "attested"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "UZU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "NÍG",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "GIG",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "x x",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "DUḪ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"ABoT 2.52\" lnr=\"11′\" lg=\"Hit\" cu=\"𒍜𒃻𒈪𒉭▒▒▒𒂃▒\"/> <w><space c=\"6\"/></w> <w trans=\"NÍG.GIG\" mrp0sel=\" \" mrp1=\"NÍG.GIG@Leber@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(UNM)} { d → ACC.PL(UNM)} { e → GEN.SG(UNM)} { f → GEN.PL(UNM)} { g → D/L.SG(UNM)} { h → D/L.PL(UNM)} { i → ALL(UNM)} { j → ABL(UNM)} { k → INS(UNM)} { l → VOC.SG(UNM)} { m → VOC.PL(UNM)}@29.1.2@UZU\" mrp2=\"NÍG.GIG@Leber@{ a → NOM.SG(UNM)} { b → ACC.SG(UNM)} { c → NOM.PL(UNM)} { d → ACC.PL(UNM)} { e → GEN.SG(UNM)} { f "
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 3.7",
+    "line_index_in_doc": 52,
+    "line_label": "Vs. II 28′",
+    "cu": "𒈾𒀭𒅆▒▒𒀀𒈾𒄿",
+    "tokens_with_states": [
+      [
+        "na",
+        "restored"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "ši",
+        "attested"
+      ],
+      [
+        "a",
+        "laes"
+      ],
+      [
+        "na",
+        "attested"
+      ],
+      [
+        "i",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ši",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "laes"
+      },
+      {
+        "kind": "token",
+        "token": "na",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "i",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 3.7\" lnr=\"Vs. II 28′\" lg=\"Hit\" cu=\"𒈾𒀭𒅆▒▒𒀀𒈾𒄿\"/> <clb id=\"70\"/> <w trans=\"nan\" mrp0sel=\" \" mrp1=\"n=an@@ CONNn=PPRO.3SG.C.ACC@@ \" mrp2=\"nan=a-@Nana@{ a → PNm.NOM.SG(UNM)} { b → PNm.ACC.SG(UNM)} { c → PNm.GEN.SG(UNM)} { d → PNm.D/L.SG(UNM)} { e → PNm.ABL(UNM)} { f → PNm.INS(UNM)} { g → PNm.VOC.SG(UNM)}@38.2@m\" ><del_in/>n<del_fin/>a-an</w> <w trans=\"ši~\" mrp0sel=\"DEL\" >š<del_in/>i<corr c=\"?\"/>-</w> <w trans=\"~anai\" mrp0sel=\"DEL\" ><del_fin/>-<laes_in/>a<corr c=\"?\"/><laes_fin/>-na-i</w>"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 22.61",
+    "line_index_in_doc": 38,
+    "line_label": "Rs. IV 10",
+    "cu": "𒀭𒌓𒅆𒉿𒂉𒉿𒁉𒄷𒁕𒀝𒅆𒄭𒀀▒𒉿𒅖𒋻𒀝𒋫",
+    "tokens_with_states": [
+      [
+        "D",
+        "restored"
+      ],
+      [
+        "UTU",
+        "restored"
+      ],
+      [
+        "ŠI",
+        "restored"
+      ],
+      [
+        "wa",
+        "restored"
+      ],
+      [
+        "ku",
+        "restored"
+      ],
+      [
+        "wa",
+        "restored"
+      ],
+      [
+        "pí",
+        "restored"
+      ],
+      [
+        "ḫu",
+        "restored"
+      ],
+      [
+        "da",
+        "restored"
+      ],
+      [
+        "ak",
+        "restored"
+      ],
+      [
+        "IGI",
+        "restored"
+      ],
+      [
+        "ḪI",
+        "restored"
+      ],
+      [
+        "A",
+        "restored"
+      ],
+      [
+        "wa",
+        "restored"
+      ],
+      [
+        "iš",
+        "restored"
+      ],
+      [
+        "tar",
+        "restored"
+      ],
+      [
+        "ak",
+        "restored"
+      ],
+      [
+        "ta",
+        "restored"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "D",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "UTU",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ŠI",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ku",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "pí",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḫu",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ak",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "IGI",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḪI",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "A",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "iš",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "tar",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ak",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ta",
+        "damage_state": "restored"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 22.61\" lnr=\"Rs. IV 10\" lg=\"Hit\" cu=\"𒀭𒌓𒅆𒉿𒂉𒉿𒁉𒄷𒁕𒀝𒅆𒄭𒀀▒𒉿𒅖𒋻𒀝𒋫\"/> <w trans=\"UTU-ŠIua\" mrp0sel=\" \" mrp1=\"UTU-ŠI@‚meine Sonne‘@{a → NOM.SG(UNM)_PPRO.1SG.GEN} {b → ACC.SG(UNM)_PPRO.1SG.GEN} {c → NOM.PL(UNM)_PPRO.1SG.GEN} {d → ACC.PL(UNM)_PPRO.1SG.GEN} {e → GEN.SG(UNM)_PPRO.1SG.GEN} {f → GEN.PL(UNM)_PPRO.1SG.GEN} {g → D/L.SG(UNM)_PPRO.1SG.GEN} {h → D/L.PL(UNM)_PPRO.1SG.GEN} {i → ABL(UNM)_PPRO.1SG.GEN} {j → INS(UNM)_PPRO.1SG.GEN} {k → VOC.SG(UNM)_PPRO.1SG.GEN} {l → VOC.PL(UNM)_PPRO.1SG.GEN}@+"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 1.1+",
+    "line_index_in_doc": 82,
+    "line_label": "II 7",
+    "cu": "𒌷▒𒄴𒄭▒▒𒉿𒀭𒁕𒀀𒅖",
+    "tokens_with_states": [
+      [
+        "URU",
+        "attested"
+      ],
+      [
+        "aḫ",
+        "attested"
+      ],
+      [
+        "ḫi",
+        "attested"
+      ],
+      [
+        "wa",
+        "attested"
+      ],
+      [
+        "an",
+        "attested"
+      ],
+      [
+        "da",
+        "attested"
+      ],
+      [
+        "a",
+        "attested"
+      ],
+      [
+        "iš",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "URU",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "aḫ",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "ḫi",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "an",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "da",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "a",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "iš",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 1.1+\" lnr=\" {€2+1} II 7\" lg=\"Hit\" cu=\"𒌷▒𒄴𒄭▒▒𒉿𒀭𒁕𒀀𒅖\"/> <w><d>U<del_in/>RU</d></w> <w><space c=\"43\"/></w> <w trans=\"~aḫḫi~\" mrp0sel=\"DEL\" ><del_fin/>-aḫ-ḫ<del_in/>i-</w> <w><space c=\"13\"/></w> <w trans=\"~uan\" mrp0sel=\"DEL\" ><del_fin/>-wa-an</w> <w trans=\"taiš\" mrp0sel=\" 1 \" mrp1=\"dai-/te-/ti(ya)-@setzen@3SG.PST@II.6.1@\" >da-a-iš</w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KBo 24.90",
+    "line_index_in_doc": 3,
+    "line_label": "4′",
+    "cu": "𒁹𒂁𒄷𒌒𒁇𒉿▒▒𒐈",
+    "tokens_with_states": [
+      [
+        "<NUM>",
+        "attested"
+      ],
+      [
+        "DUG",
+        "restored"
+      ],
+      [
+        "ḫu",
+        "restored"
+      ],
+      [
+        "up",
+        "restored"
+      ],
+      [
+        "pár",
+        "restored"
+      ],
+      [
+        "wa",
+        "restored"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "<NUM>",
+        "attested"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      },
+      {
+        "kind": "token",
+        "token": "DUG",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "ḫu",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "up",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "pár",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "wa",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      },
+      {
+        "kind": "token",
+        "token": "<NUM>",
+        "damage_state": "attested"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KBo 24.90\" lnr=\"4′\" lg=\"Hit\" cu=\"𒁹𒂁𒄷𒌒𒁇𒉿▒▒𒐈\"/> <w trans=\"1\" mrp0sel=\" 1 \" mrp1=\"1@ein@@ QUANcar@\" ><num>1</num></w> <w trans=\"ḫuppar\" mrp0sel=\" \" mrp1=\"ḫuppa=r-@Schale@{ a → NOM.SG.N} { b → ACC.SG.N} { c → STF}@10.1.2@(GIŠ/DUG)\" ><d>DUG</d>ḫu-up-pár</w> <w trans=\"wa~\" mrp0sel=\"DEL\" >w<del_in/>a-</w> <w><space c=\"5\"/></w> <w mrp0sel=\"DEL\" ><del_fin/>x</w> <w trans=\"3\" mrp0sel=\" 1 \" mrp1=\"3@drei@@ QUANcar@\" ><num>3</num><del_in/></w> \n"
+  },
+  {
+    "tier": "skeleton_only",
+    "doc_id": "KUB 4.1",
+    "line_index_in_doc": 102,
+    "line_label": "Rs. IV 9′",
+    "cu": "𒋼𒀀▒",
+    "tokens_with_states": [
+      [
+        "kar",
+        "restored"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ],
+      [
+        "kar",
+        "restored"
+      ],
+      [
+        "x",
+        "illegible_x"
+      ]
+    ],
+    "aligned_cells": [
+      {
+        "kind": "token",
+        "token": "kar",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "token",
+        "token": "kar",
+        "damage_state": "restored"
+      },
+      {
+        "kind": "marker",
+        "token": null,
+        "damage_state": "illegible_x"
+      }
+    ],
+    "raw_xml": "<lb txtid=\"KUB 4.1\" lnr=\"rev. IV 9′\" lg=\"Akk\" cu=\"𒋼𒀀▒\"/> <w mrp0sel=\"DEL\" >kar-x<del_in/></w> <parsep/> \n"
+  }
+]

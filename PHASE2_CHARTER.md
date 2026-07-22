@@ -1,0 +1,175 @@
+# PHASE2_CHARTER.md — Takšan Phase 2: characterize the data before modeling it
+
+Ratified jointly (Ixca + architect session) 2026-07-22. This is a
+CHARTER, not a spec. It states what changed in our beliefs, what
+question replaces Phase 1's question, and a menu of cheap probes. It
+deliberately does not pre-register success gates on exploratory work
+(see SANDBOX_RULES.md for why).
+
+## 1. The reframe
+
+**Phase 1 asked:** can a model rank fragment pairs better than BM25?
+It assumed the task was well-posed and the model was the variable.
+
+**Phase 2 asks:** *what is actually recoverable from this corpus,
+under what formulation, and what would it take?* The task
+formulation, the data's information content, and the label quality
+are now variables too.
+
+Three things forced this:
+
+1. **The no-overlap signature is definitional, not incidental.** The
+   fracture engine's calibration states that tier A/B joins have
+   `n_shared_lines ≈ 0` — "that IS the no-overlap seam signature."
+   We spent Phase 1 building lexical-similarity-adjacent methods for
+   a class of pairs defined by the absence of shared text.
+2. **Tier A collapses everywhere.** BM25 ceiling@200 = 0.519;
+   sighted cascade recall@1 = recall@10 = 0.0 (n=27). The aggregate
+   numbers (0.68/0.81) are carried by tier C (ceiling 0.984).
+   "Join detection" has been two different problems wearing one name.
+3. **Every learned component reduced to a noisier lexical signal, or
+   worse.** Even with sight, the boundary head prefers
+   lexically-similar impostors. Rather than fix the model again, ask
+   whether the question posed to it was answerable.
+
+## 2. Research questions for Phase 2
+
+- **Q1 (validity).** Was the boundary head ever asked a well-posed
+  question? Can it localize a seam it has been *handed*?
+- **Q2 (information).** Is there recoverable signal for no-overlap
+  joins in text alone — or does the signal live in materiality
+  (paleography, fabric, edge morphology, ruling, curvature) that
+  TLHdig does not encode?
+- **Q3 (formulation).** Is pairwise ranking the wrong shape? Does
+  generate-then-match, graph-constrained assembly, or
+  witness-mediated bridging surface signal that pairwise scoring
+  destroys?
+- **Q4 (labels).** How reliable is the ground truth? Are editorial
+  `+` joins uniformly certain, or is the hard set enriched for the
+  shakiest editorial calls?
+- **Q5 (scale).** Is 182 dev joins / 27 tier-A simply below the
+  supervision floor for any learned method — and if so, what n would
+  be required?
+
+## 3. The probe menu
+
+Each probe is cheap (hours, not phases), independently killable, and
+answers something we cannot currently answer. **They may run in any
+order and in parallel.** Ordering guidance only: P2-A and P2-D are
+the highest information-per-hour and answer questions the others
+depend on.
+
+### P2-A — Seam localization on handed-over truth *(highest priority)*
+**Question:** Q1. **Cost:** hours, zero GPU training.
+Take known joins whose editorial `{€N}` alignment gives the true
+line-level seam. Score the TRUE seam against WRONG offsets *within
+the same true pair* using the frozen D14 head. If the head cannot
+find the correct offset in a pair it has been told joins, the entire
+retrieval-level evaluation was asking an unparseable question, and
+every Phase 1 seam number is a statement about task mismatch rather
+than model quality.
+**Kill/carry:** if the head localizes well above chance, seam scoring
+is viable and the failure is retrieval-level. If not, boundary-head
+reranking is dead and P2-C/P2-E become the live paths.
+
+### P2-B — Materiality inventory *(what does the corpus NOT contain?)*
+**Question:** Q2. **Cost:** hours, mostly reading + counting.
+Audit what non-textual signal TLHdig encodes and what it doesn't:
+edge states (have), line counts and ruling/parsep (have), column
+structure (partial), physical dimensions, clay fabric, sign
+paleography, hand identification, curvature, findspot (mostly not).
+Cross-reference against what philologists actually use to propose
+joins. Deliverable: a table of "signal a human uses" × "encoded in
+TLHdig y/n" — which either identifies unused features sitting in the
+data, or becomes the paper's specification of what the field should
+digitize next.
+
+### P2-C — Edge-prediction inversion *(generate, then match)*
+**Question:** Q3. **Cost:** a day, inference only on frozen D14.
+Instead of scoring O(n²) pairs, use span-infilling to *predict* the
+signs continuing past each fragment's broken edge, then index those
+predictions and retrieve fragment-starts against them. Uses D14 for
+what it was actually trained to do. The measured horizon is brutal
+(exact-match 0.413 at length 1, ~0 by 6), so the honest version of
+this probe is: *does a 1–3 sign predicted continuation carry ANY
+retrieval signal above chance?* A small positive answer reframes the
+architecture; a null answer closes a plausible avenue cheaply.
+
+### P2-D — Ground-truth reliability audit *(highest priority)*
+**Question:** Q4. **Cost:** hours, plus optional expert consultation.
+Sample the 182 dev joins (and the 46-member hard set) and classify
+each by evidential basis where the corpus records it: physical refit
+vs inferred-from-content vs proposed. Test whether the hard set is
+enriched for weaker editorial claims. If a meaningful share of "gold"
+is itself inference, then Phase 1 partly penalized models for
+disagreeing with fallible labels — which changes what the negative
+results mean and belongs in the paper either way.
+
+### P2-E — Witness-bridge supervision *(the novel idea)*
+**Question:** Q3, Q5. **Cost:** a day or two.
+Duplicates are plentiful and near-solved; multiple witnesses of one
+composition give *parallel text*. So for many fragments, what
+*should* surround them is recoverable from a sibling witness even
+when the physical partner is textually silent. Probe: for dev joins
+where a third witness exists, does witness-mediated alignment (A's
+text → sibling witness → predicted continuation → B) recover joins
+that direct A↔B comparison misses? This uses the corpus's actual
+abundance (duplicates) to attack its actual scarcity (joins). No
+known prior work does this; the corpus is unusually well-suited.
+
+### P2-F — Graph/constraint assembly
+**Question:** Q3. **Cost:** a day.
+Joins obey hard structural constraints: a given edge joins at most
+one partner; joins are transitive within a reconstructed tablet;
+fragments of one composition form paths, not cliques. Take BM25's
+top-k candidate graph and apply global constraint satisfaction
+(matching/assignment rather than independent ranking). Question: does
+enforcing one-edge-one-partner recover joins that per-query ranking
+buries? This is how philologists reason natively.
+
+### P2-G — Supervision-floor estimate
+**Question:** Q5. **Cost:** hours (learning curves on existing runs).
+Retrain nothing new; instead, subsample the existing training
+positives at 25/50/75/100% and plot the dev-join curve for the
+already-trained configurations where checkpoints or cheap refits
+allow. If performance is flat in n, the ceiling is representational;
+if it is still climbing at 100%, the honest claim is "under-powered,"
+and the paper can state what n would likely be needed.
+
+### P2-H — Fracture-engine release *(low cost, high transferability)*
+**Question:** none — this is packaging.
+The calibrated damage/fracture simulator is corpus-general
+infrastructure (Akkadian, Ugaritic, papyrology). Package it as a
+standalone artifact with its calibration methodology and the
+documented caveat that vertical gap-width sampling is a modeling
+assumption, not corpus-calibrated. Possibly the most reusable thing
+Phase 1 produced.
+
+## 4. Constraints carried forward (non-negotiable)
+
+- **Test side untouched.** Every probe runs on train/dev/discovery.
+- **Tracers before scoring.** `00_tracers.py` runs at the top of any
+  scoring pass; T1 (scramble sensitivity) is mandatory for any new
+  content-consuming scorer.
+- **Contracts at ingress.** C1–C10 apply to new code by default.
+- **Canonical encoding only.** `encode_fragment_window()`; strict
+  mode on.
+- **Corpus statistics over declared universes.** Never query-derived.
+- **Splits stay frozen** (git 7b010cde) unless a corpus migration is
+  formally opened (TLHdig 0.3 is a separate future decision).
+- **Demo track continues unchanged** on BM25, per Ixca's decision of
+  2026-07-22. Phase 2 must not destabilize it.
+
+## 5. What "done" looks like for Phase 2
+
+Not a recall number. Phase 2 succeeds if it can answer: *which of
+Q1–Q5 are true, and therefore what is the right formulation (if any)
+for the tier-A problem?* A well-supported "text alone is
+insufficient, and here is the evidence and the data specification
+that would change it" is a complete and publishable success.
+
+## 6. Deliberately NOT doing (unless a probe justifies it)
+
+Training new models; scaling the encoder; hyperparameter search;
+retrying the bi-encoder; D17b; anything touching the test side;
+corpus migration; public launch of the demo.

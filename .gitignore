@@ -23,3 +23,19 @@ results.zip
 # ("Small artifacts back... No checkpoints, no parquet")
 runs/
 *.pt
+
+# Archive/ large derived score-cache dumps (D17 boundary-head, D18
+# edge-continuation scoring passes, both pre- and post-E2-fix
+# variants) -- same "large, regenerable" philosophy as *.parquet
+# above: fully reproducible by re-running scripts/27_seam_scorer.py ->
+# 27b -> 28 -> 29b against the pinned, gitignored D14 checkpoint. The
+# small human-readable summaries (p5_ablation_grid*.json, p5_gates*.json,
+# p5c_report.md, p5c2_report.md) that draw the actual conclusions from
+# these caches ARE tracked, in Archive/ and at their live Phase 2 path.
+Archive/p4_out/p5_d17_scores.json
+Archive/p4_out/p5_d17_scores_blind_pre_E2fix.json
+Archive/p4_out/p5_d17_agreement.json
+Archive/p4_out/p5_d17_agreement_blind_pre_E2fix.json
+Archive/p4_out/p5_d18_scores.json
+Archive/p4_out/p5_d18_scores_blind_pre_E2fix.json
+Archive/p4_out/fracture_dev_diagnostic.jsonl

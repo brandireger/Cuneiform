@@ -1,0 +1,10 @@
+{
+  "git_commit": "703fa46ee3e7b06114d3675b2e99ab28bbea47fd",
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "top_k": 200,
+  "n_join_queries": 182,
+  "n_dup_queries": 872,
+  "n_candidates_universe": 21920,
+  "d16b_promoted": true,
+  "d16b_best_delta": 0.02197802197802198
+}

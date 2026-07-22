@@ -1,0 +1,93 @@
+{
+  "checkpoint_step": 59999,
+  "git_commit": "703fa46ee3e7b06114d3675b2e99ab28bbea47fd",
+  "seed": 20260722,
+  "final_train_losses": {
+    "step": "59999",
+    "mlm_loss": "3.8785295486450195",
+    "boundary_loss": "0.2830049395561218",
+    "total_loss": "4.161534309387207"
+  },
+  "final_dev_eval_fresh": {
+    "mlm_loss": 3.9418871283531187,
+    "span_exact_match": {
+      "all": 0.1993319579526476
+    },
+    "boundary_accuracy": 0.7328125,
+    "boundary_auc": 0.8073268158334229
+  },
+  "span_exact_by_band": {
+    "1": {
+      "exact_match_rate": 0.41268033409263477,
+      "n": 2634
+    },
+    "2": {
+      "exact_match_rate": 0.11051574012056263,
+      "n": 1493
+    },
+    "3": {
+      "exact_match_rate": 0.02359550561797753,
+      "n": 890
+    },
+    "4": {
+      "exact_match_rate": 0.01011804384485666,
+      "n": 593
+    },
+    "5": {
+      "exact_match_rate": 0.002364066193853428,
+      "n": 423
+    },
+    "6": {
+      "exact_match_rate": 0.0,
+      "n": 265
+    },
+    "7": {
+      "exact_match_rate": 0.0,
+      "n": 200
+    },
+    "8": {
+      "exact_match_rate": 0.0,
+      "n": 141
+    },
+    "9": {
+      "exact_match_rate": 0.0,
+      "n": 90
+    },
+    "10": {
+      "exact_match_rate": 0.0,
+      "n": 53
+    },
+    "11-20": {
+      "exact_match_rate": 0.0,
+      "n": 120
+    },
+    ">20": {
+      "exact_match_rate": 0.0,
+      "n": 1
+    }
+  },
+  "boundary_auc_overall": 0.7903738508504901,
+  "boundary_auc_by_tier": {
+    "in_doc": {
+      "auc": 0.7460647335954347,
+      "n_positive": 938,
+      "n_negative": 711
+    },
+    "cross_genre": {
+      "auc": 0.900586353944563,
+      "n_positive": 938,
+      "n_negative": 236
+    },
+    "random": {
+      "auc": 0.9473347547974413,
+      "n_positive": 938,
+      "n_negative": 35
+    }
+  },
+  "n_boundary_examples": 1920,
+  "restoration_agreement": {
+    "n_spans": 309,
+    "token_agreement_rate": 0.20955662539757342,
+    "span_exact_agreement_rate": 0.11650485436893204
+  }
+}

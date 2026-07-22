@@ -1,0 +1,22 @@
+{
+  "_comment": "Frozen canary set per P5C_AMENDMENT_2.md H4. Committed, not regenerated per-run. Selected 2026-07-22: easy joins/duplicates require BOTH partners to have n_attested_signs > 40 (revised after an initial pick that only checked the query side produced degenerate tiny-partner pairs, caught by T3 failing on first run -- see h2_audit_report.md / p5c2_report.md); random_non_pairs = seeded-random dev-side fragment pairs verified NOT to be joins/duplicates/same-parent, and disjoint from the easy_joins/duplicates fragments.",
+  "easy_joins": [
+    ["KBo 38.12+::11", "KBo 38.12+::6"],
+    ["KUB 51.74+::2", "KUB 51.74+::3"],
+    ["KBo 52.111+::1", "KBo 52.111+::2"],
+    ["KBo 12.80+::2", "KBo 12.80+::3"],
+    ["KUB 29.55+::3", "KUB 29.55+::4"]
+  ],
+  "duplicates": [
+    ["KBo 33.43+", "KUB 32.19+"],
+    ["KBo 40.123+", "KUB 32.19+"],
+    ["KBo 2.6+", "KBo 54.99+"]
+  ],
+  "random_non_pairs": [
+    ["KBo 30.167", "KBo 25.12+::1"],
+    ["KUB 28.4", "KUB 19.22"],
+    ["KBo 64.404", "IBoT 1.30+"],
+    ["KBo 40.293+", "KUB 48.9"],
+    ["KBo 67.273", "KBo 14.10"]
+  ]
+}

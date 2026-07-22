@@ -1,0 +1,49 @@
+{
+  "codepoint_class_counts": {
+    "damage_marker": 460431,
+    "cuneiform": 2961664,
+    "OTHER": 19744,
+    "cuneiform_numbers": 14458
+  },
+  "total_codepoints": 3456297,
+  "out_of_block_examples": [
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+00020 (SPACE)",
+    "U+00031 (DIGIT ONE)",
+    "U+00034 (DIGIT FOUR)",
+    "U+00020 (SPACE)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)",
+    "U+0003F (QUESTION MARK)"
+  ],
+  "alignment_full_population": {
+    "n": 377195,
+    "aligned_pct": 57.872188125505375,
+    "n_mismatch": 158904
+  },
+  "alignment_sample_500": {
+    "n": 500,
+    "aligned_pct": 58.4,
+    "n_mismatch": 208
+  },
+  "alignment_after_transform": {
+    "n": 359202,
+    "aligned_pct": 60.75717841214693,
+    "n_mismatch": 140961
+  },
+  "go_no_go": "NO-GO",
+  "damage_marker_corr_illegible": 0.24104655863563862,
+  "damage_marker_exact_match_pct": 71.11573589257546
+}

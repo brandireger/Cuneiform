@@ -1,0 +1,6 @@
+{
+  "n_synthetic_pairs": 2000,
+  "corr_model_vs_lexical_synthetic": 0.5564098202430925,
+  "n_real_pairs": 182,
+  "corr_model_vs_lexical_real": 0.5597079566529926
+}

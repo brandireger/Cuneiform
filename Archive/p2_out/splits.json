@@ -1,0 +1,45 @@
+{
+  "seed": 20260721,
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "git_commit": "7b010cde8096e1a12b19f9926b72c92b5ae048ac",
+  "frozen": true,
+  "frozen_date": "2026-07-21",
+  "frozen_note": "P2.5_AMENDMENTS.md A4: LAST re-roll. splits.json is now constitutional -- no further re-rolls.",
+  "split_fractions": {
+    "train": 0.8,
+    "dev": 0.1,
+    "test": 0.1
+  },
+  "bin_reframe": {
+    "is_bin_docs": 14046,
+    "is_bin_compositions": 114,
+    "bin_docs_get_split": "discovery",
+    "cth_bins_source": "p25_out/cth_bins.csv, human sign-off recorded 2026-07-21"
+  },
+  "main_split": {
+    "unit": "CTH composition, REAL (non-bin) compositions only",
+    "assignment_method": "greedy doc-count balancing (largest-composition-first, min current/target ratio) -- targets 80/10/10 BY DOCUMENTS",
+    "doc_counts": {
+      "discovery": 14046,
+      "train": 6073,
+      "test": 760,
+      "dev": 760
+    },
+    "composition_counts": {
+      "train": 437,
+      "dev": 53,
+      "test": 53
+    },
+    "composition_leakage_check": "PASS (0 real compositions span multiple splits)",
+    "bin_doc_check": "PASS (0 bin documents carry train/dev/test)"
+  },
+  "site_split": {
+    "doc_counts": {
+      "train_hattusa": 19228,
+      "excluded_unknown_site": 2097,
+      "test_provincial": 314
+    },
+    "provincial_before_A5": 201,
+    "provincial_after_A5": 314
+  }
+}

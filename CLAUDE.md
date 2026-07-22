@@ -120,8 +120,10 @@ full-corpus scale, with leakage-safe methodology?
     these same files — reuse their preprocessing decisions where
     sensible and cite them.
 - Schema knowledge must come from `01_inventory.py` output
-  (inventory_out/), not assumptions. If inventory results and this
-  file disagree, the inventory wins; update this file.
+  (p1_out/, renamed from inventory_out/ 2026-07-21 for consistency
+  with p2_out/p25_out/p3_out/p4_out), not assumptions. If inventory
+  results and this file disagree, the inventory wins; update this
+  file.
 
 ## Task definitions
 
@@ -297,6 +299,18 @@ Provincial + multilingual material also supplies hard negatives.
 
 - Deterministic seeds everywhere; log seed, git commit, dataset
   version (0.2.0-beta) in every results file.
+- Corpus statistics (BM25 IDF/avgdl, calibration distributions,
+  vocabulary counts, damage-rate profiles) are fit over the DECLARED
+  universe for their phase (typically the full non-test universe),
+  never over query-derived subsets. Any deviation is a documented
+  decision, not a default. (Added 2026-07-22 after the E1.3
+  reconciliation; see p5c_report.md.)
+- Model-input encoding goes through
+  `hittite_tokenizer.encode_fragment_window()`; local
+  re-implementations are forbidden. (Added 2026-07-22 after the E2
+  content-blind seam-scoring bug — a per-script reimplementation of
+  this exact step silently fed `<UNK>`-only input to the frozen D14
+  head for an entire phase; see p5c_report.md / p5c2_report.md.)
 - Corpus build = governed dataset with lineage: every transform
   scripted, no hand edits; derived datasets carry provenance metadata.
 - Stdlib-or-common-deps preference; pin versions in
@@ -306,6 +320,16 @@ Provincial + multilingual material also supplies hard negatives.
   ship the raw corpus or weights back and forth.
 - Outputs of every phase: a runnable script + a small human-readable
   report.
+- **File layout (reorganized 2026-07-21, once D14/D15 finished running):**
+  numbered pipeline scripts live in `scripts/`, reusable modules in
+  `lib/`, active configs in `configs/`, the parallel demo track in
+  `demo/`. Earlier phase-sequence bullets below reference bare script
+  names (e.g. "`01_inventory.py`") from before this reorg — read those
+  as `scripts/01_inventory.py` etc. Always invoke from the project
+  root (`python scripts/19_pretrain.py ...`), never after `cd scripts`
+  — data paths are CWD-relative, only `lib/` imports are resolved
+  relative to the script file itself. See `README.md`'s "Where things
+  are" for the full map.
 
 ## Phase sequence
 
@@ -314,11 +338,11 @@ Provincial + multilingual material also supplies hard negatives.
   LATER DESIGN.
 - **P2 Parser + dataset builder** — leakage-safe splits per cleanroom
   rules; three-way label structure (join / duplicate / negative).
-  **DONE (2026-07-20)**, per `P2_PARSER_SPEC.md`. All 5 acceptance
+  **DONE (2026-07-20)**, per `specs/P2_PARSER_SPEC.md`. All 5 acceptance
   checks passed. Superseded/amended by P2.5 below — see
   `p2_out/dataset_report.md` for the original P2-only numbers.
 - **P2.5 Amendments** — **DONE, ACCEPTED, FROZEN (2026-07-21)**, per
-  `P2.5_AMENDMENTS.md`. Scripts `07_metadata_patch.py` → `08_bins.py`
+  `specs/P2.5_AMENDMENTS.md`. Scripts `07_metadata_patch.py` → `08_bins.py`
   → `09_join_tiers.py` → `10_resplit.py`, outputs in `p25_out/` (plus
   amended files in `p2_out/`). All 6 acceptance checks passed. Key
   numbers (supersede the P2 block above): 543 real compositions /

@@ -1,0 +1,26 @@
+{
+  "dedup_guard": {
+    "n_fragments": 22726,
+    "n_exact_dup_groups": 98,
+    "n_fragments_in_dup_groups": 552
+  },
+  "scorers": {
+    "bm25_sign": {
+      "task_a_recall@1": 0.7843631778058008,
+      "task_b_pooled_test_only_recall@1": 0.793233082706767,
+      "task_b_tier_A_test_only_recall@1": 0.058823529411764705
+    },
+    "bm25_lemma": {
+      "task_a_recall@1": 0.8158890290037831,
+      "task_b_pooled_test_only_recall@1": 0.8233082706766918,
+      "task_b_tier_A_test_only_recall@1": 0.058823529411764705
+    },
+    "tfidf_cosine_sign": {
+      "task_a_recall@1": 0.648171500630517,
+      "task_b_pooled_test_only_recall@1": 0.6666666666666666,
+      "task_b_tier_A_test_only_recall@1": 0.029411764705882353
+    }
+  },
+  "h1_family_exclusion_count": 96,
+  "h1_family_pairs": 5
+}

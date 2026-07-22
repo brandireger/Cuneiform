@@ -1,0 +1,26 @@
+{
+  "bm25_hits_at10": {
+    "n": 147,
+    "mean_n_attested": 163.7074829931973,
+    "mean_bm25_score_to_true_partner": 94.21565288664196,
+    "genre_band_dist": {
+      "0": 24,
+      "200": 5,
+      "300": 3,
+      "600": 111,
+      "700": 4
+    }
+  },
+  "bm25_misses_at10": {
+    "n": 35,
+    "mean_n_attested": 194.88571428571427,
+    "mean_bm25_score_to_true_partner": 36.48464993059559,
+    "genre_band_dist": {
+      "0": 7,
+      "200": 1,
+      "600": 27
+    }
+  },
+  "n_misses_recovered_by_dense_only": 1,
+  "n_total_misses": 35
+}

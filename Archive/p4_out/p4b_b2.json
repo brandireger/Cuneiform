@@ -1,0 +1,13 @@
+{
+  "hit_set_overlap_at_k10": {
+    "both_hit": 71,
+    "bm25_only": 76,
+    "dense_only": 1,
+    "neither": 34,
+    "n": 182
+  },
+  "union_recall_at_10": 0.8131868131868132,
+  "rrf_k": 60,
+  "rrf_recall@1": 0.46153846153846156,
+  "rrf_recall@10": 0.7692307692307693
+}
