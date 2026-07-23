@@ -1,0 +1,85 @@
+# configs/evidence_policies.yaml -- named evidence-policy profiles.
+# Per specs/EVIDENCE_POLICY.md. `cu`, `mrp_selected`, `mrp_lemma_candidates`
+# are denied in EVERY policy including discovery_assisted:
+#   - `cu` mixes editor-restored content into rendered glyphs and has
+#     never been cleanroom-safe (CLAUDE.md, P2/P2.5).
+#   - `mrp_selected`/`mrp_lemma_candidates` are morphological glossing,
+#     explicitly out of scope project-wide (CLAUDE.md "Out of scope").
+# `lemma_full`/`lemma_attested` are also denied: they fall back to
+# `trans`/`signs` only when `mrp_lemma_candidates` is empty, so their
+# most-interpretive dependency is the denied mrp_lemma_candidates field
+# (see lib/evidence_policy.py's effective_class() lineage resolution).
+#
+# EDITORIAL_RELATION is never in an `allow` list here -- it is normally
+# a label/evaluation relation, not a feature (specs/EVIDENCE_POLICY.md).
+
+policies:
+  artifact_strict:
+    allow:
+      - OBSERVED_ARTIFACT
+      - OBSERVED_DOCUMENT_STRUCTURE
+      - SYSTEM_TECHNICAL
+    deny_fields:
+      - cu
+      - mrp_selected
+      - mrp_lemma_candidates
+      - lemma_full
+      - lemma_attested
+
+  transcription_assisted:
+    allow:
+      - OBSERVED_ARTIFACT
+      - OBSERVED_DOCUMENT_STRUCTURE
+      - EDITORIAL_TRANSCRIPTION
+      - SYSTEM_TECHNICAL
+    deny_fields:
+      - cu
+      - mrp_selected
+      - mrp_lemma_candidates
+      - lemma_full
+      - lemma_attested
+
+  catalog_assisted:
+    allow:
+      - OBSERVED_ARTIFACT
+      - OBSERVED_DOCUMENT_STRUCTURE
+      - EDITORIAL_TRANSCRIPTION
+      - CATALOG_METADATA
+      - SYSTEM_TECHNICAL
+    deny_fields:
+      - cu
+      - mrp_selected
+      - mrp_lemma_candidates
+      - lemma_full
+      - lemma_attested
+
+  scholar_assisted:
+    allow:
+      - OBSERVED_ARTIFACT
+      - OBSERVED_DOCUMENT_STRUCTURE
+      - EDITORIAL_TRANSCRIPTION
+      - EDITORIAL_RESTORATION
+      - CATALOG_METADATA
+      - SYSTEM_TECHNICAL
+    deny_fields:
+      - cu
+      - mrp_selected
+      - mrp_lemma_candidates
+      - lemma_full
+      - lemma_attested
+
+  discovery_assisted:
+    allow:
+      - OBSERVED_ARTIFACT
+      - OBSERVED_DOCUMENT_STRUCTURE
+      - EDITORIAL_TRANSCRIPTION
+      - EDITORIAL_RESTORATION
+      - CATALOG_METADATA
+      - MODEL_DERIVED
+      - SYSTEM_TECHNICAL
+    deny_fields:
+      - cu
+      - mrp_selected
+      - mrp_lemma_candidates
+      - lemma_full
+      - lemma_attested

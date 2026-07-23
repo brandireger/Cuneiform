@@ -1,0 +1,360 @@
+# configs/evidence_registry.yaml -- reviewed field registry.
+# Per specs/EVIDENCE_POLICY.md "Registry decisions and uncertainties".
+# Every field here was checked against an actual parsed artifact
+# (p2_out/corpus.parquet, p2_out/edges.parquet, p2_out/doc_table.parquet,
+# p2_out/splits.parquet, p4_out/decomposed_corpus.parquet, or
+# eval_harness.load_fragment_universe()'s rendered columns) on
+# 2026-07-22 -- not guessed from the spec's abstract examples.
+#
+# Fields marked "flagged uncertain" in their rationale have a tentative
+# classification that is explicitly open for review, not a settled
+# call. See specs/EVIDENCE_POLICY.md for the full discussion.
+
+fields:
+  # ---- SYSTEM_TECHNICAL: identifiers and control-flow labels ----
+  doc_id:
+    class: SYSTEM_TECHNICAL
+    rationale: "Document identifier; control flow only, never a semantic feature."
+    source_path: "p2_out/corpus.parquet, p2_out/doc_table.parquet, p2_out/splits.parquet"
+  fragment_id:
+    class: SYSTEM_TECHNICAL
+    rationale: "Derived fragment identifier (parent_doc::member)."
+    source_path: "p2_out/edges.parquet"
+  parent_doc:
+    class: SYSTEM_TECHNICAL
+    rationale: "Parent document identifier."
+    source_path: "p2_out/edges.parquet"
+  siglum:
+    class: SYSTEM_TECHNICAL
+    rationale: "Fragment/member siglum, an identifier."
+    source_path: "p2_out/edges.parquet"
+  member_siglum:
+    class: SYSTEM_TECHNICAL
+    rationale: "Composite-document member siglum, an identifier."
+    source_path: "p2_out/corpus.parquet"
+  main_split:
+    class: SYSTEM_TECHNICAL
+    rationale: "Frozen split label; control flow only."
+    source_path: "p2_out/splits.parquet"
+  site_split:
+    class: SYSTEM_TECHNICAL
+    rationale: "Provincial-eval split label; control flow only."
+    source_path: "p2_out/splits.parquet"
+  is_bin:
+    class: SYSTEM_TECHNICAL
+    rationale: "Discovery-pool/bin flag; control flow only (P2.5 bin reframe)."
+    source_path: "p2_out/splits.parquet"
+  parse_status:
+    class: SYSTEM_TECHNICAL
+    rationale: "Parser bookkeeping (success/failure), not corpus content."
+    source_path: "p2_out/doc_table.parquet"
+  members:
+    class: SYSTEM_TECHNICAL
+    rationale: "List of member fragment identifiers for a composite doc."
+    source_path: "p2_out/doc_table.parquet"
+
+  # ---- CATALOG_METADATA ----
+  cth:
+    class: CATALOG_METADATA
+    rationale: "CTH composition number; catalog assignment, structural not textual per CLAUDE.md."
+    source_path: "p2_out/corpus.parquet, p2_out/doc_table.parquet, p2_out/edges.parquet, p2_out/splits.parquet"
+  site:
+    class: CATALOG_METADATA
+    rationale: "Findspot/site, derived from filename prefix table."
+    source_path: "p2_out/corpus.parquet, p2_out/doc_table.parquet, p2_out/splits.parquet"
+  prefix:
+    class: CATALOG_METADATA
+    rationale: "Publication-series filename prefix (KBo/KUB/etc.)."
+    source_path: "p2_out/doc_table.parquet"
+
+  # ---- OBSERVED_DOCUMENT_STRUCTURE ----
+  sign_damage_states:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Parsed from editorial markup (del_in/fin, laes_in/fin) representing preservation state -- structural, not itself a reading."
+    source_path: "p2_out/corpus.parquet"
+  damage_state:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Per-token damage state from the decomposed sign-level cache; same class as sign_damage_states."
+    source_path: "p4_out/decomposed_corpus.parquet"
+  line_index_in_doc:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural line position within the document."
+    source_path: "p2_out/corpus.parquet, p4_out/decomposed_corpus.parquet"
+  word_index_in_line:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural word position within a line."
+    source_path: "p2_out/corpus.parquet"
+  word_pos:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural word position, decomposed-cache equivalent of word_index_in_line."
+    source_path: "p4_out/decomposed_corpus.parquet"
+  paragraph_index:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural paragraph position (parsep-delimited)."
+    source_path: "p2_out/corpus.parquet"
+  side:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Tablet side (obverse/reverse), source-encoded structural position."
+    source_path: "p2_out/corpus.parquet"
+  column:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Column structure (clb id/nr), source-encoded."
+    source_path: "p2_out/corpus.parquet"
+  line_label:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Editorially-assigned line label (e.g. 'Vs.? 1′') representing structural position, not sign content."
+    source_path: "p2_out/corpus.parquet"
+  on_physical_edge:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge indicator for a line."
+    source_path: "p2_out/corpus.parquet, p2_out/edges.parquet"
+  top_edge_lost:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-loss flag."
+    source_path: "p2_out/edges.parquet"
+  bottom_edge_lost:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-loss flag."
+    source_path: "p2_out/edges.parquet"
+  top_edge_gap_desc:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Free-text gap description from source <gap> markup (e.g. 'Rs. IV bricht ab')."
+    source_path: "p2_out/edges.parquet"
+  bottom_edge_gap_desc:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Free-text gap description from source <gap> markup."
+    source_path: "p2_out/edges.parquet"
+  top_edge_confirmed_preserved:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-preservation flag."
+    source_path: "p2_out/edges.parquet"
+  bottom_edge_confirmed_preserved:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-preservation flag."
+    source_path: "p2_out/edges.parquet"
+  preserves_left_edge:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-preservation flag."
+    source_path: "p2_out/edges.parquet"
+  preserves_right_edge:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural edge-preservation flag."
+    source_path: "p2_out/edges.parquet"
+  left_edge_states:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Per-line left-edge damage-state summary."
+    source_path: "p2_out/edges.parquet"
+  right_edge_states:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Per-line right-edge damage-state summary."
+    source_path: "p2_out/edges.parquet"
+  space_c:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "<space c=\"N\"/> blank sign-width run, structural gap marker."
+    source_path: "p2_out/corpus.parquet"
+  attested_sign_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Aggregate count over damage-state markup."
+    source_path: "p2_out/doc_table.parquet"
+  restored_sign_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Aggregate count over damage-state markup."
+    source_path: "p2_out/doc_table.parquet"
+  laes_sign_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Aggregate count over damage-state markup."
+    source_path: "p2_out/doc_table.parquet"
+  illegible_sign_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Aggregate count over damage-state markup."
+    source_path: "p2_out/doc_table.parquet"
+  restored_sign_fraction:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Derived fraction over damage-state counts."
+    source_path: "p2_out/doc_table.parquet"
+    depends_on: [restored_sign_count, attested_sign_count]
+  n_attested_signs:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Rendered aggregate count of non-restored signs; same class as sign_damage_states."
+    source_path: "eval_harness.load_fragment_universe() rendered column"
+    depends_on: [sign_damage_states]
+  line_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural line count for a document."
+    source_path: "p2_out/doc_table.parquet"
+  word_count:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural word count for a document."
+    source_path: "p2_out/doc_table.parquet"
+  n_lines:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural line count for a fragment."
+    source_path: "p2_out/edges.parquet"
+  lines:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural line-index list defining a fragment's extent."
+    source_path: "p2_out/edges.parquet"
+  line_lang:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: >-
+      FLAGGED UNCERTAIN, not silently resolved. Tentatively structural:
+      this is the lg XML attribute (Hit/Akk/Sum/Hat/Hattian/Hur/Pal/Luw),
+      a source-encoded tag rather than a free transcription choice.
+      Verified against a real sample while building this registry: some
+      values are malformed with leftover XML fragments (e.g. "Hit> <w>
+      <del_in/> ... <del_fin/></w"), a parser data-quality issue
+      surfaced during this review, not fixed here -- see
+      specs/EVIDENCE_POLICY.md.
+    source_path: "p2_out/corpus.parquet"
+  is_sum:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: >-
+      FLAGGED UNCERTAIN. Tentatively structural (tag-delimited per
+      CLAUDE.md, <sGr>, not case-inferred); could reasonably be argued
+      EDITORIAL_TRANSCRIPTION since sumerogram identification is a
+      philological judgment embedded in the markup. Not resolved
+      unilaterally.
+    source_path: "p2_out/corpus.parquet"
+  is_akk:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "FLAGGED UNCERTAIN, same reasoning as is_sum (Akkadogram, <aGr>)."
+    source_path: "p2_out/corpus.parquet"
+  is_det:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "FLAGGED UNCERTAIN, same reasoning as is_sum (determinative, <d>)."
+    source_path: "p2_out/corpus.parquet"
+  is_num:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "FLAGGED UNCERTAIN, same reasoning as is_sum (numeral marking)."
+    source_path: "p2_out/corpus.parquet"
+  is_syllabic:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "FLAGGED UNCERTAIN, same reasoning as is_sum (syllabic-writing convention)."
+    source_path: "p2_out/corpus.parquet"
+  is_space:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural flag for a blank/space token."
+    source_path: "p2_out/corpus.parquet"
+  is_empty:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Structural flag for an empty word slot."
+    source_path: "p2_out/corpus.parquet"
+
+  # ---- EDITORIAL_TRANSCRIPTION ----
+  surface_translit:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Editorial transliteration surface form; not unqualified artifact observation."
+    source_path: "p2_out/corpus.parquet"
+  trans:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Editorial word-level transliterated form."
+    source_path: "p2_out/corpus.parquet"
+  signs:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Editorial decomposed sign list per word."
+    source_path: "p2_out/corpus.parquet"
+  token:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Editorial atomic sign token, decomposed-cache equivalent of signs."
+    source_path: "p4_out/decomposed_corpus.parquet"
+  sign_full:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
+    source_path: "eval_harness.load_fragment_universe() rendered column"
+    depends_on: [signs, sign_damage_states]
+  sign_attested:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Rendered attested-only sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
+    source_path: "eval_harness.load_fragment_universe() rendered column"
+    depends_on: [signs, sign_damage_states]
+  corr_flags:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Verified content while building this registry: holds Assyriological
+      correction/uncertainty markers (?, !, !?, (?)) -- part of the
+      editorial reading apparatus.
+    source_path: "p2_out/corpus.parquet"
+  reading_uncertain:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Verified content: boolean, true for 177,274/1,525,888 word rows
+      in a full-corpus check. Marks editorial uncertainty about a
+      reading; same class as corr_flags.
+    source_path: "p2_out/corpus.parquet"
+    depends_on: [corr_flags]
+
+  # ---- EDITORIAL_RESTORATION ----
+  cu:
+    class: EDITORIAL_RESTORATION
+    rationale: >-
+      Raw cuneiform rendering. Per CLAUDE.md's extensive prior
+      documentation: mixes editor-restored content into rendered
+      glyphs, only <U+2592> marks a true attested/illegible gap.
+      Never cleanroom-safe. EXPLICITLY DENIED in every policy, not
+      merely classified -- see configs/evidence_policies.yaml.
+    source_path: "raw AOxml <lb cu>; not currently in any parsed parquet"
+
+  # ---- EDITORIAL_RELATION ----
+  join_tier:
+    class: EDITORIAL_RELATION
+    rationale: "Editorially-asserted join-pair tier (A/B/C)."
+    source_path: "p2_out/join_pairs.jsonl"
+  join_type:
+    class: EDITORIAL_RELATION
+    rationale: "Editorially-asserted join-pair type (direct +/indirect (+))."
+    source_path: "p2_out/join_pairs.jsonl"
+  join_by_frag:
+    class: EDITORIAL_RELATION
+    rationale: "Editorially-derived join-partner mapping."
+    source_path: "p4_out/p5_query_sets.json"
+  dup_by_frag:
+    class: EDITORIAL_RELATION
+    rationale: "Derived duplicate/parallel-witness partner mapping, from shared CTH membership (an editorial/catalog judgment)."
+    source_path: "p4_out/p5_query_sets.json"
+
+  # ---- MODEL_DERIVED ----
+  d17_seam_score:
+    class: MODEL_DERIVED
+    rationale: "Frozen D14 boundary-head score; a model prediction, never a corpus signal."
+    source_path: "p4_out/p5_d17_scores.json (Archive/, gitignored per its own large-derived-data rule)"
+  d18_edge_lift:
+    class: MODEL_DERIVED
+    rationale: "Frozen D14 span-infilling continuation lift; a model prediction."
+    source_path: "p4_out/p5_d18_scores.json (Archive/, gitignored)"
+  bm25_score:
+    class: MODEL_DERIVED
+    rationale: "BM25 relevance score; a retrieval-model output, not corpus content, even though its inputs are EDITORIAL_TRANSCRIPTION."
+    source_path: "computed at scoring time via lib/eval_harness.bm25_score_matrix"
+    depends_on: [sign_attested]
+
+  # ---- EXPLICITLY DENIED (out of scope project-wide, per CLAUDE.md) ----
+  mrp_selected:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Morphological parse selection. CLAUDE.md's standing rule:
+      "morphological glossing... out of scope; do not build features
+      off mrp*." EXPLICITLY DENIED in every policy including
+      discovery_assisted -- a project-wide scope rule, not merely an
+      evidence-class restriction. See configs/evidence_policies.yaml.
+    source_path: "p2_out/corpus.parquet"
+  mrp_lemma_candidates:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Same as mrp_selected: morphological glossing, out of scope, EXPLICITLY DENIED in every policy."
+    source_path: "p2_out/corpus.parquet"
+  lemma_full:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Rendered lemma stream; falls back to trans/signs only when
+      mrp_lemma_candidates is empty, so its most-interpretive
+      dependency is the denied mrp_lemma_candidates field. EXPLICITLY
+      DENIED via lineage (effective_class() would resolve this to
+      whatever mrp_lemma_candidates resolves to; denial is enforced
+      directly in configs/evidence_policies.yaml rather than relying
+      on lineage alone, since denial and class are checked separately).
+    source_path: "eval_harness.load_fragment_universe() rendered column"
+    depends_on: [mrp_lemma_candidates, trans, signs]
+  lemma_attested:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Same as lemma_full (attested-only variant), EXPLICITLY DENIED via the same mixed-dependency reasoning."
+    source_path: "eval_harness.load_fragment_universe() rendered column"
+    depends_on: [mrp_lemma_candidates, trans, signs]

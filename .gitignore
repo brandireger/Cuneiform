@@ -19,6 +19,12 @@ __pycache__/
 # Ad-hoc local backups, not project content
 results.zip
 
+# Raw expert-advisory patch input -- fully absorbed into EXPERT_OPINION.md,
+# specs/EVIDENCE_POLICY.md, and configs/evidence_registry.yaml; keeping
+# the raw drop would just duplicate what's now properly in the repo.
+cuneiform_expert_patch/
+cuneiform_expert_patch.zip
+
 # Model checkpoints -- large binaries, never exchanged per P4 spec
 # ("Small artifacts back... No checkpoints, no parquet")
 runs/

@@ -1,0 +1,26 @@
+{
+  "task": "textual_affinity",
+  "evidence_policy": "transcription_assisted",
+  "features_requested": [
+    "sign_attested"
+  ],
+  "features_observed": [
+    "sign_attested"
+  ],
+  "evidence_classes_used": [
+    "EDITORIAL_TRANSCRIPTION"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 1.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "39c7bfc703f24523",
+  "split_manifest_hash": "309d917cd2aa39d4",
+  "config_hash": "d0dd6b71872eaad1",
+  "git_commit": "2e32d29cc5cc37f1f39b6e38a7c86aecdc345b80",
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260722,
+  "declared_statistics_universe": "full_non_test (per CLAUDE.md's corpus-statistics convention)",
+  "created_utc": "2026-07-22T23:14:06.895860+00:00",
+  "_smoke_note": "This is a smoke-test manifest, not a probe result. Sample fragment_ids used for demonstration: ['KUB 37.123', 'KBo 1.28', 'KUB 4.46+']"
+}
