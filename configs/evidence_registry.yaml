@@ -277,6 +277,16 @@ fields:
     rationale: "Deterministic two-flank sequence-alignment score used to rank bounded witness middles; persisted with the inspectable alignment rather than treated as corpus evidence."
     source_path: "lib/sequence_alignment.py; scripts/p2e5_alignment_probe.py"
     depends_on: [token]
+  adaptive_anchor_length:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Longest configured left/right anchor length with any independent-witness alternative for the query span; an evidence-sufficiency control, not a hidden-label choice."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
+  candidate_set_calibration_rate:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Composition-held-out empirical inclusion rate for a displayed witness candidate-set policy; a group statistic, never an instance truth probability."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
