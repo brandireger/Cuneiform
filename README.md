@@ -40,6 +40,13 @@ the intentionally hidden attested sign 92.95% of the time versus 89.97% at
 top-1. Most residual disagreements did not contain that reading anywhere in
 the exact-anchor witness set, motivating an inspectable local-alignment
 probe rather than a larger opaque model.
+That residual probe is reported in
+[`reports/phase2_p2e5_alignment_probe.md`](reports/phase2_p2e5_alignment_probe.md).
+Alignment recovered only 6/387 post-hoc absences at depth five; even an
+unimplementable residual-only oracle would add just 0.11 percentage points.
+The alignment code and evidence packets are retained as a negative result,
+but the scorer is not being promoted into the UI. The next research target is
+set-valued recoverability for two-to-five-sign spans.
 
 ## Read first
 

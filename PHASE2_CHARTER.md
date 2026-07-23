@@ -240,6 +240,22 @@ align local passages monotonically using only the observed context, then ask
 whether it recovers compact alternatives for the 387 exact-anchor absences.
 See `reports/phase2_p2e4_candidate_set_audit.md`.
 
+**Alignment residual result (P2-E5, 2026-07-23):** bounded,
+observed-context alignment did not justify another automatic candidate layer.
+It produced some alignment candidate in 251/387 post-hoc exact-anchor
+absences, but recovered the intentionally hidden attested sign in only 6/387
+at depth five (1.55%, 95% Wilson CI 0.71–3.34). Composition-macro rescue
+across 20 affected CTHs had mean 0.30% and median 0%. Even an impossible
+oracle that knew exactly when the exact-anchor set had failed would improve
+selected-context full-set inclusion by only 0.11 percentage points
+(92.95% → 93.06%). Do not integrate or calibrate this alignment scorer.
+Preserve its inspectable packets as a negative result and abstain on these
+residuals. The next justified probe is a **multi-sign candidate-set horizon
+map**: measure option-set inclusion, useful set size, and abstention for
+two-to-five-sign spans, since the intended expert UI must support both single
+characters and bounded sequences. See
+`reports/phase2_p2e5_alignment_probe.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

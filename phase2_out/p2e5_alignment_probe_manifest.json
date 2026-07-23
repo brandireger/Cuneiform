@@ -1,0 +1,59 @@
+{
+  "task": "duplicate_parallel_alignment_residual_diagnostic",
+  "evidence_policy": "discovery_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "anchor_formulaicity_cth_df",
+    "available_independent_witness_family_count",
+    "query_anchor_occurrence_count",
+    "local_alignment_score"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "anchor_formulaicity_cth_df",
+    "available_independent_witness_family_count",
+    "query_anchor_occurrence_count",
+    "local_alignment_score"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "MODEL_DERIVED",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.375,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.125,
+  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "f54cf0efd8d0d46bf339d66a4cc8883267842e014e93c948ab08ba5c7270e3f6",
+  "git_commit": "8b2a1793aa5948d6e77b657b298ecfaa9ae44edd",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "post-hoc exact-anchor-absence contexts among P2-E4's composition-folded dev selector acceptances; alignment witness retrieval restricted to independent same-CTH dev families; formulaicity fit over unambiguous real-composition train+dev; no test or discovery content",
+  "created_utc": "2026-07-23T18:00:41.361448+00:00",
+  "probe_label": "PROBE — not for citation",
+  "test_side_accessed": false,
+  "restoration_included": false,
+  "model_scoring_performed": true,
+  "model_generated_content_included": false,
+  "gold_available_to_alignment_scorer": false,
+  "diagnostic_subset_selected_posthoc_with_evaluation_label": true,
+  "composition_disjoint_folds": 5,
+  "input_hashes": {
+    "config": "f54cf0efd8d0d46bf339d66a4cc8883267842e014e93c948ab08ba5c7270e3f6",
+    "evidence_registry": "1847c19b6db43678bed12265f15f512e691818df8e0ca059cd14ef7adcea7fc1",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}
