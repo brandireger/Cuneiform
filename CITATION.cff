@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it using the metadata below."
+title: "Hittite Fragment Matching"
+type: software
+authors:
+  - family-names: "Reger"
+    given-names: "Brandi"
+abstract: >-
+  Provenance-aware research software for content-based composition
+  assignment, physical-join retrieval, and duplicate-witness retrieval
+  over fragmentary Hittite cuneiform transliterations.
+repository-code: "https://github.com/brandireger/Cuneiform"
+license: MIT
+keywords:
+  - Hittite
+  - cuneiform
+  - fragment matching
+  - information retrieval
+  - ancient languages

@@ -13,8 +13,10 @@ immutable snapshot is preserved under `Archive/`.
 
 ## Read first
 
-- [`CLAUDE.md`](CLAUDE.md) — living design authority: corpus schema,
-  cleanroom rules, task definitions, and engineering standards.
+- [`AGENTS.md`](AGENTS.md) — design authority for Codex sessions:
+  corpus schema, cleanroom rules, task definitions, and engineering standards.
+- [`CLAUDE.md`](CLAUDE.md) — corresponding design authority for
+  Claude Code sessions.
 - [`PHASE2_CHARTER.md`](PHASE2_CHARTER.md) — current research questions
   and probe menu.
 - [`SANDBOX_RULES.md`](SANDBOX_RULES.md) — Phase 2 experimental governance.
@@ -23,8 +25,10 @@ immutable snapshot is preserved under `Archive/`.
 - [`P5_CLOSEOUT.md`](P5_CLOSEOUT.md) — Phase 1 closeout and rationale for
   the Phase 2 reframe.
 
-If these documents disagree, `CLAUDE.md` controls unless a later,
-human-ratified document explicitly supersedes it.
+Use the authority file for the active agent. If `AGENTS.md` and `CLAUDE.md`
+disagree substantively, stop and ask the human collaborator which decision
+controls rather than silently choosing one. A later, human-ratified document
+may explicitly supersede either file.
 
 ## Repository map
 
@@ -39,6 +43,8 @@ human-ratified document explicitly supersedes it.
 | `reports/` | Current reports and selected Phase 1 closeout material used by Phase 2. |
 | `specs/` | Current and carried-forward specifications. |
 | `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite it in place. |
+| `CITATION.cff` | Citation metadata for this research software. |
+| `LICENSE` | MIT license for the repository's original source code. |
 
 Some Phase 1 utilities are copied into the active tree because Phase 2 still
 uses them. Their historical results remain frozen. A copied legacy utility is
@@ -104,12 +110,15 @@ Do not treat the smoke script as a research probe or citable result.
   features, and mismatched manifest policy labels.
 - Model-generated suggestions remain quarantined for expert verification.
 
-## Attribution and licensing status
+## Citation, attribution, and licensing
 
 Corpus attribution: Müller, Prechel, Rieken & Schwemer (2025), TLHdig Beta
 0.2.0, DOI 10.5281/zenodo.15459134, CC BY 4.0.
 
-A separate license for this repository's original source code has not yet
-been selected. The corpus license does not by itself license the project
-code. Reuse of the code should wait until the project owner adds an explicit
-code license.
+Citation metadata for this research software is available in
+[`CITATION.cff`](CITATION.cff).
+
+The repository's original source code is Copyright (c) 2026 Brandi Reger and
+licensed under the [`MIT License`](LICENSE). The TLHdig corpus and other
+third-party materials retain their own licenses; the MIT license does not
+replace or broaden those terms.
