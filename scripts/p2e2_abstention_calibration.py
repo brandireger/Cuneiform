@@ -660,6 +660,28 @@ def write_report(summary, elapsed_seconds):
     primary = summary["cells"][summary["primary_cell"]]
     baseline_cal = primary["baseline"]["calibration"]
     baseline_eval = primary["baseline"]["evaluation"]
+    target_90_cells = summary["cross_cell_findings"][
+        "cells_with_calibration_90_lower_bound_rule"]
+    target_95_cells = summary["cross_cell_findings"][
+        "cells_with_calibration_95_lower_bound_rule"]
+    primary_90 = primary["selected_rules"].get("0.9")
+    primary_80 = primary["selected_rules"].get("0.8")
+    primary_90_eval = (
+        primary_90["heldout_evaluation"] if primary_90 else None)
+    primary_80_eval = (
+        primary_80["heldout_evaluation"] if primary_80 else None)
+    if primary_90_eval and primary_80_eval:
+        transfer_sentence = (
+            "In the primary cell, the 90% calibration rule transferred at "
+            f"{primary_90_eval['top1_exact_agreement_percent']}% point "
+            "agreement but a held-out lower bound of "
+            f"{primary_90_eval['top1_exact_wilson_95'][0] * 100:.1f}%; the "
+            "80% calibration rule transferred at only "
+            f"{primary_80_eval['top1_exact_agreement_percent']}%. ")
+    else:
+        transfer_sentence = (
+            "The primary cell did not furnish both 80% and 90% calibration "
+            "selectors for a transfer comparison. ")
     rows = []
     for target, result in primary["selected_rules"].items():
         if result is None:
@@ -727,6 +749,14 @@ def write_report(summary, elapsed_seconds):
         "|---:|---|---:|---:|---:|",
         *rows,
         "",
+        f"Across all 12 cells, a calibration rule with a 90% Wilson lower "
+        f"bound existed only for {', '.join(target_90_cells)}; every qualifying "
+        f"cell masked one sign. No two-to-five-sign mask qualified. "
+        f"{'No cell' if not target_95_cells else ', '.join(target_95_cells)} "
+        f"reached the 95% lower-bound target. {transfer_sentence}These thresholds "
+        "are therefore exploratory selectors, not portable reliability "
+        "guarantees.",
+        "",
         f"Typed evidence-packet samples preserve accepted alternatives, "
         f"witness-family support, contradictory variants, enabled assistance "
         f"layers, and explicit abstention reasons in `{PACKET_PATH}`. Full "
@@ -734,8 +764,8 @@ def write_report(summary, elapsed_seconds):
         "",
         "## What this rules in / out",
         "",
-        "It rules in witness voting only where held-out-composition reliability "
-        "and useful coverage coexist. It rules out forced completion, "
+        "It rules in a small, one-sign high-agreement island, but not a stable "
+        "cross-composition calibration guarantee. It rules out forced completion, "
         "lexicographic tie-breaking, and treating catalog co-membership as "
         "evidence. This remains agreement against intentionally masked dev "
         "text—not proof of a genuinely lost reading.",
@@ -918,6 +948,12 @@ def main():
     )
 
     primary_name = f"a{primary_anchor}_m{primary_mask}"
+    target_90_cells = sorted(
+        name for name, result in cell_results.items()
+        if result["selected_rules"].get("0.9") is not None)
+    target_95_cells = sorted(
+        name for name, result in cell_results.items()
+        if result["selected_rules"].get("0.95") is not None)
     summary = {
         "probe": "P2-E2 abstention-calibrated witness reconstruction",
         "probe_label": "PROBE — not for citation",
@@ -948,6 +984,13 @@ def main():
             "p2e2_t1": p2e2_t1,
         },
         "cells": cell_results,
+        "cross_cell_findings": {
+            "cells_with_calibration_90_lower_bound_rule": target_90_cells,
+            "cells_with_calibration_95_lower_bound_rule": target_95_cells,
+            "mask_lengths_with_calibration_90_lower_bound_rule": sorted({
+                int(name.split("_m")[1]) for name in target_90_cells
+            }),
+        },
         "evidence_packets": {
             "path": str(PACKET_PATH),
             "count": len(packets),
