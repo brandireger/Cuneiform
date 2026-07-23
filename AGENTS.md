@@ -7,9 +7,14 @@ improvising. The human collaborator (Ixca) makes final design calls.
 
 ## Project identity
 
-Research project building a **content-based join and duplicate
-suggester for fragmentary Hittite cuneiform texts**, using the openly
-licensed TLHdig corpus. Two target outcomes, in order:
+Research project building an **evidence-bounded missing-information
+reconstruction system for fragmentary Hittite cuneiform texts**, using
+the openly licensed TLHdig corpus. The scientific center is predicting
+missing textual and structural information from the textual and encoded
+artifactual context that actually survives. Composition assignment,
+duplicate/parallel discovery, and physical-join suggestion are downstream
+applications and evaluation settings, not the project's identity. Two
+target outcomes, in order:
 
 1. A working prototype + draft paper with real numbers, used as a
    demonstration artifact for a graduate mentorship pitch (UT Austin
@@ -21,6 +26,35 @@ Tone of the work: rigorous, over-explicit, honest about negative
 results. When in doubt, report more, claim less.
 
 ## Research question
+
+What missing textual or structural information is recoverable from
+fragmentary Hittite records under explicitly named evidence policies,
+with calibrated uncertainty and abstention, and when is the encoded
+evidence insufficient? Within that frame, test whether modern
+representation learning improves over classical methods for restoration,
+composition affinity, duplicate/parallel witnesses, or physical-join
+candidates at full-corpus scale with leakage-safe methodology.
+
+### Core epistemic commitment
+
+"Let the artifacts speak" means every prediction is bounded by the
+evidence the corpus actually encodes. The project must:
+
+- predict held-out genuinely attested signs/passages for primary
+  restoration evaluation; editorial restorations are scholarly
+  hypotheses, never unquestioned gold;
+- keep textual, structural, catalog, editorial, and model-derived
+  evidence typed and separable;
+- preserve uncertainty and plausible alternatives, and abstain when
+  the encoded evidence does not identify a defensible answer;
+- never simulate missing physical evidence (clay, curvature, fracture
+  geometry, paleography) and then describe the result as artifact-led;
+- treat parallel witnesses as bounded evidence for possible missing
+  context, not proof that a lost original had identical wording; and
+- treat joins as one downstream case of missing-context inference, not
+  the organizing objective.
+
+### Historical Phase 1 benchmark question
 
 Can modern representation learning substantially outperform classical
 text classification at connecting fragmentary Hittite transliterations
@@ -126,6 +160,10 @@ full-corpus scale, with leakage-safe methodology?
   file.
 
 ## Task definitions
+
+Missing-information prediction is the upstream scientific task. Task A
+and Task B below remain valuable benchmarks and discovery applications,
+but neither may redefine the project around forced joining.
 
 - **Task A — Composition assignment.** Fragment → CTH composition,
   framed as retrieval (rank compositions). Modernizes Tyndall (2012),

@@ -16,6 +16,13 @@ under what formulation, and what would it take?* The task
 formulation, the data's information content, and the label quality
 are now variables too.
 
+**Center of gravity (ratified 2026-07-23):** Phase 2 is about
+evidence-bounded prediction of missing textual and structural
+information, not joins specifically. "Let the artifacts speak" means
+predicting only from encoded evidence, naming assistance layers,
+preserving alternatives, calibrating uncertainty, and abstaining when
+the target is not identifiable. Joins remain one downstream stratum.
+
 Three things forced this:
 
 1. **The no-overlap signature is definitional, not incidental.** The
@@ -34,6 +41,9 @@ Three things forced this:
 
 ## 2. Research questions for Phase 2
 
+- **Q0 (recoverability).** Which kinds of missing information can be
+  predicted from genuinely attested textual and encoded structural
+  context, at what horizon, and with what calibrated uncertainty?
 - **Q1 (validity).** Was the boundary head ever asked a well-posed
   question? Can it localize a seam it has been *handed*?
 - **Q2 (information).** Is there recoverable signal for no-overlap
@@ -139,16 +149,18 @@ not attribute hard-set difficulty to label weakness from this probe.
 See `reports/phase2_p2d_reliability.md`.
 
 ### P2-E — Witness-bridge supervision *(the novel idea)*
-**Question:** Q3, Q5. **Cost:** a day or two.
+**Question:** Q0, Q3, Q5. **Cost:** a day or two.
 Duplicates are plentiful and near-solved; multiple witnesses of one
-composition give *parallel text*. So for many fragments, what
-*should* surround them is recoverable from a sibling witness even
-when the physical partner is textually silent. Probe: for dev joins
-where a third witness exists, does witness-mediated alignment (A's
-text → sibling witness → predicted continuation → B) recover joins
-that direct A↔B comparison misses? This uses the corpus's actual
-abundance (duplicates) to attack its actual scarcity (joins). No
-known prior work does this; the corpus is unusually well-suited.
+composition give *parallel text*. First measure how often an
+independently attested witness provides bounded evidence for missing
+context around a fragment. Then, only where coverage exists, test
+witness-mediated reconstruction (A's observed text → sibling witness
+→ candidate missing context → B or an intentionally masked attested
+span). A parallel is evidence for possible context, not proof of
+identical lost wording. Join recovery is one downstream analysis, not
+the probe's definition. This uses the corpus's duplicate abundance to
+study missing-information recoverability without inventing physical
+geometry.
 
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
@@ -187,10 +199,11 @@ weaker relation labels, and the decisive physical modalities are not
 encoded. Preserve textual-affinity/duplicate work, symbolic structural
 compatibility, explicit abstention, and typed evidence packets.
 
-The next justified probe is a **coverage-first P2-E**: count dev joins
-with a usable third same-composition witness before running any
-witness-mediated inference. P2-C is secondary; P2-F cannot create
-missing evidence. Full reasoning:
+The next justified probe is a **coverage-first P2-E**: map where an
+independently attested same-composition witness supplies bounded
+evidence for missing textual context before running any mediated
+inference. Dev joins remain a diagnostic subset, not the organizing
+target. P2-C is secondary; P2-F cannot create missing evidence. Full reasoning:
 `reports/phase2_premise_audit_1.md`.
 
 ## 4. Constraints carried forward (non-negotiable)
@@ -210,11 +223,12 @@ missing evidence. Full reasoning:
 
 ## 5. What "done" looks like for Phase 2
 
-Not a recall number. Phase 2 succeeds if it can answer: *which of
-Q1–Q5 are true, and therefore what is the right formulation (if any)
-for the tier-A problem?* A well-supported "text alone is
-insufficient, and here is the evidence and the data specification
-that would change it" is a complete and publishable success.
+Not a recall number. Phase 2 succeeds if it produces a recoverability
+map: which missing-information targets are identifiable, from which
+evidence, at what horizon, with what uncertainty, and where abstention
+is required. Tier-A joins are one stress test. A well-supported "this
+information is not recoverable from the encoded evidence, and here is
+what would change that" is a complete and publishable result.
 
 ## 6. Deliberately NOT doing (unless a probe justifies it)
 

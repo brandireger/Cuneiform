@@ -23,6 +23,12 @@ no-overlap physical joining in this corpus. More reranking, seam scoring,
 or graph constraints cannot manufacture the missing physical evidence.
 Tier-A output must be allowed to abstain as `insufficient encoded evidence`.
 
+The broader project premise remains intact and is now explicit:
+evidence-bounded prediction of missing textual and structural information.
+Joins are one downstream setting, not the objective. Negative evidence about
+physical joins narrows the recoverability map; it does not narrow the project
+to join detection.
+
 The project should retain:
 
 - textual-affinity and duplicate/parallel retrieval;
@@ -32,12 +38,13 @@ The project should retain:
 
 ## Next justified probe
 
-Proceed to P2-E as a feasibility census before any inference run: measure how
-many dev direct joins—especially tier A/B—have a third same-composition
-witness with enough attested overlap to mediate a bridge. This asks whether
-the corpus's duplicate abundance can supply missing textual context without
-pretending it supplies physical geometry. If coverage is too low, stop P2-E
-before modeling.
+Proceed to P2-E as a recoverability census before any inference run: measure
+where an independently attested same-composition witness provides bounded
+textual evidence for missing context. Dev direct joins—especially tier
+A/B—are one diagnostic subset. The primary question is whether witness
+networks can support reconstruction of intentionally masked attested text
+without treating parallels as identical originals or pretending they supply
+physical geometry. If coverage is too low, stop P2-E before modeling.
 
 P2-C remains a secondary diagnostic, not the next architecture: its frozen
 model's measured continuation horizon is already short, and it still asks

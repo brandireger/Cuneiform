@@ -1,10 +1,12 @@
 # Hittite Fragment Matching
 
-Research code and governed artifacts for a content-based join and duplicate
-suggester for fragmentary Hittite cuneiform texts. The project uses the
-openly licensed TLHdig Beta 0.2.0 corpus and targets a reproducible prototype,
-a graduate-mentorship demonstration, and an Ancient Language Processing
-workshop paper.
+Research code and governed artifacts for evidence-bounded reconstruction of
+missing information in fragmentary Hittite cuneiform texts. The project asks
+what textual or structural context can be predicted from the evidence TLHdig
+actually encodes, when the system must abstain, and how much each conclusion
+depends on editorial or model assistance. Composition affinity,
+duplicate/parallel discovery, and physical-join suggestion are downstream
+applications rather than the organizing objective.
 
 The project is currently in **Phase 2**: characterizing what evidence is
 recoverable from the corpus before training or promoting further models.
