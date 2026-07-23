@@ -11,7 +11,6 @@ Usage:
 
 import hashlib
 import json
-import re
 import sys
 import time
 from collections import Counter
@@ -23,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
 
 import contracts
 import evidence_policy as ep
+from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 
 
 SEED = 20260723
@@ -36,70 +36,12 @@ MANIFEST_PATH = OUT_DIR / "p2a_feasibility_manifest.json"
 REGISTRY_PATH = Path("configs") / "evidence_registry.yaml"
 POLICIES_PATH = Path("configs") / "evidence_policies.yaml"
 
-# parent_doc is deliberately the first field in join_pairs.jsonl. Extract it
-# before decoding any other field so disallowed splits are never parsed.
-PARENT_PREFIX = re.compile(
-    rb'^\{"parent_doc":\s*("(?:\\.|[^"])*")')
-EXCLUSIVE_CONTENT_MARKER = b', "exclusive_content":'
-
-
 def sha256(path):
     digest = hashlib.sha256()
     with open(path, "rb") as source:
         for chunk in iter(lambda: source.read(1 << 20), b""):
             digest.update(chunk)
     return digest.hexdigest()
-
-
-def split_lookup_fail_closed(splits):
-    grouped = splits.groupby("doc_id", sort=False)["main_split"].agg(
-        lambda values: frozenset(values))
-    lookup = {}
-    ambiguous = set()
-    for doc_id, values in grouped.items():
-        if len(values) != 1:
-            ambiguous.add(doc_id)
-        else:
-            lookup[doc_id] = next(iter(values))
-    return lookup, ambiguous
-
-
-def iter_allowed_join_metadata(path, split_lookup, ambiguous_ids,
-                               allowed_split, audit_counts):
-    """Decode metadata only for parents already proven to be allowed.
-
-    The large ``exclusive_content`` payload is removed before JSON decoding.
-    Rows outside ``allowed_split`` are neither decoded nor yielded.
-    """
-    with open(path, "rb") as source:
-        for line_number, raw_line in enumerate(source, 1):
-            match = PARENT_PREFIX.match(raw_line)
-            if not match:
-                raise ValueError(
-                    f"{path}:{line_number}: parent_doc is not the first "
-                    "decodable field")
-            parent_doc = json.loads(match.group(1).decode("utf-8"))
-            if parent_doc in ambiguous_ids:
-                audit_counts["ambiguous_parent_rows_skipped"] += 1
-                continue
-            if parent_doc not in split_lookup:
-                raise AssertionError(
-                    f"{path}:{line_number}: parent_doc {parent_doc!r} is "
-                    "absent from the frozen split map")
-            if split_lookup[parent_doc] != allowed_split:
-                continue
-
-            marker_at = raw_line.find(EXCLUSIVE_CONTENT_MARKER)
-            metadata_raw = (
-                raw_line[:marker_at] + b"}"
-                if marker_at >= 0 else raw_line
-            )
-            record = json.loads(metadata_raw.decode("utf-8"))
-            if record["parent_doc"] != parent_doc:
-                raise AssertionError(
-                    f"{path}:{line_number}: parent prefix disagrees with "
-                    "decoded metadata")
-            yield record
 
 
 def structural_relation(lines_a, lines_b):
