@@ -718,6 +718,7 @@ def real_alignment_tracer(
 def write_report(summary, elapsed_seconds):
     metrics = summary["alignment_residual_diagnostic"]["micro"]
     macro = summary["alignment_residual_diagnostic"]["composition_macro_at_5"]
+    oracle = summary["oracle_residual_only_ceiling"]
     rows = []
     for depth, values in metrics["prefix_sets"].items():
         interval = values["exact_rescue_wilson_95"]
@@ -778,6 +779,11 @@ def write_report(summary, elapsed_seconds):
         f"{macro['median_exact_rescue_percent']}% (range "
         f"{macro['minimum_exact_rescue_percent']}–"
         f"{macro['maximum_exact_rescue_percent']}%).",
+        f"Even an impossible oracle that applied alignment only to known "
+        f"exact-anchor absences would move selected-context full-set "
+        f"inclusion from {oracle['before_percent']}% to "
+        f"{oracle['after_percent']}% "
+        f"(+{oracle['increase_percentage_points']} percentage points).",
         "",
         "| prior exact-anchor disagreement | contexts | exact rescue @5 |",
         "|---|---:|---:|",
@@ -796,10 +802,10 @@ def write_report(summary, elapsed_seconds):
         f"`{summary['evidence_policy']}`; dev-only residual diagnostic; test, "
         "restorations, `cu`, morphology, and generated text untouched.",
         "",
-        "**Falsifier:** the alignment-rescue conclusion would be wrong if a "
-        "non-residual composition-disjoint evaluation selected without hidden "
-        "labels fails to retain the same attested-span gain at comparable set "
-        "size and alignment constraints.",
+        "**Falsifier:** the conclusion that this alignment layer is not worth "
+        "integrating would be wrong if a non-residual composition-disjoint "
+        "evaluation selected without hidden labels yields a materially larger "
+        "attested-span gain at comparable set size and constraints.",
     ]
     REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -965,15 +971,19 @@ def main():
     )
     rescue_at_five = metrics["prefix_sets"][str(maximum_depth)][
         "exact_rescue_contexts"]
+    exact_anchor_included = len(accepted) - len(residuals)
+    oracle_before = pct(exact_anchor_included, len(accepted))
+    oracle_after = pct(
+        exact_anchor_included + rescue_at_five, len(accepted))
+    oracle_increase = round(oracle_after - oracle_before, 2)
     interpretation = (
-        "Observed-context alignment recovered some exact alternatives that "
-        "the exact-anchor set omitted; the next step is a composition-folded "
-        "non-residual calibration study before any UI probability is shown."
-        if rescue_at_five
-        else
-        "The bounded alignment did not recover exact hidden readings in the "
-        "residual diagnostic; preserve exact-anchor candidate sets and "
-        "abstention rather than adding this alignment layer."
+        f"Alignment recovered only {rescue_at_five}/{len(residuals)} "
+        "post-hoc residuals while adding candidates to many more contexts; "
+        f"even the residual-only oracle ceiling is +{oracle_increase} "
+        "percentage points. This exploratory yield does not justify "
+        "integrating or calibrating the alignment layer. Preserve exact-anchor "
+        "candidate sets and abstention; next map set-valued utility across "
+        "multi-sign spans, which the intended expert UI must also support."
     )
     summary = {
         "probe": "P2-E5 observed-context alignment diagnostic",
@@ -1004,6 +1014,18 @@ def main():
                 composition_macro(scored, maximum_depth),
             "by_prior_observable_category":
                 breakdown(scored, depths),
+        },
+        "oracle_residual_only_ceiling": {
+            "warning": (
+                "Uses the hidden evaluation label to identify residuals and "
+                "cannot be implemented at inference time."),
+            "selected_contexts": len(accepted),
+            "exact_anchor_full_set_included_contexts":
+                exact_anchor_included,
+            "alignment_rescues_at_5": rescue_at_five,
+            "before_percent": oracle_before,
+            "after_percent": oracle_after,
+            "increase_percentage_points": oracle_increase,
         },
         "evidence_packet_count": len(packets),
         "interpretation": interpretation,
