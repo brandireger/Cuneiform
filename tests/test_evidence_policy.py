@@ -90,6 +90,21 @@ class TestEvidencePolicy(unittest.TestCase):
         eff2 = ep.effective_class("restored_sign_fraction", self.registry)
         self.assertEqual(eff2, ep.EvidenceClass.OBSERVED_DOCUMENT_STRUCTURE)
 
+    def test_explicit_denial_propagates_through_dependency_lineage(self):
+        registry = dict(self.registry)
+        registry["cu_derived_proxy"] = ep.FieldEvidence(
+            field="cu_derived_proxy",
+            evidence_class=ep.EvidenceClass.OBSERVED_DOCUMENT_STRUCTURE,
+            rationale="Constructed regression fixture.",
+            depends_on=("cu",),
+        )
+        # These profiles otherwise allow EDITORIAL_RESTORATION, so this
+        # specifically proves that cu's explicit denial wins through lineage.
+        for policy in (self.scholar, self.discovery):
+            with self.subTest(policy=policy.name):
+                with self.assertRaises(ep.EvidencePolicyError):
+                    ep.validate_fields(["cu_derived_proxy"], registry, policy)
+
     # 7. manifest lists all consumed fields and classes
     def test_manifest_lists_all_consumed_fields_and_classes(self):
         manifest = ep.build_manifest(
@@ -102,6 +117,17 @@ class TestEvidencePolicy(unittest.TestCase):
                           [ep.EvidenceClass.EDITORIAL_TRANSCRIPTION.value])
         self.assertIn("git_commit", manifest)
         self.assertIn("created_utc", manifest)
+
+    def test_manifest_policy_label_must_match_validated_policy(self):
+        with self.assertRaises(ep.EvidencePolicyError):
+            ep.build_manifest(
+                task="textual_affinity",
+                evidence_policy="artifact_strict",
+                features_requested=["bm25_score"],
+                registry=self.registry,
+                policy=self.discovery,
+                seed=20260722,
+            )
 
     # 8. policy behavior is deterministic
     def test_policy_behavior_deterministic(self):

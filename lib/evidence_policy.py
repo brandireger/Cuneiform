@@ -155,6 +155,29 @@ def effective_class(field: str, registry: Mapping[str, FieldEvidence],
     return result
 
 
+def _dependency_closure(field: str, registry: Mapping[str, FieldEvidence],
+                        *, _seen: frozenset[str] | None = None) -> frozenset[str]:
+    """Returns ``field`` plus its complete dependency closure.
+
+    Explicit field denials are stronger than broad evidence-class
+    permissions. Checking only the requested field would allow a derived
+    feature to launder a denied source (for example, a feature derived from
+    ``cu`` under a policy that otherwise permits EDITORIAL_RESTORATION).
+    """
+    if field not in registry:
+        raise EvidencePolicyError(
+            f"_dependency_closure: field '{field}' not in registry.")
+    seen = _seen or frozenset()
+    if field in seen:
+        raise EvidencePolicyError(
+            f"_dependency_closure: dependency cycle involving '{field}'.")
+    closure = {field}
+    for dep in registry[field].depends_on:
+        closure.update(_dependency_closure(
+            dep, registry, _seen=seen | {field}))
+    return frozenset(closure)
+
+
 # ---------------------------------------------------------------- validation
 
 def validate_fields(fields: Iterable[str], registry: Mapping[str, FieldEvidence],
@@ -163,8 +186,9 @@ def validate_fields(fields: Iterable[str], registry: Mapping[str, FieldEvidence]
     EFFECTIVE, lineage-resolved class), or raises EvidencePolicyError
     fail-closed on the first violation:
       - field absent from the registry;
-      - field explicitly denied by this policy (checked before the
-        class check -- denial always wins, even if the class is allowed);
+      - field, or any dependency, explicitly denied by this policy
+        (checked before the class check -- denial always wins, even if
+        the class is allowed);
       - field's effective class not in this policy's allowed set.
     No wildcard approval for unknown fields. Technical IDs (SYSTEM_TECHNICAL)
     are valid for control flow but this function makes no exception for
@@ -176,10 +200,14 @@ def validate_fields(fields: Iterable[str], registry: Mapping[str, FieldEvidence]
             raise EvidencePolicyError(
                 f"validate_fields[{policy.name}]: field '{name}' is not in the "
                 f"registry. Unknown fields are rejected, never silently permitted.")
-        if name in policy.explicitly_denied_fields:
+        lineage = _dependency_closure(name, registry)
+        denied_lineage = sorted(
+            lineage.intersection(policy.explicitly_denied_fields))
+        if denied_lineage:
             raise EvidencePolicyError(
-                f"validate_fields[{policy.name}]: field '{name}' is explicitly "
-                f"denied by this policy, regardless of its evidence class.")
+                f"validate_fields[{policy.name}]: field '{name}' uses explicitly "
+                f"denied field(s) {denied_lineage} in its dependency lineage. "
+                f"Explicit denial cannot be bypassed through a derived feature.")
         eff = effective_class(name, registry)
         if eff not in policy.allowed:
             raise EvidencePolicyError(
@@ -247,13 +275,19 @@ def build_manifest(*, task: str, evidence_policy: str, features_requested: Seque
     """Validates features_requested against (registry, policy) -- raises
     on the first violation, fail-closed, per validate_fields(). On
     success, returns the manifest dict per EXPERT_OPINION.md section 4.
-    A manifest is only ever produced for a field set that already
+    The displayed evidence_policy label must match policy.name. A manifest
+    is only ever produced for a field set that already
     passed validation; there is no path to a manifest describing a
     run that used a prohibited field silently. Uses
     validate_semantic_features() (not the more permissive
     validate_fields()), since a manifest describes what went into
     model input -- SYSTEM_TECHNICAL fields must not appear here even
     though they're policy-"allowed" for control flow elsewhere."""
+    if evidence_policy != policy.name:
+        raise EvidencePolicyError(
+            f"build_manifest: evidence_policy label '{evidence_policy}' does "
+            f"not match the policy used for validation ('{policy.name}'). "
+            f"A manifest cannot claim a different assistance profile.")
     observed = validate_semantic_features(features_requested, registry, policy)
     evidence_classes_used = sorted({fe.evidence_class.value for fe in observed})
 

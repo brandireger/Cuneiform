@@ -3,13 +3,18 @@
 13_bm25.py -- P3 Deliverable 2: classical retrieval baselines run
 through eval_harness.py.
 
+PHASE 2 STATUS: this is a live copy of a frozen Phase 1 baseline utility,
+retained because BM25 remains a durable project asset. It predates the
+evidence-policy layer. Do not use it for a new or promoted Phase 2 run
+without first integrating lib/evidence_policy.py and emitting a run
+manifest. Historical reports and numbers remain unchanged.
+
 Usage:
     python scripts/13_bm25.py
 
-Three scorers: bm25_sign (artifact-only: sign unigrams+bigrams, no
-editorial input beyond the transliteration itself), bm25_lemma
-(editor-assisted: mrp lemma candidates -- explicitly labeled as such
-in every table per the project's artifacts-vs-editors principle),
+Three historical scorers: bm25_sign (transcription-assisted sign
+unigrams+bigrams), bm25_lemma (a legacy mrp-lemma ablation that is now
+explicitly prohibited for new work by the project's out-of-scope rule),
 tfidf_cosine_sign (sanity triangulation, sign unigrams only).
 
 Tokenizer (bm25_sign / tfidf_cosine_sign, documented here for P4

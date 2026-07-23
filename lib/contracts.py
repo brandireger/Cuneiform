@@ -16,9 +16,6 @@ the underlying data may be correct and the design intent wrong -- the
 fit/run proceeds, but silence about the disagreement is not allowed.
 C10 is a query helper for the reporting layer (find(), not assert()).
 """
-import numpy as np
-
-
 # ---------------------------------------------------------------- C1
 
 def assert_encoding_sane(ids, tokenizer, max_unk=0.05, *, label=None):
@@ -118,9 +115,28 @@ def assert_stats_provenance(stamped, expected_universe, expected_n):
 # ---------------------------------------------------------------- C5
 
 def assert_no_test(ids, splits_lookup, *, label=None):
-    """splits_lookup: fragment_id -> main_split. Raises if any id's
-    main_split == 'test'."""
-    bad = [i for i in ids if splits_lookup.get(i) == "test"]
+    """Fail-closed guard for training/scoring inputs.
+
+    ``splits_lookup`` maps fragment_id -> main_split. Every requested ID
+    must be registered with a recognized split, and no ID may be test-side.
+    Treating a missing lookup as "not test" would turn an identifier mismatch
+    into a cleanroom leak.
+    """
+    ids = list(ids)
+    missing = [i for i in ids if i not in splits_lookup]
+    if missing:
+        raise AssertionError(
+            f"assert_no_test({label}): {len(missing)} id(s) are absent from "
+            f"splits_lookup and therefore have unknown cleanroom status: "
+            f"{missing[:5]}...")
+    allowed_splits = {"train", "dev", "test", "discovery"}
+    invalid = [(i, splits_lookup[i]) for i in ids
+               if splits_lookup[i] not in allowed_splits]
+    if invalid:
+        raise AssertionError(
+            f"assert_no_test({label}): {len(invalid)} id(s) have unrecognized "
+            f"main_split values: {invalid[:5]}...")
+    bad = [i for i in ids if splits_lookup[i] == "test"]
     if bad:
         raise AssertionError(
             f"assert_no_test({label}): {len(bad)} test-side id(s) reached a "
@@ -180,6 +196,8 @@ def warn_degenerate_feature(name, values, *, var_floor=1e-6):
     None if clean) so callers can embed it in a report -- the negatives'
     seam_score 0.876 +/- 0.024 was visible in the feature table all
     along; this makes it impossible to not-see."""
+    import numpy as np
+
     arr = np.asarray(values, dtype=float)
     finding = {}
     if arr.size and not np.all(np.isfinite(arr)):

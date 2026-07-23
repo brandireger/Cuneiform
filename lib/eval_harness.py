@@ -2,6 +2,12 @@
 """
 eval_harness.py -- P3 Deliverable 1: reusable evaluation harness.
 
+PHASE 2 STATUS: this is a carried-forward Phase 1 harness. It renders
+legacy lemma fields and does not itself enforce the Phase 2 evidence
+policy. New scoring/training code may reuse audited utilities from this
+module only after validating requested semantic fields through
+lib/evidence_policy.py and emitting the required run manifest.
+
 Not a numbered pipeline script (per spec: "a reusable module, not a
 script") -- imported by 13_bm25.py and 14_tyndall.py. Python can't
 import a digit-prefixed module name, which is the other reason this

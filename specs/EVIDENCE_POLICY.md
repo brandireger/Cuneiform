@@ -74,7 +74,8 @@ def validate_fields(fields, registry, policy) -> Sequence[FieldEvidence]:
 
 - a requested field is absent from the registry;
 - a field belongs to a disallowed evidence class for the active policy;
-- a field is explicitly denied, even when its broad class is allowed;
+- a field, or any field in its dependency closure, is explicitly denied,
+  even when its broad class is allowed;
 - a derived feature's recorded dependency is itself absent from the
   registry (no dependency lineage).
 
@@ -232,6 +233,10 @@ alias; technical IDs are permitted for control flow but rejected in a
 semantic feature matrix. Plus two cases specific to this corpus:
 `mrp_lemma_candidates` denied in every policy including discovery;
 `lemma_full`/`lemma_attested` denied via mixed-dependency lineage.
+Repository-hardening regressions additionally cover explicit denial
+propagating through a derived feature's dependency closure and rejection
+of a manifest whose displayed policy label differs from the policy object
+used for validation.
 
 ## Scope control
 
