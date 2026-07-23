@@ -36,6 +36,23 @@ fields:
     class: SYSTEM_TECHNICAL
     rationale: "Frozen split label; control flow only."
     source_path: "p2_out/splits.parquet"
+  archive_entry_path:
+    class: SYSTEM_TECHNICAL
+    rationale: "Path of one file inside a pinned corpus archive, used to gate payload access before decoding."
+    source_path: "TLHdig corpus zip central directory"
+  raw_xml_sha256:
+    class: SYSTEM_TECHNICAL
+    rationale: "Cryptographic digest of an allowed non-test XML payload, used only for corpus-version change detection."
+    source_path: "scripts/corpus_expansion_audit.py"
+    depends_on: [archive_entry_path]
+  xml_tag_name:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Namespace-stripped XML element name in an allowed non-test corpus document; used for schema migration inventory, not textual prediction."
+    source_path: "scripts/corpus_expansion_audit.py"
+  xml_attribute_name:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Namespace-stripped XML attribute name in an allowed non-test corpus document; used for schema migration inventory, not textual prediction."
+    source_path: "scripts/corpus_expansion_audit.py"
   site_split:
     class: SYSTEM_TECHNICAL
     rationale: "Provincial-eval split label; control flow only."

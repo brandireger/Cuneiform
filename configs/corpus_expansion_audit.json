@@ -1,0 +1,36 @@
+{
+  "audit_name": "TLHdig 0.2 to 0.3 split-gated delta audit",
+  "seed": 20260723,
+  "time_budget_hours": 4,
+  "evidence_policy": "catalog_assisted",
+  "baseline": {
+    "version": "0.2.0-beta",
+    "path": "TLHdig_0.2.0-beta.zip",
+    "doi": "10.5281/zenodo.15459134",
+    "expected_md5": "93e71e2560f5e109c87713d5590cb059"
+  },
+  "candidate": {
+    "version": "0.3-beta",
+    "path": "external_corpora/TLHdig_0.3/TLHbasisONLINE25_1_ZENODO_Beta_03.zip",
+    "doi": "10.5281/zenodo.20328284",
+    "source_url": "https://zenodo.org/records/20328284/files/TLHbasisONLINE25_1_ZENODO_Beta_03.zip?download=1",
+    "license": "CC BY 4.0",
+    "expected_md5": "f9acbc8db3111cc7dd88d82f7819a912",
+    "expected_sha256": "c845a23223bb9461eeb215f5ede0e223c8871473873c6123eadaeb72114fcd36"
+  },
+  "frozen_split_path": "p2_out/splits.parquet",
+  "payload_read_allowed_splits": [
+    "train",
+    "dev",
+    "discovery"
+  ],
+  "payload_read_prohibited_splits": [
+    "test"
+  ],
+  "unmatched_candidate_entries": "quarantine_without_payload_read",
+  "duplicate_filename_stems": "quarantine_without_payload_read",
+  "corpus_migration_authorized": false,
+  "split_change_authorized": false,
+  "training_authorized": false,
+  "report_label": "AUDIT — not a corpus migration or citable model result"
+}
