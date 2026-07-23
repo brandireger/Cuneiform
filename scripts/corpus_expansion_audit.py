@@ -401,6 +401,11 @@ def write_report(summary, elapsed):
         f"detector, not evidence that {delta['byte_changed_percent']}% of "
         "transliterated content changed.",
         "",
+        "Introduced parse-error stems: "
+        f"`{', '.join(delta['parse_errors_introduced_on_common_stems']) or 'none'}`. "
+        "Persistent parse-error stems: "
+        f"`{', '.join(delta['parse_errors_persistent_on_common_stems']) or 'none'}`.",
+        "",
         f"Schema additions: tags "
         f"`{', '.join(delta['tags_added_in_candidate']) or 'none'}`; "
         f"attributes "
@@ -421,6 +426,10 @@ def write_report(summary, elapsed):
         "entries duplicate protected or existing material, or if a full "
         "non-test parser rebuild exposes semantic schema incompatibilities "
         "not visible in this inventory.",
+        "",
+        "Corpus sources: Müller, Prechel, Rieken & Schwemer, TLHdig Beta "
+        "0.2.0, DOI 10.5281/zenodo.15459134 (CC BY 4.0); TLHdig Beta 0.3, "
+        "DOI 10.5281/zenodo.20328284 (CC BY 4.0).",
     ]
     REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

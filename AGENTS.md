@@ -104,6 +104,13 @@ full-corpus scale, with leakage-safe methodology?
   file `TLHdig_0.2.0-beta.zip` (63.9 MB,
   MD5 93e71e2560f5e109c87713d5590cb059). License **CC BY 4.0**.
   Cite as: Müller, Prechel, Rieken & Schwemer (2025).
+- **TLHdig Beta 0.3 is audited but not adopted** (2026-07-23). The
+  split-gated audit found 2,137 candidate-only filename stems, but also
+  increased duplicate-stem ambiguity and 11 introduced non-test XML parse
+  errors. TLHdig 0.2 remains pinned and the frozen splits remain controlling.
+  Before any migration, resolve identifiers and parser compatibility under
+  `specs/CORPUS_EXPANSION_AUDIT.md`; see
+  `reports/corpus_expansion_tlhdig_03_audit.md`.
 - **21,868** real XML documents after excluding zip artifacts (320
   macOS `__MACOSX/` + AppleDouble `._*` junk entries — exclude these
   in every script that reads the zip); 384,667 `<lb>` line elements.

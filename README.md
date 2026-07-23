@@ -22,6 +22,15 @@ negative results; its full, immutable snapshot is preserved under `Archive/`.
 The next workstream is a small expert missing-text UI prototype against the
 versioned decision contract, not another undirected model-training pass.
 
+A separate, non-migrating corpus-expansion audit has now compared the pinned
+TLHdig 0.2 archive with TLHdig 0.3 under a split-gated cleanroom boundary.
+The newer release contains a material filename-level candidate addition, but
+also more duplicate stems and 11 newly observed non-test XML parse failures.
+The resulting decision is to open an identifier-resolution and
+parser-compatibility pass—not to replace 0.2 or change the frozen splits.
+See
+[`reports/corpus_expansion_tlhdig_03_audit.md`](reports/corpus_expansion_tlhdig_03_audit.md).
+
 The first Phase 2 recoverability map is now available in
 [`reports/phase2_p2e_witness_recoverability.md`](reports/phase2_p2e_witness_recoverability.md).
 It measures when independent witnesses constrain intentionally hidden
@@ -99,6 +108,7 @@ may explicitly supersede either file.
 | `demo/` | Parallel Takšan demonstration track; it does not control research evaluation. |
 | `p2_out/`, `p4_out/` | Small tracked artifacts plus local, gitignored derived data required by active work. |
 | `phase2_out/` | Small manifests and machine-readable outputs from active Phase 2 probes. |
+| `corpus_audit_out/` | Small, machine-readable corpus-expansion audit results and manifests; raw candidate archives stay quarantined and gitignored. |
 | `reports/` | Current reports and selected Phase 1 closeout material used by Phase 2. |
 | `specs/` | Current and carried-forward specifications. |
 | `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite it in place. |
@@ -119,6 +129,10 @@ Pinned corpus:
 - File: `TLHdig_0.2.0-beta.zip`
 - Expected MD5: `93e71e2560f5e109c87713d5590cb059`
 - License: CC BY 4.0
+
+TLHdig Beta 0.3 is a quarantined migration candidate, not the active corpus.
+Its initial audit and the cleanroom rules for any follow-up are documented in
+[`specs/CORPUS_EXPANSION_AUDIT.md`](specs/CORPUS_EXPANSION_AUDIT.md).
 
 Download the zip from Zenodo, keep it unextracted at the repository root, and
 verify it on Windows:
