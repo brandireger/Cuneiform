@@ -364,13 +364,19 @@ def run_tracers(retro=False):
     rng2 = random.Random(SEED + 1)
     n_self_above = 0
     n_t2 = 0
+    deterministic_canary_ids = sorted(
+        fragment_id for fragment_id in all_ids
+        if fragment_id in toks_cache)
     for a, b in all_canary_pairs(canary):
         for fid in (a, b):
             if fid not in toks_cache:
                 continue
             n_t2 += 1
             self_score = scorer.bm25(toks_cache[fid], toks_cache[fid])
-            random_other = rng2.choice([f for f in all_ids if f != fid and f in toks_cache])
+            random_other = rng2.choice([
+                candidate for candidate in deterministic_canary_ids
+                if candidate != fid
+            ])
             random_score = scorer.bm25(toks_cache[fid], toks_cache[random_other])
             if self_score > random_score:
                 n_self_above += 1
