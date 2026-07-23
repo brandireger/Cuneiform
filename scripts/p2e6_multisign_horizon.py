@@ -568,6 +568,8 @@ def write_report(summary, elapsed_seconds):
         "percentage points. This is set-level calibration, not an individual "
         "option probability.",
         "",
+        summary["macro_finding"],
+        "",
         "## Interpretation",
         "",
         summary["interpretation"],
@@ -711,6 +713,67 @@ def main():
         int(config["packets_per_mask_outcome"]),
         int(config["maximum_packet_alternatives"]),
     )
+    two_micro = horizon["2"]["micro"]
+    five_micro = horizon["5"]["micro"]
+    two_macro = horizon["2"]["composition_macro"]
+    five_macro = horizon["5"]["composition_macro"]
+    maximum_set_size = max(
+        result["micro"]["displayed_set_size_when_presented"]["maximum"]
+        for result in horizon.values()
+    )
+    maximum_p90 = max(
+        result["micro"]["displayed_set_size_when_presented"]["p90"]
+        for result in horizon.values()
+    )
+    minimum_tie_expansion_percent = min(
+        100.0
+        * result["micro"]["contexts_expanded_beyond_nominal_depth_for_tie"]
+        / result["micro"]["presented_contexts"]
+        for result in horizon.values()
+    )
+    maximum_tie_expansion_percent = max(
+        100.0
+        * result["micro"]["contexts_expanded_beyond_nominal_depth_for_tie"]
+        / result["micro"]["presented_contexts"]
+        for result in horizon.values()
+    )
+    macro_finding = (
+        "Composition-macro effective recovery was "
+        f"{two_macro['effective_recoverability_percent']['mean']}% mean / "
+        f"{two_macro['effective_recoverability_percent']['median']}% median "
+        "for two signs and "
+        f"{five_macro['effective_recoverability_percent']['mean']}% mean / "
+        f"{five_macro['effective_recoverability_percent']['median']}% median "
+        "for five signs; pooled micro rates therefore overstate the typical "
+        "composition.")
+    interpretation = (
+        "Two-sign sets retained the attested span in "
+        f"{two_micro['effective_attested_recoverability_percent_of_eligible']}% "
+        "of eligible contexts; by five signs this fell to "
+        f"{five_micro['effective_attested_recoverability_percent_of_eligible']}%. "
+        "Keeping evidence ties complete expanded nominal top-five sets in "
+        f"{minimum_tie_expansion_percent:.1f}% to "
+        f"{maximum_tie_expansion_percent:.1f}% of presented contexts, with "
+        f"p90 up to {maximum_p90} and a maximum of {maximum_set_size} options. "
+        "The witness layer is therefore suitable only as abstention-first, "
+        "set-valued evidence for an expert: do not auto-complete a lacuna, "
+        "do not assign per-option probabilities, and collapse large equal-"
+        "support tails in the UI without hiding that they exist.")
+    promotion_decision = {
+        "automatic_lacuna_completion": "DO_NOT_PROMOTE",
+        "expert_candidate_evidence": "RETAIN_WITH_ABSTENTION",
+        "per_option_probability": "UNAVAILABLE",
+        "ui_requirement": (
+            "Preserve the complete equal-support set, but group or collapse "
+            "large tied tails and retain an explicit other/unsupported path."
+        ),
+        "reason": (
+            "Effective recovery declines sharply with span length, "
+            "composition-macro rates trail pooled micro rates, tie-complete "
+            "sets can be large, and held-out-group calibration transfer is "
+            "not stable enough for instance confidence."
+        ),
+    }
 
     summary = {
         "probe": "P2-E6 multi-sign candidate-set horizon",
@@ -732,11 +795,9 @@ def main():
         "horizon": horizon,
         "calibration_transfer": transfer,
         "evidence_packet_count": len(packets),
-        "interpretation": (
-            "The adaptive set policy exposes the empirical tradeoff between "
-            "longer missing spans, shrinking witness coverage, declining set "
-            "inclusion, and option count. It does not establish truth for a "
-            "real lacuna or justify per-option probabilities."),
+        "macro_finding": macro_finding,
+        "interpretation": interpretation,
+        "promotion_decision": promotion_decision,
         "interpretation_limits": [
             "Candidate-set calibration applies to a mask/anchor group, not "
             "to an individual option or genuine lacuna.",
