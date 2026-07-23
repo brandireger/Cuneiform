@@ -1,0 +1,54 @@
+{
+  "task": "duplicate_parallel_candidate_set_audit",
+  "evidence_policy": "catalog_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "anchor_formulaicity_cth_df",
+    "available_independent_witness_family_count",
+    "query_anchor_occurrence_count"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "anchor_formulaicity_cth_df",
+    "available_independent_witness_family_count",
+    "query_anchor_occurrence_count"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.42857142857142855,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "d315084d0105de2a1b0bacbf3521f78c0629f9d64a819f3c1b653210fc59d958",
+  "git_commit": "8b40761774d78b373974cd8a7f2d27ad159759ab",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "primary a2_m1 records from frozen dev only; abstention rules and rank-conditioned calibration fit on the four non-held-out dev composition folds; formulaicity fit over unambiguous real-composition train+dev content; no test or discovery content",
+  "created_utc": "2026-07-23T17:34:16.284809+00:00",
+  "probe_label": "PROBE — not for citation",
+  "test_side_accessed": false,
+  "restoration_included": false,
+  "model_scoring_performed": false,
+  "gold_available_to_ranker": false,
+  "composition_disjoint_folds": 5,
+  "input_hashes": {
+    "config": "d315084d0105de2a1b0bacbf3521f78c0629f9d64a819f3c1b653210fc59d958",
+    "evidence_registry": "3c2dc5534e9a380926b465667c302d522b8941b7240870513b0c2f33797773b1",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}
