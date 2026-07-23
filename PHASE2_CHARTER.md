@@ -280,6 +280,21 @@ single- and multi-sign alternatives, evidence provenance, contradictions,
 set-level audit intervals, assistance layers, and abstention. See
 `reports/phase2_p2e6_multisign_horizon.md`.
 
+**Expert decision contract and closeout (P2-E7, 2026-07-23):** contract
+v1.0.0 now unifies P2-E4 single-sign and P2-E6 multi-sign packets without
+flattening their different uncertainty estimands. It supports select,
+reject-all, other/unsupported, and withhold-judgment actions; preserves typed
+evidence, assistance layers, and collapsed-tail counts; and hash-binds each
+decision to the reviewed packet. The validator forbids automatic completion,
+instance-probability claims, hidden evaluation payloads, silent truncation,
+and automatic ground-truth mutation. Four governed dev integration examples
+validate, including explicit abstention. Phase 2 has therefore met the
+definition of done in §5 and is closed as exploratory characterization. No
+probe is promoted for citation and the test side remains untouched. The next
+workstream is a small expert UI prototype against this contract, beginning
+with the stronger single-sign path. See `PHASE2_CLOSEOUT.md` and
+`reports/phase2_p2e7_contract.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

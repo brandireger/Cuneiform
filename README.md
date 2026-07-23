@@ -15,10 +15,12 @@ intervals, the evidence for and against each option, and an explicit
 `other / unsupported` path. It is not an automatic restoration tool for lay
 users, and top-1 exact match is not its sole success criterion.
 
-The project is currently in **Phase 2**: characterizing what evidence is
-recoverable from the corpus before training or promoting further models.
-Phase 1 produced useful baselines and several negative results; its full,
-immutable snapshot is preserved under `Archive/`.
+**Phase 2 is now complete as an exploratory characterization phase.** It
+mapped what evidence is recoverable from the corpus before training or
+promoting further models. Phase 1 produced useful baselines and several
+negative results; its full, immutable snapshot is preserved under `Archive/`.
+The next workstream is a small expert missing-text UI prototype against the
+versioned decision contract, not another undirected model-training pass.
 
 The first Phase 2 recoverability map is now available in
 [`reports/phase2_p2e_witness_recoverability.md`](reports/phase2_p2e_witness_recoverability.md).
@@ -55,8 +57,17 @@ lower. Equal-evidence ties also expanded a nominal five-option set to as many
 as 237 alternatives, and composition-held-out set calibration transferred
 poorly. The layer is therefore retained only as abstention-first expert
 evidence—never automatic completion or per-option truth probability. The next
-target is an expert decision-interface contract and Phase 2 closeout that
-turns the recoverability map into a typed UI/API boundary.
+target was an expert decision-interface contract and Phase 2 closeout; both
+are now complete.
+
+Contract v1.0.0 is specified in
+[`specs/EXPERT_DECISION_CONTRACT.md`](specs/EXPERT_DECISION_CONTRACT.md) and
+implemented by
+[`lib/expert_decision_contract.py`](lib/expert_decision_contract.py). It
+supports select, reject-all, other/unsupported, and withhold-judgment actions;
+forbids automatic completion and per-option truth-probability claims; and
+keeps every expert decision quarantined pending adjudication. See
+[`PHASE2_CLOSEOUT.md`](PHASE2_CLOSEOUT.md) for the complete handoff.
 
 ## Read first
 
