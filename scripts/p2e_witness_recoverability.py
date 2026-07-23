@@ -23,6 +23,7 @@ import hashlib
 import json
 import math
 import random
+import statistics
 import subprocess
 import sys
 import time
@@ -373,6 +374,7 @@ def evaluate_recoverability(
     for anchor_length in ANCHOR_LENGTHS:
         for mask_length in MASK_LENGTHS:
             counts = Counter()
+            by_cth_counts = defaultdict(Counter)
             support_fragments = set()
             independent_fragments = set()
             maskable_fragments = set()
@@ -385,6 +387,8 @@ def evaluate_recoverability(
                 if not spans:
                     continue
                 counts["maskable_spans_total"] += len(spans)
+                by_cth_counts[fragment_cth[fragment_id]][
+                    "maskable_spans_total"] += len(spans)
                 maskable_fragments.add(fragment_id)
                 cth = fragment_cth[fragment_id]
                 query_family = fragment_families[fragment_id]
@@ -392,26 +396,35 @@ def evaluate_recoverability(
                     cth_families[cth].difference({query_family}))
                 if not independent_available:
                     counts["structurally_unavailable_spans"] += len(spans)
+                    by_cth_counts[cth][
+                        "structurally_unavailable_spans"] += len(spans)
                     continue
 
                 independent_fragments.add(fragment_id)
                 counts["candidate_eligible_spans"] += len(spans)
+                by_cth_counts[cth]["candidate_eligible_spans"] += len(spans)
                 for key, gold in spans:
                     proposals = independent_proposals(
                         index, cth, key, query_family)
                     if not proposals:
                         counts["abstained_spans"] += 1
+                        by_cth_counts[cth]["abstained_spans"] += 1
                         continue
                     counts["witness_supported_spans"] += 1
+                    by_cth_counts[cth]["witness_supported_spans"] += 1
                     support_fragments.add(fragment_id)
                     if gold in proposals:
                         counts["exact_agreement_spans"] += 1
+                        by_cth_counts[cth]["exact_agreement_spans"] += 1
                     else:
                         counts["variant_only_spans"] += 1
+                        by_cth_counts[cth]["variant_only_spans"] += 1
                     if len(proposals) > 1:
                         counts["ambiguous_spans"] += 1
+                        by_cth_counts[cth]["ambiguous_spans"] += 1
                     else:
                         counts["single_proposal_spans"] += 1
+                        by_cth_counts[cth]["single_proposal_spans"] += 1
 
             fragments_with_maskable.update(maskable_fragments)
             fragments_with_independent.update(independent_fragments)
@@ -440,6 +453,44 @@ def evaluate_recoverability(
                 "abstention_percent_of_eligible":
                     pct(counts["abstained_spans"], eligible),
             })
+            per_cth = {}
+            support_rates = []
+            exact_rates = []
+            for cth, cth_counts in sorted(by_cth_counts.items()):
+                cth_eligible = cth_counts["candidate_eligible_spans"]
+                cth_supported = cth_counts["witness_supported_spans"]
+                cth_result = dict(cth_counts)
+                cth_result.update({
+                    "attested_support_percent_of_eligible":
+                        pct(cth_supported, cth_eligible),
+                    "exact_agreement_percent_of_eligible":
+                        pct(cth_counts["exact_agreement_spans"], cth_eligible),
+                })
+                per_cth[str(cth)] = cth_result
+                if cth_eligible:
+                    support_rates.append(100.0 * cth_supported / cth_eligible)
+                    exact_rates.append(
+                        100.0 * cth_counts["exact_agreement_spans"]
+                        / cth_eligible)
+            macro = {
+                "eligible_compositions": len(support_rates),
+                "compositions_with_any_support": sum(
+                    1 for value in support_rates if value > 0),
+                "mean_attested_support_percent":
+                    round(statistics.mean(support_rates), 2)
+                    if support_rates else None,
+                "median_attested_support_percent":
+                    round(statistics.median(support_rates), 2)
+                    if support_rates else None,
+                "mean_exact_agreement_percent":
+                    round(statistics.mean(exact_rates), 2)
+                    if exact_rates else None,
+                "median_exact_agreement_percent":
+                    round(statistics.median(exact_rates), 2)
+                    if exact_rates else None,
+            }
+            counts["composition_macro"] = macro
+            counts["by_cth"] = per_cth
             results[f"a{anchor_length}_m{mask_length}"] = dict(counts)
 
     return {
@@ -507,16 +558,15 @@ def evaluate_join_diagnostic(
         fragment_b = f"{parent}::{record['member_b']['siglum']}"
         tier = str(record.get("tier", "unknown"))
         join_type = str(record.get("join_type", "unknown"))
-        totals["pairs"] += 1
-        by_tier[tier]["pairs"] += 1
-        by_type[join_type]["pairs"] += 1
+        totals["raw_relation_rows"] += 1
 
         if fragment_a not in line_sequences or fragment_b not in line_sequences:
             totals["unmapped_pairs"] += 1
-            by_tier[tier]["unmapped_pairs"] += 1
-            by_type[join_type]["unmapped_pairs"] += 1
             continue
 
+        totals["pairs"] += 1
+        by_tier[tier]["pairs"] += 1
+        by_type[join_type]["pairs"] += 1
         cth = fragment_cth[fragment_a]
         parent_family = fragment_families[fragment_a]
         candidates = [
@@ -593,6 +643,7 @@ def run_base_tracers():
 
 def write_report(summary, elapsed_seconds):
     primary = summary["recoverability"]["cells"]["a2_m1"]
+    macro = primary["composition_macro"]
     join = summary["join_diagnostic"]["overall"]
     tracer = summary["tracers"]["p2e_t1"]
 
@@ -654,6 +705,13 @@ def write_report(summary, elapsed_seconds):
         f"{primary['variant_only_spans']:,} supported spans supplied only a "
         f"different/omitted middle; {primary['ambiguous_spans']:,} supported "
         "spans had multiple witness alternatives.",
+        f"- Composition-macro view ({macro['eligible_compositions']} eligible "
+        f"CTHs): mean/median support "
+        f"{macro['mean_attested_support_percent']}%/"
+        f"{macro['median_attested_support_percent']}%; mean/median exact "
+        f"agreement {macro['mean_exact_agreement_percent']}%/"
+        f"{macro['median_exact_agreement_percent']}%. This guards against "
+        "large compositions dominating the micro-average.",
         "",
         "These are **recoverability and agreement** rates, not accuracy on "
         "genuinely lost text. A parallel constrains plausible context but does "
@@ -668,10 +726,14 @@ def write_report(summary, elapsed_seconds):
         "",
         "## Known-join diagnostic: third-witness textual coverage",
         "",
-        f"{join['pairs_with_third_witness']:,}/{join['pairs']:,} dev join "
+        f"{join['pairs_with_third_witness']:,}/{join['pairs']:,} canonical "
+        "mapped dev join "
         f"pairs ({join['third_witness_percent']}%) had any independent "
         "same-CTH witness. The stricter table requires one witness fragment "
-        "to contain distinct attested n-grams linked to both join members.",
+        "to contain distinct attested n-grams linked to both join members. "
+        f"{join['unmapped_pairs']} raw relation rows were excluded from this "
+        "denominator because their member IDs did not map to the canonical "
+        "dev fragment universe.",
         "",
         "| shared n-gram length | covered pairs | percent of all dev pairs |",
         "|---:|---:|---:|",

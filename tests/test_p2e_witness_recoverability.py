@@ -69,6 +69,41 @@ class TestP2EWitnessRecoverability(unittest.TestCase):
         self.assertFalse(p2e.has_two_sided_witness_coverage(
             [["a"]], [["a"]], [["a"]], 1))
 
+    def test_unmapped_join_rows_are_not_evidence_denominator(self):
+        records = [
+            {
+                "parent_doc": "joined",
+                "member_a": {"siglum": "1"},
+                "member_b": {"siglum": "2"},
+                "tier": "A",
+                "join_type": "direct",
+            },
+            {
+                "parent_doc": "missing",
+                "member_a": {"siglum": "1"},
+                "member_b": {"siglum": "2"},
+                "tier": "A",
+                "join_type": "direct",
+            },
+        ]
+        lines = {
+            "joined::1": [["a", "b"]],
+            "joined::2": [["c", "d"]],
+            "witness": [["a", "b", "c", "d"]],
+        }
+        cths = {fragment_id: 1 for fragment_id in lines}
+        families = {
+            "joined::1": "joined",
+            "joined::2": "joined",
+            "witness": "witness",
+        }
+        result = p2e.evaluate_join_diagnostic(
+            records, lines, cths, families, {1: list(lines)})["overall"]
+        self.assertEqual(result["raw_relation_rows"], 2)
+        self.assertEqual(result["unmapped_pairs"], 1)
+        self.assertEqual(result["pairs"], 1)
+        self.assertEqual(result["pairs_with_third_witness"], 1)
+
     def test_order_scramble_changes_synthetic_anchor_evidence(self):
         original = [["L1", "L2", "gold", "R1", "R2"]]
         scrambled = p2e.scramble_lines(original, p2e.SEED)
