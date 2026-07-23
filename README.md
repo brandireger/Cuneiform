@@ -8,6 +8,13 @@ depends on editorial or model assistance. Composition affinity,
 duplicate/parallel discovery, and physical-join suggestion are downstream
 applications rather than the organizing objective.
 
+The intended interface is decision support for a trained Hittite specialist:
+for a missing sign or span, show a ranked set of evidence-supported
+possibilities, their out-of-sample calibration statistics and confidence
+intervals, the evidence for and against each option, and an explicit
+`other / unsupported` path. It is not an automatic restoration tool for lay
+users, and top-1 exact match is not its sole success criterion.
+
 The project is currently in **Phase 2**: characterizing what evidence is
 recoverable from the corpus before training or promoting further models.
 Phase 1 produced useful baselines and several negative results; its full,

@@ -54,6 +54,42 @@ evidence the corpus actually encodes. The project must:
 - treat joins as one downstream case of missing-context inference, not
   the organizing objective.
 
+### Primary user and output contract
+
+The primary user is a **trained Hittite language specialist**, not a lay
+reader seeking an automatic restoration. The system is expert decision
+support. For a missing sign or bounded span, its default UI output is a
+ranked **set of evidence-supported possibilities**, not one asserted
+completion.
+
+Each displayed possibility must preserve:
+
+- the proposed sign/span and its rank;
+- a calibrated probability-like quantity whose estimand is named
+  explicitly (for example, held-out empirical agreement within a
+  declared calibration stratum);
+- the sample size and confidence interval for that calibration
+  estimate;
+- typed supporting and contradictory evidence, including independent
+  witness sources when used;
+- the active evidence-policy/assistance profile; and
+- an explicit residual option such as `other / unsupported`, plus
+  abstention when the candidate set is not adequately constrained.
+
+A confidence interval over a calibration group is **not** the probability
+that one particular lost reading is true. Raw retrieval scores, normalized
+heuristic scores, and top-1 margins must not be labeled probabilities unless
+their calibration has been measured out of sample. Candidate probabilities
+need not exhaust the space: unobserved readings and genuine textual variation
+may remain.
+
+The primary intrinsic evaluation therefore measures candidate-set utility:
+gold/attested inclusion at `k`, set coverage, set size, calibration error,
+selective risk, composition-macro stability, and abstention. Top-1 exact
+agreement remains a useful diagnostic, but it is not the product definition.
+An expert selection is a provenance-bearing annotation; it is never promoted
+automatically to corpus truth or training ground truth.
+
 ### Historical Phase 1 benchmark question
 
 Can modern representation learning substantially outperform classical

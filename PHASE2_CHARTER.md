@@ -23,6 +23,15 @@ predicting only from encoded evidence, naming assistance layers,
 preserving alternatives, calibrating uncertainty, and abstaining when
 the target is not identifiable. Joins remain one downstream stratum.
 
+**Expert-interface target (ratified 2026-07-23):** the intended user is
+a trained Hittite specialist. The product does not silently reconstruct a
+text for a lay reader; it presents a compact ranked set of possibilities for
+a missing sign or span, with typed evidence, explicit residual uncertainty,
+and calibration statistics the specialist can inspect before selecting,
+rejecting, or withholding judgment. Top-1 agreement is diagnostic. Candidate
+set inclusion, calibration, useful set size, and appropriate abstention are
+the primary measures.
+
 Three things forced this:
 
 1. **The no-overlap signature is definitional, not incidental.** The
@@ -204,10 +213,14 @@ contexts recurring across multiple compositions and in CTHs with four or
 more independent witness families. Only 24/42 CTHs received any acceptance;
 among the 16 with at least 20 accepts, agreement ranged from 73.53% to 100%.
 Therefore do not promote a global reliability threshold. The next justified
-probe is a **variant-aware disagreement audit**: separate legitimate
-parallel variants/omissions from formula collisions and anchor
-misalignments before training or accepting a more complex reconstruction
-model. See `reports/phase2_p2e3_cross_calibration.md`.
+probe is a **candidate-set disagreement audit**: determine whether the
+attested held-out reading remains available among the ranked alternatives,
+measure the useful set-size/coverage tradeoff, and separate observable
+competing witness readings or omissions from formula collisions and anchor
+misalignments. Do not automatically call a competing reading a legitimate
+variant or an error. The output should be expert-review evidence packets,
+not adjudicated restorations. See
+`reports/phase2_p2e3_cross_calibration.md`.
 
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
