@@ -287,6 +287,21 @@ fields:
     rationale: "Composition-held-out empirical inclusion rate for a displayed witness candidate-set policy; a group statistic, never an instance truth probability."
     source_path: "scripts/p2e6_multisign_horizon.py"
     depends_on: [token, cth]
+  candidate_rank_calibration_rate:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Composition-held-out rank-conditioned agreement rate for an expert candidate option; a group audit statistic, never an instance truth probability."
+    source_path: "scripts/p2e4_candidate_set_audit.py"
+    depends_on: [token, cth]
+  independent_witness_family_support_count:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Number of distinct other witness families preserving one candidate sequence in the bounded editorially transcribed context."
+    source_path: "scripts/p2e4_candidate_set_audit.py; scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
+  independent_witness_family_support_share:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Candidate witness-family count divided by total candidate support for the bounded context; an evidence fraction, never a probability that the candidate is true."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [independent_witness_family_support_count]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
