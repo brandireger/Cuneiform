@@ -1,0 +1,42 @@
+{
+  "seed": 20260723,
+  "evidence_policy": "discovery_assisted",
+  "folds": 5,
+  "anchor_length": 2,
+  "mask_length": 1,
+  "maximum_witness_middle_length": 12,
+  "calibration_target": 0.9,
+  "minimum_calibration_accepts": 50,
+  "rule_grid": {
+    "minimum_top_support_families": [1, 2, 3, 4],
+    "minimum_support_margin": [1, 2, 3],
+    "minimum_dominance": [0.0, 0.5, 0.67, 0.8, 1.0],
+    "maximum_alternatives": [1, 2, 4, 8, null]
+  },
+  "formulaicity_bins": [
+    {"name": "cth_df_1", "minimum": 1, "maximum": 1},
+    {"name": "cth_df_2_5", "minimum": 2, "maximum": 5},
+    {"name": "cth_df_6_plus", "minimum": 6, "maximum": null}
+  ],
+  "witness_availability_bins": [
+    {"name": "one_family", "minimum": 1, "maximum": 1},
+    {"name": "two_to_three_families", "minimum": 2, "maximum": 3},
+    {"name": "four_plus_families", "minimum": 4, "maximum": null}
+  ],
+  "alignment": {
+    "flank_window": 6,
+    "seed_ngram": 2,
+    "maximum_seeded_witness_lines": 2000,
+    "maximum_alignments_per_witness_line": 1,
+    "minimum_exact_matches_per_flank": 2,
+    "minimum_normalized_score": 0.5,
+    "match_score": 2,
+    "mismatch_score": -1,
+    "gap_score": -1
+  },
+  "candidate_set_depths": [1, 2, 3, 5],
+  "candidate_probability_estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+  "packets_per_outcome": 4,
+  "maximum_packet_alignments_per_alternative": 3,
+  "time_budget_hours": 4
+}

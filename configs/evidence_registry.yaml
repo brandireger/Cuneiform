@@ -272,6 +272,11 @@ fields:
     rationale: "Count of bounded positions in one query fragment sharing the exact left/right anchor pair; an analysis flag for observable placement ambiguity."
     source_path: "scripts/p2e4_candidate_set_audit.py"
     depends_on: [token, line_index_in_doc]
+  local_alignment_score:
+    class: MODEL_DERIVED
+    rationale: "Deterministic two-flank sequence-alignment score used to rank bounded witness middles; persisted with the inspectable alignment rather than treated as corpus evidence."
+    source_path: "lib/sequence_alignment.py; scripts/p2e5_alignment_probe.py"
+    depends_on: [token]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
