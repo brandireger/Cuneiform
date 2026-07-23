@@ -115,6 +115,17 @@ is itself inference, then Phase 1 partly penalized models for
 disagreeing with fallible labels — which changes what the negative
 results mean and belongs in the paper either way.
 
+**Opening audit result (2026-07-23):** the governed relation artifacts
+support three bases, not a certainty scale: 104/182 canonical dev pairs
+carry direct `+` notation, 17 carry indirect `(+)` notation, 60 were
+expanded from shared-line co-attribution, and 1 is unsupported/unknown.
+No `proposed` or certainty field is materialized. The frozen BM25 hard
+set is not enriched for weaker bases at its query unit (17/46 versus
+76/136 non-hard), while a parent-level robustness view is inconclusive
+and changes direction. Therefore keep relation bases separate, but do
+not attribute hard-set difficulty to label weakness from this probe.
+See `reports/phase2_p2d_reliability.md`.
+
 ### P2-E — Witness-bridge supervision *(the novel idea)*
 **Question:** Q3, Q5. **Cost:** a day or two.
 Duplicates are plentiful and near-solved; multiple witnesses of one
