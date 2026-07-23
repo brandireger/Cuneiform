@@ -916,10 +916,6 @@ def main():
         policy_name,
         int(config["evidence_packet_samples_per_outcome"]),
     )
-    with open(PACKET_PATH, "w", encoding="utf-8") as destination:
-        for packet in packets:
-            destination.write(
-                json.dumps(packet, ensure_ascii=False) + "\n")
 
     primary_name = f"a{primary_anchor}_m{primary_mask}"
     summary = {
@@ -1006,6 +1002,10 @@ def main():
         "input_hashes": summary["input_hashes"],
     })
 
+    with open(PACKET_PATH, "w", encoding="utf-8") as destination:
+        for packet in packets:
+            destination.write(
+                json.dumps(packet, ensure_ascii=False) + "\n")
     RESULT_PATH.write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
