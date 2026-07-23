@@ -259,7 +259,7 @@ fields:
     source_path: "p4_out/decomposed_corpus.parquet"
   anchor_formulaicity_cth_df:
     class: EDITORIAL_TRANSCRIPTION
-    rationale: "Cross-composition document frequency of an attested anchor n-gram; a derived analysis stratum, never direct artifact evidence."
+    rationale: "Cross-composition document frequency of an attested left/right anchor pair with a bounded variable middle; a derived analysis stratum, never direct artifact evidence."
     source_path: "scripts/p2e3_cross_calibration.py"
     depends_on: [token, cth]
   available_independent_witness_family_count:

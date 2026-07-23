@@ -10,15 +10,16 @@ import p2e3_cross_calibration as p2e3
 
 
 class TestP2E3CrossCalibration(unittest.TestCase):
-    def test_cth_document_frequency_counts_compositions_not_lines(self):
+    def test_anchor_pair_frequency_counts_compositions_not_occurrences(self):
         sequences = {
-            1: [["A", "B"], ["A", "B"]],
-            2: [["A", "B"]],
-            3: [["X", "Y"]],
+            1: [["L", "x", "R"], ["L", "x", "R"]],
+            2: [["L", "y", "R"]],
+            3: [["X", "z", "Y"]],
         }
-        frequency = p2e3.cth_document_frequency(sequences, [2])[2]
-        self.assertEqual(frequency[("A", "B")], 2)
-        self.assertEqual(frequency[("X", "Y")], 1)
+        key = (("L",), ("R",))
+        frequency = p2e3.anchored_key_document_frequency(
+            sequences, {1: {key}}, max_middle=2)[1]
+        self.assertEqual(frequency[key], 2)
 
     def test_formulaicity_tracer_passes(self):
         self.assertEqual(p2e3.formulaicity_tracer()["blocking_failures"], 0)

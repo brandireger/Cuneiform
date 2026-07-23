@@ -7,9 +7,10 @@ dev composition is held out once.  The three one-sign cells that qualified
 in P2-E2 are tested; multi-sign reconstruction is not reopened.
 
 Formulaicity is an analysis stratum, never a ranking feature.  It is measured
-as cross-composition document frequency of attested anchor n-grams over the
-declared full real-composition non-test universe (train + dev).  Witness
-availability and per-CTH outcomes are reported separately.
+as cross-composition document frequency of the exact attested left/right
+anchor pair with any bounded 0-12-sign middle, over the declared full
+real-composition non-test universe (train + dev).  Witness availability and
+per-CTH outcomes are reported separately.
 
 Usage:
     python scripts/p2e3_cross_calibration.py
@@ -60,27 +61,35 @@ def pct(numerator, denominator):
     return round(100.0 * numerator / denominator, 2) if denominator else None
 
 
-def ngrams(tokens, n):
-    return {
-        tuple(tokens[start:start + n])
-        for start in range(0, len(tokens) - n + 1)
-    }
-
-
-def cth_document_frequency(sequences_by_cth, anchor_lengths):
-    """Count in how many CTH compositions each attested n-gram occurs."""
-    result = {length: Counter() for length in anchor_lengths}
+def anchored_key_document_frequency(
+        sequences_by_cth, requested_by_anchor, max_middle):
+    """Cross-CTH DF of requested anchor pairs with a bounded middle."""
+    result = {length: Counter() for length in requested_by_anchor}
     for _, lines in sorted(sequences_by_cth.items()):
-        seen = {length: set() for length in anchor_lengths}
+        seen = {length: set() for length in requested_by_anchor}
         for line in lines:
-            for length in anchor_lengths:
-                seen[length].update(ngrams(line, length))
-        for length in anchor_lengths:
+            for length, requested in requested_by_anchor.items():
+                for left_start in range(
+                        0, len(line) - (2 * length) + 1):
+                    middle_start = left_start + length
+                    left = tuple(line[left_start:middle_start])
+                    for middle_length in range(max_middle + 1):
+                        right_start = middle_start + middle_length
+                        right_end = right_start + length
+                        if right_end > len(line):
+                            break
+                        key = (
+                            left,
+                            tuple(line[right_start:right_end]),
+                        )
+                        if key in requested:
+                            seen[length].add(key)
+        for length in requested_by_anchor:
             result[length].update(seen[length])
     return result
 
 
-def load_formulaicity_statistics(anchor_lengths):
+def load_formulaicity_statistics(requested_by_anchor, max_middle):
     """Fit cross-CTH anchor frequency over real train+dev only.
 
     The allowlist is formed from split/control metadata before the content
@@ -131,7 +140,8 @@ def load_formulaicity_statistics(anchor_lengths):
         if line:
             lines_by_cth[allowed_doc_cth[doc_id]].append(line)
 
-    frequencies = cth_document_frequency(lines_by_cth, anchor_lengths)
+    frequencies = anchored_key_document_frequency(
+        lines_by_cth, requested_by_anchor, max_middle)
     universe_name = "real_composition_train_plus_dev_cth_formulaicity"
     stamped = contracts.stamp_stats(
         frequencies,
@@ -147,10 +157,15 @@ def load_formulaicity_statistics(anchor_lengths):
         "n_documents": len(returned_ids),
         "n_decomposed_rows": len(decomposed),
         "ambiguous_doc_ids_quarantined": len(ambiguous),
-        "anchor_vocabulary_sizes": {
-            str(length): len(frequencies[length])
-            for length in anchor_lengths
+        "requested_anchor_pair_counts": {
+            str(length): len(requested_by_anchor[length])
+            for length in requested_by_anchor
         },
+        "observed_anchor_pair_counts": {
+            str(length): len(frequencies[length])
+            for length in requested_by_anchor
+        },
+        "maximum_middle_length": max_middle,
         "content_hash": stamped["content_hash"],
     }
     return stamped, metadata
@@ -180,9 +195,8 @@ def enrich_records(
     }
     frequencies = formulaicity_stats["stats"][anchor_length]
     for record in records:
-        left_df = int(frequencies.get(record["left_anchor"], 0))
-        right_df = int(frequencies.get(record["right_anchor"], 0))
-        formulaicity = max(left_df, right_df)
+        key = (record["left_anchor"], record["right_anchor"])
+        formulaicity = int(frequencies.get(key, 0))
         if formulaicity < 1:
             raise AssertionError(
                 "P2-E3: dev anchor absent from declared formulaicity universe")
@@ -394,26 +408,29 @@ def cross_calibrate_cell(records, folds, rules, config):
 
 def formulaicity_tracer():
     original = {
-        1: [["A", "B", "C"]],
-        2: [["A", "B", "D"]],
-        3: [["X", "Y"]],
+        1: [["A", "B", "x", "C", "D"]],
+        2: [["A", "B", "y", "C", "D"]],
+        3: [["X", "Y", "z", "Q", "R"]],
     }
-    original_df = cth_document_frequency(original, [2])[2]
+    key = (("A", "B"), ("C", "D"))
+    requested = {2: {key}}
+    original_df = anchored_key_document_frequency(
+        original, requested, max_middle=2)[2]
     corrupted = {
-        1: [["A", "B", "C"]],
-        2: [["D", "B", "A"]],
-        3: [["X", "Y"]],
+        1: [["A", "B", "x", "C", "D"]],
+        2: [["D", "C", "y", "B", "A"]],
+        3: [["X", "Y", "z", "Q", "R"]],
     }
-    corrupted_df = cth_document_frequency(corrupted, [2])[2]
+    corrupted_df = anchored_key_document_frequency(
+        corrupted, requested, max_middle=2)[2]
     passed = (
-        original_df[("A", "B")] == 2
-        and original_df[("X", "Y")] == 1
-        and corrupted_df[("A", "B")] == 1
+        original_df[key] == 2
+        and corrupted_df[key] == 1
     )
     result = {
         "synthetic_cross_cth_frequency_pass": passed,
         "token_order_perturbation_changed_frequency": (
-            original_df[("A", "B")] != corrupted_df[("A", "B")]),
+            original_df[key] != corrupted_df[key]),
         "blocking_failures": int(not passed),
     }
     if not passed:
@@ -583,10 +600,8 @@ def main():
         for cell in config["cells"]
     ]
     anchor_lengths = sorted({anchor for anchor, _ in cells})
-    formulaicity_stats, formulaicity_metadata = (
-        load_formulaicity_statistics(anchor_lengths))
-
     anchor_indices = {}
+    requested_by_anchor = {}
     for anchor_length in anchor_lengths:
         mask_lengths = sorted({
             mask for anchor, mask in cells if anchor == anchor_length})
@@ -595,6 +610,8 @@ def main():
             requested_by_cth[fragment_cth[fragment_id]].update(
                 p2e.requested_anchor_keys(
                     lines, anchor_length, mask_lengths))
+        requested_by_anchor[anchor_length] = set().union(
+            *requested_by_cth.values())
         anchor_indices[anchor_length] = p2e.build_anchor_index(
             line_sequences,
             line_sequences,
@@ -604,6 +621,11 @@ def main():
             fragment_cth,
             max_middle=int(config["maximum_witness_middle_length"]),
         )
+
+    formulaicity_stats, formulaicity_metadata = (
+        load_formulaicity_statistics(
+            requested_by_anchor,
+            int(config["maximum_witness_middle_length"])))
 
     p2e_t1 = p2e.run_p2e_t1(
         line_sequences,
