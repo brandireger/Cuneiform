@@ -46,6 +46,23 @@ DIRECT_MEDIA_EXTENSIONS = {
     ".ptx", ".stl", ".tif", ".tiff", ".webp",
 }
 
+ABSENT_SCHEMA_TERM_GROUPS = {
+    "metric_geometry": (
+        "height", "width", "thickness", "curvature", "contour",
+        "coordinate", "surfaceprofile", "breakprofile",
+    ),
+    "clay_material": (
+        "clay", "fabric", "texture", "colour", "color", "composition",
+    ),
+    "graphetic_hand": (
+        "paleography", "palaeography", "ductus", "wedge", "scribe",
+        "ancienthand",
+    ),
+    "linked_media": (
+        "pointcloud", "mesh", "photograph", "photo", "image", "scan",
+    ),
+}
+
 SOURCES = [
     {
         "title": "Würzburg 3D-Joins und Schriftmetrologie",
@@ -56,7 +73,7 @@ SOURCES = [
         ),
         "use": (
             "3D optical measurements, script-feature analysis, fragment "
-            "reconstruction, and handwriting study",
+            "reconstruction, and handwriting study"
         ),
     },
     {
@@ -64,7 +81,7 @@ SOURCES = [
         "url": "https://www.hethport.uni-wuerzburg.de/HPM/hpm.php?p=3djoins",
         "use": (
             "high-resolution point clouds, fragment contours, 3D writing/"
-            "carrier analysis, and the limits of content for repetitive text",
+            "carrier analysis, and the limits of content for repetitive text"
         ),
     },
     {
@@ -75,7 +92,7 @@ SOURCES = [
         ),
         "use": (
             "physical dimensions and observed reconstruction cues including "
-            "surface markings and colour",
+            "surface markings and colour"
         ),
     },
     {
@@ -86,7 +103,7 @@ SOURCES = [
         ),
         "use": (
             "distinction between direct profile matches and indirect "
-            "same-tablet joins separated by missing clay",
+            "same-tablet joins separated by missing clay"
         ),
     },
 ]
@@ -189,6 +206,27 @@ def present(value):
         and value != ""
         and not (isinstance(value, float) and math.isnan(value))
     )
+
+
+def schema_term_matches(schema):
+    """Return future-schema fields that invalidate current absence claims."""
+    names = (
+        set(schema["tag_instances"])
+        | set(schema["attribute_instances"])
+    )
+    normalized = {
+        name: "".join(character for character in name.lower()
+                      if character.isalnum())
+        for name in names
+    }
+    matches = {}
+    for group, terms in ABSENT_SCHEMA_TERM_GROUPS.items():
+        group_matches = sorted(
+            name for name, clean_name in normalized.items()
+            if any(term in clean_name for term in terms)
+        )
+        matches[group] = group_matches
+    return matches
 
 
 def summarize_edges(split_lookup):
@@ -539,6 +577,7 @@ def main():
 
     schema = scan_non_test_schema(
         CORPUS_ZIP, split_lookup, ambiguous_ids)
+    absence_checks = schema_term_matches(schema)
     edges = summarize_edges(split_lookup)
     sites = summarize_sites(splits)
     matrix = build_matrix(schema, edges, sites)
@@ -548,12 +587,20 @@ def main():
     if schema["direct_media_extension_counts"]:
         raise AssertionError(
             "P2-B media conclusion invalid: direct media files were found")
+    unexpected_schema_fields = {
+        group: fields for group, fields in absence_checks.items() if fields
+    }
+    if unexpected_schema_fields:
+        raise AssertionError(
+            "P2-B absence conclusion invalid: material schema fields found: "
+            f"{unexpected_schema_fields}")
 
     summary = {
         "label": "PROBE — not for citation",
         "target_universe": "train + dev + discovery; test excluded",
         "time_budget_hours": TIME_BUDGET_HOURS,
         "safe_schema_scan": schema,
+        "absence_schema_term_checks": absence_checks,
         "edge_summary": edges,
         "site_summary": sites,
         "materiality_matrix": matrix,

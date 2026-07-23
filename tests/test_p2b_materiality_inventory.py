@@ -51,6 +51,15 @@ class TestP2BMaterialityInventory(unittest.TestCase):
         self.assertIn(".ply", p2b.DIRECT_MEDIA_EXTENSIONS)
         self.assertNotIn(".xml", p2b.DIRECT_MEDIA_EXTENSIONS)
 
+    def test_absence_canary_detects_future_material_field(self):
+        schema = {
+            "tag_instances": {"tablet": 1},
+            "attribute_instances": {"tablet@width": 1, "tablet@clayColor": 1},
+        }
+        matches = p2b.schema_term_matches(schema)
+        self.assertEqual(matches["metric_geometry"], ["tablet@width"])
+        self.assertEqual(matches["clay_material"], ["tablet@clayColor"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
