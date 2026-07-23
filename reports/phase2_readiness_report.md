@@ -76,7 +76,8 @@ work.
 ## Validation
 
 - Ruff active-tree check: passed.
-- Unit/governance tests: 23/23 passed.
+- Unit/governance tests: 28/28 passed, including split-before-decode
+  cleanroom tests for the opening probe.
 - C1–C10 executable self-tests: 20/20 passed.
 - Local `.venv` dependency check: passed with Python 3.12.13,
   pandas 3.0.3, pyarrow 25.0.0, scipy 1.18.0,
