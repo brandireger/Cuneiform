@@ -1,0 +1,37 @@
+{
+  "task": "physical_join_p2b_materiality_inventory",
+  "evidence_policy": "artifact_strict",
+  "features_requested": [],
+  "features_observed": [],
+  "evidence_classes_used": [],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": null,
+  "restored_content_fraction": null,
+  "model_derived_content_fraction": null,
+  "dataset_manifest_hash": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
+  "git_commit": "170acebca6d09d8956fc2af72e68ad7290eb5ee6",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "filename-gated non-test XML schema plus canonical non-test edge fragments; train + dev + discovery",
+  "created_utc": "2026-07-23T13:19:07.736772+00:00",
+  "probe_label": "PROBE — not for citation",
+  "control_fields_observed": [
+    "doc_id",
+    "fragment_id",
+    "parent_doc",
+    "main_split"
+  ],
+  "schema_names_observed": true,
+  "raw_text_or_attribute_values_persisted": false,
+  "test_side_accessed": false,
+  "test_entries_skipped_before_read": 744,
+  "content_scoring_performed": false,
+  "input_hashes": {
+    "corpus_zip": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
+  }
+}

@@ -94,6 +94,18 @@ TLHdig y/n" — which either identifies unused features sitting in the
 data, or becomes the paper's specification of what the field should
 digitize next.
 
+**Opening inventory result (2026-07-23):** a filename-gated non-test
+schema census (20,762 parsed XML files) and the governed non-test edge
+universe (21,942 fragments) confirm that TLHdig carries useful symbolic
+layout: line labels are nearly complete, side/column are present on
+67.3%/51.1% of fragment lines, `parsep` occurs in 80.7% of safe XML
+documents, and gaps/damage markup are widespread. Direct physical-edge
+direction is sparse (0.5% of lines). The distributed archive contains
+no image or 3D files and no schema fields for dimensions, thickness,
+curvature, break contours, clay appearance/composition, wedge geometry,
+paleography, or ancient scribal hand. See
+`reports/phase2_p2b_materiality_inventory.md`.
+
 ### P2-C — Edge-prediction inversion *(generate, then match)*
 **Question:** Q3. **Cost:** a day, inference only on frozen D14.
 Instead of scoring O(n²) pairs, use span-infilling to *predict* the
@@ -165,6 +177,21 @@ standalone artifact with its calibration methodology and the
 documented caveat that vertical gap-width sampling is a modeling
 assumption, not corpus-calibrated. Possibly the most reusable thing
 Phase 1 produced.
+
+### Premise audit 1 — after P2-A, P2-D, and P2-B (2026-07-23)
+
+The first three probes jointly reject continued direct pairwise seam
+modeling as the default formulation for tier-A no-overlap joins:
+the seam-column target is absent, the hard set is not explained by
+weaker relation labels, and the decisive physical modalities are not
+encoded. Preserve textual-affinity/duplicate work, symbolic structural
+compatibility, explicit abstention, and typed evidence packets.
+
+The next justified probe is a **coverage-first P2-E**: count dev joins
+with a usable third same-composition witness before running any
+witness-mediated inference. P2-C is secondary; P2-F cannot create
+missing evidence. Full reasoning:
+`reports/phase2_premise_audit_1.md`.
 
 ## 4. Constraints carried forward (non-negotiable)
 
