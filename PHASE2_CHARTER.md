@@ -177,6 +177,22 @@ third-witness textual coverage, but it remains a ceiling on textual context,
 not physical-fit evidence. See
 `reports/phase2_p2e_witness_recoverability.md`.
 
+**Abstention-calibration follow-up (P2-E2, 2026-07-23):** a
+composition-disjoint dev calibration/evaluation split found a small
+high-agreement island, not a portable reliability guarantee. For two-sign
+anchors around one hidden sign, the evidence-only unique-top baseline reached
+74.90% agreement at 18.19% held-out coverage. A stricter calibration-selected
+rule reached 90.37% point agreement at 4.73% coverage, but its held-out 95%
+Wilson lower bound was 89.0%. The calibration-selected 80% rule transferred
+at only 75.18%. Across all 12 anchor/mask cells, a 90%-lower-bound
+calibration rule existed only for one-sign masks; no two-to-five-sign cell
+qualified, and no cell reached 95%. Preserve this as evidence for narrow,
+abstaining reconstruction and against broad automatic completion. Before any
+new reconstruction model, measure threshold stability with
+composition-folded calibration and stratify the failures by composition,
+formulaicity, and witness coverage. See
+`reports/phase2_p2e2_abstention_calibration.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

@@ -1,0 +1,53 @@
+{
+  "task": "duplicate_parallel_missing_context_calibration",
+  "evidence_policy": "catalog_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.25,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "08b8140861565b73a612b7a9812d4b19cb68aff2ad7a60b82848927a1532db88",
+  "git_commit": "e0c3ede93b9fd847b3c123e89c204472a8fd851f",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "calibration rules fit only on the recorded calibration CTHs within frozen unambiguous real-composition dev; held-out evaluation CTHs used only after rule selection; same-CTH independent attested witness alternatives; no test content",
+  "created_utc": "2026-07-23T14:13:56.785700+00:00",
+  "probe_label": "PROBE — not for citation",
+  "control_fields_observed": [
+    "fragment_id",
+    "parent_doc",
+    "main_split"
+  ],
+  "test_side_accessed": false,
+  "restoration_included": false,
+  "model_scoring_performed": false,
+  "gold_available_to_ranker": false,
+  "calibration_and_evaluation_composition_disjoint": true,
+  "typed_evidence_packets_emitted": true,
+  "input_hashes": {
+    "config": "08b8140861565b73a612b7a9812d4b19cb68aff2ad7a60b82848927a1532db88",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}

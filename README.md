@@ -17,7 +17,12 @@ The first Phase 2 recoverability map is now available in
 [`reports/phase2_p2e_witness_recoverability.md`](reports/phase2_p2e_witness_recoverability.md).
 It measures when independent witnesses constrain intentionally hidden
 attested spans, preserving variants, ambiguity, and abstention instead of
-treating every gap as safely reconstructable.
+treating every gap as safely reconstructable. Its abstention-calibration
+follow-up is
+[`reports/phase2_p2e2_abstention_calibration.md`](reports/phase2_p2e2_abstention_calibration.md):
+high-agreement witness reconstruction exists for a small one-sign region,
+but its reliability threshold does not yet transfer stably across
+compositions.
 
 ## Read first
 
