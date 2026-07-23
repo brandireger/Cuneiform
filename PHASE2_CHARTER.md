@@ -193,6 +193,22 @@ composition-folded calibration and stratify the failures by composition,
 formulaicity, and witness coverage. See
 `reports/phase2_p2e2_abstention_calibration.md`.
 
+**Five-fold stability result (P2-E3, 2026-07-23):** the pooled signal
+persists, but the reliability threshold does not transfer uniformly. In the
+primary two-anchor/one-sign cell, fold-specific 90%-target selectors produced
+6.41% pooled coverage and 89.97% agreement (95% CI 89.15–90.74), yet only
+1/5 held-out folds retained a 90% lower bound. The one- and three-anchor
+cells likewise retained that lower bound in only 1/5 folds; no 95% rule was
+available in any cell or fold. Acceptance was concentrated in bounded
+contexts recurring across multiple compositions and in CTHs with four or
+more independent witness families. Only 24/42 CTHs received any acceptance;
+among the 16 with at least 20 accepts, agreement ranged from 73.53% to 100%.
+Therefore do not promote a global reliability threshold. The next justified
+probe is a **variant-aware disagreement audit**: separate legitimate
+parallel variants/omissions from formula collisions and anchor
+misalignments before training or accepting a more complex reconstruction
+model. See `reports/phase2_p2e3_cross_calibration.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

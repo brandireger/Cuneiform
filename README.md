@@ -22,7 +22,10 @@ follow-up is
 [`reports/phase2_p2e2_abstention_calibration.md`](reports/phase2_p2e2_abstention_calibration.md):
 high-agreement witness reconstruction exists for a small one-sign region,
 but its reliability threshold does not yet transfer stably across
-compositions.
+compositions. The five-fold stability audit is in
+[`reports/phase2_p2e3_cross_calibration.md`](reports/phase2_p2e3_cross_calibration.md);
+it shows that pooled agreement is concentrated in recurrent, witness-rich
+contexts and must not be treated as a universal reliability guarantee.
 
 ## Read first
 
