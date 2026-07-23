@@ -162,6 +162,21 @@ the probe's definition. This uses the corpus's duplicate abundance to
 study missing-information recoverability without inventing physical
 geometry.
 
+**Opening recoverability result (2026-07-23):** the dev-only,
+`catalog_assisted` census confirms that witness coverage is real but sharply
+bounded. With two-sign anchors around one intentionally hidden attested sign,
+21,069/85,587 structurally eligible spans (24.62%) had any independent
+witness-supported middle, 16,597 (19.39%) included the held-out sign, and the
+system abstained on 75.38%. The composition-macro support mean/median was
+lower (13.68%/10.92%), showing that large compositions inflate the
+span-micro rate. Among supported spans, 21.23% supplied only a variant or
+omission and 24.58% had multiple alternatives. This is the desired shape:
+useful islands of bounded evidence surrounded by explicit abstention, not a
+license to fill every lacuna. The secondary join diagnostic found broad
+third-witness textual coverage, but it remains a ceiling on textual context,
+not physical-fit evidence. See
+`reports/phase2_p2e_witness_recoverability.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

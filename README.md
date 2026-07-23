@@ -13,6 +13,12 @@ recoverable from the corpus before training or promoting further models.
 Phase 1 produced useful baselines and several negative results; its full,
 immutable snapshot is preserved under `Archive/`.
 
+The first Phase 2 recoverability map is now available in
+[`reports/phase2_p2e_witness_recoverability.md`](reports/phase2_p2e_witness_recoverability.md).
+It measures when independent witnesses constrain intentionally hidden
+attested spans, preserving variants, ambiguity, and abstention instead of
+treating every gap as safely reconstructable.
+
 ## Read first
 
 - [`AGENTS.md`](AGENTS.md) — design authority for Codex sessions:
