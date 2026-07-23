@@ -1,0 +1,65 @@
+name: Repository quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  governance-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install lightweight test dependency
+        run: python -m pip install pyyaml==6.0.3
+
+      - name: Run governance tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate tracked Python and JSON artifacts
+        shell: bash
+        run: |
+          python - <<'PY'
+          import ast
+          import json
+          import pathlib
+          import subprocess
+
+          tracked = subprocess.check_output(
+              ["git", "ls-files"], text=True
+          ).splitlines()
+          python_files = [pathlib.Path(p) for p in tracked if p.endswith(".py")]
+          json_files = [pathlib.Path(p) for p in tracked if p.endswith(".json")]
+          jsonl_files = [pathlib.Path(p) for p in tracked if p.endswith(".jsonl")]
+
+          for path in python_files:
+              ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+          for path in json_files:
+              json.loads(path.read_text(encoding="utf-8"))
+          for path in jsonl_files:
+              for line_number, line in enumerate(
+                  path.read_text(encoding="utf-8").splitlines(), 1
+              ):
+                  if line.strip():
+                      try:
+                          json.loads(line)
+                      except json.JSONDecodeError as exc:
+                          raise ValueError(
+                              f"{path}:{line_number}: {exc}"
+                          ) from exc
+
+          print(
+              f"Validated {len(python_files)} Python, "
+              f"{len(json_files)} JSON, and {len(jsonl_files)} JSONL files."
+          )
+          PY

@@ -1,6 +1,6 @@
-# CLAUDE.md — Hittite Fragment Matching Project
+# AGENTS.md — Hittite Fragment Matching Project
 
-Standing context for all Claude Code sessions in this repository. Read
+Standing context for all Codex sessions in this repository. Read
 fully before acting. This file is the design authority; if a session's
 work would contradict it, stop and flag the conflict instead of
 improvising. The human collaborator (Ixca) makes final design calls.
@@ -353,21 +353,20 @@ Provincial + multilingual material also supplies hard negatives.
 - Stdlib-or-common-deps preference; pin versions in
   requirements.txt; everything runs on the local laptop.
 - Small artifacts (reports, metrics JSON, failure samples) are the
-  unit of exchange with the browser-Claude architect sessions; never
+  unit of exchange with the browser-Codex architect sessions; never
   ship the raw corpus or weights back and forth.
 - Outputs of every phase: a runnable script + a small human-readable
   report.
-- **File layout (Phase 2 reorganization, 2026-07-22):** the complete,
-  immutable Phase 1 snapshot lives under `Archive/`, including its
-  numbered pipeline scripts and historical results. Selected durable
-  utilities and inputs carried into Phase 2 are copied into the live
-  `lib/`, `scripts/`, `configs/`, `demo/`, `p2_out/`, and `p4_out/`
-  paths. Earlier phase-sequence bullets below reference the historical
-  implementations in `Archive/scripts/`; a same-named live copy exists
-  only where Phase 2 still needs that asset. Always invoke active scripts
-  from the project root, never after `cd scripts` — data paths are
-  CWD-relative, only `lib/` imports are resolved relative to the script
-  file itself. See `README.md` for the live/archive map.
+- **File layout (reorganized 2026-07-21, once D14/D15 finished running):**
+  numbered pipeline scripts live in `scripts/`, reusable modules in
+  `lib/`, active configs in `configs/`, the parallel demo track in
+  `demo/`. Earlier phase-sequence bullets below reference bare script
+  names (e.g. "`01_inventory.py`") from before this reorg — read those
+  as `scripts/01_inventory.py` etc. Always invoke from the project
+  root (`python scripts/19_pretrain.py ...`), never after `cd scripts`
+  — data paths are CWD-relative, only `lib/` imports are resolved
+  relative to the script file itself. See `README.md`'s "Where things
+  are" for the full map.
 
 ## Phase sequence
 
