@@ -267,7 +267,7 @@ def run_task_a_suite(method, tok_field, use_bigrams, frags, family_map=None):
 
 def write_report(scorer_name, dedup, task_b, task_a, leakage, out_dir):
     lines = [f"# {scorer_name} -- P3 Baseline Report", "",
-             f"## Exact-dedup guard",
+             "## Exact-dedup guard",
              f"- {dedup['n_exact_dup_groups']} groups of identical ATTESTED renderings "
              f"({dedup['n_fragments_in_dup_groups']} / {dedup['n_fragments']} fragments affected)",
              "", "## Task B (test_only index)", ""]

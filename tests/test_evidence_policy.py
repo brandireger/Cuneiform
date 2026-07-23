@@ -111,11 +111,14 @@ class TestEvidencePolicy(unittest.TestCase):
             task="textual_affinity", evidence_policy="transcription_assisted",
             features_requested=["sign_attested"],
             registry=self.registry, policy=self.transcription, seed=20260722,
+            dataset_manifest_path=REGISTRY_PATH,
         )
         self.assertEqual(manifest["features_observed"], ["sign_attested"])
         self.assertEqual(manifest["evidence_classes_used"],
                           [ep.EvidenceClass.EDITORIAL_TRANSCRIPTION.value])
         self.assertIn("git_commit", manifest)
+        self.assertIn("git_dirty", manifest)
+        self.assertEqual(len(manifest["dataset_manifest_hash"]), 64)
         self.assertIn("created_utc", manifest)
 
     def test_manifest_policy_label_must_match_validated_policy(self):

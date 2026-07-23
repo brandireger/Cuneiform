@@ -20,7 +20,6 @@ DEV-side fragments, NEVER used for gradient updates, only evaluation).
 import json
 import random
 from collections import Counter
-from pathlib import Path
 
 import numpy as np
 
@@ -94,7 +93,8 @@ def compute_calibration(frags, line_index, edge_info, join_pairs_path):
             "mean": float(np.mean(del_span_lengths)) if del_span_lengths else 0,
             "median": float(np.median(del_span_lengths)) if del_span_lengths else 0,
             "p90": float(np.percentile(del_span_lengths, 90)) if del_span_lengths else 0,
-            "histogram": dict(Counter(min(l, 20) for l in del_span_lengths)),
+            "histogram": dict(Counter(
+                min(length, 20) for length in del_span_lengths)),
             "n_spans": len(del_span_lengths),
         },
         "left_edge_state_dist": {k: v / sum(left_edge_states.values())

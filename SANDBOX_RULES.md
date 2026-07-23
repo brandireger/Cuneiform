@@ -22,6 +22,12 @@ everything else relaxes.
    BEFORE its first numbers are reported. This rule exists because E2
    produced a full phase of confident numbers from a model reading
    blank pages.
+   **Phase 2 clarification (2026-07-23):** the perturbation must change
+   the representation the scorer actually consumes. Sequence scorers
+   use token-order permutation. Order-invariant bag-of-words scorers
+   use deterministic token-identity corruption while preserving input
+   length. Permuting order alone is mathematically invisible to BM25
+   and cannot establish content sensitivity.
 3. **Contracts at ingress.** C1–C10 apply by default to new code.
    C1 (UNK rate) and C7 (bilateral seam content) are the two that
    would have caught Phase 1's worst bug; do not skip them for

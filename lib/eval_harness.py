@@ -54,7 +54,6 @@ content -- those stay in ranking as real formulaic collisions, per spec.
 """
 
 import json
-import random
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -63,6 +62,8 @@ import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+import contracts
 
 P2_OUT = Path("p2_out")
 P25_OUT = Path("p25_out")
@@ -279,7 +280,6 @@ def tier_c_exclusive_tokens(join_pairs, line_index, reconstructed, rendering="at
     the pair's normal fragment_id (so it can be substituted directly
     into the candidate index in place of the contaminated full
     rendering) -- plus the list of (query_fid, positive_fid) pairs."""
-    key = "attested" if rendering == "attested" else "full"
     substitutions = {}
     eval_pairs = []
     for p in join_pairs:
@@ -383,6 +383,76 @@ def aggregate_metrics(per_query_rows, ks=(1, 5, 10, 100)):
 # ---------------------------------------------------------------- scoring
 
 _identity = lambda x: x  # noqa: E731 -- tokens are pre-tokenized lists
+
+
+class FixedBM25Scorer:
+    """BM25 pair scorer with statistics fit once over a declared universe.
+
+    The legacy ``bm25_score_matrix`` helper fits on its candidate index for
+    each call. Tracers need to score perturbed documents without allowing the
+    perturbation to refit IDF or average document length. This class separates
+    the reference-statistics fit from pair scoring and stamps its provenance.
+    """
+
+    def __init__(self, reference_tokens, *, universe_name,
+                 content_hash=None, k1=1.5, b=0.75):
+        self.k1 = k1
+        self.b = b
+        self.vectorizer = CountVectorizer(
+            tokenizer=_identity, preprocessor=_identity,
+            lowercase=False, token_pattern=None)
+        tf = self.vectorizer.fit_transform(reference_tokens).tocsr()
+        self.n_documents = tf.shape[0]
+        if self.n_documents == 0:
+            raise ValueError("FixedBM25Scorer requires a non-empty reference universe")
+        doc_len = np.asarray(tf.sum(axis=1)).ravel()
+        self.avgdl = float(doc_len.mean())
+        df = np.asarray((tf > 0).sum(axis=0)).ravel()
+        self.idf = np.log(
+            (self.n_documents - df + 0.5) / (df + 0.5) + 1.0)
+        self.idf = np.clip(self.idf, 0.0, None)
+        self.provenance = contracts.stamp_stats(
+            {"avgdl": self.avgdl, "vocabulary_size": len(self.idf)},
+            universe_name=universe_name,
+            n=self.n_documents,
+            content_hash=content_hash,
+        )
+
+    @property
+    def vocabulary(self):
+        return tuple(self.vectorizer.vocabulary_.keys())
+
+    def assert_provenance(self, *, expected_universe, expected_n):
+        contracts.assert_stats_provenance(
+            self.provenance,
+            expected_universe=expected_universe,
+            expected_n=expected_n,
+        )
+
+    def score_pairs(self, query_tokens, document_tokens):
+        if len(query_tokens) != len(document_tokens):
+            raise ValueError(
+                "FixedBM25Scorer.score_pairs requires equally sized query "
+                "and document collections")
+        tf = self.vectorizer.transform(document_tokens).tocsr()
+        doc_len = np.asarray(tf.sum(axis=1)).ravel()
+        length_norm = self.k1 * (
+            1 - self.b + self.b * (doc_len / self.avgdl))
+        row_norm = np.repeat(length_norm, np.diff(tf.indptr))
+        tf_data = tf.data.astype(float)
+        weighted_data = (
+            self.idf[tf.indices] * tf_data * (self.k1 + 1)
+            / (tf_data + row_norm)
+        )
+        weighted = sp.csr_matrix(
+            (weighted_data, tf.indices, tf.indptr), shape=tf.shape)
+
+        query_tf = self.vectorizer.transform(query_tokens)
+        query_tf.data[:] = 1.0
+        return np.asarray(query_tf.multiply(weighted).sum(axis=1)).ravel()
+
+    def score(self, query_tokens, document_tokens):
+        return float(self.score_pairs([query_tokens], [document_tokens])[0])
 
 
 def bm25_score_matrix(index_tokens, query_tokens, k1=1.5, b=0.75):

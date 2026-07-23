@@ -40,6 +40,7 @@ may explicitly supersede either file.
 | `tests/` | Lightweight governance and evidence-policy regression tests. |
 | `demo/` | Parallel Takšan demonstration track; it does not control research evaluation. |
 | `p2_out/`, `p4_out/` | Small tracked artifacts plus local, gitignored derived data required by active work. |
+| `phase2_out/` | Small manifests and machine-readable outputs from active Phase 2 probes. |
 | `reports/` | Current reports and selected Phase 1 closeout material used by Phase 2. |
 | `specs/` | Current and carried-forward specifications. |
 | `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite it in place. |
@@ -76,18 +77,23 @@ gitignored.
 The pinned environment targets a CUDA 12.4 machine:
 
 ```powershell
-py -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-The full install includes a large CUDA-enabled PyTorch wheel. For governance
-tests only, PyYAML is sufficient:
+Python 3.11 or 3.12 must be installed and available as `python` before
+creating the environment. The local `.venv/` is gitignored.
+
+The full install includes a large CUDA-enabled PyTorch wheel. For the lighter
+repository quality checks, install the CI dependency set instead:
 
 ```powershell
-python -m pip install pyyaml==6.0.3
+python -m pip install -r requirements-ci.txt
 python -m unittest discover -s tests -v
+python lib/contracts.py
+ruff check lib scripts tests demo
 ```
 
 Always run scripts from the repository root because data paths are

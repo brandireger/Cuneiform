@@ -34,15 +34,8 @@ tractable generalization of BERT-style next-sentence-prediction to
 line/paragraph granularity.
 """
 
-import json
-import math
-import random
-from pathlib import Path
-
-import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 # ---------------------------------------------------------------- model

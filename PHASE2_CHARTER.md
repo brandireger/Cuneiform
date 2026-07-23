@@ -72,6 +72,16 @@ than model quality.
 is viable and the failure is retrieval-level. If not, boundary-head
 reranking is dead and P2-C/P2-E become the live paths.
 
+**Opening feasibility result (2026-07-23):** the first Phase 2 probe
+found that `{€N}` supplies row membership/alignment but not a
+member-specific within-line fracture column. Shared rows are stored as
+one fused parent line assigned to both members. Therefore P2-A as
+worded does not currently have a true seam-column target; do not score
+D14 against D17's row-skipping offset and call that seam localization.
+See `reports/phase2_p2a_feasibility.md`. A row-alignment reformulation
+or evidence for an unmaterialized per-member span would require a new
+decision.
+
 ### P2-B — Materiality inventory *(what does the corpus NOT contain?)*
 **Question:** Q2. **Cost:** hours, mostly reading + counting.
 Audit what non-textual signal TLHdig encodes and what it doesn't:

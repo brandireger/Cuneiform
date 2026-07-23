@@ -25,7 +25,6 @@ Case is preserved for logogram-class tokens (script class is free
 signal: DUTU-derived tokens are uppercase, syllabic tokens lowercase).
 """
 
-import json
 import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
