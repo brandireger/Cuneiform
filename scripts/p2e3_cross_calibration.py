@@ -462,6 +462,9 @@ def composition_summary(composition_metrics):
 
 
 def write_report(summary, elapsed_seconds):
+    def format_percent(value):
+        return "—" if value is None else f"{value}%"
+
     rows = []
     for cell_name, result in summary["cells"].items():
         baseline = result["baseline_pooled"]
@@ -482,6 +485,9 @@ def write_report(summary, elapsed_seconds):
     formula = primary["strata_at_target"]["metrics"]["formulaicity"]
     witness = primary["strata_at_target"]["metrics"]["witness_availability"]
     composition = summary["primary_composition_summary"]
+    no_95_rules = all(
+        result["targets_pooled"]["0.95"]["folds_with_calibration_rule"] == 0
+        for result in summary["cells"].values())
     lines = [
         "# Phase 2 P2-E3 five-fold cross-calibration",
         "",
@@ -494,7 +500,7 @@ def write_report(summary, elapsed_seconds):
         "- Anchored scorer and witness-ranker T1: PASS, 12/12 real canaries "
         "changed under token-order scrambling; candidate-order invariant.",
         "- Formulaicity T1: PASS; scrambling changed the synthetic "
-        "cross-CTH n-gram frequency.",
+        "cross-CTH anchored-context frequency.",
         "",
         "## Question and method",
         "",
@@ -512,22 +518,27 @@ def write_report(summary, elapsed_seconds):
         "|---|---:|---:|---:|---:|",
         *rows,
         "",
+        f"{'No 95% calibration rule was available in any cell or fold.' if no_95_rules else ''}",
+        "",
         f"Primary a2_m1 formulaicity: rare (`cth_df_1`) "
         f"{formula['cth_df_1']['coverage_percent_of_eligible']}% coverage / "
-        f"{formula['cth_df_1']['top1_exact_agreement_percent']}% agreement; "
+        f"{format_percent(formula['cth_df_1']['top1_exact_agreement_percent'])} "
+        f"agreement; "
         f"moderate (`cth_df_2_5`) "
         f"{formula['cth_df_2_5']['coverage_percent_of_eligible']}% / "
-        f"{formula['cth_df_2_5']['top1_exact_agreement_percent']}%; common "
+        f"{format_percent(formula['cth_df_2_5']['top1_exact_agreement_percent'])}; "
+        f"common "
         f"(`cth_df_6_plus`) "
         f"{formula['cth_df_6_plus']['coverage_percent_of_eligible']}% / "
-        f"{formula['cth_df_6_plus']['top1_exact_agreement_percent']}%.",
+        f"{format_percent(formula['cth_df_6_plus']['top1_exact_agreement_percent'])}.",
         f"Witness availability: one family "
         f"{witness['one_family']['coverage_percent_of_eligible']}% / "
-        f"{witness['one_family']['top1_exact_agreement_percent']}%; two–three "
+        f"{format_percent(witness['one_family']['top1_exact_agreement_percent'])}; "
+        f"two–three "
         f"{witness['two_to_three_families']['coverage_percent_of_eligible']}% / "
-        f"{witness['two_to_three_families']['top1_exact_agreement_percent']}%; "
+        f"{format_percent(witness['two_to_three_families']['top1_exact_agreement_percent'])}; "
         f"four+ {witness['four_plus_families']['coverage_percent_of_eligible']}% / "
-        f"{witness['four_plus_families']['top1_exact_agreement_percent']}%.",
+        f"{format_percent(witness['four_plus_families']['top1_exact_agreement_percent'])}.",
         f"Composition heterogeneity: {composition['compositions_with_any_accept']}/"
         f"{composition['compositions_total']} CTHs received any acceptance; "
         f"among {composition['compositions_with_at_least_20_accepts']} with "
@@ -538,9 +549,11 @@ def write_report(summary, elapsed_seconds):
         "",
         "## Interpretation",
         "",
-        "The output distinguishes a reproducible pooled signal from fold- and "
-        "composition-specific calibration failure. Formulaic and witness-rich "
-        "contexts are reported, not silently treated as universal evidence. "
+        "The pooled signal is real but does not transfer as a universal "
+        "reliability threshold. Acceptance is concentrated in recurrent "
+        "bounded contexts and witness-rich compositions, while per-CTH "
+        "agreement remains heterogeneous. Those dependencies are reported, "
+        "not silently treated as universal evidence. "
         "This remains masked-attested agreement, not truth for a real lacuna.",
         "",
         f"Cost: {elapsed_seconds:.1f}s compute; budget ≤"
