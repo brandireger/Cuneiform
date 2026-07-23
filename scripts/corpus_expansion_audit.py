@@ -165,6 +165,8 @@ def scan_allowed_payloads(
         "parsed_documents": 0,
         "parse_error_count": 0,
         "parse_error_samples": [],
+        "parse_error_stems": set(),
+        "parse_error_kinds": Counter(),
         "line_elements": 0,
         "tag_instances": Counter(),
         "tag_documents": Counter(),
@@ -202,6 +204,9 @@ def scan_allowed_payloads(
                 root = ET.fromstring(raw)
             except ET.ParseError as error:
                 counters["parse_error_count"] += 1
+                counters["parse_error_stems"].add(stem)
+                counters["parse_error_kinds"][
+                    str(error).split(":", 1)[0]] += 1
                 if len(counters["parse_error_samples"]) < 25:
                     counters["parse_error_samples"].append({
                         "archive_entry_path": info.filename,
@@ -258,6 +263,8 @@ def serialize_scan(scan):
         "parsed_documents": scan["parsed_documents"],
         "parse_error_count": scan["parse_error_count"],
         "parse_error_samples": scan["parse_error_samples"],
+        "parse_error_stems": sorted(scan["parse_error_stems"]),
+        "parse_error_kinds": dict(sorted(scan["parse_error_kinds"].items())),
         "line_elements": scan["line_elements"],
         "tag_instances": dict(sorted(scan["tag_instances"].items())),
         "tag_documents": dict(sorted(scan["tag_documents"].items())),
@@ -294,6 +301,8 @@ def compare_allowed(baseline_scan, candidate_scan):
     candidate_tags = set(candidate_scan["tag_instances"])
     baseline_attrs = set(baseline_scan["attribute_instances"])
     candidate_attrs = set(candidate_scan["attribute_instances"])
+    baseline_errors = baseline_scan["parse_error_stems"] & common
+    candidate_errors = candidate_scan["parse_error_stems"] & common
     return {
         "common_allowed_unique_stems": len(common),
         "byte_identical_documents": len(common - changed),
@@ -302,6 +311,12 @@ def compare_allowed(baseline_scan, candidate_scan):
             round(100 * len(changed) / len(common), 2) if common else None),
         "cth_folder_moved_documents": len(moved),
         "cth_folder_move_samples": sorted(moved)[:25],
+        "parse_errors_persistent_on_common_stems":
+            sorted(baseline_errors & candidate_errors),
+        "parse_errors_introduced_on_common_stems":
+            sorted(candidate_errors - baseline_errors),
+        "parse_errors_resolved_on_common_stems":
+            sorted(baseline_errors - candidate_errors),
         "tags_added_in_candidate": sorted(candidate_tags - baseline_tags),
         "tags_absent_from_candidate": sorted(baseline_tags - candidate_tags),
         "attributes_added_in_candidate":
@@ -375,6 +390,16 @@ def write_report(summary, elapsed):
         f"{candidate['payload_scan']['parse_error_count']:,}; parsed `<lb>` "
         f"counts changed from {baseline['payload_scan']['line_elements']:,} "
         f"to {candidate['payload_scan']['line_elements']:,}.",
+        "",
+        f"On common allowed stems, candidate XML introduced "
+        f"{len(delta['parse_errors_introduced_on_common_stems']):,} parse "
+        f"errors, resolved "
+        f"{len(delta['parse_errors_resolved_on_common_stems']):,}, and "
+        f"retained "
+        f"{len(delta['parse_errors_persistent_on_common_stems']):,}. The "
+        f"{delta['byte_changed_percent']}% raw-byte change rate is a change "
+        f"detector, not evidence that {delta['byte_changed_percent']}% of "
+        "transliterated content changed.",
         "",
         f"Schema additions: tags "
         f"`{', '.join(delta['tags_added_in_candidate']) or 'none'}`; "
@@ -473,17 +498,14 @@ def main():
     delta = compare_allowed(baseline_scan, candidate_scan)
     overlap = archive_overlap(baseline_index, candidate_index)
 
-    parse_errors_improved = (
-        candidate_scan["parse_error_count"]
-        < baseline_scan["parse_error_count"]
-    )
     candidate_only = overlap["candidate_only_filename_stems"]
-    if candidate_only > 0 or parse_errors_improved:
+    if candidate_only > 0:
         decision = "OPEN A CONTROLLED 0.3 MIGRATION-DESIGN PASS"
         reason = (
-            "0.3 contains filename-level candidate additions and/or improves "
-            "non-test parseability. Do not replace 0.2 yet: first resolve "
-            "quarantined identifiers, define new splits, and run a versioned "
+            "The filename inventory contains a material candidate addition, "
+            "but non-test parse errors and duplicate stems increased. Do not "
+            "replace 0.2 yet: first resolve quarantined identifiers, diagnose "
+            "the parser regressions, define new splits, and run a versioned "
             "parser rebuild."
         )
     else:
@@ -528,6 +550,29 @@ def main():
             "migration_authorized_by_this_audit": False,
             "next_required_step":
                 "identifier resolution and versioned migration design",
+        },
+        "migration_risks": {
+            "candidate_duplicate_filename_stems":
+                candidate_index["summary"]["duplicate_filename_stems"],
+            "baseline_duplicate_filename_stems":
+                baseline_index["summary"]["duplicate_filename_stems"],
+            "candidate_parse_errors_on_allowed_payloads":
+                candidate_scan["parse_error_count"],
+            "baseline_parse_errors_on_allowed_payloads":
+                baseline_scan["parse_error_count"],
+            "raw_byte_change_is_not_semantic_change": True,
+            "candidate_only_stems_are_not_yet_proven_new": True,
+            "new_or_changed_editor_provenance_fields_are_not_model_features":
+                True,
+        },
+        "external_corpus_follow_on": {
+            "decision": "DEFER INGESTION; PREPARE SOURCE-SUITABILITY INVENTORY",
+            "reason": (
+                "Resolve the higher-relevance same-language 0.3 identifier "
+                "and parser questions before authorizing ORACC, SumTablets, "
+                "eBL, or CDLI pretraining data."
+            ),
+            "training_authorized": False,
         },
         "input_hashes": {
             "config": digest_file(CONFIG_PATH),

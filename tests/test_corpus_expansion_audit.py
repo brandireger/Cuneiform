@@ -120,18 +120,22 @@ class TestCorpusExpansionAudit(unittest.TestCase):
             "cth_by_stem": {"a": 1, "b": 2},
             "tag_instances": {"lb": 1},
             "attribute_instances": {"lb@lg": 1},
+            "parse_error_stems": {"b"},
         }
         candidate = {
             "raw_sha256_by_stem": {"a": "same", "b": "new", "c": "new"},
             "cth_by_stem": {"a": 1, "b": 3, "c": 4},
             "tag_instances": {"lb": 1, "newTag": 1},
             "attribute_instances": {"lb@lg": 1, "newTag@x": 1},
+            "parse_error_stems": {"b", "c"},
         }
         result = audit.compare_allowed(baseline, candidate)
         self.assertEqual(result["common_allowed_unique_stems"], 2)
         self.assertEqual(result["byte_changed_documents"], 1)
         self.assertEqual(result["cth_folder_moved_documents"], 1)
         self.assertEqual(result["tags_added_in_candidate"], ["newTag"])
+        self.assertEqual(
+            result["parse_errors_persistent_on_common_stems"], ["b"])
 
 
 if __name__ == "__main__":
