@@ -222,6 +222,24 @@ variant or an error. The output should be expert-review evidence packets,
 not adjudicated restorations. See
 `reports/phase2_p2e3_cross_calibration.md`.
 
+**Expert candidate-set result (P2-E4, 2026-07-23):** the set-valued target
+recovers a modest but useful slice that top-1 exact match hides. Across the
+5,486 fold-selector-accepted contexts, top-1 included the intentionally
+hidden attested sign in 89.97%; showing up to two alternatives raised
+inclusion to 92.58%, and the complete preserved set reached 92.95% while
+showing only 1.34 options on average (maximum four). Of 550 top-choice
+disagreements, 163 retained the attested reading at a lower rank, while 387
+did not contain it anywhere. Composition-macro full-set inclusion across the
+24 CTHs with presented contexts was lower and heterogeneous (mean 83.11%,
+median 93.12%, range 0–100%), so the pooled number is not a universal
+composition guarantee. Among the absent cases, the witness top was
+an omission in 160, longer in 158, and an equal-length different sign in 69.
+These are observable sequence relations, not adjudicated textual variants.
+The next justified probe is **alignment-aware candidate generation**:
+align local passages monotonically using only the observed context, then ask
+whether it recovers compact alternatives for the 387 exact-anchor absences.
+See `reports/phase2_p2e4_candidate_set_audit.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

@@ -495,6 +495,8 @@ def candidate_set_tracer():
 
 def write_report(summary, elapsed_seconds):
     selected = summary["selector_accepted_candidate_sets"]["micro"]
+    selected_macro = summary["selector_accepted_candidate_sets"][
+        "composition_macro"]["attested_inclusion_percent"]["all"]
     supported = summary["all_witness_supported_candidate_sets"]["micro"]
     disagreements = summary["observable_disagreement_audit"]
     prefix_rows = []
@@ -558,10 +560,22 @@ def write_report(summary, elapsed_seconds):
         "recoverable by showing alternatives; "
         f"{selected['attested_absent_contexts']:,} were absent from all "
         "independent-witness middles.",
+        f"Across the {summary['selector_accepted_candidate_sets']['composition_macro']['compositions_with_contexts']} "
+        f"CTHs with presented contexts, full-set composition-macro inclusion "
+        f"had mean {selected_macro['mean']}% and median "
+        f"{selected_macro['median']}% (range {selected_macro['minimum']}–"
+        f"{selected_macro['maximum']}%), so the pooled result is not a "
+        "uniform composition-level guarantee.",
         "",
         "| observable category among top-1 disagreements | contexts | share |",
         "|---|---:|---:|",
         *category_rows,
+        "",
+        f"Nonexclusive flags: "
+        f"{disagreements['nonexclusive_observable_flags']['anchor_recurs_across_multiple_compositions']['percent_of_disagreements']}% "
+        "used anchors recurring across multiple CTHs, and "
+        f"{disagreements['nonexclusive_observable_flags']['same_anchor_repeats_within_query_fragment']['percent_of_disagreements']}% "
+        "repeated the same anchors within the query fragment.",
         "",
         "Rank-conditioned calibration estimates with `n` and Wilson CIs are "
         "saved in every sampled packet. They are coarse group estimates "

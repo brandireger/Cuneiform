@@ -33,6 +33,13 @@ compositions. The five-fold stability audit is in
 [`reports/phase2_p2e3_cross_calibration.md`](reports/phase2_p2e3_cross_calibration.md);
 it shows that pooled agreement is concentrated in recurrent, witness-rich
 contexts and must not be treated as a universal reliability guarantee.
+The expert candidate-set audit is in
+[`reports/phase2_p2e4_candidate_set_audit.md`](reports/phase2_p2e4_candidate_set_audit.md);
+in the fold-selected dev contexts, showing a mean of 1.34 options retained
+the intentionally hidden attested sign 92.95% of the time versus 89.97% at
+top-1. Most residual disagreements did not contain that reading anywhere in
+the exact-anchor witness set, motivating an inspectable local-alignment
+probe rather than a larger opaque model.
 
 ## Read first
 
