@@ -114,6 +114,33 @@ class TestP2E2Calibration(unittest.TestCase):
         self.assertGreaterEqual(lower, 0.0)
         self.assertLessEqual(upper, 1.0)
 
+    def test_vectorized_rule_evaluation_matches_scalar(self):
+        ranking = {
+            "alternatives": [
+                {
+                    "proposal": ("gold",),
+                    "supporting_families": ("f1", "f2"),
+                    "support_count": 2,
+                },
+            ],
+            "unique_top": True,
+            "top_support": 2,
+            "runner_up_support": 0,
+            "support_margin": 2,
+            "dominance": 1.0,
+            "alternative_count": 1,
+        }
+        records = [{"gold": ("gold",), "ranking": ranking}]
+        rule = {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 1,
+            "minimum_dominance": 0.0,
+            "maximum_alternatives": None,
+        }
+        scalar = p2e2.evaluate_rule(records, rule)
+        vectorized = p2e2.evaluate_rules_vectorized(records, [rule])[0]
+        self.assertEqual(scalar, vectorized)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

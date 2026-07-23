@@ -25,6 +25,8 @@ import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
 
 import contracts
@@ -253,6 +255,100 @@ def evaluate_rule(records, rule):
                 for record in accepted), 3)
             if accepted else None),
     }
+
+
+def evaluate_rules_vectorized(records, rules):
+    """Evaluate a rule grid without repeatedly scanning Python records."""
+    n = len(records)
+    supported = np.fromiter(
+        (bool(record["ranking"]["alternatives"]) for record in records),
+        dtype=bool,
+        count=n,
+    )
+    unique_top = np.fromiter(
+        (record["ranking"]["unique_top"] for record in records),
+        dtype=bool,
+        count=n,
+    )
+    top_support = np.fromiter(
+        (record["ranking"]["top_support"] for record in records),
+        dtype=np.int32,
+        count=n,
+    )
+    margins = np.fromiter(
+        (record["ranking"]["support_margin"] for record in records),
+        dtype=np.int32,
+        count=n,
+    )
+    dominance = np.fromiter(
+        (record["ranking"]["dominance"] for record in records),
+        dtype=np.float64,
+        count=n,
+    )
+    alternative_counts = np.fromiter(
+        (record["ranking"]["alternative_count"] for record in records),
+        dtype=np.int32,
+        count=n,
+    )
+    top_exact = np.fromiter(
+        (
+            bool(record["ranking"]["alternatives"])
+            and record["ranking"]["alternatives"][0]["proposal"]
+            == record["gold"]
+            for record in records
+        ),
+        dtype=bool,
+        count=n,
+    )
+    gold_anywhere = np.fromiter(
+        (
+            any(
+                alternative["proposal"] == record["gold"]
+                for alternative in record["ranking"]["alternatives"])
+            for record in records
+        ),
+        dtype=bool,
+        count=n,
+    )
+
+    metrics = []
+    for rule in rules:
+        accepted_mask = (
+            supported
+            & unique_top
+            & (top_support >= rule["minimum_top_support_families"])
+            & (margins >= rule["minimum_support_margin"])
+            & (dominance >= rule["minimum_dominance"])
+        )
+        maximum = rule["maximum_alternatives"]
+        if maximum is not None:
+            accepted_mask &= alternative_counts <= maximum
+        accepted_n = int(accepted_mask.sum())
+        exact_n = int((accepted_mask & top_exact).sum())
+        gold_any_n = int((accepted_mask & gold_anywhere).sum())
+        metrics.append({
+            "rule_id": rule_id(rule),
+            "rule": rule,
+            "eligible_spans": n,
+            "spans_with_any_witness_alternative": int(supported.sum()),
+            "spans_with_unique_evidence_top":
+                int((supported & unique_top).sum()),
+            "accepted_spans": accepted_n,
+            "coverage_percent_of_eligible": pct(accepted_n, n),
+            "coverage_percent_of_supported":
+                pct(accepted_n, int(supported.sum())),
+            "top1_exact_agreement_spans": exact_n,
+            "top1_exact_agreement_percent": pct(exact_n, accepted_n),
+            "top1_exact_agreement_fraction":
+                exact_n / accepted_n if accepted_n else None,
+            "top1_exact_wilson_95": wilson_interval(exact_n, accepted_n),
+            "gold_anywhere_in_preserved_alternatives": gold_any_n,
+            "gold_anywhere_percent": pct(gold_any_n, accepted_n),
+            "mean_preserved_alternatives_when_accepted": (
+                round(float(alternative_counts[accepted_mask].mean()), 3)
+                if accepted_n else None),
+        })
+    return metrics
 
 
 def choose_rules(calibration_metrics, targets, minimum_accepts):
@@ -776,8 +872,8 @@ def main():
             mask_length,
             evaluation_cths,
         )
-        calibration_metrics = [
-            evaluate_rule(calibration_records, rule) for rule in rules]
+        calibration_metrics = evaluate_rules_vectorized(
+            calibration_records, rules)
         chosen = choose_rules(
             calibration_metrics,
             config["calibration_targets"],
