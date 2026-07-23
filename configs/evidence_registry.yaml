@@ -267,6 +267,11 @@ fields:
     rationale: "Count of distinct same-CTH witness families outside the query family; used as an availability stratum, not textual evidence."
     source_path: "scripts/p2e3_cross_calibration.py"
     depends_on: [cth]
+  query_anchor_occurrence_count:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Count of bounded positions in one query fragment sharing the exact left/right anchor pair; an analysis flag for observable placement ambiguity."
+    source_path: "scripts/p2e4_candidate_set_audit.py"
+    depends_on: [token, line_index_in_doc]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."

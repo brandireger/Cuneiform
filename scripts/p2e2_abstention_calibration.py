@@ -195,8 +195,10 @@ def build_span_records(
         query_family = fragment_families[fragment_id]
         if not cth_families[cth].difference({query_family}):
             continue
-        for span_ordinal, (key, gold) in enumerate(p2e.iter_masked_spans(
-                line_sequences[fragment_id], anchor_length, mask_length)):
+        spans = p2e.iter_masked_spans_with_location(
+            line_sequences[fragment_id], anchor_length, mask_length)
+        for span_ordinal, (
+                line_position, sign_offset, key, gold) in enumerate(spans):
             ranking = proposal_ranking(
                 anchor_index, cth, key, query_family)
             records.append({
@@ -204,6 +206,8 @@ def build_span_records(
                 "cth": cth,
                 "query_family": query_family,
                 "span_ordinal": span_ordinal,
+                "line_position_in_fragment": line_position,
+                "sign_offset_in_line": sign_offset,
                 "left_anchor": key[0],
                 "right_anchor": key[1],
                 "gold": gold,

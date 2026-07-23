@@ -201,7 +201,14 @@ def requested_anchor_keys(lines, anchor_length, mask_lengths):
 
 def iter_masked_spans(lines, anchor_length, mask_length):
     """Yield (anchor key, attested gold middle) without crossing lines."""
-    for line in lines:
+    for _, _, key, gold in iter_masked_spans_with_location(
+            lines, anchor_length, mask_length):
+        yield key, gold
+
+
+def iter_masked_spans_with_location(lines, anchor_length, mask_length):
+    """Yield line/offset plus the same bounded masked-span content."""
+    for line_position, line in enumerate(lines):
         stop = len(line) - anchor_length - mask_length + 1
         for start in range(anchor_length, max(anchor_length, stop)):
             left = tuple(line[start - anchor_length:start])
@@ -209,7 +216,7 @@ def iter_masked_spans(lines, anchor_length, mask_length):
             right = tuple(
                 line[start + mask_length:
                      start + mask_length + anchor_length])
-            yield (left, right), gold
+            yield line_position, start, (left, right), gold
 
 
 def build_anchor_index(
