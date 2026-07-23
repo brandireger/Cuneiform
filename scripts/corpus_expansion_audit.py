@@ -423,17 +423,20 @@ def main():
 
     registry = ep.load_registry(REGISTRY_PATH)
     policy = ep.load_policy(config["evidence_policy"], POLICIES_PATH)
-    semantic_fields = [
+    control_fields = [
         "doc_id",
         "main_split",
         "archive_entry_path",
         "raw_xml_sha256",
+        "parse_status",
+    ]
+    semantic_fields = [
         "xml_tag_name",
         "xml_attribute_name",
         "cth",
-        "parse_status",
         "line_lang",
     ]
+    ep.validate_fields(control_fields, registry, policy)
     ep.validate_semantic_features(semantic_fields, registry, policy)
 
     splits = pd.read_parquet(
@@ -559,6 +562,8 @@ def main():
             "and duplicate-stem payloads never opened"),
     )
     manifest.update({
+        "control_fields_requested": control_fields,
+        "control_fields_used_only_for_ingress_and_bookkeeping": True,
         "test_side_accessed": False,
         "test_payloads_read": 0,
         "unmatched_payloads_read": 0,
