@@ -19,9 +19,11 @@ bug (retro-validation, per Amendment 2's acceptance check 4).
 import json
 import random
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn.functional as F
 
@@ -39,6 +41,90 @@ BOUNDARY_SEQ_LEN = 64
 MAX_OFFSET = 3
 CANARY_PATH = Path("p4_out") / "canary_set.json"
 SEED = 20260722
+
+
+def _safe_non_test_inputs():
+    """Return tracer inputs with the split gate applied at content readers.
+
+    The original tracer called ``eval_harness.load_fragment_universe()``,
+    which loaded the whole renderings cache before selecting non-test rows.
+    That did not score test examples, but it violated Phase 2's stronger
+    reader-ingress cleanroom rule.  Split metadata is safe control data;
+    every content-bearing parquet is filtered before rows are returned.
+    """
+    splits = pd.read_parquet(
+        eh.P2_OUT / "splits.parquet",
+        columns=["doc_id", "main_split", "site_split", "is_bin"],
+    )
+    ambiguous = set(
+        splits.loc[splits.duplicated("doc_id", keep=False), "doc_id"])
+    test_parents = set(
+        splits.loc[splits["main_split"] == "test", "doc_id"])
+    blocked = sorted(ambiguous | test_parents)
+    allowed = {"train", "dev", "discovery"}
+
+    frags = pd.read_parquet(
+        eh.P3_OUT / "fragment_renderings.parquet",
+        filters=[("parent_doc", "not in", blocked)],
+    )
+    meta = splits[~splits["doc_id"].isin(ambiguous)][
+        ["doc_id", "main_split", "site_split", "is_bin"]
+    ].rename(columns={"doc_id": "parent_doc"})
+    frags = frags.merge(meta, on="parent_doc", how="left")
+    observed = set(frags["main_split"].dropna().unique())
+    if frags["main_split"].isna().any() or not observed.issubset(allowed):
+        raise AssertionError(
+            "tracer cleanroom reader returned unknown or prohibited split "
+            f"values: observed={sorted(observed)}")
+
+    edges = pd.read_parquet(
+        eh.P2_OUT / "edges.parquet",
+        columns=[
+            "fragment_id", "parent_doc", "top_edge_lost",
+            "bottom_edge_lost", "lines",
+        ],
+        filters=[("parent_doc", "not in", blocked)],
+    )
+    edge_info = {}
+    for row in edges.itertuples(index=False):
+        line_records = json.loads(row.lines)
+        line_idxs = [
+            int(record["line_index_in_doc"]) for record in line_records]
+        by_line = {
+            int(record["line_index_in_doc"]): record.get("on_physical_edge")
+            for record in line_records
+            if record.get("on_physical_edge")
+        }
+        edge_info[row.fragment_id] = (
+            line_idxs,
+            bool(row.top_edge_lost),
+            bool(row.bottom_edge_lost),
+            by_line,
+        )
+
+    decomposed = pd.read_parquet(
+        ht.DECOMPOSED_PATH,
+        columns=[
+            "doc_id", "line_index_in_doc", "word_pos", "token",
+            "damage_state",
+        ],
+        filters=[("doc_id", "not in", blocked)],
+    ).sort_values(["doc_id", "line_index_in_doc", "word_pos"])
+    line_index = defaultdict(list)
+    for row in decomposed.itertuples(index=False):
+        line_index[(row.doc_id, int(row.line_index_in_doc))].append(
+            (row.token, row.damage_state))
+
+    returned_parents = (
+        set(frags["parent_doc"])
+        | set(edges["parent_doc"])
+        | set(decomposed["doc_id"])
+    )
+    leaked = returned_parents.intersection(test_parents)
+    if leaked:
+        raise AssertionError(
+            f"tracer cleanroom reader returned test parents: {sorted(leaked)[:5]}")
+    return frags, splits, line_index, edge_info
 
 
 def _broken_flatten_lines_pre_fix(lines):
@@ -179,9 +265,7 @@ def all_canary_pairs(canary):
 
 def run_tracers(retro=False):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    frags, splits, doc_table = eh.load_fragment_universe()
-    line_index = ht.build_decomposed_line_index()
-    edge_info = ht.load_edge_info()
+    frags, splits, line_index, edge_info = _safe_non_test_inputs()
     frags_lookup = frags.set_index("fragment_id")
     tok = ht.Tokenizer.load()
     canary = load_canary()
