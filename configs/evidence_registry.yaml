@@ -257,6 +257,16 @@ fields:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Editorial atomic sign token, decomposed-cache equivalent of signs."
     source_path: "p4_out/decomposed_corpus.parquet"
+  anchor_formulaicity_cth_df:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Cross-composition document frequency of an attested anchor n-gram; a derived analysis stratum, never direct artifact evidence."
+    source_path: "scripts/p2e3_cross_calibration.py"
+    depends_on: [token, cth]
+  available_independent_witness_family_count:
+    class: CATALOG_METADATA
+    rationale: "Count of distinct same-CTH witness families outside the query family; used as an availability stratum, not textual evidence."
+    source_path: "scripts/p2e3_cross_calibration.py"
+    depends_on: [cth]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."
