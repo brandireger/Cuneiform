@@ -256,6 +256,30 @@ two-to-five-sign spans, since the intended expert UI must support both single
 characters and bounded sequences. See
 `reports/phase2_p2e5_alignment_probe.md`.
 
+**Multi-sign horizon result (P2-E6, 2026-07-23):** exact-context witness
+evidence weakens quickly as the intentionally hidden span grows. The adaptive
+3→2→1-anchor policy could present a tie-complete candidate set for 70.75% of
+eligible two-sign contexts and 65.68% of five-sign contexts, but effective
+attested-span inclusion was only 27.36% and 7.95%, respectively. The
+composition-macro effective means were lower still: 16.18% for two signs and
+5.32% for five. A nominal five-option display exceeded five options in
+33.9–38.7% of presented contexts because equal evidence ties were preserved;
+the p90 reached 19 and the maximum 237. Composition-held-out set-calibration
+transfer was also unstable (8.17 percentage-point weighted mean absolute
+group gap). These intervals are audit frequencies for whole sets, not
+probabilities that a particular option is true.
+
+Do not promote this layer to automatic lacuna completion or manufacture
+per-option probabilities. Retain it as abstention-first evidence for an expert:
+preserve the complete equal-support set, group or collapse large tied tails
+without hiding their existence, and retain explicit reject, other/unsupported,
+and withhold-judgment actions. The next justified step is **P2-E7: an expert
+decision-interface contract and Phase 2 closeout**, not another scorer. It
+should turn the P2-E through P2-E6 findings into a typed UI/API schema for
+single- and multi-sign alternatives, evidence provenance, contradictions,
+set-level audit intervals, assistance layers, and abstention. See
+`reports/phase2_p2e6_multisign_horizon.md`.
+
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
 Joins obey hard structural constraints: a given edge joins at most

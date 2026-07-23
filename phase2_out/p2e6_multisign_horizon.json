@@ -1,0 +1,1674 @@
+{
+  "probe": "P2-E6 multi-sign candidate-set horizon",
+  "probe_label": "PROBE — not for citation",
+  "evidence_policy": "catalog_assisted",
+  "target_split": "dev with five composition-disjoint calibration folds",
+  "test_side_accessed": false,
+  "restorations_included": false,
+  "gold_available_to_selector_or_ranker": false,
+  "model_scoring_performed": false,
+  "parameters": {
+    "seed": 20260723,
+    "evidence_policy": "catalog_assisted",
+    "folds": 5,
+    "anchor_lengths": [
+      1,
+      2,
+      3
+    ],
+    "mask_lengths": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "maximum_witness_middle_length": 12,
+    "nominal_display_depth": 5,
+    "tie_policy": "include every alternative tied at the nominal depth boundary",
+    "packets_per_mask_outcome": 1,
+    "maximum_packet_alternatives": 12,
+    "candidate_set_calibration_estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+    "confidence_interval": "95% Wilson score interval",
+    "time_budget_hours": 4
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "evaluation_cth": [
+        233,
+        627,
+        727,
+        742
+      ],
+      "groups": {
+        "2": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 42762,
+            "attested_included_contexts": 12176,
+            "candidate_set_calibration_rate": 0.284739,
+            "wilson_95": [
+              0.280481,
+              0.289035
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 6980,
+            "attested_included_contexts": 4019,
+            "candidate_set_calibration_rate": 0.575788,
+            "wilson_95": [
+              0.564155,
+              0.587337
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 2802,
+            "attested_included_contexts": 2073,
+            "candidate_set_calibration_rate": 0.739829,
+            "wilson_95": [
+              0.723264,
+              0.755737
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "3": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 36909,
+            "attested_included_contexts": 6685,
+            "candidate_set_calibration_rate": 0.181121,
+            "wilson_95": [
+              0.177225,
+              0.185083
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 5175,
+            "attested_included_contexts": 2281,
+            "candidate_set_calibration_rate": 0.440773,
+            "wilson_95": [
+              0.427295,
+              0.454339
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1931,
+            "attested_included_contexts": 1209,
+            "candidate_set_calibration_rate": 0.6261,
+            "wilson_95": [
+              0.60429,
+              0.64741
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "4": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 31833,
+            "attested_included_contexts": 3735,
+            "candidate_set_calibration_rate": 0.117331,
+            "wilson_95": [
+              0.113842,
+              0.120913
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3906,
+            "attested_included_contexts": 1315,
+            "candidate_set_calibration_rate": 0.336662,
+            "wilson_95": [
+              0.322009,
+              0.351636
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1337,
+            "attested_included_contexts": 717,
+            "candidate_set_calibration_rate": 0.536275,
+            "wilson_95": [
+              0.509479,
+              0.562864
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "5": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 26920,
+            "attested_included_contexts": 2115,
+            "candidate_set_calibration_rate": 0.078566,
+            "wilson_95": [
+              0.075412,
+              0.081841
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3012,
+            "attested_included_contexts": 754,
+            "candidate_set_calibration_rate": 0.250332,
+            "wilson_95": [
+              0.235186,
+              0.266114
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 940,
+            "attested_included_contexts": 432,
+            "candidate_set_calibration_rate": 0.459574,
+            "wilson_95": [
+              0.427945,
+              0.491533
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "evaluation_cth": [
+        44,
+        168,
+        407,
+        442,
+        543,
+        576,
+        777
+      ],
+      "groups": {
+        "2": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 43999,
+            "attested_included_contexts": 15557,
+            "candidate_set_calibration_rate": 0.353576,
+            "wilson_95": [
+              0.349122,
+              0.358056
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 8465,
+            "attested_included_contexts": 5405,
+            "candidate_set_calibration_rate": 0.638512,
+            "wilson_95": [
+              0.628216,
+              0.648681
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3446,
+            "attested_included_contexts": 2626,
+            "candidate_set_calibration_rate": 0.762043,
+            "wilson_95": [
+              0.747538,
+              0.775964
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "3": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 37218,
+            "attested_included_contexts": 8615,
+            "candidate_set_calibration_rate": 0.231474,
+            "wilson_95": [
+              0.227217,
+              0.235787
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 6023,
+            "attested_included_contexts": 3086,
+            "candidate_set_calibration_rate": 0.512369,
+            "wilson_95": [
+              0.499742,
+              0.524981
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 2266,
+            "attested_included_contexts": 1482,
+            "candidate_set_calibration_rate": 0.654016,
+            "wilson_95": [
+              0.634184,
+              0.673326
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "4": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 31178,
+            "attested_included_contexts": 4849,
+            "candidate_set_calibration_rate": 0.155526,
+            "wilson_95": [
+              0.151546,
+              0.159591
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 4384,
+            "attested_included_contexts": 1762,
+            "candidate_set_calibration_rate": 0.401916,
+            "wilson_95": [
+              0.387495,
+              0.416509
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1476,
+            "attested_included_contexts": 834,
+            "candidate_set_calibration_rate": 0.565041,
+            "wilson_95": [
+              0.539613,
+              0.590131
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "5": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 25576,
+            "attested_included_contexts": 2788,
+            "candidate_set_calibration_rate": 0.109008,
+            "wilson_95": [
+              0.105248,
+              0.112887
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3128,
+            "attested_included_contexts": 977,
+            "candidate_set_calibration_rate": 0.31234,
+            "wilson_95": [
+              0.296338,
+              0.328803
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1015,
+            "attested_included_contexts": 489,
+            "candidate_set_calibration_rate": 0.481773,
+            "wilson_95": [
+              0.451161,
+              0.512524
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "evaluation_cth": [
+        40,
+        84,
+        133,
+        387,
+        395,
+        549,
+        630,
+        716,
+        812,
+        821
+      ],
+      "groups": {
+        "2": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 46005,
+            "attested_included_contexts": 15446,
+            "candidate_set_calibration_rate": 0.335746,
+            "wilson_95": [
+              0.331445,
+              0.340075
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 9329,
+            "attested_included_contexts": 5622,
+            "candidate_set_calibration_rate": 0.602637,
+            "wilson_95": [
+              0.592667,
+              0.612523
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3732,
+            "attested_included_contexts": 2833,
+            "candidate_set_calibration_rate": 0.75911,
+            "wilson_95": [
+              0.745129,
+              0.772559
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "3": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 39579,
+            "attested_included_contexts": 8676,
+            "candidate_set_calibration_rate": 0.219207,
+            "wilson_95": [
+              0.215159,
+              0.22331
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 6834,
+            "attested_included_contexts": 3232,
+            "candidate_set_calibration_rate": 0.472929,
+            "wilson_95": [
+              0.461111,
+              0.484778
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 2480,
+            "attested_included_contexts": 1598,
+            "candidate_set_calibration_rate": 0.644355,
+            "wilson_95": [
+              0.625304,
+              0.662959
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "4": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 33771,
+            "attested_included_contexts": 4916,
+            "candidate_set_calibration_rate": 0.145569,
+            "wilson_95": [
+              0.141848,
+              0.14937
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 5087,
+            "attested_included_contexts": 1871,
+            "candidate_set_calibration_rate": 0.3678,
+            "wilson_95": [
+              0.354654,
+              0.381146
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1650,
+            "attested_included_contexts": 903,
+            "candidate_set_calibration_rate": 0.547273,
+            "wilson_95": [
+              0.523173,
+              0.571153
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "5": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 28326,
+            "attested_included_contexts": 2846,
+            "candidate_set_calibration_rate": 0.100473,
+            "wilson_95": [
+              0.097026,
+              0.104028
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3788,
+            "attested_included_contexts": 1046,
+            "candidate_set_calibration_rate": 0.276135,
+            "wilson_95": [
+              0.26213,
+              0.290594
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1139,
+            "attested_included_contexts": 518,
+            "candidate_set_calibration_rate": 0.454785,
+            "wilson_95": [
+              0.426067,
+              0.483807
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "evaluation_cth": [
+        89,
+        122,
+        158,
+        348,
+        375,
+        540,
+        616,
+        634,
+        667,
+        762
+      ],
+      "groups": {
+        "2": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 45059,
+            "attested_included_contexts": 14151,
+            "candidate_set_calibration_rate": 0.314055,
+            "wilson_95": [
+              0.309785,
+              0.318356
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 8578,
+            "attested_included_contexts": 4940,
+            "candidate_set_calibration_rate": 0.575892,
+            "wilson_95": [
+              0.565402,
+              0.586314
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3374,
+            "attested_included_contexts": 2488,
+            "candidate_set_calibration_rate": 0.737404,
+            "wilson_95": [
+              0.722292,
+              0.751976
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "3": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 38997,
+            "attested_included_contexts": 7667,
+            "candidate_set_calibration_rate": 0.196605,
+            "wilson_95": [
+              0.19269,
+              0.200579
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 6330,
+            "attested_included_contexts": 2794,
+            "candidate_set_calibration_rate": 0.44139,
+            "wilson_95": [
+              0.429197,
+              0.453654
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 2310,
+            "attested_included_contexts": 1424,
+            "candidate_set_calibration_rate": 0.61645,
+            "wilson_95": [
+              0.596443,
+              0.63607
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "4": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 33446,
+            "attested_included_contexts": 4251,
+            "candidate_set_calibration_rate": 0.1271,
+            "wilson_95": [
+              0.123573,
+              0.130713
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 4807,
+            "attested_included_contexts": 1625,
+            "candidate_set_calibration_rate": 0.338049,
+            "wilson_95": [
+              0.32481,
+              0.351546
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1556,
+            "attested_included_contexts": 807,
+            "candidate_set_calibration_rate": 0.518638,
+            "wilson_95": [
+              0.493796,
+              0.543387
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "5": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 28144,
+            "attested_included_contexts": 2420,
+            "candidate_set_calibration_rate": 0.085986,
+            "wilson_95": [
+              0.082767,
+              0.089318
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3672,
+            "attested_included_contexts": 912,
+            "candidate_set_calibration_rate": 0.248366,
+            "wilson_95": [
+              0.234659,
+              0.262599
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1082,
+            "attested_included_contexts": 479,
+            "candidate_set_calibration_rate": 0.442699,
+            "wilson_95": [
+              0.413357,
+              0.472446
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "evaluation_cth": [
+        63,
+        285,
+        312,
+        430,
+        492,
+        546,
+        569,
+        633,
+        682,
+        773,
+        782
+      ],
+      "groups": {
+        "2": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 47171,
+            "attested_included_contexts": 15082,
+            "candidate_set_calibration_rate": 0.31973,
+            "wilson_95": [
+              0.315537,
+              0.323954
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 8940,
+            "attested_included_contexts": 5126,
+            "candidate_set_calibration_rate": 0.573378,
+            "wilson_95": [
+              0.563096,
+              0.583597
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3090,
+            "attested_included_contexts": 2204,
+            "candidate_set_calibration_rate": 0.713269,
+            "wilson_95": [
+              0.697066,
+              0.728941
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "3": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 40417,
+            "attested_included_contexts": 8109,
+            "candidate_set_calibration_rate": 0.200633,
+            "wilson_95": [
+              0.196758,
+              0.204566
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 6490,
+            "attested_included_contexts": 2839,
+            "candidate_set_calibration_rate": 0.437442,
+            "wilson_95": [
+              0.425414,
+              0.449545
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 2021,
+            "attested_included_contexts": 1151,
+            "candidate_set_calibration_rate": 0.56952,
+            "wilson_95": [
+              0.547821,
+              0.590955
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "4": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 34380,
+            "attested_included_contexts": 4437,
+            "candidate_set_calibration_rate": 0.129058,
+            "wilson_95": [
+              0.125555,
+              0.132643
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 4824,
+            "attested_included_contexts": 1559,
+            "candidate_set_calibration_rate": 0.323176,
+            "wilson_95": [
+              0.310123,
+              0.33651
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 1309,
+            "attested_included_contexts": 591,
+            "candidate_set_calibration_rate": 0.45149,
+            "wilson_95": [
+              0.424712,
+              0.478551
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        },
+        "5": {
+          "1": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 28722,
+            "attested_included_contexts": 2463,
+            "candidate_set_calibration_rate": 0.085753,
+            "wilson_95": [
+              0.08257,
+              0.089047
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "2": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 3588,
+            "attested_included_contexts": 815,
+            "candidate_set_calibration_rate": 0.227146,
+            "wilson_95": [
+              0.213733,
+              0.241143
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          },
+          "3": {
+            "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+            "calibration_presented_contexts": 900,
+            "attested_included_contexts": 302,
+            "candidate_set_calibration_rate": 0.335556,
+            "wilson_95": [
+              0.305463,
+              0.367046
+            ],
+            "set_level_group_estimate_not_instance_truth_probability": true,
+            "individual_option_probability_available": false
+          }
+        }
+      }
+    }
+  ],
+  "tracers": {
+    "base": {
+      "command": "D:\\Documents\\Cuneiform\\.venv\\Scripts\\python.exe scripts/00_tracers.py",
+      "return_code": 0,
+      "blocking_failures": 0,
+      "stdout": "=== TRACER BLOCK (scripts/00_tracers.py, per P5C_AMENDMENT_2.md H4) ===\n  [PASS] T1 (seam, post-fix encode_fragment_window): 8/8 canaries changed score under scramble (need >=4)\n  [PASS] T1 (BM25, token-identity corruption): 8/8 canaries changed score under identity corruption (need >=4)\n  [PASS] T2 (BM25 self-similarity; no embedding scorer active in the pipeline post-Branch-R, so BM25 is the only content-consuming similarity scorer to check): 26/26 fragments scored self > random\n  [PASS] T3 (easy-canary ranking, 50-candidate toy universe, BM25): 5/5 easy joins' true partner ranked top-10\n  [DIAGNOSTIC FAIL (non-blocking)] T4 (D18 context sanity, easy joins, query_leads/offset=0): 1/5 canary joins: lift(with context) > lift(null) (need >=4/5). NOTE: cross-checked against the seam-score argmax (direction, offset) placement (matching how D18 actually couples to D17 in production) -- result is consistent, 2/5 positive, not a direction-selection artifact of this simplified single-config test. Genuine finding, carried into H5's sighted re-score, not silently resolved here.\n  [PASS] T5 (determinism smoke, 20 fixed pairs scored twice): 20 pairs scored twice, bit-identical=True\n=== blocking failures: 0; diagnostic failures remain visible ===\nSTDERR:\nD:\\Documents\\Cuneiform\\.venv\\Lib\\site-packages\\torch\\nn\\modules\\transformer.py:385: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  warnings.warn("
+    },
+    "p2e_t1": {
+      "synthetic_canary_pass": true,
+      "real_canaries": 12,
+      "real_canaries_changed_under_order_scramble": 12,
+      "real_canaries_required_to_change": 4,
+      "real_canary_pass": true,
+      "blocking_failures": 0
+    },
+    "p2e2_t1": {
+      "synthetic_evidence_rank_pass": true,
+      "candidate_order_invariance_pass": true,
+      "real_canaries": 12,
+      "real_canaries_changed_under_token_order_scramble": 12,
+      "real_canaries_required_to_change": 4,
+      "real_canary_pass": true,
+      "blocking_failures": 0
+    },
+    "adaptive_policy_t1": {
+      "tie_boundary_preserved_without_lexical_exclusion": true,
+      "blocking_failures": 0
+    }
+  },
+  "horizon": {
+    "2": {
+      "micro": {
+        "eligible_contexts": 100265,
+        "presented_contexts": 70933,
+        "abstained_contexts": 29332,
+        "presentation_coverage_percent": 70.75,
+        "top1_attested_agreement_contexts": 17453,
+        "top1_attested_agreement_percent": 24.6,
+        "displayed_set_attested_inclusion_contexts": 27437,
+        "displayed_set_attested_inclusion_percent_of_presented": 38.68,
+        "displayed_set_attested_inclusion_wilson_95": [
+          0.383224,
+          0.390392
+        ],
+        "effective_attested_recoverability_percent_of_eligible": 27.36,
+        "effective_attested_recoverability_wilson_95": [
+          0.270894,
+          0.276413
+        ],
+        "displayed_set_size_when_presented": {
+          "mean": 6.705,
+          "median": 3,
+          "p90": 16,
+          "maximum": 214
+        },
+        "contexts_expanded_beyond_nominal_depth_for_tie": 24031,
+        "selected_anchor_length_counts": {
+          "1": 56249,
+          "2": 10573,
+          "3": 4111,
+          "abstain": 29332
+        }
+      },
+      "composition_macro": {
+        "eligible_compositions": 42,
+        "compositions_with_any_presented_context": 42,
+        "effective_recoverability_percent": {
+          "mean": 16.18,
+          "median": 14.48,
+          "minimum": 0.0,
+          "maximum": 47.63
+        },
+        "conditional_set_inclusion_percent": {
+          "mean": 31.14,
+          "median": 29.95,
+          "minimum": 0.0,
+          "maximum": 100.0
+        }
+      }
+    },
+    "3": {
+      "micro": {
+        "eligible_contexts": 85587,
+        "presented_contexts": 58745,
+        "abstained_contexts": 26842,
+        "presentation_coverage_percent": 68.64,
+        "top1_attested_agreement_contexts": 9224,
+        "top1_attested_agreement_percent": 15.7,
+        "displayed_set_attested_inclusion_contexts": 15212,
+        "displayed_set_attested_inclusion_percent_of_presented": 25.89,
+        "displayed_set_attested_inclusion_wilson_95": [
+          0.255423,
+          0.262508
+        ],
+        "effective_attested_recoverability_percent_of_eligible": 17.77,
+        "effective_attested_recoverability_wilson_95": [
+          0.175191,
+          0.180313
+        ],
+        "displayed_set_size_when_presented": {
+          "mean": 7.146,
+          "median": 3,
+          "p90": 18,
+          "maximum": 214
+        },
+        "contexts_expanded_beyond_nominal_depth_for_tie": 20981,
+        "selected_anchor_length_counts": {
+          "1": 48280,
+          "2": 7713,
+          "3": 2752,
+          "abstain": 26842
+        }
+      },
+      "composition_macro": {
+        "eligible_compositions": 42,
+        "compositions_with_any_presented_context": 42,
+        "effective_recoverability_percent": {
+          "mean": 10.87,
+          "median": 9.42,
+          "minimum": 0.0,
+          "maximum": 35.41
+        },
+        "conditional_set_inclusion_percent": {
+          "mean": 21.46,
+          "median": 18.16,
+          "minimum": 0.0,
+          "maximum": 100.0
+        }
+      }
+    },
+    "4": {
+      "micro": {
+        "eligible_contexts": 72494,
+        "presented_contexts": 48736,
+        "abstained_contexts": 23758,
+        "presentation_coverage_percent": 67.23,
+        "top1_attested_agreement_contexts": 4887,
+        "top1_attested_agreement_percent": 10.03,
+        "displayed_set_attested_inclusion_contexts": 8543,
+        "displayed_set_attested_inclusion_percent_of_presented": 17.53,
+        "displayed_set_attested_inclusion_wilson_95": [
+          0.171941,
+          0.178693
+        ],
+        "effective_attested_recoverability_percent_of_eligible": 11.78,
+        "effective_attested_recoverability_wilson_95": [
+          0.115517,
+          0.120212
+        ],
+        "displayed_set_size_when_presented": {
+          "mean": 7.522,
+          "median": 4.0,
+          "p90": 19,
+          "maximum": 237
+        },
+        "contexts_expanded_beyond_nominal_depth_for_tie": 18176,
+        "selected_anchor_length_counts": {
+          "1": 41152,
+          "2": 5752,
+          "3": 1832,
+          "abstain": 23758
+        }
+      },
+      "composition_macro": {
+        "eligible_compositions": 42,
+        "compositions_with_any_presented_context": 39,
+        "effective_recoverability_percent": {
+          "mean": 7.5,
+          "median": 4.75,
+          "minimum": 0.0,
+          "maximum": 28.78
+        },
+        "conditional_set_inclusion_percent": {
+          "mean": 14.68,
+          "median": 10.58,
+          "minimum": 0.0,
+          "maximum": 51.69
+        }
+      }
+    },
+    "5": {
+      "micro": {
+        "eligible_contexts": 60887,
+        "presented_contexts": 39988,
+        "abstained_contexts": 20899,
+        "presentation_coverage_percent": 65.68,
+        "top1_attested_agreement_contexts": 2652,
+        "top1_attested_agreement_percent": 6.63,
+        "displayed_set_attested_inclusion_contexts": 4839,
+        "displayed_set_attested_inclusion_percent_of_presented": 12.1,
+        "displayed_set_attested_inclusion_wilson_95": [
+          0.117851,
+          0.124244
+        ],
+        "effective_attested_recoverability_percent_of_eligible": 7.95,
+        "effective_attested_recoverability_wilson_95": [
+          0.077353,
+          0.08165
+        ],
+        "displayed_set_size_when_presented": {
+          "mean": 7.749,
+          "median": 4.0,
+          "p90": 19,
+          "maximum": 214
+        },
+        "contexts_expanded_beyond_nominal_depth_for_tie": 15460,
+        "selected_anchor_length_counts": {
+          "1": 34422,
+          "2": 4297,
+          "3": 1269,
+          "abstain": 20899
+        }
+      },
+      "composition_macro": {
+        "eligible_compositions": 42,
+        "compositions_with_any_presented_context": 40,
+        "effective_recoverability_percent": {
+          "mean": 5.32,
+          "median": 2.86,
+          "minimum": 0.0,
+          "maximum": 25.6
+        },
+        "conditional_set_inclusion_percent": {
+          "mean": 10.18,
+          "median": 6.23,
+          "minimum": 0.0,
+          "maximum": 48.57
+        }
+      }
+    }
+  },
+  "calibration_transfer": {
+    "weighted_mean_absolute_group_gap": 0.08171,
+    "presented_contexts_with_calibration": 218402,
+    "groups": [
+      {
+        "fold": 0,
+        "mask_length": 2,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 13487,
+        "predicted_set_inclusion_rate": 0.284739,
+        "observed_set_inclusion_rate": 0.43946,
+        "absolute_gap": 0.154721
+      },
+      {
+        "fold": 0,
+        "mask_length": 2,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 3593,
+        "predicted_set_inclusion_rate": 0.575788,
+        "observed_set_inclusion_rate": 0.628723,
+        "absolute_gap": 0.052935
+      },
+      {
+        "fold": 0,
+        "mask_length": 2,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 1309,
+        "predicted_set_inclusion_rate": 0.739829,
+        "observed_set_inclusion_rate": 0.750955,
+        "absolute_gap": 0.011126
+      },
+      {
+        "fold": 0,
+        "mask_length": 3,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 11371,
+        "predicted_set_inclusion_rate": 0.181121,
+        "observed_set_inclusion_rate": 0.286079,
+        "absolute_gap": 0.104958
+      },
+      {
+        "fold": 0,
+        "mask_length": 3,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 2538,
+        "predicted_set_inclusion_rate": 0.440773,
+        "observed_set_inclusion_rate": 0.503152,
+        "absolute_gap": 0.062379
+      },
+      {
+        "fold": 0,
+        "mask_length": 3,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 821,
+        "predicted_set_inclusion_rate": 0.6261,
+        "observed_set_inclusion_rate": 0.61754,
+        "absolute_gap": 0.00856
+      },
+      {
+        "fold": 0,
+        "mask_length": 4,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 9319,
+        "predicted_set_inclusion_rate": 0.117331,
+        "observed_set_inclusion_rate": 0.194441,
+        "absolute_gap": 0.07711
+      },
+      {
+        "fold": 0,
+        "mask_length": 4,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1846,
+        "predicted_set_inclusion_rate": 0.336662,
+        "observed_set_inclusion_rate": 0.388949,
+        "absolute_gap": 0.052287
+      },
+      {
+        "fold": 0,
+        "mask_length": 4,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 495,
+        "predicted_set_inclusion_rate": 0.536275,
+        "observed_set_inclusion_rate": 0.49697,
+        "absolute_gap": 0.039305
+      },
+      {
+        "fold": 0,
+        "mask_length": 5,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 7502,
+        "predicted_set_inclusion_rate": 0.078566,
+        "observed_set_inclusion_rate": 0.13903,
+        "absolute_gap": 0.060464
+      },
+      {
+        "fold": 0,
+        "mask_length": 5,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1285,
+        "predicted_set_inclusion_rate": 0.250332,
+        "observed_set_inclusion_rate": 0.289494,
+        "absolute_gap": 0.039162
+      },
+      {
+        "fold": 0,
+        "mask_length": 5,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 329,
+        "predicted_set_inclusion_rate": 0.459574,
+        "observed_set_inclusion_rate": 0.37386,
+        "absolute_gap": 0.085714
+      },
+      {
+        "fold": 1,
+        "mask_length": 2,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 12250,
+        "predicted_set_inclusion_rate": 0.353576,
+        "observed_set_inclusion_rate": 0.207837,
+        "absolute_gap": 0.145739
+      },
+      {
+        "fold": 1,
+        "mask_length": 2,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 2108,
+        "predicted_set_inclusion_rate": 0.638512,
+        "observed_set_inclusion_rate": 0.414137,
+        "absolute_gap": 0.224375
+      },
+      {
+        "fold": 1,
+        "mask_length": 2,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 665,
+        "predicted_set_inclusion_rate": 0.762043,
+        "observed_set_inclusion_rate": 0.646617,
+        "absolute_gap": 0.115426
+      },
+      {
+        "fold": 1,
+        "mask_length": 3,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 11062,
+        "predicted_set_inclusion_rate": 0.231474,
+        "observed_set_inclusion_rate": 0.119599,
+        "absolute_gap": 0.111875
+      },
+      {
+        "fold": 1,
+        "mask_length": 3,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1690,
+        "predicted_set_inclusion_rate": 0.512369,
+        "observed_set_inclusion_rate": 0.27929,
+        "absolute_gap": 0.233079
+      },
+      {
+        "fold": 1,
+        "mask_length": 3,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 486,
+        "predicted_set_inclusion_rate": 0.654016,
+        "observed_set_inclusion_rate": 0.481481,
+        "absolute_gap": 0.172535
+      },
+      {
+        "fold": 1,
+        "mask_length": 4,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 9974,
+        "predicted_set_inclusion_rate": 0.155526,
+        "observed_set_inclusion_rate": 0.069982,
+        "absolute_gap": 0.085544
+      },
+      {
+        "fold": 1,
+        "mask_length": 4,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1368,
+        "predicted_set_inclusion_rate": 0.401916,
+        "observed_set_inclusion_rate": 0.198099,
+        "absolute_gap": 0.203817
+      },
+      {
+        "fold": 1,
+        "mask_length": 4,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 356,
+        "predicted_set_inclusion_rate": 0.565041,
+        "observed_set_inclusion_rate": 0.36236,
+        "absolute_gap": 0.202681
+      },
+      {
+        "fold": 1,
+        "mask_length": 5,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 8846,
+        "predicted_set_inclusion_rate": 0.109008,
+        "observed_set_inclusion_rate": 0.041827,
+        "absolute_gap": 0.067181
+      },
+      {
+        "fold": 1,
+        "mask_length": 5,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1169,
+        "predicted_set_inclusion_rate": 0.31234,
+        "observed_set_inclusion_rate": 0.127459,
+        "absolute_gap": 0.184881
+      },
+      {
+        "fold": 1,
+        "mask_length": 5,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 254,
+        "predicted_set_inclusion_rate": 0.481773,
+        "observed_set_inclusion_rate": 0.259843,
+        "absolute_gap": 0.22193
+      },
+      {
+        "fold": 2,
+        "mask_length": 2,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 10244,
+        "predicted_set_inclusion_rate": 0.335746,
+        "observed_set_inclusion_rate": 0.259371,
+        "absolute_gap": 0.076375
+      },
+      {
+        "fold": 2,
+        "mask_length": 2,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1244,
+        "predicted_set_inclusion_rate": 0.602637,
+        "observed_set_inclusion_rate": 0.527331,
+        "absolute_gap": 0.075306
+      },
+      {
+        "fold": 2,
+        "mask_length": 2,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 379,
+        "predicted_set_inclusion_rate": 0.75911,
+        "observed_set_inclusion_rate": 0.588391,
+        "absolute_gap": 0.170719
+      },
+      {
+        "fold": 2,
+        "mask_length": 3,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 8701,
+        "predicted_set_inclusion_rate": 0.219207,
+        "observed_set_inclusion_rate": 0.145041,
+        "absolute_gap": 0.074166
+      },
+      {
+        "fold": 2,
+        "mask_length": 3,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 879,
+        "predicted_set_inclusion_rate": 0.472929,
+        "observed_set_inclusion_rate": 0.370876,
+        "absolute_gap": 0.102053
+      },
+      {
+        "fold": 2,
+        "mask_length": 3,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 272,
+        "predicted_set_inclusion_rate": 0.644355,
+        "observed_set_inclusion_rate": 0.433824,
+        "absolute_gap": 0.210531
+      },
+      {
+        "fold": 2,
+        "mask_length": 4,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 7381,
+        "predicted_set_inclusion_rate": 0.145569,
+        "observed_set_inclusion_rate": 0.08549,
+        "absolute_gap": 0.060079
+      },
+      {
+        "fold": 2,
+        "mask_length": 4,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 665,
+        "predicted_set_inclusion_rate": 0.3678,
+        "observed_set_inclusion_rate": 0.243609,
+        "absolute_gap": 0.124191
+      },
+      {
+        "fold": 2,
+        "mask_length": 4,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 182,
+        "predicted_set_inclusion_rate": 0.547273,
+        "observed_set_inclusion_rate": 0.32967,
+        "absolute_gap": 0.217603
+      },
+      {
+        "fold": 2,
+        "mask_length": 5,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 6096,
+        "predicted_set_inclusion_rate": 0.100473,
+        "observed_set_inclusion_rate": 0.051181,
+        "absolute_gap": 0.049292
+      },
+      {
+        "fold": 2,
+        "mask_length": 5,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 509,
+        "predicted_set_inclusion_rate": 0.276135,
+        "observed_set_inclusion_rate": 0.157171,
+        "absolute_gap": 0.118964
+      },
+      {
+        "fold": 2,
+        "mask_length": 5,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 130,
+        "predicted_set_inclusion_rate": 0.454785,
+        "observed_set_inclusion_rate": 0.284615,
+        "absolute_gap": 0.17017
+      },
+      {
+        "fold": 3,
+        "mask_length": 2,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 11190,
+        "predicted_set_inclusion_rate": 0.314055,
+        "observed_set_inclusion_rate": 0.353172,
+        "absolute_gap": 0.039117
+      },
+      {
+        "fold": 3,
+        "mask_length": 2,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1995,
+        "predicted_set_inclusion_rate": 0.575892,
+        "observed_set_inclusion_rate": 0.670677,
+        "absolute_gap": 0.094785
+      },
+      {
+        "fold": 3,
+        "mask_length": 2,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 737,
+        "predicted_set_inclusion_rate": 0.737404,
+        "observed_set_inclusion_rate": 0.770692,
+        "absolute_gap": 0.033288
+      },
+      {
+        "fold": 3,
+        "mask_length": 3,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 9283,
+        "predicted_set_inclusion_rate": 0.196605,
+        "observed_set_inclusion_rate": 0.244641,
+        "absolute_gap": 0.048036
+      },
+      {
+        "fold": 3,
+        "mask_length": 3,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1383,
+        "predicted_set_inclusion_rate": 0.44139,
+        "observed_set_inclusion_rate": 0.552422,
+        "absolute_gap": 0.111032
+      },
+      {
+        "fold": 3,
+        "mask_length": 3,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 442,
+        "predicted_set_inclusion_rate": 0.61645,
+        "observed_set_inclusion_rate": 0.660633,
+        "absolute_gap": 0.044183
+      },
+      {
+        "fold": 3,
+        "mask_length": 4,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 7706,
+        "predicted_set_inclusion_rate": 0.1271,
+        "observed_set_inclusion_rate": 0.168181,
+        "absolute_gap": 0.041081
+      },
+      {
+        "fold": 3,
+        "mask_length": 4,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 945,
+        "predicted_set_inclusion_rate": 0.338049,
+        "observed_set_inclusion_rate": 0.431746,
+        "absolute_gap": 0.093697
+      },
+      {
+        "fold": 3,
+        "mask_length": 4,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 276,
+        "predicted_set_inclusion_rate": 0.518638,
+        "observed_set_inclusion_rate": 0.565217,
+        "absolute_gap": 0.046579
+      },
+      {
+        "fold": 3,
+        "mask_length": 5,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 6278,
+        "predicted_set_inclusion_rate": 0.085986,
+        "observed_set_inclusion_rate": 0.117553,
+        "absolute_gap": 0.031567
+      },
+      {
+        "fold": 3,
+        "mask_length": 5,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 625,
+        "predicted_set_inclusion_rate": 0.248366,
+        "observed_set_inclusion_rate": 0.3424,
+        "absolute_gap": 0.094034
+      },
+      {
+        "fold": 3,
+        "mask_length": 5,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 187,
+        "predicted_set_inclusion_rate": 0.442699,
+        "observed_set_inclusion_rate": 0.406417,
+        "absolute_gap": 0.036282
+      },
+      {
+        "fold": 4,
+        "mask_length": 2,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 9078,
+        "predicted_set_inclusion_rate": 0.31973,
+        "observed_set_inclusion_rate": 0.332783,
+        "absolute_gap": 0.013053
+      },
+      {
+        "fold": 4,
+        "mask_length": 2,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1633,
+        "predicted_set_inclusion_rate": 0.573378,
+        "observed_set_inclusion_rate": 0.70545,
+        "absolute_gap": 0.132072
+      },
+      {
+        "fold": 4,
+        "mask_length": 2,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 1021,
+        "predicted_set_inclusion_rate": 0.713269,
+        "observed_set_inclusion_rate": 0.834476,
+        "absolute_gap": 0.121207
+      },
+      {
+        "fold": 4,
+        "mask_length": 3,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 7863,
+        "predicted_set_inclusion_rate": 0.200633,
+        "observed_set_inclusion_rate": 0.232608,
+        "absolute_gap": 0.031975
+      },
+      {
+        "fold": 4,
+        "mask_length": 3,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 1223,
+        "predicted_set_inclusion_rate": 0.437442,
+        "observed_set_inclusion_rate": 0.587899,
+        "absolute_gap": 0.150457
+      },
+      {
+        "fold": 4,
+        "mask_length": 3,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 731,
+        "predicted_set_inclusion_rate": 0.56952,
+        "observed_set_inclusion_rate": 0.772914,
+        "absolute_gap": 0.203394
+      },
+      {
+        "fold": 4,
+        "mask_length": 4,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 6772,
+        "predicted_set_inclusion_rate": 0.129058,
+        "observed_set_inclusion_rate": 0.16391,
+        "absolute_gap": 0.034852
+      },
+      {
+        "fold": 4,
+        "mask_length": 4,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 928,
+        "predicted_set_inclusion_rate": 0.323176,
+        "observed_set_inclusion_rate": 0.510776,
+        "absolute_gap": 0.1876
+      },
+      {
+        "fold": 4,
+        "mask_length": 4,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 523,
+        "predicted_set_inclusion_rate": 0.45149,
+        "observed_set_inclusion_rate": 0.711281,
+        "absolute_gap": 0.259791
+      },
+      {
+        "fold": 4,
+        "mask_length": 5,
+        "adaptive_anchor_length": 1,
+        "evaluation_presented_contexts": 5700,
+        "predicted_set_inclusion_rate": 0.085753,
+        "observed_set_inclusion_rate": 0.12193,
+        "absolute_gap": 0.036177
+      },
+      {
+        "fold": 4,
+        "mask_length": 5,
+        "adaptive_anchor_length": 2,
+        "evaluation_presented_contexts": 709,
+        "predicted_set_inclusion_rate": 0.227146,
+        "observed_set_inclusion_rate": 0.438646,
+        "absolute_gap": 0.2115
+      },
+      {
+        "fold": 4,
+        "mask_length": 5,
+        "adaptive_anchor_length": 3,
+        "evaluation_presented_contexts": 369,
+        "predicted_set_inclusion_rate": 0.335556,
+        "observed_set_inclusion_rate": 0.685637,
+        "absolute_gap": 0.350081
+      }
+    ]
+  },
+  "evidence_packet_count": 12,
+  "macro_finding": "Composition-macro effective recovery was 16.18% mean / 14.48% median for two signs and 5.32% mean / 2.86% median for five signs; pooled micro rates therefore overstate the typical composition.",
+  "interpretation": "Two-sign sets retained the attested span in 27.36% of eligible contexts; by five signs this fell to 7.95%. Keeping evidence ties complete expanded nominal top-five sets in 33.9% to 38.7% of presented contexts, with p90 up to 19 and a maximum of 237 options. The witness layer is therefore suitable only as abstention-first, set-valued evidence for an expert: do not auto-complete a lacuna, do not assign per-option probabilities, and collapse large equal-support tails in the UI without hiding that they exist.",
+  "promotion_decision": {
+    "automatic_lacuna_completion": "DO_NOT_PROMOTE",
+    "expert_candidate_evidence": "RETAIN_WITH_ABSTENTION",
+    "per_option_probability": "UNAVAILABLE",
+    "ui_requirement": "Preserve the complete equal-support set, but group or collapse large tied tails and retain an explicit other/unsupported path.",
+    "reason": "Effective recovery declines sharply with span length, composition-macro rates trail pooled micro rates, tie-complete sets can be large, and held-out-group calibration transfer is not stable enough for instance confidence."
+  },
+  "interpretation_limits": [
+    "Candidate-set calibration applies to a mask/anchor group, not to an individual option or genuine lacuna.",
+    "Witness-family support shares are not probabilities.",
+    "Agreement with intentionally masked attested text is not truth for a genuine lacuna.",
+    "Parallel witnesses can preserve legitimate variants or omissions."
+  ],
+  "input_hashes": {
+    "config": "d7b8e26e141b4e24ba3b07eadb78f7b80e4ceaac7631c8e484bcdb08da751f2a",
+    "evidence_registry": "34cd4c87b7581aadc55884d50504b636102cf5c43f1ff47a18d663265087cf78",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}

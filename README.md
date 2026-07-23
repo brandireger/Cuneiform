@@ -45,8 +45,18 @@ That residual probe is reported in
 Alignment recovered only 6/387 post-hoc absences at depth five; even an
 unimplementable residual-only oracle would add just 0.11 percentage points.
 The alignment code and evidence packets are retained as a negative result,
-but the scorer is not being promoted into the UI. The next research target is
-set-valued recoverability for two-to-five-sign spans.
+but the scorer is not being promoted into the UI.
+
+The multi-sign horizon is reported in
+[`reports/phase2_p2e6_multisign_horizon.md`](reports/phase2_p2e6_multisign_horizon.md).
+Tie-complete witness sets effectively recovered 27.36% of eligible two-sign
+contexts, declining to 7.95% for five signs; composition-macro rates were
+lower. Equal-evidence ties also expanded a nominal five-option set to as many
+as 237 alternatives, and composition-held-out set calibration transferred
+poorly. The layer is therefore retained only as abstention-first expert
+evidence—never automatic completion or per-option truth probability. The next
+target is an expert decision-interface contract and Phase 2 closeout that
+turns the recoverability map into a typed UI/API boundary.
 
 ## Read first
 
