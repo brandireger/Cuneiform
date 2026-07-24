@@ -111,6 +111,15 @@ full-corpus scale, with leakage-safe methodology?
   Before any migration, resolve identifiers and parser compatibility under
   `specs/CORPUS_EXPANSION_AUDIT.md`; see
   `reports/corpus_expansion_tlhdig_03_audit.md`.
+  The completed metadata-first follow-up reduced the 2,137 candidate-only
+  stems to 2,083 plausible additions after conservative identifier
+  reconciliation. Of those, 1,753 (84.16%) map to discovery bins and only 281
+  prospectively to train compositions. Candidate 0.3 also contains 90
+  duplicate identifiers spanning frozen split classes or an unknown CTH,
+  including 21 involving test. Direct replacement is therefore prohibited;
+  the next gate is a separate versioned ingestion prototype with canonical
+  identifier groups and checksum-guarded XML repairs. See
+  `reports/corpus_expansion_tlhdig_03_migration_design.md`.
 - **21,868** real XML documents after excluding zip artifacts (320
   macOS `__MACOSX/` + AppleDouble `._*` junk entries — exclude these
   in every script that reads the zip); 384,667 `<lb>` line elements.

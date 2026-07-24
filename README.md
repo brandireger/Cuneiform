@@ -28,8 +28,12 @@ The newer release contains a material filename-level candidate addition, but
 also more duplicate stems and 11 newly observed non-test XML parse failures.
 The resulting decision is to open an identifier-resolution and
 parser-compatibility pass—not to replace 0.2 or change the frozen splits.
-See
-[`reports/corpus_expansion_tlhdig_03_audit.md`](reports/corpus_expansion_tlhdig_03_audit.md).
+That follow-up found that 1,753 of 2,083 plausible additions (84.16%) sit in
+discovery bins, while only 281 map prospectively to train compositions.
+It also found 90 duplicate identifiers crossing split classes or an unknown
+CTH. See the
+[`initial audit`](reports/corpus_expansion_tlhdig_03_audit.md) and the
+[`migration-design findings`](reports/corpus_expansion_tlhdig_03_migration_design.md).
 
 The first Phase 2 recoverability map is now available in
 [`reports/phase2_p2e_witness_recoverability.md`](reports/phase2_p2e_witness_recoverability.md).
