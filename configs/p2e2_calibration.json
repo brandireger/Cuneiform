@@ -1,0 +1,34 @@
+{
+  "seed": 20260723,
+  "evidence_policy": "catalog_assisted",
+  "primary_cell": {
+    "anchor_length": 2,
+    "mask_length": 1
+  },
+  "cells": [
+    {"anchor_length": 1, "mask_length": 1},
+    {"anchor_length": 1, "mask_length": 2},
+    {"anchor_length": 1, "mask_length": 3},
+    {"anchor_length": 1, "mask_length": 5},
+    {"anchor_length": 2, "mask_length": 1},
+    {"anchor_length": 2, "mask_length": 2},
+    {"anchor_length": 2, "mask_length": 3},
+    {"anchor_length": 2, "mask_length": 5},
+    {"anchor_length": 3, "mask_length": 1},
+    {"anchor_length": 3, "mask_length": 2},
+    {"anchor_length": 3, "mask_length": 3},
+    {"anchor_length": 3, "mask_length": 5}
+  ],
+  "maximum_witness_middle_length": 12,
+  "calibration_targets": [0.7, 0.8, 0.9, 0.95],
+  "minimum_calibration_accepts": 50,
+  "rule_grid": {
+    "minimum_top_support_families": [1, 2, 3, 4],
+    "minimum_support_margin": [1, 2, 3],
+    "minimum_dominance": [0.0, 0.5, 0.67, 0.8, 1.0],
+    "maximum_alternatives": [1, 2, 4, 8, null]
+  },
+  "partition_method": "composition-disjoint greedy balance by primary-cell eligible span count",
+  "confidence_interval": "95% Wilson score interval",
+  "evidence_packet_samples_per_outcome": 3
+}

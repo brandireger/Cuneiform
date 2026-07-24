@@ -1,0 +1,120 @@
+{
+  "label": "PROBE — not for citation",
+  "target_split": "dev",
+  "time_budget_hours": 2,
+  "classification_contract": {
+    "direct_plus": "declared_adjacent=true and join_type=direct",
+    "indirect_parenthesized_plus": "declared_adjacent=true and join_type=indirect",
+    "line_cooccurrence_inferred": "declared_adjacent=false and join_type=inferred_from_shared_lines",
+    "unsupported_or_unknown": "all other field combinations",
+    "proposed_status_available": false,
+    "certainty_grade_available": false
+  },
+  "relation_level": {
+    "relation_rows": 184,
+    "mapped_pairs": 182,
+    "missing_fragment_mapping": 2,
+    "ambiguous_parent_rows_skipped": 1,
+    "basis_counts": {
+      "direct_plus": 104,
+      "indirect_parenthesized_plus": 17,
+      "line_cooccurrence_inferred": 60,
+      "unsupported_or_unknown": 1
+    },
+    "weaker_known_pairs": 77,
+    "weaker_known_pair_percent": 42.30769230769231
+  },
+  "query_level": {
+    "all_queries": 182,
+    "hard": {
+      "queries": 46,
+      "weaker_queries": 17,
+      "weaker_percent": 36.95652173913044
+    },
+    "nonhard": {
+      "queries": 136,
+      "weaker_queries": 76,
+      "weaker_percent": 55.88235294117647
+    },
+    "basis_family_counts": {
+      "all": {
+        "direct_plus_only": 89,
+        "indirect_parenthesized_plus_only": 19,
+        "mixed:direct_plus+indirect_parenthesized_plus": 3,
+        "mixed:direct_plus+indirect_parenthesized_plus+line_cooccurrence_inferred": 2,
+        "mixed:direct_plus+line_cooccurrence_inferred": 63,
+        "mixed:direct_plus+line_cooccurrence_inferred+unsupported_or_unknown": 1,
+        "mixed:indirect_parenthesized_plus+line_cooccurrence_inferred": 4,
+        "mixed:indirect_parenthesized_plus+line_cooccurrence_inferred+unsupported_or_unknown": 1
+      },
+      "hard": {
+        "direct_plus_only": 29,
+        "indirect_parenthesized_plus_only": 8,
+        "mixed:direct_plus+line_cooccurrence_inferred": 9
+      },
+      "nonhard": {
+        "direct_plus_only": 60,
+        "indirect_parenthesized_plus_only": 11,
+        "mixed:direct_plus+indirect_parenthesized_plus": 3,
+        "mixed:direct_plus+indirect_parenthesized_plus+line_cooccurrence_inferred": 2,
+        "mixed:direct_plus+line_cooccurrence_inferred": 54,
+        "mixed:direct_plus+line_cooccurrence_inferred+unsupported_or_unknown": 1,
+        "mixed:indirect_parenthesized_plus+line_cooccurrence_inferred": 4,
+        "mixed:indirect_parenthesized_plus+line_cooccurrence_inferred+unsupported_or_unknown": 1
+      }
+    },
+    "fisher_table": [
+      [
+        17,
+        29
+      ],
+      [
+        76,
+        60
+      ]
+    ],
+    "fisher_table_columns": [
+      "any_weaker_basis",
+      "direct_only"
+    ],
+    "fisher_exact_exploratory": {
+      "odds_ratio": 0.4627949183303085,
+      "p_two_sided": 0.028142985157548622,
+      "p_enrichment_greater": 0.9917895753343939,
+      "p_depletion_less": 0.01998511629381693
+    },
+    "dependence_warning": "Query fragments from the same composite parent are not independent; the Fisher result is exploratory."
+  },
+  "parent_level_robustness": {
+    "hard_parents": 26,
+    "hard_parents_with_weaker": 12,
+    "nonhard_parents": 33,
+    "nonhard_parents_with_weaker": 13,
+    "fisher_table": [
+      [
+        12,
+        14
+      ],
+      [
+        13,
+        20
+      ]
+    ],
+    "fisher_table_columns": [
+      "any_weaker_basis",
+      "direct_only"
+    ],
+    "fisher_exact_exploratory": {
+      "odds_ratio": 1.3186813186813187,
+      "p_two_sided": 0.7911025708999996,
+      "p_enrichment_greater": 0.39841967340153633,
+      "p_depletion_less": 0.784365577060964
+    }
+  },
+  "input_hashes": {
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "hard_set_json": "553db57c61c0411518270fc7cc573c0d11c3a6b5c8912ef539ea70213efcf2d8",
+    "join_pairs_jsonl": "52766f284dd61ee544b9db69fcd71df9f088d0124503c856b48a1418738f1180",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
+  }
+}

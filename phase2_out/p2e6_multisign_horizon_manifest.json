@@ -1,0 +1,52 @@
+{
+  "task": "duplicate_parallel_multisign_candidate_set_horizon",
+  "evidence_policy": "catalog_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "adaptive_anchor_length",
+    "candidate_set_calibration_rate"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth",
+    "adaptive_anchor_length",
+    "candidate_set_calibration_rate"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.5,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "d7b8e26e141b4e24ba3b07eadb78f7b80e4ceaac7631c8e484bcdb08da751f2a",
+  "git_commit": "d87cef227db5d588b4a005f47f6adcd641e0c773",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "two-to-five-sign intentionally masked spans from frozen dev only; adaptive anchor selection and witness ranking use independent same-CTH dev families; set-level calibration fit on the four non-held-out dev composition folds; no test, train, or discovery content statistics",
+  "created_utc": "2026-07-23T19:13:13.599348+00:00",
+  "probe_label": "PROBE — not for citation",
+  "test_side_accessed": false,
+  "restoration_included": false,
+  "model_scoring_performed": false,
+  "gold_available_to_selector_or_ranker": false,
+  "composition_disjoint_folds": 5,
+  "input_hashes": {
+    "config": "d7b8e26e141b4e24ba3b07eadb78f7b80e4ceaac7631c8e484bcdb08da751f2a",
+    "evidence_registry": "34cd4c87b7581aadc55884d50504b636102cf5c43f1ff47a18d663265087cf78",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}

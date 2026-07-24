@@ -1,0 +1,43 @@
+{
+  "label": "PROBE — not for citation",
+  "target_split": "dev",
+  "time_budget_hours": 2,
+  "relation_rows": 184,
+  "mapped_pairs": 182,
+  "missing_fragment_mapping": 2,
+  "row_offset_identifiable": 92,
+  "ordering_only": 22,
+  "interleaved_without_shared_rows": 32,
+  "shared_count_mismatches": 4,
+  "ambiguous_parent_rows_skipped": 1,
+  "inconsistent_row_offsets": 36,
+  "within_line_seam_targets": 0,
+  "by_tier": {
+    "B": {
+      "pairs": 31,
+      "row_offset_identifiable": 27,
+      "ordering_only": 0,
+      "interleaved_without_shared_rows": 0,
+      "inconsistent_row_offsets": 4
+    },
+    "C": {
+      "pairs": 97,
+      "row_offset_identifiable": 65,
+      "ordering_only": 0,
+      "interleaved_without_shared_rows": 0,
+      "inconsistent_row_offsets": 32
+    },
+    "A": {
+      "pairs": 54,
+      "row_offset_identifiable": 0,
+      "ordering_only": 22,
+      "interleaved_without_shared_rows": 32,
+      "inconsistent_row_offsets": 0
+    }
+  },
+  "input_hashes": {
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "join_pairs_jsonl": "52766f284dd61ee544b9db69fcd71df9f088d0124503c856b48a1418738f1180",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
+  }
+}

@@ -36,6 +36,23 @@ fields:
     class: SYSTEM_TECHNICAL
     rationale: "Frozen split label; control flow only."
     source_path: "p2_out/splits.parquet"
+  archive_entry_path:
+    class: SYSTEM_TECHNICAL
+    rationale: "Path of one file inside a pinned corpus archive, used to gate payload access before decoding."
+    source_path: "TLHdig corpus zip central directory"
+  raw_xml_sha256:
+    class: SYSTEM_TECHNICAL
+    rationale: "Cryptographic digest of an allowed non-test XML payload, used only for corpus-version change detection."
+    source_path: "scripts/corpus_expansion_audit.py"
+    depends_on: [archive_entry_path]
+  xml_tag_name:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Namespace-stripped XML element name in an allowed non-test corpus document; used for schema migration inventory, not textual prediction."
+    source_path: "scripts/corpus_expansion_audit.py"
+  xml_attribute_name:
+    class: OBSERVED_DOCUMENT_STRUCTURE
+    rationale: "Namespace-stripped XML attribute name in an allowed non-test corpus document; used for schema migration inventory, not textual prediction."
+    source_path: "scripts/corpus_expansion_audit.py"
   site_split:
     class: SYSTEM_TECHNICAL
     rationale: "Provincial-eval split label; control flow only."
@@ -257,6 +274,51 @@ fields:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Editorial atomic sign token, decomposed-cache equivalent of signs."
     source_path: "p4_out/decomposed_corpus.parquet"
+  anchor_formulaicity_cth_df:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Cross-composition document frequency of an attested left/right anchor pair with a bounded variable middle; a derived analysis stratum, never direct artifact evidence."
+    source_path: "scripts/p2e3_cross_calibration.py"
+    depends_on: [token, cth]
+  available_independent_witness_family_count:
+    class: CATALOG_METADATA
+    rationale: "Count of distinct same-CTH witness families outside the query family; used as an availability stratum, not textual evidence."
+    source_path: "scripts/p2e3_cross_calibration.py"
+    depends_on: [cth]
+  query_anchor_occurrence_count:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Count of bounded positions in one query fragment sharing the exact left/right anchor pair; an analysis flag for observable placement ambiguity."
+    source_path: "scripts/p2e4_candidate_set_audit.py"
+    depends_on: [token, line_index_in_doc]
+  local_alignment_score:
+    class: MODEL_DERIVED
+    rationale: "Deterministic two-flank sequence-alignment score used to rank bounded witness middles; persisted with the inspectable alignment rather than treated as corpus evidence."
+    source_path: "lib/sequence_alignment.py; scripts/p2e5_alignment_probe.py"
+    depends_on: [token]
+  adaptive_anchor_length:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Longest configured left/right anchor length with any independent-witness alternative for the query span; an evidence-sufficiency control, not a hidden-label choice."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
+  candidate_set_calibration_rate:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Composition-held-out empirical inclusion rate for a displayed witness candidate-set policy; a group statistic, never an instance truth probability."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
+  candidate_rank_calibration_rate:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Composition-held-out rank-conditioned agreement rate for an expert candidate option; a group audit statistic, never an instance truth probability."
+    source_path: "scripts/p2e4_candidate_set_audit.py"
+    depends_on: [token, cth]
+  independent_witness_family_support_count:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Number of distinct other witness families preserving one candidate sequence in the bounded editorially transcribed context."
+    source_path: "scripts/p2e4_candidate_set_audit.py; scripts/p2e6_multisign_horizon.py"
+    depends_on: [token, cth]
+  independent_witness_family_support_share:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: "Candidate witness-family count divided by total candidate support for the bounded context; an evidence fraction, never a probability that the candidate is true."
+    source_path: "scripts/p2e6_multisign_horizon.py"
+    depends_on: [independent_witness_family_support_count]
   sign_full:
     class: EDITORIAL_TRANSCRIPTION
     rationale: "Rendered full (incl. restored) sign-token stream; per expert opinion's explicit ruling, not OBSERVED_ARTIFACT."

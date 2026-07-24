@@ -7,9 +7,14 @@ improvising. The human collaborator (Ixca) makes final design calls.
 
 ## Project identity
 
-Research project building a **content-based join and duplicate
-suggester for fragmentary Hittite cuneiform texts**, using the openly
-licensed TLHdig corpus. Two target outcomes, in order:
+Research project building an **evidence-bounded missing-information
+reconstruction system for fragmentary Hittite cuneiform texts**, using
+the openly licensed TLHdig corpus. The scientific center is predicting
+missing textual and structural information from the textual and encoded
+artifactual context that actually survives. Composition assignment,
+duplicate/parallel discovery, and physical-join suggestion are downstream
+applications and evaluation settings, not the project's identity. Two
+target outcomes, in order:
 
 1. A working prototype + draft paper with real numbers, used as a
    demonstration artifact for a graduate mentorship pitch (UT Austin
@@ -21,6 +26,71 @@ Tone of the work: rigorous, over-explicit, honest about negative
 results. When in doubt, report more, claim less.
 
 ## Research question
+
+What missing textual or structural information is recoverable from
+fragmentary Hittite records under explicitly named evidence policies,
+with calibrated uncertainty and abstention, and when is the encoded
+evidence insufficient? Within that frame, test whether modern
+representation learning improves over classical methods for restoration,
+composition affinity, duplicate/parallel witnesses, or physical-join
+candidates at full-corpus scale with leakage-safe methodology.
+
+### Core epistemic commitment
+
+"Let the artifacts speak" means every prediction is bounded by the
+evidence the corpus actually encodes. The project must:
+
+- predict held-out genuinely attested signs/passages for primary
+  restoration evaluation; editorial restorations are scholarly
+  hypotheses, never unquestioned gold;
+- keep textual, structural, catalog, editorial, and model-derived
+  evidence typed and separable;
+- preserve uncertainty and plausible alternatives, and abstain when
+  the encoded evidence does not identify a defensible answer;
+- never simulate missing physical evidence (clay, curvature, fracture
+  geometry, paleography) and then describe the result as artifact-led;
+- treat parallel witnesses as bounded evidence for possible missing
+  context, not proof that a lost original had identical wording; and
+- treat joins as one downstream case of missing-context inference, not
+  the organizing objective.
+
+### Primary user and output contract
+
+The primary user is a **trained Hittite language specialist**, not a lay
+reader seeking an automatic restoration. The system is expert decision
+support. For a missing sign or bounded span, its default UI output is a
+ranked **set of evidence-supported possibilities**, not one asserted
+completion.
+
+Each displayed possibility must preserve:
+
+- the proposed sign/span and its rank;
+- a calibrated probability-like quantity whose estimand is named
+  explicitly (for example, held-out empirical agreement within a
+  declared calibration stratum);
+- the sample size and confidence interval for that calibration
+  estimate;
+- typed supporting and contradictory evidence, including independent
+  witness sources when used;
+- the active evidence-policy/assistance profile; and
+- an explicit residual option such as `other / unsupported`, plus
+  abstention when the candidate set is not adequately constrained.
+
+A confidence interval over a calibration group is **not** the probability
+that one particular lost reading is true. Raw retrieval scores, normalized
+heuristic scores, and top-1 margins must not be labeled probabilities unless
+their calibration has been measured out of sample. Candidate probabilities
+need not exhaust the space: unobserved readings and genuine textual variation
+may remain.
+
+The primary intrinsic evaluation therefore measures candidate-set utility:
+gold/attested inclusion at `k`, set coverage, set size, calibration error,
+selective risk, composition-macro stability, and abstention. Top-1 exact
+agreement remains a useful diagnostic, but it is not the product definition.
+An expert selection is a provenance-bearing annotation; it is never promoted
+automatically to corpus truth or training ground truth.
+
+### Historical Phase 1 benchmark question
 
 Can modern representation learning substantially outperform classical
 text classification at connecting fragmentary Hittite transliterations
@@ -34,6 +104,22 @@ full-corpus scale, with leakage-safe methodology?
   file `TLHdig_0.2.0-beta.zip` (63.9 MB,
   MD5 93e71e2560f5e109c87713d5590cb059). License **CC BY 4.0**.
   Cite as: Müller, Prechel, Rieken & Schwemer (2025).
+- **TLHdig Beta 0.3 is audited but not adopted** (2026-07-23). The
+  split-gated audit found 2,137 candidate-only filename stems, but also
+  increased duplicate-stem ambiguity and 11 introduced non-test XML parse
+  errors. TLHdig 0.2 remains pinned and the frozen splits remain controlling.
+  Before any migration, resolve identifiers and parser compatibility under
+  `specs/CORPUS_EXPANSION_AUDIT.md`; see
+  `reports/corpus_expansion_tlhdig_03_audit.md`.
+  The completed metadata-first follow-up reduced the 2,137 candidate-only
+  stems to 2,083 plausible additions after conservative identifier
+  reconciliation. Of those, 1,753 (84.16%) map to discovery bins and only 281
+  prospectively to train compositions. Candidate 0.3 also contains 90
+  duplicate identifiers spanning frozen split classes or an unknown CTH,
+  including 21 involving test. Direct replacement is therefore prohibited;
+  the next gate is a separate versioned ingestion prototype with canonical
+  identifier groups and checksum-guarded XML repairs. See
+  `reports/corpus_expansion_tlhdig_03_migration_design.md`.
 - **21,868** real XML documents after excluding zip artifacts (320
   macOS `__MACOSX/` + AppleDouble `._*` junk entries — exclude these
   in every script that reads the zip); 384,667 `<lb>` line elements.
@@ -126,6 +212,10 @@ full-corpus scale, with leakage-safe methodology?
   file.
 
 ## Task definitions
+
+Missing-information prediction is the upstream scientific task. Task A
+and Task B below remain valuable benchmarks and discovery applications,
+but neither may redefine the project around forced joining.
 
 - **Task A — Composition assignment.** Fragment → CTH composition,
   framed as retrieval (rank compositions). Modernizes Tyndall (2012),

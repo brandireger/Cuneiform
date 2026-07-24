@@ -16,6 +16,22 @@ under what formulation, and what would it take?* The task
 formulation, the data's information content, and the label quality
 are now variables too.
 
+**Center of gravity (ratified 2026-07-23):** Phase 2 is about
+evidence-bounded prediction of missing textual and structural
+information, not joins specifically. "Let the artifacts speak" means
+predicting only from encoded evidence, naming assistance layers,
+preserving alternatives, calibrating uncertainty, and abstaining when
+the target is not identifiable. Joins remain one downstream stratum.
+
+**Expert-interface target (ratified 2026-07-23):** the intended user is
+a trained Hittite specialist. The product does not silently reconstruct a
+text for a lay reader; it presents a compact ranked set of possibilities for
+a missing sign or span, with typed evidence, explicit residual uncertainty,
+and calibration statistics the specialist can inspect before selecting,
+rejecting, or withholding judgment. Top-1 agreement is diagnostic. Candidate
+set inclusion, calibration, useful set size, and appropriate abstention are
+the primary measures.
+
 Three things forced this:
 
 1. **The no-overlap signature is definitional, not incidental.** The
@@ -34,6 +50,9 @@ Three things forced this:
 
 ## 2. Research questions for Phase 2
 
+- **Q0 (recoverability).** Which kinds of missing information can be
+  predicted from genuinely attested textual and encoded structural
+  context, at what horizon, and with what calibrated uncertainty?
 - **Q1 (validity).** Was the boundary head ever asked a well-posed
   question? Can it localize a seam it has been *handed*?
 - **Q2 (information).** Is there recoverable signal for no-overlap
@@ -72,6 +91,16 @@ than model quality.
 is viable and the failure is retrieval-level. If not, boundary-head
 reranking is dead and P2-C/P2-E become the live paths.
 
+**Opening feasibility result (2026-07-23):** the first Phase 2 probe
+found that `{€N}` supplies row membership/alignment but not a
+member-specific within-line fracture column. Shared rows are stored as
+one fused parent line assigned to both members. Therefore P2-A as
+worded does not currently have a true seam-column target; do not score
+D14 against D17's row-skipping offset and call that seam localization.
+See `reports/phase2_p2a_feasibility.md`. A row-alignment reformulation
+or evidence for an unmaterialized per-member span would require a new
+decision.
+
 ### P2-B — Materiality inventory *(what does the corpus NOT contain?)*
 **Question:** Q2. **Cost:** hours, mostly reading + counting.
 Audit what non-textual signal TLHdig encodes and what it doesn't:
@@ -83,6 +112,18 @@ joins. Deliverable: a table of "signal a human uses" × "encoded in
 TLHdig y/n" — which either identifies unused features sitting in the
 data, or becomes the paper's specification of what the field should
 digitize next.
+
+**Opening inventory result (2026-07-23):** a filename-gated non-test
+schema census (20,762 parsed XML files) and the governed non-test edge
+universe (21,942 fragments) confirm that TLHdig carries useful symbolic
+layout: line labels are nearly complete, side/column are present on
+67.3%/51.1% of fragment lines, `parsep` occurs in 80.7% of safe XML
+documents, and gaps/damage markup are widespread. Direct physical-edge
+direction is sparse (0.5% of lines). The distributed archive contains
+no image or 3D files and no schema fields for dimensions, thickness,
+curvature, break contours, clay appearance/composition, wedge geometry,
+paleography, or ancient scribal hand. See
+`reports/phase2_p2b_materiality_inventory.md`.
 
 ### P2-C — Edge-prediction inversion *(generate, then match)*
 **Question:** Q3. **Cost:** a day, inference only on frozen D14.
@@ -105,17 +146,154 @@ is itself inference, then Phase 1 partly penalized models for
 disagreeing with fallible labels — which changes what the negative
 results mean and belongs in the paper either way.
 
+**Opening audit result (2026-07-23):** the governed relation artifacts
+support three bases, not a certainty scale: 104/182 canonical dev pairs
+carry direct `+` notation, 17 carry indirect `(+)` notation, 60 were
+expanded from shared-line co-attribution, and 1 is unsupported/unknown.
+No `proposed` or certainty field is materialized. The frozen BM25 hard
+set is not enriched for weaker bases at its query unit (17/46 versus
+76/136 non-hard), while a parent-level robustness view is inconclusive
+and changes direction. Therefore keep relation bases separate, but do
+not attribute hard-set difficulty to label weakness from this probe.
+See `reports/phase2_p2d_reliability.md`.
+
 ### P2-E — Witness-bridge supervision *(the novel idea)*
-**Question:** Q3, Q5. **Cost:** a day or two.
+**Question:** Q0, Q3, Q5. **Cost:** a day or two.
 Duplicates are plentiful and near-solved; multiple witnesses of one
-composition give *parallel text*. So for many fragments, what
-*should* surround them is recoverable from a sibling witness even
-when the physical partner is textually silent. Probe: for dev joins
-where a third witness exists, does witness-mediated alignment (A's
-text → sibling witness → predicted continuation → B) recover joins
-that direct A↔B comparison misses? This uses the corpus's actual
-abundance (duplicates) to attack its actual scarcity (joins). No
-known prior work does this; the corpus is unusually well-suited.
+composition give *parallel text*. First measure how often an
+independently attested witness provides bounded evidence for missing
+context around a fragment. Then, only where coverage exists, test
+witness-mediated reconstruction (A's observed text → sibling witness
+→ candidate missing context → B or an intentionally masked attested
+span). A parallel is evidence for possible context, not proof of
+identical lost wording. Join recovery is one downstream analysis, not
+the probe's definition. This uses the corpus's duplicate abundance to
+study missing-information recoverability without inventing physical
+geometry.
+
+**Opening recoverability result (2026-07-23):** the dev-only,
+`catalog_assisted` census confirms that witness coverage is real but sharply
+bounded. With two-sign anchors around one intentionally hidden attested sign,
+21,069/85,587 structurally eligible spans (24.62%) had any independent
+witness-supported middle, 16,597 (19.39%) included the held-out sign, and the
+system abstained on 75.38%. The composition-macro support mean/median was
+lower (13.68%/10.92%), showing that large compositions inflate the
+span-micro rate. Among supported spans, 21.23% supplied only a variant or
+omission and 24.58% had multiple alternatives. This is the desired shape:
+useful islands of bounded evidence surrounded by explicit abstention, not a
+license to fill every lacuna. The secondary join diagnostic found broad
+third-witness textual coverage, but it remains a ceiling on textual context,
+not physical-fit evidence. See
+`reports/phase2_p2e_witness_recoverability.md`.
+
+**Abstention-calibration follow-up (P2-E2, 2026-07-23):** a
+composition-disjoint dev calibration/evaluation split found a small
+high-agreement island, not a portable reliability guarantee. For two-sign
+anchors around one hidden sign, the evidence-only unique-top baseline reached
+74.90% agreement at 18.19% held-out coverage. A stricter calibration-selected
+rule reached 90.37% point agreement at 4.73% coverage, but its held-out 95%
+Wilson lower bound was 89.0%. The calibration-selected 80% rule transferred
+at only 75.18%. Across all 12 anchor/mask cells, a 90%-lower-bound
+calibration rule existed only for one-sign masks; no two-to-five-sign cell
+qualified, and no cell reached 95%. Preserve this as evidence for narrow,
+abstaining reconstruction and against broad automatic completion. Before any
+new reconstruction model, measure threshold stability with
+composition-folded calibration and stratify the failures by composition,
+formulaicity, and witness coverage. See
+`reports/phase2_p2e2_abstention_calibration.md`.
+
+**Five-fold stability result (P2-E3, 2026-07-23):** the pooled signal
+persists, but the reliability threshold does not transfer uniformly. In the
+primary two-anchor/one-sign cell, fold-specific 90%-target selectors produced
+6.41% pooled coverage and 89.97% agreement (95% CI 89.15–90.74), yet only
+1/5 held-out folds retained a 90% lower bound. The one- and three-anchor
+cells likewise retained that lower bound in only 1/5 folds; no 95% rule was
+available in any cell or fold. Acceptance was concentrated in bounded
+contexts recurring across multiple compositions and in CTHs with four or
+more independent witness families. Only 24/42 CTHs received any acceptance;
+among the 16 with at least 20 accepts, agreement ranged from 73.53% to 100%.
+Therefore do not promote a global reliability threshold. The next justified
+probe is a **candidate-set disagreement audit**: determine whether the
+attested held-out reading remains available among the ranked alternatives,
+measure the useful set-size/coverage tradeoff, and separate observable
+competing witness readings or omissions from formula collisions and anchor
+misalignments. Do not automatically call a competing reading a legitimate
+variant or an error. The output should be expert-review evidence packets,
+not adjudicated restorations. See
+`reports/phase2_p2e3_cross_calibration.md`.
+
+**Expert candidate-set result (P2-E4, 2026-07-23):** the set-valued target
+recovers a modest but useful slice that top-1 exact match hides. Across the
+5,486 fold-selector-accepted contexts, top-1 included the intentionally
+hidden attested sign in 89.97%; showing up to two alternatives raised
+inclusion to 92.58%, and the complete preserved set reached 92.95% while
+showing only 1.34 options on average (maximum four). Of 550 top-choice
+disagreements, 163 retained the attested reading at a lower rank, while 387
+did not contain it anywhere. Composition-macro full-set inclusion across the
+24 CTHs with presented contexts was lower and heterogeneous (mean 83.11%,
+median 93.12%, range 0–100%), so the pooled number is not a universal
+composition guarantee. Among the absent cases, the witness top was
+an omission in 160, longer in 158, and an equal-length different sign in 69.
+These are observable sequence relations, not adjudicated textual variants.
+The next justified probe is **alignment-aware candidate generation**:
+align local passages monotonically using only the observed context, then ask
+whether it recovers compact alternatives for the 387 exact-anchor absences.
+See `reports/phase2_p2e4_candidate_set_audit.md`.
+
+**Alignment residual result (P2-E5, 2026-07-23):** bounded,
+observed-context alignment did not justify another automatic candidate layer.
+It produced some alignment candidate in 251/387 post-hoc exact-anchor
+absences, but recovered the intentionally hidden attested sign in only 6/387
+at depth five (1.55%, 95% Wilson CI 0.71–3.34). Composition-macro rescue
+across 20 affected CTHs had mean 0.30% and median 0%. Even an impossible
+oracle that knew exactly when the exact-anchor set had failed would improve
+selected-context full-set inclusion by only 0.11 percentage points
+(92.95% → 93.06%). Do not integrate or calibrate this alignment scorer.
+Preserve its inspectable packets as a negative result and abstain on these
+residuals. The next justified probe is a **multi-sign candidate-set horizon
+map**: measure option-set inclusion, useful set size, and abstention for
+two-to-five-sign spans, since the intended expert UI must support both single
+characters and bounded sequences. See
+`reports/phase2_p2e5_alignment_probe.md`.
+
+**Multi-sign horizon result (P2-E6, 2026-07-23):** exact-context witness
+evidence weakens quickly as the intentionally hidden span grows. The adaptive
+3→2→1-anchor policy could present a tie-complete candidate set for 70.75% of
+eligible two-sign contexts and 65.68% of five-sign contexts, but effective
+attested-span inclusion was only 27.36% and 7.95%, respectively. The
+composition-macro effective means were lower still: 16.18% for two signs and
+5.32% for five. A nominal five-option display exceeded five options in
+33.9–38.7% of presented contexts because equal evidence ties were preserved;
+the p90 reached 19 and the maximum 237. Composition-held-out set-calibration
+transfer was also unstable (8.17 percentage-point weighted mean absolute
+group gap). These intervals are audit frequencies for whole sets, not
+probabilities that a particular option is true.
+
+Do not promote this layer to automatic lacuna completion or manufacture
+per-option probabilities. Retain it as abstention-first evidence for an expert:
+preserve the complete equal-support set, group or collapse large tied tails
+without hiding their existence, and retain explicit reject, other/unsupported,
+and withhold-judgment actions. The next justified step is **P2-E7: an expert
+decision-interface contract and Phase 2 closeout**, not another scorer. It
+should turn the P2-E through P2-E6 findings into a typed UI/API schema for
+single- and multi-sign alternatives, evidence provenance, contradictions,
+set-level audit intervals, assistance layers, and abstention. See
+`reports/phase2_p2e6_multisign_horizon.md`.
+
+**Expert decision contract and closeout (P2-E7, 2026-07-23):** contract
+v1.0.0 now unifies P2-E4 single-sign and P2-E6 multi-sign packets without
+flattening their different uncertainty estimands. It supports select,
+reject-all, other/unsupported, and withhold-judgment actions; preserves typed
+evidence, assistance layers, and collapsed-tail counts; and hash-binds each
+decision to the reviewed packet. The validator forbids automatic completion,
+instance-probability claims, hidden evaluation payloads, silent truncation,
+and automatic ground-truth mutation. Four governed dev integration examples
+validate, including explicit abstention. Phase 2 has therefore met the
+definition of done in §5 and is closed as exploratory characterization. No
+probe is promoted for citation and the test side remains untouched. The next
+workstream is a small expert UI prototype against this contract, beginning
+with the stronger single-sign path. See `PHASE2_CLOSEOUT.md` and
+`reports/phase2_p2e7_contract.md`.
 
 ### P2-F — Graph/constraint assembly
 **Question:** Q3. **Cost:** a day.
@@ -145,6 +323,22 @@ documented caveat that vertical gap-width sampling is a modeling
 assumption, not corpus-calibrated. Possibly the most reusable thing
 Phase 1 produced.
 
+### Premise audit 1 — after P2-A, P2-D, and P2-B (2026-07-23)
+
+The first three probes jointly reject continued direct pairwise seam
+modeling as the default formulation for tier-A no-overlap joins:
+the seam-column target is absent, the hard set is not explained by
+weaker relation labels, and the decisive physical modalities are not
+encoded. Preserve textual-affinity/duplicate work, symbolic structural
+compatibility, explicit abstention, and typed evidence packets.
+
+The next justified probe is a **coverage-first P2-E**: map where an
+independently attested same-composition witness supplies bounded
+evidence for missing textual context before running any mediated
+inference. Dev joins remain a diagnostic subset, not the organizing
+target. P2-C is secondary; P2-F cannot create missing evidence. Full reasoning:
+`reports/phase2_premise_audit_1.md`.
+
 ## 4. Constraints carried forward (non-negotiable)
 
 - **Test side untouched.** Every probe runs on train/dev/discovery.
@@ -162,11 +356,12 @@ Phase 1 produced.
 
 ## 5. What "done" looks like for Phase 2
 
-Not a recall number. Phase 2 succeeds if it can answer: *which of
-Q1–Q5 are true, and therefore what is the right formulation (if any)
-for the tier-A problem?* A well-supported "text alone is
-insufficient, and here is the evidence and the data specification
-that would change it" is a complete and publishable success.
+Not a recall number. Phase 2 succeeds if it produces a recoverability
+map: which missing-information targets are identifiable, from which
+evidence, at what horizon, with what uncertainty, and where abstention
+is required. Tier-A joins are one stress test. A well-supported "this
+information is not recoverable from the encoded evidence, and here is
+what would change that" is a complete and publishable result.
 
 ## 6. Deliberately NOT doing (unless a probe justifies it)
 

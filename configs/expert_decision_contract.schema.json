@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://taksan.local/schemas/expert-decision-contract-1.0.0.json",
+  "title": "Takšan expert missing-text decision contract",
+  "description": "Interchange schema for evidence-bounded suggestions and quarantined expert judgments. Semantic cross-field invariants are enforced by lib/expert_decision_contract.py.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/suggestion_packet"
+    },
+    {
+      "$ref": "#/$defs/decision_record"
+    }
+  ],
+  "$defs": {
+    "rate": {
+      "type": "object",
+      "required": [
+        "kind",
+        "scope",
+        "estimand",
+        "estimate",
+        "interval",
+        "sample_size",
+        "instance_truth_probability",
+        "ui_label"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "GROUP_AUDIT_RATE",
+            "UNAVAILABLE"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "OPTION_RANK",
+            "CANDIDATE_SET",
+            "NONE"
+          ]
+        },
+        "estimand": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "estimate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "interval": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "method",
+                "level",
+                "lower",
+                "upper"
+              ],
+              "properties": {
+                "method": {
+                  "const": "WILSON_SCORE"
+                },
+                "level": {
+                  "const": 0.95
+                },
+                "lower": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "upper": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "sample_size": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "instance_truth_probability": {
+          "const": false
+        },
+        "ui_label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "option_id",
+        "rank",
+        "signs",
+        "evidence_class",
+        "support",
+        "option_audit"
+      ],
+      "properties": {
+        "option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "signs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_class": {
+          "type": "string"
+        },
+        "support": {
+          "type": "object",
+          "required": [
+            "independent_witness_family_count",
+            "supporting_witness_families",
+            "share",
+            "share_is_probability"
+          ],
+          "properties": {
+            "independent_witness_family_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "supporting_witness_families": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "share": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "share_is_probability": {
+              "const": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "option_audit": {
+          "$ref": "#/$defs/rate"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_item": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "type",
+        "polarity",
+        "evidence_class",
+        "summary",
+        "source_refs"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "polarity": {
+          "enum": [
+            "SUPPORTS_OPTION",
+            "CONTRADICTS_OPTION",
+            "CONTEXT_ONLY"
+          ]
+        },
+        "evidence_class": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "suggestion_packet": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "contract_version",
+        "packet_id",
+        "task",
+        "mode",
+        "status",
+        "source_provenance",
+        "query",
+        "candidate_set",
+        "supporting_evidence",
+        "contradictory_evidence",
+        "limitations",
+        "assistance",
+        "workflow",
+        "abstention"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "missing_text_suggestion_packet"
+        },
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "packet_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task": {
+          "const": "MISSING_TEXT"
+        },
+        "mode": {
+          "enum": [
+            "SINGLE_SIGN",
+            "MULTI_SIGN"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PRESENT_CANDIDATES",
+            "ABSTAIN_INSUFFICIENT_EVIDENCE"
+          ]
+        },
+        "source_provenance": {
+          "type": "object"
+        },
+        "query": {
+          "type": "object"
+        },
+        "candidate_set": {
+          "type": "object",
+          "required": [
+            "options",
+            "shown_option_count",
+            "total_option_count",
+            "tail_collapsed",
+            "collapsed_tail_count",
+            "ranking_boundary_policy",
+            "silent_truncation_allowed",
+            "other_or_unsupported_available",
+            "set_audit"
+          ],
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/option"
+              }
+            },
+            "shown_option_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "total_option_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tail_collapsed": {
+              "type": "boolean"
+            },
+            "collapsed_tail_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "ranking_boundary_policy": {
+              "enum": [
+                "COMPLETE_AVAILABLE_SET",
+                "TIE_COMPLETE"
+              ]
+            },
+            "silent_truncation_allowed": {
+              "const": false
+            },
+            "other_or_unsupported_available": {
+              "const": true
+            },
+            "set_audit": {
+              "$ref": "#/$defs/rate"
+            }
+          },
+          "additionalProperties": false
+        },
+        "supporting_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_item"
+          }
+        },
+        "contradictory_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_item"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "assistance": {
+          "type": "object"
+        },
+        "workflow": {
+          "type": "object"
+        },
+        "abstention": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "decision_record": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "contract_version",
+        "decision_id",
+        "packet_id",
+        "packet_sha256",
+        "action",
+        "selected_option_id",
+        "proposed_other_signs",
+        "reviewer",
+        "rationale",
+        "created_utc",
+        "assistance_acknowledged",
+        "ground_truth_status",
+        "requires_adjudication"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "expert_decision_record"
+        },
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "decision_id": {
+          "type": "string"
+        },
+        "packet_id": {
+          "type": "string"
+        },
+        "packet_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "action": {
+          "enum": [
+            "SELECT_OPTION",
+            "REJECT_ALL",
+            "OTHER_OR_UNSUPPORTED",
+            "WITHHOLD_JUDGMENT"
+          ]
+        },
+        "selected_option_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "proposed_other_signs": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "reviewer": {
+          "type": "object",
+          "required": [
+            "reviewer_id",
+            "declared_role"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_utc": {
+          "type": "string"
+        },
+        "assistance_acknowledged": {
+          "const": true
+        },
+        "ground_truth_status": {
+          "const": "QUARANTINED_EXPERT_JUDGMENT"
+        },
+        "requires_adjudication": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -8,7 +8,6 @@ Usage:
     python demo/dm0_audit_sample.py
 """
 import json
-import random
 import re
 import sys
 import zipfile
@@ -46,7 +45,6 @@ def main():
     edge_trim_pop = pop[pop["category"] == "edge_trim"]
     skeleton_pop = pop[pop["category"] == "skeleton_only"]
 
-    rng = random.Random(SEED)
     edge_sample = edge_trim_pop.sample(min(30, len(edge_trim_pop)), random_state=SEED)
     skeleton_sample = skeleton_pop.sample(min(15, len(skeleton_pop)), random_state=SEED)
 

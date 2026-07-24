@@ -18,7 +18,8 @@ C10 is a query helper for the reporting layer (find(), not assert()).
 """
 # ---------------------------------------------------------------- C1
 
-def assert_encoding_sane(ids, tokenizer, max_unk=0.05, *, label=None):
+def assert_encoding_sane(ids, tokenizer, max_unk=0.05, *, label=None,
+                         emit_sample=True):
     """ids: list[int], already-encoded model input. Raises if the
     UNK-rate exceeds max_unk (corpus OOV baseline is ~0.16%; E2 ran at
     82.6%), or if there is no non-special (lexical) token at all.
@@ -29,10 +30,12 @@ def assert_encoding_sane(ids, tokenizer, max_unk=0.05, *, label=None):
     unk_rate = n_unk / len(ids)
     special_ids = {tokenizer.vocab[s] for s in tokenizer.specials if s in tokenizer.vocab}
     n_non_special = sum(1 for i in ids if i not in special_ids)
-    decoded = tokenizer.decode(ids)
-    print(f"[C1 assert_encoding_sane{f' ({label})' if label else ''}] "
-          f"n={len(ids)} unk_rate={unk_rate:.4f} non_special={n_non_special} "
-          f"round-trip sample: {decoded[:12]}")
+    if emit_sample:
+        decoded = tokenizer.decode(ids)
+        print(f"[C1 assert_encoding_sane{f' ({label})' if label else ''}] "
+              f"n={len(ids)} unk_rate={unk_rate:.4f} "
+              f"non_special={n_non_special} "
+              f"round-trip sample: {decoded[:12]}")
     if unk_rate > max_unk:
         raise AssertionError(
             f"assert_encoding_sane({label}): UNK rate {unk_rate:.4f} exceeds "
@@ -260,11 +263,6 @@ def check_impossible_values(cells, *, min_n=20):
 # ==================================================================
 
 def _self_test():
-    import sys
-    from pathlib import Path
-    sys.path.insert(0, str(Path(__file__).resolve().parent))  # allow running from repo root
-    import hittite_tokenizer as ht
-
     results = []
 
     def check(name, fn):
@@ -274,7 +272,16 @@ def _self_test():
         except Exception as e:  # noqa: BLE001
             results.append((name, f"FAILED: {e}"))
 
-    tok = ht.Tokenizer.load()
+    class DummyTokenizer:
+        specials = ["<PAD>", "<UNK>", "<LINE>"]
+        vocab = {"<PAD>": 0, "<UNK>": 1, "<LINE>": 2, "lexical": 3}
+        id_to_token = {value: key for key, value in vocab.items()}
+        unk_id = vocab["<UNK>"]
+
+        def decode(self, ids):
+            return [self.id_to_token.get(i, "<UNK>") for i in ids]
+
+    tok = DummyTokenizer()
     line_id = tok.vocab["<LINE>"]
     unk_id = tok.unk_id
     # find one real vocab token id for clean-input tests

@@ -1,0 +1,51 @@
+{
+  "task": "expert_decision_contract_adapter",
+  "evidence_policy": "catalog_assisted",
+  "features_requested": [
+    "token",
+    "cth",
+    "candidate_rank_calibration_rate",
+    "candidate_set_calibration_rate",
+    "independent_witness_family_support_count",
+    "independent_witness_family_support_share"
+  ],
+  "features_observed": [
+    "token",
+    "cth",
+    "candidate_rank_calibration_rate",
+    "candidate_set_calibration_rate",
+    "independent_witness_family_support_count",
+    "independent_witness_family_support_share"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.8333333333333334,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "d2e17b4096ecf1dc81c6e2e25ca110b815cd258d14faaaa5b984beb15cd9970e",
+  "git_commit": "dfdb32698f1ceb584628cbe74e021b75a2e85c6d",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "deterministic integration sample: first governed P2-E4 dev packet plus one governed P2-E6 dev packet per recorded outcome; engineering transformation only, no rescoring or new corpus statistics; hidden evaluation payload removed",
+  "created_utc": "2026-07-23T19:50:12.658963+00:00",
+  "contract_version": "1.0.0",
+  "scoring_performed": false,
+  "tracer_applicable": false,
+  "test_side_accessed": false,
+  "hidden_evaluation_payload_present": false,
+  "source_input_hashes": {
+    "schema": "d2e17b4096ecf1dc81c6e2e25ca110b815cd258d14faaaa5b984beb15cd9970e",
+    "evidence_registry": "cca11443dbe844e7de9bddea36d99c1153d7d0247ad4f14170d6720c53ccdda3",
+    "p2e4_packets": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+    "p2e4_manifest": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+    "p2e6_packets": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+    "p2e6_manifest": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+    "splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
+  }
+}

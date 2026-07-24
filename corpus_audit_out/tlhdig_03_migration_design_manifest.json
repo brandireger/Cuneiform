@@ -1,0 +1,58 @@
+{
+  "task": "tlhdig_03_identifier_and_parser_migration_design",
+  "evidence_policy": "catalog_assisted",
+  "features_requested": [
+    "cth",
+    "xml_tag_name",
+    "xml_attribute_name"
+  ],
+  "features_observed": [
+    "cth",
+    "xml_tag_name",
+    "xml_attribute_name"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "c845a23223bb9461eeb215f5ede0e223c8871473873c6123eadaeb72114fcd36",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "2997c0c27fb299e8a6372faf1c75bf312d0c23d9f28fe3a79bfc679dba3cb437",
+  "git_commit": "c977820e99525851ac0e8db7437b32b2e04c8253",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta vs 0.3-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "zip central-directory metadata for all non-junk XML entries; payload diagnostics only for the 12 unique train/dev/discovery parse failures recorded by the prior split-gated audit; test, unmatched, split-ambiguous, and duplicate-stem payloads never opened",
+  "created_utc": "2026-07-24T00:25:26.098238+00:00",
+  "control_fields_requested": [
+    "doc_id",
+    "main_split",
+    "archive_entry_path",
+    "parse_status"
+  ],
+  "control_fields_used_only_for_ingress_and_bookkeeping": true,
+  "test_side_accessed": false,
+  "test_payloads_read": 0,
+  "unmatched_payloads_read": 0,
+  "duplicate_stem_payloads_read": 0,
+  "corpus_migration_performed": false,
+  "split_change_performed": false,
+  "training_performed": false,
+  "scoring_performed": false,
+  "tracer_applicable": false,
+  "input_hashes": {
+    "config": "2997c0c27fb299e8a6372faf1c75bf312d0c23d9f28fe3a79bfc679dba3cb437",
+    "prior_audit": "679da072eb78bd989538327cbd4ed462b5d1600d058022ae52b7204b58b0b827",
+    "splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "baseline_archive_sha256": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "candidate_archive_sha256": "c845a23223bb9461eeb215f5ede0e223c8871473873c6123eadaeb72114fcd36"
+  },
+  "payload_read_gate_counts": {
+    "ALLOWED_DISCOVERY": 5,
+    "ALLOWED_TRAIN": 7
+  }
+}

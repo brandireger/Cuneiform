@@ -1,0 +1,966 @@
+{
+  "probe": "P2-E5 observed-context alignment diagnostic",
+  "probe_label": "PROBE — not for citation",
+  "evidence_policy": "discovery_assisted",
+  "target_split": "post-hoc P2-E4 exact-anchor-absence subset inside dev",
+  "test_side_accessed": false,
+  "restorations_included": false,
+  "gold_available_to_alignment_scorer": false,
+  "model_generated_content_included": false,
+  "parameters": {
+    "seed": 20260723,
+    "evidence_policy": "discovery_assisted",
+    "folds": 5,
+    "anchor_length": 2,
+    "mask_length": 1,
+    "maximum_witness_middle_length": 12,
+    "calibration_target": 0.9,
+    "minimum_calibration_accepts": 50,
+    "rule_grid": {
+      "minimum_top_support_families": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "minimum_support_margin": [
+        1,
+        2,
+        3
+      ],
+      "minimum_dominance": [
+        0.0,
+        0.5,
+        0.67,
+        0.8,
+        1.0
+      ],
+      "maximum_alternatives": [
+        1,
+        2,
+        4,
+        8,
+        null
+      ]
+    },
+    "formulaicity_bins": [
+      {
+        "name": "cth_df_1",
+        "minimum": 1,
+        "maximum": 1
+      },
+      {
+        "name": "cth_df_2_5",
+        "minimum": 2,
+        "maximum": 5
+      },
+      {
+        "name": "cth_df_6_plus",
+        "minimum": 6,
+        "maximum": null
+      }
+    ],
+    "witness_availability_bins": [
+      {
+        "name": "one_family",
+        "minimum": 1,
+        "maximum": 1
+      },
+      {
+        "name": "two_to_three_families",
+        "minimum": 2,
+        "maximum": 3
+      },
+      {
+        "name": "four_plus_families",
+        "minimum": 4,
+        "maximum": null
+      }
+    ],
+    "alignment": {
+      "flank_window": 6,
+      "seed_ngram": 2,
+      "maximum_seeded_witness_lines": 2000,
+      "maximum_alignments_per_witness_line": 1,
+      "minimum_exact_matches_per_flank": 2,
+      "minimum_normalized_score": 0.5,
+      "match_score": 2,
+      "mismatch_score": -1,
+      "gap_score": -1
+    },
+    "candidate_set_depths": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "candidate_probability_estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+    "packets_per_outcome": 4,
+    "maximum_packet_alignments_per_alternative": 3,
+    "time_budget_hours": 4
+  },
+  "p2e4_selector_accepted_contexts": 5486,
+  "posthoc_exact_anchor_absence_contexts": 387,
+  "formulaicity_statistics": {
+    "universe_name": "real_composition_train_plus_dev_cth_formulaicity",
+    "n_compositions": 490,
+    "n_documents": 6818,
+    "n_decomposed_rows": 1941659,
+    "ambiguous_doc_ids_quarantined": 8,
+    "requested_anchor_pair_counts": {
+      "2": 63180
+    },
+    "observed_anchor_pair_counts": {
+      "2": 63180
+    },
+    "maximum_middle_length": 12,
+    "content_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "evaluation_cth": [
+        84,
+        543,
+        549,
+        627
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 4
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p0_a4",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 4
+        },
+        "eligible_spans": 68475,
+        "spans_with_any_witness_alternative": 14084,
+        "spans_with_unique_evidence_top": 12457,
+        "accepted_spans": 3430,
+        "coverage_percent_of_eligible": 5.01,
+        "coverage_percent_of_supported": 24.35,
+        "top1_exact_agreement_spans": 3125,
+        "top1_exact_agreement_percent": 91.11,
+        "top1_exact_agreement_fraction": 0.9110787172011662,
+        "top1_exact_wilson_95": [
+          0.901088,
+          0.92015
+        ],
+        "gold_anywhere_in_preserved_alternatives": 3185,
+        "gold_anywhere_percent": 92.86,
+        "mean_preserved_alternatives_when_accepted": 1.286
+      },
+      "calibration_contexts": 68475,
+      "evaluation_contexts": 17112,
+      "accepted_evaluation_contexts": 2698,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 3430,
+          "attested_agreement_contexts": 3125,
+          "calibrated_empirical_agreement": 0.911079,
+          "wilson_95": [
+            0.901088,
+            0.92015
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 704,
+          "attested_agreement_contexts": 58,
+          "calibrated_empirical_agreement": 0.082386,
+          "wilson_95": [
+            0.064271,
+            0.105034
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 198,
+          "attested_agreement_contexts": 1,
+          "calibrated_empirical_agreement": 0.005051,
+          "wilson_95": [
+            0.000892,
+            0.028049
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "4": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 78,
+          "attested_agreement_contexts": 1,
+          "calibrated_empirical_agreement": 0.012821,
+          "wilson_95": [
+            0.002267,
+            0.069109
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "evaluation_cth": [
+        312,
+        387,
+        442,
+        576,
+        777,
+        821
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.67,
+        "maximum_alternatives": 4
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p67_a4",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.67,
+          "maximum_alternatives": 4
+        },
+        "eligible_spans": 68483,
+        "spans_with_any_witness_alternative": 17278,
+        "spans_with_unique_evidence_top": 15647,
+        "accepted_spans": 4993,
+        "coverage_percent_of_eligible": 7.29,
+        "coverage_percent_of_supported": 28.9,
+        "top1_exact_agreement_spans": 4541,
+        "top1_exact_agreement_percent": 90.95,
+        "top1_exact_agreement_fraction": 0.9094732625675946,
+        "top1_exact_wilson_95": [
+          0.901196,
+          0.91712
+        ],
+        "gold_anywhere_in_preserved_alternatives": 4645,
+        "gold_anywhere_percent": 93.03,
+        "mean_preserved_alternatives_when_accepted": 1.244
+      },
+      "calibration_contexts": 68483,
+      "evaluation_contexts": 17104,
+      "accepted_evaluation_contexts": 772,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 4993,
+          "attested_agreement_contexts": 4541,
+          "calibrated_empirical_agreement": 0.909473,
+          "wilson_95": [
+            0.901196,
+            0.91712
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 1019,
+          "attested_agreement_contexts": 100,
+          "calibrated_empirical_agreement": 0.098135,
+          "wilson_95": [
+            0.081351,
+            0.117939
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 169,
+          "attested_agreement_contexts": 4,
+          "calibrated_empirical_agreement": 0.023669,
+          "wilson_95": [
+            0.009242,
+            0.059269
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "4": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 29,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": 0.0,
+          "wilson_95": [
+            0.0,
+            0.11697
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "evaluation_cth": [
+        40,
+        63,
+        133,
+        233,
+        395,
+        407,
+        546,
+        716,
+        727,
+        742,
+        812
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.67,
+        "maximum_alternatives": 4
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p67_a4",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.67,
+          "maximum_alternatives": 4
+        },
+        "eligible_spans": 68459,
+        "spans_with_any_witness_alternative": 17857,
+        "spans_with_unique_evidence_top": 15796,
+        "accepted_spans": 5214,
+        "coverage_percent_of_eligible": 7.62,
+        "coverage_percent_of_supported": 29.2,
+        "top1_exact_agreement_spans": 4737,
+        "top1_exact_agreement_percent": 90.85,
+        "top1_exact_agreement_fraction": 0.9085155350978136,
+        "top1_exact_wilson_95": [
+          0.900387,
+          0.916043
+        ],
+        "gold_anywhere_in_preserved_alternatives": 4851,
+        "gold_anywhere_percent": 93.04,
+        "mean_preserved_alternatives_when_accepted": 1.273
+      },
+      "calibration_contexts": 68459,
+      "evaluation_contexts": 17128,
+      "accepted_evaluation_contexts": 551,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 5214,
+          "attested_agreement_contexts": 4737,
+          "calibrated_empirical_agreement": 0.908516,
+          "wilson_95": [
+            0.900387,
+            0.916043
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 1202,
+          "attested_agreement_contexts": 110,
+          "calibrated_empirical_agreement": 0.091514,
+          "wilson_95": [
+            0.076489,
+            0.109142
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 180,
+          "attested_agreement_contexts": 4,
+          "calibrated_empirical_agreement": 0.022222,
+          "wilson_95": [
+            0.008675,
+            0.055736
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "4": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 44,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": 0.0,
+          "wilson_95": [
+            0.0,
+            0.080296
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "evaluation_cth": [
+        44,
+        89,
+        158,
+        168,
+        348,
+        375,
+        492,
+        616,
+        634,
+        773,
+        782
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 3,
+        "minimum_support_margin": 1,
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s3_m1_d0p0_a2",
+        "rule": {
+          "minimum_top_support_families": 3,
+          "minimum_support_margin": 1,
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
+        },
+        "eligible_spans": 68476,
+        "spans_with_any_witness_alternative": 16611,
+        "spans_with_unique_evidence_top": 14635,
+        "accepted_spans": 2705,
+        "coverage_percent_of_eligible": 3.95,
+        "coverage_percent_of_supported": 16.28,
+        "top1_exact_agreement_spans": 2474,
+        "top1_exact_agreement_percent": 91.46,
+        "top1_exact_agreement_fraction": 0.9146025878003697,
+        "top1_exact_wilson_95": [
+          0.903474,
+          0.924555
+        ],
+        "gold_anywhere_in_preserved_alternatives": 2552,
+        "gold_anywhere_percent": 94.34,
+        "mean_preserved_alternatives_when_accepted": 1.383
+      },
+      "calibration_contexts": 68476,
+      "evaluation_contexts": 17111,
+      "accepted_evaluation_contexts": 946,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 2705,
+          "attested_agreement_contexts": 2474,
+          "calibrated_empirical_agreement": 0.914603,
+          "wilson_95": [
+            0.903474,
+            0.924555
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 1035,
+          "attested_agreement_contexts": 78,
+          "calibrated_empirical_agreement": 0.075362,
+          "wilson_95": [
+            0.060804,
+            0.093061
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "4": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "evaluation_cth": [
+        122,
+        285,
+        430,
+        540,
+        569,
+        630,
+        633,
+        667,
+        682,
+        762
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p0_a2",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
+        },
+        "eligible_spans": 68455,
+        "spans_with_any_witness_alternative": 18446,
+        "spans_with_unique_evidence_top": 16337,
+        "accepted_spans": 5118,
+        "coverage_percent_of_eligible": 7.48,
+        "coverage_percent_of_supported": 27.75,
+        "top1_exact_agreement_spans": 4676,
+        "top1_exact_agreement_percent": 91.36,
+        "top1_exact_agreement_fraction": 0.9136381398983978,
+        "top1_exact_wilson_95": [
+          0.905629,
+          0.921027
+        ],
+        "gold_anywhere_in_preserved_alternatives": 4734,
+        "gold_anywhere_percent": 92.5,
+        "mean_preserved_alternatives_when_accepted": 1.2
+      },
+      "calibration_contexts": 68455,
+      "evaluation_contexts": 17132,
+      "accepted_evaluation_contexts": 519,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 5118,
+          "attested_agreement_contexts": 4676,
+          "calibrated_empirical_agreement": 0.913638,
+          "wilson_95": [
+            0.905629,
+            0.921027
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 1022,
+          "attested_agreement_contexts": 58,
+          "calibrated_empirical_agreement": 0.056751,
+          "wilson_95": [
+            0.044156,
+            0.072667
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "4": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 0,
+          "attested_agreement_contexts": 0,
+          "calibrated_empirical_agreement": null,
+          "wilson_95": [
+            null,
+            null
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    }
+  ],
+  "tracers": {
+    "base": {
+      "command": "D:\\Documents\\Cuneiform\\.venv\\Scripts\\python.exe scripts/00_tracers.py",
+      "return_code": 0,
+      "blocking_failures": 0,
+      "stdout": "=== TRACER BLOCK (scripts/00_tracers.py, per P5C_AMENDMENT_2.md H4) ===\n  [PASS] T1 (seam, post-fix encode_fragment_window): 8/8 canaries changed score under scramble (need >=4)\n  [PASS] T1 (BM25, token-identity corruption): 8/8 canaries changed score under identity corruption (need >=4)\n  [PASS] T2 (BM25 self-similarity; no embedding scorer active in the pipeline post-Branch-R, so BM25 is the only content-consuming similarity scorer to check): 26/26 fragments scored self > random\n  [PASS] T3 (easy-canary ranking, 50-candidate toy universe, BM25): 5/5 easy joins' true partner ranked top-10\n  [DIAGNOSTIC FAIL (non-blocking)] T4 (D18 context sanity, easy joins, query_leads/offset=0): 1/5 canary joins: lift(with context) > lift(null) (need >=4/5). NOTE: cross-checked against the seam-score argmax (direction, offset) placement (matching how D18 actually couples to D17 in production) -- result is consistent, 2/5 positive, not a direction-selection artifact of this simplified single-config test. Genuine finding, carried into H5's sighted re-score, not silently resolved here.\n  [PASS] T5 (determinism smoke, 20 fixed pairs scored twice): 20 pairs scored twice, bit-identical=True\n=== blocking failures: 0; diagnostic failures remain visible ===\nSTDERR:\nD:\\Documents\\Cuneiform\\.venv\\Lib\\site-packages\\torch\\nn\\modules\\transformer.py:385: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n  warnings.warn("
+    },
+    "p2e_t1": {
+      "synthetic_canary_pass": true,
+      "real_canaries": 12,
+      "real_canaries_changed_under_order_scramble": 12,
+      "real_canaries_required_to_change": 4,
+      "real_canary_pass": true,
+      "blocking_failures": 0
+    },
+    "p2e2_t1": {
+      "synthetic_evidence_rank_pass": true,
+      "candidate_order_invariance_pass": true,
+      "real_canaries": 12,
+      "real_canaries_changed_under_token_order_scramble": 12,
+      "real_canaries_required_to_change": 4,
+      "real_canary_pass": true,
+      "blocking_failures": 0
+    },
+    "formulaicity_t1": {
+      "synthetic_cross_cth_frequency_pass": true,
+      "token_order_perturbation_changed_frequency": true,
+      "blocking_failures": 0
+    },
+    "alignment_synthetic_t1": {
+      "exact_middle_recovered": true,
+      "witness_line_order_invariant": true,
+      "token_order_scramble_changed_output": true,
+      "blocking_failures": 0
+    },
+    "alignment_real_t1": {
+      "real_canaries": 12,
+      "real_canaries_changed_under_token_order_scramble": 12,
+      "real_canaries_required_to_change": 9,
+      "real_canaries_witness_line_order_invariant": 12,
+      "blocking_failures": 0
+    }
+  },
+  "alignment_residual_diagnostic": {
+    "micro": {
+      "diagnostic_contexts": 387,
+      "contexts_with_alignment_candidates": 251,
+      "alignment_candidate_coverage_percent": 64.86,
+      "exact_rescue_anywhere_contexts": 6,
+      "exact_rescue_anywhere_percent": 1.55,
+      "exact_rescue_anywhere_wilson_95": [
+        0.007124,
+        0.033407
+      ],
+      "no_exact_rescue_contexts": 381,
+      "candidate_set_size_when_supported": {
+        "mean": 1.398,
+        "median": 1,
+        "p90": 2,
+        "maximum": 10
+      },
+      "prefix_sets": {
+        "1": {
+          "exact_rescue_contexts": 2,
+          "exact_rescue_percent": 0.52,
+          "exact_rescue_wilson_95": [
+            0.001418,
+            0.018645
+          ],
+          "mean_options_added_per_diagnostic_context": 0.649
+        },
+        "2": {
+          "exact_rescue_contexts": 5,
+          "exact_rescue_percent": 1.29,
+          "exact_rescue_wilson_95": [
+            0.005531,
+            0.029884
+          ],
+          "mean_options_added_per_diagnostic_context": 0.798
+        },
+        "3": {
+          "exact_rescue_contexts": 6,
+          "exact_rescue_percent": 1.55,
+          "exact_rescue_wilson_95": [
+            0.007124,
+            0.033407
+          ],
+          "mean_options_added_per_diagnostic_context": 0.85
+        },
+        "5": {
+          "exact_rescue_contexts": 6,
+          "exact_rescue_percent": 1.55,
+          "exact_rescue_wilson_95": [
+            0.007124,
+            0.033407
+          ],
+          "mean_options_added_per_diagnostic_context": 0.889
+        }
+      },
+      "retrieval": {
+        "contexts_with_seed_truncation": 0,
+        "total_seeded_independent_witness_lines": 5921,
+        "total_seeded_witness_lines_scored": 5921
+      }
+    },
+    "composition_macro_at_5": {
+      "compositions_with_diagnostic_contexts": 20,
+      "mean_exact_rescue_percent": 0.3,
+      "median_exact_rescue_percent": 0.0,
+      "minimum_exact_rescue_percent": 0.0,
+      "maximum_exact_rescue_percent": 2.56
+    },
+    "by_prior_observable_category": {
+      "ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT": {
+        "diagnostic_contexts": 69,
+        "contexts_with_alignment_candidates": 38,
+        "alignment_candidate_coverage_percent": 55.07,
+        "exact_rescue_anywhere_contexts": 1,
+        "exact_rescue_anywhere_percent": 1.45,
+        "exact_rescue_anywhere_wilson_95": [
+          0.002563,
+          0.077631
+        ],
+        "no_exact_rescue_contexts": 68,
+        "candidate_set_size_when_supported": {
+          "mean": 1.263,
+          "median": 1.0,
+          "p90": 2,
+          "maximum": 4
+        },
+        "prefix_sets": {
+          "1": {
+            "exact_rescue_contexts": 1,
+            "exact_rescue_percent": 1.45,
+            "exact_rescue_wilson_95": [
+              0.002563,
+              0.077631
+            ],
+            "mean_options_added_per_diagnostic_context": 0.551
+          },
+          "2": {
+            "exact_rescue_contexts": 1,
+            "exact_rescue_percent": 1.45,
+            "exact_rescue_wilson_95": [
+              0.002563,
+              0.077631
+            ],
+            "mean_options_added_per_diagnostic_context": 0.652
+          },
+          "3": {
+            "exact_rescue_contexts": 1,
+            "exact_rescue_percent": 1.45,
+            "exact_rescue_wilson_95": [
+              0.002563,
+              0.077631
+            ],
+            "mean_options_added_per_diagnostic_context": 0.681
+          },
+          "5": {
+            "exact_rescue_contexts": 1,
+            "exact_rescue_percent": 1.45,
+            "exact_rescue_wilson_95": [
+              0.002563,
+              0.077631
+            ],
+            "mean_options_added_per_diagnostic_context": 0.696
+          }
+        },
+        "retrieval": {
+          "contexts_with_seed_truncation": 0,
+          "total_seeded_independent_witness_lines": 926,
+          "total_seeded_witness_lines_scored": 926
+        }
+      },
+      "ATTESTED_READING_ABSENT_TOP_LONGER": {
+        "diagnostic_contexts": 158,
+        "contexts_with_alignment_candidates": 115,
+        "alignment_candidate_coverage_percent": 72.78,
+        "exact_rescue_anywhere_contexts": 3,
+        "exact_rescue_anywhere_percent": 1.9,
+        "exact_rescue_anywhere_wilson_95": [
+          0.006478,
+          0.054331
+        ],
+        "no_exact_rescue_contexts": 155,
+        "candidate_set_size_when_supported": {
+          "mean": 1.591,
+          "median": 1,
+          "p90": 3,
+          "maximum": 10
+        },
+        "prefix_sets": {
+          "1": {
+            "exact_rescue_contexts": 0,
+            "exact_rescue_percent": 0.0,
+            "exact_rescue_wilson_95": [
+              0.0,
+              0.023736
+            ],
+            "mean_options_added_per_diagnostic_context": 0.728
+          },
+          "2": {
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.27,
+            "exact_rescue_wilson_95": [
+              0.003478,
+              0.044973
+            ],
+            "mean_options_added_per_diagnostic_context": 0.968
+          },
+          "3": {
+            "exact_rescue_contexts": 3,
+            "exact_rescue_percent": 1.9,
+            "exact_rescue_wilson_95": [
+              0.006478,
+              0.054331
+            ],
+            "mean_options_added_per_diagnostic_context": 1.051
+          },
+          "5": {
+            "exact_rescue_contexts": 3,
+            "exact_rescue_percent": 1.9,
+            "exact_rescue_wilson_95": [
+              0.006478,
+              0.054331
+            ],
+            "mean_options_added_per_diagnostic_context": 1.127
+          }
+        },
+        "retrieval": {
+          "contexts_with_seed_truncation": 0,
+          "total_seeded_independent_witness_lines": 2246,
+          "total_seeded_witness_lines_scored": 2246
+        }
+      },
+      "ATTESTED_READING_ABSENT_TOP_OMISSION": {
+        "diagnostic_contexts": 160,
+        "contexts_with_alignment_candidates": 98,
+        "alignment_candidate_coverage_percent": 61.25,
+        "exact_rescue_anywhere_contexts": 2,
+        "exact_rescue_anywhere_percent": 1.25,
+        "exact_rescue_anywhere_wilson_95": [
+          0.003435,
+          0.044425
+        ],
+        "no_exact_rescue_contexts": 158,
+        "candidate_set_size_when_supported": {
+          "mean": 1.224,
+          "median": 1.0,
+          "p90": 2,
+          "maximum": 7
+        },
+        "prefix_sets": {
+          "1": {
+            "exact_rescue_contexts": 1,
+            "exact_rescue_percent": 0.62,
+            "exact_rescue_wilson_95": [
+              0.001104,
+              0.034549
+            ],
+            "mean_options_added_per_diagnostic_context": 0.613
+          },
+          "2": {
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.25,
+            "exact_rescue_wilson_95": [
+              0.003435,
+              0.044425
+            ],
+            "mean_options_added_per_diagnostic_context": 0.694
+          },
+          "3": {
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.25,
+            "exact_rescue_wilson_95": [
+              0.003435,
+              0.044425
+            ],
+            "mean_options_added_per_diagnostic_context": 0.725
+          },
+          "5": {
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.25,
+            "exact_rescue_wilson_95": [
+              0.003435,
+              0.044425
+            ],
+            "mean_options_added_per_diagnostic_context": 0.738
+          }
+        },
+        "retrieval": {
+          "contexts_with_seed_truncation": 0,
+          "total_seeded_independent_witness_lines": 2749,
+          "total_seeded_witness_lines_scored": 2749
+        }
+      }
+    }
+  },
+  "oracle_residual_only_ceiling": {
+    "warning": "Uses the hidden evaluation label to identify residuals and cannot be implemented at inference time.",
+    "selected_contexts": 5486,
+    "exact_anchor_full_set_included_contexts": 5099,
+    "alignment_rescues_at_5": 6,
+    "before_percent": 92.95,
+    "after_percent": 93.06,
+    "increase_percentage_points": 0.11
+  },
+  "evidence_packet_count": 11,
+  "interpretation": "Alignment recovered only 6/387 post-hoc residuals while adding candidates to many more contexts; even the residual-only oracle ceiling is +0.11 percentage points. This exploratory yield does not justify integrating or calibrating the alignment layer. Preserve exact-anchor candidate sets and abstention; next map set-valued utility across multi-sign spans, which the intended expert UI must also support.",
+  "interpretation_limits": [
+    "The 387-context diagnostic subset was selected post hoc using the hidden attested evaluation reading; it is not a deployable selector or unbiased end-to-end estimate.",
+    "Alignment retrieval and ranking used observed context only; the hidden reading entered evaluation after ranking.",
+    "Alignment scores are MODEL_DERIVED uncalibrated diagnostics, not probabilities.",
+    "Agreement with intentionally masked attested text is not truth for a genuine lacuna."
+  ],
+  "input_hashes": {
+    "config": "f54cf0efd8d0d46bf339d66a4cc8883267842e014e93c948ab08ba5c7270e3f6",
+    "evidence_registry": "1847c19b6db43678bed12265f15f512e691818df8e0ca059cd14ef7adcea7fc1",
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+  }
+}

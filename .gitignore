@@ -4,12 +4,17 @@
 TLHdig_0.2.0-beta.zip
 TLHdig_0.2.0-beta/
 
+# Versioned external-corpus audit inputs. These remain quarantined raw data;
+# only small manifests, inventories, and reports belong in git.
+external_corpora/
+
 # Derived parquet/binary artifacts -- large, fully regenerable by
 # re-running the numbered pipeline scripts against the pinned corpus.
 # Small human-readable reports (.md/.csv/.json/.jsonl) ARE tracked.
 *.parquet
 
 # Python
+.venv/
 __pycache__/
 *.pyc
 

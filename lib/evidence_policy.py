@@ -253,6 +253,16 @@ def _git_commit() -> str:
         return f"N/A: {e}"
 
 
+def _git_dirty() -> bool | str:
+    try:
+        result = subprocess.run(
+            ["git", "status", "--porcelain"],
+            capture_output=True, text=True, check=True)
+        return bool(result.stdout.strip())
+    except Exception as e:  # noqa: BLE001
+        return f"N/A: {e}"
+
+
 def _hash_file(path: str | Path) -> str:
     p = Path(path)
     if not p.exists():
@@ -261,7 +271,7 @@ def _hash_file(path: str | Path) -> str:
     with open(p, "rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
-    return h.hexdigest()[:16]
+    return h.hexdigest()
 
 
 def build_manifest(*, task: str, evidence_policy: str, features_requested: Sequence[str],
@@ -311,6 +321,7 @@ def build_manifest(*, task: str, evidence_policy: str, features_requested: Seque
         "split_manifest_hash": _hash_file(split_manifest_path) if split_manifest_path else "",
         "config_hash": _hash_file(config_path) if config_path else "",
         "git_commit": _git_commit(),
+        "git_dirty": _git_dirty(),
         "corpus_version": corpus_version,
         "seed": seed,
         "declared_statistics_universe": declared_statistics_universe,

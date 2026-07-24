@@ -1,0 +1,45 @@
+{
+  "task": "physical_join_p2a_feasibility",
+  "evidence_policy": "artifact_strict",
+  "features_requested": [
+    "lines"
+  ],
+  "features_observed": [
+    "lines"
+  ],
+  "evidence_classes_used": [
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
+  "git_commit": "ecc5f675e8ff11b44cb5921ed737b30af5886a34",
+  "git_dirty": false,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260723,
+  "declared_statistics_universe": "dev relation rows; canonical mapped join-pair subset",
+  "created_utc": "2026-07-23T12:55:54.073545+00:00",
+  "probe_label": "PROBE — not for citation",
+  "control_fields_observed": [
+    "fragment_id",
+    "parent_doc",
+    "siglum",
+    "main_split"
+  ],
+  "labels_observed": [
+    "join_tier",
+    "join_type"
+  ],
+  "label_evidence_class": "EDITORIAL_RELATION",
+  "test_side_accessed": false,
+  "scoring_performed": false,
+  "input_hashes": {
+    "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
+    "join_pairs_jsonl": "52766f284dd61ee544b9db69fcd71df9f088d0124503c856b48a1418738f1180",
+    "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
+  }
+}

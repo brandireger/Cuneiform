@@ -34,7 +34,6 @@ import random
 import unicodedata
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 SEED = 20260722
@@ -355,7 +354,7 @@ def main():
         f"- After transform: {transformed_n:,} lines eligible, **{transformed_aligned_pct:.2f}%** "
         f"aligned, {transformed_mismatch_n:,} residual mismatches "
         f"({100*transformed_mismatch_n/max(transformed_n,1):.3f}%)",
-        f"- Spec threshold: glyph layer BLOCKED until error < 1% of lines.",
+        "- Spec threshold: glyph layer BLOCKED until error < 1% of lines.",
         f"- **Residual mismatch rate after transform: "
         f"{100*transformed_mismatch_n/max(transformed_n,1):.3f}%, well over the <1% threshold. "
         f"The gap-marker transform alone does NOT close the gap -- the orphan-marker finding "

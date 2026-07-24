@@ -1,0 +1,15 @@
+{
+  "seed": 20260723,
+  "evidence_policy": "catalog_assisted",
+  "folds": 5,
+  "anchor_lengths": [1, 2, 3],
+  "mask_lengths": [2, 3, 4, 5],
+  "maximum_witness_middle_length": 12,
+  "nominal_display_depth": 5,
+  "tie_policy": "include every alternative tied at the nominal depth boundary",
+  "packets_per_mask_outcome": 1,
+  "maximum_packet_alternatives": 12,
+  "candidate_set_calibration_estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+  "confidence_interval": "95% Wilson score interval",
+  "time_budget_hours": 4
+}
