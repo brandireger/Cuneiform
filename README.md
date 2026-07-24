@@ -90,6 +90,8 @@ keeps every expert decision quarantined pending adjudication. See
   Claude Code sessions.
 - [`PHASE2_CHARTER.md`](PHASE2_CHARTER.md) — current research questions
   and probe menu.
+- [`PHASE2_SUCCESSOR_HANDOFF.md`](PHASE2_SUCCESSOR_HANDOFF.md) — concise
+  Phase 2 history, completed work, non-negotiable boundaries, and next steps.
 - [`SANDBOX_RULES.md`](SANDBOX_RULES.md) — Phase 2 experimental governance.
 - [`specs/EVIDENCE_POLICY.md`](specs/EVIDENCE_POLICY.md) — mandatory
   evidence classes, assistance profiles, and run-manifest contract.
