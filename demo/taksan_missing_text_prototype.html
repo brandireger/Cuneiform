@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Takšan — missing-text expert review (prototype)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --tk-bg: #181512; --tk-panel: #211D18; --tk-cell: #2A251E; --tk-border: #38322A;
+    --tk-text: #E8E2D6; --tk-text-2: #B8B0A2; --tk-muted: #8F887C; --tk-faint: #6B6357;
+    --tk-accent: #5DCAA5; --tk-accent-2: #1D9E75; --tk-accent-bg: #12241D; --tk-accent-dk: #04342C;
+    --tk-danger: #A32D2D;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--tk-bg); color: var(--tk-text);
+    font: 400 15px/1.5 -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  code, .mono { font-family: "Source Code Pro", "JetBrains Mono", ui-monospace, Consolas, monospace; }
+  a { color: var(--tk-accent); }
+  h1, h2, h3 { font-weight: 500; margin: 0 0 .5em; }
+  button {
+    font: inherit; cursor: pointer; border-radius: 4px; border: 1px solid var(--tk-border);
+    background: var(--tk-cell); color: var(--tk-text); padding: .5em .9em;
+  }
+  button:hover:not(:disabled) { border-color: var(--tk-accent-2); }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  button.primary { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  button.danger { color: var(--tk-danger); }
+  input[type=text], textarea {
+    font: inherit; background: var(--tk-cell); color: var(--tk-text);
+    border: 1px solid var(--tk-border); border-radius: 4px; padding: .4em .6em; width: 100%;
+  }
+  .hairline { border: none; border-top: 1px solid var(--tk-border); margin: 1em 0; }
+
+  #self-test-banner {
+    padding: .5em 1em; font-size: 13px; text-align: center; border-bottom: 1px solid var(--tk-border);
+  }
+  #self-test-banner.pass { background: var(--tk-accent-bg); color: var(--tk-accent); }
+  #self-test-banner.fail { background: #2A1414; color: #E24B4A; }
+
+  header.app {
+    display: flex; align-items: center; gap: .75em; padding: .9em 1.2em;
+    border-bottom: 1px solid var(--tk-border); background: var(--tk-panel);
+  }
+  header.app .mark-btn { background: none; border: none; padding: .2em; border-radius: 4px; }
+  header.app .mark-btn:hover { background: var(--tk-cell); }
+  header.app .mark { display: block; width: 20px; height: 20px; background: var(--tk-accent-2); border-radius: 3px; }
+  header.app h1 { font-size: 16px; display: flex; align-items: baseline; gap: .5em; }
+  header.app .subtitle { color: var(--tk-faint); font-size: 13px; font-weight: 400; }
+  header.app .playground-badge {
+    margin-left: auto; font-size: 10px; letter-spacing: .04em; color: #E2A64B;
+    border: 1px solid #6B5A2A; background: #241D12; padding: .3em .6em; border-radius: 3px;
+    cursor: help;
+  }
+
+  .back-to-library-btn { margin: .8em 1em 0; font-size: 12px; padding: .3em .7em; align-self: flex-start; }
+  #shelf-controls { padding: .6em 1em; font-size: 12px; color: var(--tk-muted); border-bottom: 1px solid var(--tk-border); }
+  #shelf-controls button { font-size: 12px; padding: .3em .6em; margin-top: .3em; width: 100%; }
+  #shelf-controls .shelved-note { color: var(--tk-accent); }
+
+  .layout { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 56px); }
+  nav.packets { border-right: 1px solid var(--tk-border); background: var(--tk-panel); display: flex; flex-direction: column; }
+  nav.packets .nav-filter { padding: .8em 1em; border-bottom: 1px solid var(--tk-border); }
+  nav.packets .nav-filter input { margin-bottom: .4em; }
+  nav.packets .nav-count { color: var(--tk-faint); font-size: 12px; }
+  nav.packets .nav-list { overflow-y: auto; flex: 1; }
+  nav.packets .packet-item {
+    display: block; width: 100%; text-align: left; border: none; border-bottom: 1px solid var(--tk-border);
+    background: transparent; border-radius: 0; padding: .8em 1em;
+  }
+  nav.packets .packet-item:hover { background: var(--tk-cell); }
+  nav.packets .packet-item.active { background: var(--tk-accent-bg); border-left: 3px solid var(--tk-accent); }
+  nav.packets .packet-item .frag { font-weight: 500; }
+  nav.packets .packet-item .meta { color: var(--tk-muted); font-size: 12px; margin-top: .3em; }
+
+  main.detail { padding: 1.5em 2em; overflow-y: auto; max-width: 900px; }
+
+  .badge {
+    display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: .03em;
+    padding: .15em .5em; border-radius: 3px; border: 1px solid var(--tk-border); color: var(--tk-text-2);
+  }
+  .badge.mode { color: var(--tk-accent); border-color: var(--tk-accent-2); }
+  .badge.present { color: var(--tk-accent); border-color: var(--tk-accent-2); background: var(--tk-accent-bg); }
+  .badge.abstain { color: #E2A64B; border-color: #6B5A2A; background: #241D12; }
+
+  .query-line {
+    display: flex; flex-wrap: wrap; gap: .4em; align-items: center; padding: 1em;
+    background: var(--tk-cell); border: 1px solid var(--tk-border); border-radius: 6px; margin: .8em 0;
+  }
+  .tok { padding: .15em .5em; border-radius: 3px; background: var(--tk-panel); }
+  .tok.gap {
+    border: 1.5px dashed var(--tk-accent-2); color: var(--tk-accent); background: var(--tk-accent-bg);
+    font-size: 13px;
+  }
+
+  .abstain-banner {
+    background: #241D12; border: 1px solid #6B5A2A; color: #E2A64B; padding: 1em; border-radius: 6px; margin: 1em 0;
+  }
+
+  .fragment-panel { border: 1px solid var(--tk-border); border-radius: 6px; margin: .8em 0; background: var(--tk-cell); }
+  .fragment-panel .fp-header { padding: .8em 1em; border-bottom: 1px solid var(--tk-border); }
+  .fragment-panel .fp-header .doc { font-weight: 500; font-size: 15px; }
+  .fragment-panel .fp-header .cth-title { color: var(--tk-text-2); font-size: 13px; margin-top: .2em; }
+  .fragment-panel .fp-header .fp-meta { color: var(--tk-faint); font-size: 12px; margin-top: .2em; }
+  .fragment-panel .fp-body {
+    max-height: 440px; overflow-y: auto; padding: .6em 1em; font-size: 15px; line-height: 1.9;
+  }
+  .fp-line { display: flex; gap: .8em; padding: .25em 0; border-radius: 4px; }
+  .fp-line.target-line { background: var(--tk-accent-bg); padding: .4em .5em; margin: .2em -.5em; }
+  .fp-line .line-label { color: var(--tk-faint); font-size: 12px; min-width: 4.5em; flex-shrink: 0; padding-top: .3em; }
+  .fp-line .line-words { flex: 1; }
+  .fp-line.target-line .line-label { color: var(--tk-accent); }
+  .fp-word { display: inline-block; margin-right: .5em; position: relative; }
+  .fp-sign.attested { opacity: 1; }
+  .fp-sign.restored, .fp-sign.laes {
+    opacity: .5; border-bottom: 1.5px dashed var(--tk-muted);
+  }
+  .fp-sign.illegible { color: var(--tk-faint); }
+  .fp-word .det-badge, .fp-word .sum-badge {
+    font-size: 9px; vertical-align: super; color: var(--tk-accent); margin-left: 1px; cursor: help;
+  }
+  .fp-word .sum-badge { color: var(--tk-text-2); }
+  .fp-word .det-badge.unmapped { color: var(--tk-faint); }
+  .fp-jump-note { padding: .5em 1em; color: var(--tk-faint); font-size: 12px; border-top: 1px solid var(--tk-border); }
+  .fp-jump-btn { font-size: 12px; padding: .2em .6em; }
+
+  .fp-mode-toggle { display: flex; gap: .4em; margin-top: .5em; }
+  .fp-mode-toggle button { font-size: 12px; padding: .25em .7em; }
+  .fp-mode-toggle button.active { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  .fp-restoration-banner {
+    padding: .6em 1em; background: #241D12; border-bottom: 1px solid #6B5A2A; color: #E2A64B; font-size: 12px;
+  }
+
+  /* Deliberately NEUTRAL, not accent-colored: this is "nothing chosen
+     yet, here is what this fragment actually has recorded" -- it is
+     frequently NOT any candidate option (independent witnesses often
+     propose something this specific fragment doesn't itself show; that
+     disagreement is the whole point of the exercise). It must not look
+     like a selection. Only .fp-gap-insert (an actual preview/decision)
+     gets the accent color. */
+  .fp-gap-target {
+    display: inline-block; padding: .05em .3em; border: 1.5px dotted var(--tk-faint);
+    border-radius: 3px; color: var(--tk-text-2);
+  }
+  .fp-gap-target .kind-tag {
+    font-size: 9px; font-weight: 400; color: var(--tk-faint); margin-left: .3em;
+  }
+  .fp-gap-insert {
+    display: inline-block; padding: .05em .3em; border-radius: 3px;
+    background: var(--tk-accent-dk); color: var(--tk-accent); border: 1px solid var(--tk-accent-2);
+    font-weight: 500;
+  }
+  .fp-gap-insert.preview { border-style: dashed; opacity: .85; }
+  .fp-gap-insert .kind-tag { font-size: 9px; font-weight: 400; color: var(--tk-muted); margin-left: .3em; }
+  .fp-gap-empty { color: var(--tk-faint); font-style: italic; font-size: 12px; padding: 0 .3em; }
+
+  .preview-select-wrap { margin: .8em 0; padding: .8em 1em; background: var(--tk-panel); border: 1px solid var(--tk-border); border-radius: 6px; }
+  .preview-select-wrap label { display: block; font-size: 12px; color: var(--tk-muted); margin-bottom: .3em; }
+  .preview-select-wrap select { width: 100%; font: inherit; background: var(--tk-cell); color: var(--tk-text); border: 1px solid var(--tk-border); border-radius: 4px; padding: .4em .6em; }
+  .preview-select-wrap .preview-more-note { font-size: 11px; color: var(--tk-faint); margin-top: .3em; }
+
+  .set-audit, .rate-box {
+    border: 1px solid var(--tk-border); border-radius: 6px; padding: .8em 1em; margin: .6em 0; background: var(--tk-cell);
+  }
+  .rate-box .estimate { font-size: 20px; color: var(--tk-accent); }
+  .rate-box .ui-label { color: var(--tk-muted); font-size: 12px; margin-top: .3em; }
+  .rate-box.unavailable .ui-label { color: var(--tk-faint); }
+
+  .tail-note { color: var(--tk-text-2); font-size: 13px; margin: .6em 0; padding: .5em .8em; border-left: 3px solid var(--tk-accent-2); }
+
+  .option-card {
+    border: 1px solid var(--tk-border); border-radius: 6px; padding: .8em 1em; margin: .6em 0; background: var(--tk-panel);
+  }
+  .option-card.selectable { cursor: pointer; }
+  .option-card.selectable:hover { border-color: var(--tk-accent-2); }
+  .option-card.previewed { border-color: var(--tk-accent-2); background: var(--tk-accent-bg); }
+  .option-card .rank { color: var(--tk-faint); font-size: 12px; }
+  .option-card .signs { font-size: 17px; margin: .2em 0; }
+  .option-card .signs.empty { color: var(--tk-faint); font-style: italic; font-size: 13px; }
+  .option-card .witnesses-label, .option-card .track-record-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: .03em; color: var(--tk-faint); margin-top: .6em;
+  }
+  .option-card .witnesses { color: var(--tk-text-2); font-size: 13px; margin: .2em 0 .3em; }
+  .option-card .witnesses .fam { display: inline-block; margin: .1em .2em .1em 0; padding: .05em .4em; background: var(--tk-cell); border-radius: 3px; font-size: 12px; }
+
+  .reading-explainer {
+    font-size: 13px; color: var(--tk-text-2); background: var(--tk-panel); border: 1px solid var(--tk-border);
+    border-left: 3px solid var(--tk-accent-2); border-radius: 4px; padding: .7em 1em; margin: .8em 0;
+  }
+
+  .evidence-list, .limitations-list { list-style: none; padding: 0; margin: .3em 0; }
+  .evidence-list li, .limitations-list li {
+    font-size: 13px; padding: .4em .6em; border-left: 3px solid var(--tk-border); margin-bottom: .4em; color: var(--tk-text-2);
+  }
+  .limitations-list li { border-left-color: var(--tk-danger); }
+  .evidence-list li.contradicts { border-left-color: var(--tk-danger); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: .3em; margin: .3em 0; }
+  .tags .tag { font-size: 12px; background: var(--tk-cell); border: 1px solid var(--tk-border); border-radius: 3px; padding: .1em .5em; }
+
+  .action-bar { display: flex; flex-direction: column; gap: .5em; margin: 1em 0; padding: 1em; background: var(--tk-panel); border: 1px solid var(--tk-border); border-radius: 6px; }
+  .reviewer-fields { display: flex; gap: .6em; margin-bottom: .8em; }
+  .reviewer-fields > div { flex: 1; }
+  .reviewer-fields label { display: block; font-size: 12px; color: var(--tk-muted); margin-bottom: .2em; }
+  .action-guidance { font-size: 12px; color: var(--tk-muted); margin: .3em 0 .2em; }
+  .choice-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 1em;
+    padding: .5em .7em; border: 1px solid var(--tk-border); border-radius: 4px; background: var(--tk-cell);
+  }
+  .choice-row .choice-desc { font-size: 13px; color: var(--tk-text-2); }
+  .choice-row button { flex-shrink: 0; }
+
+  .other-form { display: none; margin-top: .6em; }
+  .other-form.open { display: block; }
+
+  .decision-log { margin-top: 1.5em; }
+  .decision-entry {
+    border: 1px solid var(--tk-border); border-radius: 6px; margin-bottom: .8em; background: var(--tk-cell);
+  }
+  .decision-entry summary { cursor: pointer; padding: .6em .9em; color: var(--tk-text-2); }
+  .decision-entry .checks { padding: 0 .9em .9em; }
+  .decision-entry .checks .ok { color: var(--tk-accent); }
+  .decision-entry .checks .bad { color: #E24B4A; }
+  .decision-entry pre { margin: 0 .9em .9em; padding: .8em; background: var(--tk-bg); border-radius: 4px; overflow-x: auto; font-size: 12px; }
+
+  footer.stamp {
+    border-top: 1px solid var(--tk-border); padding: .8em 2em; color: var(--tk-faint); font-size: 12px;
+  }
+  .empty-state { color: var(--tk-muted); padding: 2em; text-align: center; }
+
+  /* --- Library view --- */
+  .library-wrap { max-width: 1100px; margin: 0 auto; padding: 1.5em 2em 3em; }
+  .library-intro { color: var(--tk-text-2); font-size: 14px; max-width: 70ch; margin-bottom: .3em; }
+  .library-intro-note {
+    color: var(--tk-faint); font-size: 12px; max-width: 70ch; margin-bottom: 1.5em;
+    padding: .6em .9em; border-left: 3px solid #6B5A2A; background: #1a150f;
+  }
+  .library-search-row { display: flex; gap: .5em; margin-bottom: 1.5em; }
+  .library-search { flex: 1; padding: .6em .8em; font: inherit; }
+  .library-search-row button { flex-shrink: 0; }
+  .library-empty { color: var(--tk-faint); font-size: 13px; padding: 1em 0; display: flex; align-items: center; gap: .8em; }
+  .library-section { margin-bottom: 2em; }
+  .library-section h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--tk-muted);
+    border-bottom: 1px solid var(--tk-border); padding-bottom: .4em; margin-bottom: .8em;
+    display: flex; align-items: center; gap: .5em;
+  }
+  .library-section h2 .count { color: var(--tk-faint); text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1em; }
+  .tablet-card {
+    text-align: left; background: var(--tk-panel); border: 1px solid var(--tk-border); border-radius: 8px;
+    padding: 1em; display: flex; flex-direction: column; gap: .4em; cursor: pointer;
+  }
+  .tablet-card:hover { border-color: var(--tk-accent-2); }
+  .tablet-card.shelved { border-color: var(--tk-accent-2); background: var(--tk-accent-bg); }
+  .tablet-card .doc-id { font-weight: 500; font-size: 15px; }
+  .tablet-card .cth-title { color: var(--tk-text-2); font-size: 12px; }
+  .tablet-card .card-meta { color: var(--tk-faint); font-size: 11px; }
+  .tablet-card .card-status { font-size: 11px; margin-top: .3em; }
+  .tablet-card .card-status.not-started { color: var(--tk-faint); }
+  .tablet-card .card-status.in-progress { color: #E2A64B; }
+  .tablet-card .card-status.shelved { color: var(--tk-accent); }
+</style>
+</head>
+<body>
+
+<div id="self-test-banner">Running canonical-hash self-check…</div>
+
+<header class="app">
+  <button type="button" class="mark-btn" id="header-home-btn" aria-label="Back to library">
+    <span class="mark" aria-hidden="true"></span>
+  </button>
+  <div>
+    <h1>Takšan <span class="subtitle" id="header-subtitle">missing-text expert review</span></h1>
+  </div>
+  <span class="playground-badge" title="This library and its gaps come from Phase 2 calibration probes — signs that ARE attested, artificially hidden to measure recoverability. Real fragment damage is a separate, not-yet-built production mode. Never confuse the two.">TRAINING PLAYGROUND — CALIBRATION DATA</span>
+</header>
+
+<div id="library-view"></div>
+
+<div class="layout" id="workspace-view" style="display:none">
+  <nav class="packets" aria-label="Missing-text packets">
+    <button type="button" class="back-to-library-btn" id="back-to-library-btn">← Library</button>
+    <div id="shelf-controls"></div>
+    <div class="nav-filter">
+      <input type="text" id="nav-filter-input" placeholder="Filter by mode or status…">
+      <div class="nav-count" id="nav-count"></div>
+    </div>
+    <div class="nav-list" id="packet-nav"></div>
+  </nav>
+  <main class="detail" id="packet-detail"></main>
+</div>
+
+<footer class="stamp" id="footer-stamp"></footer>
+
+<script src="dm_out/missing_text_demo_data.js"></script>
+<script src="dm_out/fragment_context_data.js"></script>
+<script src="dm_out/gap_locations_data.js"></script>
+<script>
+"use strict";
+
+// ---------------------------------------------------------------------
+// Canonical JSON + SHA-256, mirroring lib/expert_decision_contract.py's
+// canonical_sha256(): json.dumps(value, ensure_ascii=False, sort_keys=True,
+// separators=(",", ":")) -> utf-8 -> sha256. See the self-test banner: it
+// checks this implementation against a hash precomputed with the real
+// Python function before anything else on this page is trusted.
+// ---------------------------------------------------------------------
+function canonicalStringify(value) {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return "[" + value.map(canonicalStringify).join(",") + "]";
+  }
+  const keys = Object.keys(value).sort();
+  return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalStringify(value[k])).join(",") + "}";
+}
+
+async function canonicalSha256(value) {
+  const str = canonicalStringify(value);
+  const bytes = new TextEncoder().encode(str);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function runSelfTest() {
+  const testObj = { a: 1, b: [3, 2, 1], c: { z: true, y: null, x: 0.908516 }, d: "héllo café" };
+  const expected = "3d2321f6c8945154bbd9e4667f675943b111dcfa0eadc5457af0f54764d9451c";
+  const banner = document.getElementById("self-test-banner");
+  try {
+    const got = await canonicalSha256(testObj);
+    if (got === expected) {
+      banner.className = "pass";
+      banner.textContent = "Hash self-check: PASS — this page's client-side SHA-256 matches lib/expert_decision_contract.py's canonical hash exactly.";
+    } else {
+      banner.className = "fail";
+      banner.textContent = "Hash self-check: FAIL — expected " + expected + " but got " + got + ". Decisions below cannot be trusted as contract-valid until this is fixed.";
+    }
+  } catch (e) {
+    banner.className = "fail";
+    banner.textContent = "Hash self-check: FAIL — crypto.subtle unavailable (" + e.message + "). This browser/context cannot compute contract-valid packet hashes.";
+  }
+}
+
+// ---------------------------------------------------------------------
+// Client-side mirror of validate_expert_decision()'s invariants, so the
+// UI can show *why* a produced decision is contract-valid rather than
+// asserting it.
+// ---------------------------------------------------------------------
+function selfCheckDecision(decision, packet, packetHash) {
+  const checks = [];
+  const ok = (label, cond) => checks.push({ label, ok: !!cond });
+
+  ok("record_type is expert_decision_record", decision.record_type === "expert_decision_record");
+  ok("contract_version is 1.0.0", decision.contract_version === "1.0.0");
+  ok("packet_id matches reviewed packet", decision.packet_id === packet.packet_id);
+  ok("packet_sha256 matches canonical hash of reviewed packet", decision.packet_sha256 === packetHash);
+  ok("action is one of packet.workflow.allowed_actions", packet.workflow.allowed_actions.includes(decision.action));
+
+  const optionIds = new Set(packet.candidate_set.options.map(o => o.option_id));
+  if (decision.action === "SELECT_OPTION") {
+    ok("selected_option_id is a real option in this packet", optionIds.has(decision.selected_option_id));
+    ok("proposed_other_signs is null for SELECT_OPTION", decision.proposed_other_signs === null);
+  } else if (decision.action === "OTHER_OR_UNSUPPORTED") {
+    ok("selected_option_id is null for OTHER_OR_UNSUPPORTED", decision.selected_option_id === null);
+  } else {
+    ok("selected_option_id is null (no option content for this action)", decision.selected_option_id === null);
+    ok("proposed_other_signs is null (no option content for this action)", decision.proposed_other_signs === null);
+  }
+
+  ok("assistance_acknowledged is true", decision.assistance_acknowledged === true);
+  ok("ground_truth_status is QUARANTINED_EXPERT_JUDGMENT", decision.ground_truth_status === "QUARANTINED_EXPERT_JUDGMENT");
+  ok("requires_adjudication is true", decision.requires_adjudication === true);
+  ok("reviewer_id is non-empty", !!(decision.reviewer && decision.reviewer.reviewer_id));
+  ok("declared_role is non-empty", !!(decision.reviewer && decision.reviewer.declared_role));
+
+  return checks;
+}
+
+// ---------------------------------------------------------------------
+// Rendering
+// ---------------------------------------------------------------------
+const PACKETS = (typeof TAKSAN_DEMO_PACKETS !== "undefined") ? TAKSAN_DEMO_PACKETS : [];
+let activePacketId = PACKETS.length ? PACKETS[0].packet_id : null;
+const sessionDecisions = [];
+
+// currentView: "library" | "workspace". The library is the landing page --
+// choose a tablet, see its real metadata (CTH title, site, line count) and
+// how many training gaps it has. "workspace" is the existing per-packet
+// review UI, now scoped to one tablet's gaps rather than all 28 globally.
+let currentView = "library";
+let currentTabletDocId = null;
+// restoredShelf: doc_ids the researcher has manually moved to the "done"
+// shelf. Deliberately a human action, not automatic -- nothing in this
+// project auto-promotes a state change, and "all gaps have a decision"
+// is not the same as "this reviewer considers the tablet done."
+const restoredShelf = new Set();
+
+// previewOption: { packetId, optionId } | null -- a "what if I chose this"
+// preview from the top-options dropdown, shown only in "Encoded text" mode,
+// only for the currently active packet. Never recorded anywhere; cleared on
+// packet navigation.
+let previewOption = null;
+// fragmentRestorationMode: "encoded" | "restoration" -- toggles the whole
+// fragment panel between the as-encoded corpus view and a preview of every
+// gap in this fragment filled with the researcher's latest RECORDED
+// decisions (still provisional/quarantined, never presented as truth).
+let fragmentRestorationMode = "encoded";
+
+function fmtPct(x) { return (x * 100).toFixed(1) + "%"; }
+
+function fragmentPacketsFor(docId) {
+  return PACKETS.filter(p => baseDocId(p.query.fragment_id) === docId);
+}
+
+function allTabletDocIds() {
+  return [...new Set(PACKETS.map(p => baseDocId(p.query.fragment_id)))].sort();
+}
+
+// Status is about DECISIONS RECORDED, not accuracy -- there is no "correct"
+// state to detect automatically, only "has the researcher looked at this."
+function tabletStatus(docId) {
+  if (restoredShelf.has(docId)) return "shelved";
+  const packets = fragmentPacketsFor(docId);
+  const decided = packets.filter(p => latestDecisionFor(p.packet_id)).length;
+  if (decided === 0) return "not-started";
+  return "in-progress";
+}
+
+function tabletDecidedCount(docId) {
+  return fragmentPacketsFor(docId).filter(p => latestDecisionFor(p.packet_id)).length;
+}
+
+// ---------------------------------------------------------------------
+// Library (landing page) + view switching
+// ---------------------------------------------------------------------
+let libraryFilter = "";
+
+function showView() {
+  document.getElementById("library-view").style.display = currentView === "library" ? "block" : "none";
+  document.getElementById("workspace-view").style.display = currentView === "workspace" ? "grid" : "none";
+  document.getElementById("header-subtitle").textContent = currentView === "library"
+    ? "training playground — choose a tablet"
+    : `working on ${currentTabletDocId}`;
+  if (currentView === "library") {
+    renderLibrary();
+  } else {
+    renderAll();
+  }
+}
+
+function openTablet(docId) {
+  currentTabletDocId = docId;
+  const packets = fragmentPacketsFor(docId);
+  activePacketId = packets.length ? packets[0].packet_id : null;
+  previewOption = null;
+  fragmentRestorationMode = "encoded";
+  currentView = "workspace";
+  showView();
+}
+
+function showLibrary() {
+  currentView = "library";
+  currentTabletDocId = null;
+  showView();
+}
+
+function renderTabletCard(docId) {
+  const ctx = (typeof TAKSAN_FRAGMENT_CONTEXT !== "undefined") ? TAKSAN_FRAGMENT_CONTEXT[docId] : null;
+  const gapCount = fragmentPacketsFor(docId).length;
+  const decided = tabletDecidedCount(docId);
+  const status = tabletStatus(docId);
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = "tablet-card" + (status === "shelved" ? " shelved" : "");
+  const statusText = status === "shelved" ? "✓ On restored shelf"
+    : status === "in-progress" ? `In progress — ${decided}/${gapCount} gap${gapCount === 1 ? "" : "s"} have a recorded selection`
+    : "Not started";
+  const titleLine = ctx
+    ? (ctx.cth_title ? `CTH ${ctx.cth} — ${ctx.cth_title}` : `CTH ${ctx.cth}`)
+    : "";
+  card.innerHTML = `
+    <div class="doc-id">${docId}</div>
+    <div class="cth-title">${titleLine}</div>
+    <div class="card-meta">${ctx ? (ctx.site || "site unknown") : "site unknown"} · ${ctx ? ctx.lines.length : "?"} lines · ${gapCount} training gap${gapCount === 1 ? "" : "s"}</div>
+    <div class="card-status ${status}">${statusText}</div>
+  `;
+  card.addEventListener("click", () => openTablet(docId));
+  return card;
+}
+
+function renderLibrarySection(title, ids) {
+  const section = document.createElement("div");
+  section.className = "library-section";
+  if (!ids.length) return null;
+  section.innerHTML = `<h2>${title} <span class="count">(${ids.length})</span></h2>`;
+  const grid = document.createElement("div");
+  grid.className = "library-grid";
+  ids.forEach(docId => grid.appendChild(renderTabletCard(docId)));
+  section.appendChild(grid);
+  return section;
+}
+
+function clearLibrarySearch() {
+  libraryFilter = "";
+  renderLibrary();
+}
+
+function renderLibrary() {
+  const wrap = document.getElementById("library-view");
+  const needle = libraryFilter.trim().toLowerCase();
+  const allIds = allTabletDocIds().filter(docId => {
+    if (!needle) return true;
+    const ctx = (typeof TAKSAN_FRAGMENT_CONTEXT !== "undefined") ? TAKSAN_FRAGMENT_CONTEXT[docId] : null;
+    // Search covers the tablet's own metadata AND every packet_id it
+    // contains -- a researcher who's seen a specific gap referenced
+    // (e.g. "p2e4-013" in a report or conversation) should be able to
+    // jump straight to its tablet, not just search by docID/CTH/site.
+    const packetIds = fragmentPacketsFor(docId).map(p => p.packet_id);
+    const hay = [docId, ctx && ctx.cth_title, ctx && ("cth " + ctx.cth), ctx && ctx.site, ...packetIds]
+      .filter(Boolean).join(" ").toLowerCase();
+    return hay.includes(needle);
+  });
+
+  wrap.innerHTML = `
+    <div class="library-wrap">
+      <p class="library-intro">Choose a tablet to work on. Each one below has real transliterated text and one or more gaps.</p>
+      <p class="library-intro-note">
+        <strong>These are training gaps, not real fragment damage.</strong> The signs shown as "missing" here are actually
+        attested on the clay — Phase 2's calibration probes artificially hid them to measure how well candidate witnesses
+        predict known text. A production mode for genuinely damaged fragments (real <code class="mono">restored</code>/
+        <code class="mono">illegible</code> signs) is a separate, not-yet-built phase.
+      </p>
+      <div class="library-search-row">
+        <input type="text" class="library-search" id="library-search-input"
+          placeholder="Search by docID, CTH, site, or gap ID (e.g. p2e4-013)…" value="${libraryFilter}">
+        <button type="button" id="library-search-clear" ${needle ? "" : "disabled"}>Clear</button>
+      </div>
+      <div id="library-sections"></div>
+    </div>
+  `;
+  const sections = wrap.querySelector("#library-sections");
+  if (!allIds.length) {
+    sections.innerHTML = `
+      <div class="library-empty">
+        No tablets match "${libraryFilter}".
+        <button type="button" id="library-empty-clear">Show all tablets</button>
+      </div>`;
+    sections.querySelector("#library-empty-clear").addEventListener("click", clearLibrarySearch);
+  } else {
+    const shelved = allIds.filter(d => tabletStatus(d) === "shelved");
+    const inProgress = allIds.filter(d => tabletStatus(d) === "in-progress");
+    const notStarted = allIds.filter(d => tabletStatus(d) === "not-started");
+    [renderLibrarySection("Restored shelf", shelved),
+     renderLibrarySection("In progress", inProgress),
+     renderLibrarySection("Not started", notStarted)]
+      .filter(Boolean)
+      .forEach(section => sections.appendChild(section));
+  }
+  const searchInput = wrap.querySelector("#library-search-input");
+  searchInput.addEventListener("input", (e) => {
+    libraryFilter = e.target.value;
+    renderLibrary();
+  });
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") clearLibrarySearch();
+  });
+  wrap.querySelector("#library-search-clear").addEventListener("click", clearLibrarySearch);
+}
+
+function latestDecisionFor(packetId) {
+  for (let i = sessionDecisions.length - 1; i >= 0; i--) {
+    if (sessionDecisions[i].decision.packet_id === packetId) return sessionDecisions[i].decision;
+  }
+  return null;
+}
+
+// Returns {signs, actionLabel} for what a decision would insert into the
+// gap, or null if the decision leaves the gap open (REJECT_ALL,
+// WITHHOLD_JUDGMENT, or an OTHER_OR_UNSUPPORTED with no proposed text).
+function replacementForDecision(decision, packet) {
+  if (!decision) return null;
+  if (decision.action === "SELECT_OPTION") {
+    const opt = packet.candidate_set.options.find(o => o.option_id === decision.selected_option_id);
+    return opt ? { signs: opt.signs, actionLabel: "selected" } : null;
+  }
+  if (decision.action === "OTHER_OR_UNSUPPORTED" && decision.proposed_other_signs && decision.proposed_other_signs.length) {
+    return { signs: decision.proposed_other_signs, actionLabel: "proposed (other)" };
+  }
+  return null;
+}
+
+// Builds word_index_in_line -> { tokens, override } for whichever gap(s)
+// should be shown specially in the fragment panel right now: in "encoded"
+// mode, just the active packet's own gap (plus any live dropdown preview);
+// in "restoration" mode, every gap in this fragment that has a recorded
+// decision.
+function buildGapOverrides(activePacket) {
+  const overrides = new Map();
+  const docId = baseDocId(activePacket.query.fragment_id);
+
+  function addPacketGap(packet, override) {
+    const gapLoc = (typeof TAKSAN_GAP_LOCATIONS !== "undefined") ? TAKSAN_GAP_LOCATIONS[packet.packet_id] : null;
+    if (!gapLoc) return;
+    // gapLoc.words is ordered left-to-right (same order as the export's
+    // sorted word_indices). When a gap spans more than one word, the
+    // replacement text is a single alternative for the WHOLE span -- not
+    // one option per word -- so it renders once, at the first (primary)
+    // touched word; the rest just lose their gap tokens rather than each
+    // repeating the full text.
+    gapLoc.words.forEach((w, idx) => {
+      // Composite key: word_index_in_line is only unique WITHIN a line.
+      const key = gapLoc.line_index_in_doc + ":" + w.word_index_in_line;
+      overrides.set(key, {
+        tokens: w.tokens, override, packetId: packet.packet_id,
+        lineIndexInDoc: gapLoc.line_index_in_doc,
+        isPrimary: idx === 0,
+      });
+    });
+  }
+
+  if (fragmentRestorationMode === "restoration") {
+    fragmentPacketsFor(docId).forEach(p => {
+      const decision = latestDecisionFor(p.packet_id);
+      const replacement = replacementForDecision(decision, p);
+      addPacketGap(p, replacement ? { kind: "decision", ...replacement } : null);
+    });
+  } else {
+    let override = null;
+    if (previewOption && previewOption.packetId === activePacket.packet_id) {
+      const opt = activePacket.candidate_set.options.find(o => o.option_id === previewOption.optionId);
+      if (opt) override = { kind: "preview", signs: opt.signs, actionLabel: "previewing" };
+    }
+    addPacketGap(activePacket, override);
+  }
+  return overrides;
+}
+
+// Natural-frequency phrasing ("about N of 100 past cases") instead of a
+// bare percentage — reuses the same house style the Honesty Panel copy
+// standard in specs/TAKSAN_DEMO_SPEC.md already established ("Of 100
+// fragments with a known physical partner, the system ranks the true
+// partner first about N times"). Raw numbers stay available for rigor,
+// but this leads because "91 times out of 100" is far easier to reason
+// about correctly than "90.9% (95% CI 90.0-91.6%)" for a reader without
+// a stats background -- and, per OPTION_RANK's own estimand text, it is
+// a claim about the RANK POSITION across many past comparisons, not
+// about this specific candidate.
+function renderRate(rate, label) {
+  const box = document.createElement("div");
+  box.className = "rate-box" + (rate.kind === "UNAVAILABLE" ? " unavailable" : "");
+  if (rate.kind === "GROUP_AUDIT_RATE") {
+    const perHundred = Math.round(rate.estimate * 100);
+    const scopeNote = rate.scope === "OPTION_RANK"
+      ? "This describes how often <em>a candidate at this rank</em> has matched the truth in past comparisons — it is not affected by how many witnesses support this specific reading (see below), and a well-witnessed candidate can still be the exception."
+      : "This describes the whole candidate set shown, across past comparisons with a similar evidence profile — not the probability that any single option here is the true one.";
+    box.innerHTML = `
+      <div class="estimate">In about ${perHundred} of 100 similar past comparisons, ${rate.scope === "OPTION_RANK" ? "a candidate at this rank" : "the true reading"} matched this outcome.</div>
+      <div style="font-size:12px;color:var(--tk-muted);margin-top:.2em">${fmtPct(rate.estimate)} (95% CI ${fmtPct(rate.interval.lower)}–${fmtPct(rate.interval.upper)}, n=${rate.sample_size})</div>
+      <div style="font-size:13px;color:var(--tk-text-2);margin-top:.4em">${label}: ${rate.estimand}</div>
+      <div class="ui-label" style="margin-top:.3em">${scopeNote}</div>
+      <div class="ui-label">${rate.ui_label}</div>
+    `;
+  } else {
+    box.innerHTML = `<div class="ui-label">${label}: ${rate.ui_label}</div>`;
+  }
+  return box;
+}
+
+function matchesFilter(p, needle) {
+  if (!needle) return true;
+  const haystack = [
+    p.query.fragment_id, p.mode, p.status, p.packet_id, "cth " + p.query.cth,
+  ].join(" ").toLowerCase();
+  return haystack.includes(needle);
+}
+
+function renderShelfControls() {
+  const el = document.getElementById("shelf-controls");
+  const docId = currentTabletDocId;
+  const gapCount = fragmentPacketsFor(docId).length;
+  const decided = tabletDecidedCount(docId);
+  if (restoredShelf.has(docId)) {
+    el.innerHTML = `<div class="shelved-note">✓ On restored shelf</div><button type="button" id="unshelve-btn">Remove from shelf</button>`;
+    el.querySelector("#unshelve-btn").addEventListener("click", () => {
+      restoredShelf.delete(docId);
+      renderNav();
+    });
+  } else {
+    el.innerHTML = `
+      <div>${decided}/${gapCount} gap${gapCount === 1 ? "" : "s"} have a recorded selection</div>
+      <button type="button" id="shelve-btn">Move to restored shelf</button>
+    `;
+    el.querySelector("#shelve-btn").addEventListener("click", () => {
+      restoredShelf.add(docId);
+      renderNav();
+    });
+  }
+}
+
+function renderNav() {
+  renderShelfControls();
+  const nav = document.getElementById("packet-nav");
+  const countEl = document.getElementById("nav-count");
+  const needle = (document.getElementById("nav-filter-input").value || "").trim().toLowerCase();
+  const tabletPackets = fragmentPacketsFor(currentTabletDocId);
+  const visible = tabletPackets.filter(p => matchesFilter(p, needle));
+  countEl.textContent = `${visible.length} of ${tabletPackets.length} gaps in ${currentTabletDocId}`;
+  nav.innerHTML = "";
+  if (!visible.length) {
+    nav.innerHTML = `<div class="empty-state">Nothing matches "${needle}".</div>`;
+    return;
+  }
+  visible.forEach(p => {
+    const btn = document.createElement("button");
+    btn.className = "packet-item" + (p.packet_id === activePacketId ? " active" : "");
+    btn.innerHTML = `
+      <div class="frag">${p.query.fragment_id} <span class="badge mode">${p.mode.replace("_", " ")}</span></div>
+      <div class="meta">CTH ${p.query.cth} · <span class="badge ${p.status === 'ABSTAIN_INSUFFICIENT_EVIDENCE' ? 'abstain' : 'present'}">${p.status === 'ABSTAIN_INSUFFICIENT_EVIDENCE' ? 'Abstains' : 'Presents candidates'}</span></div>
+    `;
+    btn.addEventListener("click", () => { activePacketId = p.packet_id; renderAll(); });
+    nav.appendChild(btn);
+  });
+}
+
+function renderQueryLine(query) {
+  const div = document.createElement("div");
+  div.className = "query-line";
+  const gapLabel = query.gap_extent.kind === "EXACT" && query.gap_extent.minimum_signs === query.gap_extent.maximum_signs
+    ? `gap: ${query.gap_extent.minimum_signs} sign${query.gap_extent.minimum_signs === 1 ? "" : "s"}`
+    : `gap: ${query.gap_extent.minimum_signs}–${query.gap_extent.maximum_signs} signs`;
+  let html = "";
+  query.left_context.forEach(t => html += `<span class="tok">${t}</span>`);
+  html += `<span class="tok gap">${gapLabel}</span>`;
+  query.right_context.forEach(t => html += `<span class="tok">${t}</span>`);
+  div.innerHTML = html;
+  return div;
+}
+
+function baseDocId(fragmentId) {
+  return fragmentId.split("::")[0];
+}
+
+// Renders the whole tablet a packet's query location was drawn from.
+// NOTE on precision: the target LINE (line_index_in_doc) is an exact,
+// unambiguous match against the same column in corpus.parquet. The
+// exact SIGN within that line is deliberately NOT highlighted here --
+// query.location.sign_offset_in_line indexes into a different token
+// stream (Phase1_pipeline/p4_out/decomposed_corpus.parquet, which
+// splits determinative-prefixed compounds like "URUiš" into "URU"+"iš"
+// and excludes restored signs per lib/hittite_tokenizer.encode_
+// fragment_window) than this panel's corpus.parquet-based word
+// rendering. Reconciling the two exactly needs the same determinative-
+// splitting function the decomposed corpus was built with, which
+// wasn't safe to reimplement ad hoc for this pass -- see
+// demo/missing_text_prototype_report.md. Use the highlighted line plus
+// the left/right context tokens shown above to locate the gap by eye.
+// Renders one gap-touched word from its exact decomposed tokens (not
+// corpus.parquet's signs, which may merge determinative-prefixed
+// compounds like "URUiš" into one raw sign) -- non-gap tokens render
+// with normal damage styling; the contiguous is_gap run renders either
+// outlined (nothing chosen yet -- shows the true encoded content) or as
+// a solid/dashed insert (a preview or recorded decision is active).
+function optionAuditShortLabel(rate) {
+  if (rate.kind !== "GROUP_AUDIT_RATE") return "no group audit rate";
+  return `${fmtPct(rate.estimate)} [${fmtPct(rate.interval.lower)}–${fmtPct(rate.interval.upper)}], n=${rate.sample_size}`;
+}
+
+// Top-5-ranked options as a fast preview selector: choosing one shows it
+// spliced into the fragment panel's gap immediately (a "what if" preview,
+// switches to "Encoded text" mode), without recording anything. Recording
+// a real decision still requires the explicit action buttons below.
+function renderPreviewDropdown(packet) {
+  const wrap = document.createElement("div");
+  wrap.className = "preview-select-wrap";
+
+  // The dropdown only controls the live "what if" preview, which only
+  // renders in Encoded-text mode (see buildGapOverrides). In My-restoration
+  // mode the fragment shows recorded DECISIONS instead, driven by
+  // sessionDecisions, not by this dropdown -- leaving the dropdown active
+  // and looking like "No preview" there (regardless of what's actually
+  // shown) was exactly the disconnect that prompted this fix. Disable it
+  // and say so, rather than let it imply a control it doesn't have.
+  if (fragmentRestorationMode === "restoration") {
+    wrap.innerHTML = `
+      <label>Candidate preview</label>
+      <div style="font-size:13px;color:var(--tk-muted)">
+        Inactive in "My restoration" mode — this view shows your <em>recorded</em> selections, not a live preview.
+        <button type="button" id="preview-switch-to-encoded" style="margin-left:.5em;font-size:12px;padding:.2em .6em">Switch to Encoded text</button>
+      </div>
+    `;
+    wrap.querySelector("#preview-switch-to-encoded").addEventListener("click", () => {
+      fragmentRestorationMode = "encoded";
+      renderDetail();
+    });
+    return wrap;
+  }
+
+  const top5 = packet.candidate_set.options.slice(0, 5);
+  const currentValue = (previewOption && previewOption.packetId === packet.packet_id)
+    ? previewOption.optionId : "";
+  const optionsHtml = top5.map(opt => {
+    const signsText = opt.signs.length ? opt.signs.join(" ") : "(empty — witnessed omission)";
+    return `<option value="${opt.option_id}" ${opt.option_id === currentValue ? "selected" : ""}>#${opt.rank} ${signsText} — ${optionAuditShortLabel(opt.option_audit)}</option>`;
+  }).join("");
+  wrap.innerHTML = `
+    <label for="preview-select">Preview a candidate in the fragment above (top ${top5.length}${packet.candidate_set.options.length > top5.length ? ` of ${packet.candidate_set.options.length}` : ""}, with confidence intervals)</label>
+    <select id="preview-select">
+      <option value="">No preview — show as encoded</option>
+      ${optionsHtml}
+    </select>
+    ${packet.candidate_set.options.length > top5.length
+      ? `<div class="preview-more-note">${packet.candidate_set.options.length - top5.length} more option(s) shown as cards below.</div>` : ""}
+  `;
+  wrap.querySelector("#preview-select").addEventListener("change", (e) => {
+    previewOption = e.target.value ? { packetId: packet.packet_id, optionId: e.target.value } : null;
+    renderDetail();
+  });
+  return wrap;
+}
+
+// Returns a rendered <span class="fp-word"> for one gap-touched word, or
+// null if it renders to nothing (an entirely-gap word whose insert is
+// shown at an earlier word instead -- see isPrimary in buildGapOverrides).
+// A multi-word gap's replacement is ONE alternative for the WHOLE span
+// (an independent witness's own reading, not one option per word, and
+// per the contract it may even have a different sign count than the
+// span it replaces) -- so it's rendered once, at the primary word;
+// non-primary touched words simply lose their gap tokens rather than
+// each repeating the full replacement.
+function renderGapWord(entry) {
+  const toks = entry.tokens;
+  const collapse = entry.override && !entry.isPrimary;
+  const parts = [];
+  let i = 0;
+  while (i < toks.length) {
+    if (!toks[i].is_gap) {
+      parts.push(`<span class="fp-sign ${toks[i].damage_state}">${toks[i].token}</span>`);
+      i++;
+      continue;
+    }
+    // contiguous is_gap run
+    const gapStart = i;
+    while (i < toks.length && toks[i].is_gap) i++;
+    if (collapse) {
+      // Omitted -- this word's contribution to a multi-word gap is
+      // already shown once, at the primary word.
+    } else if (entry.override) {
+      const cls = entry.override.kind === "preview" ? "fp-gap-insert preview" : "fp-gap-insert";
+      const signsText = entry.override.signs.length ? entry.override.signs.join(" ") : "(empty)";
+      parts.push(`<span class="${cls}" title="${entry.override.actionLabel}">${signsText}<span class="kind-tag">${entry.override.actionLabel}</span></span>`);
+    } else {
+      const encoded = toks.slice(gapStart, i).map(t => t.token).join("-");
+      parts.push(`<span class="fp-gap-target" title="This is what this fragment actually has recorded here — not a selection, and not necessarily any candidate below (other witnesses often propose something different).">${encoded}<span class="kind-tag">as encoded — not a candidate</span></span>`);
+    }
+  }
+  if (!parts.length) return null;
+  const wordSpan = document.createElement("span");
+  wordSpan.className = "fp-word";
+  wordSpan.innerHTML = parts.join(`<span style="opacity:.5">-</span>`);
+  return wordSpan;
+}
+
+function renderFragmentPanel(packet) {
+  const docId = baseDocId(packet.query.fragment_id);
+  const ctx = (typeof TAKSAN_FRAGMENT_CONTEXT !== "undefined") ? TAKSAN_FRAGMENT_CONTEXT[docId] : null;
+  const wrap = document.createElement("div");
+  wrap.className = "fragment-panel";
+  if (!ctx) {
+    wrap.innerHTML = `<div class="fp-header"><div class="fp-meta">No fragment context available for ${docId}.</div></div>`;
+    return wrap;
+  }
+  const gapOverrides = buildGapOverrides(packet);
+  const affectedLines = new Set([...gapOverrides.values()].map(e => e.lineIndexInDoc));
+  affectedLines.add(packet.query.location.line_index_in_doc);
+
+  const titleHtml = ctx.cth_title
+    ? `<div class="cth-title">CTH ${ctx.cth} — ${ctx.cth_title}</div>`
+    : `<div class="cth-title">CTH ${ctx.cth}</div>`;
+
+  const restorationDecisions = fragmentRestorationMode === "restoration"
+    ? fragmentPacketsFor(docId).filter(p => replacementForDecision(latestDecisionFor(p.packet_id), p))
+    : [];
+  const totalGapsInFragment = fragmentPacketsFor(docId).filter(
+    p => (typeof TAKSAN_GAP_LOCATIONS !== "undefined") && TAKSAN_GAP_LOCATIONS[p.packet_id]).length;
+
+  wrap.innerHTML = `
+    <div class="fp-header">
+      <div class="doc">${ctx.doc_id}<span class="badge" style="margin-left:.5em">${ctx.site || "site unknown"}</span></div>
+      ${titleHtml}
+      <div class="fp-meta">${ctx.lines.length} lines · full editorial transliteration, damage grammar applied · determinative categories per CLAUDE.md's vetted inventory only</div>
+      <div class="fp-mode-toggle">
+        <button type="button" id="fp-mode-encoded" class="${fragmentRestorationMode === 'encoded' ? 'active' : ''}">Encoded text</button>
+        <button type="button" id="fp-mode-restoration" class="${fragmentRestorationMode === 'restoration' ? 'active' : ''}">My restoration (provisional)</button>
+      </div>
+    </div>
+    ${fragmentRestorationMode === "restoration" ? `<div class="fp-restoration-banner">
+      Provisional — ${restorationDecisions.length} of ${totalGapsInFragment} gap${totalGapsInFragment === 1 ? '' : 's'} in this fragment ${restorationDecisions.length === 1 ? 'has' : 'have'} a recorded selection this session. These are quarantined expert judgments, not corpus truth or an official restoration, and are never auto-promoted.
+    </div>` : ""}
+    <div class="fp-body" id="fp-body"></div>
+    <div class="fp-jump-note">
+      The dotted box is this packet's evaluated location, showing what this fragment itself actually has recorded there — nothing is selected yet. It is often <strong>not</strong> the same as any candidate below: the candidates come from independent witnesses, which frequently propose a different reading than this specific fragment shows (that disagreement is what the recoverability probes measure). Use the dropdown below to preview a candidate there instead, or switch to "My restoration" to see recorded selections across this whole fragment.
+      <button type="button" class="fp-jump-btn" id="fp-jump-btn">Jump to gap</button>
+    </div>
+  `;
+  wrap.querySelector("#fp-mode-encoded").addEventListener("click", () => {
+    fragmentRestorationMode = "encoded"; renderDetail();
+  });
+  wrap.querySelector("#fp-mode-restoration").addEventListener("click", () => {
+    fragmentRestorationMode = "restoration"; renderDetail();
+  });
+
+  const body = wrap.querySelector("#fp-body");
+  let targetLineEl = null;
+  ctx.lines.forEach(line => {
+    const lineDiv = document.createElement("div");
+    const isAffected = affectedLines.has(line.line_index_in_doc);
+    lineDiv.className = "fp-line" + (isAffected ? " target-line" : "");
+    const labelDiv = document.createElement("div");
+    labelDiv.className = "line-label";
+    labelDiv.textContent = line.line_label + (isAffected ? " ←" : "");
+    lineDiv.appendChild(labelDiv);
+    const wordsDiv = document.createElement("div");
+    wordsDiv.className = "line-words";
+    line.words.forEach(w => {
+      if (!w.signs.length) return;
+      const overrideKey = line.line_index_in_doc + ":" + w.word_index_in_line;
+      if (gapOverrides.has(overrideKey)) {
+        const rendered = renderGapWord(gapOverrides.get(overrideKey));
+        if (rendered) wordsDiv.appendChild(rendered);
+        return;
+      }
+      const wordSpan = document.createElement("span");
+      wordSpan.className = "fp-word";
+      const signHtml = w.signs.map((s, i) => {
+        const state = w.sign_damage_states[i] || "attested";
+        return `<span class="fp-sign ${state}">${s}</span>`;
+      }).join("<span style=\"opacity:.5\">-</span>");
+      let badges = "";
+      if (w.is_det) {
+        badges += w.det_category
+          ? `<span class="det-badge" title="Determinative: ${w.det_category} (per CLAUDE.md's vetted inventory)">det</span>`
+          : `<span class="det-badge unmapped" title="Determinative present — category not in the currently vetted list">det?</span>`;
+      }
+      if (w.is_sum) {
+        badges += `<span class="sum-badge" title="Sumerogram (logogram) — no gloss curated, structural fact only">Sum</span>`;
+      }
+      wordSpan.innerHTML = signHtml + badges;
+      wordsDiv.appendChild(wordSpan);
+    });
+    lineDiv.appendChild(wordsDiv);
+    body.appendChild(lineDiv);
+    if (line.line_index_in_doc === packet.query.location.line_index_in_doc) targetLineEl = lineDiv;
+  });
+
+  const scrollToTarget = () => {
+    if (targetLineEl) targetLineEl.scrollIntoView({ block: "center" });
+  };
+  wrap.querySelector("#fp-jump-btn").addEventListener("click", scrollToTarget);
+  setTimeout(scrollToTarget, 0);
+
+  return wrap;
+}
+
+function renderEvidenceList(items, title, contradicts) {
+  if (!items.length) return null;
+  const wrap = document.createElement("div");
+  const h = document.createElement("h3");
+  h.style.fontSize = "13px"; h.style.color = "var(--tk-muted)"; h.textContent = title;
+  wrap.appendChild(h);
+  const ul = document.createElement("ul");
+  ul.className = "evidence-list";
+  items.forEach(ev => {
+    const li = document.createElement("li");
+    if (contradicts) li.className = "contradicts";
+    li.innerHTML = `${ev.summary} <span style="color:var(--tk-faint)">(${ev.evidence_class})</span>`;
+    ul.appendChild(li);
+  });
+  wrap.appendChild(ul);
+  return wrap;
+}
+
+function updateFooterStamp(packet) {
+  const stamp = document.getElementById("footer-stamp");
+  const prov = packet.source_provenance;
+  stamp.innerHTML = `Contract v${packet.contract_version} · source: <code class="mono">${prov.source_artifact}</code> (sha256 ${prov.source_artifact_sha256.slice(0,12)}…) ·
+    private prototype — decisions are recorded as <code class="mono">QUARANTINED_EXPERT_JUDGMENT</code> only and are never auto-promoted to ground truth.`;
+}
+
+// Persists across full re-renders (recording a decision now re-renders
+// the whole detail panel so the fragment view can pick it up immediately;
+// without this the reviewer would have to retype their name each time).
+let lastReviewer = { reviewer_id: "", declared_role: "" };
+
+function currentReviewer() {
+  lastReviewer = {
+    reviewer_id: document.getElementById("reviewer-id").value.trim(),
+    declared_role: document.getElementById("reviewer-role").value.trim(),
+  };
+  return lastReviewer;
+}
+
+async function recordDecision(packet, action, selectedOptionId, proposedOtherSigns) {
+  const reviewer = currentReviewer();
+  if (!reviewer.reviewer_id || !reviewer.declared_role) {
+    alert("Enter a reviewer name and declared role before recording a decision.");
+    return;
+  }
+  const rationale = document.getElementById("rationale-field").value.trim() || null;
+  const packetHash = await canonicalSha256(packet);
+  const decision = {
+    record_type: "expert_decision_record",
+    contract_version: "1.0.0",
+    decision_id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()),
+    packet_id: packet.packet_id,
+    packet_sha256: packetHash,
+    action: action,
+    selected_option_id: action === "SELECT_OPTION" ? selectedOptionId : null,
+    proposed_other_signs: action === "OTHER_OR_UNSUPPORTED" ? proposedOtherSigns : null,
+    reviewer: reviewer,
+    rationale: rationale,
+    created_utc: new Date().toISOString(),
+    assistance_acknowledged: true,
+    ground_truth_status: "QUARANTINED_EXPERT_JUDGMENT",
+    requires_adjudication: true,
+  };
+  const checks = selfCheckDecision(decision, packet, packetHash);
+  sessionDecisions.push({ decision, checks });
+  if (previewOption && previewOption.packetId === packet.packet_id) previewOption = null;
+  renderDetail();
+  renderShelfControls();
+}
+
+function renderDecisionLog() {
+  const existing = document.getElementById("decision-log");
+  if (existing) existing.remove();
+  if (!sessionDecisions.length) return;
+  const wrap = document.createElement("div");
+  wrap.className = "decision-log";
+  wrap.id = "decision-log";
+  const h = document.createElement("h3");
+  h.textContent = `Recorded decisions this session (${sessionDecisions.length})`;
+  wrap.appendChild(h);
+
+  const exportBtn = document.createElement("button");
+  exportBtn.textContent = "Export decisions (JSON)";
+  exportBtn.addEventListener("click", () => {
+    const reviewer = currentReviewer().reviewer_id || "anonymous";
+    const date = new Date().toISOString().slice(0, 10);
+    const blob = new Blob([JSON.stringify(sessionDecisions.map(d => d.decision), null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `missing_text_decisions_${reviewer}_${date}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  wrap.appendChild(exportBtn);
+
+  sessionDecisions.slice().reverse().forEach(({ decision, checks }) => {
+    const entry = document.createElement("details");
+    entry.className = "decision-entry";
+    const allOk = checks.every(c => c.ok);
+    const summary = document.createElement("summary");
+    summary.innerHTML = `${allOk ? "✓" : "✗"} <strong>${decision.action}</strong> on <code class="mono">${decision.packet_id}</code> by ${decision.reviewer.reviewer_id} — ${decision.created_utc}`;
+    entry.appendChild(summary);
+    const checksDiv = document.createElement("div");
+    checksDiv.className = "checks";
+    checksDiv.innerHTML = checks.map(c => `<div class="${c.ok ? 'ok' : 'bad'}">${c.ok ? "✓" : "✗"} ${c.label}</div>`).join("");
+    entry.appendChild(checksDiv);
+    const pre = document.createElement("pre");
+    pre.textContent = JSON.stringify(decision, null, 2);
+    entry.appendChild(pre);
+    wrap.appendChild(entry);
+  });
+
+  document.getElementById("packet-detail").appendChild(wrap);
+}
+
+function renderDetail() {
+  const packet = PACKETS.find(p => p.packet_id === activePacketId);
+  const main = document.getElementById("packet-detail");
+  main.innerHTML = "";
+  if (!packet) {
+    main.innerHTML = `<div class="empty-state">Nothing written here yet.</div>`;
+    return;
+  }
+
+  updateFooterStamp(packet);
+
+  const h = document.createElement("h2");
+  h.innerHTML = `${packet.query.fragment_id} <span class="badge mode">${packet.mode.replace("_", " ")}</span> <span class="badge ${packet.status === 'ABSTAIN_INSUFFICIENT_EVIDENCE' ? 'abstain' : 'present'}">${packet.status}</span>`;
+  main.appendChild(h);
+  main.appendChild(renderQueryLine(packet.query));
+  main.appendChild(renderFragmentPanel(packet));
+
+  if (packet.status === "ABSTAIN_INSUFFICIENT_EVIDENCE") {
+    const banner = document.createElement("div");
+    banner.className = "abstain-banner";
+    banner.innerHTML = `<strong>Abstains — encoded evidence is insufficient.</strong><br>${packet.abstention.reason}`;
+    main.appendChild(banner);
+  } else {
+    if (packet.candidate_set.tail_collapsed) {
+      const tail = document.createElement("div");
+      tail.className = "tail-note";
+      tail.textContent = `Showing ${packet.candidate_set.shown_option_count} of ${packet.candidate_set.total_option_count} options — ${packet.candidate_set.collapsed_tail_count} additional equal-support alternatives are collapsed but counted, never hidden (policy: ${packet.candidate_set.ranking_boundary_policy}).`;
+      main.appendChild(tail);
+    }
+    if (packet.candidate_set.options.length > 1) {
+      const explainer = document.createElement("div");
+      explainer.className = "reading-explainer";
+      explainer.innerHTML = `<strong>Two different kinds of number below, easy to conflate:</strong>
+        "Witness support" is evidence — how many separate fragments happen to attest a reading, which is what sets its
+        rank. The percentage in each track-record box is a completely separate statistic — how often <em>that rank
+        position</em> has been right in past comparisons. A candidate can have strong witness support and still turn
+        out wrong, or weak support and still turn out right — this dataset has real examples of both.`;
+      main.appendChild(explainer);
+    }
+    main.appendChild(renderRate(packet.candidate_set.set_audit, "Candidate-set audit"));
+    if (packet.candidate_set.options.length) main.appendChild(renderPreviewDropdown(packet));
+
+    packet.candidate_set.options.forEach(opt => {
+      const card = document.createElement("div");
+      const isPreviewed = previewOption && previewOption.packetId === packet.packet_id && previewOption.optionId === opt.option_id;
+      card.className = "option-card selectable" + (isPreviewed ? " previewed" : "");
+      const signsHtml = opt.signs.length
+        ? `<div class="signs">${opt.signs.join(" ")}</div>`
+        : `<div class="signs empty">(empty — a witnessed omission, not missing data)</div>`;
+      const famsHtml = opt.support.supporting_witness_families.map(f => `<span class="fam">${f}</span>`).join("");
+      const shareHtml = opt.support.share !== null
+        ? ` · evidence share ${fmtPct(opt.support.share)} of encoded witnesses (not a probability)`
+        : "";
+      card.innerHTML = `
+        <div class="rank">rank ${opt.rank} · ${opt.option_id} · ${opt.evidence_class}</div>
+        ${signsHtml}
+        <div class="witnesses-label">Witness support (evidence, not a rate)</div>
+        <div class="witnesses">${opt.support.independent_witness_family_count} independent witness famil${opt.support.independent_witness_family_count === 1 ? "y" : "ies"}${shareHtml}<br>${famsHtml}</div>
+      `;
+      const rateWrap = document.createElement("div");
+      rateWrap.innerHTML = `<div class="track-record-label">Track record of this rank (calibration, not evidence)</div>`;
+      rateWrap.appendChild(renderRate(opt.option_audit, "Option audit"));
+      card.appendChild(rateWrap);
+      card.addEventListener("click", (e) => {
+        if (e.target.closest("button")) return;
+        previewOption = { packetId: packet.packet_id, optionId: opt.option_id };
+        fragmentRestorationMode = "encoded";
+        renderDetail();
+      });
+      if (packet.workflow.allowed_actions.includes("SELECT_OPTION")) {
+        const selectBtn = document.createElement("button");
+        selectBtn.className = "primary";
+        selectBtn.textContent = isPreviewed ? "✓ Previewing — click to record this choice" : "Select this option";
+        selectBtn.addEventListener("click", () => recordDecision(packet, "SELECT_OPTION", opt.option_id, null));
+        card.appendChild(document.createElement("br"));
+        card.appendChild(selectBtn);
+      }
+      main.appendChild(card);
+    });
+  }
+
+  const support = renderEvidenceList(packet.supporting_evidence, "Supporting evidence", false);
+  if (support) main.appendChild(support);
+  const contra = renderEvidenceList(packet.contradictory_evidence, "Contradictory evidence", true);
+  if (contra) main.appendChild(contra);
+  if (!packet.contradictory_evidence.length) {
+    const note = document.createElement("div");
+    note.style.cssText = "color:var(--tk-faint);font-size:12px;margin:.3em 0";
+    note.textContent = "No contradictory evidence encoded in this packet (absence of a listed contradiction is not confirmation).";
+    main.appendChild(note);
+  }
+
+  if (packet.limitations.length) {
+    const h3 = document.createElement("h3");
+    h3.style.cssText = "font-size:13px;color:var(--tk-muted)";
+    h3.textContent = "Limitations";
+    main.appendChild(h3);
+    const ul = document.createElement("ul");
+    ul.className = "limitations-list";
+    packet.limitations.forEach(l => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${l.code}</strong>: ${l.message}`;
+      ul.appendChild(li);
+    });
+    main.appendChild(ul);
+  }
+
+  const assistDiv = document.createElement("div");
+  assistDiv.innerHTML = `<h3 style="font-size:13px;color:var(--tk-muted)">Assistance profile</h3>
+    <div>evidence policy: <span class="badge">${packet.assistance.evidence_policy}</span></div>
+    <div class="tags">${packet.assistance.enabled_layers.map(l => `<span class="tag">${l}</span>`).join("")}</div>
+    <div style="font-size:12px;color:var(--tk-faint);margin-top:.3em">${packet.assistance.model_generated_content_present ? "Contains model-generated content — flagged." : "No model-generated content in this packet."}</div>`;
+  main.appendChild(assistDiv);
+
+  main.appendChild(document.createElement("hr")).className = "hairline";
+
+  const actionBar = document.createElement("div");
+  actionBar.className = "action-bar";
+  let html = `
+    <div style="width:100%">
+      <div class="reviewer-fields">
+        <div><label for="reviewer-id">Reviewer name</label><input type="text" id="reviewer-id" placeholder="e.g. I. Reger" value="${lastReviewer.reviewer_id}"></div>
+        <div><label for="reviewer-role">Declared role</label><input type="text" id="reviewer-role" placeholder="e.g. Hittitologist" value="${lastReviewer.declared_role}"></div>
+      </div>
+      <div><label for="rationale-field" style="display:block;font-size:12px;color:var(--tk-muted);margin-bottom:.2em">Rationale (optional)</label>
+        <textarea id="rationale-field" rows="2"></textarea></div>
+      <div class="action-guidance">Selecting an option above records that choice directly. If none of them look right, these are equally legitimate decisions — not a fallback:</div>
+    </div>
+  `;
+  actionBar.innerHTML = html;
+
+  if (packet.workflow.allowed_actions.includes("REJECT_ALL") && packet.candidate_set.options.length) {
+    const row = document.createElement("div");
+    row.className = "choice-row";
+    row.innerHTML = `<div class="choice-desc"><strong>Reject all</strong> — none of the witnessed options above are plausible here.</div>`;
+    const btn = document.createElement("button");
+    btn.className = "danger";
+    btn.textContent = "Reject all";
+    btn.addEventListener("click", () => recordDecision(packet, "REJECT_ALL", null, null));
+    row.appendChild(btn);
+    actionBar.appendChild(row);
+  }
+  if (packet.workflow.allowed_actions.includes("WITHHOLD_JUDGMENT")) {
+    const row = document.createElement("div");
+    row.className = "choice-row";
+    row.innerHTML = `<div class="choice-desc"><strong>Withhold judgment</strong> — the evidence shown isn't enough to decide either way, and that's a real, recordable answer.</div>`;
+    const btn = document.createElement("button");
+    btn.textContent = "Withhold judgment";
+    btn.addEventListener("click", () => recordDecision(packet, "WITHHOLD_JUDGMENT", null, null));
+    row.appendChild(btn);
+    actionBar.appendChild(row);
+  }
+  if (packet.workflow.allowed_actions.includes("OTHER_OR_UNSUPPORTED")) {
+    const row = document.createElement("div");
+    row.className = "choice-row";
+    row.innerHTML = `<div class="choice-desc"><strong>Other / unsupported</strong> — you have a different reading in mind (from training/expertise, not shown here), or none of the above is defensible.</div>`;
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Other / unsupported";
+    row.appendChild(toggleBtn);
+    actionBar.appendChild(row);
+    const form = document.createElement("div");
+    form.className = "other-form";
+    form.innerHTML = `
+      <label style="display:block;font-size:12px;color:var(--tk-muted);margin:.6em 0 .2em">Proposed sign sequence (space-separated; leave blank if you just mean "unsupported")</label>
+      <input type="text" id="other-signs-input" placeholder="e.g. ta ku">
+      <button type="button" id="other-submit" class="primary" style="margin-top:.5em">Submit</button>
+    `;
+    toggleBtn.addEventListener("click", () => form.classList.toggle("open"));
+    actionBar.appendChild(form);
+    form.querySelector("#other-submit").addEventListener("click", () => {
+      const raw = form.querySelector("#other-signs-input").value.trim();
+      const signs = raw.length ? raw.split(/\s+/) : null;
+      recordDecision(packet, "OTHER_OR_UNSUPPORTED", null, signs);
+    });
+  }
+  main.appendChild(actionBar);
+
+  renderDecisionLog();
+}
+
+function renderAll() {
+  renderNav();
+  renderDetail();
+}
+
+document.getElementById("nav-filter-input").addEventListener("input", renderNav);
+document.getElementById("header-home-btn").addEventListener("click", showLibrary);
+document.getElementById("back-to-library-btn").addEventListener("click", showLibrary);
+
+runSelfTest();
+showView();
+</script>
+</body>
+</html>
