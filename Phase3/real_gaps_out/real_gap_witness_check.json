@@ -88,6 +88,17 @@
             "ku",
             "uš",
             "ú",
+            "et",
+            "na",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
             "e",
             "er",
             "na",
@@ -114,17 +125,6 @@
             "na",
             "aš",
             "<NUM>",
-            "ar"
-          ],
-          [
-            "ku",
-            "uš",
-            "ú",
-            "et",
-            "na",
-            "aš",
-            "<NUM>",
-            "an",
             "ar"
           ],
           []
@@ -141,6 +141,13 @@
         ],
         "witness_proposals_sample": [
           [
+            "e",
+            "at",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
             "et",
             "na",
             "aš",
@@ -149,12 +156,7 @@
             "ar"
           ],
           [
-            "e",
-            "er",
-            "na",
-            "at",
-            "kán",
-            "pé",
+            "<NUM>",
             "an",
             "ar"
           ],
@@ -170,10 +172,9 @@
           [
             "et",
             "na",
-            "aš"
-          ],
-          [
-            "<NUM>",
+            "aš",
+            "kán",
+            "pé",
             "an",
             "ar"
           ]
@@ -421,14 +422,14 @@
         ],
         "witness_proposals_sample": [
           [
-            "GAL",
-            "KÙ",
-            "BABBAR"
-          ],
-          [
             "SA₂₀",
             "A",
             "TI"
+          ],
+          [
+            "GAL",
+            "KÙ",
+            "BABBAR"
           ]
         ],
         "witness_proposal_count": 2,

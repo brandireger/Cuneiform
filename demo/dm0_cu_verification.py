@@ -43,7 +43,7 @@ GAP_MARKERS = {"…", "_"}
 DAMAGE_MARKER = "▒"  # U+2592, confirmed NOT a real cuneiform codepoint
 ALIGNMENT_SAMPLE_N = 500
 
-OUT_DIR = Path("demo") / "dm_out"
+OUT_DIR = Path("Phase3") / "demo_out"
 
 
 def codepoint_class(cp):

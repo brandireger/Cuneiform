@@ -44,7 +44,7 @@ SPLITS_PATH = Path("Phase1_pipeline/p2_out/splits.parquet")
 DECOMPOSED_PATH = Path("Phase1_pipeline/p4_out/decomposed_corpus.parquet")
 DOC_TABLE_PATH = Path("Phase1_pipeline/p2_out/doc_table.parquet")
 
-OUT_DIR = Path("real_gaps_out")
+OUT_DIR = Path("Phase3/real_gaps_out")
 OUT_JSON = OUT_DIR / "real_gap_census.json"
 REPORT_PATH = OUT_DIR / "real_gap_census_report.md"
 

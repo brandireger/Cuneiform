@@ -61,7 +61,7 @@ TOP_N_CTHS = 5
 # not kept with a distant, less trustworthy one.
 MAX_LINES_CROSSED_PER_SIDE = 3
 
-OUT_DIR = Path("real_gaps_out")
+OUT_DIR = Path("Phase3/real_gaps_out")
 OUT_JSON = OUT_DIR / "real_gap_witness_check.json"
 REPORT_PATH = OUT_DIR / "real_gap_witness_check_report.md"
 
@@ -100,12 +100,21 @@ def attested_only(raw_pairs):
 
 def compute_anchor_key_crossline(
         doc_id, fragment_id, line_idx, gap_word_positions,
-        raw_tokens_by_line, fragment_line_order):
+        raw_tokens_by_line, fragment_line_order,
+        anchor_length=ANCHOR_LENGTH,
+        max_lines_crossed_per_side=MAX_LINES_CROSSED_PER_SIDE):
     """Like the same-line anchor, but when a line runs out of attested
     context on a side, walks to the adjacent line THIS SAME WITNESS
     actually preserves (never invents one) and keeps collecting until
-    ANCHOR_LENGTH is met or the witness's own line range is exhausted --
+    anchor_length is met or the witness's own line range is exhausted --
     a real edge, not a coverage gap this can close.
+
+    anchor_length and max_lines_crossed_per_side default to this
+    module's single-sign constants; callers needing other anchor
+    lengths (e.g. the multi-sign adaptive-anchor calibration, which
+    needs 1/2/3-sign anchors) or a same-line-only variant (pass
+    max_lines_crossed_per_side=0) can override either explicitly --
+    existing callers are unaffected.
 
     Returns (anchor_key, lines_crossed_left, lines_crossed_right) or
     None if even the witness's full preserved range doesn't have enough
@@ -121,8 +130,8 @@ def compute_anchor_key_crossline(
     order = fragment_line_order.get(fragment_id, [line_idx])
     pos = order.index(line_idx) if line_idx in order else None
     cursor = pos
-    while (len(left_flat) < ANCHOR_LENGTH and cursor is not None and cursor > 0
-           and lines_crossed_left < MAX_LINES_CROSSED_PER_SIDE):
+    while (len(left_flat) < anchor_length and cursor is not None and cursor > 0
+           and lines_crossed_left < max_lines_crossed_per_side):
         cursor -= 1
         prev_line_idx = order[cursor]
         prev_tokens = raw_tokens_by_line.get((doc_id, prev_line_idx), [])
@@ -133,9 +142,9 @@ def compute_anchor_key_crossline(
     right_flat = attested_only(same_line_after)
     lines_crossed_right = 0
     cursor = pos
-    while (len(right_flat) < ANCHOR_LENGTH and cursor is not None
+    while (len(right_flat) < anchor_length and cursor is not None
            and cursor < len(order) - 1
-           and lines_crossed_right < MAX_LINES_CROSSED_PER_SIDE):
+           and lines_crossed_right < max_lines_crossed_per_side):
         cursor += 1
         next_line_idx = order[cursor]
         next_tokens = raw_tokens_by_line.get((doc_id, next_line_idx), [])
@@ -143,9 +152,9 @@ def compute_anchor_key_crossline(
         right_flat = right_flat + attested_only(next_pairs)
         lines_crossed_right += 1
 
-    if len(left_flat) < ANCHOR_LENGTH or len(right_flat) < ANCHOR_LENGTH:
+    if len(left_flat) < anchor_length or len(right_flat) < anchor_length:
         return None
-    key = (tuple(left_flat[-ANCHOR_LENGTH:]), tuple(right_flat[:ANCHOR_LENGTH]))
+    key = (tuple(left_flat[-anchor_length:]), tuple(right_flat[:anchor_length]))
     return key, lines_crossed_left, lines_crossed_right
 
 

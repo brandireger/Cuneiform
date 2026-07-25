@@ -82,7 +82,7 @@ DOC_TABLE_PATH = Path("Phase1_pipeline/p2_out/doc_table.parquet")
 DECOMPOSED_PATH = Path("Phase1_pipeline/p4_out/decomposed_corpus.parquet")
 CTH_TITLES_PATH = Path("Archive/p25_out/cth_titles.csv")
 
-OUT_DIR = Path("demo/dm_out")
+OUT_DIR = Path("Phase3/demo_out")
 OUT_JS = OUT_DIR / "missing_text_demo_data.js"
 OUT_REPORT = OUT_DIR / "missing_text_demo_data_report.md"
 OUT_CONTEXT_JS = OUT_DIR / "fragment_context_data.js"

@@ -1,7 +1,7 @@
 # Missing-text demo data export report
 
 Sources: `Phase2/phase2_out/p2e4_candidate_set_packets.jsonl` (16 packets) + `Phase2/phase2_out/p2e6_multisign_packets.jsonl` (12 packets).
-Output: `demo/dm_out/missing_text_demo_data.js` (213.5 KB).
+Output: `Phase3/demo_out/missing_text_demo_data.js` (213.5 KB).
 
 **28 real packets exported** (16 single-sign, 12 multi-sign; 24 present-candidates, 4 abstain; 3 with a collapsed tail). Every packet is adapted via `lib/expert_decision_contract.py`'s `adapt_p2e4_packet()`/`adapt_p2e6_packet()`, which strips hidden evaluation gold (the raw source's `outcome`, top-level `evidence`/`support`/`contradictions`/`observable_*` fields are never read) and runs `validate_suggestion_packet()` before returning.
 
@@ -40,7 +40,7 @@ Output: `demo/dm_out/missing_text_demo_data.js` (213.5 KB).
 
 ## Fragment context export
 
-`demo/dm_out/fragment_context_data.js` (1912.7 KB): full line-by-line transliteration for the 18 distinct fragments referenced above (948 lines, 3901 words total), sourced directly from `Phase1_pipeline/p2_out/corpus.parquet`.
+`Phase3/demo_out/fragment_context_data.js` (1912.7 KB): full line-by-line transliteration for the 18 distinct fragments referenced above (948 lines, 3901 words total), sourced directly from `Phase1_pipeline/p2_out/corpus.parquet`.
 
 **Determinative categories**: 499/696 (71.7%) of determinative-marked words matched CLAUDE.md's already-vetted starting inventory (matched at the corpus's real Unicode encoding — Ḫ, subscript digits — not the plain-ASCII prose spelling). The remaining 197 are labeled "uncategorized" in the UI, never guessed. Sample unmapped leading signs: 10KAM, 1EN, 1KAM, 3KAM, 4KAM, 5KAM, 6KAM, 7KAM, 8KAM, 9KAM, A, ANŠE.KUR.RAM, AŠ, BE, EZEN₄ḪI.A. These are real, legitimate determinative/marker categories outside the small list CLAUDE.md happened to name (e.g. MUNUS "woman", M/F personal-name markers, KAM ordinal markers, ḪI.A/MEŠ plural markers) — extending the vetted list is a deliberate follow-up decision, not something this export makes unilaterally.
 
@@ -50,4 +50,4 @@ Output: `demo/dm_out/missing_text_demo_data.js` (213.5 KB).
 
 ## Exact gap location export
 
-`demo/dm_out/gap_locations_data.js`: exact word(s)/decomposed-sign(s) for **28/28** packets. Computed from `Phase1_pipeline/p4_out/decomposed_corpus.parquet` (now carrying `word_index_in_line`, added in `lib/decompose_corpus.py` specifically for this — it increments on every `<w>` start and resets on every `<lb>`, verified to match `Archive/scripts/02_parse.py`'s own `word_index_in_line` exactly, the same counter corpus.parquet's word grouping already uses). Every entry was verified end-to-end: the restored/SPECIALS-filtered stream this reads is checked token-for-token against `lib/hittite_tokenizer.encode_fragment_window()`, and the resulting left/right context is checked token-for-token against the packet's own (independently probe-computed) `left_context`/`right_context`. A packet is only included if both checks pass exactly; the 0 that don't are omitted here rather than guessed, and the fragment panel falls back to line-only highlighting for those.
+`Phase3/demo_out/gap_locations_data.js`: exact word(s)/decomposed-sign(s) for **28/28** packets. Computed from `Phase1_pipeline/p4_out/decomposed_corpus.parquet` (now carrying `word_index_in_line`, added in `lib/decompose_corpus.py` specifically for this — it increments on every `<w>` start and resets on every `<lb>`, verified to match `Archive/scripts/02_parse.py`'s own `word_index_in_line` exactly, the same counter corpus.parquet's word grouping already uses). Every entry was verified end-to-end: the restored/SPECIALS-filtered stream this reads is checked token-for-token against `lib/hittite_tokenizer.encode_fragment_window()`, and the resulting left/right context is checked token-for-token against the packet's own (independently probe-computed) `left_context`/`right_context`. A packet is only included if both checks pass exactly; the 0 that don't are omitted here rather than guessed, and the fragment panel falls back to line-only highlighting for those.

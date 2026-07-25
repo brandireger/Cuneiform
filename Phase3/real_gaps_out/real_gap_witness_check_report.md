@@ -40,8 +40,8 @@ Sample matches:
 - `Bo 5601+`: editor reading `NIN` matches 1 independent proposal(s).
 
 Sample mismatches:
-- `AT 454`: editor reading `ar`, 6 independent proposal(s), none matching -- e.g. ku uš ú e er na at kán pé ar; ku uš ú et aš <NUM> an ar; ku uš ú et na aš <NUM> ar; ku uš ú et na aš <NUM> an ar; (empty).
-- `AT 454`: editor reading `it ar`, 8 independent proposal(s), none matching -- e.g. et na aš <NUM> 〈an〉 ar; e er na at kán pé an ar; e er na at <NUM> an ar; et na aš; <NUM> an ar.
+- `AT 454`: editor reading `ar`, 6 independent proposal(s), none matching -- e.g. ku uš ú et na aš <NUM> an ar; ku uš ú e er na at kán pé ar; ku uš ú et aš <NUM> an ar; ku uš ú et na aš <NUM> ar; (empty).
+- `AT 454`: editor reading `it ar`, 8 independent proposal(s), none matching -- e.g. e at <NUM> an ar; et na aš <NUM> 〈an〉 ar; <NUM> an ar; e er na at <NUM> an ar; et na aš kán pé an ar.
 - `AT 454`: editor reading `nu`, 1 independent proposal(s), none matching -- e.g. TUKU TUKU u an te eš nu.
 - `Bo 5601+`: editor reading `na at`, 1 independent proposal(s), none matching -- e.g. ku ra an da a i na at.
 - `Bo 5601+`: editor reading `ḫu te il`, 1 independent proposal(s), none matching -- e.g. ḫu te el.
@@ -63,7 +63,7 @@ Sample mismatches:
 - `ABoT 2.114+`: editor reading `GAL KÙ BABBAR A NA`, 3 independent proposal(s), none matching -- e.g. <NUM>; (empty); UP NU ŠE GIŠ Ì 〈〈Ì〉〉 (3 line(s) crossed).
 - `ABoT 2.114+`: editor reading `A NA D ku šu ur ni`, 3 independent proposal(s), none matching -- e.g. <NUM>; (empty); UP NU ŠE GIŠ Ì 〈〈Ì〉〉 (3 line(s) crossed).
 - `ABoT 2.114+`: editor reading `GAL KÙ BABBAR A NA`, 3 independent proposal(s), none matching -- e.g. <NUM>; (empty); UP NU ŠE GIŠ Ì 〈〈Ì〉〉 (4 line(s) crossed).
-- `ABoT 2.114+`: editor reading `GAL KÙ BABBAR A NA D da šu un na an zi`, 2 independent proposal(s), none matching -- e.g. GAL KÙ BABBAR; SA₂₀ A TI (2 line(s) crossed).
+- `ABoT 2.114+`: editor reading `GAL KÙ BABBAR A NA D da šu un na an zi`, 2 independent proposal(s), none matching -- e.g. SA₂₀ A TI; GAL KÙ BABBAR (2 line(s) crossed).
 
 ## What this does not yet tell us
 

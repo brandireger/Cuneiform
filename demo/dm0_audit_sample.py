@@ -87,9 +87,9 @@ def main():
                 "raw_xml": raw_xml,
             })
 
-    with open(Path("demo") / "dm_out" / "audit_sample.json", "w", encoding="utf-8") as f:
+    with open(Path("Phase3") / "demo_out" / "audit_sample.json", "w", encoding="utf-8") as f:
         json.dump(out_records, f, ensure_ascii=False, indent=2)
-    print(f"Wrote {len(out_records)} records -> demo/dm_out/audit_sample.json")
+    print(f"Wrote {len(out_records)} records -> Phase3/demo_out/audit_sample.json")
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ import real_gap_witness_check as rgw  # noqa: E402
 P2E4_AUDIT_PATH = Path("Phase2/phase2_out/p2e4_candidate_set_audit.json")
 P2E4_CONFIG_PATH = Path("configs/p2e4_candidate_set_audit.json")
 
-OUT_DIR = Path("real_gaps_out")
+OUT_DIR = Path("Phase3/real_gaps_out")
 OUT_JSON = OUT_DIR / "real_gap_calibration.json"
 REPORT_PATH = OUT_DIR / "real_gap_calibration_report.md"
 
