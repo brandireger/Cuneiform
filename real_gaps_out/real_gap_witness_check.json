@@ -1,0 +1,439 @@
+{
+  "scope_cths": [
+    628,
+    627,
+    701,
+    577,
+    647
+  ],
+  "scope_documents": 867,
+  "gaps_in_scope": 25559,
+  "gaps_with_full_anchor": 19339,
+  "gaps_same_line_anchor": 1960,
+  "gaps_cross_line_anchor": 17379,
+  "cross_line_lines_crossed_histogram": {
+    "1": 13807,
+    "2": 1831,
+    "3": 935,
+    "4": 511,
+    "5": 211,
+    "6": 84
+  },
+  "gaps_in_fragments_with_no_preserved_edge": 17684,
+  "gaps_in_fragments_with_preserved_edge": 7875,
+  "gaps_edge_status_unknown": 0,
+  "same_line": {
+    "n_with_coverage": 839,
+    "n_no_coverage": 1121,
+    "restored_match": 568,
+    "restored_no_match": 208,
+    "restored_no_coverage": 864,
+    "match_examples": [
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "pát"
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "TUM"
+        ],
+        "witness_proposal_count": 2,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "ši",
+          "ia"
+        ],
+        "witness_proposal_count": 3,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "Bo 5601+",
+        "fragment_id": "Bo 5601+",
+        "editor_reading": [
+          "URU"
+        ],
+        "witness_proposal_count": 2,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "Bo 5601+",
+        "fragment_id": "Bo 5601+",
+        "editor_reading": [
+          "NIN"
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 0
+      }
+    ],
+    "mismatch_examples": [
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "ar"
+        ],
+        "witness_proposals_sample": [
+          [
+            "ku",
+            "uš",
+            "ú",
+            "e",
+            "er",
+            "na",
+            "at",
+            "kán",
+            "pé",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
+            "et",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
+            "et",
+            "na",
+            "aš",
+            "<NUM>",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
+            "et",
+            "na",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          []
+        ],
+        "witness_proposal_count": 6,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "it",
+          "ar"
+        ],
+        "witness_proposals_sample": [
+          [
+            "et",
+            "na",
+            "aš",
+            "<NUM>",
+            "〈an〉",
+            "ar"
+          ],
+          [
+            "e",
+            "er",
+            "na",
+            "at",
+            "kán",
+            "pé",
+            "an",
+            "ar"
+          ],
+          [
+            "e",
+            "er",
+            "na",
+            "at",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "et",
+            "na",
+            "aš"
+          ],
+          [
+            "<NUM>",
+            "an",
+            "ar"
+          ]
+        ],
+        "witness_proposal_count": 8,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "editor_reading": [
+          "nu"
+        ],
+        "witness_proposals_sample": [
+          [
+            "TUKU",
+            "TUKU",
+            "u",
+            "an",
+            "te",
+            "eš",
+            "nu"
+          ]
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "Bo 5601+",
+        "fragment_id": "Bo 5601+",
+        "editor_reading": [
+          "na",
+          "at"
+        ],
+        "witness_proposals_sample": [
+          [
+            "ku",
+            "ra",
+            "an",
+            "da",
+            "a",
+            "i",
+            "na",
+            "at"
+          ]
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 0
+      },
+      {
+        "doc_id": "Bo 5601+",
+        "fragment_id": "Bo 5601+",
+        "editor_reading": [
+          "ḫu",
+          "te",
+          "il"
+        ],
+        "witness_proposals_sample": [
+          [
+            "ḫu",
+            "te",
+            "el"
+          ]
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 0
+      }
+    ]
+  },
+  "cross_line": {
+    "n_with_coverage": 3540,
+    "n_no_coverage": 13839,
+    "restored_match": 784,
+    "restored_no_match": 2208,
+    "restored_no_coverage": 10626,
+    "match_examples": [
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "UP",
+          "NI"
+        ],
+        "witness_proposal_count": 4,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.140",
+        "fragment_id": "ABoT 2.140",
+        "editor_reading": [
+          "ḫi"
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.140",
+        "fragment_id": "ABoT 2.140",
+        "editor_reading": [
+          "a",
+          "ri"
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.140",
+        "fragment_id": "ABoT 2.140",
+        "editor_reading": [
+          "da",
+          "a",
+          "i"
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.148",
+        "fragment_id": "ABoT 2.148",
+        "editor_reading": [
+          "DUMU"
+        ],
+        "witness_proposal_count": 2,
+        "lines_crossed": 1
+      }
+    ],
+    "mismatch_examples": [
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "le",
+          "el",
+          "lu",
+          "u",
+          "ri"
+        ],
+        "witness_proposals_sample": [
+          [
+            "IŠTAR"
+          ]
+        ],
+        "witness_proposal_count": 1,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "GAL",
+          "KÙ",
+          "BABBAR",
+          "A",
+          "NA"
+        ],
+        "witness_proposals_sample": [
+          [
+            "<NUM>"
+          ],
+          [],
+          [
+            "UP",
+            "NU",
+            "ŠE",
+            "GIŠ",
+            "Ì",
+            "〈〈Ì〉〉"
+          ]
+        ],
+        "witness_proposal_count": 3,
+        "lines_crossed": 3
+      },
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "A",
+          "NA",
+          "D",
+          "ku",
+          "šu",
+          "ur",
+          "ni"
+        ],
+        "witness_proposals_sample": [
+          [
+            "<NUM>"
+          ],
+          [],
+          [
+            "UP",
+            "NU",
+            "ŠE",
+            "GIŠ",
+            "Ì",
+            "〈〈Ì〉〉"
+          ]
+        ],
+        "witness_proposal_count": 3,
+        "lines_crossed": 3
+      },
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "GAL",
+          "KÙ",
+          "BABBAR",
+          "A",
+          "NA"
+        ],
+        "witness_proposals_sample": [
+          [
+            "<NUM>"
+          ],
+          [],
+          [
+            "UP",
+            "NU",
+            "ŠE",
+            "GIŠ",
+            "Ì",
+            "〈〈Ì〉〉"
+          ]
+        ],
+        "witness_proposal_count": 3,
+        "lines_crossed": 4
+      },
+      {
+        "doc_id": "ABoT 2.114+",
+        "fragment_id": "ABoT 2.114+",
+        "editor_reading": [
+          "GAL",
+          "KÙ",
+          "BABBAR",
+          "A",
+          "NA",
+          "D",
+          "da",
+          "šu",
+          "un",
+          "na",
+          "an",
+          "zi"
+        ],
+        "witness_proposals_sample": [
+          [
+            "GAL",
+            "KÙ",
+            "BABBAR"
+          ],
+          [
+            "SA₂₀",
+            "A",
+            "TI"
+          ]
+        ],
+        "witness_proposal_count": 2,
+        "lines_crossed": 2
+      }
+    ]
+  }
+}

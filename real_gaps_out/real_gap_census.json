@@ -1,0 +1,185 @@
+{
+  "allowed_documents": 6820,
+  "excluded_ambiguous_split_documents": [
+    "HT 39",
+    "KBo 13.27+",
+    "KBo 37.10",
+    "KBo 49.114+",
+    "KUB 17.28",
+    "KUB 38.21",
+    "KUB 4.1",
+    "KUB 40.85+"
+  ],
+  "documents_with_at_least_one_real_gap": 6767,
+  "total_real_gap_runs": 181051,
+  "runs_pure_restored": 133351,
+  "runs_pure_illegible": 38881,
+  "runs_mixed_restored_and_illegible": 8819,
+  "run_length_distribution": {
+    "1": 78824,
+    "2": 33417,
+    "3": 18746,
+    "4": 11867,
+    "5": 8594,
+    "6": 6420,
+    "7": 4947,
+    "8": 3766,
+    "9": 3008,
+    "10": 2484,
+    "11": 1966,
+    "12": 1602,
+    "13": 1222,
+    "14": 905,
+    "15": 698,
+    "16": 528,
+    "17": 443,
+    "18": 332,
+    "19": 272,
+    "20": 211,
+    "21": 196,
+    "22": 163,
+    "23": 127,
+    "24": 95,
+    "25": 52,
+    "26": 52,
+    "27": 32,
+    "28": 26,
+    "29": 10,
+    "30": 15,
+    "31": 6,
+    "32": 3,
+    "33": 4,
+    "34": 1,
+    "35": 6,
+    "36": 2,
+    "37": 2,
+    "38": 3,
+    "39": 1,
+    "40": 1,
+    "41": 1,
+    "48": 1
+  },
+  "restored_run_length_distribution": {
+    "1": 46650,
+    "2": 25468,
+    "3": 16016,
+    "4": 10551,
+    "5": 7754,
+    "6": 5824,
+    "7": 4407,
+    "8": 3418,
+    "9": 2743,
+    "10": 2261,
+    "11": 1795,
+    "12": 1465,
+    "13": 1117,
+    "14": 833,
+    "15": 639,
+    "16": 488,
+    "17": 414,
+    "18": 307,
+    "19": 257,
+    "20": 197,
+    "21": 184,
+    "22": 150,
+    "23": 117,
+    "24": 89,
+    "25": 50,
+    "26": 49,
+    "27": 31,
+    "28": 24,
+    "29": 9,
+    "30": 15,
+    "31": 6,
+    "32": 2,
+    "33": 4,
+    "34": 1,
+    "35": 5,
+    "36": 2,
+    "37": 2,
+    "38": 3,
+    "39": 1,
+    "40": 1,
+    "41": 1,
+    "48": 1
+  },
+  "restored_runs_with_empty_editor_content": 0,
+  "restored_runs_total": 133351,
+  "top_15_cths_by_real_gap_count": [
+    {
+      "cth": 628,
+      "real_gap_runs": 8645,
+      "documents_in_composition": 301
+    },
+    {
+      "cth": 627,
+      "real_gap_runs": 5704,
+      "documents_in_composition": 188
+    },
+    {
+      "cth": 701,
+      "real_gap_runs": 4523,
+      "documents_in_composition": 164
+    },
+    {
+      "cth": 577,
+      "real_gap_runs": 4276,
+      "documents_in_composition": 93
+    },
+    {
+      "cth": 647,
+      "real_gap_runs": 2526,
+      "documents_in_composition": 121
+    },
+    {
+      "cth": 573,
+      "real_gap_runs": 2392,
+      "documents_in_composition": 111
+    },
+    {
+      "cth": 777,
+      "real_gap_runs": 2328,
+      "documents_in_composition": 38
+    },
+    {
+      "cth": 450,
+      "real_gap_runs": 2259,
+      "documents_in_composition": 76
+    },
+    {
+      "cth": 591,
+      "real_gap_runs": 2193,
+      "documents_in_composition": 74
+    },
+    {
+      "cth": 528,
+      "real_gap_runs": 2062,
+      "documents_in_composition": 132
+    },
+    {
+      "cth": 666,
+      "real_gap_runs": 2036,
+      "documents_in_composition": 118
+    },
+    {
+      "cth": 572,
+      "real_gap_runs": 1883,
+      "documents_in_composition": 126
+    },
+    {
+      "cth": 705,
+      "real_gap_runs": 1861,
+      "documents_in_composition": 95
+    },
+    {
+      "cth": 40,
+      "real_gap_runs": 1847,
+      "documents_in_composition": 77
+    },
+    {
+      "cth": 578,
+      "real_gap_runs": 1691,
+      "documents_in_composition": 69
+    }
+  ]
+}
