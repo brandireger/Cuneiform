@@ -24,19 +24,26 @@ Two tracks exist as a result, at different levels of completion:
    all built and headless-Chrome-verified against the 28 real (but
    synthetic-gap) packets.
 2. **Real-gaps production pipeline** (`scripts/real_gap_*.py`,
-   `real_gaps_out/`) — the actual missing-text objective, built one verified
-   step at a time (census → witness check → calibration application), now
-   widened to the full CTH set the existing P2-E4 calibration covers. **Not
-   yet wired into the demo UI** — it currently only produces JSON/Markdown
-   reports, no packets, no browser-facing product.
+   `Phase3/real_gaps_out/`) — the actual missing-text objective, built one
+   verified step at a time (census → witness check → single-sign
+   calibration → **multi-sign calibration**, added in this update). Single-
+   sign calibration is widened to the full CTH set P2-E4 covers; multi-sign
+   calibration now covers the analogous P2-E6-fold CTH set. **Not yet wired
+   into the demo UI** — it currently only produces JSON/Markdown reports, no
+   packets, no browser-facing product.
 
 Neither track has touched the frozen test split. No real-gap witness match,
 editor-restoration agreement, or expert UI decision has been promoted to
 corpus ground truth. No new model training occurred this phase.
 
-All work described in this handoff, across both this session and the prior
-reorganization session, is now committed (see "Commit history for this
-phase" below) — there is no outstanding uncommitted state to resolve.
+**Update (2026-07-25, continued session):** two more items from this
+handoff's own "Recommended order of work" are now done: (1) `demo/dm_out`
+and `real_gaps_out` were moved under a new `Phase3/` top-level folder, per
+the project's stated one-folder-per-phase convention (item 1 below), and
+(2) multi-sign real-gap calibration was built as the P2-E6 analogue of
+step 3's P2-E4 reuse (item 2 below). Both are detailed in their own
+subsections further down and are fully committed — no outstanding
+uncommitted state.
 
 ## Why this phase happened
 
@@ -63,9 +70,10 @@ damaged spans). Both are now real, and the second is mid-build.
   `Archive/superseded_docs/` for absorbed root docs.
 - Live outputs split by phase folder: `Phase1_pipeline/{p2_out,p3_out,p4_out}/`,
   `Phase2/{phase2_out,corpus_audit_out}/`. This handoff's own new outputs
-  (`demo/dm_out/`, `real_gaps_out/`) follow the same one-folder-per-phase
-  convention but were not yet given a `Phase3/` top-level folder — worth
-  deciding explicitly rather than defaulting either way.
+  now also follow that convention: `demo/dm_out/` and `real_gaps_out/` were
+  moved to `Phase3/{demo_out,real_gaps_out}/` in this update (see "This
+  session's additions" below) — the folder-naming question this handoff
+  originally left open is resolved.
 - `lib/decompose_corpus.py` gained `word_index_in_line` tracking (verified
   against `Archive/scripts/02_parse.py`), needed for exact gap-to-source
   alignment in both the demo export and the real-gaps pipeline.
@@ -107,7 +115,7 @@ damaged spans). Both are now real, and the second is mid-build.
 - `demo/missing_text_prototype_report.md` — cumulative, 7 revisions, the
   full bug-fix and reframing history. Read this before touching the HTML.
 
-### Real-gaps production pipeline (`scripts/`, `real_gaps_out/`)
+### Real-gaps production pipeline (`scripts/`, `Phase3/real_gaps_out/`)
 
 Built one step at a time per Ixca's explicit instruction ("let's take this a
 step at a time, and evaluate the changes and results"), each step verified
@@ -155,11 +163,62 @@ against real numbers before moving on:
    | contradicted by rank-1 | 1 | 3 |
    | no usable rate | 0 | 0 |
 
-   Full detail in `real_gaps_out/real_gap_calibration_report.md`.
+   Full detail in `Phase3/real_gaps_out/real_gap_calibration_report.md`.
 
 This pipeline produces **no packets and no UI yet** — reports only. Wiring
 it into a production-mode extension of the demo is the natural next step,
 not yet started.
+
+### This session's additions (2026-07-25, continued)
+
+1. **Phase3/ folder move.** `demo/dm_out/` → `Phase3/demo_out/`,
+   `real_gaps_out/` → `Phase3/real_gaps_out/`. Every path reference updated
+   (the three `real_gap_*.py` scripts' `OUT_DIR`, the three `demo/dm*.py`
+   export scripts, `demo/taksan_missing_text_prototype.html`'s `<script
+   src>` tags, README's live/archive map table). All three real-gap scripts
+   and the demo export were re-run after the move and produced byte-for-byte
+   identical counts to before (181,051 gap runs / 6,767 docs; 25,559 gaps /
+   867 docs; 1,010 eligible / 44 selector-accepted; 28 packets / 18
+   fragments) — a pure relocation, confirmed non-regressive. The demo HTML
+   was also re-verified in headless Chrome from its new relative path: all
+   18 library cards render correctly from the relocated JS data files.
+2. **Multi-sign real-gap calibration** (`scripts/real_gap_multisign_calibration.py`,
+   `Phase3/real_gaps_out/real_gap_multisign_calibration.json` +
+   `_report.md`) — the P2-E6 analogue of step 3's P2-E4 reuse, closing
+   recommended-order item 2 from this handoff's first version. This is
+   **not** a drop-in reuse of step 3's approach: P2-E6's fold structure
+   calibrates a different estimand than P2-E4's. P2-E4 gives a per-rank
+   rate ("rank R is historically correct X% of the time"); P2-E6 gives a
+   **set-inclusion rate** keyed by `(mask_length, adaptive_anchor_length)`
+   — "does the tie-complete displayed candidate set contain the true
+   attested span," where `adaptive_anchor_length` is chosen per-gap by
+   trying the longest anchor (3 signs, then 2, then 1) with any
+   independent-witness support before abstaining, exactly replicating
+   `p2e6_multisign_horizon.build_adaptive_records`'s own selection rule.
+   - `real_gap_witness_check.compute_anchor_key_crossline` was generalized
+     to take `anchor_length` and `max_lines_crossed_per_side` as parameters
+     (defaults unchanged, re-verified behavior-preserving for existing
+     callers) so the new script could resolve anchor keys at lengths 1, 2,
+     and 3, same-line only (`max_lines_crossed_per_side=0`) — cross-line
+     multi-sign gaps are out of scope here for the same reason cross-line
+     single-sign gaps were out of scope in step 3: P2-E6's own folds were
+     fit entirely on synthetic within-line masks, so there is no cross-line
+     rate to borrow.
+   - Scoped to the same 42 CTHs step 3 uses (P2-E4 and P2-E6 both fold over
+     the same dev CTH universe, so their `evaluation_cth` unions coincide),
+     749 documents.
+   - Of **9,022** real multi-sign gaps found in that scope, **1,338** are
+     eligible (a same-line 1-sign anchor exists on both sides — the base
+     population before trying longer anchors), **989** get a presented
+     candidate set (74%; anchor length 1 sufficed for 834, length 2 for
+     106, length 3 for 49), **349** abstain entirely.
+   - Of **835** presented `restored` spans checked: **356** have the
+     editor's reading included in the calibrated candidate set (a
+     historical set-inclusion rate applies, e.g. 57.6% for the
+     mask=2/anchor=2 group, n=8,578), **479** do not (reported against the
+     same group rate — never as "the editor is wrong"), **0** have no
+     usable rate for their group.
+   - Full detail in `Phase3/real_gaps_out/real_gap_multisign_calibration_report.md`.
 
 ## What the successor must not do
 
@@ -172,12 +231,19 @@ promotion). In addition, specific to this phase:
   they were real-gaps pipeline output — they are a deliberately-labeled
   training/calibration playground, a distinct product from the real-gaps
   pipeline.
-- Do not borrow the same-line P2-E4 calibration for cross-line anchors, or
-  the single-sign calibration for multi-sign real gaps — both need their
-  own calibration pass; neither has one.
+- Do not borrow the same-line P2-E4/P2-E6 calibration for cross-line
+  anchors (single- or multi-sign) — cross-line still has no calibration
+  pass of its own; nothing changed on this front this session.
+- Do not conflate P2-E4's per-rank calibration with P2-E6's set-inclusion
+  calibration, or apply one file's rate to the other's gap population —
+  `real_gap_calibration.py` (single-sign, per-rank) and
+  `real_gap_multisign_calibration.py` (multi-sign, set-inclusion) are
+  reused from structurally different source estimands and are not
+  interchangeable.
 - Do not promote a real-gap witness match (or mismatch) against an editor's
   restoration to ground truth. It is corroborating or contradicting
-  evidence only, exactly as `real_gap_calibration_report.md` states.
+  evidence only, exactly as `real_gap_calibration_report.md` and
+  `real_gap_multisign_calibration_report.md` state.
 - Do not treat the "restored shelf" as re-scoring anything yet — it is
   organizational bookkeeping until the real-gaps pipeline is wired in.
 - Do not pivot to the content→location / chip-placement capability (Ixca's
@@ -194,7 +260,7 @@ promotion). In addition, specific to this phase:
 
 ## Commit history for this phase
 
-Everything above is committed as four logical commits on `master`, in this
+Everything above is committed as six logical commits on `master`, in this
 order (oldest first):
 
 | commit | summary |
@@ -203,29 +269,35 @@ order (oldest first):
 | `7f32dbf` | Track `word_index_in_line` in the decomposed corpus cache (the alignment infrastructure both the demo export and the real-gaps pipeline depend on) |
 | `dae199c` | Add training/calibration playground demo (library + workspace) |
 | `f3bc201` | Build real-gaps production pipeline (census, witness check, calibration) |
+| `946cc64` | Move Phase 3 output folders under Phase3/, generalize anchor-key builder |
+| `0faf03a` | Add multi-sign real-gap calibration (P2-E6 analogue) |
 
-This handoff document itself is committed separately, after the four above,
+This handoff document itself is committed separately, after the six above,
 so its "what was completed" section describes an already-committed state.
 Nothing from this phase or the prior reorganization session is outstanding
 in the working tree as of this commit.
 
 ## Recommended order of work
 
-1. Decide whether `demo/dm_out/` and `real_gaps_out/` should move under a
-   new `Phase3/` folder per the project's own stated convention ("the next
-   phase should get its own top-level phase folder") — not yet done.
-2. **Multi-sign calibration**: build the P2-E6 analogue of
-   `load_cth_fold_map()`/`rank_calibration` (no such fold structure exists
-   yet for multi-sign contexts) so `real_gap_calibration.py` can cover
-   multi-sign real gaps, not just single-sign.
-3. **Cross-line calibration**: the 14,875 cross-line-anchored real gaps (in
-   the 42-CTH scope) currently have descriptive coverage/agreement numbers
-   only (`real_gap_witness_check_report.md`) and no calibrated rate at all.
-   Needs its own calibration pass, not a borrowed same-line rate.
+1. ~~Decide whether `demo/dm_out/` and `real_gaps_out/` should move under a
+   new `Phase3/` folder~~ — **done** (`946cc64`): both now live under
+   `Phase3/{demo_out,real_gaps_out}/`.
+2. ~~**Multi-sign calibration**: build the P2-E6 analogue of
+   `load_cth_fold_map()`/`rank_calibration`~~ — **done** (`0faf03a`):
+   `scripts/real_gap_multisign_calibration.py` applies P2-E6's
+   set-inclusion fold calibration to multi-sign real gaps.
+3. **Cross-line calibration**: the 14,875 cross-line-anchored single-sign
+   real gaps, and the (not yet separately counted) cross-line multi-sign
+   gaps, currently have descriptive coverage/agreement numbers only
+   (`real_gap_witness_check_report.md`) and no calibrated rate at all.
+   Needs its own calibration pass — for both single- and multi-sign gaps —
+   not a borrowed same-line rate from either P2-E4 or P2-E6.
 4. **Wire the real-gaps pipeline into the demo UI** as a production mode —
    the convergence point of both tracks, and the piece that would let a
    real restoration action actually re-score neighboring gaps (Ixca's
-   original ask, explicitly not yet implemented).
+   original ask, explicitly not yet implemented). With both same-line
+   calibration passes (single- and multi-sign) now in hand, this is the
+   most natural next substantial step.
 5. Only after the above: revisit whether the chip/fragment/tablet
    content-to-location capability is worth scoping as its own initiative.
 6. Draft paper and ALP workshop submission remain deferred, per Ixca's
@@ -241,15 +313,13 @@ Run from the repository root:
 .\.venv\Scripts\ruff.exe check lib scripts tests demo
 ```
 
-At this handoff: 88 repository tests pass. The three new `real_gap_*.py`
-scripts and the `prepare_scope()` refactor were syntax-checked
-(`ast.parse`) and re-run end-to-end after every change; step 2's own
-default-scope numbers (25,559 gaps, 867 documents) were re-verified
-unchanged after the refactor, confirming it is behavior-preserving for its
-original caller. `ruff check` on `scripts/real_gap_*.py` and
-`demo/dm1_missing_text_export.py` is clean (two trivial pre-existing
-lint items — an unused import and an ambiguous variable name `l` — were
-fixed in this handoff's own final pass).
+At this handoff: 88 repository tests pass. The four `real_gap_*.py`
+scripts, the `prepare_scope()` refactor, and the
+`compute_anchor_key_crossline` parameterization were all re-run end-to-end
+after every change; step 2's own default-scope numbers (25,559 gaps, 867
+documents) were re-verified unchanged after both refactors, confirming
+each is behavior-preserving for its original caller. `ruff check` on
+`lib scripts tests demo` is clean.
 
 The demo (`demo/taksan_missing_text_prototype.html`) has no automated test
 suite of its own; all verification so far is manual headless-Chrome
@@ -264,11 +334,12 @@ putting it in front of one.
 2. This handoff.
 3. `demo/missing_text_prototype_report.md` (all 7 revisions — the demo's
    full bug history and the library/playground reframing).
-4. `real_gaps_out/real_gap_census_report.md` →
-   `real_gaps_out/real_gap_witness_check_report.md` →
-   `real_gaps_out/real_gap_calibration_report.md`, in that order (each
-   states plainly what it does not yet establish, and hands off to the
-   next).
+4. `Phase3/real_gaps_out/real_gap_census_report.md` →
+   `Phase3/real_gaps_out/real_gap_witness_check_report.md` →
+   `Phase3/real_gaps_out/real_gap_calibration_report.md` →
+   `Phase3/real_gaps_out/real_gap_multisign_calibration_report.md`, in that
+   order (each states plainly what it does not yet establish, and hands
+   off to the next).
 5. `specs/EXPERT_DECISION_CONTRACT.md` (still the governing contract for
    any packet either track produces).
 
