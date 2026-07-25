@@ -39,9 +39,9 @@ import p2e_witness_recoverability as p2e
 
 
 CONFIG_PATH = Path("configs") / "p2e3_cross_calibration.json"
-P2_OUT = Path("p2_out")
-P4_OUT = Path("p4_out")
-OUT_DIR = Path("phase2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
+P4_OUT = Path("Phase1_pipeline/p4_out")
+OUT_DIR = Path("Phase2/phase2_out")
 RESULT_PATH = OUT_DIR / "p2e3_cross_calibration.json"
 MANIFEST_PATH = OUT_DIR / "p2e3_cross_calibration_manifest.json"
 REPORT_PATH = Path("reports") / "phase2_p2e3_cross_calibration.md"

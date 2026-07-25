@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """tests/test_evidence_policy.py -- fail-closed contract tests for
 lib/evidence_policy.py, per specs/EVIDENCE_POLICY.md's 12-case list
-(the original 10 from cuneiform_expert_patch/EVIDENCE_POLICY_SPEC.md
+(the original 10 from Archive/superseded_docs/EVIDENCE_POLICY_SPEC.md
 plus 2 corpus-specific cases found while verifying the registry).
 
 Usage:

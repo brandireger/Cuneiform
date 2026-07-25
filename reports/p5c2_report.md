@@ -135,7 +135,7 @@ caught bugs replayed through the contract that would have caught them.
 
 ## Acceptance check 4 — Tracer suite
 
-Frozen canary set: `p4_out/canary_set.json` (5 easy dev joins, 3 known
+Frozen canary set: `Phase1_pipeline/p4_out/canary_set.json` (5 easy dev joins, 3 known
 duplicates, 5 random non-pairs). **Note on construction**: the first
 canary selection picked "easy" joins by the QUERY side's attested-sign
 count only; T3 immediately failed (3/5) because several gold partners
@@ -179,7 +179,7 @@ average even with sighted input).
 Re-run order: `27_seam_scorer.py` (958s) → `27b_seam_agreement.py`
 (478s) → `28_edge_continuation.py` (492s) → `29b_cascade_refit.py`
 (D19 featurization + combiner refit + ablation grid + gates). Pre-fix
-(content-blind) artifacts preserved as `p4_out/*_blind_pre_E2fix.json`
+(content-blind) artifacts preserved as `Phase1_pipeline/p4_out/*_blind_pre_E2fix.json`
 before being overwritten, for the record and for H2's bimodality
 analysis.
 
@@ -354,11 +354,11 @@ gradient-update GPU hours were spent; D17b's 12h budget is untouched.
 
 `reports/h2_audit_report.md`, `lib/hittite_tokenizer.py`
 (`encode_fragment_window`, strict-mode `encode`), `lib/contracts.py`
-(C1-C10 + self-test), `p4_out/canary_set.json`, `scripts/00_tracers.py`,
-`p4_out/p5_d17_scores.json` / `p5_d17_agreement.json` /
+(C1-C10 + self-test), `Phase1_pipeline/p4_out/canary_set.json`, `scripts/00_tracers.py`,
+`Phase1_pipeline/p4_out/p5_d17_scores.json` / `p5_d17_agreement.json` /
 `p5_d18_scores.json` / `p5_d18_summary.json` (sighted, overwritten),
-`p4_out/p5_ablation_grid_v2.json` / `p5_gates_v2.json` /
+`Phase1_pipeline/p4_out/p5_ablation_grid_v2.json` / `p5_gates_v2.json` /
 `p5_train_features_v2.json` (sighted, overwritten), pre-fix versions
-preserved as `p4_out/*_blind_pre_E2fix.json`, updated
+preserved as `Phase1_pipeline/p4_out/*_blind_pre_E2fix.json`, updated
 `reports/p5_report.md` / `specs/P5C_SPEC.md` / `demo/data_card_notes.md`
 / `CLAUDE.md`. No checkpoints, no parquet, no new training runs.

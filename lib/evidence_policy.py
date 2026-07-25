@@ -1,6 +1,6 @@
 """lib/evidence_policy.py -- provenance-first evidence-policy
 infrastructure, per specs/EVIDENCE_POLICY.md (adapted from expert
-advisory input, cuneiform_expert_patch/, 2026-07-22).
+advisory input, Archive/superseded_docs/EVIDENCE_POLICY_SPEC.md, 2026-07-22).
 
 Every semantic field consumed by a scorer/model must be registered
 with an EvidenceClass. validate_fields() fails closed: unknown fields,

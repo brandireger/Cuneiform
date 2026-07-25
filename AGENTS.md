@@ -206,10 +206,10 @@ full-corpus scale, with leakage-safe methodology?
     these same files — reuse their preprocessing decisions where
     sensible and cite them.
 - Schema knowledge must come from `01_inventory.py` output
-  (p1_out/, renamed from inventory_out/ 2026-07-21 for consistency
-  with p2_out/p25_out/p3_out/p4_out), not assumptions. If inventory
-  results and this file disagree, the inventory wins; update this
-  file.
+  (`Archive/p1_out/`, renamed from `inventory_out/` 2026-07-21 for
+  consistency with `Archive/`'s p2_out/p25_out/p3_out/p4_out), not
+  assumptions. If inventory results and this file disagree, the
+  inventory wins; update this file.
 
 ## Task definitions
 
@@ -263,7 +263,7 @@ Consequence, binding on both tasks above:
   document whose parent CTH folder happens to be a bin still yields a
   valid join pair (the physical fit is real regardless of catalogue
   assignment) — tagged `parent_is_bin=True` in
-  `p2_out/join_pairs.jsonl`, reported both included and excluded.
+  `Phase1_pipeline/p2_out/join_pairs.jsonl`, reported both included and excluded.
 - 543 real compositions remain supervision-eligible. `main_split`
   (train/dev/test) is assigned over real compositions only; bin
   documents carry `main_split='discovery'`, never train/dev/test.
@@ -457,6 +457,18 @@ Provincial + multilingual material also supplies hard negatives.
   — data paths are CWD-relative, only `lib/` imports are resolved
   relative to the script file itself. See `README.md`'s "Where things
   are" for the full map.
+- **Phase-folder split (2026-07-23):** the complete, immutable Phase 1
+  snapshot stays under `Archive/` — do not rewrite it in place.
+  `Archive/superseded_docs/` is a separate, non-frozen holding area for
+  root docs absorbed into a canonical file or superseded by a newer
+  handoff (see `Archive/superseded_docs/README.md`); unlike the frozen
+  snapshot, it gains new entries over time. Live per-phase outputs are
+  split by phase folder: `Phase1_pipeline/` holds carried-forward
+  outputs of the original numbered P2/P3/P4 steps (`p2_out/`,
+  `p3_out/`, `p4_out/`); `Phase2/` holds outputs of the current lettered
+  Phase 2 research plan (`phase2_out/`, `corpus_audit_out/`). Give the
+  next phase its own top-level phase folder rather than growing either
+  of these.
 
 ## Phase sequence
 
@@ -467,11 +479,11 @@ Provincial + multilingual material also supplies hard negatives.
   rules; three-way label structure (join / duplicate / negative).
   **DONE (2026-07-20)**, per `specs/P2_PARSER_SPEC.md`. All 5 acceptance
   checks passed. Superseded/amended by P2.5 below — see
-  `p2_out/dataset_report.md` for the original P2-only numbers.
+  `Phase1_pipeline/p2_out/dataset_report.md` for the original P2-only numbers.
 - **P2.5 Amendments** — **DONE, ACCEPTED, FROZEN (2026-07-21)**, per
   `specs/P2.5_AMENDMENTS.md`. Scripts `07_metadata_patch.py` → `08_bins.py`
   → `09_join_tiers.py` → `10_resplit.py`, outputs in `p25_out/` (plus
-  amended files in `p2_out/`). All 6 acceptance checks passed. Key
+  amended files in `Phase1_pipeline/p2_out/`). All 6 acceptance checks passed. Key
   numbers (supersede the P2 block above): 543 real compositions /
   14,046 bin (discovery-pool) documents, bin reframe above; duplicate
   pairs naive 13,451,014 → bins-excluded 234,263; join pairs 1,581,
@@ -479,14 +491,14 @@ Provincial + multilingual material also supplies hard negatives.
   exclusive-content degenerate guard) — see `p25_out/join_tiers_report.md`;
   **`main_split` FROZEN 2026-07-21, no further re-rolls**: train 6,073
   / dev 760 / test 760 docs (80.0/10.0/10.0 by documents, greedy
-  doc-count-balanced re-roll — see `p2_out/split_report.md`), bin docs
+  doc-count-balanced re-roll — see `Phase1_pipeline/p2_out/split_report.md`), bin docs
   carry `main_split='discovery'`; `site_split` provincial-eval grew
   201 → 314 docs after the verified DAAM/Kp provenance patch (DAAM is
   a multi-site series — see `p25_out/provenance_patch.md`); repo
-  git-initialized, commit hash logged in `p2_out/splits.json`. Full
+  git-initialized, commit hash logged in `Phase1_pipeline/p2_out/splits.json`. Full
   detail in `p25_out/p25_report.md`.
 - **P3 Baselines** — BM25, Tyndall replication. First real numbers.
-  MUST consume `p2_out/splits.parquet`'s frozen `main_split` /
+  MUST consume `Phase1_pipeline/p2_out/splits.parquet`'s frozen `main_split` /
   `site_split` columns and respect the bin reframe (discovery-pool
   docs excluded from all supervision and metrics).
 - **P4 Sign tokenizer + masked-span pre-training.**

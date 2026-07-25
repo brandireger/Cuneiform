@@ -8,7 +8,7 @@ Does TLHdig record different evidential bases for dev join labels, and is the fr
 
 ## What I did
 
-Audited all 182 canonical dev relation pairs (182 query fragments) using only `join_type`, `declared_adjacent`, technical IDs, and the frozen hard-set list. The split gate ran before JSON decoding; no transliteration, restoration, `cu`, model score, or test-side payload was read. Seed 20260723; paths: `p2_out/join_pairs.jsonl`, `p2_out/splits.parquet`, `p2_out/edges.parquet`, and `p4_out/p5_hard_set.json`.
+Audited all 182 canonical dev relation pairs (182 query fragments) using only `join_type`, `declared_adjacent`, technical IDs, and the frozen hard-set list. The split gate ran before JSON decoding; no transliteration, restoration, `cu`, model score, or test-side payload was read. Seed 20260723; paths: `Phase1_pipeline/p2_out/join_pairs.jsonl`, `Phase1_pipeline/p2_out/splits.parquet`, `Phase1_pipeline/p2_out/edges.parquet`, and `Phase1_pipeline/p4_out/p5_hard_set.json`.
 
 ## What I found
 

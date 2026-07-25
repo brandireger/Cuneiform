@@ -60,6 +60,6 @@ Use the horizon matrix as Phase 2's first recoverability map. Any next reconstru
 - Semantic fields: `token`, `damage_state`, `line_index_in_doc`, `cth`; no `cu`, morphology, restorations, editor identity, or model output.
 - Test-side content accessed: **no**.
 - Seed: 20260723; elapsed: 23.5s.
-- Machine-readable result: `phase2_out\p2e_witness_recoverability.json`; manifest: `phase2_out\p2e_witness_recoverability_manifest.json`.
+- Machine-readable result: `Phase2/phase2_out\p2e_witness_recoverability.json`; manifest: `Phase2/phase2_out\p2e_witness_recoverability_manifest.json`.
 
 Corpus: TLHdig Beta 0.2.0, Müller, Prechel, Rieken & Schwemer (2025), DOI 10.5281/zenodo.15459134, CC BY 4.0.

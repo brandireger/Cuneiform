@@ -20,7 +20,7 @@ containing '×' (ligature compounds like KA×U) stays atomic. This
 requires token boundaries that P2's corpus.parquet does NOT preserve
 (it flattens a whole word's text before hyphen-splitting, losing the
 <d>/<sGr>/<aGr> tag edges) -- so this module now consumes a NEW P4-
-only artifact, p4_out/decomposed_corpus.parquet, built by
+only artifact, Phase1_pipeline/p4_out/decomposed_corpus.parquet, built by
 decompose_corpus.py re-walking the raw XML with tag-boundary-aware
 segmentation. P2/P2.5's corpus.parquet is untouched and still frozen.
 
@@ -52,7 +52,7 @@ SPECIALS = ["<PAD>", "<UNK>", "<MASK>", "<GAP>", "<LINE>", "<PAR>",
             "<EDGE_L>", "<EDGE_R>", "<EDGE_T>", "<EDGE_B>"]
 MIN_DF = 2
 TOKENIZER_PATH = Path("configs") / "tokenizer.json"
-DECOMPOSED_PATH = Path("p4_out") / "decomposed_corpus.parquet"
+DECOMPOSED_PATH = Path("Phase1_pipeline/p4_out") / "decomposed_corpus.parquet"
 
 
 def build_decomposed_line_index():

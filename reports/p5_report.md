@@ -12,11 +12,11 @@ next step available) is NOT launched without that check-in.**
 
 Tier distribution of the 182 dev joins: A=27, B=17, C=61, mixed=77
 (a query touching pairs of more than one tier). Full per-tier B1/B3
-tables: `p4_out/p5_b1_per_tier.json`, `p4_out/p5_b3_per_tier.json`.
+tables: `Phase1_pipeline/p4_out/p5_b1_per_tier.json`, `Phase1_pipeline/p4_out/p5_b3_per_tier.json`.
 
 **Hard set** (bottom quartile of BM25 score-to-true-partner, frozen
 per spec, seed=20260722): threshold 45.12, **n=46/182**. Frozen list:
-`p4_out/p5_hard_set.json`.
+`Phase1_pipeline/p4_out/p5_hard_set.json`.
 
 **Ceilings** (fraction whose true partner is in BM25 full_distractor
 top-200):
@@ -236,11 +236,11 @@ Do not proceed to P6 as-is. Three live options, not decided here:
    it is not merely being dragged down by D17 in the joint combiner.
    This narrows the real choice to options 1 or 2.
 
-Small artifacts: `p5_report.md` (this file), `p4_out/p5_hard_set.json`,
-`p4_out/p5_b1_per_tier.json`, `p4_out/p5_b3_per_tier.json`,
-`p4_out/p5_d16b_report.json`, `p4_out/p5_d16_stamp.json`,
-`p4_out/p5_d18_summary.json`, `p4_out/p5_ablation_grid.json`,
-`p4_out/p5_gates.json`, `p4_out/p5_train_features.json`. No
+Small artifacts: `p5_report.md` (this file), `Phase1_pipeline/p4_out/p5_hard_set.json`,
+`Phase1_pipeline/p4_out/p5_b1_per_tier.json`, `Phase1_pipeline/p4_out/p5_b3_per_tier.json`,
+`Phase1_pipeline/p4_out/p5_d16b_report.json`, `Phase1_pipeline/p4_out/p5_d16_stamp.json`,
+`Phase1_pipeline/p4_out/p5_d18_summary.json`, `Phase1_pipeline/p4_out/p5_ablation_grid.json`,
+`Phase1_pipeline/p4_out/p5_gates.json`, `Phase1_pipeline/p4_out/p5_train_features.json`. No
 checkpoints, no parquet, no new training runs.
 
 ## Addendum (2026-07-22) — Corrected-baseline gate table, per
@@ -266,7 +266,7 @@ scoring statistics were refit. Script: `scripts/29b_cascade_refit.py`.
 joins at full_distractor reproduces **123/182 = 0.6758241758241759**
 (recall@1) and **147/182 = 0.8076923076923077** (recall@10) — bit-
 identical to P4B's B1 stored `full_distractor` numbers in
-`p4_out/p4b_b1.json` (hits=123/147, n=182 both metrics). The "0.676 /
+`Phase1_pipeline/p4_out/p4b_b1.json` (hits=123/147, n=182 both metrics). The "0.676 /
 0.808" figures named in P5C_AMENDMENT_1.md's gate are P4B_report.md's
 3-decimal prose rounding of these same exact values, not independently
 -specified targets — **gate PASSES** (confirmed against the raw stored
@@ -292,8 +292,8 @@ D14 boundary head scores BM25-hard-negatives higher and more
 consistently than true join partners) stands unchanged, since it never
 depended on the BM25 reference-set choice — `seam_score`/`n_agree`
 are D14 forward-pass outputs, untouched by this refit. Full corrected
-artifacts: `p4_out/p5_ablation_grid_v2.json`, `p4_out/p5_gates_v2.json`,
-`p4_out/p5_train_features_v2.json`. Original v1 files retained
+artifacts: `Phase1_pipeline/p4_out/p5_ablation_grid_v2.json`, `Phase1_pipeline/p4_out/p5_gates_v2.json`,
+`Phase1_pipeline/p4_out/p5_train_features_v2.json`. Original v1 files retained
 unmodified for the record.
 
 Per P5C_AMENDMENT_1.md A4, this resolves the E1.3 stop condition; D17c

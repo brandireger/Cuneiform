@@ -38,9 +38,9 @@ import p2e_witness_recoverability as p2e
 
 
 CONFIG_PATH = Path("configs") / "p2e2_calibration.json"
-P2_OUT = Path("p2_out")
-P4_OUT = Path("p4_out")
-OUT_DIR = Path("phase2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
+P4_OUT = Path("Phase1_pipeline/p4_out")
+OUT_DIR = Path("Phase2/phase2_out")
 RESULT_PATH = OUT_DIR / "p2e2_abstention_calibration.json"
 MANIFEST_PATH = OUT_DIR / "p2e2_abstention_calibration_manifest.json"
 PACKET_PATH = OUT_DIR / "p2e2_evidence_packets.jsonl"

@@ -94,7 +94,7 @@ The Phase 2 product boundary is implemented in:
 - `specs/EXPERT_DECISION_CONTRACT.md`;
 - `configs/expert_decision_contract.schema.json`;
 - `lib/expert_decision_contract.py`;
-- `phase2_out/p2e7_contract_examples.jsonl`;
+- `Phase2/phase2_out/p2e7_contract_examples.jsonl`;
 - `reports/phase2_p2e7_contract.md`.
 
 The contract supports:
@@ -147,8 +147,8 @@ Relevant artifacts:
 - `scripts/corpus_migration_design.py`;
 - `reports/corpus_expansion_tlhdig_03_audit.md`;
 - `reports/corpus_expansion_tlhdig_03_migration_design.md`;
-- `corpus_audit_out/tlhdig_03_delta_manifest.json`;
-- `corpus_audit_out/tlhdig_03_migration_design_manifest.json`.
+- `Phase2/corpus_audit_out/tlhdig_03_delta_manifest.json`;
+- `Phase2/corpus_audit_out/tlhdig_03_migration_design_manifest.json`.
 
 External ORACC, SumTablets, CDLI, or eBL ingestion remains deferred until the
 upper bound of 281 prospective 0.3 train additions is resolved.

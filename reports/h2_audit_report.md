@@ -13,7 +13,7 @@ C1's contract threshold (P5C_AMENDMENT_2.md H3) is 5%.
 |---|---|---|---|---|
 | `scripts/19_pretrain.py` (D14 pretrain) | `load_pretrain_data` -> `ht.build_structured_sequence_attested` | decomposed per-sign line_index, tuples correctly unpacked (`t for t, st in toks if st != RESTORED`) | **CLEAN** | 0.12% (500-fragment sample) |
 | `scripts/20_biencoder.py` (D15 train) | `load_encoded_pool`/training loader -> `ht.build_structured_sequence_attested`; synthetic pairs -> `render_tokens()` | same decomposed path as D14; synthetic path unpacks tuples correctly (`flat.extend(t for t, st in toks)`) | **CLEAN** | 0.12% (shares D14's path); 0.0% (synthetic, 1-pair spot check) |
-| `scripts/24_p4b_diagnostics.py` — **B1** (dense_mean_pool/dense_line_max retrieval baselines, `p4_out/p4b_b1.json`) | `load_encoded_pool` (imported directly from `20_biencoder.py`'s module namespace, line 44) -> same `build_structured_sequence_attested` path | reuses D15's already-clean encoding, no local re-implementation | **CLEAN** | 0.12% (identical code path to D15) |
+| `scripts/24_p4b_diagnostics.py` — **B1** (dense_mean_pool/dense_line_max retrieval baselines, `Phase1_pipeline/p4_out/p4b_b1.json`) | `load_encoded_pool` (imported directly from `20_biencoder.py`'s module namespace, line 44) -> same `build_structured_sequence_attested` path | reuses D15's already-clean encoding, no local re-implementation | **CLEAN** | 0.12% (identical code path to D15) |
 | `scripts/24_p4b_diagnostics.py` — **B2** (complementarity/fusion) | reuses B1's `dense_fd_line_scores`/`bm25_fd_scores_dense`, no new embedding | N/A, no re-encoding | **CLEAN** | N/A (consumes B1's clean scores only) |
 | `scripts/24_p4b_diagnostics.py` — **B5** (bi-encoder-similarity-vs-lexical-overlap correlation, REAL-pair half only) | local `embed_token_lists()` fed `json.loads(frags_lookup.loc[q,"sign_attested"])` directly | `sign_attested` (eval_harness's word/compound-level sign rendering, e.g. `"LUGAL-uš"`, `"NINDA.GUR₄.RA"`, `"Ú-UL"`) fed to a vocab built from `hittite_tokenizer`'s DECOMPOSED per-sign scheme — a granularity mismatch, not the tuple bug | **BROKEN** (third, distinct mechanism — see below) | 13.90% (500-fragment sample); 10.2% on one spot-checked fragment |
 | `scripts/24_p4b_diagnostics.py` — **B5** (synthetic-pair half, same analysis) | `embed_token_lists()` fed `p["member_a_tokens"]`/`member_b_tokens"` (from `fracture_engine.render_tokens()`) | tuples already unpacked by `render_tokens()` before this point | **CLEAN** | 0.0% (1-pair spot check) |
@@ -64,7 +64,7 @@ left uncaveated.
 ## Bug-account confirmation: TRAIN positive seam_scores, synthetic vs
 real-join
 
-Split by construction path (`p4_out/p5_train_features_v2.json`, X
+Split by construction path (`Phase1_pipeline/p4_out/p5_train_features_v2.json`, X
 column 2 = `seam_score`; positions 0:912 = real-join positives
 (BROKEN path, E2), 912:1512 = synthetic positives (CLEAN path via
 `render_tokens`), 1512:4578 = hard negatives (BROKEN path)):

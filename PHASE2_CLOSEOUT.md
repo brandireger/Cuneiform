@@ -52,7 +52,7 @@ Contract v1.0.0 is defined by:
 - `specs/EXPERT_DECISION_CONTRACT.md`;
 - `configs/expert_decision_contract.schema.json`;
 - `lib/expert_decision_contract.py`;
-- `phase2_out/p2e7_contract_examples.jsonl`.
+- `Phase2/phase2_out/p2e7_contract_examples.jsonl`.
 
 The contract supports `SELECT_OPTION`, `REJECT_ALL`,
 `OTHER_OR_UNSUPPORTED`, and `WITHHOLD_JUDGMENT`. It preserves typed evidence,

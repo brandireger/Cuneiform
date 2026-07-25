@@ -104,14 +104,14 @@ complete.
 All P5 BM25 features (whole-fragment and edge-window, N=3) refit with
 IDF/avgdl computed over the full non-test universe (21,920 fragments —
 confirmed via `frags[frags["main_split"] != "test"]`, matching P4B's B1
-reference exactly). Candidate lists (`p4_out/p5_candidates_whole.json`,
+reference exactly). Candidate lists (`Phase1_pipeline/p4_out/p5_candidates_whole.json`,
 D16/D16b union top-200) unchanged — only the scoring statistics
 refit. Script: `scripts/29b_cascade_refit.py`.
 
 **Verification gate result:** the refit `bm25_alone` row on the 182 dev
 joins reproduces **recall@1 = 123/182 = 0.6758241758241759**, **recall@10
 = 147/182 = 0.8076923076923077** — bit-identical to P4B's B1 stored
-`full_distractor` numbers in `p4_out/p4b_b1.json` (hits=123/147,
+`full_distractor` numbers in `Phase1_pipeline/p4_out/p4b_b1.json` (hits=123/147,
 n=182). **GATE PASSES.** (Note: the amendment's gate text names
 "0.676 / 0.808 to 4 decimals" — those are `p4b_report.md`'s 3-decimal
 prose rounding of these same 123/182 and 147/182 hit counts, not
@@ -150,8 +150,8 @@ consistently than true join partners) is untouched by this refit, since
 `seam_score`/`n_agree` are D14 forward-pass outputs independent of the
 BM25 reference-set choice.
 
-Corrected artifacts: `p4_out/p5_ablation_grid_v2.json`,
-`p4_out/p5_gates_v2.json`, `p4_out/p5_train_features_v2.json`. Original
+Corrected artifacts: `Phase1_pipeline/p4_out/p5_ablation_grid_v2.json`,
+`Phase1_pipeline/p4_out/p5_gates_v2.json`, `Phase1_pipeline/p4_out/p5_train_features_v2.json`. Original
 v1 files retained unmodified for the record.
 
 ### A3 — Convention codified (complete)
@@ -208,7 +208,7 @@ vocabulary ids.
   `tok.encode(flat[:10])` = `[1, 4, 1, 1, 4, ...]` (1=`<UNK>`,
   4=`<LINE>`) — every content tuple maps to `<UNK>`.
 - Quantified over 90 sampled real (query, candidate) seam windows
-  drawn from `p4_out/p5_d17_scores.json`: **82.6% of all tokens in
+  drawn from `Phase1_pipeline/p4_out/p5_d17_scores.json`: **82.6% of all tokens in
   the scored 64-token window are `<UNK>`** — the remaining ~17.4% is
   entirely `<LINE>` separators, zero lexical content.
 - This is a genuine oversight, not an intentional design: the SAME

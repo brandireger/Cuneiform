@@ -29,9 +29,9 @@ from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 SEED = 20260723
 TIME_BUDGET_HOURS = 2
 TARGET_SPLIT = "dev"
-P2_OUT = Path("p2_out")
-HARD_SET_PATH = Path("p4_out") / "p5_hard_set.json"
-OUT_DIR = Path("phase2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
+HARD_SET_PATH = Path("Phase1_pipeline/p4_out") / "p5_hard_set.json"
+OUT_DIR = Path("Phase2/phase2_out")
 RESULT_PATH = OUT_DIR / "p2d_reliability.json"
 MANIFEST_PATH = OUT_DIR / "p2d_reliability_manifest.json"
 REPORT_PATH = Path("reports") / "phase2_p2d_reliability.md"
@@ -147,9 +147,9 @@ def write_report(summary, elapsed_seconds):
         "`declared_adjacent`, technical IDs, and the frozen hard-set list. "
         "The split gate ran before JSON decoding; no transliteration, "
         "restoration, `cu`, model score, or test-side payload was read. "
-        f"Seed {SEED}; paths: `p2_out/join_pairs.jsonl`, "
-        "`p2_out/splits.parquet`, `p2_out/edges.parquet`, and "
-        "`p4_out/p5_hard_set.json`.",
+        f"Seed {SEED}; paths: `Phase1_pipeline/p2_out/join_pairs.jsonl`, "
+        "`Phase1_pipeline/p2_out/splits.parquet`, `Phase1_pipeline/p2_out/edges.parquet`, and "
+        "`Phase1_pipeline/p4_out/p5_hard_set.json`.",
         "",
         "## What I found",
         "",

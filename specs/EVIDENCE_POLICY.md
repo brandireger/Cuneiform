@@ -1,7 +1,7 @@
 # Evidence Policy Implementation Specification
 
 Status: implemented, reversible Phase 2 infrastructure. Adapted from
-`cuneiform_expert_patch/EVIDENCE_POLICY_SPEC.md` (expert advisory input,
+`Archive/superseded_docs/EVIDENCE_POLICY_SPEC.md` (expert advisory input,
 2026-07-22) — see `EXPERT_OPINION.md` for the full rationale. Authority:
 advisory; CLAUDE.md, PHASE2_CHARTER.md, SANDBOX_RULES.md, frozen splits,
 and ratified human decisions remain controlling.
@@ -118,9 +118,9 @@ which is disclosed explicitly rather than silently implied.
 ## Registry decisions and uncertainties (verified against actual
 parser output, 2026-07-22 — not the spec's original abstract examples)
 
-Checked directly against `p2_out/corpus.parquet`, `p2_out/edges.parquet`,
-`p2_out/doc_table.parquet`, `p2_out/splits.parquet`,
-`p4_out/decomposed_corpus.parquet`, and
+Checked directly against `Phase1_pipeline/p2_out/corpus.parquet`, `Phase1_pipeline/p2_out/edges.parquet`,
+`Phase1_pipeline/p2_out/doc_table.parquet`, `Phase1_pipeline/p2_out/splits.parquet`,
+`Phase1_pipeline/p4_out/decomposed_corpus.parquet`, and
 `eval_harness.load_fragment_universe()`'s rendered columns — every
 field below is a real, present column, not a guess.
 
@@ -141,7 +141,7 @@ named examples, or are unambiguous):
 | restored sign streams (any full-vs-attested-only pair) | rendered | `EDITORIAL_RESTORATION` |
 | `cu` (raw cuneiform rendering) | AOxml, not currently in any parsed parquet | `EDITORIAL_RESTORATION`, **explicitly denied in every policy** — per CLAUDE.md's own extensive prior documentation, never cleanroom-safe |
 | `mrp_selected`, `mrp_lemma_candidates` | corpus.parquet | **explicitly denied in every policy** (not merely classified) — CLAUDE.md's standing rule: "morphological glossing... out of scope; do not build features off `mrp*`." This is stricter than the original spec's registry list, which didn't mention `mrp*` at all; the denial follows an existing project rule, not a new invention |
-| join/duplicate/witness relation labels (`p2_out/join_pairs.jsonl` tier/join_type, `p4_out/p5_query_sets.json`'s join_by_frag/dup_by_frag) | derived | `EDITORIAL_RELATION` |
+| join/duplicate/witness relation labels (`Phase1_pipeline/p2_out/join_pairs.jsonl` tier/join_type, `Phase1_pipeline/p4_out/p5_query_sets.json`'s join_by_frag/dup_by_frag) | derived | `EDITORIAL_RELATION` |
 | any embedding, generated continuation, pseudo-label, D14/D17/D18 score output | model runs | `MODEL_DERIVED` |
 
 **Flagged uncertainties — tentative classification given, explicitly

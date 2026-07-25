@@ -22,17 +22,17 @@ import evidence_policy as ep
 import expert_decision_contract as edc
 
 
-P2E4_PATH = Path("phase2_out") / "p2e4_candidate_set_packets.jsonl"
+P2E4_PATH = Path("Phase2/phase2_out") / "p2e4_candidate_set_packets.jsonl"
 P2E4_MANIFEST = (
-    Path("phase2_out") / "p2e4_candidate_set_audit_manifest.json")
-P2E6_PATH = Path("phase2_out") / "p2e6_multisign_packets.jsonl"
+    Path("Phase2/phase2_out") / "p2e4_candidate_set_audit_manifest.json")
+P2E6_PATH = Path("Phase2/phase2_out") / "p2e6_multisign_packets.jsonl"
 P2E6_MANIFEST = (
-    Path("phase2_out") / "p2e6_multisign_horizon_manifest.json")
+    Path("Phase2/phase2_out") / "p2e6_multisign_horizon_manifest.json")
 SCHEMA_PATH = Path("configs") / "expert_decision_contract.schema.json"
 REGISTRY_PATH = Path("configs") / "evidence_registry.yaml"
 POLICIES_PATH = Path("configs") / "evidence_policies.yaml"
-SPLITS_PATH = Path("p2_out") / "splits.parquet"
-OUT_DIR = Path("phase2_out")
+SPLITS_PATH = Path("Phase1_pipeline/p2_out") / "splits.parquet"
+OUT_DIR = Path("Phase2/phase2_out")
 EXAMPLES_PATH = OUT_DIR / "p2e7_contract_examples.jsonl"
 RESULT_PATH = OUT_DIR / "p2e7_contract_check.json"
 MANIFEST_PATH = OUT_DIR / "p2e7_contract_manifest.json"

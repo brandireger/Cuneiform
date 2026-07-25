@@ -2,7 +2,7 @@
 
 - **Status:** PROPOSED — requires human ratification before implementation
 - **Scope:** derived-data repair only; no model, probe, or research result
-- **Affected field:** `p2_out/corpus.parquet::line_lang`
+- **Affected field:** `Phase1_pipeline/p2_out/corpus.parquet::line_lang`
 - **Evidence class:** tentatively `OBSERVED_DOCUMENT_STRUCTURE`
 
 ## Decision requested
@@ -40,7 +40,7 @@ to the nearest familiar code.
 ## Non-negotiable invariants
 
 - `Archive/` remains immutable.
-- Existing `p2_out/` and `p25_out/` artifacts remain byte-for-byte unchanged.
+- Existing `Phase1_pipeline/p2_out/` and `p25_out/` artifacts remain byte-for-byte unchanged.
 - Frozen `main_split` and `site_split` assignments remain unchanged.
 - No `cu` value or `cu`-derived feature is read as semantic evidence.
 - No model input, score, label, or candidate list is produced.

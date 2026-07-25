@@ -50,9 +50,9 @@ MAX_WITNESS_MIDDLE = 12
 JOIN_NGRAM_LENGTHS = (1, 2, 3, 5)
 REAL_TRACER_LIMIT = 12
 
-P2_OUT = Path("p2_out")
-P4_OUT = Path("p4_out")
-OUT_DIR = Path("phase2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
+P4_OUT = Path("Phase1_pipeline/p4_out")
+OUT_DIR = Path("Phase2/phase2_out")
 RESULT_PATH = OUT_DIR / "p2e_witness_recoverability.json"
 MANIFEST_PATH = OUT_DIR / "p2e_witness_recoverability_manifest.json"
 REPORT_PATH = Path("reports") / "phase2_p2e_witness_recoverability.md"

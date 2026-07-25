@@ -5,7 +5,7 @@ architect): sign-level logogram decomposition.
 
 Reusable module (unnumbered, same reason as eval_harness.py). Not a
 P3/P2 rebuild -- P2/P2.5's corpus.parquet stays frozen and untouched;
-this is a NEW, P4-only derived artifact (p4_out/decomposed_corpus.parquet)
+this is a NEW, P4-only derived artifact (Phase1_pipeline/p4_out/decomposed_corpus.parquet)
 built by re-walking the raw XML, because word-level sub-element
 boundaries (<d>/<sGr>/<aGr> vs plain syllabic text) are NOT preserved
 in corpus.parquet's flattened "signs" column -- 02_parse.py concatenates
@@ -31,7 +31,7 @@ from pathlib import Path
 
 import pandas as pd
 
-OUT_DIR = Path("p4_out")
+OUT_DIR = Path("Phase1_pipeline/p4_out")
 RESTORED = "restored"
 
 
@@ -242,7 +242,7 @@ def decompose_document(raw_xml_bytes):
 
 def build_decomposed_cache(zip_path, doc_ids_needed=None):
     """Re-walks the corpus zip once, writing
-    p4_out/decomposed_corpus.parquet: doc_id, line_index_in_doc,
+    Phase1_pipeline/p4_out/decomposed_corpus.parquet: doc_id, line_index_in_doc,
     token, damage_state (word-token order preserved via row order).
     doc_ids_needed: optional set to restrict (still walks the whole
     zip since docID isn't known until parsed, but skips writing rows

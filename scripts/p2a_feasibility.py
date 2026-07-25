@@ -28,8 +28,8 @@ from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 SEED = 20260723
 TIME_BUDGET_HOURS = 2
 TARGET_SPLIT = "dev"
-P2_OUT = Path("p2_out")
-OUT_DIR = Path("phase2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
+OUT_DIR = Path("Phase2/phase2_out")
 REPORT_PATH = Path("reports") / "phase2_p2a_feasibility.md"
 RESULT_PATH = OUT_DIR / "p2a_feasibility.json"
 MANIFEST_PATH = OUT_DIR / "p2a_feasibility_manifest.json"

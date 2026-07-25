@@ -1,8 +1,8 @@
 # Evidence Policy Implementation Report
 
-Per `cuneiform_expert_patch/IMPLEMENTATION_REQUEST_FOR_CLAUDE.md`.
-Advisory input from `cuneiform_expert_patch/EXPERT_OPINION.md` and
-`EVIDENCE_POLICY_SPEC.md`, 2026-07-22. Authority: advisory; CLAUDE.md,
+Per `Archive/superseded_docs/IMPLEMENTATION_REQUEST_FOR_CLAUDE.md`.
+Advisory input from `EXPERT_OPINION.md` and
+`Archive/superseded_docs/EVIDENCE_POLICY_SPEC.md`, 2026-07-22. Authority: advisory; CLAUDE.md,
 PHASE2_CHARTER.md, SANDBOX_RULES.md, frozen splits, and ratified human
 decisions remain controlling — nothing below overrides any of those.
 
@@ -10,7 +10,7 @@ decisions remain controlling — nothing below overrides any of those.
 
 New:
 - `EXPERT_OPINION.md` (repo root, verbatim copy of the advisory input)
-- `specs/EVIDENCE_POLICY.md` (adapted from `EVIDENCE_POLICY_SPEC.md`,
+- `specs/EVIDENCE_POLICY.md` (adapted from `Archive/superseded_docs/EVIDENCE_POLICY_SPEC.md`,
   with the registry section replaced by verified, real-schema findings)
 - `lib/evidence_policy.py` (`EvidenceClass`, `FieldEvidence`,
   `EvidencePolicy`, `EvidencePolicyError`, `load_registry`,
@@ -30,7 +30,7 @@ New:
 
 Modified:
 - `CLAUDE.md` — inserted the standing-rule text from
-  `CLAUDE_MD_INSERT.md`, placed after the Cleanroom rules section and
+  `Archive/superseded_docs/CLAUDE_MD_INSERT.md`, placed after the Cleanroom rules section and
   before "Provenance & generalization" (as instructed: "near the
   cleanroom/engineering standards sections").
 
@@ -60,9 +60,9 @@ Full detail in `specs/EVIDENCE_POLICY.md`'s "Registry decisions and
 uncertainties" section. Summary:
 
 - **72 fields registered**, every one checked against an actual parsed
-  artifact (`p2_out/corpus.parquet`, `p2_out/edges.parquet`,
-  `p2_out/doc_table.parquet`, `p2_out/splits.parquet`,
-  `p4_out/decomposed_corpus.parquet`, or
+  artifact (`Phase1_pipeline/p2_out/corpus.parquet`, `Phase1_pipeline/p2_out/edges.parquet`,
+  `Phase1_pipeline/p2_out/doc_table.parquet`, `Phase1_pipeline/p2_out/splits.parquet`,
+  `Phase1_pipeline/p4_out/decomposed_corpus.parquet`, or
   `eval_harness.load_fragment_universe()`'s rendered columns) — not
   guessed from the original spec's abstract examples.
 - **`mrp_selected`/`mrp_lemma_candidates` explicitly denied in every
@@ -150,7 +150,7 @@ predicted (permitted request passes; same field rejected under a
 stricter policy; `cu` rejected even under the most permissive standard
 policy; a technical ID rejected specifically from the semantic-feature
 path). One real manifest written to
-`p4_out/evidence_policy_smoke_manifest.json`.
+`Phase1_pipeline/p4_out/evidence_policy_smoke_manifest.json`.
 
 ## Sample manifest (from the smoke run)
 

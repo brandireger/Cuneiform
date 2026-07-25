@@ -32,7 +32,7 @@ import phase2_io
 CONFIG_PATH = Path("configs") / "corpus_expansion_audit.json"
 REGISTRY_PATH = Path("configs") / "evidence_registry.yaml"
 POLICIES_PATH = Path("configs") / "evidence_policies.yaml"
-OUT_DIR = Path("corpus_audit_out")
+OUT_DIR = Path("Phase2/corpus_audit_out")
 RESULT_PATH = OUT_DIR / "tlhdig_03_delta.json"
 MANIFEST_PATH = OUT_DIR / "tlhdig_03_delta_manifest.json"
 REPORT_PATH = Path("reports") / "corpus_expansion_tlhdig_03_audit.md"

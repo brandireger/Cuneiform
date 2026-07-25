@@ -21,7 +21,7 @@ in p3_report.md rather than guessed silently):
   composite-doc join members as sub-fragments
   (fragment_id == f"{parent_doc}::{siglum}"). This is THE index for
   every retrieval task.
-- JOINS positives: p2_out/join_pairs.jsonl (member-level; a query
+- JOINS positives: Phase1_pipeline/p2_out/join_pairs.jsonl (member-level; a query
   member's positive is specifically its co-member(s) of the same
   parent composite doc). Test-side = parent_doc's main_split=='test'.
 - DUPLICATES positives: spec anchors this to the P2.5 234,263-pair
@@ -65,9 +65,9 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 import contracts
 
-P2_OUT = Path("p2_out")
+P2_OUT = Path("Phase1_pipeline/p2_out")
 P25_OUT = Path("p25_out")
-P3_OUT = Path("p3_out")
+P3_OUT = Path("Phase1_pipeline/p3_out")
 SEED = 20260722
 BOOTSTRAP_REPS = 1000
 RESTORED = "restored"

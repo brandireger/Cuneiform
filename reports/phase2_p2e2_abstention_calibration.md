@@ -29,7 +29,7 @@ The evidence-only unique-top baseline accepted 18.19% of held-out eligible spans
 
 Across all 12 cells, a calibration rule with a 90% Wilson lower bound existed only for a1_m1, a2_m1, a3_m1; every qualifying cell masked one sign. No two-to-five-sign mask qualified. No cell reached the 95% lower-bound target. In the primary cell, the 90% calibration rule transferred at 90.37% point agreement but a held-out lower bound of 89.0%; the 80% calibration rule transferred at only 75.18%. These thresholds are therefore exploratory selectors, not portable reliability guarantees.
 
-Typed evidence-packet samples preserve accepted alternatives, witness-family support, contradictory variants, enabled assistance layers, and explicit abstention reasons in `phase2_out\p2e2_evidence_packets.jsonl`. Full 12-cell frontiers are in the machine-readable result.
+Typed evidence-packet samples preserve accepted alternatives, witness-family support, contradictory variants, enabled assistance layers, and explicit abstention reasons in `Phase2/phase2_out\p2e2_evidence_packets.jsonl`. Full 12-cell frontiers are in the machine-readable result.
 
 ## What this rules in / out
 

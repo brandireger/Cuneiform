@@ -2,7 +2,7 @@
 """
 scripts/00_tracers.py -- P5C_AMENDMENT_2.md H4: tracer suite.
 
-A frozen canary set (p4_out/canary_set.json: 5 easy dev joins, 3 known
+A frozen canary set (Phase1_pipeline/p4_out/canary_set.json: 5 easy dev joins, 3 known
 duplicates, 5 random non-pairs) + T1-T5. Verifies PLUMBING, not
 performance -- runs in seconds. MANDATORY before every scoring/
 training run and at the top of P6. Tracer results (pass/fail per
@@ -39,7 +39,7 @@ D14_CKPT = Path("runs") / "pretrain_base" / "checkpoint.pt"
 BOUNDARY_WINDOW = 32
 BOUNDARY_SEQ_LEN = 64
 MAX_OFFSET = 3
-CANARY_PATH = Path("p4_out") / "canary_set.json"
+CANARY_PATH = Path("Phase1_pipeline/p4_out") / "canary_set.json"
 SEED = 20260722
 
 

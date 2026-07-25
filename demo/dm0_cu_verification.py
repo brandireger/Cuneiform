@@ -15,7 +15,7 @@ layer." Answers three questions in dm0_cu_report.md:
   (c) How does `▒` map to damage states? Define the render rule.
 
 REUSE, NOT RE-DERIVATION: P2's 02_parse.py already extracted `cu` per
-line into p2_out/damage_oracle.parquet as part of its own damage-
+line into Phase1_pipeline/p2_out/damage_oracle.parquet as part of its own damage-
 state-oracle investigation (2026-07-20) -- it already established
 that `cu` is a FULL rendering (editor's proposed reading, restorations
 included as real glyphs) and that `▒` correlates with illegible_x
@@ -25,9 +25,9 @@ purpose (validating what ▒ means). DM0(b) asks a stricter, POSITIONAL
 question this script actually measures: does each character position
 in `cu` correspond 1:1 to one entry in the per-line (signs,
 sign_damage_states) sequence, in order -- the actual alignment DM2's
-glyph-cell rendering needs. This script reuses p2_out/damage_oracle.
+glyph-cell rendering needs. This script reuses Phase1_pipeline/p2_out/damage_oracle.
 parquet's already-extracted `cu` strings (never re-parses the raw XML)
-and merges in per-line total sign counts from p2_out/corpus.parquet.
+and merges in per-line total sign counts from Phase1_pipeline/p2_out/corpus.parquet.
 """
 import json
 import random
@@ -68,7 +68,7 @@ def per_line_sign_summary(corpus_df):
     into ONE coarse hyphen-joined string per word (P3's bm25_sign
     convention -- e.g. "DUMU.MUNUSMEŠ" as a single entry), which
     undercounts the true per-wedge glyph count `cu` renders. P4's
-    decompose_corpus.py / p4_out/decomposed_corpus.parquet already
+    decompose_corpus.py / Phase1_pipeline/p4_out/decomposed_corpus.parquet already
     fixes exactly this (built for the D12 tokenizer amendment) and is
     used as the primary denominator instead -- see main()."""
     rows = []
@@ -96,7 +96,7 @@ def per_line_sign_summary(corpus_df):
     return agg
 
 
-def per_line_decomposed_token_count(decomposed_path=Path("p4_out") / "decomposed_corpus.parquet"):
+def per_line_decomposed_token_count(decomposed_path=Path("Phase1_pipeline/p4_out") / "decomposed_corpus.parquet"):
     """doc_id, line_index_in_doc -> total_tokens, the PRIMARY alignment
     denominator: P4's already-decomposed, wedge-boundary-aware token
     count (excludes only the structural <PAR> ruling marker, which
@@ -112,11 +112,11 @@ def main():
     OUT_DIR.mkdir(exist_ok=True)
     rng = random.Random(SEED)
 
-    print("Loading p2_out/damage_oracle.parquet (already-extracted per-line cu)...")
-    oracle = pd.read_parquet(Path("p2_out") / "damage_oracle.parquet")
+    print("Loading Phase1_pipeline/p2_out/damage_oracle.parquet (already-extracted per-line cu)...")
+    oracle = pd.read_parquet(Path("Phase1_pipeline/p2_out") / "damage_oracle.parquet")
 
-    print("Loading p2_out/corpus.parquet, computing per-line sign summaries...")
-    corpus = pd.read_parquet(Path("p2_out") / "corpus.parquet",
+    print("Loading Phase1_pipeline/p2_out/corpus.parquet, computing per-line sign summaries...")
+    corpus = pd.read_parquet(Path("Phase1_pipeline/p2_out") / "corpus.parquet",
                              columns=["doc_id", "line_index_in_doc", "signs",
                                      "sign_damage_states", "is_det", "is_sum", "is_akk"])
     sign_summary = per_line_sign_summary(corpus)
@@ -201,7 +201,7 @@ def main():
     total_codepoints = int(all_class_counts.sum())
 
     # ---------------------------------------------------------- (b) alignment measurement
-    print("Loading p4_out/decomposed_corpus.parquet for the PRIMARY (wedge-aware) alignment count...")
+    print("Loading Phase1_pipeline/p4_out/decomposed_corpus.parquet for the PRIMARY (wedge-aware) alignment count...")
     dec_counts = per_line_decomposed_token_count()
     merged2 = merged.merge(dec_counts, on=["doc_id", "line_index_in_doc"], how="left")
     merged2["total_tokens"] = merged2["total_tokens"].fillna(0).astype(int)
@@ -267,7 +267,7 @@ def main():
     # ---------------------------------------------------------- write report
     lines = [
         "# DM0 -- `cu` Verification Gate", "",
-        "Per specs/TAKSAN_DEMO_SPEC.md section 4. Reuses p2_out/damage_oracle.parquet's "
+        "Per specs/TAKSAN_DEMO_SPEC.md section 4. Reuses Phase1_pipeline/p2_out/damage_oracle.parquet's "
         "already-extracted per-line `cu` (P2, 02_parse.py, 2026-07-20) -- no XML re-parsing.",
         "",
         "## (a) Are `cu` glyphs Unicode cuneiform?", "",
@@ -312,7 +312,7 @@ def main():
         f"undercounts the true per-wedge glyph count `cu` renders (confirmed by direct "
         f"inspection: `signs=[\"DDAG\", \"ti\", \"in\"]` for one word, where `cu` renders D and "
         f"DAG as two separate glyphs).",
-        f"- **Level 2 (P4's `p4_out/decomposed_corpus.parquet`, wedge-boundary-aware -- "
+        f"- **Level 2 (P4's `Phase1_pipeline/p4_out/decomposed_corpus.parquet`, wedge-boundary-aware -- "
         f"PRIMARY/used for the verdict below):** built for the D12 tokenizer amendment, "
         f"already fixes exactly the Level-1 gap. Full population ({full_n:,} lines): "
         f"**{full_aligned_pct:.2f}%** aligned, {full_mismatch_n:,} mismatches "

@@ -34,11 +34,11 @@ CONFIG_PATH = Path("configs") / "corpus_expansion_audit.json"
 REGISTRY_PATH = Path("configs") / "evidence_registry.yaml"
 POLICIES_PATH = Path("configs") / "evidence_policies.yaml"
 PRIOR_AUDIT_PATH = (
-    Path("corpus_audit_out") / "tlhdig_03_delta.json")
+    Path("Phase2/corpus_audit_out") / "tlhdig_03_delta.json")
 OUT_PATH = (
-    Path("corpus_audit_out") / "tlhdig_03_migration_design.json")
+    Path("Phase2/corpus_audit_out") / "tlhdig_03_migration_design.json")
 MANIFEST_PATH = (
-    Path("corpus_audit_out") / "tlhdig_03_migration_design_manifest.json")
+    Path("Phase2/corpus_audit_out") / "tlhdig_03_migration_design_manifest.json")
 REPORT_PATH = (
     Path("reports") / "corpus_expansion_tlhdig_03_migration_design.md")
 

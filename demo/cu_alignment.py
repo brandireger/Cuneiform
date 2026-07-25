@@ -4,7 +4,7 @@ cu_alignment.py -- Takšan demo: cu-to-token alignment for glyph
 rendering. Reusable module (DM1/DM2 will import this for the actual
 glyph-cell render), extracted from the DM0 investigation.
 
-Does NOT modify decompose_corpus.py or p4_out/decomposed_corpus.parquet
+Does NOT modify decompose_corpus.py or Phase1_pipeline/p4_out/decomposed_corpus.parquet
 in any way -- this is a pure rendering/matching layer on top of the
 existing (unmodified) P4 artifacts, so it carries zero risk to P4's
 already-completed results (D12 tokenizer, D13 fracture calibration,
@@ -125,8 +125,8 @@ def align_line(cu: str, tokens: list[str], damage_states: list[str] | None = Non
     return "unresolved", []
 
 
-def align_corpus_report(decomposed_path=Path("p4_out") / "decomposed_corpus.parquet",
-                        oracle_path=Path("p2_out") / "damage_oracle.parquet"):
+def align_corpus_report(decomposed_path=Path("Phase1_pipeline/p4_out") / "decomposed_corpus.parquet",
+                        oracle_path=Path("Phase1_pipeline/p2_out") / "damage_oracle.parquet"):
     """Full-corpus coverage measurement (what dm0_cu_report.md's final
     numbers are drawn from). Returns a dict of category -> count."""
     import pandas as pd

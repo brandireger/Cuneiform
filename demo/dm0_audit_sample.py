@@ -22,12 +22,12 @@ SEED = 20260722
 def main():
     dec = None
     import pandas as pd
-    dec = pd.read_parquet(Path("p4_out") / "decomposed_corpus.parquet")
+    dec = pd.read_parquet(Path("Phase1_pipeline/p4_out") / "decomposed_corpus.parquet")
     real = dec[dec["token"] != "<PAR>"]
     per_line_tokens = real.groupby(["doc_id", "line_index_in_doc"])["token"].apply(list).reset_index()
     per_line_states = real.groupby(["doc_id", "line_index_in_doc"])["damage_state"].apply(list).reset_index()
 
-    oracle = pd.read_parquet(Path("p2_out") / "damage_oracle.parquet")
+    oracle = pd.read_parquet(Path("Phase1_pipeline/p2_out") / "damage_oracle.parquet")
     oracle["cu_str"] = oracle["cu"].fillna("")
     merged = oracle.merge(per_line_tokens, on=["doc_id", "line_index_in_doc"], how="left")
     merged = merged.merge(per_line_states, on=["doc_id", "line_index_in_doc"], how="left",

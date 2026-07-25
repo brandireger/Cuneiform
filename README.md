@@ -112,12 +112,11 @@ may explicitly supersede either file.
 | `configs/` | Active tokenizer, training, and evidence-policy configuration. |
 | `tests/` | Lightweight governance and evidence-policy regression tests. |
 | `demo/` | Parallel Takšan demonstration track; it does not control research evaluation. |
-| `p2_out/`, `p4_out/` | Small tracked artifacts plus local, gitignored derived data required by active work. |
-| `phase2_out/` | Small manifests and machine-readable outputs from active Phase 2 probes. |
-| `corpus_audit_out/` | Small, machine-readable corpus-expansion audit results and manifests; raw candidate archives stay quarantined and gitignored. |
+| `Phase1_pipeline/` | Live, carried-forward outputs of the original numbered P2/P3/P4 pipeline steps (parser, baselines, tokenizer/pretraining) — `p2_out/`, `p3_out/`, `p4_out/`. Small tracked artifacts plus local, gitignored derived data required by active work. Distinct from `Archive/`'s frozen copy of the same steps. |
+| `Phase2/` | Outputs of the current lettered Phase 2 research plan (P2a–P2e evidence-policy probes, corpus-expansion audit) — `phase2_out/` (small manifests and machine-readable probe outputs) and `corpus_audit_out/` (corpus-expansion audit results and manifests; raw candidate archives stay quarantined and gitignored). |
 | `reports/` | Current reports and selected Phase 1 closeout material used by Phase 2. |
 | `specs/` | Current and carried-forward specifications. |
-| `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite it in place. |
+| `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite the frozen snapshot in place. Also hosts `Archive/superseded_docs/` — absorbed/superseded root docs (original expert-advisory request, prior handoff, session provenance ledger) kept for record-keeping only, not design authority; see `Archive/superseded_docs/README.md`. |
 | `CITATION.cff` | Citation metadata for this research software. |
 | `LICENSE` | MIT license for the repository's original source code. |
 

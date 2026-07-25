@@ -22,7 +22,7 @@ import evidence_policy as ep
 
 REGISTRY_PATH = Path("configs") / "evidence_registry.yaml"
 POLICIES_PATH = Path("configs") / "evidence_policies.yaml"
-OUT_MANIFEST = Path("p4_out") / "evidence_policy_smoke_manifest.json"
+OUT_MANIFEST = Path("Phase1_pipeline/p4_out") / "evidence_policy_smoke_manifest.json"
 
 
 def main():
@@ -78,8 +78,8 @@ def main():
         features_requested=["sign_attested"],
         registry=registry,
         policy=transcription,
-        dataset_manifest_path="p2_out/corpus.parquet",
-        split_manifest_path="p2_out/splits.parquet",
+        dataset_manifest_path="Phase1_pipeline/p2_out/corpus.parquet",
+        split_manifest_path="Phase1_pipeline/p2_out/splits.parquet",
         config_path=POLICIES_PATH,
         seed=20260722,
         declared_statistics_universe="full_non_test (per CLAUDE.md's corpus-statistics convention)",
