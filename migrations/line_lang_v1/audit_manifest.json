@@ -1,0 +1,31 @@
+{
+  "task": "line_lang_audit_step_a",
+  "evidence_policy": "artifact_strict",
+  "features_requested": [
+    "line_lang"
+  ],
+  "features_observed": [
+    "line_lang"
+  ],
+  "evidence_classes_used": [
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
+  "git_commit": "3b9f9f24bad269d8fab8b33cd1a21250d97d99d7",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260725,
+  "declared_statistics_universe": "train + dev + discovery (test excluded from the read)",
+  "created_utc": "2026-07-25T20:01:23.293023+00:00",
+  "zip_md5": "93e71e2560f5e109c87713d5590cb059",
+  "zip_md5_matches_claude_md_pin": true,
+  "parser_source_sha256": "c815d93d77882717a11c51ef04e138170edb9983bdd5c4c68acab3ca98fc6cc0",
+  "policy_config_sha256": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
+  "corpus_parquet_sha256": "39c7bfc703f24523cec2f970feae4efca334e0e3e1e2d9dbaf9fb37ee34fec5a"
+}

@@ -1,0 +1,273 @@
+{
+  "zip_md5": "93e71e2560f5e109c87713d5590cb059",
+  "zip_md5_matches_pin": true,
+  "non_test_documents": 20846,
+  "ambiguous_split_documents_excluded": 8,
+  "corpus_parquet_word_rows_read": 1427972,
+  "lines_with_intra_line_derived_disagreement": 8,
+  "raw_xml_documents_matched": 20846,
+  "raw_xml_parse_errors_skipped": 229,
+  "raw_lines_with_no_corpus_parquet_word_rows": 6090,
+  "proposed_seed_vocabulary": [
+    "Akk",
+    "Hat",
+    "Hattian",
+    "Hit",
+    "Hur",
+    "Luw",
+    "Pal",
+    "Sum"
+  ],
+  "status_counts": {
+    "valid_against_proposed_seed": 362791,
+    "missing": 102,
+    "malformed": 6,
+    "unrecognized_against_proposed_seed": 28
+  },
+  "status_counts_by_split": {
+    "valid_against_proposed_seed": {
+      "train": 170143,
+      "discovery": 168879,
+      "dev": 23769
+    },
+    "missing": {
+      "train": 78,
+      "dev": 2,
+      "discovery": 22
+    },
+    "malformed": {
+      "train": 6
+    },
+    "unrecognized_against_proposed_seed": {
+      "discovery": 27,
+      "train": 1
+    }
+  },
+  "distinct_raw_values_non_test": {
+    "Hit": 325637,
+    "Akk": 13890,
+    "Hur": 13000,
+    "Hat": 6063,
+    "Luw": 2366,
+    "Sum": 1309,
+    "Pal": 475,
+    "null": 102,
+    "Hattian": 51,
+    "ign": 15,
+    "5f_": 12,
+    "Hit> <w><note n='15' c=": 4,
+    "Hit> <w><del_in/> … <del_fin/></w": 2,
+    "Lu": 1
+  },
+  "raw_vs_derived_divergence_count": 8,
+  "raw_vs_derived_divergence_examples": [
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 0,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 1,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 2,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 3,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 4,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 5,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 6,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    },
+    {
+      "doc_id": "KBo 53.44",
+      "line_index_in_doc": 7,
+      "raw_lb_lg": "Hur",
+      "corpus_parquet_line_lang": "Hit"
+    }
+  ],
+  "samples_by_status": {
+    "valid_against_proposed_seed": [
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 0,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 1,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 2,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 3,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 4,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 5,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 6,
+        "raw_lb_lg": "Hit"
+      },
+      {
+        "doc_id": "KBo 49.259",
+        "line_index_in_doc": 7,
+        "raw_lb_lg": "Hit"
+      }
+    ],
+    "missing": [
+      {
+        "doc_id": "KBo 17.105+",
+        "line_index_in_doc": 23,
+        "raw_lb_lg": null
+      },
+      {
+        "doc_id": "KUB 58.83",
+        "line_index_in_doc": 33,
+        "raw_lb_lg": null
+      },
+      {
+        "doc_id": "KUB 10.75",
+        "line_index_in_doc": 20,
+        "raw_lb_lg": null
+      },
+      {
+        "doc_id": "KUB 20.69++",
+        "line_index_in_doc": 14,
+        "raw_lb_lg": ""
+      },
+      {
+        "doc_id": "KUB 20.69++",
+        "line_index_in_doc": 15,
+        "raw_lb_lg": ""
+      },
+      {
+        "doc_id": "KUB 20.69++",
+        "line_index_in_doc": 16,
+        "raw_lb_lg": ""
+      },
+      {
+        "doc_id": "KUB 20.69++",
+        "line_index_in_doc": 17,
+        "raw_lb_lg": ""
+      },
+      {
+        "doc_id": "KUB 20.69++",
+        "line_index_in_doc": 18,
+        "raw_lb_lg": ""
+      }
+    ],
+    "malformed": [
+      {
+        "doc_id": "KBo 53.12",
+        "line_index_in_doc": 0,
+        "raw_lb_lg": "Hit> <w><del_in/> … <del_fin/></w"
+      },
+      {
+        "doc_id": "KBo 53.12",
+        "line_index_in_doc": 1,
+        "raw_lb_lg": "Hit> <w><del_in/> … <del_fin/></w"
+      },
+      {
+        "doc_id": "KUB 43.50+",
+        "line_index_in_doc": 40,
+        "raw_lb_lg": "Hit> <w><note n='15' c="
+      },
+      {
+        "doc_id": "KUB 43.50+",
+        "line_index_in_doc": 41,
+        "raw_lb_lg": "Hit> <w><note n='15' c="
+      },
+      {
+        "doc_id": "KUB 43.50+",
+        "line_index_in_doc": 42,
+        "raw_lb_lg": "Hit> <w><note n='15' c="
+      },
+      {
+        "doc_id": "KUB 43.50+",
+        "line_index_in_doc": 43,
+        "raw_lb_lg": "Hit> <w><note n='15' c="
+      }
+    ],
+    "unrecognized_against_proposed_seed": [
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 9,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 10,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 11,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 12,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 13,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 14,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 15,
+        "raw_lb_lg": "ign"
+      },
+      {
+        "doc_id": "Bo 2023/12",
+        "line_index_in_doc": 16,
+        "raw_lb_lg": "ign"
+      }
+    ]
+  }
+}
