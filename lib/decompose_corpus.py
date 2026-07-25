@@ -103,8 +103,17 @@ def split_logogram_run(text):
 
 def decompose_document(raw_xml_bytes):
     """Single document-order walk (like 02_parse.py) producing, per
-    word: list of (token_text, damage_state, is_num, is_logogram_class).
-    Returns list of per-line dicts: {line_index, tokens: [...]}."""
+    word: list of (token_text, damage_state, word_index_in_line).
+    Returns list of per-line dicts: {line_index, tokens: [...]}.
+
+    word_index_in_line increments on every <w> start and resets at
+    every <lb>, mirroring 02_parse.py's own word_index_in_line exactly
+    (same tag/order, verified against Archive/scripts/02_parse.py) --
+    this is what lets a decomposed token be mapped back to the exact
+    corpus.parquet word it came from. <PAR>-tag tokens (from <parsep>)
+    are not part of any word and carry word_index_in_line=None, since
+    02_parse.py's own word_index_in_line is likewise untouched by
+    parsep (it only bumps a separate paragraph_index there)."""
     root = ET.fromstring(raw_xml_bytes)
     text_el = root.find(".//{*}text")
     if text_el is None:
@@ -116,6 +125,7 @@ def decompose_document(raw_xml_bytes):
                         # distinct segments even though both are "logogram" type
     element_counter = [0]
     line_index = -1
+    word_index_in_line = -1
     lines = []
     cur_line_tokens = None
 
@@ -143,7 +153,7 @@ def decompose_document(raw_xml_bytes):
                 continue
             src_type = src[0] if src is not None else None
             if src_type == "num":
-                cur_line_tokens.append(("<NUM>", "attested"))
+                cur_line_tokens.append(("<NUM>", "attested", word_index_in_line))
                 continue
             offsets = []
             pos = 0
@@ -171,7 +181,7 @@ def decompose_document(raw_xml_bytes):
                     continue
                 st = "illegible_x" if tok.strip("()") == "x" else state_at(idx_in_concat)
                 out_tok = tok if src_type == "logogram" else tok.lower()
-                cur_line_tokens.append((out_tok, st))
+                cur_line_tokens.append((out_tok, st, word_index_in_line))
         cur_word_runs = []
 
     for text_child in text_el:
@@ -183,9 +193,11 @@ def decompose_document(raw_xml_bytes):
                     if cur_line_tokens is not None:
                         lines.append({"line_index_in_doc": line_index, "tokens": cur_line_tokens})
                     line_index += 1
+                    word_index_in_line = -1
                     cur_line_tokens = []
                 elif tag == "w":
                     flush_word()
+                    word_index_in_line += 1
                     in_word = True
                 elif tag == "del_in":
                     in_del = True
@@ -204,7 +216,7 @@ def decompose_document(raw_xml_bytes):
                 elif tag == "parsep":
                     flush_word()
                     if cur_line_tokens is not None:
-                        cur_line_tokens.append(("<PAR>", "attested"))
+                        cur_line_tokens.append(("<PAR>", "attested", None))
                 elif tag == "space":
                     # <space c="N"/> is intentionally NOT given a token here.
                     #
@@ -243,7 +255,12 @@ def decompose_document(raw_xml_bytes):
 def build_decomposed_cache(zip_path, doc_ids_needed=None):
     """Re-walks the corpus zip once, writing
     Phase1_pipeline/p4_out/decomposed_corpus.parquet: doc_id, line_index_in_doc,
-    token, damage_state (word-token order preserved via row order).
+    word_pos, token, damage_state, word_index_in_line (word-token order
+    preserved via row order). word_index_in_line is the exact join key
+    back to corpus.parquet's own word_index_in_line for the same
+    (doc_id, line_index_in_doc) -- both increment on <w> and reset on
+    <lb>, verified against Archive/scripts/02_parse.py. It is None for
+    <PAR> paragraph-separator tokens, which belong to no word.
     doc_ids_needed: optional set to restrict (still walks the whole
     zip since docID isn't known until parsed, but skips writing rows
     for docs not needed, to keep the cache small)."""
@@ -277,9 +294,10 @@ def build_decomposed_cache(zip_path, doc_ids_needed=None):
             continue
         n_docs += 1
         for line in lines:
-            for i, (tok, st) in enumerate(line["tokens"]):
+            for i, (tok, st, widx) in enumerate(line["tokens"]):
                 rows.append({"doc_id": doc_id, "line_index_in_doc": line["line_index_in_doc"],
-                            "word_pos": i, "token": tok, "damage_state": st})
+                            "word_pos": i, "token": tok, "damage_state": st,
+                            "word_index_in_line": widx})
 
     df = pd.DataFrame(rows)
     df.to_parquet(cache_path, index=False)
