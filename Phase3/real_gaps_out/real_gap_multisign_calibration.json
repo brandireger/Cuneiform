@@ -1,0 +1,392 @@
+{
+  "calibration_scope_cths": [
+    40,
+    44,
+    63,
+    84,
+    89,
+    122,
+    133,
+    158,
+    168,
+    233,
+    285,
+    312,
+    348,
+    375,
+    387,
+    395,
+    407,
+    430,
+    442,
+    492,
+    540,
+    543,
+    546,
+    549,
+    569,
+    576,
+    616,
+    627,
+    630,
+    633,
+    634,
+    667,
+    682,
+    716,
+    727,
+    742,
+    762,
+    773,
+    777,
+    782,
+    812,
+    821
+  ],
+  "scope_documents": 749,
+  "calibrated_anchor_lengths": [
+    1,
+    2,
+    3
+  ],
+  "calibrated_mask_lengths": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "nominal_display_depth": 5,
+  "candidate_set_calibration_estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
+  "gaps_in_scope": 9022,
+  "eligible_gaps": 1338,
+  "presented_gaps": 989,
+  "abstained_gaps": 349,
+  "mask_length_counts": {
+    "2": 664,
+    "3": 329,
+    "4": 213,
+    "5": 132
+  },
+  "selected_anchor_length_counts": {
+    "1": 834,
+    "2": 106,
+    "3": 49,
+    "abstain": 349
+  },
+  "restored_checked": 835,
+  "restored_included_in_displayed_set": 356,
+  "restored_not_included_in_displayed_set": 479,
+  "restored_no_rate_available": 0,
+  "included_examples": [
+    {
+      "doc_id": "Bo 3322+",
+      "fragment_id": "Bo 3322+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 2,
+      "editor_reading": [
+        "a",
+        "aš"
+      ],
+      "displayed_set_size": 4,
+      "group_calibration_rate": 0.575892,
+      "group_wilson_95": [
+        0.565402,
+        0.586314
+      ],
+      "group_sample_size": 8578
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "pa",
+        "an"
+      ],
+      "displayed_set_size": 3,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 2,
+      "editor_reading": [
+        "na",
+        "ni"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.575892,
+      "group_wilson_95": [
+        0.565402,
+        0.586314
+      ],
+      "group_sample_size": 8578
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "ša",
+        "an"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 4,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "ŠU",
+        "GIŠ",
+        "AB",
+        "ia"
+      ],
+      "displayed_set_size": 11,
+      "group_calibration_rate": 0.1271,
+      "group_wilson_95": [
+        0.123573,
+        0.130713
+      ],
+      "group_sample_size": 33446
+    },
+    {
+      "doc_id": "CHDS 5.12",
+      "fragment_id": "CHDS 5.12",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "DUG",
+        "mar"
+      ],
+      "displayed_set_size": 36,
+      "group_calibration_rate": 0.284739,
+      "group_wilson_95": [
+        0.280481,
+        0.289035
+      ],
+      "group_sample_size": 42762
+    },
+    {
+      "doc_id": "CHDS 5.173",
+      "fragment_id": "CHDS 5.173",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "ZA",
+        "LAM"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.284739,
+      "group_wilson_95": [
+        0.280481,
+        0.289035
+      ],
+      "group_sample_size": 42762
+    },
+    {
+      "doc_id": "IBoT 1.29",
+      "fragment_id": "IBoT 1.29",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "NINDA",
+        "KU₇"
+      ],
+      "displayed_set_size": 5,
+      "group_calibration_rate": 0.31973,
+      "group_wilson_95": [
+        0.315537,
+        0.323954
+      ],
+      "group_sample_size": 47171
+    }
+  ],
+  "not_included_examples": [
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 4,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "kán",
+        "D",
+        "ka",
+        "a"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.1271,
+      "group_wilson_95": [
+        0.123573,
+        0.130713
+      ],
+      "group_sample_size": 33446,
+      "top_alternative": [
+        "at",
+        "I",
+        "NA",
+        "É",
+        "ḫa"
+      ]
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "a",
+        "le"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059,
+      "top_alternative": [
+        "re"
+      ]
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "UZU",
+        "ZAG"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059,
+      "top_alternative": [
+        "zi",
+        "<NUM>"
+      ]
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "ZAG",
+        "an"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059,
+      "top_alternative": [
+        "še",
+        "e",
+        "ra",
+        "an"
+      ]
+    },
+    {
+      "doc_id": "Bo 9400+",
+      "fragment_id": "Bo 9400+",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "iš",
+        "ša"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.314055,
+      "group_wilson_95": [
+        0.309785,
+        0.318356
+      ],
+      "group_sample_size": 45059,
+      "top_alternative": [
+        "pí",
+        "da",
+        "a"
+      ]
+    },
+    {
+      "doc_id": "CHDS 5.2",
+      "fragment_id": "CHDS 5.2",
+      "mask_length": 4,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "NINDA",
+        "a",
+        "a",
+        "an"
+      ],
+      "displayed_set_size": 5,
+      "group_calibration_rate": 0.129058,
+      "group_wilson_95": [
+        0.125555,
+        0.132643
+      ],
+      "group_sample_size": 34380,
+      "top_alternative": []
+    },
+    {
+      "doc_id": "CHDS 5.2",
+      "fragment_id": "CHDS 5.2",
+      "mask_length": 4,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "NINDA",
+        "LA",
+        "AB",
+        "KU"
+      ],
+      "displayed_set_size": 5,
+      "group_calibration_rate": 0.129058,
+      "group_wilson_95": [
+        0.125555,
+        0.132643
+      ],
+      "group_sample_size": 34380,
+      "top_alternative": []
+    },
+    {
+      "doc_id": "CHDS 5.2",
+      "fragment_id": "CHDS 5.2",
+      "mask_length": 2,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "DUG",
+        "KAŠ"
+      ],
+      "displayed_set_size": 5,
+      "group_calibration_rate": 0.31973,
+      "group_wilson_95": [
+        0.315537,
+        0.323954
+      ],
+      "group_sample_size": 47171,
+      "top_alternative": []
+    }
+  ]
+}
