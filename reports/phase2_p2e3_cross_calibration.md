@@ -16,20 +16,20 @@ Do abstention rules transfer across compositions when every eligible dev CTH is 
 
 | cell | unique-top baseline coverage / agreement | folds with 90% calibration rule | pooled 90%-selector coverage / agreement [95% CI] | held-out folds retaining 90% lower bound |
 |---|---:|---:|---:|---:|
-| a1_m1 | 51.08% / 48.27% | 4/5 | 1.2% / 90.72% [89.1, 92.1] | 1/5 |
-| a2_m1 | 21.87% / 78.21% | 5/5 | 6.41% / 89.97% [89.2, 90.7] | 1/5 |
-| a3_m1 | 9.77% / 84.37% | 5/5 | 1.96% / 89.2% [87.3, 90.8] | 1/5 |
+| a1_m1 | 50.73% / 52.65% | 5/5 | 2.65% / 92.33% [91.2, 93.3] | 3/5 |
+| a2_m1 | 22.94% / 80.35% | 5/5 | 8.06% / 88.79% [87.9, 89.6] | 2/5 |
+| a3_m1 | 10.51% / 85.2% | 5/5 | 2.6% / 89.6% [87.8, 91.2] | 2/5 |
 
-No 95% calibration rule was available in any cell or fold.
 
-Primary a2_m1 formulaicity: rare (`cth_df_1`) 2.0% coverage / 85.98% agreement; moderate (`cth_df_2_5`) 4.9% / 92.77%; common (`cth_df_6_plus`) 16.01% / 90.02%.
-Witness availability: one family 0.0% / —; two–three 0.27% / 100.0%; four+ 7.17% / 89.95%.
-Composition heterogeneity: 24/42 CTHs received any acceptance; among 16 with ≥20 accepts, median agreement was 94.72% (range 73.53–100.0%).
+
+Primary a2_m1 formulaicity: rare (`cth_df_1`) 1.77% coverage / 89.84% agreement; moderate (`cth_df_2_5`) 5.34% / 90.16%; common (`cth_df_6_plus`) 18.94% / 88.32%.
+Witness availability: one family 0.0% / —; two–three 0.29% / 100.0%; four+ 8.94% / 88.76%.
+Composition heterogeneity: 22/39 CTHs received any acceptance; among 15 with ≥20 accepts, median agreement was 93.83% (range 82.61–100.0%).
 
 ## Interpretation
 
 The pooled signal is real but does not transfer as a universal reliability threshold. Acceptance is concentrated in recurrent bounded contexts and witness-rich compositions, while per-CTH agreement remains heterogeneous. Those dependencies are reported, not silently treated as universal evidence. This remains masked-attested agreement, not truth for a real lacuna.
 
-Cost: 46.2s compute; budget ≤4h. Profile `catalog_assisted`; test, restorations, `cu`, morphology, and model-generated text untouched.
+Cost: 43.4s compute; budget ≤4h. Profile `catalog_assisted`; test, restorations, `cu`, morphology, and model-generated text untouched.
 
 **Falsifier:** the instability conclusion would be wrong if a future untouched composition-disjoint benchmark retains the selected reliability lower bound consistently across folds and strata.

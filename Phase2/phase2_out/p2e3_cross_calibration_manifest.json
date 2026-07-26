@@ -26,15 +26,15 @@
   "editorial_content_fraction": 0.3333333333333333,
   "restored_content_fraction": 0.0,
   "model_derived_content_fraction": 0.0,
-  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
   "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-  "config_hash": "8e40149ec9eb8d3c7009f879390b9be01c6961520fd6729ab7de8571825a76fb",
-  "git_commit": "bcec6fdca3e48294ce726a9ab411214204477098",
-  "git_dirty": false,
+  "config_hash": "8e4f1a4956b67cdb0cbe72eeb1ded488d08adbc21c0f1f59aff38366996755d4",
+  "git_commit": "aecdddb67503a1fb80d1384785ab2ad76667d82b",
+  "git_dirty": true,
   "corpus_version": "TLHdig 0.2.0-beta",
   "seed": 20260723,
   "declared_statistics_universe": "abstention rules recalibrated within each recorded four-fold dev composition universe and evaluated on the fifth; formulaicity CTH document frequencies fit over all unambiguous real-composition train+dev content; no test or discovery content",
-  "created_utc": "2026-07-23T17:11:42.824868+00:00",
+  "created_utc": "2026-07-26T03:29:54.218514+00:00",
   "probe_label": "PROBE — not for citation",
   "test_side_accessed": false,
   "restoration_included": false,
@@ -44,11 +44,11 @@
   "witness_availability_used_for_stratification_only": true,
   "composition_disjoint_folds": 5,
   "input_hashes": {
-    "config": "8e40149ec9eb8d3c7009f879390b9be01c6961520fd6729ab7de8571825a76fb",
-    "evidence_registry": "c55f39c8707adf30e1c49d95987e316212243f43cbf5be6a8cad798677812928",
+    "config": "8e4f1a4956b67cdb0cbe72eeb1ded488d08adbc21c0f1f59aff38366996755d4",
+    "evidence_registry": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
     "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
-    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "decomposed_corpus_parquet": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
     "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+    "tokenizer_json": "09d3cab0d4e53e7b2683c26ce2f77dd074412a6a544b47744613b45a1379dc84"
   }
 }

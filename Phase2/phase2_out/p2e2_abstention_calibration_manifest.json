@@ -22,15 +22,15 @@
   "editorial_content_fraction": 0.25,
   "restored_content_fraction": 0.0,
   "model_derived_content_fraction": 0.0,
-  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
   "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-  "config_hash": "08b8140861565b73a612b7a9812d4b19cb68aff2ad7a60b82848927a1532db88",
-  "git_commit": "e0c3ede93b9fd847b3c123e89c204472a8fd851f",
+  "config_hash": "0542831d8b7af293f6d4e8570a3c473717453259f32941c8557c236c0188b343",
+  "git_commit": "aecdddb67503a1fb80d1384785ab2ad76667d82b",
   "git_dirty": false,
   "corpus_version": "TLHdig 0.2.0-beta",
   "seed": 20260723,
   "declared_statistics_universe": "calibration rules fit only on the recorded calibration CTHs within frozen unambiguous real-composition dev; held-out evaluation CTHs used only after rule selection; same-CTH independent attested witness alternatives; no test content",
-  "created_utc": "2026-07-23T14:13:56.785700+00:00",
+  "created_utc": "2026-07-26T03:29:04.474845+00:00",
   "probe_label": "PROBE — not for citation",
   "control_fields_observed": [
     "fragment_id",
@@ -44,10 +44,10 @@
   "calibration_and_evaluation_composition_disjoint": true,
   "typed_evidence_packets_emitted": true,
   "input_hashes": {
-    "config": "08b8140861565b73a612b7a9812d4b19cb68aff2ad7a60b82848927a1532db88",
+    "config": "0542831d8b7af293f6d4e8570a3c473717453259f32941c8557c236c0188b343",
     "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
-    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "decomposed_corpus_parquet": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
     "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+    "tokenizer_json": "09d3cab0d4e53e7b2683c26ce2f77dd074412a6a544b47744613b45a1379dc84"
   }
 }

@@ -14,26 +14,26 @@ For Q0/Q3, does a compact ranked option set retain intentionally hidden attested
 
 ## Findings
 
-Across all 21,069 witness-supported contexts, the full preserved set included the hidden attested reading in 78.77%; median set size was 1 and p90 was 2. The fold selectors presented 5,486 contexts (6.41% of all eligible spans).
+Across all 17,390 witness-supported contexts, the full preserved set included the hidden attested reading in 81.19%; median set size was 1.0 and p90 was 2. The fold selectors presented 5,542 contexts (8.06% of all eligible spans).
 
 | displayed depth | mean options shown | attested inclusion | 95% Wilson CI |
 |---:|---:|---:|---:|
-| 1 | 1 | 4,936/5,486 (89.97%) | [89.2, 90.7] |
-| 2 | 1.264 | 5,079/5,486 (92.58%) | [91.9, 93.2] |
-| 3 | 1.322 | 5,099/5,486 (92.95%) | [92.2, 93.6] |
-| 5 | 1.339 | 5,099/5,486 (92.95%) | [92.2, 93.6] |
+| 1 | 1 | 4,921/5,542 (88.79%) | [87.9, 89.6] |
+| 2 | 1.275 | 5,104/5,542 (92.1%) | [91.4, 92.8] |
+| 3 | 1.344 | 5,136/5,542 (92.67%) | [92.0, 93.3] |
+| 5 | 1.358 | 5,136/5,542 (92.67%) | [92.0, 93.3] |
 
-The complete preserved set included the attested reading in 5,099/5,486 (92.95%). Thus 163 top-1 misses were recoverable by showing alternatives; 387 were absent from all independent-witness middles.
-Across the 24 CTHs with presented contexts, full-set composition-macro inclusion had mean 83.11% and median 93.12% (range 0.0–100.0%), so the pooled result is not a uniform composition-level guarantee.
+The complete preserved set included the attested reading in 5,136/5,542 (92.67%). Thus 215 top-1 misses were recoverable by showing alternatives; 406 were absent from all independent-witness middles.
+Across the 22 CTHs with presented contexts, full-set composition-macro inclusion had mean 82.76% and median 93.28% (range 0.0–100.0%), so the pooled result is not a uniform composition-level guarantee.
 
 | observable category among top-1 disagreements | contexts | share |
 |---|---:|---:|
-| `ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT` | 69 | 12.55% |
-| `ATTESTED_READING_ABSENT_TOP_LONGER` | 158 | 28.73% |
-| `ATTESTED_READING_ABSENT_TOP_OMISSION` | 160 | 29.09% |
-| `ATTESTED_READING_LOWER_RANKED` | 163 | 29.64% |
+| `ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT` | 67 | 10.79% |
+| `ATTESTED_READING_ABSENT_TOP_LONGER` | 186 | 29.95% |
+| `ATTESTED_READING_ABSENT_TOP_OMISSION` | 153 | 24.64% |
+| `ATTESTED_READING_LOWER_RANKED` | 215 | 34.62% |
 
-Nonexclusive flags: 79.27% used anchors recurring across multiple CTHs, and 26.55% repeated the same anchors within the query fragment.
+Nonexclusive flags: 91.79% used anchors recurring across multiple CTHs, and 23.03% repeated the same anchors within the query fragment.
 
 Rank-conditioned calibration estimates with `n` and Wilson CIs are saved in every sampled packet. They are coarse group estimates from other compositions, not instance-level truth probabilities.
 
@@ -41,6 +41,6 @@ Rank-conditioned calibration estimates with `n` and Wilson CIs are saved in ever
 
 The candidate-set formulation recovers some information hidden by top-1 exact match, but it does not turn every disagreement into a valid restoration. Cases where the attested middle is absent need alignment/variant-aware investigation or abstention; the typed packets preserve that distinction for expert review.
 
-Cost: 32.4s compute; budget ≤4h. Profile `catalog_assisted`; dev only; test, restorations, `cu`, morphology, and model-generated text untouched.
+Cost: 32.9s compute; budget ≤4h. Profile `catalog_assisted`; dev only; test, restorations, `cu`, morphology, and model-generated text untouched.
 
 **Falsifier:** the candidate-set benefit would be wrong if an untouched composition-disjoint evaluation shows that additional displayed alternatives do not increase attested-span inclusion beyond top-1 at a comparably small set size.

@@ -16,19 +16,19 @@ For Q0, what set-valued evidence remains for two-to-five-sign gaps? For each dev
 
 | hidden span | presented / eligible | top-1 agreement | displayed-set inclusion among presented [95% CI] | effective inclusion / eligible | mean / p90 options |
 |---:|---:|---:|---:|---:|---:|
-| 2 | 70,933/100,265 (70.75%) | 24.6% | 38.68% [38.3, 39.0] | 27.36% | 6.705 / 16 |
-| 3 | 58,745/85,587 (68.64%) | 15.7% | 25.89% [25.5, 26.3] | 17.77% | 7.146 / 18 |
-| 4 | 48,736/72,494 (67.23%) | 10.03% | 17.53% [17.2, 17.9] | 11.78% | 7.522 / 19 |
-| 5 | 39,988/60,887 (65.68%) | 6.63% | 12.1% [11.8, 12.4] | 7.95% | 7.749 / 19 |
+| 2 | 55,424/81,045 (68.39%) | 27.95% | 42.56% [42.2, 43.0] | 29.11% | 4.891 / 12 |
+| 3 | 45,237/68,773 (65.78%) | 17.97% | 29.0% [28.6, 29.4] | 19.07% | 5.104 / 12 |
+| 4 | 36,878/57,815 (63.79%) | 11.75% | 20.02% [19.6, 20.4] | 12.77% | 5.291 / 13 |
+| 5 | 29,681/48,131 (61.67%) | 8.01% | 14.1% [13.7, 14.5] | 8.69% | 5.406 / 13 |
 
-Across fold × mask × selected-anchor groups, the weighted mean absolute calibration-transfer gap was 8.17 percentage points. This is set-level calibration, not an individual option probability.
+Across fold × mask × selected-anchor groups, the weighted mean absolute calibration-transfer gap was 6.64 percentage points. This is set-level calibration, not an individual option probability.
 
-Composition-macro effective recovery was 16.18% mean / 14.48% median for two signs and 5.32% mean / 2.86% median for five signs; pooled micro rates therefore overstate the typical composition.
+Composition-macro effective recovery was 16.3% mean / 13.09% median for two signs and 5.41% mean / 2.38% median for five signs; pooled micro rates therefore overstate the typical composition.
 
 ## Interpretation
 
-Two-sign sets retained the attested span in 27.36% of eligible contexts; by five signs this fell to 7.95%. Keeping evidence ties complete expanded nominal top-five sets in 33.9% to 38.7% of presented contexts, with p90 up to 19 and a maximum of 237 options. The witness layer is therefore suitable only as abstention-first, set-valued evidence for an expert: do not auto-complete a lacuna, do not assign per-option probabilities, and collapse large equal-support tails in the UI without hiding that they exist.
+Two-sign sets retained the attested span in 29.11% of eligible contexts; by five signs this fell to 8.69%. Keeping evidence ties complete expanded nominal top-five sets in 27.4% to 31.1% of presented contexts, with p90 up to 13 and a maximum of 85 options. The witness layer is therefore suitable only as abstention-first, set-valued evidence for an expert: do not auto-complete a lacuna, do not assign per-option probabilities, and collapse large equal-support tails in the UI without hiding that they exist.
 
-Cost: 36.4s compute; budget ≤4h. Profile `catalog_assisted`; dev only; test, restorations, `cu`, morphology, model scores, and generated text untouched.
+Cost: 28.7s compute; budget ≤4h. Profile `catalog_assisted`; dev only; test, restorations, `cu`, morphology, model scores, and generated text untouched.
 
 **Falsifier:** the multi-sign horizon conclusion would be wrong if an untouched composition-disjoint evaluation shows materially different coverage, set inclusion, or option-set size under the same adaptive evidence policy.
