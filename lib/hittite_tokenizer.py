@@ -47,6 +47,7 @@ import pandas as pd
 
 import eval_harness as eh
 from decompose_corpus import RESTORED, build_decomposed_cache
+from line_lang_lookup import is_hittite_line
 
 SPECIALS = ["<PAD>", "<UNK>", "<MASK>", "<GAP>", "<LINE>", "<PAR>",
             "<EDGE_L>", "<EDGE_R>", "<EDGE_T>", "<EDGE_B>"]
@@ -69,13 +70,27 @@ def build_decomposed_line_index():
     return idx
 
 
+def _line_tokens(doc_id, idx, line_index, line_lang_lookup):
+    """Raw (token, state) list for one line, emptied (not removed --
+    line-position numbering elsewhere depends on every slot staying
+    present) if line_lang_lookup is given and the line isn't confirmed
+    Hittite. line_lang_lookup=None preserves old (language-blind)
+    behaviour for any caller not yet updated."""
+    toks = line_index.get((doc_id, idx), [])
+    if line_lang_lookup is not None and not is_hittite_line(
+            line_lang_lookup, doc_id, idx):
+        return []
+    return toks
+
+
 def build_structured_sequence(doc_id, line_idxs, line_index, top_edge_lost,
-                               bottom_edge_lost, on_physical_edge_by_line):
+                               bottom_edge_lost, on_physical_edge_by_line,
+                               line_lang_lookup=None):
     """FULL rendering: all tokens regardless of damage state."""
     seq = ["<EDGE_T>" if not top_edge_lost else "<GAP>"]
     sorted_idxs = sorted(line_idxs)
     for pos, idx in enumerate(sorted_idxs):
-        toks = line_index.get((doc_id, idx), [])
+        toks = _line_tokens(doc_id, idx, line_index, line_lang_lookup)
         line_edge = on_physical_edge_by_line.get(idx)
         if line_edge == "left":
             seq.append("<EDGE_L>")
@@ -89,14 +104,23 @@ def build_structured_sequence(doc_id, line_idxs, line_index, top_edge_lost,
 
 
 def build_structured_sequence_attested(doc_id, line_idxs, line_index, top_edge_lost,
-                                        bottom_edge_lost, on_physical_edge_by_line):
+                                        bottom_edge_lost, on_physical_edge_by_line,
+                                        line_lang_lookup=None):
     """ATTESTED rendering: drops tokens with damage_state=='restored'.
     Specials (<NUM>, <PAR>, ...) carry damage_state 'attested' by
-    convention from decompose_corpus.py and are always kept."""
+    convention from decompose_corpus.py and are always kept.
+
+    line_lang_lookup: optional {(doc_id, line_index_in_doc): canonical}
+    from line_lang_lookup.load_line_lang_lookup(). When given, a line
+    not confirmed Hittite contributes no tokens (its <LINE> separator
+    slot is preserved so line-position numbering elsewhere is
+    unaffected) -- see CLAUDE.md's multilingual-layer note; this keeps
+    non-Hittite content out of a Hittite-only rendering without
+    discarding it from the underlying corpus."""
     seq = ["<EDGE_T>" if not top_edge_lost else "<GAP>"]
     sorted_idxs = sorted(line_idxs)
     for pos, idx in enumerate(sorted_idxs):
-        toks = line_index.get((doc_id, idx), [])
+        toks = _line_tokens(doc_id, idx, line_index, line_lang_lookup)
         line_edge = on_physical_edge_by_line.get(idx)
         if line_edge == "left":
             seq.append("<EDGE_L>")
@@ -200,9 +224,15 @@ class Tokenizer:
         return cls(d["vocab"], d["specials"])
 
 
-def build_vocab(frags, line_index, edge_info):
+def build_vocab(frags, line_index, edge_info, line_lang_lookup=None):
     """TRAIN-side + discovery-pool ATTESTED text only. Returns
-    (Tokenizer, doc_freq Counter, n_docs_used)."""
+    (Tokenizer, doc_freq Counter, n_docs_used).
+
+    line_lang_lookup: optional, see build_structured_sequence_attested.
+    Passing the ratified line_lang_lookup here makes this a
+    Hittite-only vocabulary -- the intended default going forward per
+    specs/LINE_LANG_MIGRATION.md; omit only to reproduce the original
+    Phase 1 (language-blind) vocab exactly."""
     pop = frags[(frags["main_split"] == "train") | (frags["is_bin"])]
     doc_freq = Counter()
     n_docs = 0
@@ -211,7 +241,8 @@ def build_vocab(frags, line_index, edge_info):
             continue
         line_idxs, top_lost, bot_lost, by_line = edge_info[row.fragment_id]
         seq = build_structured_sequence_attested(
-            row.parent_doc, line_idxs, line_index, top_lost, bot_lost, by_line)
+            row.parent_doc, line_idxs, line_index, top_lost, bot_lost, by_line,
+            line_lang_lookup=line_lang_lookup)
         n_docs += 1
         for t in set(seq):
             if t not in SPECIALS:

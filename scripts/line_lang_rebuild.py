@@ -27,7 +27,6 @@ Usage:
     python scripts/line_lang_rebuild.py
 """
 import hashlib
-import json
 import re
 import sys
 import xml.etree.ElementTree as ET
