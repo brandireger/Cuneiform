@@ -226,31 +226,41 @@ const TAKSAN_GAP_LOCATIONS = {
     ]
   },
   "p2e4-007": {
-    "line_index_in_doc": 75,
+    "line_index_in_doc": 31,
     "word_indices": [
-      6
+      5
     ],
     "words": [
       {
-        "word_index_in_line": 6,
+        "word_index_in_line": 5,
         "tokens": [
           {
-            "token": "na",
+            "token": "me",
+            "damage_state": "attested",
+            "is_gap": false
+          },
+          {
+            "token": "mi",
+            "damage_state": "attested",
+            "is_gap": false
+          },
+          {
+            "token": "iš",
             "damage_state": "attested",
             "is_gap": true
           },
           {
-            "token": "at",
+            "token": "ki",
             "damage_state": "restored",
             "is_gap": false
           },
           {
-            "token": "za",
+            "token": "u",
             "damage_state": "attested",
             "is_gap": false
           },
           {
-            "token": "kán",
+            "token": "an",
             "damage_state": "attested",
             "is_gap": false
           }
@@ -259,28 +269,38 @@ const TAKSAN_GAP_LOCATIONS = {
     ]
   },
   "p2e4-008": {
-    "line_index_in_doc": 13,
+    "line_index_in_doc": 2,
     "word_indices": [
-      0
+      4
     ],
     "words": [
       {
-        "word_index_in_line": 0,
+        "word_index_in_line": 4,
         "tokens": [
           {
-            "token": "ma",
+            "token": "m",
             "damage_state": "attested",
             "is_gap": false
           },
           {
-            "token": "a",
+            "token": "ar",
             "damage_state": "attested",
             "is_gap": false
+          },
+          {
+            "token": "nu",
+            "damage_state": "attested",
+            "is_gap": true
           },
           {
             "token": "an",
             "damage_state": "attested",
-            "is_gap": true
+            "is_gap": false
+          },
+          {
+            "token": "ta",
+            "damage_state": "attested",
+            "is_gap": false
           }
         ]
       }
@@ -353,46 +373,26 @@ const TAKSAN_GAP_LOCATIONS = {
     ]
   },
   "p2e4-011": {
-    "line_index_in_doc": 24,
+    "line_index_in_doc": 4,
     "word_indices": [
-      4
+      2
     ],
     "words": [
       {
-        "word_index_in_line": 4,
+        "word_index_in_line": 2,
         "tokens": [
           {
-            "token": "D",
-            "damage_state": "attested",
-            "is_gap": false
-          },
-          {
-            "token": "mu",
-            "damage_state": "attested",
-            "is_gap": false
-          },
-          {
-            "token": "ú",
+            "token": "da",
             "damage_state": "attested",
             "is_gap": true
           },
           {
-            "token": "ki",
+            "token": "a",
             "damage_state": "attested",
             "is_gap": false
           },
           {
-            "token": "ša",
-            "damage_state": "attested",
-            "is_gap": false
-          },
-          {
-            "token": "nu",
-            "damage_state": "attested",
-            "is_gap": false
-          },
-          {
-            "token": "un",
+            "token": "iš",
             "damage_state": "attested",
             "is_gap": false
           }

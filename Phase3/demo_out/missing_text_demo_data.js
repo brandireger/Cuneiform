@@ -14,9 +14,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -65,14 +65,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5214,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -160,9 +160,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -211,14 +211,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.909699,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.900957,
+              "upper": 0.91774
             },
-            "sample_size": 5214,
+            "sample_size": 4485,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -306,9 +306,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -357,14 +357,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.913638,
+            "estimate": 0.909091,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.905629,
-              "upper": 0.921027
+              "lower": 0.900573,
+              "upper": 0.916946
             },
-            "sample_size": 5118,
+            "sample_size": 4741,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -452,9 +452,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -504,14 +504,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.914603,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.903474,
-              "upper": 0.924555
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 2705,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -537,14 +537,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.075362,
+            "estimate": 0.101871,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.060804,
-              "upper": 0.093061
+              "lower": 0.084313,
+              "upper": 0.122596
             },
-            "sample_size": 1035,
+            "sample_size": 962,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -643,9 +643,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -695,14 +695,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5214,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -790,9 +790,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -842,14 +842,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.909699,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.900957,
+              "upper": 0.91774
             },
-            "sample_size": 5214,
+            "sample_size": 4485,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -937,19 +937,19 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
     "query": {
-      "fragment_id": "KUB 57.79",
-      "cth": 395,
+      "fragment_id": "KBo 19.109a",
+      "cth": 348,
       "location": {
-        "line_index_in_doc": 75,
-        "sign_offset_in_line": 7,
-        "span_ordinal": 384
+        "line_index_in_doc": 31,
+        "sign_offset_in_line": 5,
+        "span_ordinal": 329
       },
       "gap_extent": {
         "kind": "EXACT",
@@ -957,12 +957,12 @@ const TAKSAN_DEMO_PACKETS = [
         "maximum_signs": 1
       },
       "left_context": [
-        "iz",
-        "zi"
+        "me",
+        "mi"
       ],
       "right_context": [
-        "za",
-        "kán"
+        "u",
+        "an"
       ],
       "context_evidence_class": "EDITORIAL_TRANSCRIPTION"
     },
@@ -972,15 +972,15 @@ const TAKSAN_DEMO_PACKETS = [
           "option_id": "option-001",
           "rank": 1,
           "signs": [
-            "na",
-            "at"
+            "iš",
+            "ki"
           ],
           "evidence_class": "EDITORIAL_TRANSCRIPTION",
           "support": {
             "independent_witness_family_count": 2,
             "supporting_witness_families": [
-              "KBo 11.14",
-              "KUB 43.57+"
+              "KBo 26.94",
+              "KUB 33.88"
             ],
             "share": null,
             "share_is_probability": false
@@ -989,14 +989,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.909091,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.900573,
+              "upper": 0.916946
             },
-            "sample_size": 5214,
+            "sample_size": 4741,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1028,8 +1028,8 @@ const TAKSAN_DEMO_PACKETS = [
         "evidence_class": "EDITORIAL_TRANSCRIPTION",
         "summary": "2 independent witness family/families preserve this sequence.",
         "source_refs": [
-          "KBo 11.14",
-          "KUB 43.57+"
+          "KBo 26.94",
+          "KUB 33.88"
         ]
       }
     ],
@@ -1084,19 +1084,19 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
     "query": {
-      "fragment_id": "KBo 27.67",
-      "cth": 430,
+      "fragment_id": "KUB 31.123+",
+      "cth": 375,
       "location": {
-        "line_index_in_doc": 13,
-        "sign_offset_in_line": 2,
-        "span_ordinal": 10
+        "line_index_in_doc": 2,
+        "sign_offset_in_line": 9,
+        "span_ordinal": 20
       },
       "gap_extent": {
         "kind": "EXACT",
@@ -1104,12 +1104,12 @@ const TAKSAN_DEMO_PACKETS = [
         "maximum_signs": 1
       },
       "left_context": [
-        "ma",
-        "a"
+        "m",
+        "ar"
       ],
       "right_context": [
-        "MUNUS",
-        "za"
+        "an",
+        "ta"
       ],
       "context_evidence_class": "EDITORIAL_TRANSCRIPTION"
     },
@@ -1119,16 +1119,15 @@ const TAKSAN_DEMO_PACKETS = [
           "option_id": "option-001",
           "rank": 1,
           "signs": [
-            "an",
-            "za"
+            "nu",
+            "wa"
           ],
           "evidence_class": "EDITORIAL_TRANSCRIPTION",
           "support": {
-            "independent_witness_family_count": 3,
+            "independent_witness_family_count": 2,
             "supporting_witness_families": [
-              "ABoT 2.28",
-              "KBo 17.60",
-              "KUB 30.30"
+              "KBo 51.17",
+              "KUB 23.17+"
             ],
             "share": null,
             "share_is_probability": false
@@ -1137,14 +1136,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.913638,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.905629,
-              "upper": 0.921027
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5118,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1174,11 +1173,10 @@ const TAKSAN_DEMO_PACKETS = [
         "type": "INDEPENDENT_WITNESS_SUPPORT",
         "polarity": "SUPPORTS_OPTION",
         "evidence_class": "EDITORIAL_TRANSCRIPTION",
-        "summary": "3 independent witness family/families preserve this sequence.",
+        "summary": "2 independent witness family/families preserve this sequence.",
         "source_refs": [
-          "ABoT 2.28",
-          "KBo 17.60",
-          "KUB 30.30"
+          "KBo 51.17",
+          "KUB 23.17+"
         ]
       }
     ],
@@ -1233,9 +1231,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1282,14 +1280,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5214,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1377,9 +1375,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1426,14 +1424,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5214,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1521,19 +1519,19 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
     "query": {
-      "fragment_id": "KBo 12.80+::2",
+      "fragment_id": "KBo 26.81",
       "cth": 348,
       "location": {
-        "line_index_in_doc": 24,
-        "sign_offset_in_line": 7,
-        "span_ordinal": 150
+        "line_index_in_doc": 4,
+        "sign_offset_in_line": 2,
+        "span_ordinal": 9
       },
       "gap_extent": {
         "kind": "EXACT",
@@ -1541,12 +1539,12 @@ const TAKSAN_DEMO_PACKETS = [
         "maximum_signs": 1
       },
       "left_context": [
-        "D",
-        "mu"
+        "an",
+        "da"
       ],
       "right_context": [
-        "ki",
-        "ša"
+        "a",
+        "iš"
       ],
       "context_evidence_class": "EDITORIAL_TRANSCRIPTION"
     },
@@ -1558,11 +1556,13 @@ const TAKSAN_DEMO_PACKETS = [
           "signs": [],
           "evidence_class": "EDITORIAL_TRANSCRIPTION",
           "support": {
-            "independent_witness_family_count": 3,
+            "independent_witness_family_count": 5,
             "supporting_witness_families": [
-              "KBo 26.70",
-              "KBo 26.72",
-              "KBo 26.82"
+              "KBo 19.112",
+              "KBo 26.112",
+              "KBo 26.79",
+              "KUB 33.103",
+              "KUB 36.16"
             ],
             "share": null,
             "share_is_probability": false
@@ -1571,14 +1571,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.914603,
+            "estimate": 0.909091,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.903474,
-              "upper": 0.924555
+              "lower": 0.900573,
+              "upper": 0.916946
             },
-            "sample_size": 2705,
+            "sample_size": 4741,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1608,11 +1608,13 @@ const TAKSAN_DEMO_PACKETS = [
         "type": "INDEPENDENT_WITNESS_SUPPORT",
         "polarity": "SUPPORTS_OPTION",
         "evidence_class": "EDITORIAL_TRANSCRIPTION",
-        "summary": "3 independent witness family/families preserve this sequence.",
+        "summary": "5 independent witness family/families preserve this sequence.",
         "source_refs": [
-          "KBo 26.70",
-          "KBo 26.72",
-          "KBo 26.82"
+          "KBo 19.112",
+          "KBo 26.112",
+          "KBo 26.79",
+          "KUB 33.103",
+          "KUB 36.16"
         ]
       }
     ],
@@ -1667,9 +1669,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1717,14 +1719,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.914603,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.903474,
-              "upper": 0.924555
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 2705,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1753,14 +1755,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.075362,
+            "estimate": 0.101871,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.060804,
-              "upper": 0.093061
+              "lower": 0.084313,
+              "upper": 0.122596
             },
-            "sample_size": 1035,
+            "sample_size": 962,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1859,9 +1861,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1913,14 +1915,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.908516,
+            "estimate": 0.911086,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900387,
-              "upper": 0.916043
+              "lower": 0.902287,
+              "upper": 0.919163
             },
-            "sample_size": 5214,
+            "sample_size": 4375,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1944,14 +1946,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.091514,
+            "estimate": 0.101871,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.076489,
-              "upper": 0.109142
+              "lower": 0.084313,
+              "upper": 0.122596
             },
-            "sample_size": 1202,
+            "sample_size": 962,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2050,9 +2052,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2101,14 +2103,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911079,
+            "estimate": 0.911486,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.901088,
-              "upper": 0.92015
+              "lower": 0.900713,
+              "upper": 0.921193
             },
-            "sample_size": 3430,
+            "sample_size": 2960,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2132,14 +2134,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.082386,
+            "estimate": 0.068776,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.064271,
-              "upper": 0.105034
+              "lower": 0.052555,
+              "upper": 0.08953
             },
-            "sample_size": 704,
+            "sample_size": 727,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2239,9 +2241,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2292,14 +2294,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.914603,
+            "estimate": 0.913364,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.903474,
-              "upper": 0.924555
+              "lower": 0.904168,
+              "upper": 0.921754
             },
-            "sample_size": 2705,
+            "sample_size": 3936,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2323,14 +2325,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.075362,
+            "estimate": 0.071703,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.060804,
-              "upper": 0.093061
+              "lower": 0.055628,
+              "upper": 0.09197
             },
-            "sample_size": 1035,
+            "sample_size": 781,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2429,9 +2431,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "4b1a29839044089912b56269db0238b7084fe4cdc3ef3b066eea9ce050832a4e",
+      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "4e0fc1d710d7a8895d8746ee6786e2a5b5c84f62684e16efe57313e314e6bf0e",
+      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2484,14 +2486,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.913638,
+            "estimate": 0.909699,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.905629,
-              "upper": 0.921027
+              "lower": 0.900957,
+              "upper": 0.91774
             },
-            "sample_size": 5118,
+            "sample_size": 4485,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2515,14 +2517,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.056751,
+            "estimate": 0.088017,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.044156,
-              "upper": 0.072667
+              "lower": 0.071565,
+              "upper": 0.107812
             },
-            "sample_size": 1022,
+            "sample_size": 943,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2623,9 +2625,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2720,9 +2722,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -3132,14 +3134,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.335746,
+        "estimate": 0.364384,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.331445,
-          "upper": 0.340075
+          "lower": 0.359306,
+          "upper": 0.369493
         },
-        "sample_size": 46005,
+        "sample_size": 34288,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -3343,9 +3345,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -3535,14 +3537,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.335746,
+        "estimate": 0.364384,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.331445,
-          "upper": 0.340075
+          "lower": 0.359306,
+          "upper": 0.369493
         },
-        "sample_size": 46005,
+        "sample_size": 34288,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -3654,9 +3656,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -3751,9 +3753,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4142,14 +4144,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.219207,
+        "estimate": 0.239514,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.215159,
-          "upper": 0.22331
+          "lower": 0.23465,
+          "upper": 0.244447
         },
-        "sample_size": 39579,
+        "sample_size": 29159,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -4339,9 +4341,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4690,14 +4692,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.219207,
+        "estimate": 0.239514,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.215159,
-          "upper": 0.22331
+          "lower": 0.23465,
+          "upper": 0.244447
         },
-        "sample_size": 39579,
+        "sample_size": 29159,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -4866,9 +4868,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4963,9 +4965,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5135,14 +5137,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.145569,
+        "estimate": 0.162883,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.141848,
-          "upper": 0.14937
+          "lower": 0.158307,
+          "upper": 0.167565
         },
-        "sample_size": 33771,
+        "sample_size": 24447,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -5240,9 +5242,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5444,14 +5446,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.145569,
+        "estimate": 0.162883,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.141848,
-          "upper": 0.14937
+          "lower": 0.158307,
+          "upper": 0.167565
         },
-        "sample_size": 33771,
+        "sample_size": 24447,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -5571,9 +5573,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5668,9 +5670,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5932,14 +5934,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.100473,
+        "estimate": 0.11392,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.097026,
-          "upper": 0.104028
+          "lower": 0.109601,
+          "upper": 0.118387
         },
-        "sample_size": 28326,
+        "sample_size": 20093,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -6067,9 +6069,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "02ebbd8a4463e378bf0d9c0a829cb8a2c7e0e4762fd76d8abad742ce169526c2",
+      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "555fb2f421a4ee84647081bc363fa579da744d009c8cd04feb3a551bbdca6a95",
+      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -6468,14 +6470,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.100473,
+        "estimate": 0.11392,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.097026,
-          "upper": 0.104028
+          "lower": 0.109601,
+          "upper": 0.118387
         },
-        "sample_size": 28326,
+        "sample_size": 20093,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }

@@ -15,11 +15,11 @@ Output: `Phase3/demo_out/missing_text_demo_data.js` (213.5 KB).
 | `p2e4-004` | KBo 11.46 | SINGLE_SIGN | PRESENT_CANDIDATES | 2/2 (0 collapsed) |
 | `p2e4-005` | KBo 12.25 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
 | `p2e4-006` | KBo 16.23 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
-| `p2e4-007` | KUB 57.79 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
-| `p2e4-008` | KBo 27.67 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
+| `p2e4-007` | KBo 19.109a | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
+| `p2e4-008` | KUB 31.123+ | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
 | `p2e4-009` | KBo 12.25 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
 | `p2e4-010` | HKM 102 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
-| `p2e4-011` | KBo 12.80+::2 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
+| `p2e4-011` | KBo 26.81 | SINGLE_SIGN | PRESENT_CANDIDATES | 1/1 (0 collapsed) |
 | `p2e4-012` | KBo 53.10 | SINGLE_SIGN | PRESENT_CANDIDATES | 2/2 (0 collapsed) |
 | `p2e4-013` | KBo 5.6 | SINGLE_SIGN | PRESENT_CANDIDATES | 2/2 (0 collapsed) |
 | `p2e4-014` | CHDS 5.12 | SINGLE_SIGN | PRESENT_CANDIDATES | 2/2 (0 collapsed) |
@@ -40,11 +40,11 @@ Output: `Phase3/demo_out/missing_text_demo_data.js` (213.5 KB).
 
 ## Fragment context export
 
-`Phase3/demo_out/fragment_context_data.js` (1912.7 KB): full line-by-line transliteration for the 18 distinct fragments referenced above (948 lines, 3901 words total), sourced directly from `Phase1_pipeline/p2_out/corpus.parquet`.
+`Phase3/demo_out/fragment_context_data.js` (1909.2 KB): full line-by-line transliteration for the 19 distinct fragments referenced above (948 lines, 3890 words total), sourced directly from `Phase1_pipeline/p2_out/corpus.parquet`.
 
-**Determinative categories**: 499/696 (71.7%) of determinative-marked words matched CLAUDE.md's already-vetted starting inventory (matched at the corpus's real Unicode encoding — Ḫ, subscript digits — not the plain-ASCII prose spelling). The remaining 197 are labeled "uncategorized" in the UI, never guessed. Sample unmapped leading signs: 10KAM, 1EN, 1KAM, 3KAM, 4KAM, 5KAM, 6KAM, 7KAM, 8KAM, 9KAM, A, ANŠE.KUR.RAM, AŠ, BE, EZEN₄ḪI.A. These are real, legitimate determinative/marker categories outside the small list CLAUDE.md happened to name (e.g. MUNUS "woman", M/F personal-name markers, KAM ordinal markers, ḪI.A/MEŠ plural markers) — extending the vetted list is a deliberate follow-up decision, not something this export makes unilaterally.
+**Determinative categories**: 513/722 (71.1%) of determinative-marked words matched CLAUDE.md's already-vetted starting inventory (matched at the corpus's real Unicode encoding — Ḫ, subscript digits — not the plain-ASCII prose spelling). The remaining 209 are labeled "uncategorized" in the UI, never guessed. Sample unmapped leading signs: 1EN, 1KAM, 6KAM, 7KAM, 8KAM, 9KAM, A, ANŠE.KUR.RAM, AŠ, AḪI.A, BE, EZEN₄ḪI.A, Fda, Fta, Fḫa. These are real, legitimate determinative/marker categories outside the small list CLAUDE.md happened to name (e.g. MUNUS "woman", M/F personal-name markers, KAM ordinal markers, ḪI.A/MEŠ plural markers) — extending the vetted list is a deliberate follow-up decision, not something this export makes unilaterally.
 
-**CTH titles**: sourced from `Archive/p25_out/cth_titles.csv` (CATALOG_METADATA; the already-fetched hethport.uni-wuerzburg.de/CTH/ catalogue snapshot, not re-fetched here). All 18 fragments' CTH titles were found.
+**CTH titles**: sourced from `Archive/p25_out/cth_titles.csv` (CATALOG_METADATA; the already-fetched hethport.uni-wuerzburg.de/CTH/ catalogue snapshot, not re-fetched here). All 19 fragments' CTH titles were found.
 
 **No machine translation.** Sumerogram words are labeled as such (`is_sum`, a structural fact) with no English gloss attached — a real logogram-gloss curation pass needs a citable reference (CHD/HZL) this export does not have. No Hittite sentence or word is translated anywhere in this output.
 

@@ -25566,3353 +25566,6 @@ const TAKSAN_FRAGMENT_CONTEXT = {
       }
     ]
   },
-  "KBo 12.80+": {
-    "doc_id": "KBo 12.80+",
-    "cth": 348,
-    "cth_title": "Lied von Ḫedammu (.I Hethitisch, .II Hurritisch)",
-    "site": "Hattusa",
-    "n_members": 3,
-    "lines": [
-      {
-        "line_index_in_doc": 0,
-        "line_label": "1′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 1,
-        "line_label": "2′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ti-du-",
-            "trans": "titu~",
-            "signs": [
-              "ti",
-              "du"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 2,
-        "line_label": "3′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "D10-ta-al",
-            "trans": "10tal",
-            "signs": [
-              "D10",
-              "ta",
-              "al"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "restored",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-lu-",
-            "trans": "alu~",
-            "signs": [
-              "a",
-              "lu"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 3,
-        "line_label": "4′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-ḫa-ki-ni",
-            "trans": "~ḫakini",
-            "signs": [
-              "ḫa",
-              "ki",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ḫi-e-ri(-)",
-            "trans": "ḫieri~",
-            "signs": [
-              "ḫi",
-              "e",
-              "ri(",
-              ")"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 4,
-        "line_label": "5′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-ši",
-            "trans": "~ši",
-            "signs": [
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "x-ri",
-            "trans": null,
-            "signs": [
-              "x",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "illegible_x",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-ti-i(-)",
-            "trans": "ati~",
-            "signs": [
-              "a",
-              "ti",
-              "i(",
-              ")"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 5,
-        "line_label": "6′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "x-ni-ta",
-            "trans": null,
-            "signs": [
-              "x",
-              "ni",
-              "ta"
-            ],
-            "sign_damage_states": [
-              "illegible_x",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ka-a-WA(-)",
-            "trans": "ka-WA~",
-            "signs": [
-              "ka",
-              "a",
-              "WA(",
-              ")"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "attested",
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 6,
-        "line_label": "7′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-ma-an-na",
-            "trans": "~manna",
-            "signs": [
-              "ma",
-              "an",
-              "na"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ti-x-ša-a-x",
-            "trans": null,
-            "signs": [
-              "ti",
-              "x",
-              "ša",
-              "a",
-              "x"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "illegible_x",
-              "laes",
-              "attested",
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 8,
-        "line_label": "9′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-na",
-            "trans": "~na",
-            "signs": [
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "pí-in-ta",
-            "trans": "pinta",
-            "signs": [
-              "pí",
-              "in",
-              "ta"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "URUni-nu-wa-wa",
-            "trans": "ninuaua",
-            "signs": [
-              "URUni",
-              "nu",
-              "wa",
-              "wa"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes",
-              "laes",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 9,
-        "line_label": "10′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-el",
-            "trans": "~el",
-            "signs": [
-              "el"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ti-we-na",
-            "trans": "tiuena",
-            "signs": [
-              "ti",
-              "we",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "LÚSUKKAL-ta-al",
-            "trans": "SUKKALtal",
-            "signs": [
-              "LÚSUKKAL",
-              "ta",
-              "al"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "profession/title"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 10,
-        "line_label": "Rs. IV 1′/11′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "a-lu-ma-in",
-            "trans": "alumain",
-            "signs": [
-              "a",
-              "lu",
-              "ma",
-              "in"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ka-a-ti-ia",
-            "trans": "katia",
-            "signs": [
-              "ka",
-              "a",
-              "ti",
-              "ia"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "restored",
-              "restored",
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ḫa-a-ra-ap-ḫa-e-em",
-            "trans": "ḫarapḫaim",
-            "signs": [
-              "ḫa",
-              "a",
-              "ra",
-              "ap",
-              "ḫa",
-              "e",
-              "em"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "pé-e-du-ḫa",
-            "trans": "petuḫa",
-            "signs": [
-              "pé",
-              "e",
-              "du",
-              "ḫa"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 11,
-        "line_label": "Rs. IV 2′/12′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ša-a-wa-la-am",
-            "trans": "šaualam",
-            "signs": [
-              "ša",
-              "a",
-              "wa",
-              "la",
-              "am"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "-ip-pí-lu-wa",
-            "trans": "~ippilua",
-            "signs": [
-              "ip",
-              "pí",
-              "lu",
-              "wa"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "pu-u-ru-ul-li",
-            "trans": "purulli",
-            "signs": [
-              "pu",
-              "u",
-              "ru",
-              "ul",
-              "li"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 12,
-        "line_label": "Rs. IV 3′/13′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "a-ap-ši",
-            "trans": "apši",
-            "signs": [
-              "a",
-              "ap",
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ke-e-mi-na-ša-an",
-            "trans": "keminašan",
-            "signs": [
-              "ke",
-              "e",
-              "mi",
-              "na",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "restored",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "na-a-na-aš-ti",
-            "trans": "nanašti",
-            "signs": [
-              "na",
-              "a",
-              "na",
-              "aš",
-              "ti"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ši-i-ri",
-            "trans": "širi",
-            "signs": [
-              "ši",
-              "i",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 13,
-        "line_label": "/Rs. IV 4′/14′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "šu-u-ḫu-un-na-ši",
-            "trans": "šuḫunnaši",
-            "signs": [
-              "šu",
-              "u",
-              "ḫu",
-              "un",
-              "na",
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "za-a-az-za-ri",
-            "trans": "zazari",
-            "signs": [
-              "za",
-              "a",
-              "az",
-              "za",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "restored",
-              "restored",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ti-i-wu-ul-la-an",
-            "trans": "tiwullan",
-            "signs": [
-              "ti",
-              "i",
-              "wu",
-              "ul",
-              "la",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 14,
-        "line_label": "Rs. IV 5′/15′/Rs. IV? 1′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ši-ik-ki-na-ša-an",
-            "trans": "šikkinašan",
-            "signs": [
-              "ši",
-              "ik",
-              "ki",
-              "na",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "-na-ša-an",
-            "trans": "~našan",
-            "signs": [
-              "na",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "na-a-",
-            "trans": "na~",
-            "signs": [
-              "na",
-              "a"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 15,
-        "line_label": "Rs. IV 6′/Rs. IV? 2′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "še-i-ḫa-a-we-na-ša-an",
-            "trans": "šeḫauenašan",
-            "signs": [
-              "še",
-              "i",
-              "ḫa",
-              "a",
-              "we",
-              "na",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "-x",
-            "trans": "~%",
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "ḫu-u-šu-ur-ra-ša",
-            "trans": "ḫušurraša",
-            "signs": [
-              "ḫu",
-              "u",
-              "šu",
-              "ur",
-              "ra",
-              "ša"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 16,
-        "line_label": "Rs. IV 7′/Rs. IV? 3′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫu-u-ur-ti",
-            "trans": "ḫurti",
-            "signs": [
-              "ḫu",
-              "u",
-              "ur",
-              "ti"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "URUku-u-",
-            "trans": "ku~",
-            "signs": [
-              "URUku",
-              "u"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-ru-ri",
-            "trans": "aruri",
-            "signs": [
-              "a",
-              "ru",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "za-an-ga-an-ti",
-            "trans": "zankanti",
-            "signs": [
-              "za",
-              "an",
-              "ga",
-              "an",
-              "ti"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 17,
-        "line_label": "Rs. IV 8′/Rs. IV? 4′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ú-du-uš-du-lu-up",
-            "trans": "utuštulup",
-            "signs": [
-              "ú",
-              "du",
-              "uš",
-              "du",
-              "lu",
-              "up"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-na",
-            "trans": "~na",
-            "signs": [
-              "na"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "URUni-nu-wa-wa",
-            "trans": "ninuaua",
-            "signs": [
-              "URUni",
-              "nu",
-              "wa",
-              "wa"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-ru-ri",
-            "trans": "aruri",
-            "signs": [
-              "a",
-              "ru",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 18,
-        "line_label": "Rs. IV 9′/Rs. IV? 5′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "za-ag-ga-an-ti",
-            "trans": "zakkanti",
-            "signs": [
-              "za",
-              "ag",
-              "ga",
-              "an",
-              "ti"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ki-i-ta-a-wa-e",
-            "trans": "kitauai",
-            "signs": [
-              "ki",
-              "i",
-              "ta",
-              "a",
-              "wa",
-              "e"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ḫu-up-li",
-            "trans": "ḫupli",
-            "signs": [
-              "ḫu",
-              "up",
-              "li"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 19,
-        "line_label": "Rs. IV 10′/Rs. IV? 6′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ši-ú-um-pa-al-la",
-            "trans": "šiumpalla",
-            "signs": [
-              "ši",
-              "ú",
-              "um",
-              "pa",
-              "al",
-              "la"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "laes",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ti-we-ni-iš",
-            "trans": "tiueniš",
-            "signs": [
-              "ti",
-              "we",
-              "ni",
-              "iš"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "URUni-nu-wa-wa",
-            "trans": "ninuaua",
-            "signs": [
-              "URUni",
-              "nu",
-              "wa",
-              "wa"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 20,
-        "line_label": "Rs. IV 11′/Rs. IV? 7′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "e-ki-ni",
-            "trans": "ekini",
-            "signs": [
-              "e",
-              "ki",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ta-a-ú-um-pa-al-la",
-            "trans": "taumpalla",
-            "signs": [
-              "ta",
-              "a",
-              "ú",
-              "um",
-              "pa",
-              "al",
-              "la"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "šu-ú-uḫ-ḫu-lu-uš-ti-ip",
-            "trans": "šuḫḫuluštip",
-            "signs": [
-              "šu",
-              "ú",
-              "uḫ",
-              "ḫu",
-              "lu",
-              "uš",
-              "ti",
-              "ip"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 21,
-        "line_label": "Rs. IV 12′/Rs. IV? 8′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫu-iš-ša",
-            "trans": "ḫuišša",
-            "signs": [
-              "ḫu",
-              "iš",
-              "ša"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "še-i-e",
-            "trans": "šeie",
-            "signs": [
-              "še",
-              "i",
-              "e"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ki-ia-ši",
-            "trans": "kiaši",
-            "signs": [
-              "ki",
-              "ia",
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ḫu-iš-še-ni",
-            "trans": "ḫuiššeni",
-            "signs": [
-              "ḫu",
-              "iš",
-              "še",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 22,
-        "line_label": "Rs. IV 13′/Rs. IV? 9′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫu-u-i-li",
-            "trans": "ḫuili",
-            "signs": [
-              "ḫu",
-              "u",
-              "i",
-              "li"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "a-aš-ki-li",
-            "trans": "aškili",
-            "signs": [
-              "a",
-              "aš",
-              "ki",
-              "li"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ki-ia-še-ni-ta-an",
-            "trans": "kiašenitan",
-            "signs": [
-              "ki",
-              "ia",
-              "še",
-              "ni",
-              "ta",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 23,
-        "line_label": "Rs. IV 14′/Rs. IV? 10′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "a-ar-ri-e",
-            "trans": "arrie",
-            "signs": [
-              "a",
-              "ar",
-              "ri",
-              "e"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "te-e-ḫu-uš-še-ni",
-            "trans": "teḫuššeni",
-            "signs": [
-              "te",
-              "e",
-              "ḫu",
-              "uš",
-              "še",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ḫa-a-ni-e",
-            "trans": "ḫanie",
-            "signs": [
-              "ḫa",
-              "a",
-              "ni",
-              "e"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 24,
-        "line_label": "Rs. IV 15′/Rs. IV? 11′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫa-a-",
-            "trans": "ḫa~",
-            "signs": [
-              "ḫa",
-              "a"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ti-we-na",
-            "trans": "tiuena",
-            "signs": [
-              "ti",
-              "we",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "Dmu-ú-ki-ša-nu-un",
-            "trans": "mukišanun",
-            "signs": [
-              "Dmu",
-              "ú",
-              "ki",
-              "ša",
-              "nu",
-              "un"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "deity name"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 25,
-        "line_label": "Vs. I? 1",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "(-)x-e-in",
-            "trans": "~%-en",
-            "signs": [
-              "(",
-              ")x",
-              "e",
-              "in"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "illegible_x",
-              "laes",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ši-u-ri-wa(-)in(-)na-wu-wu(-)",
-            "trans": "šiuriuainnawuwu~",
-            "signs": [
-              "ši",
-              "u",
-              "ri",
-              "wa(",
-              ")in(",
-              ")na",
-              "wu",
-              "wu(",
-              ")"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 26,
-        "line_label": "Vs. I 1′/Vs. I? 2",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "DIŠTAR-ga",
-            "trans": "IŠTARka",
-            "signs": [
-              "DIŠTAR",
-              "ga"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "-im-ma",
-            "trans": "~imma",
-            "signs": [
-              "im",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "wu-ri-wa-e-ni-ma",
-            "trans": "wuriuainima",
-            "signs": [
-              "wu",
-              "ri",
-              "wa",
-              "e",
-              "ni",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "e-ḫi-el-ša-am-ma",
-            "trans": "eḫielšamma",
-            "signs": [
-              "e",
-              "ḫi",
-              "el",
-              "ša",
-              "am",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 27,
-        "line_label": "Vs. I 2′/Vs. I? 3",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫa-a-ni-e",
-            "trans": "ḫanie",
-            "signs": [
-              "ḫa",
-              "a",
-              "ni",
-              "e"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ḫa-a-ši-im-ma-al",
-            "trans": "ḫašimmal",
-            "signs": [
-              "ḫa",
-              "a",
-              "ši",
-              "im",
-              "ma",
-              "al"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "laes",
-              "restored",
-              "restored",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ti-we-na",
-            "trans": "tiuena",
-            "signs": [
-              "ti",
-              "we",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "a-ap-ši",
-            "trans": "apši",
-            "signs": [
-              "a",
-              "ap",
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "ši-e-ni",
-            "trans": "šieni",
-            "signs": [
-              "ši",
-              "e",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 28,
-        "line_label": "Vs. I 3′/Vs. I? 4",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ḫi-iš-mi-ni",
-            "trans": "ḫišmini",
-            "signs": [
-              "ḫi",
-              "iš",
-              "mi",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "šu-ú-ur-ra",
-            "trans": "šurra",
-            "signs": [
-              "šu",
-              "ú",
-              "ur",
-              "ra"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "restored",
-              "restored",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "a-lu-pa-ti-na-ša",
-            "trans": "alupatinaša",
-            "signs": [
-              "a",
-              "lu",
-              "pa",
-              "ti",
-              "na",
-              "ša"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "wa-ša-ap",
-            "trans": "wašap",
-            "signs": [
-              "wa",
-              "ša",
-              "ap"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "iš-ta-",
-            "trans": "išta~",
-            "signs": [
-              "iš",
-              "ta"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 30,
-        "line_label": "Vs. I 4′/Vs. I? 5",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "DIŠTAR-ga-an",
-            "trans": "IŠTARkan",
-            "signs": [
-              "DIŠTAR",
-              "ga",
-              "an"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "pa-a-ri-ša-an-na",
-            "trans": "parišanna",
-            "signs": [
-              "pa",
-              "a",
-              "ri",
-              "ša",
-              "an",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "restored",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "D10-up-ta",
-            "trans": "10upta",
-            "signs": [
-              "D10",
-              "up",
-              "ta"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "URUku-um-mi-ni",
-            "trans": "kummini",
-            "signs": [
-              "URUku",
-              "um",
-              "mi",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 31,
-        "line_label": "Vs. I 5′/Vs. I? 6",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ša-a-wa-lu",
-            "trans": "šaualu",
-            "signs": [
-              "ša",
-              "a",
-              "wa",
-              "lu"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "DIŠTAR-ga-al",
-            "trans": "IŠTARkal",
-            "signs": [
-              "DIŠTAR",
-              "ga",
-              "al"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "restored"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ti-we-na",
-            "trans": "tiuena",
-            "signs": [
-              "ti",
-              "we",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "D10-ta-al",
-            "trans": "10tal",
-            "signs": [
-              "D10",
-              "ta",
-              "al"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-lu-ma-in",
-            "trans": "alumain",
-            "signs": [
-              "a",
-              "lu",
-              "ma",
-              "in"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 32,
-        "line_label": "Vs. I 6′/Vs. I? 7",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ka-a-ti-〈ia〉",
-            "trans": "katia",
-            "signs": [
-              "ka",
-              "a",
-              "ti",
-              "〈ia〉"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "e-we-ri-in-ši-ip-pí-ni-ni-im",
-            "trans": "euerinšippininim",
-            "signs": [
-              "e",
-              "we",
-              "ri",
-              "in",
-              "ši",
-              "ip",
-              "pí",
-              "ni",
-              "ni",
-              "im"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "laes",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "D10-up",
-            "trans": "10up",
-            "signs": [
-              "D10",
-              "up"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "deity name"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 33,
-        "line_label": "Vs. I 7′/Vs. I? 8",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ša-ar-ša",
-            "trans": "šarša",
-            "signs": [
-              "ša",
-              "ar",
-              "ša"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "GIŠki-iš-ḫi-ni-in",
-            "trans": "kišḫinin",
-            "signs": [
-              "GIŠki",
-              "iš",
-              "ḫi",
-              "ni",
-              "in"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "laes",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "wooden object"
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "pa-a-li-ik-kam-ma",
-            "trans": "palikkamma",
-            "signs": [
-              "pa",
-              "a",
-              "li",
-              "ik",
-              "kam",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 34,
-        "line_label": "Vs. I 8′/Vs. I? 9",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ta-a-pu-u-šu-ta-am",
-            "trans": "tapušutam",
-            "signs": [
-              "ta",
-              "a",
-              "pu",
-              "u",
-              "šu",
-              "ta",
-              "am"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "D10-up",
-            "trans": "10up",
-            "signs": [
-              "D10",
-              "up"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "GIŠSI.GAR-ra",
-            "trans": "SI.GARra",
-            "signs": [
-              "GIŠSI.GAR",
-              "ra"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": "wooden object"
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ú-du-šu-ta-am-ma",
-            "trans": "utušutamma",
-            "signs": [
-              "ú",
-              "du",
-              "šu",
-              "ta",
-              "am",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 35,
-        "line_label": "Vs. I 9′/Vs. I? 10",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "GIŠḫu-up-na",
-            "trans": "ḫupna",
-            "signs": [
-              "GIŠḫu",
-              "up",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "wooden object"
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ta-a-pu-šu-ta-am",
-            "trans": "tapušutam",
-            "signs": [
-              "ta",
-              "a",
-              "pu",
-              "šu",
-              "ta",
-              "am"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ḫa-a-ši-e-ra",
-            "trans": "ḫašiera",
-            "signs": [
-              "ḫa",
-              "a",
-              "ši",
-              "e",
-              "ra"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 36,
-        "line_label": "Vs. I 10′/Vs. I? 11",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "šu-u-e-ni-we-ni-in-na",
-            "trans": "šueniueninna",
-            "signs": [
-              "šu",
-              "u",
-              "e",
-              "ni",
-              "we",
-              "ni",
-              "in",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ke-e-ri-uš-ši-in-na",
-            "trans": "keriuššinna",
-            "signs": [
-              "ke",
-              "e",
-              "ri",
-              "uš",
-              "ši",
-              "in",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ir-na",
-            "trans": "irna",
-            "signs": [
-              "ir",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 37,
-        "line_label": "Vs. I 11′/Vs. I? 12",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "iš-te",
-            "trans": "ište",
-            "signs": [
-              "iš",
-              "te"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "pa-a-ri-ši-en-na",
-            "trans": "parišienna",
-            "signs": [
-              "pa",
-              "a",
-              "ri",
-              "ši",
-              "en",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ap-še-na",
-            "trans": "apšena",
-            "signs": [
-              "ap",
-              "še",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "URUni-ip-pí-lu-u-wa",
-            "trans": "nippilua",
-            "signs": [
-              "URUni",
-              "ip",
-              "pí",
-              "lu",
-              "u",
-              "wa"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "city"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 38,
-        "line_label": "Vs. I 12′/Vs. I? 13",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "pu-u-ru-ul-li",
-            "trans": "purulli",
-            "signs": [
-              "pu",
-              "u",
-              "ru",
-              "ul",
-              "li"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ke-e-ia-ši-ma",
-            "trans": "keašima",
-            "signs": [
-              "ke",
-              "e",
-              "ia",
-              "ši",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "Dku-mar-we-ni-ra",
-            "trans": "kumaruenira",
-            "signs": [
-              "Dku",
-              "mar",
-              "we",
-              "ni",
-              "ra"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "deity name"
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 39,
-        "line_label": "Vs. I 13′/Vs. I? 14",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "na-aḫ-ḫa",
-            "trans": "naḫḫa",
-            "signs": [
-              "na",
-              "aḫ",
-              "ḫa"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "GIŠki-iš-ḫi-ni",
-            "trans": "kišḫini",
-            "signs": [
-              "GIŠki",
-              "iš",
-              "ḫi",
-              "ni"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "wooden object"
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ši-i-il-la-ta-a-ra",
-            "trans": "šillatara",
-            "signs": [
-              "ši",
-              "i",
-              "il",
-              "la",
-              "ta",
-              "a",
-              "ra"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "restored",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 40,
-        "line_label": "Vs. I 14′/Vs. I? 15",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "Dku-mar-we-ni-el-la",
-            "trans": "kumarueniella",
-            "signs": [
-              "Dku",
-              "mar",
-              "we",
-              "ni",
-              "el",
-              "la"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": "deity name"
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ti-we-na",
-            "trans": "tiuena",
-            "signs": [
-              "ti",
-              "we",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ke-e-ia-ši-ni-ta-al",
-            "trans": "keašinital",
-            "signs": [
-              "ke",
-              "e",
-              "ia",
-              "ši",
-              "ni",
-              "ta",
-              "al"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "restored",
-              "restored",
-              "restored",
-              "restored",
-              "laes",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 41,
-        "line_label": "Vs. I 15′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "a-lu-ma-in",
-            "trans": "alumain",
-            "signs": [
-              "a",
-              "lu",
-              "ma",
-              "in"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "laes",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ka-a-ti-ia",
-            "trans": "katia",
-            "signs": [
-              "ka",
-              "a",
-              "ti",
-              "ia"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "i-nu-ú-ud-da",
-            "trans": "inutta",
-            "signs": [
-              "i",
-              "nu",
-              "ú",
-              "ud",
-              "da"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 42,
-        "line_label": "Vs. I 16′",
-        "words": [
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "",
-            "trans": null,
-            "signs": [],
-            "sign_damage_states": [],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      }
-    ]
-  },
   "KBo 14.11": {
     "doc_id": "KBo 14.11",
     "cth": 40,
@@ -32398,122 +29051,47 @@ const TAKSAN_FRAGMENT_CONTEXT = {
       }
     ]
   },
-  "KBo 27.67": {
-    "doc_id": "KBo 27.67",
-    "cth": 430,
-    "cth_title": "Geburtsrituale",
+  "KBo 19.109a": {
+    "doc_id": "KBo 19.109a",
+    "cth": 348,
+    "cth_title": "Lied von Ḫedammu (.I Hethitisch, .II Hurritisch)",
     "site": "Hattusa",
-    "n_members": 1,
+    "n_members": 0,
     "lines": [
       {
         "line_index_in_doc": 0,
-        "line_label": "Vs. 1′",
+        "line_label": "Rs. III 1′",
         "words": [
           {
             "word_index_in_line": 0,
-            "surface_translit": "…",
+            "surface_translit": "URUx",
             "trans": null,
             "signs": [
-              "…"
+              "URUx"
             ],
             "sign_damage_states": [
-              "restored"
+              "attested"
             ],
-            "is_det": false,
+            "is_det": true,
             "is_sum": false,
             "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
+            "det_category": "city"
           }
         ]
       },
       {
         "line_index_in_doc": 1,
-        "line_label": "Vs. 2′",
+        "line_label": "Rs. III 2′",
         "words": [
           {
             "word_index_in_line": 0,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "na-",
+            "trans": "na~",
             "signs": [
-              "…"
+              "na"
             ],
             "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "SÍG",
-            "trans": null,
-            "signs": [
-              "SÍG"
-            ],
-            "sign_damage_states": [
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "SA₅",
-            "trans": null,
-            "signs": [
-              "SA₅"
-            ],
-            "sign_damage_states": [
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32524,12 +29102,88 @@ const TAKSAN_FRAGMENT_CONTEXT = {
       },
       {
         "line_index_in_doc": 2,
-        "line_label": "Vs. 3′",
+        "line_label": "Rs. III 3′",
         "words": [
           {
             "word_index_in_line": 0,
-            "surface_translit": "…",
+            "surface_translit": "nu",
+            "trans": "nu",
+            "signs": [
+              "nu"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 3,
+        "line_label": "Rs. III 4′",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "x",
             "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 4,
+        "line_label": "Rs. IV 1′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x-ša-az",
+            "trans": null,
+            "signs": [
+              "x",
+              "ša",
+              "az"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "…",
+            "trans": "…",
             "signs": [
               "…"
             ],
@@ -32541,6 +29195,56 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "is_akk": false,
             "det_category": null
           },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 5,
+        "line_label": "Rs. IV 2′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-a-an-aš-ta-at",
+            "trans": "~anaštat",
+            "signs": [
+              "a",
+              "an",
+              "aš",
+              "ta",
+              "at"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 6,
+        "line_label": "Rs. IV 3′",
+        "words": [
           {
             "word_index_in_line": 1,
             "surface_translit": "x",
@@ -32558,16 +29262,221 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 2,
-            "surface_translit": "pár-ku-e-eš-",
+            "surface_translit": "x",
             "trans": null,
             "signs": [
-              "pár",
-              "ku",
-              "e",
-              "eš"
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "ne-pí-ši-za-kán",
+            "trans": "nepišizakan",
+            "signs": [
+              "ne",
+              "pí",
+              "ši",
+              "za",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "al-pu-uš",
+            "trans": "alpuš",
+            "signs": [
+              "al",
+              "pu",
+              "uš"
             ],
             "sign_damage_states": [
               "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 7,
+        "line_label": "Rs. IV 4′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x-uš",
+            "trans": null,
+            "signs": [
+              "x",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "na-x",
+            "trans": null,
+            "signs": [
+              "na",
+              "x"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "da-aš-ša-u-az",
+            "trans": "taššauaz",
+            "signs": [
+              "da",
+              "aš",
+              "ša",
+              "u",
+              "az"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "AḪI.A-na-za",
+            "trans": "Anaza",
+            "signs": [
+              "AḪI.A",
+              "na",
+              "za"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "laes",
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "-wa-az",
+            "trans": "~uaz",
+            "signs": [
+              "wa",
+              "az"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 8,
+        "line_label": "Rs. IV 5′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-nu",
+            "trans": "~nu",
+            "signs": [
+              "nu"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "i-ia-at",
+            "trans": "iat",
+            "signs": [
+              "i",
+              "ia",
+              "at"
+            ],
+            "sign_damage_states": [
               "attested",
               "attested",
               "attested"
@@ -32579,29 +29488,205 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "ma-aḫ-ḫa-an",
+            "trans": "maḫḫan",
             "signs": [
-              "…"
+              "ma",
+              "aḫ",
+              "ḫa",
+              "an"
             ],
             "sign_damage_states": [
+              "attested",
+              "attested",
+              "restored",
               "restored"
             ],
             "is_det": false,
             "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "DIŠTAR-iš",
+            "trans": "IŠTARiš",
+            "signs": [
+              "DIŠTAR",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "URUne-nu-wa-aš",
+            "trans": "nenuaš",
+            "signs": [
+              "URUne",
+              "nu",
+              "wa",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "MUNUS.LUGAL-aš",
+            "trans": "MUNUS.LUGALaš",
+            "signs": [
+              "MUNUS.LUGAL",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
             "is_akk": false,
             "det_category": null
           }
         ]
       },
       {
-        "line_index_in_doc": 3,
-        "line_label": "Vs. 4′",
+        "line_index_in_doc": 9,
+        "line_label": "Rs. IV 6′",
         "words": [
           {
-            "word_index_in_line": 0,
+            "word_index_in_line": 3,
+            "surface_translit": "a-aš-ši-ia-tar",
+            "trans": "aššiatar",
+            "signs": [
+              "a",
+              "aš",
+              "ši",
+              "ia",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored",
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "GIŠša-ḫi-in",
+            "trans": "šaḫin",
+            "signs": [
+              "GIŠša",
+              "ḫi",
+              "in"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "wooden object"
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "GIŠpár-nu-ul-li-in-na",
+            "trans": "parnullinna",
+            "signs": [
+              "GIŠpár",
+              "nu",
+              "ul",
+              "li",
+              "in",
+              "na"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "restored",
+              "restored",
+              "restored",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "wooden object"
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "da-aš-ša-u-aš",
+            "trans": "taššauaš",
+            "signs": [
+              "da",
+              "aš",
+              "ša",
+              "u",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "AḪI.A-na-aš",
+            "trans": "Anaš",
+            "signs": [
+              "AḪI.A",
+              "na",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 10,
+        "line_label": "Rs. IV 7′",
+        "words": [
+          {
+            "word_index_in_line": 1,
             "surface_translit": "…",
-            "trans": null,
+            "trans": "…",
             "signs": [
               "…"
             ],
@@ -32614,50 +29699,102 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "I-NA",
-            "trans": null,
+            "word_index_in_line": 4,
+            "surface_translit": "an-da",
+            "trans": "anta",
             "signs": [
-              "I",
-              "NA"
+              "an",
+              "da"
             ],
             "sign_damage_states": [
-              "laes",
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "a-aš-ši-ia-tar",
+            "trans": "aššiatar",
+            "signs": [
+              "a",
+              "aš",
+              "ši",
+              "ia",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
               "laes"
             ],
             "is_det": false,
             "is_sum": false,
-            "is_akk": true,
+            "is_akk": false,
             "det_category": null
           },
           {
-            "word_index_in_line": 2,
-            "surface_translit": "Éši-nap-ši",
-            "trans": null,
+            "word_index_in_line": 6,
+            "surface_translit": "GIŠša-ḫi-iš",
+            "trans": "šaḫiš",
             "signs": [
-              "Éši",
-              "nap",
-              "ši"
+              "GIŠša",
+              "ḫi",
+              "iš"
             ],
             "sign_damage_states": [
               "attested",
-              "attested",
+              "restored",
               "restored"
             ],
             "is_det": true,
             "is_sum": false,
             "is_akk": false,
-            "det_category": "building"
+            "det_category": "wooden object"
           },
           {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
+            "word_index_in_line": 7,
+            "surface_translit": "GIŠpár-nu-ul-li",
+            "trans": "parnulli",
             "signs": [
-              "…"
+              "GIŠpár",
+              "nu",
+              "ul",
+              "li"
             ],
             "sign_damage_states": [
-              "restored"
+              "restored",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "wooden object"
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "wa-ar-ši-i-et",
+            "trans": "waršiet",
+            "signs": [
+              "wa",
+              "ar",
+              "ši",
+              "i",
+              "et"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32667,48 +29804,24 @@ const TAKSAN_FRAGMENT_CONTEXT = {
         ]
       },
       {
-        "line_index_in_doc": 4,
-        "line_label": "Vs. 5′",
+        "line_index_in_doc": 11,
+        "line_label": "Rs. IV 8′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
             "word_index_in_line": 1,
-            "surface_translit": "-uz",
-            "trans": null,
+            "surface_translit": "wa-ar-šu-la-an",
+            "trans": "waršulan",
             "signs": [
-              "uz"
+              "wa",
+              "ar",
+              "šu",
+              "la",
+              "an"
             ],
             "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "me-ḫur",
-            "trans": null,
-            "signs": [
-              "me",
-              "ḫur"
-            ],
-            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored",
               "attested",
               "attested"
             ],
@@ -32718,17 +29831,30 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 3,
-            "surface_translit": "še-ḫe-el-li-",
-            "trans": null,
+            "word_index_in_line": 2,
+            "surface_translit": "KAŠ",
+            "trans": "KAŠ",
             "signs": [
-              "še",
-              "ḫe",
-              "el",
-              "li"
+              "KAŠ"
             ],
             "sign_damage_states": [
-              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "iš-taḫ-ta",
+            "trans": "ištaḫta",
+            "signs": [
+              "iš",
+              "taḫ",
+              "ta"
+            ],
+            "sign_damage_states": [
               "attested",
               "attested",
               "attested"
@@ -32740,13 +29866,87 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 4,
+            "surface_translit": "nu-kán",
+            "trans": "nukan",
+            "signs": [
+              "nu",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
             "surface_translit": "…",
-            "trans": null,
+            "trans": "…",
             "signs": [
               "…"
             ],
             "sign_damage_states": [
               "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "MUŠḫé-dam-mu",
+            "trans": "ḫetammu",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "tar-ḫu-u-i-li",
+            "trans": "tarḫuili",
+            "signs": [
+              "tar",
+              "ḫu",
+              "u",
+              "i",
+              "li"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32756,18 +29956,24 @@ const TAKSAN_FRAGMENT_CONTEXT = {
         ]
       },
       {
-        "line_index_in_doc": 5,
-        "line_label": "Vs. 6′",
+        "line_index_in_doc": 12,
+        "line_label": "Rs. IV 9′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "…",
-            "trans": null,
+            "word_index_in_line": 2,
+            "surface_translit": "te-eš-ḫa-aš",
+            "trans": "tešḫaš",
             "signs": [
-              "…"
+              "te",
+              "eš",
+              "ḫa",
+              "aš"
             ],
             "sign_damage_states": [
-              "restored"
+              "attested",
+              "attested",
+              "attested",
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32775,14 +29981,138 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "-zi-in",
-            "trans": null,
+            "word_index_in_line": 3,
+            "surface_translit": "e-ep-ta",
+            "trans": "epta",
             "signs": [
-              "zi",
-              "in"
+              "e",
+              "ep",
+              "ta"
             ],
             "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "na-aš",
+            "trans": "naš",
+            "signs": [
+              "na",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "GU₄-aš",
+            "trans": "GU₄aš",
+            "signs": [
+              "GU₄",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "ANŠE-aš-ša",
+            "trans": "ANŠEašša",
+            "signs": [
+              "ANŠE",
+              "aš",
+              "ša"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "restored",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "i-wa-ar",
+            "trans": "iuar",
+            "signs": [
+              "i",
+              "wa",
+              "ar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "šu-up-pa-ri-an-za",
+            "trans": "šupparianza",
+            "signs": [
+              "šu",
+              "up",
+              "pa",
+              "ri",
+              "an",
+              "za"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 13,
+        "line_label": "Rs. IV 10′",
+        "words": [
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "ku-it-ki",
+            "trans": "kuitki",
+            "signs": [
+              "ku",
+              "it",
+              "ki"
+            ],
+            "sign_damage_states": [
+              "attested",
               "laes",
               "attested"
             ],
@@ -32792,12 +30122,88 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 2,
-            "surface_translit": "SUM-an-zi",
-            "trans": null,
+            "word_index_in_line": 5,
+            "surface_translit": "ka-ni-iš-zi",
+            "trans": "kanišzi",
             "signs": [
-              "SUM",
-              "an",
+              "ka",
+              "ni",
+              "iš",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "nu",
+            "trans": "nu",
+            "signs": [
+              "nu"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "BIL.ZA.ZA",
+            "trans": "BIL.ZA.ZA",
+            "signs": [
+              "BIL.ZA.ZA"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "ḫar-zi-ia-lu-uš-ša",
+            "trans": "ḫarzialušša",
+            "signs": [
+              "ḫar",
+              "zi",
+              "ia",
+              "lu",
+              "uš",
+              "ša"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 9,
+            "surface_translit": "GU₇-ez-zi",
+            "trans": "GU₇ezi",
+            "signs": [
+              "GU₇",
+              "ez",
               "zi"
             ],
             "sign_damage_states": [
@@ -32809,67 +30215,49 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "is_sum": true,
             "is_akk": false,
             "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
           }
         ]
       },
       {
-        "line_index_in_doc": 6,
-        "line_label": "Vs. 7′",
+        "line_index_in_doc": 14,
+        "line_label": "Rs. IV 11′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
             "word_index_in_line": 2,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "me-mi-iš-ki-u-an",
+            "trans": "memiškiuan",
             "signs": [
-              "…"
+              "me",
+              "mi",
+              "iš",
+              "ki",
+              "u",
+              "an"
             ],
             "sign_damage_states": [
-              "restored"
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "da-iš",
+            "trans": "taiš",
+            "signs": [
+              "da",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32878,13 +30266,13 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 4,
-            "surface_translit": "ap-pa-an-zi",
-            "trans": null,
+            "surface_translit": "ša-ra-a-kán",
+            "trans": "šarakan",
             "signs": [
-              "ap",
-              "pa",
-              "an",
-              "zi"
+              "ša",
+              "ra",
+              "a",
+              "kán"
             ],
             "sign_damage_states": [
               "attested",
@@ -32900,14 +30288,14 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           {
             "word_index_in_line": 5,
             "surface_translit": "nam-ma",
-            "trans": null,
+            "trans": "namma",
             "signs": [
               "nam",
               "ma"
             ],
             "sign_damage_states": [
               "attested",
-              "restored"
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -32916,33 +30304,14 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 6,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "e-ḫu",
+            "trans": "eḫu",
             "signs": [
-              "…"
+              "e",
+              "ḫu"
             ],
             "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 7,
-        "line_label": "Vs. 8′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
+              "laes",
               "restored"
             ],
             "is_det": false,
@@ -32951,16 +30320,68 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "dam-me-li",
-            "trans": null,
+            "word_index_in_line": 9,
+            "surface_translit": "da-aš-ša-u-az",
+            "trans": "taššauaz",
             "signs": [
-              "dam",
-              "me",
-              "li"
+              "da",
+              "aš",
+              "ša",
+              "u",
+              "az"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "restored",
+              "restored",
+              "restored",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 10,
+            "surface_translit": "AḪI.A-na-za",
+            "trans": "Anaza",
+            "signs": [
+              "AḪI.A",
+              "na",
+              "za"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 15,
+        "line_label": "Rs. IV 12′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "tar-ra-u-aš-ša",
+            "trans": "tarrauašša",
+            "signs": [
+              "tar",
+              "ra",
+              "u",
+              "aš",
+              "ša"
             ],
             "sign_damage_states": [
               "restored",
+              "attested",
+              "attested",
               "attested",
               "attested"
             ],
@@ -32971,13 +30392,34 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 2,
-            "surface_translit": "pé-di",
-            "trans": null,
+            "surface_translit": "ták-ša-an",
+            "trans": "takšan",
             "signs": [
-              "pé",
-              "di"
+              "ták",
+              "ša",
+              "an"
             ],
             "sign_damage_states": [
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "iš-tar-na",
+            "trans": "ištarna",
+            "signs": [
+              "iš",
+              "tar",
+              "na"
+            ],
+            "sign_damage_states": [
+              "attested",
               "attested",
               "attested"
             ],
@@ -32987,29 +30429,16 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 3,
-            "surface_translit": "ša-",
-            "trans": null,
-            "signs": [
-              "ša"
-            ],
-            "sign_damage_states": [
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
             "word_index_in_line": 4,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "e-ḫu",
+            "trans": "eḫu",
             "signs": [
-              "…"
+              "e",
+              "ḫu"
             ],
             "sign_damage_states": [
-              "restored"
+              "attested",
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -33018,13 +30447,92 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 5,
-            "surface_translit": "…",
+            "surface_translit": "9",
+            "trans": "9",
+            "signs": [
+              "9"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "SIG₇-aš-kán",
+            "trans": "SIG₇aškan",
+            "signs": [
+              "SIG₇",
+              "aš",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "ḫar-",
+            "trans": "ḫar~",
+            "signs": [
+              "ḫar"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "x",
             "trans": null,
             "signs": [
-              "…"
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 9,
+            "surface_translit": "(_)",
+            "trans": null,
+            "signs": [
+              "(_)"
             ],
             "sign_damage_states": [
               "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 10,
+            "surface_translit": "A",
+            "trans": "A",
+            "signs": [
+              "A"
+            ],
+            "sign_damage_states": [
+              "attested"
             ],
             "is_det": false,
             "is_sum": false,
@@ -33034,152 +30542,593 @@ const TAKSAN_FRAGMENT_CONTEXT = {
         ]
       },
       {
-        "line_index_in_doc": 8,
-        "line_label": "Vs. 9′",
+        "line_index_in_doc": 16,
+        "line_label": "Rs. IV 13′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "IŠ-TU",
-            "trans": null,
+            "word_index_in_line": 1,
+            "surface_translit": "…x",
+            "trans": "…%",
             "signs": [
-              "IŠ",
-              "TU"
+              "…x"
             ],
             "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "pé-e-da-an",
+            "trans": "petan",
+            "signs": [
+              "pé",
+              "e",
+              "da",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ták-na-za",
+            "trans": "taknaza",
+            "signs": [
+              "ták",
+              "na",
+              "za"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "šal-la-an-na-i",
+            "trans": "šallannai",
+            "signs": [
+              "šal",
+              "la",
+              "an",
+              "na",
+              "i"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "DIŠTAR-iš-ma-kán",
+            "trans": "IŠTARišmakan",
+            "signs": [
+              "DIŠTAR",
+              "iš",
+              "ma",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 17,
+        "line_label": "Rs. IV 14′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "ne-ku-ma-an-da",
+            "trans": "nekumanta",
+            "signs": [
+              "ne",
+              "ku",
+              "ma",
+              "an",
+              "da"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored",
+              "restored",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "pa-ra-a",
+            "trans": "para",
+            "signs": [
+              "pa",
+              "ra",
+              "a"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ap-pí-iš-ke-ez-zi",
+            "trans": "appiškezi",
+            "signs": [
+              "ap",
+              "pí",
+              "iš",
+              "ke",
+              "ez",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "MUŠḫé-dam-mu-uš",
+            "trans": "ḫetammuš",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 18,
+        "line_label": "Rs. IV 15′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "LÚ-na-tar",
+            "trans": "LÚnatar",
+            "signs": [
+              "LÚ",
+              "na",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "pa-ra-a",
+            "trans": "para",
+            "signs": [
+              "pa",
+              "ra",
+              "a"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "wa-at-ku-uš-ke-ez-zi",
+            "trans": "watkuškezi",
+            "signs": [
+              "wa",
+              "at",
+              "ku",
+              "uš",
+              "ke",
+              "ez",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "laes",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "nu",
+            "trans": "nu",
+            "signs": [
+              "nu"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "LÚ-na-tar",
+            "trans": "LÚnatar",
+            "signs": [
+              "LÚ",
+              "na",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 19,
+        "line_label": "Rs. IV 16′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "xḪI.A",
+            "trans": null,
+            "signs": [
+              "xḪI.A"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ar-ma-aḫ-ḫi-iš-ke-ez-zi",
+            "trans": "armaḫḫiškezi",
+            "signs": [
+              "ar",
+              "ma",
+              "aḫ",
+              "ḫi",
+              "iš",
+              "ke",
+              "ez",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "laes",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "1",
+            "trans": "1",
+            "signs": [
+              "1"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ME",
+            "trans": "ME",
+            "signs": [
+              "ME"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "30",
+            "trans": "30",
+            "signs": [
+              "30"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "URUDIDLI.ḪI.A",
+            "trans": "URU",
+            "signs": [
+              "URUDIDLI.ḪI.A"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 20,
+        "line_label": "Rs. IV 17′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-ri-it-ta-et",
+            "trans": "~rittait",
+            "signs": [
+              "ri",
+              "it",
+              "ta",
+              "et"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested",
               "laes",
               "attested"
             ],
             "is_det": false,
             "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "MUŠEN",
-            "trans": null,
-            "signs": [
-              "MUŠEN"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
             "is_akk": false,
             "det_category": null
           },
           {
             "word_index_in_line": 2,
-            "surface_translit": "BAL-an-zi",
-            "trans": null,
+            "surface_translit": "UZUšar-ḫu-wa-an-ti-it-ma",
+            "trans": "šarḫuantitma",
             "signs": [
-              "BAL",
+              "UZUšar",
+              "ḫu",
+              "wa",
               "an",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 9,
-        "line_label": "Vs. 10′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ši-pa-an-ta-an-zi",
-            "trans": null,
-            "signs": [
-              "ši",
-              "pa",
-              "an",
-              "ta",
-              "an",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 10,
-        "line_label": "Vs. 11′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ti-an-zi",
-            "trans": null,
-            "signs": [
               "ti",
-              "an",
-              "zi"
+              "it",
+              "ma"
             ],
             "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "body part/meat"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "70",
+            "trans": "70",
+            "signs": [
+              "70"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "URUDIDLI.ḪI.A",
+            "trans": "URU",
+            "signs": [
+              "URUDIDLI.ḪI.A"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "city"
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 21,
+        "line_label": "Rs. IV 18′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "I-NA",
+            "trans": "I-NA arḫa",
+            "signs": [
+              "I",
+              "NA"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "IGI-x-iaḪI.A-za ar-ḫa",
+            "trans": null,
+            "signs": [
+              "IGI",
+              "x",
+              "iaḪI.A",
+              "za ar",
+              "ḫa"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "illegible_x",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "ir-ḫa-a-it-ta-at",
+            "trans": "irḫaittat",
+            "signs": [
+              "ir",
+              "ḫa",
+              "a",
+              "it",
+              "ta",
+              "at"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
               "attested",
               "attested",
               "attested"
@@ -33190,22 +31139,7 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "ŠA",
-            "trans": null,
-            "signs": [
-              "ŠA"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
+            "word_index_in_line": 5,
             "surface_translit": "x",
             "trans": null,
             "signs": [
@@ -33220,11 +31154,32 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
+            "word_index_in_line": 6,
+            "surface_translit": "x",
             "trans": null,
             "signs": [
-              "…"
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 22,
+        "line_label": "Rs. IV 19′",
+        "words": [
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "-kán",
+            "trans": "~kan",
+            "signs": [
+              "kán"
             ],
             "sign_damage_states": [
               "restored"
@@ -33236,33 +31191,12 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 4,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "ḫar-pu-uš",
+            "trans": "ḫarpuš",
             "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 11,
-        "line_label": "Vs. 12′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ne-ku-uz",
-            "trans": null,
-            "signs": [
-              "ne",
-              "ku",
-              "uz"
+              "ḫar",
+              "pu",
+              "uš"
             ],
             "sign_damage_states": [
               "attested",
@@ -33275,130 +31209,14 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "me-ḫur",
-            "trans": null,
+            "word_index_in_line": 5,
+            "surface_translit": "SAG.DU-aš",
+            "trans": "SAG.DUaš",
             "signs": [
-              "me",
-              "ḫur"
+              "SAG.DU",
+              "aš"
             ],
             "sign_damage_states": [
-              "attested",
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 12,
-        "line_label": "Vs. 13′",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "tu-ḫal-zi(-)",
-            "trans": null,
-            "signs": [
-              "tu",
-              "ḫal",
-              "zi(",
-              ")"
-            ],
-            "sign_damage_states": [
-              "laes",
-              "attested",
-              "laes",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 13,
-        "line_label": "Rs. 1",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ma-a-an",
-            "trans": null,
-            "signs": [
-              "ma",
-              "a",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "MUNUS-za-ma",
-            "trans": null,
-            "signs": [
-              "MUNUS",
-              "za",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
               "attested",
               "attested"
             ],
@@ -33408,14 +31226,56 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 2,
-            "surface_translit": "ḫar-na-a-ú-i",
-            "trans": null,
+            "word_index_in_line": 6,
+            "surface_translit": "ḫar-pí-ia-at",
+            "trans": "ḫarpiat",
             "signs": [
               "ḫar",
-              "na",
-              "a",
-              "ú",
+              "pí",
+              "ia",
+              "at"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested",
+              "laes",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 23,
+        "line_label": "Rs. IV 20′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-kán",
+            "trans": "~kan",
+            "signs": [
+              "kán"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "pa-aš-šu-u-i",
+            "trans": "paššui",
+            "signs": [
+              "pa",
+              "aš",
+              "šu",
+              "u",
               "i"
             ],
             "sign_damage_states": [
@@ -33432,146 +31292,21 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 3,
-            "surface_translit": "e-eš-zi",
-            "trans": null,
+            "surface_translit": "wa-al-aḫ-ta-at",
+            "trans": "walaḫtat",
             "signs": [
-              "e",
-              "eš",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "nu",
-            "trans": null,
-            "signs": [
-              "nu"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 14,
-        "line_label": "Rs. 2",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ITUḪI.A-ia",
-            "trans": null,
-            "signs": [
-              "ITUḪI.A",
-              "ia"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ka-ru-ú",
-            "trans": null,
-            "signs": [
-              "ka",
-              "ru",
-              "ú"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ša-ra-a",
-            "trans": null,
-            "signs": [
-              "ša",
-              "ra",
-              "a"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ti-it-ta-nu-zi",
-            "trans": null,
-            "signs": [
-              "ti",
-              "it",
+              "wa",
+              "al",
+              "aḫ",
               "ta",
-              "nu",
-              "zi"
+              "at"
             ],
             "sign_damage_states": [
               "attested",
               "attested",
               "attested",
               "attested",
-              "attested"
+              "restored"
             ],
             "is_det": false,
             "is_sum": false,
@@ -33580,678 +31315,29 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 4,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "DIŠTAR-iš",
+            "trans": "IŠTARiš",
             "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 15,
-        "line_label": "Rs. 3",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "I-NA",
-            "trans": null,
-            "signs": [
-              "I",
-              "NA"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ITU",
-            "trans": null,
-            "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "3KAM",
-            "trans": null,
-            "signs": [
-              "3KAM"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "DÙ-an-zi",
-            "trans": null,
-            "signs": [
-              "DÙ",
-              "an",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "ma-a-an",
-            "trans": null,
-            "signs": [
-              "ma",
-              "a",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "DUMU.MUNUS-ma",
-            "trans": null,
-            "signs": [
-              "DUMU.MUNUS",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "nu",
-            "trans": null,
-            "signs": [
-              "nu"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 7,
-            "surface_translit": "SISKUR",
-            "trans": null,
-            "signs": [
-              "SISKUR"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 8,
-            "surface_translit": "I-",
-            "trans": null,
-            "signs": [
-              "I"
-            ],
-            "sign_damage_states": [
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 9,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 16,
-        "line_label": "Rs. 4",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "DÙ-an-zi",
-            "trans": null,
-            "signs": [
-              "DÙ",
-              "an",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "nu-uš-ša-an",
-            "trans": null,
-            "signs": [
-              "nu",
-              "uš",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "SÍSKUR",
-            "trans": null,
-            "signs": [
-              "SÍSKUR"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "pé-di",
-            "trans": null,
-            "signs": [
-              "pé",
-              "di"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "ka-ru-ú",
-            "trans": null,
-            "signs": [
-              "ka",
-              "ru",
-              "ú"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 17,
-        "line_label": "Rs. 5",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "MUNUS-TUM",
-            "trans": null,
-            "signs": [
-              "MUNUS",
-              "TUM"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "EN",
-            "trans": null,
-            "signs": [
-              "EN"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "SISKUR-ma",
-            "trans": null,
-            "signs": [
-              "SISKUR",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ša-ak-ni-eš-zi",
-            "trans": null,
-            "signs": [
-              "ša",
-              "ak",
-              "ni",
-              "eš",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "nu",
-            "trans": null,
-            "signs": [
-              "nu"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "ma-a-an",
-            "trans": null,
-            "signs": [
-              "ma",
-              "a",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "DUMU-RU",
-            "trans": null,
-            "signs": [
-              "DUMU",
-              "RU"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 7,
-            "surface_translit": "I-NA",
-            "trans": null,
-            "signs": [
-              "I",
-              "NA"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 8,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 9,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 10,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 18,
-        "line_label": "Rs. 6",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ka-ru-ú",
-            "trans": null,
-            "signs": [
-              "ka",
-              "ru",
-              "ú"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "pa-a-an-za",
-            "trans": null,
-            "signs": [
-              "pa",
-              "a",
-              "an",
-              "za"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "nu-uš-ša-an",
-            "trans": null,
-            "signs": [
-              "nu",
-              "uš",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ITU",
-            "trans": null,
-            "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "4KAM-ia",
-            "trans": null,
-            "signs": [
-              "4KAM",
-              "ia"
+              "DIŠTAR",
+              "iš"
             ],
             "sign_damage_states": [
               "attested",
               "attested"
             ],
             "is_det": true,
-            "is_sum": false,
+            "is_sum": true,
             "is_akk": false,
-            "det_category": null
+            "det_category": "deity name"
           },
           {
             "word_index_in_line": 5,
-            "surface_translit": "ITU",
-            "trans": null,
+            "surface_translit": "URUne-nu-wa-aš",
+            "trans": "nenuaš",
             "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "10KAM",
-            "trans": null,
-            "signs": [
-              "10KAM"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 7,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 8,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 19,
-        "line_label": "Rs. 7",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ma-a-na-aš",
-            "trans": null,
-            "signs": [
-              "ma",
-              "a",
-              "na",
+              "URUne",
+              "nu",
+              "wa",
               "aš"
             ],
             "sign_damage_states": [
@@ -34260,278 +31346,18 @@ const TAKSAN_FRAGMENT_CONTEXT = {
               "attested",
               "attested"
             ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "DUMU.MUNUS-ma",
-            "trans": null,
-            "signs": [
-              "DUMU.MUNUS",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "ka-ru-ú-uš-ši",
-            "trans": null,
-            "signs": [
-              "ka",
-              "ru",
-              "ú",
-              "uš",
-              "ši"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ITU",
-            "trans": null,
-            "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "4KAM",
-            "trans": null,
-            "signs": [
-              "4KAM"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
             "is_det": true,
             "is_sum": false,
             "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "pa-a-an-za",
-            "trans": null,
-            "signs": [
-              "pa",
-              "a",
-              "an",
-              "za"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 20,
-        "line_label": "Rs. 8",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "nu-uš-ša-an",
-            "trans": null,
-            "signs": [
-              "nu",
-              "uš",
-              "ša",
-              "an"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "ITU",
-            "trans": null,
-            "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "5KAM",
-            "trans": null,
-            "signs": [
-              "5KAM"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "na-a-wi₅",
-            "trans": null,
-            "signs": [
-              "na",
-              "a",
-              "wi₅"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "ap-pa-an-zi",
-            "trans": null,
-            "signs": [
-              "ap",
-              "pa",
-              "an",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "ma-a-na-",
-            "trans": null,
-            "signs": [
-              "ma",
-              "a",
-              "na"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
+            "det_category": "city"
           },
           {
             "word_index_in_line": 6,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "MUNUS.LUGAL-aš",
+            "trans": "MUNUS.LUGALaš",
             "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 21,
-        "line_label": "Rs. 9",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "ITU",
-            "trans": null,
-            "signs": [
-              "ITU"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "10KAM-ia",
-            "trans": null,
-            "signs": [
-              "10KAM",
-              "ia"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": true,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "EGIR-an",
-            "trans": null,
-            "signs": [
-              "EGIR",
-              "an"
+              "MUNUS.LUGAL",
+              "aš"
             ],
             "sign_damage_states": [
               "attested",
@@ -34539,111 +31365,20 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             ],
             "is_det": false,
             "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "pa-iz-zi",
-            "trans": null,
-            "signs": [
-              "pa",
-              "iz",
-              "zi"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "a-pa-a-aš-ma",
-            "trans": null,
-            "signs": [
-              "a",
-              "pa",
-              "a",
-              "aš",
-              "ma"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "x x",
-            "trans": null,
-            "signs": [
-              "x x"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "x",
-            "trans": null,
-            "signs": [
-              "x"
-            ],
-            "sign_damage_states": [
-              "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
             "is_akk": false,
             "det_category": null
           },
           {
             "word_index_in_line": 7,
-            "surface_translit": "…",
-            "trans": null,
+            "surface_translit": "I-NA2-E",
+            "trans": "I-NA 2-E",
             "signs": [
-              "…"
+              "I",
+              "NA2",
+              "E"
             ],
             "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 22,
-        "line_label": "Rs. 10",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "Ú-UL",
-            "trans": null,
-            "signs": [
-              "Ú",
-              "UL"
-            ],
-            "sign_damage_states": [
+              "attested",
               "attested",
               "attested"
             ],
@@ -34653,190 +31388,14 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "GAR-ri",
+            "word_index_in_line": 8,
+            "surface_translit": "x",
             "trans": null,
             "signs": [
-              "GAR",
-              "ri"
+              "x"
             ],
             "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "na-aš-ma-kán",
-            "trans": null,
-            "signs": [
-              "na",
-              "aš",
-              "ma",
-              "kán"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "ku-it",
-            "trans": null,
-            "signs": [
-              "ku",
-              "it"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "im-",
-            "trans": null,
-            "signs": [
-              "im"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 5,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 6,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          }
-        ]
-      },
-      {
-        "line_index_in_doc": 23,
-        "line_label": "Rs. 11",
-        "words": [
-          {
-            "word_index_in_line": 0,
-            "surface_translit": "an-da",
-            "trans": null,
-            "signs": [
-              "an",
-              "da"
-            ],
-            "sign_damage_states": [
-              "restored",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 1,
-            "surface_translit": "DÙ-ri",
-            "trans": null,
-            "signs": [
-              "DÙ",
-              "ri"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": true,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 2,
-            "surface_translit": "nu",
-            "trans": null,
-            "signs": [
-              "nu"
-            ],
-            "sign_damage_states": [
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 3,
-            "surface_translit": "a-pa-a-at",
-            "trans": null,
-            "signs": [
-              "a",
-              "pa",
-              "a",
-              "at"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested",
-              "laes",
-              "laes"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
+              "illegible_x"
             ],
             "is_det": false,
             "is_sum": false,
@@ -34847,49 +31406,34 @@ const TAKSAN_FRAGMENT_CONTEXT = {
       },
       {
         "line_index_in_doc": 24,
-        "line_label": "Rs. 12",
+        "line_label": "Rs. IV 21′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "na-at",
-            "trans": null,
+            "word_index_in_line": 1,
+            "surface_translit": "MUŠḫé-dam-mu",
+            "trans": "ḫetammu",
             "signs": [
-              "na",
-              "at"
+              "MUŠḫé",
+              "dam",
+              "mu"
             ],
             "sign_damage_states": [
               "restored",
+              "restored",
               "attested"
             ],
-            "is_det": false,
+            "is_det": true,
             "is_sum": false,
             "is_akk": false,
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "Ú-UL",
-            "trans": null,
-            "signs": [
-              "Ú",
-              "UL"
-            ],
-            "sign_damage_states": [
-              "attested",
-              "attested"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": true,
-            "det_category": null
-          },
-          {
             "word_index_in_line": 2,
-            "surface_translit": "DÙ-ri",
-            "trans": null,
+            "surface_translit": "GAM-an",
+            "trans": "GAMan",
             "signs": [
-              "DÙ",
-              "ri"
+              "GAM",
+              "an"
             ],
             "sign_damage_states": [
               "attested",
@@ -34902,13 +31446,131 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 3,
+            "surface_translit": "a-ar-aš",
+            "trans": "araš",
+            "signs": [
+              "a",
+              "ar",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "na-aš-ši",
+            "trans": "našši",
+            "signs": [
+              "na",
+              "aš",
+              "ši"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "pé-ra-an",
+            "trans": "peran",
+            "signs": [
+              "pé",
+              "ra",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "i-ia-at-ta-ri",
+            "trans": "iattari",
+            "signs": [
+              "i",
+              "ia",
+              "at",
+              "ta",
+              "ri"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "laes",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "DIŠTAR-iš",
+            "trans": "IŠTARiš",
+            "signs": [
+              "DIŠTAR",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "URUne-nu-wa-aš",
+            "trans": "nenuaš",
+            "signs": [
+              "URUne",
+              "nu",
+              "wa",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 9,
             "surface_translit": "…",
-            "trans": null,
+            "trans": "…",
             "signs": [
               "…"
             ],
             "sign_damage_states": [
-              "attested"
+              "restored"
             ],
             "is_det": false,
             "is_sum": false,
@@ -34919,19 +31581,61 @@ const TAKSAN_FRAGMENT_CONTEXT = {
       },
       {
         "line_index_in_doc": 25,
-        "line_label": "Rs. 13",
+        "line_label": "Rs. IV 22′",
         "words": [
           {
-            "word_index_in_line": 0,
-            "surface_translit": "DÙ-ri",
-            "trans": null,
+            "word_index_in_line": 1,
+            "surface_translit": "a-ar-aš",
+            "trans": "araš",
             "signs": [
-              "DÙ",
-              "ri"
+              "a",
+              "ar",
+              "aš"
             ],
             "sign_damage_states": [
               "restored",
-              "restored"
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DIŠTAR-iš",
+            "trans": "IŠTARiš",
+            "signs": [
+              "DIŠTAR",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "EGIR-an-ma-aš-ši",
+            "trans": "EGIRanmašši",
+            "signs": [
+              "EGIR",
+              "an",
+              "ma",
+              "aš",
+              "ši"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "laes",
+              "laes",
+              "attested"
             ],
             "is_det": false,
             "is_sum": true,
@@ -34939,14 +31643,56 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "ma-a-an-kán",
+            "word_index_in_line": 4,
+            "surface_translit": "MUŠḫé-dam-mu-uš",
+            "trans": "ḫetammuš",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "x-x-la-aš",
             "trans": null,
             "signs": [
+              "x",
+              "x",
+              "la",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "illegible_x",
+              "laes",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "ma-aḫ-ḫa-an",
+            "trans": "maḫḫan",
+            "signs": [
               "ma",
-              "a",
-              "an",
-              "kán"
+              "aḫ",
+              "ḫa",
+              "an"
             ],
             "sign_damage_states": [
               "attested",
@@ -34960,9 +31706,171 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
+            "word_index_in_line": 7,
+            "surface_translit": "ḫa-tu-",
+            "trans": "ḫatu~",
+            "signs": [
+              "ḫa",
+              "tu"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 26,
+        "line_label": "Rs. IV 23′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-it",
+            "trans": "~it",
+            "signs": [
+              "it"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
             "word_index_in_line": 2,
+            "surface_translit": "ar-ḫa",
+            "trans": "arḫa",
+            "signs": [
+              "ar",
+              "ḫa"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "la-ḫu-iš-ke-ez-zi",
+            "trans": "laḫuiškezi",
+            "signs": [
+              "la",
+              "ḫu",
+              "iš",
+              "ke",
+              "ez",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "na-at",
+            "trans": "nat",
+            "signs": [
+              "na",
+              "at"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "da-ga-a-an",
+            "trans": "takan",
+            "signs": [
+              "da",
+              "ga",
+              "a",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "ḫa-tu-ga-uš",
+            "trans": "ḫatukauš",
+            "signs": [
+              "ḫa",
+              "tu",
+              "ga",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "ka-ri-id-du-uš",
+            "trans": "karittuš",
+            "signs": [
+              "ka",
+              "ri",
+              "id",
+              "du",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
             "surface_translit": "…",
-            "trans": null,
+            "trans": "…",
             "signs": [
               "…"
             ],
@@ -34977,13 +31885,375 @@ const TAKSAN_FRAGMENT_CONTEXT = {
         ]
       },
       {
-        "line_index_in_doc": 26,
-        "line_label": "Rs. 14",
+        "line_index_in_doc": 27,
+        "line_label": "Rs. IV 24′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x-ša-an-zi",
+            "trans": null,
+            "signs": [
+              "x",
+              "ša",
+              "an",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "GIŠŠÚ.A-za-aš-ta",
+            "trans": "ŠÚ.Azašta",
+            "signs": [
+              "GIŠŠÚ.A",
+              "za",
+              "aš",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "wooden object"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "a-ru-na-za",
+            "trans": "arunaza",
+            "signs": [
+              "a",
+              "ru",
+              "na",
+              "za"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "kat-ta",
+            "trans": "katta",
+            "signs": [
+              "kat",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ú-et",
+            "trans": "wet",
+            "signs": [
+              "ú",
+              "et"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "MUŠḫé-dam-mu-uš",
+            "trans": "ḫetammuš",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "tar-ḫu-i-li-iš",
+            "trans": "tarḫuiliš",
+            "signs": [
+              "tar",
+              "ḫu",
+              "i",
+              "li",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 9,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 28,
+        "line_label": "Rs. IV 25′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "ar-ḫa",
+            "trans": "arḫa",
+            "signs": [
+              "ar",
+              "ḫa"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ḫa-da-an-x",
+            "trans": null,
+            "signs": [
+              "ḫa",
+              "da",
+              "an",
+              "x"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ú-et",
+            "trans": "wet",
+            "signs": [
+              "ú",
+              "et"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 29,
+        "line_label": "Rs. IV 26′",
         "words": [
           {
             "word_index_in_line": 0,
+            "surface_translit": "MUŠḫé-dam-mu-uš",
+            "trans": "ḫetammuš",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "A-NADIŠTAR",
+            "trans": "A-NA IŠTAR",
+            "signs": [
+              "A",
+              "NADIŠTAR"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "da-iš",
+            "trans": "taiš",
+            "signs": [
+              "da",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "MUNUSKI.SIKIL",
+            "trans": "KI.SIKIL",
+            "signs": [
+              "MUNUSKI.SIKIL"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ma-a-an-du-za-kán",
+            "trans": "mântuzakan",
+            "signs": [
+              "ma",
+              "a",
+              "an",
+              "du",
+              "za",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "laes",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "a-aš-ši-ia-tar",
+            "trans": "aššiatar",
+            "signs": [
+              "a",
+              "aš",
+              "ši",
+              "ia",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
             "surface_translit": "…",
-            "trans": null,
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 30,
+        "line_label": "Rs. IV 27′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "…",
+            "trans": "…",
             "signs": [
               "…"
             ],
@@ -34996,13 +32266,488 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 1,
-            "surface_translit": "…",
+            "word_index_in_line": 4,
+            "surface_translit": "x",
             "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "a-aš-ši-ia-tar",
+            "trans": "aššiatar",
+            "signs": [
+              "a",
+              "aš",
+              "ši",
+              "ia",
+              "tar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "pa-a-i",
+            "trans": "pai",
+            "signs": [
+              "pa",
+              "a",
+              "i"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 8,
+            "surface_translit": "nu-kán",
+            "trans": "nukan",
+            "signs": [
+              "nu",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 9,
+            "surface_translit": "e-ḫu",
+            "trans": "eḫu",
+            "signs": [
+              "e",
+              "ḫu"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 10,
+            "surface_translit": "da-aš-ša-u-aš",
+            "trans": "taššauaš",
+            "signs": [
+              "da",
+              "aš",
+              "ša",
+              "u",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 31,
+        "line_label": "Rs. IV 28′",
+        "words": [
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "MUŠḫé-dam-mu",
+            "trans": "ḫetammu",
+            "signs": [
+              "MUŠḫé",
+              "dam",
+              "mu"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "EGIR-pa",
+            "trans": "EGIRpa",
+            "signs": [
+              "EGIR",
+              "pa"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "me-mi-iš-ki-u-an",
+            "trans": "memiškiuan",
+            "signs": [
+              "me",
+              "mi",
+              "iš",
+              "ki",
+              "u",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "restored",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 32,
+        "line_label": "Rs. IV 29′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x-eš-ša-uš",
+            "trans": null,
+            "signs": [
+              "x",
+              "eš",
+              "ša",
+              "uš"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "ma-aḫ-ḫa-an",
+            "trans": "maḫḫan",
+            "signs": [
+              "ma",
+              "aḫ",
+              "ḫa",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "a-ša-",
+            "trans": "aša~",
+            "signs": [
+              "a",
+              "ša"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 33,
+        "line_label": "Rs. IV 30′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
             "signs": [
               "…"
             ],
             "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "_x",
+            "trans": null,
+            "signs": [
+              "_x"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "x-ša-x",
+            "trans": null,
+            "signs": [
+              "x",
+              "ša",
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "laes",
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      }
+    ]
+  },
+  "KBo 26.81": {
+    "doc_id": "KBo 26.81",
+    "cth": 348,
+    "cth_title": "Lied von Ḫedammu (.I Hethitisch, .II Hurritisch)",
+    "site": "Hattusa",
+    "n_members": 1,
+    "lines": [
+      {
+        "line_index_in_doc": 0,
+        "line_label": "1′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 1,
+        "line_label": "2′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-ša-an-ku-ra-aš",
+            "trans": "~šankuraš",
+            "signs": [
+              "ša",
+              "an",
+              "ku",
+              "ra",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 2,
+        "line_label": "3′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "da-a-iš",
+            "trans": "taiš",
+            "signs": [
+              "da",
+              "a",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
               "restored"
             ],
             "is_det": false,
@@ -35012,11 +32757,854 @@ const TAKSAN_FRAGMENT_CONTEXT = {
           },
           {
             "word_index_in_line": 2,
-            "surface_translit": "x-da",
+            "surface_translit": "ku-e-da-ni-wa-ra-aš-kán",
+            "trans": "kuetaniuaraškan",
+            "signs": [
+              "ku",
+              "e",
+              "da",
+              "ni",
+              "wa",
+              "ra",
+              "aš",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "restored",
+              "attested",
+              "laes",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 3,
+        "line_label": "4′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "ku-e-da-ni-wa-ra-aš-kán",
+            "trans": "kuetaniuaraškan",
+            "signs": [
+              "ku",
+              "e",
+              "da",
+              "ni",
+              "wa",
+              "ra",
+              "aš",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "laes",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "mi-nu",
+            "trans": "minu",
+            "signs": [
+              "mi",
+              "nu"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "ti-",
+            "trans": "ti~",
+            "signs": [
+              "ti"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 4,
+        "line_label": "5′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "an-da",
+            "trans": "anta",
+            "signs": [
+              "an",
+              "da"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "da-a-iš",
+            "trans": "taiš",
+            "signs": [
+              "da",
+              "a",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "an-da-wa-ra-an-kán",
+            "trans": "antauarankan",
+            "signs": [
+              "an",
+              "da",
+              "wa",
+              "ra",
+              "an",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "i-it-",
+            "trans": "it~",
+            "signs": [
+              "i",
+              "it"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 5,
+        "line_label": "6′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "D10-aš",
+            "trans": "10aš",
+            "signs": [
+              "D10",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ḫa-lu-ga-an",
+            "trans": "ḫalukan",
+            "signs": [
+              "ḫa",
+              "lu",
+              "ga",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "laes",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "IŠ-ME",
+            "trans": "IŠ-ME",
+            "signs": [
+              "IŠ",
+              "ME"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "na-aš",
+            "trans": "naš",
+            "signs": [
+              "na",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "kat-ti-iš-ši",
+            "trans": "kattišši",
+            "signs": [
+              "kat",
+              "ti",
+              "iš",
+              "ši"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 6,
+        "line_label": "7′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "da-a-iš",
+            "trans": "taiš",
+            "signs": [
+              "da",
+              "a",
+              "iš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ALAM",
+            "trans": "ALAM",
+            "signs": [
+              "ALAM"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "D10-ni",
+            "trans": "10ni",
+            "signs": [
+              "D10",
+              "ni"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ud-da-a-ar",
+            "trans": "uttar",
+            "signs": [
+              "ud",
+              "da",
+              "a",
+              "ar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 7,
+        "line_label": "8′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "D10-aš",
+            "trans": "10aš",
+            "signs": [
+              "D10",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "DÉ-A-aš-wa-kán",
+            "trans": "É-Aašuakan",
+            "signs": [
+              "DÉ",
+              "A",
+              "aš",
+              "wa",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "GALGA-aš",
+            "trans": "GALGAaš",
+            "signs": [
+              "GALGA",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "EN-aš",
+            "trans": "ENaš",
+            "signs": [
+              "EN",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "ku-e-",
+            "trans": "kue~",
+            "signs": [
+              "ku",
+              "e"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 8,
+        "line_label": "9′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "D10-aš",
+            "trans": "10aš",
+            "signs": [
+              "D10",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "A-NAku-up-ri-ik-kán",
+            "trans": "A-NA kuprikkan",
+            "signs": [
+              "A",
+              "NAku",
+              "up",
+              "ri",
+              "ik",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ku-in",
+            "trans": "kuin",
+            "signs": [
+              "ku",
+              "in"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 9,
+        "line_label": "10′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "nu-wa",
+            "trans": "nua",
+            "signs": [
+              "nu",
+              "wa"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "KUR-e",
+            "trans": "KURe",
+            "signs": [
+              "KUR",
+              "e"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "ku-up-ri-ia-an-za",
+            "trans": "kuprianza",
+            "signs": [
+              "ku",
+              "up",
+              "ri",
+              "ia",
+              "an",
+              "za"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "ḫar-zi",
+            "trans": "ḫarzi",
+            "signs": [
+              "ḫar",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "MU",
+            "trans": "MU",
+            "signs": [
+              "MU"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "7KAM",
+            "trans": "7",
+            "signs": [
+              "7KAM"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 10,
+        "line_label": "11′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-e-ez-za",
+            "trans": "~eza",
+            "signs": [
+              "e",
+              "ez",
+              "za"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "ú-e-iš-ke-et-ta-ri",
+            "trans": "weiškettari",
+            "signs": [
+              "ú",
+              "e",
+              "iš",
+              "ke",
+              "et",
+              "ta",
+              "ri"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 11,
+        "line_label": "12′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-an-za",
+            "trans": "~anza",
+            "signs": [
+              "an",
+              "za"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "ḫar-zi",
+            "trans": "ḫarzi",
+            "signs": [
+              "ḫar",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ḫu-u-ma-an-ta-",
+            "trans": "ḫumanta~",
+            "signs": [
+              "ḫu",
+              "u",
+              "ma",
+              "an",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 12,
+        "line_label": "13′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DÉ-A-aš",
+            "trans": "É-Aaš",
+            "signs": [
+              "DÉ",
+              "A",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ud-da-a-ar",
+            "trans": "uttar",
+            "signs": [
+              "ud",
+              "da",
+              "a",
+              "ar"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 13,
+        "line_label": "14′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x-aš",
             "trans": null,
             "signs": [
               "x",
-              "da"
+              "aš"
             ],
             "sign_damage_states": [
               "illegible_x",
@@ -35028,7 +33616,142 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             "det_category": null
           },
           {
-            "word_index_in_line": 3,
+            "word_index_in_line": 2,
+            "surface_translit": "du-ud-du-ut-ta-at",
+            "trans": "tuttuttat",
+            "signs": [
+              "du",
+              "ud",
+              "du",
+              "ut",
+              "ta",
+              "at"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 14,
+        "line_label": "15′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "i-da-la-u-wa-az",
+            "trans": "italauaz",
+            "signs": [
+              "i",
+              "da",
+              "la",
+              "u",
+              "wa",
+              "az"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 15,
+        "line_label": "16′",
+        "words": [
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "du-ud-du-ut-ta-",
+            "trans": "tuttutta~",
+            "signs": [
+              "du",
+              "ud",
+              "du",
+              "ut",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 16,
+        "line_label": "17′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "a-x",
+            "trans": null,
+            "signs": [
+              "a",
+              "x"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 17,
+        "line_label": "18′",
+        "words": [
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "NA₄",
+            "trans": "NA₄",
+            "signs": [
+              "NA₄"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 18,
+        "line_label": "19′",
+        "words": [
+          {
+            "word_index_in_line": 1,
             "surface_translit": "x",
             "trans": null,
             "signs": [
@@ -35036,21 +33759,6 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             ],
             "sign_damage_states": [
               "illegible_x"
-            ],
-            "is_det": false,
-            "is_sum": false,
-            "is_akk": false,
-            "det_category": null
-          },
-          {
-            "word_index_in_line": 4,
-            "surface_translit": "…",
-            "trans": null,
-            "signs": [
-              "…"
-            ],
-            "sign_damage_states": [
-              "restored"
             ],
             "is_det": false,
             "is_sum": false,
@@ -66507,6 +65215,1156 @@ const TAKSAN_FRAGMENT_CONTEXT = {
             ],
             "is_det": false,
             "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      }
+    ]
+  },
+  "KUB 31.123+": {
+    "doc_id": "KUB 31.123+",
+    "cth": 375,
+    "cth_title": "Gebet Arnuwandas I. und Ašmunikkals an die Sonnengöttin von Arinna",
+    "site": "Hattusa",
+    "n_members": 1,
+    "lines": [
+      {
+        "line_index_in_doc": 0,
+        "line_label": "Vs. I 1/1",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DUTU-ŠI",
+            "trans": "UTU-ŠI",
+            "signs": [
+              "DUTU",
+              "ŠI"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "mar-nu-an-da",
+            "trans": "arnuanta",
+            "signs": [
+              "mar",
+              "nu",
+              "an",
+              "da"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "personal name (Personenkeil)"
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "LUGAL",
+            "trans": "LUGAL",
+            "signs": [
+              "LUGAL"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "GAL",
+            "trans": "GAL",
+            "signs": [
+              "GAL"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 6,
+            "surface_translit": "Ù",
+            "trans": "Ù",
+            "signs": [
+              "Ù"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 7,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 1,
+        "line_label": "Vs. I 2/2",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ka-a-ša",
+            "trans": "kaša",
+            "signs": [
+              "ka",
+              "a",
+              "ša"
+            ],
+            "sign_damage_states": [
+              "restored",
+              "restored",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "tu-uk",
+            "trans": "tuk",
+            "signs": [
+              "tu",
+              "uk"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "A-NADUTU",
+            "trans": "A-NA UTU",
+            "signs": [
+              "A",
+              "NADUTU"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "URUa-ri-in-na",
+            "trans": "arinna",
+            "signs": [
+              "URUa",
+              "ri",
+              "in",
+              "na"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 2,
+        "line_label": "Vs. I 3/3",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "-x-ú-en",
+            "trans": "~%-uen",
+            "signs": [
+              "x",
+              "ú",
+              "en"
+            ],
+            "sign_damage_states": [
+              "illegible_x",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "nu-ut-ta",
+            "trans": "nutta",
+            "signs": [
+              "nu",
+              "ut",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ku-it",
+            "trans": "kuit",
+            "signs": [
+              "ku",
+              "it"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "mar-nu-an-ta",
+            "trans": "arnuanta",
+            "signs": [
+              "mar",
+              "nu",
+              "an",
+              "ta"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "personal name (Personenkeil)"
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 3,
+        "line_label": "Vs. I 4/4",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "MUNUS.LUGAL",
+            "trans": "MUNUS.LUGAL",
+            "signs": [
+              "MUNUS.LUGAL"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "GAL",
+            "trans": "GAL",
+            "signs": [
+              "GAL"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "me-mi-iš-kán-zi",
+            "trans": "memiškanzi",
+            "signs": [
+              "me",
+              "mi",
+              "iš",
+              "kán",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 4,
+        "line_label": "Vs. 4",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "x x",
+            "trans": null,
+            "signs": [
+              "x x"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 5,
+        "line_label": "Vs. 5",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ka-a-ša",
+            "trans": "kaša",
+            "signs": [
+              "ka",
+              "a",
+              "ša"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "šu-ma-a-aš",
+            "trans": "šumaš",
+            "signs": [
+              "šu",
+              "ma",
+              "a",
+              "aš"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DINGIRMEŠ",
+            "trans": "DINGIR",
+            "signs": [
+              "DINGIRMEŠ"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 6,
+        "line_label": "Vs. 6",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ḫa-an-da-a-an",
+            "trans": "ḫantan",
+            "signs": [
+              "ḫa",
+              "an",
+              "da",
+              "a",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "ša-ne-",
+            "trans": "šane~",
+            "signs": [
+              "ša",
+              "ne"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 7,
+        "line_label": "Vs. 7",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ša-ne-ez-zi",
+            "trans": "šanezi",
+            "signs": [
+              "ša",
+              "ne",
+              "ez",
+              "zi"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "ta-aš-šu",
+            "trans": "taššu",
+            "signs": [
+              "ta",
+              "aš",
+              "šu"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 8,
+        "line_label": "Vs. 8",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "iš-ša-an-x-",
+            "trans": "iššan-%~",
+            "signs": [
+              "iš",
+              "ša",
+              "an",
+              "x"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 9,
+        "line_label": "Vs. 9",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "nu",
+            "trans": "nu",
+            "signs": [
+              "nu"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "DUTU",
+            "trans": "UTU",
+            "signs": [
+              "DUTU"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DIŠKUR",
+            "trans": "IŠKUR",
+            "signs": [
+              "DIŠKUR"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "DKAL",
+            "trans": "KAL",
+            "signs": [
+              "DKAL"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "D",
+            "trans": null,
+            "signs": [
+              "D"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 5,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 10,
+        "line_label": "Vs. 10",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ḪUR.SAGMEŠ",
+            "trans": "ḪUR.SAG",
+            "signs": [
+              "ḪUR.SAGMEŠ"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "mountain"
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "ÍDMEŠ",
+            "trans": "ÍD",
+            "signs": [
+              "ÍDMEŠ"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "river"
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "PÚMEŠ",
+            "trans": "PÚ",
+            "signs": [
+              "PÚMEŠ"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 11,
+        "line_label": "Vs. 11",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "I-NAKUR",
+            "trans": "I-NA KUR",
+            "signs": [
+              "I",
+              "NAKUR"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "URUḪA-AT-TI",
+            "trans": "ḪA-AT-TI",
+            "signs": [
+              "URUḪA",
+              "AT",
+              "TI"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "laes",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 12,
+        "line_label": "Vs. 12",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "x",
+            "trans": null,
+            "signs": [
+              "x"
+            ],
+            "sign_damage_states": [
+              "illegible_x"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 13,
+        "line_label": "Rs. 1′",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "DUB",
+            "trans": "DUB",
+            "signs": [
+              "DUB"
+            ],
+            "sign_damage_states": [
+              "laes"
+            ],
+            "is_det": false,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "1KAM",
+            "trans": "1",
+            "signs": [
+              "1KAM"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "DINGIRMEŠ-aš-kán",
+            "trans": "DINGIRaškan",
+            "signs": [
+              "DINGIRMEŠ",
+              "aš",
+              "kán"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": false,
+            "det_category": "deity name"
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "ma-aḫ-ḫa-an",
+            "trans": "maḫḫan",
+            "signs": [
+              "ma",
+              "aḫ",
+              "ḫa",
+              "an"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          }
+        ]
+      },
+      {
+        "line_index_in_doc": 14,
+        "line_label": "Rs. 2′",
+        "words": [
+          {
+            "word_index_in_line": 0,
+            "surface_translit": "ŠADUTU",
+            "trans": "ŠA UTU",
+            "signs": [
+              "ŠADUTU"
+            ],
+            "sign_damage_states": [
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": true,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 1,
+            "surface_translit": "URUa-ri-in-na",
+            "trans": "arinna",
+            "signs": [
+              "URUa",
+              "ri",
+              "in",
+              "na"
+            ],
+            "sign_damage_states": [
+              "attested",
+              "attested",
+              "attested",
+              "attested"
+            ],
+            "is_det": true,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": "city"
+          },
+          {
+            "word_index_in_line": 2,
+            "surface_translit": "Ú-UL",
+            "trans": "Ú-UL",
+            "signs": [
+              "Ú",
+              "UL"
+            ],
+            "sign_damage_states": [
+              "laes",
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": true,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 3,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
+            "is_akk": false,
+            "det_category": null
+          },
+          {
+            "word_index_in_line": 4,
+            "surface_translit": "…",
+            "trans": "…",
+            "signs": [
+              "…"
+            ],
+            "sign_damage_states": [
+              "restored"
+            ],
+            "is_det": false,
+            "is_sum": false,
             "is_akk": false,
             "det_category": null
           }
