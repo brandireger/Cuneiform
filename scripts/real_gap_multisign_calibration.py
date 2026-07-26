@@ -52,6 +52,7 @@ import pandas as pd  # noqa: E402
 import p2e2_abstention_calibration as p2e2  # noqa: E402
 import p2e6_multisign_horizon as p2e6  # noqa: E402
 import p2e_witness_recoverability as p2e  # noqa: E402
+from line_lang_lookup import load_line_lang_lookup  # noqa: E402
 import real_gap_census as rgc  # noqa: E402
 import real_gap_witness_check as rgw  # noqa: E402
 
@@ -115,7 +116,8 @@ def prepare_multisign_scope(cth_ids, mask_lengths, anchor_lengths):
     contracts.assert_unique_docids(edges)
 
     line_index = p2e.build_line_index(decomposed)
-    line_sequences, _ = p2e.render_fragments(edges, line_index)
+    line_sequences, _ = p2e.render_fragments(
+        edges, line_index, line_lang_lookup=load_line_lang_lookup())
     line_owner = rgw.build_line_owner_map(edges)
     fragment_line_order = rgw.build_fragment_line_order(edges)
 

@@ -29,6 +29,7 @@ import hittite_tokenizer as ht
 import p2e2_abstention_calibration as p2e2
 import p2e3_cross_calibration as p2e3
 import p2e_witness_recoverability as p2e
+from line_lang_lookup import load_line_lang_lookup
 
 
 CONFIG_PATH = Path("configs") / "p2e4_candidate_set_audit.json"
@@ -621,7 +622,8 @@ def main():
     base_tracers = p2e.run_base_tracers()
     _, _, _, edges, decomposed = p2e.load_dev_inputs()
     line_index = p2e.build_line_index(decomposed)
-    line_sequences, canonical_flat = p2e.render_fragments(edges, line_index)
+    line_sequences, canonical_flat = p2e.render_fragments(
+        edges, line_index, line_lang_lookup=load_line_lang_lookup())
     tokenizer = ht.Tokenizer.load()
     encoded = tokenizer.encode(canonical_flat, strict=True)
     contracts.assert_encoding_sane(

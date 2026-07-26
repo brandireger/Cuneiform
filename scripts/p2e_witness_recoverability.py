@@ -38,6 +38,7 @@ import contracts
 import eval_harness as eh
 import evidence_policy as ep
 import hittite_tokenizer as ht
+from line_lang_lookup import is_hittite_line
 from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 
 
@@ -163,8 +164,17 @@ def informative_attested_line(line_idx, token_states):
     ]
 
 
-def render_fragments(edges, line_index):
-    """Return canonical attested-only per-line sequences for each fragment."""
+def render_fragments(edges, line_index, line_lang_lookup=None):
+    """Return canonical attested-only per-line sequences for each fragment.
+
+    line_lang_lookup: optional {(doc_id, line_index_in_doc): canonical}
+    from line_lang_lookup.load_line_lang_lookup(). When given, a line
+    not confirmed Hittite is rendered as empty (its position slot in
+    the per-fragment line list is preserved, so line_position_in_fragment
+    numbering used throughout P2-E/real_gap_*.py is unaffected -- only
+    non-Hittite CONTENT is excluded, matching hittite_tokenizer.py's
+    same convention). Omitting the parameter reproduces the original
+    language-blind rendering exactly."""
     rendered = {}
     canonical_flat = []
     for row in edges.sort_values("fragment_id").itertuples(index=False):
@@ -175,6 +185,9 @@ def render_fragments(edges, line_index):
                 line_records, key=lambda value: value["line_index_in_doc"]):
             line_idx = int(record["line_index_in_doc"])
             token_states = line_index.get((row.parent_doc, line_idx), [])
+            if line_lang_lookup is not None and not is_hittite_line(
+                    line_lang_lookup, row.parent_doc, line_idx):
+                token_states = []
             raw_lines.append((line_idx, token_states))
             content_lines.append(
                 informative_attested_line(line_idx, token_states))

@@ -47,6 +47,7 @@ import hittite_tokenizer as ht  # noqa: E402
 import pandas as pd  # noqa: E402
 
 import p2e_witness_recoverability as p2e  # noqa: E402
+from line_lang_lookup import load_line_lang_lookup  # noqa: E402
 import real_gap_census as rgc  # noqa: E402
 
 EDGES_PATH = Path("Phase1_pipeline/p2_out/edges.parquet")
@@ -226,7 +227,8 @@ def prepare_scope(cth_ids):
     }
 
     line_index = p2e.build_line_index(decomposed)
-    line_sequences, _ = p2e.render_fragments(edges, line_index)
+    line_sequences, _ = p2e.render_fragments(
+        edges, line_index, line_lang_lookup=load_line_lang_lookup())
     line_owner = build_line_owner_map(edges)
     fragment_line_order = build_fragment_line_order(edges)
 
