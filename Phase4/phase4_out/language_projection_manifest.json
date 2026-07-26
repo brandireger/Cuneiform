@@ -1,0 +1,91 @@
+{
+  "contract_version": "2.0.0",
+  "language_scopes": [
+    "ALL_LANGUAGES_UNCONDITIONED",
+    "CROSS_LANGUAGE_PARALLEL",
+    "HITTITE_ONLY",
+    "MULTILINGUAL_CONDITIONED",
+    "SAME_LANGUAGE_AS_QUERY"
+  ],
+  "structural_tokens_retained_in_every_projection": true,
+  "structural_tokens_excluded_from_lexical_statistics": true,
+  "unresolved_lexical_token_count": 247,
+  "projections": {
+    "HITTITE_ONLY": {
+      "query_language": null,
+      "token_count": 2604700,
+      "language_identity": "PRESERVED"
+    },
+    "MULTILINGUAL_CONDITIONED": {
+      "query_language": null,
+      "token_count": 2923393,
+      "language_identity": "SUPPLIED_TO_MODEL"
+    },
+    "ALL_LANGUAGES_UNCONDITIONED": {
+      "query_language": null,
+      "token_count": 2923640,
+      "language_identity": "INTENTIONALLY_REMOVED",
+      "ablation_only": true
+    },
+    "SAME_LANGUAGE_AS_QUERY": {
+      "Hit": {
+        "token_count": 2604700,
+        "language_identity": "PRESERVED"
+      },
+      "Akk": {
+        "token_count": 176184,
+        "language_identity": "PRESERVED"
+      },
+      "Sum": {
+        "token_count": 68703,
+        "language_identity": "PRESERVED"
+      },
+      "Hat": {
+        "token_count": 104456,
+        "language_identity": "PRESERVED"
+      },
+      "Hur": {
+        "token_count": 192656,
+        "language_identity": "PRESERVED"
+      },
+      "Luw": {
+        "token_count": 85860,
+        "language_identity": "PRESERVED"
+      },
+      "Pal": {
+        "token_count": 67694,
+        "language_identity": "PRESERVED"
+      }
+    },
+    "CROSS_LANGUAGE_PARALLEL": {
+      "Hit": {
+        "token_count": 381503,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Akk": {
+        "token_count": 2810019,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Sum": {
+        "token_count": 2917500,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Hat": {
+        "token_count": 2881747,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Hur": {
+        "token_count": 2793547,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Luw": {
+        "token_count": 2900343,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      },
+      "Pal": {
+        "token_count": 2918509,
+        "language_identity": "SEPARATE_ASSISTANCE_CHANNEL"
+      }
+    }
+  }
+}

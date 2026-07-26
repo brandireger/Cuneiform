@@ -1,0 +1,117 @@
+{
+  "task": "phase4_gate2_multilingual_token_dataset",
+  "evidence_policy": "transcription_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_lang_canonical",
+    "word_lang_raw",
+    "effective_lang_canonical"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_lang_canonical",
+    "word_lang_raw",
+    "effective_lang_canonical"
+  ],
+  "evidence_classes_used": [
+    "EDITORIAL_TRANSCRIPTION",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.8,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "9da237b84a873dfe752e4b485b18763d930c82fce937b7cf8e8f1b2d0dd5bfc8",
+  "git_commit": "9e9b38a7183ab06e37086f32eb13de5ee80ce995",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260725,
+  "declared_statistics_universe": "tokens rebuilt from exact checksum-guarded archive members in the accepted Gate 1 train + dev + discovery document map; protected-test and quarantined archive members unopened",
+  "created_utc": "2026-07-26T04:54:52.503638+00:00",
+  "script_path": "scripts\\phase4_multilingual_token_dataset.py",
+  "script_sha256": "8c0d46e3e7187ae49db2bb4f9859ce7df320de61b280e1b18776a89ef5dd44d7",
+  "registry_sha256": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
+  "policy_sha256": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
+  "decompose_script_sha256": "c7a52143c7721287c84da69659503c9882f240ca9733717b924a6f4f9296c79c",
+  "gate1_manifest_sha256": "225dc7b02ee00fa985d8b43ced1e9bc059b8fb5fa866f18442c9abdad25a373b",
+  "gate1_language_layer_logical_sha256": "d0126c4eacc2c6c58711516e725f90193d9cc964a1700ea2a5def3289c7c9296",
+  "source_filter": "exact archive_member and source_payload_sha256 from accepted Gate 1 DOCUMENT records; only train/dev/discovery members opened",
+  "source_token_strategy": "lossless checksum-guarded XML re-walk through shared lib.decompose_corpus.decompose_document; historical frozen token cache retained only as an unchanged comparison artifact because it conflates at least one distinct archive-stem pair under one doc_id",
+  "protected_test_rows_emitted": 0,
+  "output_path": "Phase4\\phase4_out\\multilingual_tokens_v2.parquet",
+  "output_file_sha256": "d891168291dce3ca8997426b7601d1a1c15a8d712270394b760250b48c354ee2",
+  "output_logical_sha256": "35914a01ff03863f76ee0a56352d2d870881dc581c1253430a2eda102e9bfb6a",
+  "second_build_logical_sha256": "35914a01ff03863f76ee0a56352d2d870881dc581c1253430a2eda102e9bfb6a",
+  "persisted_logical_sha256": "35914a01ff03863f76ee0a56352d2d870881dc581c1253430a2eda102e9bfb6a",
+  "source_identity_sha256": "8256fc0ae6feb3b9f1cf65236c3205ddc85719c7bf2ac63d55a729549487b159",
+  "persisted_identity_sha256": "8256fc0ae6feb3b9f1cf65236c3205ddc85719c7bf2ac63d55a729549487b159",
+  "deterministic_double_build": true,
+  "frozen_hashes_before": {
+    "frozen_splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "frozen_decomposed_tokens": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+    "corpus_zip": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "language_spans_v2": "d957aa11519f3beeb862f04cd5f5ab41eb31bfededbdf4371846efb3348ba5d1",
+    "ratified_line_lang_v1": "23f2e950ece8744508dc0d11197189622658038b10d4ceca88ddeccc738982d5"
+  },
+  "frozen_hashes_after": {
+    "frozen_splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "frozen_decomposed_tokens": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+    "corpus_zip": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "language_spans_v2": "d957aa11519f3beeb862f04cd5f5ab41eb31bfededbdf4371846efb3348ba5d1",
+    "ratified_line_lang_v1": "23f2e950ece8744508dc0d11197189622658038b10d4ceca88ddeccc738982d5"
+  },
+  "frozen_hashes_unchanged": true,
+  "statistics": {
+    "token_count": 2923640,
+    "document_count": 20711,
+    "tokens_by_split": {
+      "dev": 221118,
+      "discovery": 1022742,
+      "train": 1679780
+    },
+    "effective_status_counts": {
+      "RESOLVED": 2923290,
+      "RESOLVED_WITH_SOURCE_ANOMALY": 87,
+      "UNRESOLVED_EXPLICIT_WORD_TAG": 48,
+      "UNRESOLVED_LINE_LANGUAGE": 215
+    },
+    "effective_source_counts": {
+      "LINE_INHERITED": 2893232,
+      "LINE_INHERITED_AFTER_EMPTY_WORD_TAG": 87,
+      "UNRESOLVED": 263,
+      "WORD_EXPLICIT": 30058
+    },
+    "lexical_tokens_by_language": {
+      "<UNRESOLVED>": 247,
+      "Akk": 113374,
+      "Hat": 41646,
+      "Hit": 2541890,
+      "Hur": 129846,
+      "Luw": 23050,
+      "Pal": 4884,
+      "Sum": 5893
+    },
+    "workbench_category_token_counts": {
+      "EMPTY_LANGUAGE_TAG": 156,
+      "MALFORMED_LANGUAGE_TAG": 90,
+      "UNRECOGNIZED_LANGUAGE_TAG": 66
+    },
+    "structural_token_count": 62810,
+    "mixed_line_token_count": 41656,
+    "mixed_document_token_count": 544107,
+    "duplicate_or_unsorted_identity_count": 0,
+    "raw_source_token_row_count": 2923640,
+    "disallowed_document_count": 0,
+    "explicit_word_token_count": 30193,
+    "used_explicit_word_key_count": 8445
+  },
+  "language_projection_manifest": "Phase4\\phase4_out\\language_projection_manifest.json",
+  "language_projection_manifest_sha256": "20c024b9ab92601fa06bbd3070d03a6f4f825cbf6c1032008c81aad6166ce81c",
+  "explicit_word_span_count": 9400,
+  "used_explicit_word_span_count": 8445,
+  "unused_explicit_word_span_count": 955
+}

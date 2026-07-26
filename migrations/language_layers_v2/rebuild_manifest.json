@@ -1,0 +1,167 @@
+{
+  "task": "phase4_gate1_language_layers_v2_migration",
+  "evidence_policy": "transcription_assisted",
+  "features_requested": [
+    "doc_lang_raw",
+    "line_lang_raw",
+    "word_lang_raw"
+  ],
+  "features_observed": [
+    "doc_lang_raw",
+    "line_lang_raw",
+    "word_lang_raw"
+  ],
+  "evidence_classes_used": [
+    "EDITORIAL_TRANSCRIPTION"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 1.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "f2dd79448bd0af683020d85fe59ecd5ba57ec93da9b3660ac89b8dfb4459aea9",
+  "git_commit": "9e9b38a7183ab06e37086f32eb13de5ee80ce995",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260725,
+  "declared_statistics_universe": "unique filename stems mapped to frozen train + dev + discovery; test, unmatched, split-ambiguous, and duplicate stems unopened",
+  "created_utc": "2026-07-26T04:29:52.032217+00:00",
+  "script_path": "scripts\\phase4_language_layers_v2.py",
+  "script_sha256": "eec3bbbd6b333420865c3746734fb055345bbdeb62405f936331f16a59138178",
+  "registry_sha256": "6b99129883872f56d477b2b4cd8562052e87c95420ab43ca1fe3390ef1fc4c9b",
+  "policy_sha256": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
+  "gate0_audit_sha256": "106c33d221ef3635f7a3bf132083ab1e12e1dadcfcc18e86ee9f99e4051b9fa6",
+  "zip_md5": "93e71e2560f5e109c87713d5590cb059",
+  "zip_md5_matches_pin": true,
+  "language_contract_version": "2.0.0",
+  "effective_language_rule_id": "word_override_else_line_v2",
+  "canonical_codes": [
+    "Hit",
+    "Akk",
+    "Sum",
+    "Hat",
+    "Hur",
+    "Luw",
+    "Pal"
+  ],
+  "canonical_mappings": {
+    "Hattian": "Hat"
+  },
+  "protected_test_payloads_read": 0,
+  "frozen_hashes_before": {
+    "corpus_zip": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "frozen_splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "frozen_corpus": "39c7bfc703f24523cec2f970feae4efca334e0e3e1e2d9dbaf9fb37ee34fec5a",
+    "frozen_decomposed_tokens": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+    "ratified_line_lang_v1": "23f2e950ece8744508dc0d11197189622658038b10d4ceca88ddeccc738982d5"
+  },
+  "frozen_hashes_after": {
+    "corpus_zip": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+    "frozen_splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+    "frozen_corpus": "39c7bfc703f24523cec2f970feae4efca334e0e3e1e2d9dbaf9fb37ee34fec5a",
+    "frozen_decomposed_tokens": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+    "ratified_line_lang_v1": "23f2e950ece8744508dc0d11197189622658038b10d4ceca88ddeccc738982d5"
+  },
+  "frozen_hashes_unchanged": true,
+  "output_path": "migrations\\language_layers_v2\\language_spans.parquet",
+  "output_file_sha256": "d957aa11519f3beeb862f04cd5f5ab41eb31bfededbdf4371846efb3348ba5d1",
+  "output_logical_sha256": "d0126c4eacc2c6c58711516e725f90193d9cc964a1700ea2a5def3289c7c9296",
+  "second_build_logical_sha256": "d0126c4eacc2c6c58711516e725f90193d9cc964a1700ea2a5def3289c7c9296",
+  "persisted_logical_sha256": "d0126c4eacc2c6c58711516e725f90193d9cc964a1700ea2a5def3289c7c9296",
+  "quarantine_path": "migrations\\language_layers_v2\\quarantined_source_anomalies.jsonl",
+  "quarantine_file_sha256": "bfd63d444708278dbc7ac7369c99297f1579e5449e58d05aa9724f972ad5a8bd",
+  "quarantine_logical_sha256": "bfd63d444708278dbc7ac7369c99297f1579e5449e58d05aa9724f972ad5a8bd",
+  "second_build_quarantine_logical_sha256": "bfd63d444708278dbc7ac7369c99297f1579e5449e58d05aa9724f972ad5a8bd",
+  "quarantine_record_count": 9,
+  "deterministic_double_build": true,
+  "statistics": {
+    "gate_counts": {
+      "ALLOWED_DEV": 745,
+      "ALLOWED_DISCOVERY": 13984,
+      "ALLOWED_TRAIN": 6014,
+      "PROTECTED_TEST": 744,
+      "QUARANTINE_DUPLICATE_STEM": 36,
+      "QUARANTINE_UNMATCHED": 345
+    },
+    "payload_read_gate_counts": {
+      "ALLOWED_DEV": 745,
+      "ALLOWED_DISCOVERY": 13984,
+      "ALLOWED_TRAIN": 6014
+    },
+    "parse_errors_by_allowed_gate": {
+      "ALLOWED_TRAIN": 1
+    },
+    "parsed_documents": 20742,
+    "source_counts_by_level": {
+      "DOCUMENT": 20742,
+      "LINE": 359183,
+      "WORD": 9400
+    },
+    "output_counts_by_level": {
+      "DOCUMENT": 20742,
+      "LINE": 359183,
+      "WORD": 9400
+    },
+    "status_counts_by_level": {
+      "DOCUMENT": {
+        "missing": 21,
+        "unrecognized": 2587,
+        "valid": 18134
+      },
+      "LINE": {
+        "explicit_empty": 13,
+        "malformed": 6,
+        "missing": 63,
+        "unrecognized": 13,
+        "valid": 359088
+      },
+      "WORD": {
+        "explicit_empty": 21,
+        "unrecognized": 16,
+        "valid": 9363
+      }
+    },
+    "status_counts_by_split": {
+      "dev": {
+        "explicit_empty": 3,
+        "missing": 1,
+        "unrecognized": 195,
+        "valid": 23872
+      },
+      "discovery": {
+        "missing": 32,
+        "unrecognized": 1356,
+        "valid": 182325
+      },
+      "train": {
+        "explicit_empty": 31,
+        "malformed": 6,
+        "missing": 51,
+        "unrecognized": 1065,
+        "valid": 180388
+      }
+    },
+    "effective_status_counts": {
+      "RESOLVED": 9363,
+      "RESOLVED_WITH_SOURCE_ANOMALY": 21,
+      "UNRESOLVED_EXPLICIT_WORD_TAG": 16
+    },
+    "effective_source_counts": {
+      "LINE_INHERITED_AFTER_EMPTY_WORD_TAG": 21,
+      "UNRESOLVED": 16,
+      "WORD_EXPLICIT": 9363
+    },
+    "workbench_category_counts": {
+      "EMPTY_LANGUAGE_TAG": 34,
+      "MALFORMED_LANGUAGE_TAG": 6,
+      "PARSER_ANOMALY": 9,
+      "UNRECOGNIZED_LANGUAGE_TAG": 2616
+    },
+    "source_anomaly_counts": {
+      "explicit_word_language_outside_primary_text": 9
+    },
+    "duplicate_output_keys": 0
+  },
+  "gate0_explicit_word_language_count": 9409
+}

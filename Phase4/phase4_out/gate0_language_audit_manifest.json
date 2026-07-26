@@ -1,0 +1,37 @@
+{
+  "task": "phase4_gate0_language_semantics_audit",
+  "evidence_policy": "transcription_assisted",
+  "features_requested": [
+    "doc_lang_raw",
+    "line_lang_raw",
+    "word_lang_raw"
+  ],
+  "features_observed": [
+    "doc_lang_raw",
+    "line_lang_raw",
+    "word_lang_raw"
+  ],
+  "evidence_classes_used": [
+    "EDITORIAL_TRANSCRIPTION"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 1.0,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "02304950b3b33ac2e85f6020df57a91a3184aa994ac1eab6f58e796a7a0f282a",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "a670d8061db80473ecbd34f28ae3eca9628cd51b556028a503a1023f3ce11bc4",
+  "git_commit": "9e9b38a7183ab06e37086f32eb13de5ee80ce995",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260725,
+  "declared_statistics_universe": "unique filename stems mapped to frozen train + dev + discovery; test, unmatched, split-ambiguous, and duplicate stems unopened",
+  "created_utc": "2026-07-26T04:16:20.837971+00:00",
+  "payload_read_gate_counts": {
+    "ALLOWED_DISCOVERY": 13984,
+    "ALLOWED_TRAIN": 6014,
+    "ALLOWED_DEV": 745
+  },
+  "protected_test_payloads_read": 0,
+  "hpm_guide": "https://www.hethport.uni-wuerzburg.de/HPM/hpm.php?p=hpmguide"
+}

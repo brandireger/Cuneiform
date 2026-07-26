@@ -139,9 +139,14 @@ full-corpus scale, with leakage-safe methodology?
   assumed here — verified via `01_inventory.py` (P1, run
   2026-07-20) against the real corpus. Key structure:**
   - `<lb txtid lnr lg cu>` = one transliterated line. `lnr` = line
-    label (e.g. "Vs.? 1′"); `lg` = **per-line** language code (Hit,
-    Akk, Hat, Hattian, ...) — the multilingual-layer signal lives
-    here, at line granularity, not per-document; `cu` = raw
+    label (e.g. "Vs.? 1′"); `lg` = the **line-level** language code
+    (Hit, Akk, Hat, Hattian, ...), but it is not the only language
+    signal. The Phase 1 inventory records **10,846 `w@lg` attributes**,
+    often on embedded spans whose value differs from the enclosing
+    `lb@lg`. Document `xml:lang`, line `lb@lg`, and word `w@lg` must
+    therefore remain separate until their precedence is ratified under
+    `specs/LANGUAGE_LAYERS_V2.md`. The July 25 line-only Hittite filter
+    is a containment measure, not the final language model. `cu` = raw
     cuneiform sign string. **Correction (P2, 02_parse.py damage-
     oracle check, 2026-07-20): `cu` is NOT an attested-only break
     silhouette — do not use it as one.** It renders the editor's
@@ -160,8 +165,10 @@ full-corpus scale, with leakage-safe methodology?
     glyphs, never feed `cu` or any `cu`-derived feature to any
     evaluated model, at train time or test time** — it is a display/
     preview field, not a corpus signal.
-  - `<w trans mrp0sel mrp1..mrp7>` = word. `trans` = transliterated
-    form (the primary text signal); `mrp*` = ranked morphological
+  - `<w trans lg mrp0sel mrp1..mrp7>` = word. `trans` = transliterated
+    form (the primary text signal); optional `lg` marks a narrower
+    language span and must not be discarded by token decomposition;
+    `mrp*` = ranked morphological
     parse candidates (lemma@gloss@paradigm@class) — rich, but this
     is glossing/analysis, **out of scope** per this file; do not
     build features off `mrp*` beyond incidental inspection.
@@ -438,6 +445,10 @@ Provincial + multilingual material also supplies hard negatives.
   content-blind seam-scoring bug — a per-script reimplementation of
   this exact step silently fed `<UNK>`-only input to the frozen D14
   head for an entire phase; see p5c_report.md / p5c2_report.md.)
+- Phase 4 language-aware code must additionally require an explicit
+  `language_scope`; omitted/`None`/`auto` language behavior is prohibited.
+  Language-based selection is semantic evidence and must be registered and
+  included in the run manifest.
 - Corpus build = governed dataset with lineage: every transform
   scripted, no hand edits; derived datasets carry provenance metadata.
 - Stdlib-or-common-deps preference; pin versions in
@@ -465,10 +476,38 @@ Provincial + multilingual material also supplies hard negatives.
   snapshot, it gains new entries over time. Live per-phase outputs are
   split by phase folder: `Phase1_pipeline/` holds carried-forward
   outputs of the original numbered P2/P3/P4 steps (`p2_out/`,
-  `p3_out/`, `p4_out/`); `Phase2/` holds outputs of the current lettered
-  Phase 2 research plan (`phase2_out/`, `corpus_audit_out/`). Give the
-  next phase its own top-level phase folder rather than growing either
-  of these.
+  `p3_out/`, `p4_out/`); `Phase2/` holds its lettered research outputs;
+  `Phase3/` holds the real-gap/demo outputs; and `Phase4/` is reserved
+  for the prepared multilingual-dataset and unresolved-evidence phase.
+  Give every later phase its own top-level folder.
+
+## Current successor phase (Gate 2 passed 2026-07-25)
+
+`PHASE4_CHARTER.md` governs the successor phase. It has two linked
+deliverables:
+
+1. a word-aware multilingual language layer, token dataset, explicit
+   language APIs, and language-conditioned retraining; and
+2. an Unresolved Evidence Workbench that preserves unknown signs, words,
+   language tags, and anomalies with context for expert grouping.
+
+Operational handoff, accepted hashes, and the next bounded work are recorded
+in `PHASE4_SUCCESSOR_HANDOFF.md`.
+
+**Phase 4 Gate 2 passed 2026-07-25.** The deterministic, split-gated
+language-span migration and 2,923,640-row multilingual token dataset are
+accepted. P4-D language-aware API and P4-E workbench implementation are
+authorized; protected-test access and GPU training remain unauthorized. The
+frozen D14 checkpoint remains a historical multilingual-unconditioned
+baseline. Expert workbench records are append-only quarantined annotations
+and never become corpus truth automatically.
+
+Gate 2 found that the historical frozen decomposed-token cache conflates at
+least one distinct archive-stem pair under one `doc_id`, yielding conflicting
+token content at the same technical key. New Phase 4 token datasets must use
+the exact checksum-guarded Gate 1 archive member and the shared
+`decompose_document()` implementation; do not choose or deduplicate a
+conflated cached version silently. The historical cache remains immutable.
 
 ## Phase sequence
 
