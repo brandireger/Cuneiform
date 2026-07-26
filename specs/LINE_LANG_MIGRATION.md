@@ -1,9 +1,36 @@
 # `line_lang` governed migration proposal
 
-- **Status:** PROPOSED — requires human ratification before implementation
+- **Status:** RATIFIED AND IMPLEMENTED (2026-07-25). Steps A-D below are
+  complete; see `migrations/line_lang_v1/` (audit, rebuild, and
+  verification reports) and `scripts/line_lang_audit.py` /
+  `scripts/line_lang_rebuild.py`. Ratified decisions, recorded here for
+  the historical record (the original proposal text below is otherwise
+  unchanged, including its still-open "Deferred decisions"):
+  - **Canonical vocabulary (7 codes):** `Hit, Akk, Sum, Hat, Hur, Luw, Pal`.
+  - **Ratified non-identity mapping:** `Hattian -> Hat` (same language,
+    two source spellings).
+  - **Quarantined as `unrecognized`** (not guessed at, revisit with more
+    context later): `Lu`, `5f_`, `ign`.
+  - **Quarantined as `malformed`**: XML-markup-like raw values (one
+    confirmed source-XML defect, `KUB 43.50+` lines 40-43; one
+    unverified-origin case, `KBo 53.12`).
+  - Propagated into a shared lookup (`lib/line_lang_lookup.py`) and
+    wired into `hittite_tokenizer.py` and
+    `p2e_witness_recoverability.render_fragments` (the anchor-index/
+    witness-matching layer) as an opt-in filter, now the DEFAULT for
+    every P2-E script and the real-gap pipeline. **The tokenizer vocab
+    itself was rebuilt once then REVERTED** — it broke the pretrained
+    `runs/pretrain_base/checkpoint.pt` (vocab-size-mismatched embedding
+    matrix); retraining is a multi-hour job, out of scope for this
+    integration. `configs/tokenizer.json` remains the original Phase 1,
+    language-blind vocab; only the anchor-index/witness-matching layer
+    is Hittite-only-filtered. See git log 2026-07-25 for the full
+    sequence and every rerun's before/after numbers.
 - **Scope:** derived-data repair only; no model, probe, or research result
 - **Affected field:** `Phase1_pipeline/p2_out/corpus.parquet::line_lang`
-- **Evidence class:** tentatively `OBSERVED_DOCUMENT_STRUCTURE`
+- **Evidence class:** tentatively `OBSERVED_DOCUMENT_STRUCTURE` (the
+  vocabulary/mapping ratification above does not itself resolve this
+  classification question -- still open, see "Deferred decisions")
 
 ## Decision requested
 

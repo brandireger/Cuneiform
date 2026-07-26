@@ -130,7 +130,29 @@ full-corpus scale, with leakage-safe methodology?
   ground-truth joins).
 - Multilingual layers present: Hittite, Akkadian, Sumerian, Hattic,
   Cuneiform Luwian, Palaic, Hurrian. Do not silently discard
-  non-Hittite layers; they matter for parallels.
+  non-Hittite layers; they matter for parallels. **Until 2026-07-25,
+  nothing in the pipeline checked line language at all** — every
+  anchor index, vocabulary build, and witness match treated every line
+  as if it were Hittite (~10.5% of corpus word-rows are non-Hittite-
+  tagged). `specs/LINE_LANG_MIGRATION.md` is now ratified and
+  implemented: `migrations/line_lang_v1/line_lang_canonical.parquet`
+  (regenerate via `scripts/line_lang_rebuild.py`) is the ratified
+  per-line canonical language field (7-code vocabulary, `Hattian`
+  mapped to `Hat`, a few dozen quarantined `unrecognized`/`malformed`
+  rows — never guessed at). `lib/line_lang_lookup.py` is the shared
+  reader; it is wired into `hittite_tokenizer.py` and
+  `p2e_witness_recoverability.render_fragments` (hence every P2-E
+  script and the real-gap pipeline) as a default Hittite-only filter
+  on anchor-index/witness-matching construction. The tokenizer's own
+  **vocabulary** was deliberately NOT rebuilt under this filter —
+  doing so broke the pretrained `runs/pretrain_base/checkpoint.pt`
+  (vocab-size mismatch); retraining is a multi-hour job left for a
+  dedicated future session, tracked in `specs/LINE_LANG_MIGRATION.md`.
+  Known remaining gap: the real-gap pipeline's QUERY side (which line
+  a candidate gap sits on) is not yet language-filtered — lower
+  severity since it fails safe (a non-Hittite gap queried against a
+  Hittite-only witness index simply finds no coverage), but real_gap
+  gap counts are not yet language-stratified.
 - Known caveat (per the TLHdig team): philological quality is uneven —
   it is a living community archive, not a critical edition. Quality
   filtering must be explicit and reported, never silent.

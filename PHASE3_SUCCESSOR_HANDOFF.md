@@ -45,6 +45,25 @@ step 3's P2-E4 reuse (item 2 below). Both are detailed in their own
 subsections further down and are fully committed — no outstanding
 uncommitted state.
 
+**Update (2026-07-25, third continuation — multilingual-layer
+contamination fix):** Ixca asked whether the project accounted for the
+corpus's multilingual layers (Akkadian, Sumerian, Hattic, Luwian, Palaic,
+Hurrian alongside Hittite). Investigation found it did not, in
+implementation, despite CLAUDE.md naming the layers explicitly since
+Phase 1: the per-line `lg` signal was captured in P2's `corpus.parquet`
+but never propagated into P4's `decomposed_corpus.parquet`, so the
+tokenizer, every P2-E script, and the real-gap pipeline (including this
+same session's own multi-sign calibration) treated every line as Hittite
+regardless of actual language. This was ratified, fixed, and integrated
+end-to-end this session — see its own major section below,
+"Multilingual-layer contamination fix," for the full account. Short
+version: a new ratified `line_lang_canonical` field now exists and is
+wired into the shared anchor-index construction every P2-E/real-gap
+script uses; every affected script was rerun and its frozen numbers
+updated; the one piece NOT changed is the tokenizer's own vocabulary
+(reverted after it broke the pretrained P4 checkpoint — retraining is a
+multi-hour job, deliberately deferred).
+
 ## Why this phase happened
 
 Phase 2's handoff named the expert UI as the next product task and assumed
@@ -220,6 +239,116 @@ not yet started.
      usable rate for their group.
    - Full detail in `Phase3/real_gaps_out/real_gap_multisign_calibration_report.md`.
 
+## Multilingual-layer contamination fix (2026-07-25, third continuation)
+
+Prompted by Ixca asking directly whether the project accounted for the
+corpus's known multilingual layers. It did not, in implementation, though
+CLAUDE.md had named the layers ("Hittite, Akkadian, Sumerian, Hattic,
+Cuneiform Luwian, Palaic, Hurrian... do not silently discard non-Hittite
+layers") since Phase 1.
+
+### What was found
+
+- The per-line `lg` XML attribute is captured in P2's `corpus.parquet`
+  (`line_lang` column) but was never propagated into P4's
+  `decomposed_corpus.parquet` — the token-level cache every downstream
+  script reads. `hittite_tokenizer.py`'s vocab builder, every P2-E
+  script, and every `real_gap_*.py` script (including this same
+  session's own multi-sign calibration) treated every line as Hittite
+  regardless of actual language.
+- ~10.5% of corpus word-rows are non-Hittite-tagged (Akkadian, Hurrian,
+  Hattic, Luwian, Sumerian, Palaic).
+- A drafted-but-unratified spec already existed for exactly this problem
+  (`specs/LINE_LANG_MIGRATION.md`), flagging that the raw `line_lang`
+  values have real data-quality defects (a small number of malformed
+  entries with leftover XML fragments) — never carried out.
+
+### What was done (all steps of `specs/LINE_LANG_MIGRATION.md`, now
+marked RATIFIED AND IMPLEMENTED in that spec)
+
+1. **Step A audit** (`scripts/line_lang_audit.py`,
+   `migrations/line_lang_v1/audit_report.md`) — independently re-walked
+   the raw XML (bypassing the frozen `02_parse.py` entirely), restricted
+   to train/dev/discovery (test-side `line_lang` values were never read,
+   not merely excluded from the report). Found one confirmed
+   parser-side defect (`KBo 53.44`, all 8 lines tagged `Hur` in source
+   but recorded `Hit` in `corpus.parquet`) and one confirmed source-XML
+   defect (`KUB 43.50+`, a malformed `lg` value verified present
+   verbatim in the parsed attribute dictionary — an initial plain-text
+   grep had wrongly suggested otherwise; the correction is recorded
+   in-report, not silently dropped).
+2. **Step B ratification** (Ixca, 2026-07-25): 7-code canonical
+   vocabulary (`Hit, Akk, Sum, Hat, Hur, Luw, Pal`), `Hattian -> Hat`
+   mapped as the same language under two spellings, `Lu`/`5f_`/`ign`
+   quarantined as `unrecognized` pending further review rather than
+   guessed at.
+3. **Step C rebuild** (`scripts/line_lang_rebuild.py`) — applied the
+   ratified rule mechanically to every document, all splits (test
+   included, but never printed/sampled/ranked), writing
+   `migrations/line_lang_v1/line_lang_canonical.parquet` (regenerable,
+   gitignored like every other `.parquet` in this repo).
+4. **Step D verification** — all 10 acceptance checks from the spec
+   passed (`migrations/line_lang_v1/verification_report.md`), including
+   a determinism check (two clean runs, byte-identical logical tables).
+5. **Propagation**: `lib/line_lang_lookup.py` is the new shared reader
+   (fails toward EXCLUSION — an unconfirmed line's language is treated
+   as non-Hittite, never guessed in). Wired into:
+   - `hittite_tokenizer.py`'s `build_structured_sequence`/
+     `_attested`/`build_vocab` (optional `line_lang_lookup` param; a
+     non-Hittite line's `<LINE>` position slot is preserved, only its
+     token CONTENT is excluded — no downstream position-numbering code
+     needed to change).
+   - `p2e_witness_recoverability.render_fragments` (same convention),
+     now the single shared choke point for anchor-index construction —
+     wired into all 8 call sites (7 external callers plus its own
+     `main()`, which was missed on the first pass and caught because
+     its rerun showed suspiciously byte-identical numbers).
+6. **Tokenizer vocab: rebuilt, then reverted.**
+   `scripts/rebuild_tokenizer_hittite_only.py` regenerated
+   `configs/tokenizer.json` under the Hittite-only filter (vocab
+   2,374 → 1,957) — the first regeneration since Phase 1 closeout
+   (confirmed via grep: nothing in the live tree called `build_vocab()`
+   before this). This broke the mandatory base-tracer gate
+   (`scripts/00_tracers.py`) because `runs/pretrain_base/checkpoint.pt`
+   — a real, completed 60,000-step P4 pretraining run — has an
+   embedding matrix sized to the old vocab. Retraining is a multi-hour
+   job. Per Ixca's explicit call, **`configs/tokenizer.json` was
+   reverted to the original Phase 1 vocab**; the rebuild script and its
+   report (`configs/tokenizer_report_line_lang_v1.md`) are kept as
+   ready-to-use infrastructure for whenever retraining is scheduled.
+7. **Reran everything downstream of the anchor-index filter**: all of
+   P2-E2 through P2-E7, all four `real_gap_*.py` scripts, and the demo
+   export. Every rerun verified against `git diff` (all these outputs
+   are git-tracked) and committed with its before/after numbers in the
+   commit message. Notable movement: P2-E4's rank-1 calibrated agreement
+   89.97% → 88.79%; P2-E6's maximum displayed-set size at 5 signs
+   shrank from 237 to 85 options (non-Hittite content had been inflating
+   candidate-set noise); the real-gap calibration scripts'
+   calibration-covered CTH count moved 42 → 39 documents as the P2-E4/
+   P2-E6 fold composition shifted; the demo now shows 19 distinct
+   tablets (was 18).
+
+### What is explicitly still open
+
+- **The real-gap pipeline's QUERY side is not language-filtered.** Which
+  line a candidate real gap sits on is still not checked against
+  `line_lang_canonical` before the gap is counted/queried. Lower
+  severity than the (now-fixed) witness/proposal side — querying a
+  Hittite-only anchor index with a non-Hittite anchor key fails safe (no
+  coverage, abstain) rather than returning a wrong answer — but
+  `real_gap_census.py`'s gap counts are not yet language-stratified.
+  Flagged, not silently expanded into.
+- **The tokenizer vocabulary is still the Phase 1, language-blind one.**
+  Rebuilding it Hittite-only requires first retraining
+  `runs/pretrain_base/checkpoint.pt` (multi-hour job) or accepting a
+  vocab/checkpoint mismatch — a dedicated future session's decision, not
+  made here.
+- **Evidence-class reclassification of `line_lang_canonical`** (currently
+  tentatively `OBSERVED_DOCUMENT_STRUCTURE`, per
+  `configs/evidence_registry.yaml`) was explicitly left open by the
+  migration spec's own "Deferred decisions" and not resolved this
+  session.
+
 ## What the successor must not do
 
 Everything already listed in `PHASE2_SUCCESSOR_HANDOFF.md`'s equivalent
@@ -257,11 +386,28 @@ promotion). In addition, specific to this phase:
   explicitly deferred by Ixca until after a mentor is in hand ("the draft
   paper will happen just before i meet them... the workshop will wait for
   mentor sign-off").
+- Do not re-derive `line_lang_canonical` from `Phase1_pipeline/p2_out/
+  corpus.parquet`'s own `line_lang` column anywhere. That column is the
+  unratified, data-quality-flagged source; `lib/line_lang_lookup.py`
+  reading `migrations/line_lang_v1/line_lang_canonical.parquet` is the
+  single ratified source of truth.
+- Do not assume `configs/tokenizer.json` is language-filtered. It is
+  still the original Phase 1 vocab (reverted after breaking the
+  pretrained checkpoint) — only the anchor-index/witness-matching layer
+  is Hittite-only-filtered. Don't conflate the two when reasoning about
+  why a token is or isn't in-vocab.
+- Do not rebuild the tokenizer vocab Hittite-only again without either
+  retraining `runs/pretrain_base/checkpoint.pt` first or explicitly
+  accepting/documenting the resulting checkpoint mismatch — this was
+  tried this session and reverted for exactly that reason.
+- Do not treat real_gap_census.py's gap counts as language-stratified —
+  the query side (which line a gap sits on) still isn't checked against
+  `line_lang_canonical`, per the "explicitly still open" list above.
 
 ## Commit history for this phase
 
-Everything above is committed as six logical commits on `master`, in this
-order (oldest first):
+Everything above is committed as sixteen logical commits on `master`, in
+this order (oldest first):
 
 | commit | summary |
 |---|---|
@@ -269,13 +415,23 @@ order (oldest first):
 | `7f32dbf` | Track `word_index_in_line` in the decomposed corpus cache (the alignment infrastructure both the demo export and the real-gaps pipeline depend on) |
 | `dae199c` | Add training/calibration playground demo (library + workspace) |
 | `f3bc201` | Build real-gaps production pipeline (census, witness check, calibration) |
+| `bf123cf` | Add Phase 3 successor handoff (this document's first version) |
 | `946cc64` | Move Phase 3 output folders under Phase3/, generalize anchor-key builder |
 | `0faf03a` | Add multi-sign real-gap calibration (P2-E6 analogue) |
+| `3b9f9f2` | Update Phase 3 handoff for Phase3/ folder move + multi-sign calibration |
+| `7afdeb3` | Add line_lang migration Step A non-test audit (read-only) |
+| `35b3eb2` | Ratify and rebuild line_lang canonical field (migration Steps C/D) |
+| `905c320` | Add line_lang_lookup module; rebuild tokenizer vocab Hittite-only |
+| `aecdddb` | Revert tokenizer vocab; fix missed render_fragments call site |
+| `47c9d44` | Filter render_fragments (shared anchor-index construction) to Hittite-only |
+| `6c017ea` | Rerun P2-E2 through P2-E7 under the Hittite-only anchor-index filter |
+| `9d3a7de` | Rerun real_gap_witness_check/calibration/multisign_calibration |
+| `f796318` | Refresh demo export against the rebuilt P2-E4/P2-E6 packets |
 
-This handoff document itself is committed separately, after the six above,
-so its "what was completed" section describes an already-committed state.
-Nothing from this phase or the prior reorganization session is outstanding
-in the working tree as of this commit.
+This handoff document's own update commit follows the above, so its
+"what was completed" sections describe an already-committed state.
+Nothing from this phase is outstanding in the working tree as of this
+commit.
 
 ## Recommended order of work
 
@@ -298,9 +454,21 @@ in the working tree as of this commit.
    original ask, explicitly not yet implemented). With both same-line
    calibration passes (single- and multi-sign) now in hand, this is the
    most natural next substantial step.
-5. Only after the above: revisit whether the chip/fragment/tablet
+5. **Language-filter the real-gap query side**: extend
+   `real_gap_census.py`/`real_gap_witness_check.py` to check a gap's own
+   line against `line_lang_canonical` before counting/querying it — the
+   "explicitly still open" gap from this session's multilingual-layer
+   fix. Lower urgency than items 3-4 (fails safe today) but should not
+   be left indefinitely.
+6. **Retrain `runs/pretrain_base/checkpoint.pt` under the Hittite-only
+   vocab**, then rerun `scripts/rebuild_tokenizer_hittite_only.py` for
+   real this time — a multi-hour job, deliberately deferred this
+   session. Until this happens, `configs/tokenizer.json` remains the
+   original Phase 1, language-blind vocab (only the anchor-index/
+   witness-matching layer is currently Hittite-only-filtered).
+7. Only after the above: revisit whether the chip/fragment/tablet
    content-to-location capability is worth scoping as its own initiative.
-6. Draft paper and ALP workshop submission remain deferred, per Ixca's
+8. Draft paper and ALP workshop submission remain deferred, per Ixca's
    explicit instruction, until a mentor relationship exists.
 
 ## Verification and operating notes
@@ -313,13 +481,20 @@ Run from the repository root:
 .\.venv\Scripts\ruff.exe check lib scripts tests demo
 ```
 
-At this handoff: 88 repository tests pass. The four `real_gap_*.py`
-scripts, the `prepare_scope()` refactor, and the
+At this handoff: 88 repository tests pass (unchanged by the multilingual-
+layer fix — no new unit tests were added; `scripts/line_lang_audit.py`/
+`line_lang_rebuild.py` were verified manually, including a two-clean-runs
+determinism check, matching the existing convention for `real_gap_*.py`).
+The four `real_gap_*.py` scripts, the `prepare_scope()` refactor, and the
 `compute_anchor_key_crossline` parameterization were all re-run end-to-end
 after every change; step 2's own default-scope numbers (25,559 gaps, 867
 documents) were re-verified unchanged after both refactors, confirming
-each is behavior-preserving for its original caller. `ruff check` on
-`lib scripts tests demo` is clean.
+each is behavior-preserving for its original caller. Every P2-E script and
+every `real_gap_*.py` script was subsequently rerun again under the
+language filter (see the "Multilingual-layer contamination fix" section
+above for the full before/after numbers) — `git diff` against each
+git-tracked output/report is the audit trail, not a separate snapshot.
+`ruff check` on `lib scripts tests demo` is clean throughout.
 
 The demo (`demo/taksan_missing_text_prototype.html`) has no automated test
 suite of its own; all verification so far is manual headless-Chrome
@@ -342,6 +517,11 @@ putting it in front of one.
    off to the next).
 5. `specs/EXPERT_DECISION_CONTRACT.md` (still the governing contract for
    any packet either track produces).
+6. `specs/LINE_LANG_MIGRATION.md` (now RATIFIED AND IMPLEMENTED) →
+   `migrations/line_lang_v1/audit_report.md` →
+   `migrations/line_lang_v1/rebuild_report.md` →
+   `migrations/line_lang_v1/verification_report.md`, in that order, for
+   the multilingual-layer contamination fix's full account.
 
 The standing interpretation is unchanged from Phase 2: provide inspectable
 possibilities to an expert where encoded evidence is informative, preserve
