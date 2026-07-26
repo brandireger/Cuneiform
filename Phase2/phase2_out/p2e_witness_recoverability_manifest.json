@@ -22,15 +22,15 @@
   "editorial_content_fraction": 0.25,
   "restored_content_fraction": 0.0,
   "model_derived_content_fraction": 0.0,
-  "dataset_manifest_hash": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+  "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
   "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
   "config_hash": "d0dd6b71872eaad153aa57743daddaf0e87ab6e1944c9fb4cfa827158b12e7a2",
-  "git_commit": "ad6563deeee52c9f6e887b386e56d0c7cf788ea2",
-  "git_dirty": false,
+  "git_commit": "47c9d44c42740990b30a1ffa07ad726875b7eb6b",
+  "git_dirty": true,
   "corpus_version": "TLHdig 0.2.0-beta",
   "seed": 20260723,
   "declared_statistics_universe": "frozen unambiguous real-composition dev fragments only; same-CTH independent witness candidates; no fitted corpus statistics; known dev joins used only for a secondary coverage diagnostic",
-  "created_utc": "2026-07-23T13:43:09.825103+00:00",
+  "created_utc": "2026-07-26T03:27:58.899481+00:00",
   "probe_label": "PROBE — not for citation",
   "control_fields_observed": [
     "fragment_id",
@@ -50,9 +50,9 @@
   "exact_attested_sequence_matching_performed": true,
   "input_hashes": {
     "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
-    "decomposed_corpus_parquet": "1a7a5ceb1b1b10209af2e0e02cf64271ce8f9bb0b0978ad1196cfd0ee9990c2d",
+    "decomposed_corpus_parquet": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
     "join_pairs_jsonl": "52766f284dd61ee544b9db69fcd71df9f088d0124503c856b48a1418738f1180",
     "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-    "tokenizer_json": "d140a4dd2c7ae04185510a2f28bf11d546cb010bf64b148337b4728c88569bd1"
+    "tokenizer_json": "09d3cab0d4e53e7b2683c26ce2f77dd074412a6a544b47744613b45a1379dc84"
   }
 }

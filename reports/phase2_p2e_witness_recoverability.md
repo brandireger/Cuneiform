@@ -13,10 +13,10 @@ Only frozen **dev** content was read. Restored readings and unreadable `x` place
 
 ## Primary result (2-sign anchors, 1 hidden sign)
 
-- 88,929 spans were maskable; 85,587 had a structurally available independent witness (96.24%).
-- Attested witness evidence existed for 21,069 eligible spans (24.62%). The system abstained on 64,518 (75.38%).
-- The hidden attested sign appeared among witness proposals for 16,597 eligible spans (19.39%). 4,472 supported spans supplied only a different/omitted middle; 5,179 supported spans had multiple witness alternatives.
-- Composition-macro view (42 eligible CTHs): mean/median support 13.68%/10.92%; mean/median exact agreement 11.29%/9.54%. This guards against large compositions dominating the micro-average.
+- 70,867 spans were maskable; 68,773 had a structurally available independent witness (97.05%).
+- Attested witness evidence existed for 17,390 eligible spans (25.29%). The system abstained on 51,383 (74.71%).
+- The hidden attested sign appeared among witness proposals for 14,119 eligible spans (20.53%). 3,271 supported spans supplied only a different/omitted middle; 3,799 supported spans had multiple witness alternatives.
+- Composition-macro view (39 eligible CTHs): mean/median support 13.58%/10.01%; mean/median exact agreement 11.24%/6.99%. This guards against large compositions dominating the micro-average.
 
 These are **recoverability and agreement** rates, not accuracy on genuinely lost text. A parallel constrains plausible context but does not prove that two witnesses had identical wording.
 
@@ -24,18 +24,18 @@ These are **recoverability and agreement** rates, not accuracy on genuinely lost
 
 | anchors/mask | eligible | supported | exact among eligible | variant-only | ambiguous | abstention |
 |---|---:|---:|---:|---:|---:|---:|
-| a1_m1 | 116,426 | 85,762 (73.66%) | 53,411 (45.88%) | 32,351 | 67,554 | 26.34% |
-| a1_m2 | 100,265 | 70,933 (70.75%) | 29,341 (29.26%) | 41,592 | 56,751 | 29.25% |
-| a1_m3 | 85,587 | 58,745 (68.64%) | 16,597 (19.39%) | 42,148 | 47,476 | 31.36% |
-| a1_m5 | 60,887 | 39,988 (65.68%) | 5,383 (8.84%) | 34,605 | 32,328 | 34.32% |
-| a2_m1 | 85,587 | 21,069 (24.62%) | 16,597 (19.39%) | 4,472 | 5,179 | 75.38% |
-| a2_m2 | 72,494 | 14,684 (20.26%) | 9,469 (13.06%) | 5,215 | 4,401 | 79.74% |
-| a2_m3 | 60,887 | 10,465 (17.19%) | 5,383 (8.84%) | 5,082 | 3,298 | 82.81% |
-| a2_m5 | 42,033 | 5,566 (13.24%) | 1,716 (4.08%) | 3,850 | 1,854 | 86.76% |
-| a3_m1 | 60,887 | 6,279 (10.31%) | 5,383 (8.84%) | 896 | 636 | 89.69% |
-| a3_m2 | 50,740 | 4,111 (8.1%) | 3,056 (6.02%) | 1,055 | 519 | 91.9% |
-| a3_m3 | 42,033 | 2,752 (6.55%) | 1,716 (4.08%) | 1,036 | 399 | 93.45% |
-| a3_m5 | 28,120 | 1,269 (4.51%) | 555 (1.97%) | 714 | 185 | 95.49% |
+| a1_m1 | 94,582 | 68,156 (72.06%) | 44,219 (46.75%) | 23,937 | 51,440 | 27.94% |
+| a1_m2 | 81,045 | 55,424 (68.39%) | 24,894 (30.72%) | 30,530 | 42,522 | 31.61% |
+| a1_m3 | 68,773 | 45,237 (65.78%) | 14,119 (20.53%) | 31,118 | 35,029 | 34.22% |
+| a1_m5 | 48,131 | 29,681 (61.67%) | 4,558 (9.47%) | 25,123 | 22,796 | 38.33% |
+| a2_m1 | 68,773 | 17,390 (25.29%) | 14,119 (20.53%) | 3,271 | 3,799 | 74.71% |
+| a2_m2 | 57,815 | 11,906 (20.59%) | 8,059 (13.94%) | 3,847 | 3,156 | 79.41% |
+| a2_m3 | 48,131 | 8,247 (17.13%) | 4,558 (9.47%) | 3,689 | 2,325 | 82.87% |
+| a2_m5 | 32,494 | 4,165 (12.82%) | 1,461 (4.5%) | 2,704 | 1,191 | 87.18% |
+| a3_m1 | 48,131 | 5,266 (10.94%) | 4,558 (9.47%) | 708 | 467 | 89.06% |
+| a3_m2 | 39,697 | 3,395 (8.55%) | 2,580 (6.5%) | 815 | 377 | 91.45% |
+| a3_m3 | 32,494 | 2,253 (6.93%) | 1,461 (4.5%) | 792 | 278 | 93.07% |
+| a3_m5 | 21,132 | 1,022 (4.84%) | 483 (2.29%) | 539 | 116 | 95.16% |
 
 ## Known-join diagnostic: third-witness textual coverage
 
@@ -43,10 +43,10 @@ These are **recoverability and agreement** rates, not accuracy on genuinely lost
 
 | shared n-gram length | covered pairs | percent of all dev pairs |
 |---:|---:|---:|
-| 1 | 182 | 100.0% |
-| 2 | 182 | 100.0% |
-| 3 | 181 | 99.45% |
-| 5 | 130 | 71.43% |
+| 1 | 177 | 97.25% |
+| 2 | 177 | 97.25% |
+| 3 | 176 | 96.7% |
+| 5 | 128 | 70.33% |
 
 This is a textual-evidence ceiling only. It says nothing about clay fit, edge geometry, or whether A and B are adjacent.
 
@@ -59,7 +59,7 @@ Use the horizon matrix as Phase 2's first recoverability map. Any next reconstru
 - Evidence profile: `catalog_assisted`.
 - Semantic fields: `token`, `damage_state`, `line_index_in_doc`, `cth`; no `cu`, morphology, restorations, editor identity, or model output.
 - Test-side content accessed: **no**.
-- Seed: 20260723; elapsed: 23.5s.
-- Machine-readable result: `Phase2/phase2_out\p2e_witness_recoverability.json`; manifest: `Phase2/phase2_out\p2e_witness_recoverability_manifest.json`.
+- Seed: 20260723; elapsed: 21.2s.
+- Machine-readable result: `Phase2\phase2_out\p2e_witness_recoverability.json`; manifest: `Phase2\phase2_out\p2e_witness_recoverability_manifest.json`.
 
 Corpus: TLHdig Beta 0.2.0, Müller, Prechel, Rieken & Schwemer (2025), DOI 10.5281/zenodo.15459134, CC BY 4.0.

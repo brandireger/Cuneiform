@@ -38,7 +38,7 @@ import contracts
 import eval_harness as eh
 import evidence_policy as ep
 import hittite_tokenizer as ht
-from line_lang_lookup import is_hittite_line
+from line_lang_lookup import is_hittite_line, load_line_lang_lookup
 from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 
 
@@ -799,7 +799,8 @@ def main():
     base_tracers = run_base_tracers()
     splits, split_lookup, ambiguous_ids, edges, decomposed = load_dev_inputs()
     line_index = build_line_index(decomposed)
-    line_sequences, canonical_flat = render_fragments(edges, line_index)
+    line_sequences, canonical_flat = render_fragments(
+        edges, line_index, line_lang_lookup=load_line_lang_lookup())
 
     tokenizer = ht.Tokenizer.load()
     encoded = tokenizer.encode(canonical_flat, strict=True)
