@@ -26,11 +26,16 @@
     language-blind vocab; only the anchor-index/witness-matching layer
     is Hittite-only-filtered. See git log 2026-07-25 for the full
     sequence and every rerun's before/after numbers.
+  - **Phase 4 successor scope:** this migration governs `lb@lg` only.
+    The Phase 1 inventory also records 10,846 `w@lg` attributes, so v1
+    is not an effective word-aware language layer. Do not extend v1 in
+    place or proceed directly to the deferred Hittite-only retraining.
+    `PHASE4_CHARTER.md` and `specs/LANGUAGE_LAYERS_V2.md` now govern the
+    document/line/word audit, v2 dataset, and retraining gates.
 - **Scope:** derived-data repair only; no model, probe, or research result
 - **Affected field:** `Phase1_pipeline/p2_out/corpus.parquet::line_lang`
-- **Evidence class:** tentatively `OBSERVED_DOCUMENT_STRUCTURE` (the
-  vocabulary/mapping ratification above does not itself resolve this
-  classification question -- still open, see "Deferred decisions")
+- **Evidence class:** `EDITORIAL_TRANSCRIPTION` (resolved by Phase 4 Gate 0
+  on 2026-07-25; language labels are editorial philological assignments)
 
 ## Decision requested
 
@@ -202,8 +207,9 @@ historical data.
 ## Deferred decisions
 
 - The authoritative language-code vocabulary.
-- Whether `line_lang_canonical` remains
-  `OBSERVED_DOCUMENT_STRUCTURE` or is reclassified after expert review.
+- ~~Whether `line_lang_canonical` remains
+  `OBSERVED_DOCUMENT_STRUCTURE` or is reclassified after expert review.~~
+  Resolved by Phase 4 Gate 0 as `EDITORIAL_TRANSCRIPTION`.
 - Whether the source defect warrants a new active parser implementation.
 - Whether any downstream language-stratified result should be rerun. No such
   reported result is currently known.

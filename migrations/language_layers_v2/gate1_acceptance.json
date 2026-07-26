@@ -1,0 +1,31 @@
+{
+  "gate": "Phase 4 Gate 1",
+  "status": "PASS",
+  "contract": "configs\\language_layers_v2.json",
+  "output": "migrations\\language_layers_v2\\language_spans.parquet",
+  "checks": {
+    "one_document_record_per_parsed_document": true,
+    "source_to_output_level_counts_exact": true,
+    "output_keys_unique": true,
+    "all_source_statuses_allowed": true,
+    "valid_rows_use_only_canonical_codes": true,
+    "nonvalid_rows_have_null_canonical": true,
+    "word_rows_are_explicit_attributes": true,
+    "effective_rows_are_word_rows": true,
+    "unresolved_effective_rows_have_null_canonical": true,
+    "resolved_effective_rows_have_canonical_language": true,
+    "protected_test_payloads_read_zero": true,
+    "frozen_artifact_hashes_unchanged": true,
+    "two_builds_and_persisted_table_logically_identical": true,
+    "evidence_policy_manifest_completed": true,
+    "parse_errors_fully_accounted": true,
+    "non_primary_language_attributes_quarantined": true,
+    "gate0_word_language_census_reconciled": true
+  },
+  "authorization_after_gate": {
+    "gate_2_token_dataset_implementation": true,
+    "protected_test_access": false,
+    "training_dataset_export": false,
+    "gpu_training": false
+  }
+}

@@ -3,6 +3,12 @@
 Prepared 2026-07-25 for the next maintainer of the Cuneiform/Takšan project,
 continuing directly from `PHASE2_SUCCESSOR_HANDOFF.md`.
 
+**Successor Gate 2 note (2026-07-25):** `PHASE4_CHARTER.md` governs the next
+phase after a word-level language review showed that the line-only
+containment fix below is not the final multilingual design. Gate 2 has passed
+and authorizes language-aware API and workbench implementation. Test access
+and GPU training remain unauthorized.
+
 ## Executive status
 
 Phase 2 closed with a mandate: "build a small expert UI prototype against
@@ -343,11 +349,10 @@ marked RATIFIED AND IMPLEMENTED in that spec)
   `runs/pretrain_base/checkpoint.pt` (multi-hour job) or accepting a
   vocab/checkpoint mismatch — a dedicated future session's decision, not
   made here.
-- **Evidence-class reclassification of `line_lang_canonical`** (currently
-  tentatively `OBSERVED_DOCUMENT_STRUCTURE`, per
-  `configs/evidence_registry.yaml`) was explicitly left open by the
-  migration spec's own "Deferred decisions" and not resolved this
-  session.
+- **Evidence-class reclassification of `line_lang_canonical`** was resolved
+  by Phase 4 Gate 0 as `EDITORIAL_TRANSCRIPTION`, consistent with the official
+  HPM language-marking semantics. See `configs/evidence_registry.yaml` and
+  `reports/phase4_gate0_ratification.md`.
 
 ## What the successor must not do
 

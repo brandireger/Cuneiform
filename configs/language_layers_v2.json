@@ -1,0 +1,94 @@
+{
+  "contract_version": "2.0.0",
+  "status": "GATE0_RATIFIED",
+  "gate_1_status": "PASSED",
+  "gate_1_accepted_date": "2026-07-25",
+  "gate_1_acceptance_record": "migrations/language_layers_v2/gate1_acceptance.json",
+  "gate_2_status": "PASSED",
+  "gate_2_accepted_date": "2026-07-25",
+  "gate_2_acceptance_record": "Phase4/phase4_out/gate2_acceptance.json",
+  "gate_2_logical_table_sha256": "35914a01ff03863f76ee0a56352d2d870881dc581c1253430a2eda102e9bfb6a",
+  "ratified_date": "2026-07-25",
+  "ratified_by": "Ixca",
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "evidence_policy": "transcription_assisted",
+  "language_evidence_class": "EDITORIAL_TRANSCRIPTION",
+  "canonical_codes": [
+    "Hit",
+    "Akk",
+    "Sum",
+    "Hat",
+    "Hur",
+    "Luw",
+    "Pal"
+  ],
+  "canonical_mappings": {
+    "Hattian": "Hat"
+  },
+  "effective_rule": {
+    "rule_id": "word_override_else_line_v2",
+    "valid_explicit_word_tag": {
+      "action": "USE_WORD",
+      "effective_source": "WORD_EXPLICIT",
+      "effective_status": "RESOLVED"
+    },
+    "absent_word_tag": {
+      "action": "INHERIT_VALID_LINE",
+      "effective_source": "LINE_INHERITED",
+      "effective_status": "RESOLVED",
+      "otherwise_effective_source": "UNRESOLVED",
+      "otherwise_effective_status": "UNRESOLVED_LINE_LANGUAGE"
+    },
+    "explicit_empty_word_tag": {
+      "action": "PRESERVE_ANOMALY_THEN_INHERIT_VALID_LINE",
+      "effective_source": "LINE_INHERITED_AFTER_EMPTY_WORD_TAG",
+      "effective_status": "RESOLVED_WITH_SOURCE_ANOMALY",
+      "otherwise_effective_source": "UNRESOLVED",
+      "otherwise_effective_status": "UNRESOLVED_LINE_LANGUAGE",
+      "workbench_category": "EMPTY_LANGUAGE_TAG"
+    },
+    "malformed_or_unrecognized_word_tag": {
+      "action": "UNRESOLVED_NO_FALLBACK",
+      "effective_source": "UNRESOLVED",
+      "effective_status": "UNRESOLVED_EXPLICIT_WORD_TAG",
+      "workbench_category_by_status": {
+        "malformed": "MALFORMED_LANGUAGE_TAG",
+        "unrecognized": "UNRECOGNIZED_LANGUAGE_TAG"
+      }
+    },
+    "invalid_or_missing_line_tag": {
+      "action": "UNRESOLVED_NO_DOCUMENT_FALLBACK",
+      "effective_source": "UNRESOLVED",
+      "effective_status": "UNRESOLVED_LINE_LANGUAGE"
+    },
+    "document_language_fallback": {
+      "action": "PROHIBITED"
+    },
+    "non_word_structural_tokens": {
+      "action": "INHERIT_LINE_FOR_LAYOUT_ONLY",
+      "exclude_from_lexical_language_statistics": true
+    }
+  },
+  "language_scopes": [
+    "HITTITE_ONLY",
+    "SAME_LANGUAGE_AS_QUERY",
+    "MULTILINGUAL_CONDITIONED",
+    "CROSS_LANGUAGE_PARALLEL",
+    "ALL_LANGUAGES_UNCONDITIONED"
+  ],
+  "paths": {
+    "migration_root": "migrations/language_layers_v2",
+    "language_spans": "migrations/language_layers_v2/language_spans.parquet",
+    "token_dataset": "Phase4/phase4_out/multilingual_tokens_v2.parquet",
+    "workbench_root": "Phase4/phase4_out"
+  },
+  "authorization": {
+    "gate_1_migration_implementation": true,
+    "gate_2_token_dataset_implementation": true,
+    "language_aware_api_and_workbench_implementation": true,
+    "test_access": false,
+    "gpu_training": false,
+    "training_dataset_export": false
+  },
+  "primary_semantics_source": "https://www.hethport.uni-wuerzburg.de/HPM/hpm.php?p=hpmguide"
+}

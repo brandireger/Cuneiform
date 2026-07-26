@@ -1,0 +1,471 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://taksan.local/schemas/unresolved-evidence-contract-1.0.0.json",
+  "title": "Takšan unresolved evidence workbench contract",
+  "description": "Interchange schema for unresolved occurrences, model-derived cluster proposals, and append-only expert annotation events.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/occurrence"
+    },
+    {
+      "$ref": "#/$defs/cluster_proposal"
+    },
+    {
+      "$ref": "#/$defs/annotation_event"
+    }
+  ],
+  "$defs": {
+    "language_assignment": {
+      "type": "object",
+      "required": [
+        "document",
+        "line",
+        "word",
+        "effective",
+        "effective_status",
+        "effective_source"
+      ],
+      "properties": {
+        "document": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "line": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "word": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effective": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effective_status": {
+          "enum": [
+            "RESOLVED",
+            "RESOLVED_WITH_SOURCE_ANOMALY",
+            "MISSING",
+            "EXPLICIT_EMPTY",
+            "MALFORMED",
+            "UNRECOGNIZED",
+            "UNRESOLVED_EXPLICIT_WORD_TAG",
+            "UNRESOLVED_LINE_LANGUAGE"
+          ]
+        },
+        "effective_source": {
+          "enum": [
+            "WORD_EXPLICIT",
+            "LINE_INHERITED",
+            "LINE_INHERITED_AFTER_EMPTY_WORD_TAG",
+            "UNRESOLVED"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_location": {
+      "type": "object",
+      "required": [
+        "doc_id",
+        "fragment_id",
+        "line_index_in_doc",
+        "word_index_in_line",
+        "token_start",
+        "token_end",
+        "main_split",
+        "source_archive_member",
+        "source_payload_sha256"
+      ],
+      "properties": {
+        "doc_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fragment_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "line_index_in_doc": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "word_index_in_line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "token_start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "token_end": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "main_split": {
+          "enum": [
+            "train",
+            "dev",
+            "discovery"
+          ]
+        },
+        "source_archive_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_payload_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "corpus_version",
+        "split_manifest_hash",
+        "language_layer_hash",
+        "config_hash",
+        "git_commit",
+        "seed",
+        "evidence_policy",
+        "created_utc"
+      ],
+      "properties": {
+        "corpus_version": {
+          "const": "TLHdig_0.2.0-beta"
+        },
+        "split_manifest_hash": {
+          "type": "string"
+        },
+        "language_layer_hash": {
+          "type": "string"
+        },
+        "config_hash": {
+          "type": "string"
+        },
+        "git_commit": {
+          "type": "string"
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "evidence_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_utc": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "occurrence": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "contract_version",
+        "occurrence_id",
+        "categories",
+        "status",
+        "location",
+        "language",
+        "display",
+        "context",
+        "evidence_classes",
+        "assistance_layers",
+        "provenance",
+        "ground_truth_status"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "unresolved_occurrence"
+        },
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "occurrence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "ILLEGIBLE_SIGN",
+              "PARTIALLY_PRESERVED_READING",
+              "UNCERTAIN_TRANSCRIPTION",
+              "LEXICAL_UNKNOWN",
+              "TOKENIZER_OOV",
+              "UNRECOGNIZED_LANGUAGE_TAG",
+              "EMPTY_LANGUAGE_TAG",
+              "MALFORMED_LANGUAGE_TAG",
+              "SYMBOL_OR_ENCODING_ANOMALY",
+              "PARSER_ANOMALY"
+            ]
+          }
+        },
+        "status": {
+          "enum": [
+            "UNREVIEWED",
+            "GROUPED",
+            "HYPOTHESIS",
+            "EXPERT_SUPPORTED",
+            "REJECTED",
+            "WITHHELD"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/source_location"
+        },
+        "language": {
+          "$ref": "#/$defs/language_assignment"
+        },
+        "display": {
+          "type": "object"
+        },
+        "context": {
+          "type": "object"
+        },
+        "evidence_classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assistance_layers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "ground_truth_status": {
+          "const": "NOT_CORPUS_TRUTH"
+        }
+      },
+      "additionalProperties": false
+    },
+    "cluster_proposal": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "contract_version",
+        "cluster_id",
+        "member_occurrence_ids",
+        "status",
+        "method",
+        "language_scope",
+        "supporting_evidence",
+        "contradictory_evidence",
+        "scores_are_probabilities",
+        "provenance",
+        "ground_truth_status"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "unresolved_cluster_proposal"
+        },
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "cluster_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "member_occurrence_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "MODEL_PROPOSAL",
+            "EXPERT_CURATED",
+            "REJECTED",
+            "WITHHELD"
+          ]
+        },
+        "method": {
+          "type": "object",
+          "required": [
+            "name",
+            "evidence_class",
+            "model_derived"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "evidence_class": {
+              "type": "string"
+            },
+            "model_derived": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "language_scope": {
+          "enum": [
+            "HITTITE_ONLY",
+            "SAME_LANGUAGE_AS_QUERY",
+            "MULTILINGUAL_CONDITIONED",
+            "CROSS_LANGUAGE_PARALLEL",
+            "ALL_LANGUAGES_UNCONDITIONED"
+          ]
+        },
+        "supporting_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "contradictory_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "scores_are_probabilities": {
+          "const": false
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "ground_truth_status": {
+          "const": "NOT_CORPUS_TRUTH"
+        }
+      },
+      "additionalProperties": false
+    },
+    "annotation_event": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "contract_version",
+        "event_id",
+        "action",
+        "target_id",
+        "reviewed_record_sha256",
+        "prior_event_sha256",
+        "reviewer",
+        "hypothesis",
+        "rationale",
+        "assistance_acknowledged",
+        "created_utc",
+        "ground_truth_status",
+        "requires_adjudication"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "unresolved_expert_annotation_event"
+        },
+        "contract_version": {
+          "const": "1.0.0"
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action": {
+          "enum": [
+            "ADD_TO_CLUSTER",
+            "REMOVE_FROM_CLUSTER",
+            "MERGE_CLUSTERS",
+            "SPLIT_CLUSTER",
+            "PROPOSE_READING",
+            "PROPOSE_LANGUAGE",
+            "PROPOSE_LEXICAL_IDENTITY",
+            "PROPOSE_PHRASE",
+            "REJECT_HYPOTHESIS",
+            "WITHHOLD_JUDGMENT"
+          ]
+        },
+        "target_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_record_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "prior_event_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reviewer": {
+          "type": "object",
+          "required": [
+            "reviewer_id",
+            "declared_role"
+          ],
+          "properties": {
+            "reviewer_id": {
+              "type": "string"
+            },
+            "declared_role": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "hypothesis": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assistance_acknowledged": {
+          "const": true
+        },
+        "created_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ground_truth_status": {
+          "const": "QUARANTINED_EXPERT_JUDGMENT"
+        },
+        "requires_adjudication": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

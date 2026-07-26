@@ -1,0 +1,29 @@
+{
+  "gate": "Phase 4 Gate 2",
+  "status": "PASS",
+  "contract": "configs\\language_layers_v2.json",
+  "output": "Phase4\\phase4_out\\multilingual_tokens_v2.parquet",
+  "checks": {
+    "gate1_acceptance_passed": true,
+    "protected_test_rows_emitted_zero": true,
+    "source_rebuild_emitted_only_allowed_documents": true,
+    "source_and_persisted_token_identity_exact": true,
+    "two_builds_and_readback_logically_identical": true,
+    "frozen_artifact_hashes_unchanged": true,
+    "token_identity_keys_unique_and_sorted": true,
+    "source_row_count_preserved_exactly": true,
+    "every_token_has_effective_status": true,
+    "resolved_lexical_languages_are_canonical": true,
+    "structural_tokens_excluded_from_lexical_statistics": true,
+    "word_span_lookup_keys_unique": true,
+    "all_five_language_scopes_materialized": true,
+    "unconditioned_projection_is_explicit_ablation": true,
+    "evidence_policy_manifest_completed": true
+  },
+  "authorization_after_gate": {
+    "language_aware_api_and_workbench_implementation": true,
+    "protected_test_access": false,
+    "gpu_training": false,
+    "training_authorized": false
+  }
+}

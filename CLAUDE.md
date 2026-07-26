@@ -153,6 +153,12 @@ full-corpus scale, with leakage-safe methodology?
   severity since it fails safe (a non-Hittite gap queried against a
   Hittite-only witness index simply finds no coverage), but real_gap
   gap counts are not yet language-stratified.
+  **Phase 4 correction (Gate 0 ratified 2026-07-25):** the Phase 1 inventory
+  also records 10,846 `w@lg` attributes. Word tags often differ from
+  the enclosing `lb@lg`, so the line-only filter is provisional and
+  cannot represent embedded language spans. See `PHASE4_CHARTER.md`
+  and `specs/LANGUAGE_LAYERS_V2.md`. Gate 0 ratified valid word override,
+  otherwise valid line inheritance; retraining remains separately gated.
 - Known caveat (per the TLHdig team): philological quality is uneven —
   it is a living community archive, not a critical edition. Quality
   filtering must be explicit and reported, never silent.
@@ -161,9 +167,11 @@ full-corpus scale, with leakage-safe methodology?
   assumed here — verified via `01_inventory.py` (P1, run
   2026-07-20) against the real corpus. Key structure:**
   - `<lb txtid lnr lg cu>` = one transliterated line. `lnr` = line
-    label (e.g. "Vs.? 1′"); `lg` = **per-line** language code (Hit,
-    Akk, Hat, Hattian, ...) — the multilingual-layer signal lives
-    here, at line granularity, not per-document; `cu` = raw
+    label (e.g. "Vs.? 1′"); `lg` = the line-level language code, not
+    the complete language signal. Document `xml:lang`, line `lb@lg`,
+    and optional word `w@lg` remain separate source fields. Gate 0 ratified
+    valid word override, otherwise valid line inheritance; document language
+    is provenance only. `cu` = raw
     cuneiform sign string. **Correction (P2, 02_parse.py damage-
     oracle check, 2026-07-20): `cu` is NOT an attested-only break
     silhouette — do not use it as one.** It renders the editor's
@@ -182,8 +190,9 @@ full-corpus scale, with leakage-safe methodology?
     glyphs, never feed `cu` or any `cu`-derived feature to any
     evaluated model, at train time or test time** — it is a display/
     preview field, not a corpus signal.
-  - `<w trans mrp0sel mrp1..mrp7>` = word. `trans` = transliterated
-    form (the primary text signal); `mrp*` = ranked morphological
+  - `<w trans lg mrp0sel mrp1..mrp7>` = word. `trans` = transliterated
+    form (the primary text signal); optional `lg` marks a narrower
+    language span and must survive token decomposition; `mrp*` = ranked morphological
     parse candidates (lemma@gloss@paradigm@class) — rich, but this
     is glossing/analysis, **out of scope** per this file; do not
     build features off `mrp*` beyond incidental inspection.
@@ -460,6 +469,10 @@ Provincial + multilingual material also supplies hard negatives.
   content-blind seam-scoring bug — a per-script reimplementation of
   this exact step silently fed `<UNK>`-only input to the frozen D14
   head for an entire phase; see p5c_report.md / p5c2_report.md.)
+- Phase 4 language-aware code must additionally require an explicit
+  `language_scope`; omitted/`None`/`auto` behavior is prohibited.
+  Language-based semantic selection must be registered and included in
+  the run manifest.
 - Corpus build = governed dataset with lineage: every transform
   scripted, no hand edits; derived datasets carry provenance metadata.
 - Stdlib-or-common-deps preference; pin versions in
@@ -481,16 +494,37 @@ Provincial + multilingual material also supplies hard negatives.
   copied into the live `lib/`, `scripts/`, `configs/`, `demo/` paths.
   Live per-phase outputs are split by phase folder: `Phase1_pipeline/`
   holds carried-forward outputs of the original numbered P2/P3/P4 steps
-  (`p2_out/`, `p3_out/`, `p4_out/`); `Phase2/` holds outputs of the
-  current lettered Phase 2 research plan (`phase2_out/`,
-  `corpus_audit_out/`). The next phase should get its own top-level
-  phase folder rather than growing either of these. Earlier
+  (`p2_out/`, `p3_out/`, `p4_out/`); `Phase2/` holds its lettered
+  research outputs; `Phase3/` holds real-gap/demo outputs; and
+  `Phase4/` is reserved for the prepared multilingual-dataset and
+  unresolved-evidence phase. Every later phase gets its own top-level
+  phase folder. Earlier
   phase-sequence bullets below reference the historical implementations
   in `Archive/scripts/`; a same-named live copy exists only where Phase 2
   still needs that asset. Always invoke active scripts from the project
   root, never after `cd scripts` — data paths are CWD-relative, only
   `lib/` imports are resolved relative to the script file itself. See
   `README.md` for the live/archive map.
+
+## Current successor phase (Gate 2 passed 2026-07-25)
+
+`PHASE4_CHARTER.md` pairs a word-aware multilingual dataset and
+language-conditioned retraining plan with an Unresolved Evidence Workbench
+for unknown signs, words, language tags, and anomalies. Gate 2 accepted the
+deterministic language-span migration and 2,923,640-row multilingual token
+dataset. Language-aware API and workbench implementation may proceed;
+protected-test access and GPU training remain unauthorized. Expert workbench
+events are append-only quarantined annotations and never become corpus truth
+automatically.
+
+See `PHASE4_SUCCESSOR_HANDOFF.md` for accepted hashes, rebuild commands, the
+cache-collision warning, and the exact P4-D/P4-E next steps.
+
+Gate 2 found that the historical decomposed-token cache conflates at least
+one distinct archive-stem pair under one `doc_id`. Phase 4 token construction
+therefore uses the exact checksum-guarded Gate 1 archive member and the shared
+`decompose_document()` function; never silently choose between conflicting
+cached rows. The historical cache remains immutable.
 
 ## Phase sequence
 

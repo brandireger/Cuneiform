@@ -212,17 +212,177 @@ fields:
     rationale: "Structural line-index list defining a fragment's extent."
     source_path: "Phase1_pipeline/p2_out/edges.parquet"
   line_lang:
-    class: OBSERVED_DOCUMENT_STRUCTURE
+    class: EDITORIAL_TRANSCRIPTION
     rationale: >-
-      FLAGGED UNCERTAIN, not silently resolved. Tentatively structural:
-      this is the lg XML attribute (Hit/Akk/Sum/Hat/Hattian/Hur/Pal/Luw),
-      a source-encoded tag rather than a free transcription choice.
-      Verified against a real sample while building this registry: some
-      values are malformed with leftover XML fragments (e.g. "Hit> <w>
-      <del_in/> ... <del_fin/></w"), a parser data-quality issue
-      surfaced during this review, not fixed here -- see
-      specs/EVIDENCE_POLICY.md.
+      Gate 0 ruling (2026-07-25): lb@lg is source-encoded editorial
+      linguistic annotation. The HPM guide instructs editors to choose a
+      paragraph language style; it is therefore philological classification,
+      not directly observed document structure. Some historical values are
+      malformed and remain quarantined.
     source_path: "Phase1_pipeline/p2_out/corpus.parquet"
+  doc_lang_raw:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Exact text@xml:lang value from AOxml. Gate 0 prohibits using it as an
+      effective-language fallback because it is document-level, coarse, and
+      contains placeholder/unrecognized values.
+    source_path: "TLHdig_0.2.0-beta.zip::<text xml:lang>"
+  line_lang_raw:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Exact source lb@lg value preserved by the governed line_lang_v1
+      migration. Gate 0 classifies linguistic language tags as editorial
+      transcription; malformed/unrecognized values remain quarantined.
+    source_path: "migrations/line_lang_v1/line_lang_canonical.parquet, migrations/language_layers_v2/language_spans.parquet"
+  line_lang_canonical:
+    class: EDITORIAL_TRANSCRIPTION
+    depends_on: [line_lang_raw]
+    rationale: >-
+      Ratified seven-code canonicalization of lb@lg from line_lang_v1.
+      This field is semantic whenever it selects model/retrieval content and
+      must therefore appear in feature-use manifests. It is not yet an
+      effective word-aware language assignment.
+    source_path: "migrations/line_lang_v1/line_lang_canonical.parquet"
+  line_lang_status:
+    class: SYSTEM_TECHNICAL
+    depends_on: [line_lang_raw]
+    rationale: >-
+      Deterministic validation status for line_lang_raw. Technical as a
+      status code, but its effective evidence class inherits from the raw
+      source field when used semantically.
+    source_path: "migrations/line_lang_v1/line_lang_canonical.parquet"
+  line_lang_rule_id:
+    class: SYSTEM_TECHNICAL
+    depends_on: [line_lang_raw]
+    rationale: >-
+      Stable identifier for the deterministic line_lang_v1 validation and
+      canonicalization rule.
+    source_path: "migrations/line_lang_v1/line_lang_canonical.parquet"
+  word_lang_raw:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Exact optional w@lg value. The HPM guide describes character-language
+      styles as editorial marking of inserted words or incomplete quotations
+      in another language. Absence normally inherits the enclosing line;
+      explicit empty, malformed, and unrecognized values remain visible.
+    source_path: "TLHdig_0.2.0-beta.zip::<w lg>, migrations/language_layers_v2/language_spans.parquet"
+  word_lang_canonical:
+    class: EDITORIAL_TRANSCRIPTION
+    depends_on: [word_lang_raw]
+    rationale: >-
+      Gate 0 canonicalization of an explicit valid w@lg value. This field
+      does not exist for words with no explicit word-language attribute.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  word_lang_status:
+    class: SYSTEM_TECHNICAL
+    depends_on: [word_lang_raw]
+    rationale: >-
+      Deterministic validation status for an explicit w@lg value.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  word_lang_rule_id:
+    class: SYSTEM_TECHNICAL
+    depends_on: [word_lang_raw]
+    rationale: >-
+      Stable identifier for the Gate 0 word-language validation rule.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  effective_lang_canonical:
+    class: EDITORIAL_TRANSCRIPTION
+    depends_on: [line_lang_canonical, word_lang_canonical, word_lang_status]
+    rationale: >-
+      Derived effective token/word language under Gate 0 rule
+      word_override_else_line_v2. Document language is not a fallback.
+    source_path: "migrations/language_layers_v2/language_spans.parquet, Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  effective_lang_status:
+    class: SYSTEM_TECHNICAL
+    depends_on: [line_lang_status, word_lang_status]
+    rationale: >-
+      Resolution status including resolved, resolved-with-source-anomaly, and
+      unresolved reasons under the Gate 0 rule.
+    source_path: "migrations/language_layers_v2/language_spans.parquet, Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  effective_lang_source:
+    class: SYSTEM_TECHNICAL
+    depends_on: [line_lang_canonical, word_lang_canonical, word_lang_status]
+    rationale: >-
+      Stable provenance code naming whether effective language came from an
+      explicit word tag, line inheritance, anomaly-bearing line inheritance,
+      or remained unresolved.
+    source_path: "migrations/language_layers_v2/language_spans.parquet, Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  language_raw:
+    class: EDITORIAL_TRANSCRIPTION
+    rationale: >-
+      Level-generic verbatim language value in the v2 source-span artifact;
+      language_level identifies DOCUMENT, LINE, or explicit WORD origin.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  language_canonical:
+    class: EDITORIAL_TRANSCRIPTION
+    depends_on: [language_raw]
+    rationale: >-
+      Gate 0 canonicalization of language_raw; null for missing, empty,
+      malformed, and unrecognized values.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  language_status:
+    class: SYSTEM_TECHNICAL
+    depends_on: [language_raw]
+    rationale: >-
+      Deterministic source-value validation status in the v2 span artifact.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  language_rule_id:
+    class: SYSTEM_TECHNICAL
+    depends_on: [language_raw]
+    rationale: >-
+      Stable rule identifier for v2 source-value canonicalization.
+    source_path: "migrations/language_layers_v2/language_spans.parquet"
+  language_span_id:
+    class: SYSTEM_TECHNICAL
+    depends_on: [effective_lang_canonical]
+    rationale: >-
+      Stable contiguous effective-language span identifier within a document.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  language_switch_before:
+    class: SYSTEM_TECHNICAL
+    depends_on: [effective_lang_canonical]
+    rationale: >-
+      Whether effective language changes immediately before this token.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  mixed_language_line:
+    class: SYSTEM_TECHNICAL
+    depends_on: [effective_lang_canonical]
+    rationale: >-
+      True when a line has more than one resolved effective language.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  mixed_language_document:
+    class: SYSTEM_TECHNICAL
+    depends_on: [effective_lang_canonical]
+    rationale: >-
+      True when a document has more than one resolved effective language.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  language_scope:
+    class: SYSTEM_TECHNICAL
+    rationale: >-
+      Required governed projection identifier; omitted and automatic values
+      are prohibited.
+    source_path: "lib/language_layers_v2.py"
+  is_structural_token:
+    class: SYSTEM_TECHNICAL
+    depends_on: [word_index_in_line]
+    rationale: >-
+      True for layout tokens such as <PAR> that do not belong to a lexical
+      word and inherit line language only for sequence layout.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  lexical_language_statistics_eligible:
+    class: SYSTEM_TECHNICAL
+    depends_on: [word_index_in_line]
+    rationale: >-
+      False for structural tokens; prevents layout markers from entering
+      lexical language statistics.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
+  workbench_categories:
+    class: SYSTEM_TECHNICAL
+    depends_on: [line_lang_raw, word_lang_raw]
+    rationale: >-
+      Deterministic unresolved-evidence routing categories inherited from
+      the line and explicit-word language source records.
+    source_path: "Phase4/phase4_out/multilingual_tokens_v2.parquet"
   is_sum:
     class: OBSERVED_DOCUMENT_STRUCTURE
     rationale: >-

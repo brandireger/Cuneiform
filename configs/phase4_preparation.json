@@ -1,0 +1,106 @@
+{
+  "phase": "Phase4",
+  "status": "GATE2_PASSED_P4D_P4E_AUTHORIZED",
+  "prepared_date": "2026-07-25",
+  "gate_0_ratified_date": "2026-07-25",
+  "gate_1_accepted_date": "2026-07-25",
+  "gate_2_accepted_date": "2026-07-25",
+  "corpus": {
+    "name": "TLHdig",
+    "version": "0.2.0-beta",
+    "doi": "10.5281/zenodo.15459134",
+    "archive": "TLHdig_0.2.0-beta.zip",
+    "md5": "93e71e2560f5e109c87713d5590cb059"
+  },
+  "frozen_split_path": "Phase1_pipeline/p2_out/splits.parquet",
+  "test_access_authorized": false,
+  "training_authorized": false,
+  "active_effective_language_rule": "word_override_else_line_v2",
+  "ratified_language_config": "configs/language_layers_v2.json",
+  "gate_1_acceptance_record": "migrations/language_layers_v2/gate1_acceptance.json",
+  "gate_1_logical_table_sha256": "d0126c4eacc2c6c58711516e725f90193d9cc964a1700ea2a5def3289c7c9296",
+  "gate_2_acceptance_record": "Phase4/phase4_out/gate2_acceptance.json",
+  "gate_2_logical_table_sha256": "35914a01ff03863f76ee0a56352d2d870881dc581c1253430a2eda102e9bfb6a",
+  "ratified_line_language_artifact": "migrations/line_lang_v1/line_lang_canonical.parquet",
+  "ratified_output_root": "Phase4/phase4_out",
+  "canonical_language_codes": [
+    "Hit",
+    "Akk",
+    "Sum",
+    "Hat",
+    "Hur",
+    "Luw",
+    "Pal"
+  ],
+  "source_language_levels": [
+    "DOCUMENT",
+    "LINE",
+    "WORD"
+  ],
+  "ratified_language_scopes": [
+    "HITTITE_ONLY",
+    "SAME_LANGUAGE_AS_QUERY",
+    "MULTILINGUAL_CONDITIONED",
+    "CROSS_LANGUAGE_PARALLEL",
+    "ALL_LANGUAGES_UNCONDITIONED"
+  ],
+  "prohibited_scope_values": [
+    null,
+    "auto",
+    "default",
+    "language_blind"
+  ],
+  "gate_0_decisions": {
+    "document_line_word_language_precedence": "valid_word_override_else_valid_line",
+    "explicit_empty_word_language_semantics": "preserve_anomaly_then_inherit_valid_line",
+    "invalid_explicit_word_language_semantics": "unresolved_no_fallback",
+    "document_language_fallback": "prohibited_in_v2",
+    "language_field_evidence_class": "EDITORIAL_TRANSCRIPTION",
+    "language_migration_root": "migrations/language_layers_v2",
+    "token_dataset_path": "Phase4/phase4_out/multilingual_tokens_v2.parquet",
+    "workbench_root": "Phase4/phase4_out"
+  },
+  "work_packages": [
+    "P4-A_source_language_semantics_audit",
+    "P4-B_language_layer_v2_migration",
+    "P4-C_multilingual_token_dataset",
+    "P4-D_language_aware_functions",
+    "P4-E_unresolved_evidence_workbench",
+    "P4-F_language_conditioned_pretraining",
+    "P4-G_downstream_reruns_and_product_integration"
+  ],
+  "unresolved_categories": [
+    "ILLEGIBLE_SIGN",
+    "PARTIALLY_PRESERVED_READING",
+    "UNCERTAIN_TRANSCRIPTION",
+    "LEXICAL_UNKNOWN",
+    "TOKENIZER_OOV",
+    "UNRECOGNIZED_LANGUAGE_TAG",
+    "EMPTY_LANGUAGE_TAG",
+    "MALFORMED_LANGUAGE_TAG",
+    "SYMBOL_OR_ENCODING_ANOMALY",
+    "PARSER_ANOMALY"
+  ],
+  "expert_status_vocabulary": [
+    "UNREVIEWED",
+    "GROUPED",
+    "HYPOTHESIS",
+    "EXPERT_SUPPORTED",
+    "REJECTED",
+    "WITHHELD"
+  ],
+  "historical_checkpoint_disposition": {
+    "path": "runs/pretrain_base/checkpoint.pt",
+    "label": "MULTILINGUAL_UNCONDITIONED_PHASE1_BASELINE",
+    "overwrite_allowed": false
+  },
+  "governing_documents": [
+    "AGENTS.md",
+    "PHASE4_CHARTER.md",
+    "specs/LANGUAGE_LAYERS_V2.md",
+    "specs/UNRESOLVED_EVIDENCE_WORKBENCH.md",
+    "specs/EVIDENCE_POLICY.md",
+    "EXPERT_OPINION.md",
+    "reports/phase4_gate0_ratification.md"
+  ]
+}
