@@ -29,8 +29,8 @@ None of this promotes the editor's restoration to truth, nor witness agreement t
 
 ## Same-line anchors (1,960 gaps)
 
-- **839** (42.8%) have at least one independent-witness proposal; **1,121** have none.
-- Of **1,640** `restored` spans checkable here: **568** (34.6%) match independent witnesses, **208** (12.7%) disagree with them, **864** (52.7%) have no independent evidence either way.
+- **821** (41.9%) have at least one independent-witness proposal; **1,139** have none.
+- Of **1,640** `restored` spans checkable here: **561** (34.2%) match independent witnesses, **198** (12.1%) disagree with them, **881** (53.7%) have no independent evidence either way.
 
 Sample matches:
 - `AT 454`: editor reading `pát` matches 1 independent proposal(s).
@@ -40,16 +40,16 @@ Sample matches:
 - `Bo 5601+`: editor reading `NIN` matches 1 independent proposal(s).
 
 Sample mismatches:
-- `AT 454`: editor reading `ar`, 6 independent proposal(s), none matching -- e.g. ku uš ú et na aš <NUM> an ar; ku uš ú e er na at kán pé ar; ku uš ú et aš <NUM> an ar; ku uš ú et na aš <NUM> ar; (empty).
-- `AT 454`: editor reading `it ar`, 8 independent proposal(s), none matching -- e.g. e at <NUM> an ar; et na aš <NUM> 〈an〉 ar; <NUM> an ar; e er na at <NUM> an ar; et na aš kán pé an ar.
+- `AT 454`: editor reading `ar`, 6 independent proposal(s), none matching -- e.g. ku uš ú e er na at kán pé ar; ku uš na aš <NUM> an ar; ku uš ú et na aš <NUM> an ar; ku uš ú et aš <NUM> an ar; ku uš ú et na aš <NUM> ar.
+- `AT 454`: editor reading `it ar`, 8 independent proposal(s), none matching -- e.g. et na aš kán pé an ar; et na aš; e er na at <NUM> an ar; e at <NUM> an ar; e er na at kán pé an ar.
 - `AT 454`: editor reading `nu`, 1 independent proposal(s), none matching -- e.g. TUKU TUKU u an te eš nu.
 - `Bo 5601+`: editor reading `na at`, 1 independent proposal(s), none matching -- e.g. ku ra an da a i na at.
 - `Bo 5601+`: editor reading `ḫu te il`, 1 independent proposal(s), none matching -- e.g. ḫu te el.
 
 ## Cross-line anchors (17,379 gaps)
 
-- **3,540** (20.4%) have at least one independent-witness proposal; **13,839** have none.
-- Of **13,618** `restored` spans checkable here: **784** (5.8%) match independent witnesses, **2,208** (16.2%) disagree with them, **10,626** (78.0%) have no independent evidence either way.
+- **3,462** (19.9%) have at least one independent-witness proposal; **13,917** have none.
+- Of **13,618** `restored` spans checkable here: **758** (5.6%) match independent witnesses, **2,164** (15.9%) disagree with them, **10,696** (78.5%) have no independent evidence either way.
 
 Sample matches:
 - `ABoT 2.114+`: editor reading `UP NI` matches 4 independent proposal(s) (1 line(s) crossed for anchor context).

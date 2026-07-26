@@ -7,8 +7,6 @@
     89,
     122,
     133,
-    158,
-    168,
     233,
     285,
     312,
@@ -22,7 +20,6 @@
     492,
     540,
     543,
-    546,
     549,
     569,
     576,
@@ -43,7 +40,7 @@
     812,
     821
   ],
-  "scope_documents": 749,
+  "scope_documents": 741,
   "calibrated_anchor_lengths": [
     1,
     2,
@@ -57,25 +54,25 @@
   ],
   "nominal_display_depth": 5,
   "candidate_set_calibration_estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-  "gaps_in_scope": 9022,
-  "eligible_gaps": 1338,
-  "presented_gaps": 989,
-  "abstained_gaps": 349,
+  "gaps_in_scope": 8900,
+  "eligible_gaps": 1317,
+  "presented_gaps": 923,
+  "abstained_gaps": 394,
   "mask_length_counts": {
-    "2": 664,
-    "3": 329,
-    "4": 213,
-    "5": 132
+    "2": 657,
+    "3": 325,
+    "4": 206,
+    "5": 129
   },
   "selected_anchor_length_counts": {
-    "1": 834,
-    "2": 106,
-    "3": 49,
-    "abstain": 349
+    "1": 793,
+    "2": 89,
+    "3": 41,
+    "abstain": 394
   },
-  "restored_checked": 835,
-  "restored_included_in_displayed_set": 356,
-  "restored_not_included_in_displayed_set": 479,
+  "restored_checked": 784,
+  "restored_included_in_displayed_set": 328,
+  "restored_not_included_in_displayed_set": 456,
   "restored_no_rate_available": 0,
   "included_examples": [
     {
@@ -88,12 +85,12 @@
         "aš"
       ],
       "displayed_set_size": 4,
-      "group_calibration_rate": 0.575892,
+      "group_calibration_rate": 0.64461,
       "group_wilson_95": [
-        0.565402,
-        0.586314
+        0.633294,
+        0.655767
       ],
-      "group_sample_size": 8578
+      "group_sample_size": 6967
     },
     {
       "doc_id": "Bo 9400+",
@@ -105,12 +102,12 @@
         "an"
       ],
       "displayed_set_size": 3,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059
+      "group_sample_size": 34288
     },
     {
       "doc_id": "Bo 9400+",
@@ -122,12 +119,12 @@
         "ni"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.575892,
+      "group_calibration_rate": 0.64461,
       "group_wilson_95": [
-        0.565402,
-        0.586314
+        0.633294,
+        0.655767
       ],
-      "group_sample_size": 8578
+      "group_sample_size": 6967
     },
     {
       "doc_id": "Bo 9400+",
@@ -139,12 +136,12 @@
         "an"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059
+      "group_sample_size": 34288
     },
     {
       "doc_id": "Bo 9400+",
@@ -158,12 +155,12 @@
         "ia"
       ],
       "displayed_set_size": 11,
-      "group_calibration_rate": 0.1271,
+      "group_calibration_rate": 0.162883,
       "group_wilson_95": [
-        0.123573,
-        0.130713
+        0.158307,
+        0.167565
       ],
-      "group_sample_size": 33446
+      "group_sample_size": 24447
     },
     {
       "doc_id": "CHDS 5.12",
@@ -175,12 +172,12 @@
         "mar"
       ],
       "displayed_set_size": 36,
-      "group_calibration_rate": 0.284739,
+      "group_calibration_rate": 0.32143,
       "group_wilson_95": [
-        0.280481,
-        0.289035
+        0.31623,
+        0.326674
       ],
-      "group_sample_size": 42762
+      "group_sample_size": 30719
     },
     {
       "doc_id": "CHDS 5.173",
@@ -192,12 +189,12 @@
         "LAM"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.284739,
+      "group_calibration_rate": 0.32143,
       "group_wilson_95": [
-        0.280481,
-        0.289035
+        0.31623,
+        0.326674
       ],
-      "group_sample_size": 42762
+      "group_sample_size": 30719
     },
     {
       "doc_id": "IBoT 1.29",
@@ -209,12 +206,12 @@
         "KU₇"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.31973,
+      "group_calibration_rate": 0.350925,
       "group_wilson_95": [
-        0.315537,
-        0.323954
+        0.346043,
+        0.355839
       ],
-      "group_sample_size": 47171
+      "group_sample_size": 36475
     }
   ],
   "not_included_examples": [
@@ -230,12 +227,12 @@
         "a"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.1271,
+      "group_calibration_rate": 0.162883,
       "group_wilson_95": [
-        0.123573,
-        0.130713
+        0.158307,
+        0.167565
       ],
-      "group_sample_size": 33446,
+      "group_sample_size": 24447,
       "top_alternative": [
         "at",
         "I",
@@ -254,12 +251,12 @@
         "le"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059,
+      "group_sample_size": 34288,
       "top_alternative": [
         "re"
       ]
@@ -274,12 +271,12 @@
         "ZAG"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059,
+      "group_sample_size": 34288,
       "top_alternative": [
         "zi",
         "<NUM>"
@@ -295,12 +292,12 @@
         "an"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059,
+      "group_sample_size": 34288,
       "top_alternative": [
         "še",
         "e",
@@ -318,12 +315,12 @@
         "ša"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.314055,
+      "group_calibration_rate": 0.364384,
       "group_wilson_95": [
-        0.309785,
-        0.318356
+        0.359306,
+        0.369493
       ],
-      "group_sample_size": 45059,
+      "group_sample_size": 34288,
       "top_alternative": [
         "pí",
         "da",
@@ -342,12 +339,12 @@
         "an"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.129058,
+      "group_calibration_rate": 0.145343,
       "group_wilson_95": [
-        0.125555,
-        0.132643
+        0.141119,
+        0.149672
       ],
-      "group_sample_size": 34380,
+      "group_sample_size": 26090,
       "top_alternative": []
     },
     {
@@ -362,12 +359,12 @@
         "KU"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.129058,
+      "group_calibration_rate": 0.145343,
       "group_wilson_95": [
-        0.125555,
-        0.132643
+        0.141119,
+        0.149672
       ],
-      "group_sample_size": 34380,
+      "group_sample_size": 26090,
       "top_alternative": []
     },
     {
@@ -380,12 +377,12 @@
         "KAŠ"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.31973,
+      "group_calibration_rate": 0.350925,
       "group_wilson_95": [
-        0.315537,
-        0.323954
+        0.346043,
+        0.355839
       ],
-      "group_sample_size": 47171,
+      "group_sample_size": 36475,
       "top_alternative": []
     }
   ]

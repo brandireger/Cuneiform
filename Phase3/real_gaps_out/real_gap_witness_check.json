@@ -23,11 +23,11 @@
   "gaps_in_fragments_with_preserved_edge": 7875,
   "gaps_edge_status_unknown": 0,
   "same_line": {
-    "n_with_coverage": 839,
-    "n_no_coverage": 1121,
-    "restored_match": 568,
-    "restored_no_match": 208,
-    "restored_no_coverage": 864,
+    "n_with_coverage": 821,
+    "n_no_coverage": 1139,
+    "restored_match": 561,
+    "restored_no_match": 198,
+    "restored_no_coverage": 881,
     "match_examples": [
       {
         "doc_id": "AT 454",
@@ -88,17 +88,6 @@
             "ku",
             "uš",
             "ú",
-            "et",
-            "na",
-            "aš",
-            "<NUM>",
-            "an",
-            "ar"
-          ],
-          [
-            "ku",
-            "uš",
-            "ú",
             "e",
             "er",
             "na",
@@ -110,6 +99,26 @@
           [
             "ku",
             "uš",
+            "na",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
+            "et",
+            "na",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
             "ú",
             "et",
             "aš",
@@ -126,8 +135,7 @@
             "aš",
             "<NUM>",
             "ar"
-          ],
-          []
+          ]
         ],
         "witness_proposal_count": 6,
         "lines_crossed": 0
@@ -141,24 +149,18 @@
         ],
         "witness_proposals_sample": [
           [
-            "e",
-            "at",
-            "<NUM>",
+            "et",
+            "na",
+            "aš",
+            "kán",
+            "pé",
             "an",
             "ar"
           ],
           [
             "et",
             "na",
-            "aš",
-            "<NUM>",
-            "〈an〉",
-            "ar"
-          ],
-          [
-            "<NUM>",
-            "an",
-            "ar"
+            "aš"
           ],
           [
             "e",
@@ -170,9 +172,17 @@
             "ar"
           ],
           [
-            "et",
+            "e",
+            "at",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "e",
+            "er",
             "na",
-            "aš",
+            "at",
             "kán",
             "pé",
             "an",
@@ -245,11 +255,11 @@
     ]
   },
   "cross_line": {
-    "n_with_coverage": 3540,
-    "n_no_coverage": 13839,
-    "restored_match": 784,
-    "restored_no_match": 2208,
-    "restored_no_coverage": 10626,
+    "n_with_coverage": 3462,
+    "n_no_coverage": 13917,
+    "restored_match": 758,
+    "restored_no_match": 2164,
+    "restored_no_coverage": 10696,
     "match_examples": [
       {
         "doc_id": "ABoT 2.114+",

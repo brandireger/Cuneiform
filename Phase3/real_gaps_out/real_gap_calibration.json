@@ -7,8 +7,6 @@
     89,
     122,
     133,
-    158,
-    168,
     233,
     285,
     312,
@@ -22,7 +20,6 @@
     492,
     540,
     543,
-    546,
     549,
     569,
     576,
@@ -51,8 +48,6 @@
     89,
     122,
     133,
-    158,
-    168,
     233,
     285,
     312,
@@ -66,7 +61,6 @@
     492,
     540,
     543,
-    546,
     549,
     569,
     576,
@@ -87,14 +81,14 @@
     812,
     821
   ],
-  "scope_documents": 749,
+  "scope_documents": 741,
   "calibrated_anchor_length": 2,
   "calibrated_mask_length": 1,
-  "eligible_gaps": 1010,
-  "selector_accepted": 44,
-  "selector_rejected": 966,
-  "restored_checked": 44,
-  "restored_match_total": 41,
+  "eligible_gaps": 988,
+  "selector_accepted": 46,
+  "selector_rejected": 942,
+  "restored_checked": 45,
+  "restored_match_total": 42,
   "restored_contradiction_total": 3,
   "restored_no_rate_available_total": 0,
   "rank1_rate_examples": [
@@ -104,12 +98,12 @@
       "rank1_proposal": [
         "NINDA"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
       "doc_id": "IBoT 4.140+",
@@ -117,12 +111,12 @@
       "rank1_proposal": [
         "ZU₉"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
       "doc_id": "KBo 10.25+",
@@ -130,12 +124,12 @@
       "rank1_proposal": [
         "GIŠ"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
       "doc_id": "KBo 10.31",
@@ -143,12 +137,12 @@
       "rank1_proposal": [
         "LÚ"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
       "doc_id": "KBo 11.40",
@@ -156,12 +150,12 @@
       "rank1_proposal": [
         "li"
       ],
-      "rank1_calibrated_rate": 0.913638,
+      "rank1_calibrated_rate": 0.909699,
       "rank1_wilson_95": [
-        0.905629,
-        0.921027
+        0.900957,
+        0.91774
       ],
-      "rank1_sample_size": 5118
+      "rank1_sample_size": 4485
     },
     {
       "doc_id": "KBo 11.42+",
@@ -169,12 +163,12 @@
       "rank1_proposal": [
         "GUR₄"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
       "doc_id": "KBo 11.52",
@@ -182,25 +176,25 @@
       "rank1_proposal": [
         "zi"
       ],
-      "rank1_calibrated_rate": 0.914603,
+      "rank1_calibrated_rate": 0.913364,
       "rank1_wilson_95": [
-        0.903474,
-        0.924555
+        0.904168,
+        0.921754
       ],
-      "rank1_sample_size": 2705
+      "rank1_sample_size": 3936
     },
     {
-      "doc_id": "KBo 15.70+",
-      "fragment_id": "KBo 15.70+",
+      "doc_id": "KBo 16.23",
+      "fragment_id": "KBo 16.23",
       "rank1_proposal": [
-        "ḫé"
+        "rad"
       ],
-      "rank1_calibrated_rate": 0.909473,
+      "rank1_calibrated_rate": 0.909699,
       "rank1_wilson_95": [
-        0.901196,
-        0.91712
+        0.900957,
+        0.91774
       ],
-      "rank1_sample_size": 4993
+      "rank1_sample_size": 4485
     }
   ],
   "restored_with_calibrated_match": [
@@ -211,12 +205,12 @@
         "NINDA"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.911079,
+      "calibrated_rate_at_that_rank": 0.911486,
       "wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "sample_size": 3430
+      "sample_size": 2960
     },
     {
       "doc_id": "IBoT 4.140+",
@@ -225,12 +219,12 @@
         "ZU₉"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.911079,
+      "calibrated_rate_at_that_rank": 0.911486,
       "wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "sample_size": 3430
+      "sample_size": 2960
     },
     {
       "doc_id": "KBo 10.25+",
@@ -239,12 +233,12 @@
         "GIŠ"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.911079,
+      "calibrated_rate_at_that_rank": 0.911486,
       "wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "sample_size": 3430
+      "sample_size": 2960
     },
     {
       "doc_id": "KBo 10.31",
@@ -253,12 +247,12 @@
         "LÚ"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.911079,
+      "calibrated_rate_at_that_rank": 0.911486,
       "wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "sample_size": 3430
+      "sample_size": 2960
     },
     {
       "doc_id": "KBo 11.40",
@@ -267,12 +261,12 @@
         "li"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.913638,
+      "calibrated_rate_at_that_rank": 0.909699,
       "wilson_95": [
-        0.905629,
-        0.921027
+        0.900957,
+        0.91774
       ],
-      "sample_size": 5118
+      "sample_size": 4485
     },
     {
       "doc_id": "KBo 11.42+",
@@ -281,12 +275,12 @@
         "GUR₄"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.911079,
+      "calibrated_rate_at_that_rank": 0.911486,
       "wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "sample_size": 3430
+      "sample_size": 2960
     },
     {
       "doc_id": "KBo 11.52",
@@ -295,48 +289,29 @@
         "zi"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.914603,
+      "calibrated_rate_at_that_rank": 0.913364,
       "wilson_95": [
-        0.903474,
-        0.924555
+        0.904168,
+        0.921754
       ],
-      "sample_size": 2705
+      "sample_size": 3936
     },
     {
-      "doc_id": "KBo 15.70+",
-      "fragment_id": "KBo 15.70+",
+      "doc_id": "KBo 16.23",
+      "fragment_id": "KBo 16.23",
       "editor_reading": [
-        "ḫé"
+        "rad"
       ],
       "editor_rank": 1,
-      "calibrated_rate_at_that_rank": 0.909473,
+      "calibrated_rate_at_that_rank": 0.909699,
       "wilson_95": [
-        0.901196,
-        0.91712
+        0.900957,
+        0.91774
       ],
-      "sample_size": 4993
+      "sample_size": 4485
     }
   ],
   "restored_with_calibrated_contradiction": [
-    {
-      "doc_id": "KBo 15.72+",
-      "fragment_id": "KBo 15.72+",
-      "editor_reading": [
-        "ni"
-      ],
-      "rank1_proposal": [
-        "ni",
-        "pa",
-        "a",
-        "e"
-      ],
-      "rank1_calibrated_rate": 0.909473,
-      "rank1_wilson_95": [
-        0.901196,
-        0.91712
-      ],
-      "rank1_sample_size": 4993
-    },
     {
       "doc_id": "KBo 27.42",
       "fragment_id": "KBo 27.42",
@@ -346,26 +321,40 @@
       "rank1_proposal": [
         "GIDRU"
       ],
-      "rank1_calibrated_rate": 0.911079,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901088,
-        0.92015
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 3430
+      "rank1_sample_size": 2960
     },
     {
-      "doc_id": "KUB 32.19+",
-      "fragment_id": "KUB 32.19+",
+      "doc_id": "KBo 30.19",
+      "fragment_id": "KBo 30.19",
       "editor_reading": [
-        "šu"
+        "iš"
       ],
       "rank1_proposal": [],
-      "rank1_calibrated_rate": 0.909473,
+      "rank1_calibrated_rate": 0.911486,
       "rank1_wilson_95": [
-        0.901196,
-        0.91712
+        0.900713,
+        0.921193
       ],
-      "rank1_sample_size": 4993
+      "rank1_sample_size": 2960
+    },
+    {
+      "doc_id": "KBo 45.89",
+      "fragment_id": "KBo 45.89",
+      "editor_reading": [
+        "ma"
+      ],
+      "rank1_proposal": [],
+      "rank1_calibrated_rate": 0.913364,
+      "rank1_wilson_95": [
+        0.904168,
+        0.921754
+      ],
+      "rank1_sample_size": 3936
     }
   ]
 }
