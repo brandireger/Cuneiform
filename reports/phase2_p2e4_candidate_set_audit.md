@@ -1,5 +1,16 @@
 # Phase 2 P2-E4 expert candidate-set audit
 
+<!-- p4d-staleness-stamp -->
+> **[PREDATES P4-D — numbers not recomputed]** This report was produced under
+> the pre-Phase-4 line-granularity Hittite filter. P4-D (2026-07-26) replaced
+> it with a required, word-aware language scope
+> (`reports/phase4_p4d_language_aware_apis.md`). On the measured real-gap
+> slice the word-aware projection refuses **932 lines** the line-granularity
+> filter admitted — `Hit`-tagged lines carrying explicit non-Hittite words —
+> reducing witness-index tokens by ~6.1%. The direction of the effect on this
+> report's figures is therefore known but its magnitude is not; the numbers
+> below have **not** been recomputed. Rerunning is P4-G work.
+
 **[PROBE — not for citation]**
 
 ## Tracer block

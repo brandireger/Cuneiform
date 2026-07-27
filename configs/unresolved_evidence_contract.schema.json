@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://taksan.local/schemas/unresolved-evidence-contract-1.0.0.json",
+  "$id": "https://taksan.local/schemas/unresolved-evidence-contract-1.1.0.json",
   "title": "Takšan unresolved evidence workbench contract",
-  "description": "Interchange schema for unresolved occurrences, model-derived cluster proposals, and append-only expert annotation events.",
+  "description": "Interchange schema for unresolved occurrences, deterministic and model-derived cluster proposals, and append-only expert annotation events. Version 1.1.0 (ratified 2026-07-27) makes line_index_in_doc and token_start/token_end nullable, because a PARSER_ANOMALY recorded outside the primary <text> has no enclosing line or token span; adds MISSING_LANGUAGE_TAG, because an absent language attribute is not the same as an empty, malformed, or unrecognized one; adds RARE_FORM, so a governed frequency detector can surface rare forms without asserting LEXICAL_UNKNOWN, which is reserved for expert assertion; and adds SYSTEM_PROPOSAL, so a deterministic non-model grouping is not labeled a model proposal.",
   "oneOf": [
     {
       "$ref": "#/$defs/occurrence"
@@ -98,7 +98,10 @@
           ]
         },
         "line_index_in_doc": {
-          "type": "integer",
+          "type": [
+            "integer",
+            "null"
+          ],
           "minimum": 0
         },
         "word_index_in_line": {
@@ -109,11 +112,17 @@
           "minimum": 0
         },
         "token_start": {
-          "type": "integer",
+          "type": [
+            "integer",
+            "null"
+          ],
           "minimum": 0
         },
         "token_end": {
-          "type": "integer",
+          "type": [
+            "integer",
+            "null"
+          ],
           "minimum": 0
         },
         "main_split": {
@@ -201,7 +210,7 @@
           "const": "unresolved_occurrence"
         },
         "contract_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "occurrence_id": {
           "type": "string",
@@ -216,10 +225,12 @@
               "ILLEGIBLE_SIGN",
               "PARTIALLY_PRESERVED_READING",
               "UNCERTAIN_TRANSCRIPTION",
+              "RARE_FORM",
               "LEXICAL_UNKNOWN",
               "TOKENIZER_OOV",
               "UNRECOGNIZED_LANGUAGE_TAG",
               "EMPTY_LANGUAGE_TAG",
+              "MISSING_LANGUAGE_TAG",
               "MALFORMED_LANGUAGE_TAG",
               "SYMBOL_OR_ENCODING_ANOMALY",
               "PARSER_ANOMALY"
@@ -290,7 +301,7 @@
           "const": "unresolved_cluster_proposal"
         },
         "contract_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "cluster_id": {
           "type": "string",
@@ -306,6 +317,7 @@
         },
         "status": {
           "enum": [
+            "SYSTEM_PROPOSAL",
             "MODEL_PROPOSAL",
             "EXPERT_CURATED",
             "REJECTED",
@@ -388,7 +400,7 @@
           "const": "unresolved_expert_annotation_event"
         },
         "contract_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "event_id": {
           "type": "string",

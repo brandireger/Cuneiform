@@ -1,5 +1,17 @@
 # Real-gap witness coverage + editor check (step 2, cross-line anchor extension)
 
+<!-- p4d-staleness-stamp -->
+> **[PREDATES P4-D — numbers not recomputed]** This report was produced before
+> the real-gap query side was language-resolved. Under P4-D (2026-07-26) a gap
+> may only ASK under the same explicit language scope that governs which
+> witness lines may ANSWER; previously every line in the slice could query,
+> so non-Hittite gaps sat in the same denominator and simply found no
+> coverage. On the measured slice **~9.5% of the gap population** was
+> non-Hittite or unresolved. The witness index was also rebuilt word-aware
+> (932 previously-admitted lines now refused). The numbers below have **not**
+> been recomputed; rerunning is P4-G work. See
+> `reports/phase4_p4d_language_aware_apis.md`.
+
 Scope: top 5 CTHs by gap count from step 1 -- CTH [628, 627, 701, 577, 647], 867 documents. Cross-line anchor search capped at **3 lines per side** (Ixca's call, after seeing the uncapped distribution ran as far as 39 lines for a small tail -- capped rather than kept, since "anchor context" stops being meaningfully nearby well before that).
 
 - **25,559** real gaps in scope; **19,339** now have a full 2-sign attested anchor on both sides -- up from 1,960 (7.7%) with no cross-line extension at all.

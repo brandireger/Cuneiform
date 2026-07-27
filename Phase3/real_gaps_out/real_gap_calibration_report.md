@@ -1,5 +1,17 @@
 # Real-gap calibration application (step 3)
 
+<!-- p4d-staleness-stamp -->
+> **[PREDATES P4-D — numbers not recomputed]** This report was produced before
+> the real-gap query side was language-resolved. Under P4-D (2026-07-26) a gap
+> may only ASK under the same explicit language scope that governs which
+> witness lines may ANSWER; previously every line in the slice could query,
+> so non-Hittite gaps sat in the same denominator and simply found no
+> coverage. On the measured slice **~9.5% of the gap population** was
+> non-Hittite or unresolved. The witness index was also rebuilt word-aware
+> (932 previously-admitted lines now refused). The numbers below have **not**
+> been recomputed; rerunning is P4-G work. See
+> `reports/phase4_p4d_language_aware_apis.md`.
+
 Reuses the already-computed, already-frozen fold calibration from `Phase2/phase2_out/p2e4_candidate_set_audit.json` -- no recalibration, the same rank-by-rank rates the demo's own packets already display.
 
 Scoped directly to the **39 CTHs** any fold's held-out evaluation set actually covers (union of all 5 folds' `evaluation_cth` lists) -- widened from the first increment, which only intersected step 2's unrelated "top gap count" list and found just CTH 627 overlapping. This increment asks `prepare_scope()` for the calibration-covered CTHs directly: **741 documents** in scope, vs. step 2's original 867.

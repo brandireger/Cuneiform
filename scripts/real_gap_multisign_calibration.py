@@ -52,7 +52,7 @@ import pandas as pd  # noqa: E402
 import p2e2_abstention_calibration as p2e2  # noqa: E402
 import p2e6_multisign_horizon as p2e6  # noqa: E402
 import p2e_witness_recoverability as p2e  # noqa: E402
-from line_lang_lookup import load_line_lang_lookup  # noqa: E402
+import language_lookup_v2 as llookup  # noqa: E402
 import real_gap_census as rgc  # noqa: E402
 import real_gap_witness_check as rgw  # noqa: E402
 
@@ -116,8 +116,11 @@ def prepare_multisign_scope(cth_ids, mask_lengths, anchor_lengths):
     contracts.assert_unique_docids(edges)
 
     line_index = p2e.build_line_index(decomposed)
+    language_scope, language_index = llookup.hittite_only_projection(
+        sorted(set(edges["parent_doc"])))
     line_sequences, _ = p2e.render_fragments(
-        edges, line_index, line_lang_lookup=load_line_lang_lookup())
+        edges, line_index, language_scope=language_scope,
+        language_index=language_index)
     line_owner = rgw.build_line_owner_map(edges)
     fragment_line_order = rgw.build_fragment_line_order(edges)
 
@@ -140,16 +143,28 @@ def prepare_multisign_scope(cth_ids, mask_lengths, anchor_lengths):
     descending_anchors = sorted(anchor_lengths, reverse=True)
     base_anchor = min(anchor_lengths)
 
+    # P4-D: query-side language resolution, matching
+    # real_gap_witness_check.prepare_scope -- a gap may only ASK under the
+    # same explicit scope that governs which witness lines may ANSWER.
     gaps = []
+    excluded_gaps_by_reason = Counter()
+    query_language_counts = Counter()
     for (doc_id, line_idx), raw_tokens in raw_tokens_by_line.items():
         fragment_id = line_owner.get((doc_id, line_idx))
         if fragment_id is None:
             continue
+        query_decision = language_index.line_decision(
+            language_scope, doc_id, line_idx,
+            n_source_tokens=len(raw_tokens), record=False)
         for run in rgc.find_runs(
                 doc_id, int(line_idx),
                 [(wp, t, s, None) for wp, t, s in raw_tokens]):
             if run["length"] not in mask_length_set:
                 continue
+            if not query_decision.in_scope:
+                excluded_gaps_by_reason[query_decision.reason] += 1
+                continue
+            query_language_counts[query_decision.sole_language] += 1
             gap_word_positions = set(
                 range(run["word_pos_start"], run["word_pos_end"] + 1))
             anchor_keys = {}
@@ -164,10 +179,14 @@ def prepare_multisign_scope(cth_ids, mask_lengths, anchor_lengths):
                 "doc_id": doc_id, "line_index_in_doc": line_idx,
                 "fragment_id": fragment_id, "run": run,
                 "anchor_keys": anchor_keys,
+                "query_language": query_decision.sole_language,
             })
 
+    n_excluded = sum(excluded_gaps_by_reason.values())
     print(f"Multi-sign real gaps in scope (mask length in "
-          f"{sorted(mask_length_set)}): {len(gaps):,}")
+          f"{sorted(mask_length_set)}): {len(gaps):,} "
+          f"({n_excluded:,} excluded by language scope "
+          f"{language_scope.describe()}: {dict(excluded_gaps_by_reason)})")
     eligible = [g for g in gaps if g["anchor_keys"][base_anchor] is not None]
     print(f"Eligible (same-line {base_anchor}-sign anchor on both sides): "
           f"{len(eligible):,}")
@@ -196,6 +215,12 @@ def prepare_multisign_scope(cth_ids, mask_lengths, anchor_lengths):
         "fragment_families": fragment_families,
         "fragment_cth": fragment_cth,
         "descending_anchors": descending_anchors,
+        "language_scope": language_scope,
+        "language_index": language_index,
+        "gaps_excluded_by_language": dict(excluded_gaps_by_reason),
+        "query_language_counts": {
+            (lang or "UNRESOLVED"): count
+            for lang, count in query_language_counts.items()},
     }
 
 
@@ -307,6 +332,10 @@ def main():
     result = {
         "calibration_scope_cths": calibration_cths,
         "scope_documents": len(scope["slice_doc_ids"]),
+        **scope["language_scope"].manifest_entry(),
+        **scope["language_index"].manifest_entry(),
+        "gaps_excluded_by_language": scope["gaps_excluded_by_language"],
+        "query_language_counts": scope["query_language_counts"],
         "calibrated_anchor_lengths": anchor_lengths,
         "calibrated_mask_lengths": mask_lengths,
         "nominal_display_depth": nominal_depth,

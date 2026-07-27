@@ -364,16 +364,40 @@ def main():
     packets = []
     rows = []
 
+    # P4-D language context for these packets.
+    #
+    # The P2-E4/P2-E6 source packets were produced under the pre-Phase-4
+    # line-granularity Hittite filter, so their candidate evidence was
+    # assembled without word-aware language resolution: a `Hit`-tagged line
+    # carrying explicit `Hur` words contributed those words to the anchor
+    # index. The intended scope was Hittite-only, but no language was
+    # established for the query span itself.
+    #
+    # Resolving the query language now, from the Gate 2 dataset, would state
+    # a language for the query while the displayed evidence still came from
+    # a language-blind index -- a half-truth. The honest record is
+    # UNRESOLVED_IN_SOURCE_RUN, which forces the mandatory LANGUAGE_*
+    # limitation into the expert UI. Resolved query languages become
+    # available once P2-E4/P2-E6 are rerun under the P4-D projection
+    # (PHASE4_CHARTER.md P4-G).
+    language_context = edc.build_language_context(
+        language_scope="HITTITE_ONLY",
+        query_language_status="UNRESOLVED_IN_SOURCE_RUN",
+        cross_language_assistance_enabled=False,
+    )
+
     for i, source in enumerate(p2e4_raw, 1):
         fragment_id = source["query"]["fragment_id"]
         assert_dev_split(fragment_id, splits)
-        packet = edc.adapt_p2e4_packet(source, f"p2e4-{i:03d}", p2e4_provenance)
+        packet = edc.adapt_p2e4_packet(
+            source, f"p2e4-{i:03d}", p2e4_provenance, language_context)
         packets.append(packet)
 
     for i, source in enumerate(p2e6_raw, 1):
         fragment_id = source["query"]["fragment_id"]
         assert_dev_split(fragment_id, splits)
-        packet = edc.adapt_p2e6_packet(source, f"p2e6-{i:03d}", p2e6_provenance)
+        packet = edc.adapt_p2e6_packet(
+            source, f"p2e6-{i:03d}", p2e6_provenance, language_context)
         packets.append(packet)
 
     for packet in packets:

@@ -1,5 +1,17 @@
 # Real-gap multi-sign calibration application (step 4)
 
+<!-- p4d-staleness-stamp -->
+> **[PREDATES P4-D — numbers not recomputed]** This report was produced before
+> the real-gap query side was language-resolved. Under P4-D (2026-07-26) a gap
+> may only ASK under the same explicit language scope that governs which
+> witness lines may ANSWER; previously every line in the slice could query,
+> so non-Hittite gaps sat in the same denominator and simply found no
+> coverage. On the measured slice **~9.5% of the gap population** was
+> non-Hittite or unresolved. The witness index was also rebuilt word-aware
+> (932 previously-admitted lines now refused). The numbers below have **not**
+> been recomputed; rerunning is P4-G work. See
+> `reports/phase4_p4d_language_aware_apis.md`.
+
 Reuses the already-computed, already-frozen fold calibration from `Phase2/phase2_out/p2e6_multisign_horizon.json` -- no recalibration. Unlike step 3's per-rank P2-E4 rates, this calibration is a **set-inclusion rate**, keyed by (mask_length, adaptive_anchor_length): "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set"
 
 Scoped to the **39 CTHs** the existing 5 P2-E6 folds actually cover (union of all folds' `evaluation_cth` lists): **741 documents** in scope.

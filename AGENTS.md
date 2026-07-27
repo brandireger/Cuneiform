@@ -131,6 +131,18 @@ full-corpus scale, with leakage-safe methodology?
 - Multilingual layers present: Hittite, Akkadian, Sumerian, Hattic,
   Cuneiform Luwian, Palaic, Hurrian. Do not silently discard
   non-Hittite layers; they matter for parallels.
+  **P4-D (2026-07-26):** active language selection goes through
+  `lib/language_scope.py` (a required, validated `LanguageScope`) and
+  `lib/language_lookup_v2.py` (word-aware effective language over the Gate 2
+  dataset). `p2e_witness_recoverability.render_fragments` — the shared
+  anchor-index construction behind every P2-E script and the real-gap
+  pipeline — REQUIRES `language_scope` and `language_index`; the old
+  optional `line_lang_lookup=None` default is gone. The real-gap QUERY side
+  is language-resolved too: a gap may only ASK under the same explicit scope
+  that governs which witness lines may ANSWER. `lib/hittite_tokenizer.py` and
+  `scripts/rebuild_tokenizer_hittite_only.py` deliberately keep the older
+  line-granularity argument (frozen D14 vocabulary path, Gate 3 territory).
+  See `reports/phase4_p4d_language_aware_apis.md`.
 - Known caveat (per the TLHdig team): philological quality is uneven —
   it is a living community archive, not a critical edition. Quality
   filtering must be explicit and reported, never silent.
@@ -508,6 +520,34 @@ token content at the same technical key. New Phase 4 token datasets must use
 the exact checksum-guarded Gate 1 archive member and the shared
 `decompose_document()` implementation; do not choose or deduplicate a
 conflated cached version silently. The historical cache remains immutable.
+
+**P4-E Unresolved Evidence Workbench implemented 2026-07-26.** Unresolved
+material (illegible signs, partially preserved readings, uncertain
+transcriptions, tokenizer OOVs, language-tag anomalies, encoding and parser
+anomalies) is retained in a governed expert-review zone rather than dropped:
+`lib/unresolved_evidence.py` is the executable contract,
+`scripts/phase4_unresolved_extraction.py` builds 238,652 occurrences, and
+`scripts/phase4_unresolved_clustering.py` emits deterministic same-language
+(default) and opt-in cross-language cluster proposals. Everything there is
+`NOT_CORPUS_TRUTH`; expert events are append-only, hash-chained, and
+quarantined. `LEXICAL_UNKNOWN` is deliberately empty pending a ratified
+detector. The machine schema was amended to 1.0.1 during implementation
+(nullable location for text-external anomalies; new `MISSING_LANGUAGE_TAG`);
+ratification pending. See `reports/phase4_p4e_unresolved_workbench.md`.
+
+- **Ratified 2026-07-27** (`reports/phase4_p4de_ratification.md`): workbench
+  contract **1.1.0** (nullable location for text-external anomalies;
+  `MISSING_LANGUAGE_TAG`; `RARE_FORM`; `SYSTEM_PROPOSAL`). `RARE_FORM` is
+  populated by a governed frequency detector and is a claim about THIS CORPUS;
+  `LEXICAL_UNKNOWN` is reserved for expert assertion and is never set by
+  extraction, because frequency cannot establish that a form is unknown to
+  Hittitology. Deterministic groupings are `SYSTEM_PROPOSAL`, not
+  `MODEL_PROPOSAL`. Annotation events must be backed up via
+  `scripts/phase4_workbench_backup.py` before and after every expert session.
+  Mixed-line policy stays `EXCLUDE_LINE`. The P2-E/real-gap rerun under P4-D is
+  deferred but MUST precede any P7 paper drafting -- ten affected reports carry
+  a `[PREDATES P4-D]` stamp until then.
+
 
 ## Phase sequence
 

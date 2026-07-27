@@ -1,7 +1,7 @@
 # Missing-text demo data export report
 
 Sources: `Phase2/phase2_out/p2e4_candidate_set_packets.jsonl` (16 packets) + `Phase2/phase2_out/p2e6_multisign_packets.jsonl` (12 packets).
-Output: `Phase3/demo_out/missing_text_demo_data.js` (213.5 KB).
+Output: `Phase3/demo_out/missing_text_demo_data.js` (233.3 KB).
 
 **28 real packets exported** (16 single-sign, 12 multi-sign; 24 present-candidates, 4 abstain; 3 with a collapsed tail). Every packet is adapted via `lib/expert_decision_contract.py`'s `adapt_p2e4_packet()`/`adapt_p2e6_packet()`, which strips hidden evaluation gold (the raw source's `outcome`, top-level `evidence`/`support`/`contradictions`/`observable_*` fields are never read) and runs `validate_suggestion_packet()` before returning.
 

@@ -35,7 +35,7 @@ import evidence_policy as ep
 import hittite_tokenizer as ht
 
 import p2e_witness_recoverability as p2e
-from line_lang_lookup import load_line_lang_lookup
+import language_lookup_v2 as llookup
 
 
 CONFIG_PATH = Path("configs") / "p2e2_calibration.json"
@@ -802,8 +802,11 @@ def main():
     base_tracers = p2e.run_base_tracers()
     _, _, _, edges, decomposed = p2e.load_dev_inputs()
     line_index = p2e.build_line_index(decomposed)
+    language_scope, language_index = llookup.hittite_only_projection(
+        sorted(set(edges["parent_doc"])))
     line_sequences, canonical_flat = p2e.render_fragments(
-        edges, line_index, line_lang_lookup=load_line_lang_lookup())
+        edges, line_index, language_scope=language_scope,
+        language_index=language_index)
     tokenizer = ht.Tokenizer.load()
     encoded = tokenizer.encode(canonical_flat, strict=True)
     contracts.assert_encoding_sane(

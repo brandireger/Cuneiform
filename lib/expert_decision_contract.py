@@ -15,7 +15,7 @@ import json
 from copy import deepcopy
 
 
-CONTRACT_VERSION = "1.0.0"
+CONTRACT_VERSION = "1.1.0"
 RECORD_TYPE = "missing_text_suggestion_packet"
 DECISION_RECORD_TYPE = "expert_decision_record"
 PRESENT_ACTIONS = (
@@ -38,6 +38,23 @@ EVIDENCE_CLASSES = {
     "MODEL_DERIVED",
     "SYSTEM_TECHNICAL",
 }
+
+# P4-D (contract 1.1.0). Why the query language may be unknown. Only
+# RESOLVED permits a non-null query_language; every other status obliges the
+# packet to carry a LANGUAGE_* limitation, so a display can never present a
+# language-silent packet as though its language had been established.
+LANGUAGE_STATUSES = {
+    # The ratified word_override_else_line_v2 rule resolved one language.
+    "RESOLVED",
+    # The packet's source run predates language resolution. Not an assertion
+    # that the span is non-Hittite -- an assertion that nobody checked.
+    "UNRESOLVED_IN_SOURCE_RUN",
+    # A malformed/unrecognized/explicit-empty source tag left it unresolved.
+    "UNRESOLVED_SOURCE_ANOMALY",
+    # More than one resolved language on the query line.
+    "MIXED_LANGUAGE_QUERY_LINE",
+}
+LANGUAGE_LIMITATION_PREFIX = "LANGUAGE_"
 
 
 class ContractError(ValueError):
@@ -107,6 +124,101 @@ def _validate_rate(rate, label):
             f"{label}: group audit rates cannot be instance probabilities")
 
 
+def _validate_language_block(packet):
+    """Enforce the P4-D language-transparency invariants on one packet.
+
+    The point is not to record a language for its own sake. It is that an
+    expert reading a candidate set must be able to see which language the
+    system believed it was working in, whether that belief was established
+    or merely assumed, and whether any displayed evidence came from a
+    different language than the query.
+    """
+    language = packet["language"]
+    _require(
+        language,
+        [
+            "language_scope",
+            "query_language",
+            "query_language_status",
+            "mixed_language_query_line",
+            "source_languages",
+            "cross_language_source_languages",
+            "cross_language_assistance_enabled",
+            "language_rule_id",
+            "language_evidence_class",
+        ],
+        "language",
+    )
+    if language["query_language_status"] not in LANGUAGE_STATUSES:
+        raise ContractError("language: unknown query_language_status")
+    # Gate 0 decision 7: language annotations are editorial transcription,
+    # never observed artifact. A packet must not upgrade their evidence class.
+    if language["language_evidence_class"] != "EDITORIAL_TRANSCRIPTION":
+        raise ContractError(
+            "language: language fields are EDITORIAL_TRANSCRIPTION evidence")
+
+    resolved = language["query_language_status"] == "RESOLVED"
+    if resolved and not language["query_language"]:
+        raise ContractError(
+            "language: RESOLVED status requires a query_language")
+    if not resolved and language["query_language"] is not None:
+        raise ContractError(
+            "language: unresolved status cannot carry a query_language")
+
+    if language["mixed_language_query_line"] not in (True, False):
+        raise ContractError("language: mixed_language_query_line must be bool")
+
+    cross = list(language["cross_language_source_languages"])
+    if not language["cross_language_assistance_enabled"] and cross:
+        raise ContractError(
+            "language: cross-language evidence present while the "
+            "cross-language assistance channel is disabled")
+    if language["query_language"] in cross:
+        raise ContractError(
+            "language: the query language cannot appear in the "
+            "cross-language channel -- the two channels must stay separable")
+
+    if not resolved:
+        codes = [
+            item.get("code", "") for item in packet["limitations"]]
+        if not any(
+                code.startswith(LANGUAGE_LIMITATION_PREFIX) for code in codes):
+            raise ContractError(
+                "language: an unresolved query language requires an explicit "
+                f"{LANGUAGE_LIMITATION_PREFIX}* limitation on the packet")
+
+
+def build_language_context(
+        *,
+        language_scope,
+        query_language=None,
+        query_language_status,
+        mixed_language_query_line=False,
+        source_languages=(),
+        cross_language_source_languages=(),
+        cross_language_assistance_enabled=False,
+        language_rule_id=None):
+    """Assemble the packet `language` block from explicit values.
+
+    Every argument is explicit and there is no inferred default for the
+    query language: a caller that does not know it must say
+    `UNRESOLVED_IN_SOURCE_RUN` rather than let a blank field read as Hittite.
+    """
+    return {
+        "language_scope": language_scope,
+        "query_language": query_language,
+        "query_language_status": query_language_status,
+        "mixed_language_query_line": bool(mixed_language_query_line),
+        "source_languages": sorted(set(source_languages)),
+        "cross_language_source_languages": sorted(
+            set(cross_language_source_languages)),
+        "cross_language_assistance_enabled": bool(
+            cross_language_assistance_enabled),
+        "language_rule_id": language_rule_id,
+        "language_evidence_class": "EDITORIAL_TRANSCRIPTION",
+    }
+
+
 def validate_suggestion_packet(packet):
     """Validate one canonical suggestion packet and return it unchanged."""
     _require(
@@ -125,6 +237,7 @@ def validate_suggestion_packet(packet):
             "contradictory_evidence",
             "limitations",
             "assistance",
+            "language",
             "workflow",
             "abstention",
         ],
@@ -275,6 +388,8 @@ def validate_suggestion_packet(packet):
     if assistance["model_generated_content_present"] != bool(
             assistance["model_features_used"]):
         raise ContractError("assistance: model-content flag mismatch")
+
+    _validate_language_block(packet)
 
     workflow = packet["workflow"]
     _require(
@@ -455,8 +570,15 @@ def _supporting_evidence(options):
     ]
 
 
-def _base_packet(source, packet_id, source_provenance, mode, mask_length):
+def _base_packet(
+        source, packet_id, source_provenance, mode, mask_length,
+        language_context):
     query = source["query"]
+    if not language_context:
+        raise ContractError(
+            "_base_packet: language_context is required (contract 1.1.0). "
+            "Build it with build_language_context(); a packet may not be "
+            "emitted without stating what language it believed it was in.")
     status = (
         "PRESENT_CANDIDATES"
         if source["decision"] == "PRESENT_CANDIDATE_SET"
@@ -491,6 +613,7 @@ def _base_packet(source, packet_id, source_provenance, mode, mask_length):
         "supporting_evidence": [],
         "contradictory_evidence": [],
         "limitations": [],
+        "language": deepcopy(language_context),
         "assistance": {
             "evidence_policy": source["evidence_policy"],
             "enabled_layers": list(source["enabled_assistance_layers"]),
@@ -517,10 +640,50 @@ def _base_packet(source, packet_id, source_provenance, mode, mask_length):
     }
 
 
-def adapt_p2e4_packet(source, packet_id, source_provenance):
-    """Convert a P2-E4 single-sign packet without copying hidden gold."""
+_LANGUAGE_LIMITATION_MESSAGES = {
+    "UNRESOLVED_IN_SOURCE_RUN": (
+        "This packet's source run predates word-aware language resolution, "
+        "so the language of the query span was never established. Treat the "
+        "displayed evidence as language-unverified rather than assuming "
+        "Hittite."
+    ),
+    "UNRESOLVED_SOURCE_ANOMALY": (
+        "The source language tag for this span is empty, malformed, or "
+        "unrecognized, and was deliberately not guessed at. The language of "
+        "the query span is unknown."
+    ),
+    "MIXED_LANGUAGE_QUERY_LINE": (
+        "More than one language is resolved on the query line, so a single "
+        "query language cannot be stated for this span."
+    ),
+}
+
+
+def _append_language_limitation(packet):
+    """Add the mandatory LANGUAGE_* limitation when language is unresolved.
+
+    `_validate_language_block` refuses a packet that lacks it, so this keeps
+    the adapters honest by construction rather than by remembering.
+    """
+    status = packet["language"]["query_language_status"]
+    if status == "RESOLVED":
+        return
+    packet["limitations"].append({
+        "code": f"{LANGUAGE_LIMITATION_PREFIX}{status}",
+        "message": _LANGUAGE_LIMITATION_MESSAGES[status],
+    })
+
+
+def adapt_p2e4_packet(
+        source, packet_id, source_provenance, language_context):
+    """Convert a P2-E4 single-sign packet without copying hidden gold.
+
+    `language_context` is required (contract 1.1.0); build it with
+    `build_language_context()`.
+    """
     packet = _base_packet(
-        source, packet_id, source_provenance, "SINGLE_SIGN", 1)
+        source, packet_id, source_provenance, "SINGLE_SIGN", 1,
+        language_context)
     alternatives = source["candidate_set"]["alternatives"]
     options = [
         _option(alternative, index, "OPTION_RANK")
@@ -553,14 +716,21 @@ def adapt_p2e4_packet(source, packet_id, source_provenance):
             ),
         },
     ]
+    _append_language_limitation(packet)
     return validate_suggestion_packet(packet)
 
 
-def adapt_p2e6_packet(source, packet_id, source_provenance):
-    """Convert a P2-E6 multi-sign packet without copying hidden gold."""
+def adapt_p2e6_packet(
+        source, packet_id, source_provenance, language_context):
+    """Convert a P2-E6 multi-sign packet without copying hidden gold.
+
+    `language_context` is required (contract 1.1.0); build it with
+    `build_language_context()`.
+    """
     mask_length = int(source["query"]["mask_length"])
     packet = _base_packet(
-        source, packet_id, source_provenance, "MULTI_SIGN", mask_length)
+        source, packet_id, source_provenance, "MULTI_SIGN", mask_length,
+        language_context)
     alternatives = source["candidate_set"]["tie_complete_alternatives"]
     options = [
         _option(alternative, index, "CANDIDATE_SET")
@@ -595,6 +765,7 @@ def adapt_p2e6_packet(source, packet_id, source_provenance):
             ),
         },
     ]
+    _append_language_limitation(packet)
     if total > len(options):
         packet["limitations"].append({
             "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",

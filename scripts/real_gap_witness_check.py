@@ -47,7 +47,7 @@ import hittite_tokenizer as ht  # noqa: E402
 import pandas as pd  # noqa: E402
 
 import p2e_witness_recoverability as p2e  # noqa: E402
-from line_lang_lookup import load_line_lang_lookup  # noqa: E402
+import language_lookup_v2 as llookup  # noqa: E402
 import real_gap_census as rgc  # noqa: E402
 
 EDGES_PATH = Path("Phase1_pipeline/p2_out/edges.parquet")
@@ -227,8 +227,11 @@ def prepare_scope(cth_ids):
     }
 
     line_index = p2e.build_line_index(decomposed)
+    language_scope, language_index = llookup.hittite_only_projection(
+        sorted(set(edges["parent_doc"])))
     line_sequences, _ = p2e.render_fragments(
-        edges, line_index, line_lang_lookup=load_line_lang_lookup())
+        edges, line_index, language_scope=language_scope,
+        language_index=language_index)
     line_owner = build_line_owner_map(edges)
     fragment_line_order = build_fragment_line_order(edges)
 
@@ -255,14 +258,35 @@ def prepare_scope(cth_ids):
     # side -- tagged with how many lines were crossed, so cross-line
     # results are never silently pooled with the same-line population
     # the existing calibration was computed on.
+    #
+    # P4-D: the QUERY side is language-resolved here, not just the witness
+    # index. Before this, render_fragments filtered which witness lines could
+    # supply evidence, but every line in the corpus slice could still ASK --
+    # so a Hurrian gap was counted in the same denominator as a Hittite one
+    # and simply found no coverage. That failed safe but made the reported
+    # coverage rate a mixed-language quantity with no way to tell the two
+    # populations apart. Out-of-scope gaps are now excluded from the
+    # population and counted by reason instead.
     resolved_gaps = []
+    excluded_gaps_by_reason = Counter()
+    query_language_counts = Counter()
     for (doc_id, line_idx), raw_tokens in raw_tokens_by_line.items():
         fragment_id = line_owner.get((doc_id, line_idx))
         if fragment_id is None:
             continue
-        for run in rgc.find_runs(
-                doc_id, int(line_idx),
-                [(wp, t, s, None) for wp, t, s in raw_tokens]):
+        query_decision = language_index.line_decision(
+            language_scope, doc_id, line_idx,
+            n_source_tokens=len(raw_tokens), record=False)
+        runs = list(rgc.find_runs(
+            doc_id, int(line_idx),
+            [(wp, t, s, None) for wp, t, s in raw_tokens]))
+        if not runs:
+            continue
+        if not query_decision.in_scope:
+            excluded_gaps_by_reason[query_decision.reason] += len(runs)
+            continue
+        query_language_counts[query_decision.sole_language] += len(runs)
+        for run in runs:
             gap_word_positions = set(
                 range(run["word_pos_start"], run["word_pos_end"] + 1))
             anchor_result = compute_anchor_key_crossline(
@@ -277,9 +301,13 @@ def prepare_scope(cth_ids):
                 "lines_crossed": (crossed_left + crossed_right) if anchor_key else 0,
                 "is_cross_line": bool(anchor_key) and (crossed_left + crossed_right) > 0,
                 "has_preserved_edge": fragment_has_any_preserved_edge.get(fragment_id),
+                "query_language": query_decision.sole_language,
             })
 
-    print(f"Real gap runs in scope: {len(resolved_gaps):,}")
+    n_excluded = sum(excluded_gaps_by_reason.values())
+    print(f"Real gap runs in scope: {len(resolved_gaps):,} "
+          f"({n_excluded:,} excluded by language scope "
+          f"{language_scope.describe()}: {dict(excluded_gaps_by_reason)})")
     with_anchor = [g for g in resolved_gaps if g["anchor_key"] is not None]
     n_same_line = sum(1 for g in with_anchor if not g["is_cross_line"])
     n_cross_line = sum(1 for g in with_anchor if g["is_cross_line"])
@@ -325,6 +353,12 @@ def prepare_scope(cth_ids):
         "anchor_index": anchor_index,
         "fragment_families": fragment_families,
         "fragment_cth": fragment_cth,
+        "language_scope": language_scope,
+        "language_index": language_index,
+        "gaps_excluded_by_language": dict(excluded_gaps_by_reason),
+        "query_language_counts": {
+            (lang or "UNRESOLVED"): count
+            for lang, count in query_language_counts.items()},
     }
 
 
@@ -394,6 +428,10 @@ def main():
     result = {
         "scope_cths": top_cth_ids,
         "scope_documents": len(slice_doc_ids),
+        **scope["language_scope"].manifest_entry(),
+        **scope["language_index"].manifest_entry(),
+        "gaps_excluded_by_language": scope["gaps_excluded_by_language"],
+        "query_language_counts": scope["query_language_counts"],
         "gaps_in_scope": len(resolved_gaps),
         "gaps_with_full_anchor": len(with_anchor),
         "gaps_same_line_anchor": n_same_line,

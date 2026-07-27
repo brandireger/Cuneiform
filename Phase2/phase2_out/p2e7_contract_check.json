@@ -1,6 +1,6 @@
 {
   "work_item": "P2-E7 expert decision contract and Phase 2 closeout",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "schema": "configs/expert_decision_contract.schema.json",
   "validator": "lib/expert_decision_contract.py",
   "examples": "Phase2/phase2_out/p2e7_contract_examples.jsonl",
@@ -28,11 +28,11 @@
     "per_option_probability_established": false,
     "test_side_remains_unspent": true,
     "probe_results_promoted_for_citation": false,
-    "recommended_next_workstream": "expert UI prototype against contract v1.0.0"
+    "recommended_next_workstream": "expert UI prototype against contract v1.1.0"
   },
   "input_hashes": {
-    "schema": "faec855dd30a8e27b035e4bcc385519cdf8836f260250f7d8d78cd7a8c50ae32",
-    "evidence_registry": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
+    "schema": "c6283c5adb107ac6bfa5650f93d055d69232217f9b68e005912ba437a0870b82",
+    "evidence_registry": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
     "p2e4_packets": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
     "p2e4_manifest": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
     "p2e6_packets": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
