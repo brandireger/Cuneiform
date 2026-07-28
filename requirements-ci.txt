@@ -1,5 +1,8 @@
 numpy==2.4.6
 pandas==3.0.3
+# Parquet reader. pandas does not vendor it, and the governance tests
+# read splits/edges/decomposed parquet fixtures.
+pyarrow==25.0.0
 scipy==1.17.1
 scikit-learn==1.9.0
 pyyaml==6.0.3
