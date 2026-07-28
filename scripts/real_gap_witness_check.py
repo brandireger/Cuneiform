@@ -351,6 +351,10 @@ def prepare_scope(cth_ids):
         "n_has_preserved_edge": n_has_preserved_edge,
         "n_edge_unknown": n_edge_unknown,
         "anchor_index": anchor_index,
+        # Exposed so a caller can build a CROSS-LINE witness index over
+        # the same rendered, language-resolved lines rather than
+        # re-deriving them and risking divergence.
+        "line_sequences": line_sequences,
         "fragment_families": fragment_families,
         "fragment_cth": fragment_cth,
         "language_scope": language_scope,

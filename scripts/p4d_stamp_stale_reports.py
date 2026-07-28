@@ -56,17 +56,34 @@ CENSUS_NOTE = """{marker}
 > recomputed. See `reports/phase4_p4d_language_aware_apis.md`.
 """
 
+# Reports still carrying pre-P4-D numbers. `--check` runs in CI, so a stamp
+# cannot be quietly deleted.
+#
+# REMOVAL PROTOCOL: a target leaves this list only when its own script has
+# actually been rerun under the P4-D projection, in the same change that
+# removes it. Regeneration drops the stamp naturally, so an entry left here
+# after a legitimate rerun would fail CI -- that is the intended coupling, not
+# a bug. Moving an entry to RERUN_UNDER_P4D records that it happened.
+# Rerun under the P4-D projection on 2026-07-27 (P4-G). These must NOT carry
+# the stamp any more: their numbers are current, so the note would itself be
+# the false claim.
+RERUN_UNDER_P4D = [
+    "reports/phase2_p2e_witness_recoverability.md",
+    "reports/phase2_p2e2_abstention_calibration.md",
+    "reports/phase2_p2e3_cross_calibration.md",
+    "reports/phase2_p2e4_candidate_set_audit.md",
+    "reports/phase2_p2e5_alignment_probe.md",
+    "reports/phase2_p2e6_multisign_horizon.md",
+    "Phase3/real_gaps_out/real_gap_witness_check_report.md",
+    "Phase3/real_gaps_out/real_gap_calibration_report.md",
+    "Phase3/real_gaps_out/real_gap_multisign_calibration_report.md",
+]
+
 TARGETS = [
-    ("reports/phase2_p2e_witness_recoverability.md", WITNESS_INDEX_NOTE),
-    ("reports/phase2_p2e2_abstention_calibration.md", WITNESS_INDEX_NOTE),
-    ("reports/phase2_p2e3_cross_calibration.md", WITNESS_INDEX_NOTE),
-    ("reports/phase2_p2e4_candidate_set_audit.md", WITNESS_INDEX_NOTE),
-    ("reports/phase2_p2e5_alignment_probe.md", WITNESS_INDEX_NOTE),
-    ("reports/phase2_p2e6_multisign_horizon.md", WITNESS_INDEX_NOTE),
-    ("Phase3/real_gaps_out/real_gap_witness_check_report.md", QUERY_SIDE_NOTE),
-    ("Phase3/real_gaps_out/real_gap_calibration_report.md", QUERY_SIDE_NOTE),
-    ("Phase3/real_gaps_out/real_gap_multisign_calibration_report.md",
-     QUERY_SIDE_NOTE),
+    # The census was rerun too, but its caveat is NOT about staleness: the
+    # census is a deliberately language-blind structural count, and its 181,051
+    # runs are unchanged. Regenerating it stripped a note that is still true,
+    # so it stays stamped until the census itself is language-stratified.
     ("Phase3/real_gaps_out/real_gap_census_report.md", CENSUS_NOTE),
 ]
 
@@ -109,8 +126,21 @@ def main():
             missing += 1
         print(f"  {result:<15} {relative}")
 
-    if args.check and missing:
-        print(f"\n{missing} report(s) lack the P4-D staleness stamp.")
+    # The other half of the invariant: a report recorded as rerun must NOT
+    # still carry a stamp, or the stamp is now itself the stale claim.
+    contradicted = 0
+    for relative in RERUN_UNDER_P4D:
+        path = Path(relative)
+        if path.exists() and MARKER in path.read_text(encoding="utf-8"):
+            contradicted += 1
+            print(f"  STAMPED-BUT-RERUN {relative}")
+
+    if args.check and (missing or contradicted):
+        if missing:
+            print(f"\n{missing} report(s) lack the P4-D staleness stamp.")
+        if contradicted:
+            print(f"{contradicted} report(s) are recorded as rerun under P4-D "
+                  "but still carry the staleness stamp.")
         return 1
     return 0
 

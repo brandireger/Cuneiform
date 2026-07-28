@@ -140,6 +140,19 @@ needs ratification. No expert UI yet. See
 Similarity clusters are suggestions. Expert grouping and hypotheses do not
 mutate TLHdig or enter a training set automatically.
 
+### P4-E2 — Expert interface for the workbench
+
+Ratification decision 7 (2026-07-27) made the interface the next build. It
+belongs to P4-E, not to P4-F or P4-G: it depends on neither a new model nor a
+rerun, and the "Expert interface" contract lives in the workbench spec.
+
+**Implemented 2026-07-27** — a review-queue export, a static interface, and a
+verifying ingest path for expert sessions. A review queue is a *view* over
+ratified artifacts and mutates nothing. Its two selection exclusions
+(placeholder-only sequences; sequences under 2 signs) **await ratification**,
+because they decide what a specialist is shown. The page has not yet been
+opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
+
 ### P4-F — Language-conditioned pretraining
 
 Training is a separate, explicit gate. The proposed model adds a language

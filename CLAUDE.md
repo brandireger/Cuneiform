@@ -544,15 +544,15 @@ cached rows. The historical cache remains immutable.
   tokenizer OOVs, language-tag anomalies, encoding and parser anomalies) is
   retained in a governed expert-review zone rather than dropped:
   `lib/unresolved_evidence.py` is the executable contract,
-  `scripts/phase4_unresolved_extraction.py` builds 238,652 occurrences from
+  `scripts/phase4_unresolved_extraction.py` builds 238,745 occurrences from
   the Gate 2 dataset plus the Gate 1 quarantine, and
   `scripts/phase4_unresolved_clustering.py` emits deterministic same-language
   (default) and opt-in cross-language cluster proposals. Everything there is
   `NOT_CORPUS_TRUTH`; expert events are append-only, hash-chained, and
   quarantined, and `EXPERT_SUPPORTED` means one named reviewer supports a
-  hypothesis, never corpus truth. `LEXICAL_UNKNOWN` is deliberately empty
-  pending a ratified detector. Machine schema amended to 1.0.1 during
-  implementation (ratification pending). See
+  hypothesis, never corpus truth. `LEXICAL_UNKNOWN` stays empty by design —
+  it is reserved for expert assertion, never set by extraction. Machine schema
+  ratified as 1.1.0 (the interim 1.0.1 was never released). See
   `reports/phase4_p4e_unresolved_workbench.md`.
 
 - **Ratified 2026-07-27** (`reports/phase4_p4de_ratification.md`): workbench
@@ -567,6 +567,137 @@ cached rows. The historical cache remains immutable.
   Mixed-line policy stays `EXCLUDE_LINE`. The P2-E/real-gap rerun under P4-D is
   deferred but MUST precede any P7 paper drafting -- ten affected reports carry
   a `[PREDATES P4-D]` stamp until then.
+
+- **P4-E2 expert interface (2026-07-27).** The workbench now has a UI:
+  `scripts/phase4_workbench_review_export.py` builds a review queue,
+  `demo/workbench_unresolved_prototype.html` renders it, and
+  `scripts/phase4_workbench_ingest_events.py` is the ONLY supported path from
+  a browser export into the append-only log -- it recomputes each event's
+  `reviewed_record_sha256` against the record on disk, refuses on mismatch,
+  refuses when the log's head is in no backup ledger entry, and re-chains onto
+  the real head. A queue is a VIEW: it never mutates an occurrence, a proposal,
+  or an accepted hash. Queue policy `contentful_sequence_length_v1` excludes
+  placeholder-only sequences and sequences under 2 signs and ranks by sequence
+  length before document count -- clustering is Zipfian (largest same-language
+  cluster: 95,530 members, sequence `x`; ranking by document count instead
+  surfaces the single signs `a`, `i`, `e`). **Both exclusions await
+  ratification** -- they decide what a specialist is shown. The page has not
+  yet been opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
+
+- **P4-G downstream rerun DONE (2026-07-27)** (`reports/phase4_p4g_rerun.md`).
+  All ten artifacts recomputed under the required word-aware `HITTITE_ONLY`
+  scope; ratification decision 5's deadline is met and P7 drafting is no longer
+  blocked on language-contaminated numbers. Nine `[PREDATES P4-D]` stamps are
+  gone because the reports are current; `real_gap_census_report.md` KEEPS its
+  note -- the census is deliberately language-blind, so that note was a scope
+  disclosure, not a staleness claim. `scripts/p4d_stamp_stale_reports.py --check`
+  now runs in CI and enforces a two-sided invariant: a stale report cannot lose
+  its warning, and a report listed in `RERUN_UNDER_P4D` cannot keep one.
+  Direction of the correction: the witness side loses ~5% of eligible spans and
+  coverage rates RISE (a1_m1 72.06% -> 73.73%) -- the contamination was
+  inflating denominators with material the index could never serve. Query-side
+  exclusions measured at 9.5%, matching P4-D's estimate, now typed by reason.
+  Calibrated coverage is **839 of 181,051 corpus real gaps (0.46%)**;
+  cross-line anchors remain **89.9% of anchored gaps and entirely
+  uncalibrated** -- the highest-leverage remaining backend item.
+
+- **P2-E8 cross-line recoverability census DONE (2026-07-27)**
+  (`reports/phase2_p2e8_cross_line_recoverability.md`,
+  `scripts/p2e8_cross_line_recoverability.py`). The prerequisite for any
+  cross-line calibration: it establishes whether cross-line anchors have
+  recoverable witness support at all. **It is a census, not a calibration** --
+  no number in it may be shown beside a candidate as a rate. Key result: at
+  `a2_m1`, same-line spans include the true reading in 20.94% of eligible
+  cases and cross-line spans in **4.27%**. Borrowing a same-line rate for a
+  cross-line anchor would have overstated the evidence by ~5x on 89.9% of
+  anchored real gaps -- the standing prohibition, adopted on principle, now
+  has a number. Two witness-admission rules are measured side by side and
+  BOTH await ratification: `STRICT` (only boundary-crossing witnesses) and
+  `LAYOUT_AGNOSTIC` (also same-line witnesses, on the ground that line
+  division is scribal layout, not textual structure), which roughly doubles
+  gold inclusion (4.27% -> 7.21%). Where the break falls barely matters
+  (2.87-3.62% across all five boundary regions); that a break is crossed at
+  all is what costs. 41.5% of adjacent line boundaries are REFUSED rather
+  than crossed because a neighbouring line is out of scope -- crossing one
+  would fabricate adjacency, the same fabrication `EXCLUDE_LINE` prevents.
+
+- **P2-E9 cross-line calibration DONE (2026-07-28)**
+  (`reports/phase2_p2e9_cross_line_calibration.md`,
+  `scripts/p2e9_cross_line_calibration.py`). Fold-structured per-rank
+  calibration for cross-line anchors at cell `a2_m1`, reusing P2-E3's
+  composition folds and P2-E2/P2-E4's selector and rank machinery rather than
+  reimplementing them (a second implementation is a second chance to get
+  leakage wrong). **Result: every fold abstains under both admission rules.**
+  Cross-line raw top-1 agreement is 24.2% (`STRICT`) / 32.9%
+  (`LAYOUT_AGNOSTIC`), and the best selector reaching >=50 accepts tops out at
+  79.7% / 81.2% -- short of the inherited **0.90** calibration target that
+  same-line spans clear at ~91%. The pipeline abstaining on every cross-line
+  gap is therefore CORRECT BEHAVIOUR, not a failure: it refuses to present a
+  candidate at a rate it cannot certify. A target-sensitivity sweep is
+  reported (0.70 -> 308 spans @ 71.4% STRICT / 778 @ 73.0% LA; 0.80 ->
+  unreachable STRICT / 233 @ 81.1% LA) and is **explicitly NOT a proposal**:
+  choosing a target after seeing which one yields output would report a search
+  as a measurement. **Ixca must ratify (a) `STRICT` vs `LAYOUT_AGNOSTIC` and
+  (b) whether cross-line gets its own declared calibration target.** Until
+  then `real_gap_calibration.py` keeps gating on `if not g["is_cross_line"]`.
+
+- **`LAYOUT_AGNOSTIC` RATIFIED 2026-07-28** (`reports/phase2_p2e9_ratification.md`).
+  A cross-line gap may be answered by any independent witness occurrence of its
+  anchor pair, INCLUDING same-line ones: line division is scribal layout, not
+  textual structure. `STRICT` is retained as a declared ablation, never
+  deleted. Policy lives in `configs/p2e9_cross_line_calibration.json`.
+  **The cross-line calibration target remains UNRATIFIED (null) and every
+  consumer fails closed via `require_calibration_target()`** -- cross-line tops
+  out near 81% under the ratified rule, so inheriting same-line's 0.90 would
+  encode permanent abstention as if it were a policy. Adopting the admission
+  rule alone changes NOTHING operationally; `real_gap_calibration.py` still
+  correctly gates on `if not g["is_cross_line"]`.
+
+- **Cross-line calibration universe widened + held-out rates adopted
+  (2026-07-28).** `p2e9` now fits over the governed non-test universe
+  (train + dev, non-bin, test excluded AND asserted) rather than dev only,
+  declared in `configs/p2e9_cross_line_calibration.json`. Safe because this
+  calibration consumes NO model -- it counts independent witness families in
+  an anchor index -- and folds stay composition-level. Effect: held-out
+  accepts 55 -> **8,208** across 279 compositions, and the 12.8-point
+  calibration-transfer gap seen on dev-only collapsed to **0.0** (fit-set
+  77.5%, held-out 77.5%). It was a small-sample artifact, not a property of
+  cross-line evidence. **The ratified 0.75 target is met on held-out
+  compositions.** `LAYOUT_AGNOSTIC` beats the `STRICT` ablation on both mass
+  (3.3x) and transfer (0.0 vs 2.3 pts). Consumers MUST display
+  `rank_calibration_held_out`; `rank_calibration_calibration_set` exists only
+  to keep the transfer gap visible and would have overstated by ~13 points on
+  the dev-only run.
+
+- **Cross-line APPLIED to the real-gap pipeline (2026-07-28).**
+  `real_gap_calibration.py` no longer gates on `if not g["is_cross_line"]`.
+  Cross-line gaps are scored against their OWN P2-E9 calibration
+  (`LAYOUT_AGNOSTIC`, target 0.75) using `p2e9.merged_ranking` -- the same
+  ranking construction that was calibrated, never a second implementation.
+  `prepare_scope()` now exposes `line_sequences` so the cross-line witness
+  index is built over the same rendered, language-resolved lines. Result:
+  5,062 cross-line gaps eligible, **61 accepted**, on top of same-line's
+  unchanged 703/41 -- single-sign calibrated coverage 41 -> **102**.
+  **Same-line and cross-line are scored and reported SEPARATELY and must
+  never be pooled** (different populations, different ratified targets).
+  **Critical distinction, now enforced in both scripts:** the rate ATTACHED to
+  a gap is `rank_calibration_calibration_set` (fit on compositions disjoint
+  from the fold's evaluation CTHs, matching P2-E4); `rank_calibration_held_out`
+  is the QUALITY claim only -- it is measured on the very compositions the
+  gaps come from, so attaching it per-gap would be circular. If the cross-line
+  artifacts are missing or the target is unratified, cross-line stays gated
+  rather than borrowing same-line rates.
+
+- **P2-E10 cross-line MULTI-SIGN calibration DONE (2026-07-28) -- NEGATIVE
+  RESULT, deliberately not applied** (`reports/phase2_p2e10_cross_line_multisign.md`).
+  Set-inclusion estimand (not per-rank; an expert is shown a SET), adaptive
+  anchor length reusing `p2e6.build_adaptive_records` unchanged. Set inclusion
+  is **13.8% at two signs falling to 6.7% at five**, with a **0.0-point**
+  transfer gap on 235,628-377,379 held-out spans -- the calibration is sound,
+  and what it establishes is that the channel does not work. **Do NOT wire
+  P2-E10 into `real_gap_multisign_calibration.py`**: a calibrated 8%
+  set-inclusion rate is honest but not decision-support. This bounds where
+  cross-line evidence helps -- single-sign yes (P2-E9, applied), multi-sign no.
 
 
 

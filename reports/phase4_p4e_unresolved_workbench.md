@@ -22,15 +22,27 @@ Artifacts under `Phase4/phase4_out/`: `unresolved_occurrences.parquet` and
 
 ## Extraction results
 
-**238,652 occurrences** — 238,643 contiguous token runs plus the 9 Gate 1
+> **[AMENDED 2026-07-27 — post-ratification]** The figures in this section are
+> the ratified ones. The as-implemented pass reported 238,652 occurrences and
+> logical SHA-256 `32fa7587…`; ratifying `RARE_FORM` (decision 2) moved the
+> count and, because occurrence identity hashes the category set, changed the
+> ids around the affected tokens. Both prior counts and the reason for each
+> shift are preserved in `reports/phase4_p4de_ratification.md`.
+
+**238,745 occurrences** — 238,736 contiguous token runs plus the 9 Gate 1
 source anomalies. Zero protected-test occurrences.
+
+An occurrence carries a category *set*, so the column below counts occurrences
+bearing each category and does not sum to the total: `RARE_FORM` in particular
+co-occurs with the damage categories rather than replacing them.
 
 | category | occurrences |
 |---|---:|
 | `ILLEGIBLE_SIGN` | 131,322 |
-| `PARTIALLY_PRESERVED_READING` | 103,092 |
-| `TOKENIZER_OOV` | 4,192 |
-| `UNCERTAIN_TRANSCRIPTION` | 402 |
+| `PARTIALLY_PRESERVED_READING` | 103,097 |
+| `TOKENIZER_OOV` | 4,224 |
+| `RARE_FORM` | 1,726 |
+| `UNCERTAIN_TRANSCRIPTION` | 403 |
 | `EMPTY_LANGUAGE_TAG` | 44 |
 | `UNRECOGNIZED_LANGUAGE_TAG` | 22 |
 | `MALFORMED_LANGUAGE_TAG` | 22 |
@@ -39,12 +51,13 @@ source anomalies. Zero protected-test occurrences.
 | `SYMBOL_OR_ENCODING_ANOMALY` | 1 |
 | `LEXICAL_UNKNOWN` | 0 (deliberately — see below) |
 
-By split: 126,419 discovery / 98,385 train / 13,838 dev. By effective
-language: Hit 210,561; Hur 11,337; Akk 8,796; Hat 4,762; Luw 1,769; Sum 985;
-Pal 367; unresolved 66.
+By split: 126,437 discovery / 98,462 train / 13,846 dev. By effective
+language: Hit 210,615; Hur 11,339; Akk 8,816; Hat 4,764; Luw 1,769; Sum 1,000;
+Pal 367; unresolved 66 — over the 238,736 in-text runs, since the 9 Gate 1
+quarantine anomalies have no enclosing line to inherit a language from.
 
 Logical SHA-256 (content, excluding run timestamp):
-`32fa7587c2c35695ed4e6f36ec8b6f058f85dffaab8d397bc08a891f67495aad`, reproduced
+`fd387b97a9aeb1cb9b7e9a89f3b20f8b015ef50af524695cec6567b64b191f47`, reproduced
 across two independent builds.
 
 ### Determinism is measured logically, not by file bytes
@@ -57,6 +70,24 @@ that from a real content change. The script now reports
 excluding provenance, matching how Gate 1 and Gate 2 already verify
 themselves. *When* an occurrence was extracted is not part of *what* it is,
 and including it would have made the determinism check unfalsifiable.
+
+> **[AMENDED 2026-07-27]** The clustering channel had been left out of this
+> rule. Its manifest recorded only `candidates_sha256`, a hash of a JSONL whose
+> every record embeds `provenance.created_utc` and `git_commit` — so it changed
+> on every rerun by construction, and the standing "if a logical hash changes,
+> stop and diagnose" check could not be applied to cluster proposals at all.
+> `phase4_unresolved_clustering.logical_hash` now mirrors extraction's, and the
+> manifest reports `candidates_logical_sha256` alongside the renamed
+> `candidates_file_sha256`. Reran both channels to populate it, which doubled
+> as the first real determinism check on this output:
+>
+> | channel | logical (stable) | file (changed) |
+> |---|---|---|
+> | `SAME_LANGUAGE_AS_QUERY` | `33c3cff9…` reproduced | `6b8e2775…` → `3674d149…` |
+> | `CROSS_LANGUAGE_PARALLEL` | `573ed092…` reproduced | `5dd9c242…` → `6dd93911…` |
+>
+> Content identical; both file hashes moved anyway. Covered by
+> `tests/test_phase4_unresolved_clustering.py` (5 tests).
 
 ## Design decisions
 
@@ -163,7 +194,7 @@ Nothing in the projection promotes anything to `EXPERT_SUPPORTED`
 automatically — and even that status means only that one named reviewer
 endorsed a hypothesis.
 
-The event log is currently empty, so all 238,652 occurrences project to
+The event log is currently empty, so all 238,745 occurrences project to
 `UNREVIEWED`. That is the correct starting position, not a gap.
 
 ## Acceptance checks
@@ -174,10 +205,22 @@ development mode), which is additionally structural: `main_split` is
 constrained to train/dev/discovery in both schema and library, and the Gate 2
 source universe contains no test rows.
 
-3,000 sampled occurrences and all 5,821 cluster proposals validate against the
-amended schema with zero structural mismatches.
+4,000 sampled occurrences and all 5,844 cluster proposals validate against the
+ratified 1.1.0 schema with zero structural mismatches. (The as-implemented pass
+checked 3,000 samples against 5,821 proposals under the interim 1.0.1 working
+schema.)
 
 ## Open decisions for Ixca
+
+> **All five were decided on 2026-07-27** — see
+> `reports/phase4_p4de_ratification.md`. In short: (1) split into a governed
+> `RARE_FORM` frequency detector with `LEXICAL_UNKNOWN` reserved for expert
+> assertion; (2) contract ratified as **1.1.0**, 1.0.1 never released;
+> (3) `SYSTEM_PROPOSAL` added, and `model_derived: false` alone judged
+> insufficient; (4) the expert interface ratified as the next build;
+> (5) backup implemented as `scripts/phase4_workbench_backup.py`, mandatory
+> before and after every expert session. The original wording is kept below as
+> the record of what was open at implementation time.
 
 1. **`LEXICAL_UNKNOWN` detector.** The category cannot be populated without a
    ratified definition. A hapax-over-governed-universe detector is the obvious

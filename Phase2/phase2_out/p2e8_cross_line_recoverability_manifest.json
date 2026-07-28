@@ -1,0 +1,23 @@
+{
+  "task": "p2e8_cross_line_recoverability",
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "evidence_policy": "catalog_assisted",
+  "seed": 20260727,
+  "git_commit": "dbab60231e60815e404ce2e0c19c49ac9f9400e8",
+  "language_scope": "HITTITE_ONLY",
+  "declared_statistics_universe": "dev split, attested-only, non-bin; witness support from independent source families within the same CTH",
+  "is_calibration": false,
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ],
+  "boundaries_refused_out_of_scope_neighbour": 9582
+}

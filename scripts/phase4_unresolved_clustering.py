@@ -75,6 +75,30 @@ def digest_file(path):
     return digest.hexdigest()
 
 
+def logical_hash(proposals):
+    """Content hash over the stable identity of every cluster proposal.
+
+    Mirrors `phase4_unresolved_extraction.logical_hash`, and exists for the
+    same reason. A hash of the candidates FILE is not usable here: every record
+    in that file embeds `provenance.created_utc` and `git_commit`, so it changes
+    on every rerun by construction and cannot distinguish a real content change
+    from the clock advancing. Provenance is excluded here: WHEN a grouping was
+    proposed is not part of WHAT it groups.
+    """
+    digest = hashlib.sha256()
+    for item in sorted(proposals, key=lambda p: p["cluster_id"]):
+        stable = {
+            key: item[key] for key in
+            ("cluster_id", "member_occurrence_ids", "method", "status",
+             "language_scope", "supporting_evidence", "contradictory_evidence",
+             "scores_are_probabilities", "ground_truth_status")
+        }
+        digest.update(json.dumps(
+            stable, ensure_ascii=False, sort_keys=True,
+            separators=(",", ":")).encode("utf-8"))
+    return digest.hexdigest()
+
+
 def normalized_sequence(tokens):
     """Case-folded sign sequence used as the exact-match key.
 
@@ -259,7 +283,13 @@ def main():
         "snapshot_status_counts": dict(sorted(status_counts.items())),
         "scores_are_probabilities": False,
         "candidates_path": str(candidates_path),
-        "candidates_sha256": digest_file(candidates_path),
+        "candidates_logical_sha256": logical_hash(emitted),
+        "candidates_file_sha256": digest_file(candidates_path),
+        "file_hash_is_not_stable": (
+            "Every record embeds provenance.created_utc and git_commit, so "
+            "candidates_file_sha256 changes on every rerun regardless of "
+            "content; compare candidates_logical_sha256 to check "
+            "reproducibility."),
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",

@@ -150,6 +150,34 @@ The interface should provide:
 The UI must not call a similarity score a probability or hide contradictory
 occurrences.
 
+### Implemented 2026-07-27 (P4-E2)
+
+`demo/workbench_unresolved_prototype.html`, fed by
+`scripts/phase4_workbench_review_export.py` and closed by
+`scripts/phase4_workbench_ingest_events.py`. Every requirement above is
+covered; see `reports/phase4_p4e2_expert_interface.md` for the mapping and for
+what remains unverified.
+
+A **review queue** sits between the ratified proposals and the interface,
+because clustering is Zipfian: the largest same-language proposal has 95,530
+members whose entire shared sequence is `x`, and ranking by document count
+instead surfaces the single signs `a`, `i`, `e`. Queue policy
+`contentful_sequence_length_v1` excludes clusters whose sequence is only
+placeholder characters, excludes sequences shorter than 2 signs, ranks by
+sequence length then document count, and bounds what is exported. **Both
+exclusions await ratification**: they decide what a specialist is shown.
+
+A queue is a *view*. It never mutates an occurrence, a proposal, or an
+accepted hash, and the interface must state on screen that it shows a subset,
+with the counts of what was held out.
+
+Whole canonical records travel with the queue so the browser hashes the same
+bytes that are on disk; a trimmed display object would bind an expert's
+judgment to something unverifiable. Ingest recomputes every event's
+`reviewed_record_sha256` from the record currently on disk, refuses on
+mismatch, refuses when the existing log's head appears in no backup ledger
+entry, and re-chains the session onto the real head.
+
 ## Storage layout
 
 Regenerable derived data:
@@ -163,6 +191,8 @@ Small, tracked artifacts:
 - `Phase4/phase4_out/unresolved_similarity_candidates.jsonl`
 - `Phase4/phase4_out/expert_annotation_events.jsonl`
 - `Phase4/phase4_out/unresolved_workbench_report.md`
+- `Phase4/phase4_out/workbench_ui_out/` — the review queue, its manifest, and
+  its report; regenerable from the artifacts above
 
 The Parquet files are gitignored and rebuilt from the pinned corpus plus
 append-only annotation events. Annotation events must be backed up separately

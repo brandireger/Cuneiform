@@ -320,7 +320,9 @@
       },
       "scores_are_probabilities": false,
       "candidates_path": "Phase4\\phase4_out\\unresolved_similarity_candidates.jsonl",
-      "candidates_sha256": "6b8e27751fc0f9b6775676f41885b6e6ba9723c25a22fa05f944c043776e8ea8"
+      "candidates_logical_sha256": "33c3cff9985a4ee26716515d3b764b2b1f812328a93ca0ffa195dce711f3c21b",
+      "candidates_file_sha256": "3674d149d9e3905dac3cd6322888cb0ed84886b25ea7ec0428572cd089a05ba9",
+      "file_hash_is_not_stable": "Every record embeds provenance.created_utc and git_commit, so candidates_file_sha256 changes on every rerun regardless of content; compare candidates_logical_sha256 to check reproducibility."
     },
     "CROSS_LANGUAGE_PARALLEL": {
       "method": "exact_normalized_sign_sequence_cross_language",
@@ -532,7 +534,9 @@
       },
       "scores_are_probabilities": false,
       "candidates_path": "Phase4\\phase4_out\\unresolved_similarity_candidates_cross_language.jsonl",
-      "candidates_sha256": "5dd9c242772df37cac8986c8fb1fe60c12b9b7e1b1dee291f8466407c96eda79"
+      "candidates_logical_sha256": "573ed092f8dcbf2300119eb12e9b03f33e70c79232ddeac8a2bc3b48c5c98f51",
+      "candidates_file_sha256": "6dd9391123ff2b7d83d692a1f29da7379b2fc68801044b17032a5d5c43d5e8de",
+      "file_hash_is_not_stable": "Every record embeds provenance.created_utc and git_commit, so candidates_file_sha256 changes on every rerun regardless of content; compare candidates_logical_sha256 to check reproducibility."
     }
   }
 }

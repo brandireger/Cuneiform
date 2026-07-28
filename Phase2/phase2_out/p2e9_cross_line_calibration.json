@@ -1,0 +1,1978 @@
+{
+  "task": "p2e9_cross_line_calibration",
+  "cell": "a2_m1",
+  "is_calibration": true,
+  "population": "cross_line_anchors_adjacent_line_pairs",
+  "rate_to_APPLY_to_a_gap": "rank_calibration_calibration_set",
+  "rate_to_APPLY_note": "Attach this one to a real gap. It is fit on compositions DISJOINT from the fold's evaluation_cth, so applying it to a gap whose CTH sits in that fold uses evidence from other compositions -- the same leakage-safe pattern P2-E4 uses. rank_calibration_held_out is measured ON those same compositions and attaching it to a gap drawn from them would be circular.",
+  "rate_to_REPORT_as_quality": "rank_calibration_held_out",
+  "rate_to_REPORT_note": "Use this to state how well the calibration transfers to unseen compositions. It is the honest quality claim and belongs in reports; it is not the number to hang on an individual gap.",
+  "scores_are_probabilities": false,
+  "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+  "confidence_interval": "95% Wilson score interval",
+  "language_scope": "HITTITE_ONLY",
+  "witness_admission_rule_adopted": "LAYOUT_AGNOSTIC",
+  "witness_admission_rule_ablation": "STRICT",
+  "witness_admission_rule_ratified": "2026-07-28 by Ixca",
+  "calibration_target_status": "RATIFIED",
+  "calibration_target": 0.75,
+  "results": {
+    "LAYOUT_AGNOSTIC": {
+      "eligible_spans": 78910,
+      "compositions": 279,
+      "accepted_evaluation_contexts": 8208,
+      "raw_top1_agreement": 0.3921,
+      "achievable_ceiling": {
+        "rate": 0.8934,
+        "accepted": 1098,
+        "rule": {
+          "minimum_top_support_families": 4,
+          "minimum_support_margin": 3,
+          "minimum_dominance": 1.0,
+          "maximum_alternatives": null
+        }
+      },
+      "target_sensitivity_not_adopted": [
+        {
+          "target": 0.7,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 10050,
+          "achieved_rate": 0.7314
+        },
+        {
+          "target": 0.75,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 8945,
+          "achieved_rate": 0.7501
+        },
+        {
+          "target": 0.8,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 3290,
+          "achieved_rate": 0.8
+        },
+        {
+          "target": 0.85,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 1847,
+          "achieved_rate": 0.8565
+        },
+        {
+          "target": 0.9,
+          "reachable": false,
+          "spans_accepted_at_best_rule": 0,
+          "achieved_rate": null
+        }
+      ],
+      "pooled_held_out_top1_agreement": 0.7745,
+      "pooled_held_out_n": 8208,
+      "mean_calibrated_rank1_promised": 0.7745,
+      "calibration_transfer_gap": 0.0,
+      "folds": [
+        {
+          "fold": 0,
+          "evaluation_cth": [
+            8,
+            16,
+            40,
+            63,
+            69,
+            134,
+            154,
+            237,
+            244,
+            252,
+            262,
+            277,
+            330,
+            331,
+            384,
+            387,
+            395,
+            403,
+            421,
+            422,
+            424,
+            431,
+            433,
+            474,
+            483,
+            487,
+            492,
+            494,
+            527,
+            534,
+            562,
+            565,
+            568,
+            572,
+            575,
+            580,
+            597,
+            620,
+            628,
+            662,
+            666,
+            671,
+            681,
+            699,
+            712,
+            714,
+            718,
+            719,
+            727,
+            777,
+            782,
+            787,
+            821,
+            822
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": null
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 63128,
+          "evaluation_contexts": 15782,
+          "accepted_evaluation_contexts": 1537,
+          "held_out_top1_agreement": 0.757319,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 6683,
+              "attested_agreement_contexts": 5203,
+              "calibrated_empirical_agreement": 0.778543,
+              "wilson_95": [
+                0.768429,
+                0.788336
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1337,
+              "attested_agreement_contexts": 65,
+              "calibrated_empirical_agreement": 0.048616,
+              "wilson_95": [
+                0.038326,
+                0.061493
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 408,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.004902,
+              "wilson_95": [
+                0.001345,
+                0.017695
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 176,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.02136
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 118,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.016949,
+              "wilson_95": [
+                0.00466,
+                0.059697
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1537,
+              "attested_agreement_contexts": 1164,
+              "calibrated_empirical_agreement": 0.757319,
+              "wilson_95": [
+                0.735263,
+                0.778093
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 313,
+              "attested_agreement_contexts": 17,
+              "calibrated_empirical_agreement": 0.054313,
+              "wilson_95": [
+                0.034184,
+                0.08525
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 75,
+              "attested_agreement_contexts": 5,
+              "calibrated_empirical_agreement": 0.066667,
+              "wilson_95": [
+                0.02881,
+                0.146751
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 25,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.133192
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 11,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.258833
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "evaluation_cth": [
+            12,
+            19,
+            86,
+            122,
+            142,
+            188,
+            225,
+            238,
+            251,
+            259,
+            263,
+            264,
+            279,
+            286,
+            294,
+            295,
+            334,
+            336,
+            345,
+            348,
+            383,
+            399,
+            404,
+            409,
+            423,
+            439,
+            471,
+            472,
+            481,
+            528,
+            574,
+            576,
+            579,
+            581,
+            606,
+            609,
+            611,
+            613,
+            615,
+            618,
+            627,
+            633,
+            638,
+            667,
+            668,
+            698,
+            705,
+            711,
+            732,
+            739,
+            751,
+            758,
+            762,
+            783,
+            785,
+            820
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": null
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 63128,
+          "evaluation_contexts": 15782,
+          "accepted_evaluation_contexts": 1543,
+          "held_out_top1_agreement": 0.748542,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 6677,
+              "attested_agreement_contexts": 5212,
+              "calibrated_empirical_agreement": 0.78059,
+              "wilson_95": [
+                0.770504,
+                0.790354
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1282,
+              "attested_agreement_contexts": 59,
+              "calibrated_empirical_agreement": 0.046022,
+              "wilson_95": [
+                0.035845,
+                0.058911
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 396,
+              "attested_agreement_contexts": 5,
+              "calibrated_empirical_agreement": 0.012626,
+              "wilson_95": [
+                0.005405,
+                0.029212
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 187,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.020129
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 118,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.016949,
+              "wilson_95": [
+                0.00466,
+                0.059697
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1543,
+              "attested_agreement_contexts": 1155,
+              "calibrated_empirical_agreement": 0.748542,
+              "wilson_95": [
+                0.726295,
+                0.769554
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 368,
+              "attested_agreement_contexts": 23,
+              "calibrated_empirical_agreement": 0.0625,
+              "wilson_95": [
+                0.042005,
+                0.092035
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 87,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.022989,
+              "wilson_95": [
+                0.006327,
+                0.079993
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 14,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.215311
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 11,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.258833
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "evaluation_cth": [
+            1,
+            14,
+            20,
+            42,
+            68,
+            235,
+            245,
+            257,
+            271,
+            282,
+            301,
+            321,
+            322,
+            343,
+            364,
+            375,
+            377,
+            378,
+            380,
+            391,
+            410,
+            413,
+            429,
+            430,
+            441,
+            442,
+            444,
+            448,
+            449,
+            461,
+            480,
+            486,
+            490,
+            529,
+            535,
+            540,
+            549,
+            561,
+            577,
+            583,
+            592,
+            604,
+            605,
+            612,
+            632,
+            634,
+            660,
+            677,
+            702,
+            704,
+            733,
+            736,
+            738,
+            752,
+            772,
+            789
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": null
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 63128,
+          "evaluation_contexts": 15782,
+          "accepted_evaluation_contexts": 1713,
+          "held_out_top1_agreement": 0.754816,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 6507,
+              "attested_agreement_contexts": 5074,
+              "calibrated_empirical_agreement": 0.779776,
+              "wilson_95": [
+                0.769543,
+                0.789678
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1321,
+              "attested_agreement_contexts": 69,
+              "calibrated_empirical_agreement": 0.052233,
+              "wilson_95": [
+                0.04148,
+                0.065583
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 358,
+              "attested_agreement_contexts": 7,
+              "calibrated_empirical_agreement": 0.019553,
+              "wilson_95": [
+                0.009503,
+                0.039804
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 114,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.032599
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 61,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.059244
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1713,
+              "attested_agreement_contexts": 1293,
+              "calibrated_empirical_agreement": 0.754816,
+              "wilson_95": [
+                0.733889,
+                0.774603
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 329,
+              "attested_agreement_contexts": 13,
+              "calibrated_empirical_agreement": 0.039514,
+              "wilson_95": [
+                0.023235,
+                0.066422
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 125,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.029815
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 87,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.042288
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 68,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.029412,
+              "wilson_95": [
+                0.008103,
+                0.101046
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "evaluation_cth": [
+            5,
+            11,
+            81,
+            85,
+            106,
+            138,
+            178,
+            186,
+            190,
+            239,
+            243,
+            260,
+            261,
+            300,
+            324,
+            325,
+            326,
+            333,
+            341,
+            360,
+            400,
+            401,
+            402,
+            408,
+            412,
+            425,
+            438,
+            446,
+            463,
+            479,
+            488,
+            523,
+            526,
+            532,
+            533,
+            569,
+            573,
+            578,
+            594,
+            598,
+            617,
+            641,
+            647,
+            656,
+            683,
+            693,
+            703,
+            715,
+            722,
+            726,
+            741,
+            743,
+            757,
+            759,
+            771,
+            788
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": 8
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 63128,
+          "evaluation_contexts": 15782,
+          "accepted_evaluation_contexts": 1827,
+          "held_out_top1_agreement": 0.823207,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 6362,
+              "attested_agreement_contexts": 4840,
+              "calibrated_empirical_agreement": 0.760767,
+              "wilson_95": [
+                0.750129,
+                0.771091
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1292,
+              "attested_agreement_contexts": 70,
+              "calibrated_empirical_agreement": 0.05418,
+              "wilson_95": [
+                0.043105,
+                0.067897
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 316,
+              "attested_agreement_contexts": 7,
+              "calibrated_empirical_agreement": 0.022152,
+              "wilson_95": [
+                0.010771,
+                0.045011
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 130,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.028702
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 81,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.024691,
+              "wilson_95": [
+                0.006798,
+                0.085627
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1827,
+              "attested_agreement_contexts": 1504,
+              "calibrated_empirical_agreement": 0.823207,
+              "wilson_95": [
+                0.805041,
+                0.840017
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 327,
+              "attested_agreement_contexts": 11,
+              "calibrated_empirical_agreement": 0.033639,
+              "wilson_95": [
+                0.018886,
+                0.059223
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 136,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.02747
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 40,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.087622
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 17,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.184318
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "evaluation_cth": [
+            4,
+            13,
+            83,
+            124,
+            137,
+            139,
+            236,
+            240,
+            242,
+            247,
+            255,
+            265,
+            276,
+            285,
+            292,
+            297,
+            311,
+            344,
+            361,
+            371,
+            374,
+            376,
+            390,
+            411,
+            416,
+            418,
+            427,
+            435,
+            443,
+            450,
+            475,
+            477,
+            484,
+            563,
+            570,
+            591,
+            593,
+            608,
+            610,
+            616,
+            630,
+            631,
+            636,
+            661,
+            663,
+            672,
+            679,
+            682,
+            691,
+            700,
+            701,
+            716,
+            725,
+            760,
+            773,
+            780,
+            825
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": null
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 63128,
+          "evaluation_contexts": 15782,
+          "accepted_evaluation_contexts": 1588,
+          "held_out_top1_agreement": 0.781486,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 6632,
+              "attested_agreement_contexts": 5126,
+              "calibrated_empirical_agreement": 0.772919,
+              "wilson_95": [
+                0.76268,
+                0.782842
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1349,
+              "attested_agreement_contexts": 64,
+              "calibrated_empirical_agreement": 0.047443,
+              "wilson_95": [
+                0.037327,
+                0.060128
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 435,
+              "attested_agreement_contexts": 7,
+              "calibrated_empirical_agreement": 0.016092,
+              "wilson_95": [
+                0.007816,
+                0.032839
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 178,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.021125
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 119,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.016807,
+              "wilson_95": [
+                0.004621,
+                0.059213
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1588,
+              "attested_agreement_contexts": 1241,
+              "calibrated_empirical_agreement": 0.781486,
+              "wilson_95": [
+                0.760495,
+                0.801118
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 301,
+              "attested_agreement_contexts": 18,
+              "calibrated_empirical_agreement": 0.059801,
+              "wilson_95": [
+                0.038158,
+                0.092538
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 48,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.0741
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 23,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.143117
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 10,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.277533
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        }
+      ]
+    },
+    "STRICT": {
+      "eligible_spans": 61596,
+      "compositions": 270,
+      "accepted_evaluation_contexts": 2471,
+      "raw_top1_agreement": 0.3195,
+      "achievable_ceiling": {
+        "rate": 0.8981,
+        "accepted": 216,
+        "rule": {
+          "minimum_top_support_families": 4,
+          "minimum_support_margin": 3,
+          "minimum_dominance": 1.0,
+          "maximum_alternatives": null
+        }
+      },
+      "target_sensitivity_not_adopted": [
+        {
+          "target": 0.7,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 3821,
+          "achieved_rate": 0.7071
+        },
+        {
+          "target": 0.75,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 3040,
+          "achieved_rate": 0.7668
+        },
+        {
+          "target": 0.8,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 1081,
+          "achieved_rate": 0.815
+        },
+        {
+          "target": 0.85,
+          "reachable": true,
+          "spans_accepted_at_best_rule": 947,
+          "achieved_rate": 0.8617
+        },
+        {
+          "target": 0.9,
+          "reachable": false,
+          "spans_accepted_at_best_rule": 0,
+          "achieved_rate": null
+        }
+      ],
+      "pooled_held_out_top1_agreement": 0.7576,
+      "pooled_held_out_n": 2471,
+      "mean_calibrated_rank1_promised": 0.7809,
+      "calibration_transfer_gap": 0.0233,
+      "folds": [
+        {
+          "fold": 0,
+          "evaluation_cth": [
+            8,
+            19,
+            63,
+            85,
+            122,
+            134,
+            142,
+            186,
+            244,
+            259,
+            294,
+            301,
+            333,
+            334,
+            402,
+            408,
+            412,
+            416,
+            430,
+            433,
+            438,
+            449,
+            463,
+            471,
+            477,
+            533,
+            540,
+            561,
+            563,
+            568,
+            569,
+            576,
+            578,
+            581,
+            583,
+            592,
+            594,
+            597,
+            615,
+            620,
+            628,
+            630,
+            672,
+            683,
+            700,
+            714,
+            715,
+            716,
+            751,
+            757,
+            772,
+            773
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.8,
+            "maximum_alternatives": 2
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 49276,
+          "evaluation_contexts": 12320,
+          "accepted_evaluation_contexts": 720,
+          "held_out_top1_agreement": 0.770833,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 2033,
+              "attested_agreement_contexts": 1566,
+              "calibrated_empirical_agreement": 0.77029,
+              "wilson_95": [
+                0.751506,
+                0.788055
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 71,
+              "attested_agreement_contexts": 4,
+              "calibrated_empirical_agreement": 0.056338,
+              "wilson_95": [
+                0.022125,
+                0.136096
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 720,
+              "attested_agreement_contexts": 555,
+              "calibrated_empirical_agreement": 0.770833,
+              "wilson_95": [
+                0.738744,
+                0.800048
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 33,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.10427
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "evaluation_cth": [
+            12,
+            13,
+            40,
+            68,
+            154,
+            188,
+            225,
+            236,
+            242,
+            252,
+            264,
+            271,
+            282,
+            285,
+            295,
+            300,
+            341,
+            345,
+            360,
+            361,
+            364,
+            371,
+            384,
+            395,
+            400,
+            401,
+            404,
+            410,
+            421,
+            446,
+            481,
+            492,
+            565,
+            570,
+            575,
+            579,
+            608,
+            613,
+            616,
+            627,
+            632,
+            634,
+            656,
+            660,
+            661,
+            662,
+            667,
+            668,
+            732,
+            733,
+            752,
+            759,
+            760,
+            771
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": 4
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 49277,
+          "evaluation_contexts": 12319,
+          "accepted_evaluation_contexts": 646,
+          "held_out_top1_agreement": 0.698142,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 2393,
+              "attested_agreement_contexts": 1880,
+              "calibrated_empirical_agreement": 0.785625,
+              "wilson_95": [
+                0.768731,
+                0.801603
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 303,
+              "attested_agreement_contexts": 19,
+              "calibrated_empirical_agreement": 0.062706,
+              "wilson_95": [
+                0.040508,
+                0.095854
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 73,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.049992
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 3,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.561497
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 646,
+              "attested_agreement_contexts": 451,
+              "calibrated_empirical_agreement": 0.698142,
+              "wilson_95": [
+                0.661656,
+                0.732286
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 87,
+              "attested_agreement_contexts": 3,
+              "calibrated_empirical_agreement": 0.034483,
+              "wilson_95": [
+                0.011796,
+                0.096541
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.793451
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "evaluation_cth": [
+            11,
+            14,
+            81,
+            106,
+            239,
+            243,
+            247,
+            260,
+            263,
+            276,
+            297,
+            322,
+            343,
+            344,
+            375,
+            376,
+            377,
+            390,
+            411,
+            418,
+            427,
+            435,
+            439,
+            442,
+            461,
+            472,
+            475,
+            486,
+            487,
+            488,
+            490,
+            523,
+            528,
+            529,
+            534,
+            572,
+            573,
+            593,
+            604,
+            631,
+            636,
+            638,
+            663,
+            666,
+            679,
+            681,
+            702,
+            704,
+            711,
+            725,
+            736,
+            780,
+            787,
+            788
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.8,
+            "maximum_alternatives": 4
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 49277,
+          "evaluation_contexts": 12319,
+          "accepted_evaluation_contexts": 460,
+          "held_out_top1_agreement": 0.78913,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 2331,
+              "attested_agreement_contexts": 1793,
+              "calibrated_empirical_agreement": 0.769198,
+              "wilson_95": [
+                0.751658,
+                0.785851
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 138,
+              "attested_agreement_contexts": 4,
+              "calibrated_empirical_agreement": 0.028986,
+              "wilson_95": [
+                0.011328,
+                0.072155
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 38,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.09181
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 460,
+              "attested_agreement_contexts": 363,
+              "calibrated_empirical_agreement": 0.78913,
+              "wilson_95": [
+                0.749536,
+                0.823936
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 4,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.489891
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "evaluation_cth": [
+            1,
+            16,
+            42,
+            86,
+            178,
+            190,
+            235,
+            255,
+            257,
+            265,
+            277,
+            279,
+            292,
+            324,
+            336,
+            380,
+            387,
+            403,
+            422,
+            423,
+            424,
+            425,
+            441,
+            443,
+            483,
+            526,
+            527,
+            535,
+            562,
+            574,
+            577,
+            580,
+            598,
+            606,
+            610,
+            612,
+            617,
+            682,
+            693,
+            698,
+            699,
+            705,
+            718,
+            726,
+            727,
+            739,
+            741,
+            743,
+            758,
+            777,
+            782,
+            783,
+            785,
+            789,
+            821
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 3,
+            "minimum_dominance": 0.0,
+            "maximum_alternatives": 8
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 49277,
+          "evaluation_contexts": 12319,
+          "accepted_evaluation_contexts": 303,
+          "held_out_top1_agreement": 0.831683,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 778,
+              "attested_agreement_contexts": 629,
+              "calibrated_empirical_agreement": 0.808483,
+              "wilson_95": [
+                0.779344,
+                0.834591
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 313,
+              "attested_agreement_contexts": 19,
+              "calibrated_empirical_agreement": 0.060703,
+              "wilson_95": [
+                0.039202,
+                0.092856
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 233,
+              "attested_agreement_contexts": 4,
+              "calibrated_empirical_agreement": 0.017167,
+              "wilson_95": [
+                0.006696,
+                0.043302
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 115,
+              "attested_agreement_contexts": 1,
+              "calibrated_empirical_agreement": 0.008696,
+              "wilson_95": [
+                0.001537,
+                0.047617
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 81,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.024691,
+              "wilson_95": [
+                0.006798,
+                0.085627
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 303,
+              "attested_agreement_contexts": 252,
+              "calibrated_empirical_agreement": 0.831683,
+              "wilson_95": [
+                0.785462,
+                0.869599
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 100,
+              "attested_agreement_contexts": 16,
+              "calibrated_empirical_agreement": 0.16,
+              "wilson_95": [
+                0.100953,
+                0.244203
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 62,
+              "attested_agreement_contexts": 2,
+              "calibrated_empirical_agreement": 0.032258,
+              "wilson_95": [
+                0.008891,
+                0.110205
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 58,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.062118
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 53,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.067582
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "evaluation_cth": [
+            4,
+            20,
+            69,
+            83,
+            138,
+            139,
+            237,
+            238,
+            245,
+            251,
+            261,
+            286,
+            311,
+            321,
+            325,
+            326,
+            330,
+            348,
+            374,
+            378,
+            383,
+            391,
+            409,
+            413,
+            429,
+            431,
+            444,
+            448,
+            450,
+            474,
+            479,
+            480,
+            484,
+            494,
+            532,
+            549,
+            591,
+            605,
+            609,
+            611,
+            618,
+            633,
+            641,
+            647,
+            671,
+            677,
+            691,
+            701,
+            703,
+            712,
+            719,
+            722,
+            738,
+            762,
+            820
+          ],
+          "selected_rule": {
+            "minimum_top_support_families": 1,
+            "minimum_support_margin": 2,
+            "minimum_dominance": 0.67,
+            "maximum_alternatives": 8
+          },
+          "no_rule_met_target": false,
+          "calibration_contexts": 49277,
+          "evaluation_contexts": 12319,
+          "accepted_evaluation_contexts": 342,
+          "held_out_top1_agreement": 0.733918,
+          "rank_calibration_calibration_set": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 2698,
+              "attested_agreement_contexts": 2080,
+              "calibrated_empirical_agreement": 0.770941,
+              "wilson_95": [
+                0.754706,
+                0.786406
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 362,
+              "attested_agreement_contexts": 19,
+              "calibrated_empirical_agreement": 0.052486,
+              "wilson_95": [
+                0.033855,
+                0.080515
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 71,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.051328
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 4,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.489891
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 1,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.793451
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          },
+          "rank_calibration_held_out": {
+            "1": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 342,
+              "attested_agreement_contexts": 251,
+              "calibrated_empirical_agreement": 0.733918,
+              "wilson_95": [
+                0.684674,
+                0.777966
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "2": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 29,
+              "attested_agreement_contexts": 3,
+              "calibrated_empirical_agreement": 0.103448,
+              "wilson_95": [
+                0.035815,
+                0.263851
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "3": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 4,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": 0.0,
+              "wilson_95": [
+                0.0,
+                0.489891
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "4": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            },
+            "5": {
+              "estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+              "calibration_contexts_with_rank_available": 0,
+              "attested_agreement_contexts": 0,
+              "calibrated_empirical_agreement": null,
+              "wilson_95": [
+                null,
+                null
+              ],
+              "not_an_instance_truth_probability": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

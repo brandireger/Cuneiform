@@ -1,0 +1,75 @@
+{
+  "task": "phase4_workbench_review_export",
+  "queue_policy": "contentful_sequence_length_v1",
+  "contract_version": "1.1.0",
+  "ground_truth_status": "NOT_CORPUS_TRUTH",
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "evidence_policy": "transcription_assisted",
+  "seed": 20260727,
+  "git_commit": "dbab60231e60815e404ce2e0c19c49ac9f9400e8",
+  "source_hashes": {
+    "occurrences_logical_sha256": "fd387b97a9aeb1cb9b7e9a89f3b20f8b015ef50af524695cec6567b64b191f47",
+    "contract_version": "1.1.0",
+    "SAME_LANGUAGE_AS_QUERY_candidates_logical_sha256": "33c3cff9985a4ee26716515d3b764b2b1f812328a93ca0ffa195dce711f3c21b",
+    "CROSS_LANGUAGE_PARALLEL_candidates_logical_sha256": "573ed092f8dcbf2300119eb12e9b03f33e70c79232ddeac8a2bc3b48c5c98f51"
+  },
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "9da237b84a873dfe752e4b485b18763d930c82fce937b7cf8e8f1b2d0dd5bfc8",
+  "policy_parameters": {
+    "contentless_chars": " ()._x",
+    "min_sequence_length": 2,
+    "max_members_displayed_per_cluster": 12,
+    "max_clusters_per_channel": 60,
+    "context_lines_per_side": 2,
+    "ranking": "sequence_length desc, distinct_document_count desc, member_count desc, cluster_id asc"
+  },
+  "channel_counts": {
+    "SAME_LANGUAGE_AS_QUERY": {
+      "proposals_available": 4566,
+      "excluded_contentless_sequence": 125,
+      "excluded_contentless_occurrences": 131963,
+      "excluded_below_min_sequence_length": 1544,
+      "excluded_below_min_occurrences": 75018,
+      "eligible_after_exclusions": 2897,
+      "queued": 60,
+      "not_queued_payload_bound": 2837,
+      "single_document_clusters_queued": 7,
+      "queued_sequence_length_range": [
+        4,
+        27
+      ]
+    },
+    "CROSS_LANGUAGE_PARALLEL": {
+      "proposals_available": 1278,
+      "excluded_contentless_sequence": 38,
+      "excluded_contentless_occurrences": 131899,
+      "excluded_below_min_sequence_length": 542,
+      "excluded_below_min_occurrences": 72457,
+      "eligible_after_exclusions": 698,
+      "queued": 60,
+      "not_queued_payload_bound": 638,
+      "single_document_clusters_queued": 0,
+      "queued_sequence_length_range": [
+        3,
+        5
+      ]
+    }
+  },
+  "queued_member_category_counts": {
+    "PARTIALLY_PRESERVED_READING": 399
+  },
+  "queued_member_language_counts": {
+    "Akk": 17,
+    "Hat": 13,
+    "Hit": 328,
+    "Hur": 29,
+    "Luw": 8,
+    "Pal": 3,
+    "Sum": 1
+  },
+  "selection_is_a_view_not_a_finding": "Exclusion from this queue is a display decision under contentful_sequence_length_v1. No occurrence, proposal, or hash is modified, and an excluded cluster is not thereby judged uninteresting.",
+  "default_channel": "SAME_LANGUAGE_AS_QUERY",
+  "cross_language_requires_explicit_enable": true,
+  "channels_logical_sha256": "3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee",
+  "payload_sha256": "af71d5f9fcf783292d67acc147edbf590d9061393e97d5fe797c2189f5839280"
+}

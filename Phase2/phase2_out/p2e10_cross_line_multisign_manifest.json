@@ -1,0 +1,22 @@
+{
+  "task": "p2e10_cross_line_multisign",
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "evidence_policy": "catalog_assisted",
+  "seed": 20260728,
+  "git_commit": "dbab60231e60815e404ce2e0c19c49ac9f9400e8",
+  "language_scope": "HITTITE_ONLY",
+  "declared_statistics_universe": "train+dev, non-bin, test excluded and asserted; cross-line multi-sign spans over adjacent line pairs; witness support from independent source families within the same CTH",
+  "is_calibration": true,
+  "features_requested": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "line_index_in_doc",
+    "cth"
+  ]
+}

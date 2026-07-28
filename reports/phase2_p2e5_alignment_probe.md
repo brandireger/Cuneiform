@@ -1,16 +1,5 @@
 # Phase 2 P2-E5 observed-context alignment diagnostic
 
-<!-- p4d-staleness-stamp -->
-> **[PREDATES P4-D — numbers not recomputed]** This report was produced under
-> the pre-Phase-4 line-granularity Hittite filter. P4-D (2026-07-26) replaced
-> it with a required, word-aware language scope
-> (`reports/phase4_p4d_language_aware_apis.md`). On the measured real-gap
-> slice the word-aware projection refuses **932 lines** the line-granularity
-> filter admitted — `Hit`-tagged lines carrying explicit non-Hittite words —
-> reducing witness-index tokens by ~6.1%. The direction of the effect on this
-> report's figures is therefore known but its magnitude is not; the numbers
-> below have **not** been recomputed. Rerunning is P4-G work.
-
 **[PROBE — not for citation]**
 
 ## Tracer block
@@ -25,30 +14,30 @@ For Q0/Q3, can observed-context alignment recover a compact option set for the P
 
 ## Findings
 
-267/406 contexts produced any alignment candidate (65.76%).
+231/353 contexts produced any alignment candidate (65.44%).
 
 | displayed alignment depth | mean added options / residual context | exact rescue | 95% Wilson CI |
 |---:|---:|---:|---:|
-| 1 | 0.658 | 2/406 (0.49%) | [0.1, 1.8] |
-| 2 | 0.852 | 6/406 (1.48%) | [0.7, 3.2] |
-| 3 | 0.936 | 6/406 (1.48%) | [0.7, 3.2] |
-| 5 | 0.995 | 6/406 (1.48%) | [0.7, 3.2] |
+| 1 | 0.654 | 2/353 (0.57%) | [0.2, 2.0] |
+| 2 | 0.813 | 5/353 (1.42%) | [0.6, 3.3] |
+| 3 | 0.856 | 5/353 (1.42%) | [0.6, 3.3] |
+| 5 | 0.892 | 5/353 (1.42%) | [0.6, 3.3] |
 
 At depth five, composition-macro rescue across 19 CTHs had mean 0.24% and median 0.0% (range 0.0–2.56%).
-Even an impossible oracle that applied alignment only to known exact-anchor absences would move selected-context full-set inclusion from 92.67% to 92.78% (+0.11 percentage points).
+Even an impossible oracle that applied alignment only to known exact-anchor absences would move selected-context full-set inclusion from 92.92% to 93.02% (+0.1 percentage points).
 
 | prior exact-anchor disagreement | contexts | exact rescue @5 |
 |---|---:|---:|
-| `ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT` | 67 | 1 (1.49%) |
-| `ATTESTED_READING_ABSENT_TOP_LONGER` | 186 | 2 (1.08%) |
-| `ATTESTED_READING_ABSENT_TOP_OMISSION` | 153 | 3 (1.96%) |
+| `ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT` | 59 | 1 (1.69%) |
+| `ATTESTED_READING_ABSENT_TOP_LONGER` | 158 | 2 (1.27%) |
+| `ATTESTED_READING_ABSENT_TOP_OMISSION` | 136 | 2 (1.47%) |
 
 Every packet persists aligned query/witness rows, gaps, boundaries, source families, and contradictions. Alignment scores are explicitly uncalibrated and are not displayed as probabilities.
 
 ## Interpretation
 
-Alignment recovered only 6/406 post-hoc residuals while adding candidates to many more contexts; even the residual-only oracle ceiling is +0.11 percentage points. This exploratory yield does not justify integrating or calibrating the alignment layer. Preserve exact-anchor candidate sets and abstention; next map set-valued utility across multi-sign spans, which the intended expert UI must also support.
+Alignment recovered only 5/353 post-hoc residuals while adding candidates to many more contexts; even the residual-only oracle ceiling is +0.1 percentage points. This exploratory yield does not justify integrating or calibrating the alignment layer. Preserve exact-anchor candidate sets and abstention; next map set-valued utility across multi-sign spans, which the intended expert UI must also support.
 
-Cost: 33.1s compute; budget ≤4h. Profile `discovery_assisted`; dev-only residual diagnostic; test, restorations, `cu`, morphology, and generated text untouched.
+Cost: 35.4s compute; budget ≤4h. Profile `discovery_assisted`; dev-only residual diagnostic; test, restorations, `cu`, morphology, and generated text untouched.
 
 **Falsifier:** the conclusion that this alignment layer is not worth integrating would be wrong if a non-residual composition-disjoint evaluation selected without hidden labels yields a materially larger attested-span gain at comparable set size and constraints.

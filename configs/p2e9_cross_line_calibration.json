@@ -1,0 +1,39 @@
+{
+  "_comment": "Cross-line calibration policy. Separate from p2e4_candidate_set_audit.json because cross-line is a different population with different evidential strength (~5x weaker gold inclusion); sharing a config would invite sharing a target that was justified for same-line spans only.",
+  "witness_admission_rule": "LAYOUT_AGNOSTIC",
+  "witness_admission_rule_status": "RATIFIED",
+  "witness_admission_rule_ratified": "2026-07-28 by Ixca",
+  "witness_admission_rule_rationale": "Line division is scribal layout, not textual structure: the same phrase may be written on one line in one manuscript and across a break in another, so a same-line witness occurrence is real evidence about a cross-line gap. Measured effect: raw top-1 agreement 24.2% -> 32.9%, gold inclusion 4.27% -> 7.21%, best achievable selector rate 79.7% -> 81.2%.",
+  "witness_admission_rule_retained_as_ablation": "STRICT",
+  "calibration_target": 0.75,
+  "calibration_target_status": "RATIFIED",
+  "calibration_target_ratified": "2026-07-28 by Ixca",
+  "calibration_target_rationale": "Cross-line tops out near 0.81 under the ratified LAYOUT_AGNOSTIC rule, so same-line's 0.90 is unreachable and would mean permanent abstention. 0.75 widens coverage meaningfully while keeping rank-1 agreement well above the weaker alternatives. The gap from same-line's ~91% is real and MUST be stated beside every cross-line candidate: a cross-line rate may never be displayed as though it carried same-line strength.",
+  "calibration_target_note": "Ratified from the sensitivity sweep in reports/phase2_p2e9_cross_line_calibration.md, recorded in reports/phase2_p2e9_ratification.md. This target governs cross-line ONLY; same-line keeps 0.90 in configs/p2e4_candidate_set_audit.json and the two must never be pooled or substituted.",
+  "minimum_calibration_accepts": 50,
+  "folds": 5,
+  "anchor_length": 2,
+  "mask_length": 1,
+  "candidate_set_depths": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "target_sensitivity_sweep": [
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9
+  ],
+  "candidate_probability_estimand": "Among selector-accepted cross-line spans from calibration compositions where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank. A property of many past comparisons at that rank in this stratum -- never the probability that one particular lost reading is true, and never applicable to same-line gaps.",
+  "confidence_interval": "95% Wilson score interval",
+  "population": "cross_line_anchors_adjacent_line_pairs",
+  "must_not_be_pooled_with": "same-line calibration (P2-E4); the two populations differ by roughly 5x in gold inclusion",
+  "calibration_universe_splits": [
+    "train",
+    "dev"
+  ],
+  "calibration_universe_note": "Widened from dev-only 2026-07-28. Standing rule: calibration distributions are fit over the declared universe for their phase, typically the full non-test universe. Dev alone left folds with 45/5/1/4 held-out accepts -- three of four carrying no weight. Safe to widen because this calibration consumes NO model: it counts independent witness families in an anchor index, so train compositions cannot leak anything a model was fit on. Folds stay composition-level; bin (discovery) documents stay out; test is excluded and then asserted via contracts.assert_no_test."
+}

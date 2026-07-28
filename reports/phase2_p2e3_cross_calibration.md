@@ -1,16 +1,5 @@
 # Phase 2 P2-E3 five-fold cross-calibration
 
-<!-- p4d-staleness-stamp -->
-> **[PREDATES P4-D — numbers not recomputed]** This report was produced under
-> the pre-Phase-4 line-granularity Hittite filter. P4-D (2026-07-26) replaced
-> it with a required, word-aware language scope
-> (`reports/phase4_p4d_language_aware_apis.md`). On the measured real-gap
-> slice the word-aware projection refuses **932 lines** the line-granularity
-> filter admitted — `Hit`-tagged lines carrying explicit non-Hittite words —
-> reducing witness-index tokens by ~6.1%. The direction of the effect on this
-> report's figures is therefore known but its magnitude is not; the numbers
-> below have **not** been recomputed. Rerunning is P4-G work.
-
 **[PROBE — not for citation]**
 
 ## Tracer block
@@ -27,20 +16,20 @@ Do abstention rules transfer across compositions when every eligible dev CTH is 
 
 | cell | unique-top baseline coverage / agreement | folds with 90% calibration rule | pooled 90%-selector coverage / agreement [95% CI] | held-out folds retaining 90% lower bound |
 |---|---:|---:|---:|---:|
-| a1_m1 | 50.73% / 52.65% | 5/5 | 2.65% / 92.33% [91.2, 93.3] | 3/5 |
-| a2_m1 | 22.94% / 80.35% | 5/5 | 8.06% / 88.79% [87.9, 89.6] | 2/5 |
-| a3_m1 | 10.51% / 85.2% | 5/5 | 2.6% / 89.6% [87.8, 91.2] | 2/5 |
+| a1_m1 | 51.82% / 52.88% | 5/5 | 2.73% / 92.26% [91.1, 93.3] | 1/5 |
+| a2_m1 | 23.45% / 80.14% | 5/5 | 7.65% / 90.67% [89.8, 91.4] | 2/5 |
+| a3_m1 | 10.79% / 84.89% | 5/5 | 2.63% / 90.28% [88.5, 91.8] | 2/5 |
 
 
 
-Primary a2_m1 formulaicity: rare (`cth_df_1`) 1.77% coverage / 89.84% agreement; moderate (`cth_df_2_5`) 5.34% / 90.16%; common (`cth_df_6_plus`) 18.94% / 88.32%.
-Witness availability: one family 0.0% / —; two–three 0.29% / 100.0%; four+ 8.94% / 88.76%.
-Composition heterogeneity: 22/39 CTHs received any acceptance; among 15 with ≥20 accepts, median agreement was 93.83% (range 82.61–100.0%).
+Primary a2_m1 formulaicity: rare (`cth_df_1`) 1.81% coverage / 89.67% agreement; moderate (`cth_df_2_5`) 5.54% / 91.17%; common (`cth_df_6_plus`) 17.27% / 90.66%.
+Witness availability: one family 0.0% / —; two–three 0.0% / —; four+ 8.2% / 90.67%.
+Composition heterogeneity: 21/38 CTHs received any acceptance; among 15 with ≥20 accepts, median agreement was 93.83% (range 82.61–100.0%).
 
 ## Interpretation
 
 The pooled signal is real but does not transfer as a universal reliability threshold. Acceptance is concentrated in recurrent bounded contexts and witness-rich compositions, while per-CTH agreement remains heterogeneous. Those dependencies are reported, not silently treated as universal evidence. This remains masked-attested agreement, not truth for a real lacuna.
 
-Cost: 43.4s compute; budget ≤4h. Profile `catalog_assisted`; test, restorations, `cu`, morphology, and model-generated text untouched.
+Cost: 46.1s compute; budget ≤4h. Profile `catalog_assisted`; test, restorations, `cu`, morphology, and model-generated text untouched.
 
 **Falsifier:** the instability conclusion would be wrong if a future untouched composition-disjoint benchmark retains the selected reliability lower bound consistently across folds and strata.
