@@ -431,10 +431,11 @@ def write_report(results, elapsed, cross_config):
     for rule_name, data in results.items():
         ceiling = data["achievable_ceiling"]
         rate = ceiling["rate"]
+        best = (f"{100 * rate:.1f}% on n={ceiling['accepted']:,}"
+                if rate is not None else "—")
+        raw = 100 * data["raw_top1_agreement"]
         lines.append(
-            f"| `{rule_name}` | {100 * data['raw_top1_agreement']:.1f}% | "
-            f"{f'{100 * rate:.1f}% on n={ceiling[chr(34)+chr(34)] if False else ceiling['accepted']}' if rate else '—'} | "
-            f"**short of target** |")
+            f"| `{rule_name}` | {raw:.1f}% | {best} | **short of target** |")
 
     lines += [
         "",

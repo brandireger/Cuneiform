@@ -41,7 +41,7 @@ What the grid can reach at all, against same-line's 0.90 bar:
 
 | rule | raw top-1 | best rule reaching ≥50 accepts | vs 0.90 target |
 |---|---:|---:|---|
-| `LAYOUT_AGNOSTIC` | 39.2% | 89.3% on n=1098 | **short of target** |
+| `LAYOUT_AGNOSTIC` | 39.2% | 89.3% on n=1,098 | **short of target** |
 | `STRICT` | 31.9% | 89.8% on n=216 | **short of target** |
 
 Same-line spans at this cell reach ~91% at rank 1, which is why 0.90 was a sensible bar for them. Cross-line does not reach it, which is why cross-line has its own ratified target rather than inheriting one. A cross-line rate must always be displayed as a cross-line rate: the populations differ by roughly 5x in gold inclusion, and substituting one for the other is the error this whole line of work exists to prevent.
@@ -86,4 +86,4 @@ A fold with *no rule met the calibration target* is a fold where no selector in 
 - These rates are for cross-line anchors only. P2-E4's same-line rates remain the same-line ones; the two populations differ by roughly 5x in gold inclusion and must never be pooled or substituted.
 - Applying these to real gaps is a further step (`real_gap_calibration.py` currently gates on `if not g["is_cross_line"]`), and needs its own review.
 
-Runtime 95.5s · seed 20260728.
+Runtime 90.4s · seed 20260728.

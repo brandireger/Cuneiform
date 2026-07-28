@@ -3,7 +3,7 @@
   "corpus_version": "TLHdig 0.2.0-beta",
   "evidence_policy": "catalog_assisted",
   "seed": 20260728,
-  "git_commit": "dbab60231e60815e404ce2e0c19c49ac9f9400e8",
+  "git_commit": "cc4baf82bf985d0df10befb3e81a92afd8796d6e",
   "language_scope": "HITTITE_ONLY",
   "declared_statistics_universe": "dev split, attested-only, non-bin; cross-line spans over adjacent line pairs; witness support from independent source families within the same CTH; selector fit on calibration compositions and applied to held-out evaluation compositions",
   "is_calibration": true,

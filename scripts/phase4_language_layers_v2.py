@@ -754,6 +754,11 @@ def main():
         raise AssertionError("Gate 1 acceptance checks did not all pass")
 
     level_counts = first_stats["output_counts_by_level"]
+    # Hoisted out of the f-string below: a newline inside a replacement
+    # field is PEP 701 (Python 3.12+) syntax and a SyntaxError on the
+    # 3.11 CI runners.
+    outside_primary_text = first_stats["source_anomaly_counts"].get(
+        "explicit_word_language_outside_primary_text", 0)
     report = [
         "# Phase 4 Gate 1 language-layer v2 rebuild",
         "",
@@ -775,8 +780,7 @@ def main():
         f"{level_counts['LINE']:,} line, "
         f"{level_counts['WORD']:,} explicit word spans).",
         f"- Explicit word-language attributes outside the primary parser "
-        f"`<text>`: **{first_stats['source_anomaly_counts'].get(
-            'explicit_word_language_outside_primary_text', 0):,}**, routed "
+        f"`<text>`: **{outside_primary_text:,}**, routed "
         f"to `PARSER_ANOMALY`.",
         f"- Gate 0 explicit `w@lg` census reconciled: "
         f"**{gate0_explicit_word_language_count:,}** total.",
