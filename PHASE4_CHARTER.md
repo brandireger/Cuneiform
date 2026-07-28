@@ -1,6 +1,6 @@
 # PHASE4_CHARTER.md — governed multilingual reconstruction and unresolved evidence
 
-**Status:** GATE 2 PASSED; P4-D/P4-E AUTHORIZED (2026-07-25).
+**Status:** GATE 2 PASSED; P4-D AND P4-E IMPLEMENTED (2026-07-26) AND RATIFIED (2026-07-27, `reports/phase4_p4de_ratification.md`). Gate 3 (training) remains unauthorized.
 
 Phase 4 is the successor to the Phase 3 expert-playground and real-gap work.
 It corrects the language model at the data boundary before any new training,
@@ -113,6 +113,13 @@ language-scope object. Candidate packets must expose query language, source
 language, language compatibility, mixed-language context, enabled
 cross-language assistance, and unresolved-language limitations.
 
+**Implemented 2026-07-26** — `lib/language_scope.py`,
+`lib/language_lookup_v2.py`, expert-decision contract 1.1.0, all eight active
+`render_fragments` call sites, and the real-gap query side. The tokenizer
+vocabulary path is deliberately excluded (frozen D14, Gate 3). See
+`reports/phase4_p4d_language_aware_apis.md`, which also records a new Gate 2
+document-coverage finding.
+
 ### P4-E — Unresolved Evidence Workbench
 
 Build an append-only expert-review zone for illegible signs, partially
@@ -122,8 +129,29 @@ anomalies.
 
 The workbench contract is `specs/UNRESOLVED_EVIDENCE_WORKBENCH.md`; its
 machine schema is `configs/unresolved_evidence_contract.schema.json`.
+
+**Implemented 2026-07-26** — 238,652 occurrences, deterministic same-language
+and opt-in cross-language cluster proposals, and an append-only hash-chained
+expert event log with a deterministic snapshot projection. The machine schema
+was amended to **1.0.1** during implementation (nullable location for
+text-external anomalies; new `MISSING_LANGUAGE_TAG` category); that amendment
+needs ratification. No expert UI yet. See
+`reports/phase4_p4e_unresolved_workbench.md`.
 Similarity clusters are suggestions. Expert grouping and hypotheses do not
 mutate TLHdig or enter a training set automatically.
+
+### P4-E2 — Expert interface for the workbench
+
+Ratification decision 7 (2026-07-27) made the interface the next build. It
+belongs to P4-E, not to P4-F or P4-G: it depends on neither a new model nor a
+rerun, and the "Expert interface" contract lives in the workbench spec.
+
+**Implemented 2026-07-27** — a review-queue export, a static interface, and a
+verifying ingest path for expert sessions. A review queue is a *view* over
+ratified artifacts and mutates nothing. Its two selection exclusions
+(placeholder-only sequences; sequences under 2 signs) **await ratification**,
+because they decide what a specialist is shown. The page has not yet been
+opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
 
 ### P4-F — Language-conditioned pretraining
 

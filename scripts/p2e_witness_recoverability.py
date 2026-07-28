@@ -38,7 +38,8 @@ import contracts
 import eval_harness as eh
 import evidence_policy as ep
 import hittite_tokenizer as ht
-from line_lang_lookup import is_hittite_line, load_line_lang_lookup
+import language_lookup_v2 as llookup
+import language_scope as lscope
 from phase2_io import iter_allowed_join_metadata, split_lookup_fail_closed
 
 
@@ -164,17 +165,40 @@ def informative_attested_line(line_idx, token_states):
     ]
 
 
-def render_fragments(edges, line_index, line_lang_lookup=None):
+def render_fragments(edges, line_index, *, language_scope, language_index):
     """Return canonical attested-only per-line sequences for each fragment.
 
-    line_lang_lookup: optional {(doc_id, line_index_in_doc): canonical}
-    from line_lang_lookup.load_line_lang_lookup(). When given, a line
-    not confirmed Hittite is rendered as empty (its position slot in
-    the per-fragment line list is preserved, so line_position_in_fragment
+    P4-D: both language arguments are REQUIRED. The pre-Phase-4 convention
+    (`line_lang_lookup=None`) let any caller that omitted the argument fall
+    back to language-blind rendering silently; `require_language_scope()`
+    now refuses that, per PHASE4_CHARTER.md's "every content-selection rule
+    must be an explicit `language_scope`, not an omitted optional argument".
+
+    language_scope: a validated language_scope.LanguageScope.
+    language_index: a language_lookup_v2.EffectiveLanguageIndex covering
+        every parent_doc in `edges`. May be None only for the
+        ALL_LANGUAGES_UNCONDITIONED ablation, which carries no language
+        identity by construction.
+
+    A line refused by the scope renders as empty. Its position slot in the
+    per-fragment line list is preserved, so line_position_in_fragment
     numbering used throughout P2-E/real_gap_*.py is unaffected -- only
-    non-Hittite CONTENT is excluded, matching hittite_tokenizer.py's
-    same convention). Omitting the parameter reproduces the original
-    language-blind rendering exactly."""
+    out-of-scope CONTENT is excluded.
+
+    Selection is word-aware but excludes at LINE granularity (see
+    language_scope.MIXED_LINE_POLICIES): a line whose lexical tokens do not
+    all resolve to the scope's language is dropped whole rather than having
+    the offending words spliced out, which would fabricate token adjacencies
+    that never existed on the tablet.
+    """
+    scope = lscope.require_language_scope(
+        language_scope, label="render_fragments")
+    if language_index is None and not scope.is_ablation:
+        raise lscope.LanguageScopeError(
+            "render_fragments: language_index is required for scope "
+            f"{scope.describe()}; only ALL_LANGUAGES_UNCONDITIONED (ablation) "
+            "may render without word-aware language resolution.")
+
     rendered = {}
     canonical_flat = []
     for row in edges.sort_values("fragment_id").itertuples(index=False):
@@ -185,9 +209,12 @@ def render_fragments(edges, line_index, line_lang_lookup=None):
                 line_records, key=lambda value: value["line_index_in_doc"]):
             line_idx = int(record["line_index_in_doc"])
             token_states = line_index.get((row.parent_doc, line_idx), [])
-            if line_lang_lookup is not None and not is_hittite_line(
-                    line_lang_lookup, row.parent_doc, line_idx):
-                token_states = []
+            if language_index is not None:
+                decision = language_index.line_decision(
+                    scope, row.parent_doc, line_idx,
+                    n_source_tokens=len(token_states))
+                if not decision.in_scope:
+                    token_states = []
             raw_lines.append((line_idx, token_states))
             content_lines.append(
                 informative_attested_line(line_idx, token_states))
@@ -799,8 +826,11 @@ def main():
     base_tracers = run_base_tracers()
     splits, split_lookup, ambiguous_ids, edges, decomposed = load_dev_inputs()
     line_index = build_line_index(decomposed)
+    language_scope, language_index = llookup.hittite_only_projection(
+        sorted(set(edges["parent_doc"])))
     line_sequences, canonical_flat = render_fragments(
-        edges, line_index, line_lang_lookup=load_line_lang_lookup())
+        edges, line_index, language_scope=language_scope,
+        language_index=language_index)
 
     tokenizer = ht.Tokenizer.load()
     encoded = tokenizer.encode(canonical_flat, strict=True)

@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Unresolved Evidence Workbench (prototype)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --tk-bg: #181512; --tk-panel: #211D18; --tk-cell: #2A251E; --tk-border: #38322A;
+    --tk-text: #E8E2D6; --tk-text-2: #B8B0A2; --tk-muted: #8F887C; --tk-faint: #6B6357;
+    --tk-accent: #5DCAA5; --tk-accent-2: #1D9E75; --tk-accent-bg: #12241D; --tk-accent-dk: #04342C;
+    --tk-danger: #A32D2D; --tk-warn: #C99A3F; --tk-warn-bg: #2A2114;
+    --tk-cross: #7FA8D8; --tk-cross-bg: #16202C;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--tk-bg); color: var(--tk-text);
+    font: 400 15px/1.5 -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+    min-height: 100vh;
+  }
+  code, .mono { font-family: "Source Code Pro", "JetBrains Mono", ui-monospace, Consolas, monospace; }
+  a { color: var(--tk-accent); }
+  h1, h2, h3 { font-weight: 500; margin: 0 0 .5em; }
+  h1 { font-size: 20px; } h2 { font-size: 16px; } h3 { font-size: 14px; }
+  button {
+    font: inherit; cursor: pointer; border-radius: 4px; border: 1px solid var(--tk-border);
+    background: var(--tk-cell); color: var(--tk-text); padding: .45em .8em;
+  }
+  button:hover:not(:disabled) { border-color: var(--tk-accent-2); }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  button.primary { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  button.danger { color: var(--tk-danger); }
+  button.active { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  input[type=text], textarea, select {
+    font: inherit; background: var(--tk-cell); color: var(--tk-text);
+    border: 1px solid var(--tk-border); border-radius: 4px; padding: .35em .55em; width: 100%;
+  }
+  label { font-size: 12px; color: var(--tk-muted); display: block; margin-bottom: .2em; }
+  .hairline { border: none; border-top: 1px solid var(--tk-border); margin: 1em 0; }
+
+  #self-test-banner { padding: .5em 1em; font-size: 13px; text-align: center; border-bottom: 1px solid var(--tk-border); }
+  #self-test-banner.pass { background: var(--tk-accent-dk); color: var(--tk-accent); }
+  #self-test-banner.fail { background: #3A1414; color: #FF9A9A; }
+
+  header.app {
+    display: flex; align-items: center; gap: 1em; flex-wrap: wrap;
+    padding: .8em 1.2em; background: var(--tk-panel); border-bottom: 1px solid var(--tk-border);
+  }
+  header.app .subtitle { color: var(--tk-muted); font-size: 13px; font-weight: 400; }
+  .grow { flex: 1 1 auto; }
+
+  .banner {
+    padding: .7em 1.2em; font-size: 13px; border-bottom: 1px solid var(--tk-border);
+    background: var(--tk-warn-bg); color: #E2C384;
+  }
+  .banner strong { color: #F2D9A4; }
+  .banner.cross { background: var(--tk-cross-bg); color: #B9D3EE; }
+
+  .layout { display: flex; align-items: stretch; min-height: 60vh; }
+  .sidebar {
+    width: 340px; flex: 0 0 340px; border-right: 1px solid var(--tk-border);
+    background: var(--tk-panel); padding: 1em; max-height: calc(100vh - 60px); overflow-y: auto;
+  }
+  .detail { flex: 1 1 auto; padding: 1.2em 1.5em; max-height: calc(100vh - 60px); overflow-y: auto; }
+
+  .filter-row { margin-bottom: .7em; }
+  .nav-count { font-size: 12px; color: var(--tk-muted); margin: .6em 0; }
+  .nav-item {
+    display: block; width: 100%; text-align: left; margin-bottom: .35em;
+    border: 1px solid var(--tk-border); background: var(--tk-cell); padding: .5em .6em; border-radius: 4px;
+  }
+  .nav-item.selected { border-color: var(--tk-accent-2); background: var(--tk-accent-bg); }
+  .nav-item .seq { font-family: "Source Code Pro", ui-monospace, monospace; font-size: 13px; color: var(--tk-text); }
+  .nav-item .meta { font-size: 11px; color: var(--tk-muted); margin-top: .2em; }
+  .nav-item .state { font-size: 11px; color: var(--tk-accent); }
+
+  .card {
+    background: var(--tk-panel); border: 1px solid var(--tk-border);
+    border-radius: 6px; padding: 1em; margin-bottom: 1em;
+  }
+  .card.member { background: var(--tk-cell); }
+  .pill {
+    display: inline-block; font-size: 11px; padding: .12em .5em; border-radius: 10px;
+    border: 1px solid var(--tk-border); color: var(--tk-text-2); margin: 0 .3em .3em 0;
+  }
+  .pill.cat { border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  .pill.warn { border-color: var(--tk-warn); color: var(--tk-warn); }
+  .pill.cross { border-color: var(--tk-cross); color: var(--tk-cross); }
+  .kv { font-size: 12px; color: var(--tk-muted); }
+  .kv b { color: var(--tk-text-2); font-weight: 500; }
+
+  .line { font-family: "Source Code Pro", ui-monospace, monospace; font-size: 14px; line-height: 1.9; }
+  .line.ctx { color: var(--tk-faint); font-size: 13px; }
+  .tok { padding: .05em .18em; border-radius: 3px; }
+  .tok.focus { background: var(--tk-accent-dk); color: var(--tk-accent); outline: 1px solid var(--tk-accent-2); }
+  .tok.restored { color: var(--tk-warn); }
+  .tok.laes { color: #D8C48A; }
+  .tok.illegible { color: var(--tk-faint); }
+  .lnum { color: var(--tk-faint); font-size: 11px; margin-right: .6em; }
+
+  .evidence { border-left: 2px solid var(--tk-accent-2); padding-left: .8em; margin: .6em 0; font-size: 13px; }
+  .evidence.contra { border-left-color: var(--tk-danger); }
+  .not-a-score { font-size: 11px; color: var(--tk-warn); }
+
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .5em; }
+  .hyp-item { border: 1px solid var(--tk-border); border-radius: 4px; padding: .5em .6em; margin-bottom: .4em; font-size: 13px; }
+  .hyp-item .who { font-size: 11px; color: var(--tk-muted); }
+  footer.stamp { padding: 1em 1.2em; font-size: 11px; color: var(--tk-faint); border-top: 1px solid var(--tk-border); }
+  .empty { color: var(--tk-muted); font-style: italic; padding: 2em; }
+</style>
+</head>
+<body>
+
+<div id="self-test-banner">Running canonical-hash self-check…</div>
+
+<header class="app">
+  <h1>Unresolved Evidence Workbench <span class="subtitle" id="header-subtitle">— prototype</span></h1>
+  <div class="grow"></div>
+  <button type="button" id="channel-same" class="active">Same-language</button>
+  <button type="button" id="channel-cross">Cross-language (off)</button>
+  <button type="button" id="export-btn" class="primary">Export events (0)</button>
+</header>
+
+<div class="banner" id="subset-banner"></div>
+<div class="banner cross" id="cross-banner" style="display:none"></div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="filter-row">
+      <label for="filter-text">Filter by sequence, document, or CTH</label>
+      <input type="text" id="filter-text" placeholder="e.g. ninda, KBo 23.70, 706">
+    </div>
+    <div class="filter-row">
+      <label for="filter-category">Category</label>
+      <select id="filter-category"></select>
+    </div>
+    <div class="filter-row">
+      <label for="filter-language">Effective language</label>
+      <select id="filter-language"></select>
+    </div>
+    <div class="filter-row">
+      <label for="filter-site">Site</label>
+      <select id="filter-site"></select>
+    </div>
+    <div class="filter-row">
+      <label for="filter-state">Review state</label>
+      <select id="filter-state"></select>
+    </div>
+    <div class="filter-row">
+      <label><input type="checkbox" id="filter-mixed" style="width:auto"> Mixed-language lines only</label>
+    </div>
+    <div class="nav-count" id="nav-count"></div>
+    <div id="cluster-nav"></div>
+  </aside>
+  <main class="detail" id="cluster-detail"></main>
+</div>
+
+<footer class="stamp" id="footer-stamp"></footer>
+
+<script src="../Phase4/phase4_out/workbench_ui_out/workbench_review_queue.js"></script>
+<script>
+"use strict";
+
+// =====================================================================
+// Canonical JSON + SHA-256, mirroring lib/unresolved_evidence.py's
+// canonical_sha256(). That function is byte-identical to the expert
+// decision contract's, so this page and the Takšan prototype share one
+// test vector -- verified against the real Python function before
+// anything on this page is trusted.
+// =====================================================================
+function canonicalStringify(value) {
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+  if (Array.isArray(value)) return "[" + value.map(canonicalStringify).join(",") + "]";
+  const keys = Object.keys(value).sort();
+  return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalStringify(value[k])).join(",") + "}";
+}
+
+async function canonicalSha256(value) {
+  const bytes = new TextEncoder().encode(canonicalStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function runSelfTest() {
+  const testObj = { a: 1, b: [3, 2, 1], c: { z: true, y: null, x: 0.908516 }, d: "héllo café" };
+  const expected = "3d2321f6c8945154bbd9e4667f675943b111dcfa0eadc5457af0f54764d9451c";
+  const banner = document.getElementById("self-test-banner");
+  try {
+    const got = await canonicalSha256(testObj);
+    if (got === expected) {
+      banner.className = "pass";
+      banner.textContent = "Hash self-check: PASS — this page's SHA-256 matches lib/unresolved_evidence.py's canonical hash exactly, so an event recorded here binds to the record you actually saw.";
+    } else {
+      banner.className = "fail";
+      banner.textContent = "Hash self-check: FAIL — expected " + expected + " but got " + got + ". Do not record judgments: they could not be bound to a reviewed record.";
+      document.getElementById("export-btn").disabled = true;
+    }
+  } catch (e) {
+    banner.className = "fail";
+    banner.textContent = "Hash self-check: FAIL — crypto.subtle unavailable (" + e.message + "). Serve this page over http:// or file:// in a browser that exposes WebCrypto.";
+    document.getElementById("export-btn").disabled = true;
+  }
+}
+
+// =====================================================================
+// Contract mirror. Values duplicated from lib/unresolved_evidence.py so
+// the page can refuse to build an invalid event rather than exporting
+// one and discovering the problem at ingest.
+// =====================================================================
+const CONTRACT_VERSION = "1.1.0";
+const HYPOTHESIS_ACTIONS = new Set([
+  "PROPOSE_READING", "PROPOSE_LANGUAGE", "PROPOSE_LEXICAL_IDENTITY", "PROPOSE_PHRASE"]);
+const CLUSTER_ACTION_KEYS = {
+  ADD_TO_CLUSTER: "cluster_id", REMOVE_FROM_CLUSTER: "cluster_id",
+  MERGE_CLUSTERS: "merged_cluster_ids", SPLIT_CLUSTER: "split_into"};
+const NO_HYPOTHESIS_ACTIONS = new Set(["WITHHOLD_JUDGMENT"]);
+
+const QUEUE = window.WORKBENCH_REVIEW_QUEUE;
+const MANIFEST = QUEUE.manifest;
+
+let channel = "SAME_LANGUAGE_AS_QUERY";
+let crossEnabled = false;
+let selectedClusterId = null;
+const sessionEvents = [];        // hash-chained within this session
+let chainHead = null;            // null == first event, matching an empty log
+const lastReviewer = { reviewer_id: "", declared_role: "" };
+
+// Occurrence status projected from this session's events only. The
+// authoritative projection is project_snapshot() over the ingested log;
+// this is the same rule applied locally so the screen stays truthful.
+const localStatus = new Map();
+const localHypotheses = new Map();
+
+function clusters() { return QUEUE.channels[channel] || []; }
+
+function allMembers() {
+  const out = [];
+  for (const cluster of clusters()) for (const m of cluster.members) out.push(m);
+  return out;
+}
+
+function uniqueSorted(values) {
+  return Array.from(new Set(values.filter(v => v !== null && v !== undefined))).sort();
+}
+
+// ------------------------------------------------------------- rendering
+
+function damageClass(state) {
+  if (state === "restored") return "restored";
+  if (state === "laes") return "laes";
+  if (state === "illegible_x") return "illegible";
+  return "";
+}
+
+function renderTokenLine(tokens, focusRange) {
+  return tokens.map((t, i) => {
+    const token = typeof t === "string" ? t : t.token;
+    const state = typeof t === "string" ? "" : t.damage_state;
+    const focused = focusRange && i >= focusRange[0] && i < focusRange[1];
+    const cls = ["tok", damageClass(state), focused ? "focus" : ""].filter(Boolean).join(" ");
+    return `<span class="${cls}">${escapeHtml(token)}</span>`;
+  }).join(" ");
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, c => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function renderSubsetBanner() {
+  const counts = MANIFEST.channel_counts[channel];
+  const p = MANIFEST.policy_parameters;
+  document.getElementById("subset-banner").innerHTML =
+    `<strong>This is a subset, not the corpus.</strong> Showing ` +
+    `<strong>${counts.queued.toLocaleString()}</strong> of ` +
+    `${counts.proposals_available.toLocaleString()} ${channel === "SAME_LANGUAGE_AS_QUERY" ? "same-language" : "cross-language"} ` +
+    `cluster proposals under policy <code>${escapeHtml(MANIFEST.queue_policy)}</code>. ` +
+    `Held out: ${counts.excluded_contentless_sequence.toLocaleString()} contentless ` +
+    `(sequence is only placeholders) covering ${counts.excluded_contentless_occurrences.toLocaleString()} occurrences, ` +
+    `and ${counts.excluded_below_min_sequence_length.toLocaleString()} shorter than ` +
+    `${p.min_sequence_length} signs covering ${counts.excluded_below_min_occurrences.toLocaleString()} occurrences. ` +
+    `A further ${counts.not_queued_payload_bound.toLocaleString()} eligible clusters are unqueued for payload size — ` +
+    `unqueued is not rejected. Every record here is <code>NOT_CORPUS_TRUTH</code>.`;
+}
+
+function renderNav() {
+  const needle = document.getElementById("filter-text").value.trim().toLowerCase();
+  const category = document.getElementById("filter-category").value;
+  const language = document.getElementById("filter-language").value;
+  const site = document.getElementById("filter-site").value;
+  const state = document.getElementById("filter-state").value;
+  const mixedOnly = document.getElementById("filter-mixed").checked;
+
+  const visible = clusters().filter(cluster => {
+    const members = cluster.members;
+    if (needle) {
+      const hay = (cluster.sequence + " " + members.map(m =>
+        m.record.location.doc_id + " " + (m.catalog.cth || "")).join(" ")).toLowerCase();
+      if (!hay.includes(needle)) return false;
+    }
+    if (category && !members.some(m => m.record.categories.includes(category))) return false;
+    if (language && !members.some(m => (m.record.language.effective || "<UNRESOLVED>") === language)) return false;
+    if (site && !members.some(m => m.catalog.site === site)) return false;
+    if (mixedOnly && !members.some(m => m.record.context.mixed_language_line)) return false;
+    if (state) {
+      const states = members.map(m => localStatus.get(m.record.occurrence_id) || "UNREVIEWED");
+      if (!states.includes(state)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById("nav-count").textContent =
+    `${visible.length} of ${clusters().length} queued cluster(s) match`;
+
+  document.getElementById("cluster-nav").innerHTML = visible.map(cluster => {
+    const reviewed = cluster.members.filter(m =>
+      (localStatus.get(m.record.occurrence_id) || "UNREVIEWED") !== "UNREVIEWED").length;
+    return `<button type="button" class="nav-item ${cluster.proposal.cluster_id === selectedClusterId ? "selected" : ""}"
+      data-cluster="${escapeHtml(cluster.proposal.cluster_id)}">
+      <div class="seq">${escapeHtml(cluster.sequence)}</div>
+      <div class="meta">${cluster.member_count.toLocaleString()} occurrence(s) · ${cluster.distinct_document_count.toLocaleString()} document(s)</div>
+      ${reviewed ? `<div class="state">${reviewed} judgment(s) this session</div>` : ""}
+    </button>`;
+  }).join("") || `<div class="empty">No cluster matches these filters.</div>`;
+
+  document.querySelectorAll(".nav-item").forEach(el => {
+    el.addEventListener("click", () => {
+      selectedClusterId = el.dataset.cluster;
+      renderNav();
+      renderDetail();
+    });
+  });
+}
+
+function currentCluster() {
+  return clusters().find(c => c.proposal.cluster_id === selectedClusterId) || null;
+}
+
+function renderEvidence(cluster) {
+  const proposal = cluster.proposal;
+  const support = (proposal.supporting_evidence || []).map(e => `
+    <div class="evidence">
+      <div><b>${escapeHtml(e.type)}</b></div>
+      <div class="mono">${escapeHtml(e.sequence || "")}</div>
+      <div class="kv">${(e.member_count || 0).toLocaleString()} occurrence(s) across
+        ${(e.distinct_document_count || 0).toLocaleString()} document(s) ·
+        language(s) ${escapeHtml((e.languages || []).join(", "))}</div>
+      <div class="not-a-score">These are counts of matching occurrences, not a probability or a confidence score.</div>
+    </div>`).join("");
+
+  // Contradictory evidence is rendered unconditionally and never collapsed.
+  const contra = (proposal.contradictory_evidence || []).map(e => `
+    <div class="evidence contra">
+      <div><b>${escapeHtml(e.type)}</b></div>
+      <div>${escapeHtml(e.summary || "")}</div>
+    </div>`).join("") || `<div class="kv">No contradictory evidence recorded for this proposal. That is the absence of a recorded objection, not evidence of its soundness.</div>`;
+
+  return `
+    <div class="card">
+      <h3>Supporting evidence</h3>${support}
+      <hr class="hairline">
+      <h3>Contradictory evidence</h3>${contra}
+      <div class="kv" style="margin-top:.8em">
+        Grouping method <b>${escapeHtml(proposal.method.name)}</b> ·
+        status <b>${escapeHtml(proposal.status)}</b> ·
+        evidence class <b>${escapeHtml(proposal.method.evidence_class)}</b> ·
+        model consulted: <b>${proposal.method.model_derived ? "yes" : "no"}</b> ·
+        <b>${escapeHtml(proposal.ground_truth_status)}</b>
+      </div>
+    </div>`;
+}
+
+function renderMember(member, cluster) {
+  const record = member.record;
+  const loc = record.location;
+  const lang = record.language;
+  const status = localStatus.get(record.occurrence_id) || "UNREVIEWED";
+  const focus = (loc.token_start !== null && loc.token_end !== null)
+    ? [loc.token_start, loc.token_end] : null;
+
+  const before = member.context_lines.before.map(l =>
+    `<div class="line ctx"><span class="lnum">${l.line_index_in_doc}</span>${renderTokenLine(l.tokens, null)}</div>`).join("");
+  const after = member.context_lines.after.map(l =>
+    `<div class="line ctx"><span class="lnum">${l.line_index_in_doc}</span>${renderTokenLine(l.tokens, null)}</div>`).join("");
+  const focusLine = `<div class="line"><span class="lnum">${loc.line_index_in_doc === null ? "—" : loc.line_index_in_doc}</span>${renderTokenLine(record.context.full_line, focus)}</div>`;
+
+  const hyps = (localHypotheses.get(record.occurrence_id) || []).map(h => `
+    <div class="hyp-item">
+      <div><b>${escapeHtml(h.action)}</b> — ${escapeHtml(JSON.stringify(h.hypothesis))}</div>
+      <div class="who">${escapeHtml(h.reviewer_id)} · ${escapeHtml(h.rationale || "no rationale given")}</div>
+    </div>`).join("");
+
+  return `
+  <div class="card member" data-occurrence="${escapeHtml(record.occurrence_id)}">
+    <div>
+      ${record.categories.map(c => `<span class="pill cat">${escapeHtml(c)}</span>`).join("")}
+      <span class="pill">${escapeHtml(lang.effective || "<UNRESOLVED>")} · ${escapeHtml(lang.effective_source)}</span>
+      ${record.context.mixed_language_line ? `<span class="pill warn">mixed-language line</span>` : ""}
+      ${member.catalog.is_bin ? `<span class="pill warn">catch-all bin CTH — unlabeled, not negative</span>` : ""}
+      <span class="pill">${escapeHtml(status)}</span>
+    </div>
+    <div class="kv" style="margin:.5em 0">
+      <b>${escapeHtml(loc.doc_id)}</b> · CTH ${escapeHtml(member.catalog.cth || "?")} ·
+      ${escapeHtml(member.catalog.site || "site unknown")} · split <b>${escapeHtml(loc.main_split)}</b> ·
+      damage <b>${escapeHtml(record.display.damage_state)}</b>
+    </div>
+    ${before}${focusLine}${after}
+    <div class="kv" style="margin-top:.5em">
+      <code>${escapeHtml(loc.source_archive_member)}</code><br>
+      payload <code>${escapeHtml(loc.source_payload_sha256.slice(0, 16))}…</code> ·
+      occurrence <code>${escapeHtml(record.occurrence_id)}</code>
+    </div>
+    ${hyps ? `<hr class="hairline"><h3>Hypotheses recorded this session</h3>${hyps}` : ""}
+    <hr class="hairline">
+    <div class="action-grid">
+      <button type="button" data-act="PROPOSE_READING" data-occ="${escapeHtml(record.occurrence_id)}">Propose a reading</button>
+      <button type="button" data-act="PROPOSE_PHRASE" data-occ="${escapeHtml(record.occurrence_id)}">Propose a phrase</button>
+      <button type="button" data-act="PROPOSE_LANGUAGE" data-occ="${escapeHtml(record.occurrence_id)}">Propose a language</button>
+      <button type="button" data-act="PROPOSE_LEXICAL_IDENTITY" data-occ="${escapeHtml(record.occurrence_id)}">Propose lexical identity</button>
+      <button type="button" data-act="REMOVE_FROM_CLUSTER" data-occ="${escapeHtml(record.occurrence_id)}">Doesn't belong in this cluster</button>
+      <button type="button" data-act="REJECT_HYPOTHESIS" data-occ="${escapeHtml(record.occurrence_id)}" class="danger">Reject hypothesis</button>
+      <button type="button" data-act="WITHHOLD_JUDGMENT" data-occ="${escapeHtml(record.occurrence_id)}">Withhold judgment</button>
+    </div>
+    <div class="kv" style="margin-top:.5em">More than one reading may be proposed for the same occurrence; competing hypotheses are kept side by side, never merged into one answer.</div>
+  </div>`;
+}
+
+function renderDetail() {
+  const container = document.getElementById("cluster-detail");
+  const cluster = currentCluster();
+  if (!cluster) {
+    container.innerHTML = `<div class="empty">Select a cluster from the queue.</div>`;
+    return;
+  }
+  const sampled = cluster.members.length < cluster.member_count;
+  container.innerHTML = `
+    <div class="card">
+      <h2 class="mono">${escapeHtml(cluster.sequence)}</h2>
+      <div class="kv">
+        <code>${escapeHtml(cluster.proposal.cluster_id)}</code> ·
+        <b>${cluster.member_count.toLocaleString()}</b> occurrence(s) across
+        <b>${cluster.distinct_document_count.toLocaleString()}</b> document(s) ·
+        scope <b>${escapeHtml(cluster.proposal.language_scope)}</b>
+      </div>
+      ${sampled ? `<div class="banner" style="margin-top:.8em;border:none;padding:.5em .7em;border-radius:4px">
+        Showing <strong>${cluster.members.length}</strong> of ${cluster.member_count.toLocaleString()} occurrences.
+        Reviewing this sample does not mean the cluster has been seen.</div>` : ""}
+      <div style="margin-top:.8em">
+        <button type="button" id="split-btn">Split this cluster…</button>
+        <button type="button" id="merge-btn">Merge another cluster into this one…</button>
+      </div>
+    </div>
+    ${renderEvidence(cluster)}
+    ${cluster.members.map(m => renderMember(m, cluster)).join("")}
+  `;
+
+  container.querySelectorAll("button[data-act]").forEach(el => {
+    el.addEventListener("click", () => handleAction(el.dataset.act, el.dataset.occ, cluster));
+  });
+  document.getElementById("split-btn").addEventListener("click", () => handleSplit(cluster));
+  document.getElementById("merge-btn").addEventListener("click", () => handleMerge(cluster));
+}
+
+// ------------------------------------------------------------ event build
+
+function reviewerPrompt() {
+  if (!lastReviewer.reviewer_id) {
+    const who = window.prompt("Reviewer name (recorded with every judgment):", "");
+    if (!who) return false;
+    const role = window.prompt("Declared role (e.g. Hittitologist):", "");
+    if (!role) return false;
+    lastReviewer.reviewer_id = who;
+    lastReviewer.declared_role = role;
+  }
+  return true;
+}
+
+function localValidate(event) {
+  const problems = [];
+  if (event.contract_version !== CONTRACT_VERSION) problems.push("wrong contract_version");
+  if (event.ground_truth_status !== "QUARANTINED_EXPERT_JUDGMENT") problems.push("judgment must be quarantined");
+  if (event.requires_adjudication !== true) problems.push("promotion requires a separate adjudication gate");
+  if (event.assistance_acknowledged !== true) problems.push("assistance must be acknowledged");
+  if (HYPOTHESIS_ACTIONS.has(event.action) && !event.hypothesis) problems.push(event.action + " requires a hypothesis");
+  if (NO_HYPOTHESIS_ACTIONS.has(event.action) && event.hypothesis) problems.push(event.action + " cannot carry a hypothesis");
+  const key = CLUSTER_ACTION_KEYS[event.action];
+  if (key && !(event.hypothesis || {})[key]) problems.push(event.action + " requires hypothesis." + key);
+  return problems;
+}
+
+async function recordEvent(action, targetId, reviewedRecord, hypothesis, rationale) {
+  const event = {
+    record_type: "unresolved_expert_annotation_event",
+    contract_version: CONTRACT_VERSION,
+    event_id: (crypto.randomUUID ? crypto.randomUUID()
+               : "evt-" + Date.now() + "-" + sessionEvents.length),
+    action: action,
+    target_id: targetId,
+    reviewed_record_sha256: await canonicalSha256(reviewedRecord),
+    prior_event_sha256: chainHead,
+    reviewer: { reviewer_id: lastReviewer.reviewer_id, declared_role: lastReviewer.declared_role },
+    hypothesis: hypothesis || null,
+    rationale: rationale || null,
+    assistance_acknowledged: true,
+    created_utc: new Date().toISOString(),
+    ground_truth_status: "QUARANTINED_EXPERT_JUDGMENT",
+    requires_adjudication: true,
+  };
+  const problems = localValidate(event);
+  if (problems.length) {
+    window.alert("This judgment was not recorded — it would violate the contract:\n\n• " + problems.join("\n• "));
+    return null;
+  }
+  sessionEvents.push(event);
+  chainHead = await canonicalSha256(event);
+  document.getElementById("export-btn").textContent = `Export events (${sessionEvents.length})`;
+  return event;
+}
+
+function applyLocally(action, targetId, hypothesis, rationale) {
+  if (HYPOTHESIS_ACTIONS.has(action)) {
+    const list = localHypotheses.get(targetId) || [];
+    list.push({ action, hypothesis, rationale, reviewer_id: lastReviewer.reviewer_id });
+    localHypotheses.set(targetId, list);
+    localStatus.set(targetId, "HYPOTHESIS");
+  } else if (action === "REJECT_HYPOTHESIS") {
+    localStatus.set(targetId, "REJECTED");
+  } else if (action === "WITHHOLD_JUDGMENT") {
+    localStatus.set(targetId, "WITHHELD");
+  }
+}
+
+async function handleAction(action, occurrenceId, cluster) {
+  if (!reviewerPrompt()) return;
+  const member = cluster.members.find(m => m.record.occurrence_id === occurrenceId);
+  if (!member) return;
+
+  let hypothesis = null;
+  if (action === "PROPOSE_READING") {
+    const reading = window.prompt("Proposed reading for the unresolved run (signs, space-separated):", "");
+    if (!reading) return;
+    hypothesis = { proposed_reading: reading };
+  } else if (action === "PROPOSE_PHRASE") {
+    const phrase = window.prompt("Proposed phrase spanning this occurrence:", "");
+    if (!phrase) return;
+    hypothesis = { proposed_phrase: phrase };
+  } else if (action === "PROPOSE_LANGUAGE") {
+    const language = window.prompt(
+      "Proposed language for this occurrence (Hit, Akk, Sum, Hat, Luw, Pal, Hur):",
+      member.record.language.effective || "");
+    if (!language) return;
+    hypothesis = { proposed_language: language };
+  } else if (action === "PROPOSE_LEXICAL_IDENTITY") {
+    const lexeme = window.prompt("Proposed lexical identity (lemma or known form):", "");
+    if (!lexeme) return;
+    hypothesis = { proposed_lexical_identity: lexeme };
+  } else if (action === "REMOVE_FROM_CLUSTER") {
+    hypothesis = { cluster_id: cluster.proposal.cluster_id };
+  }
+
+  const rationale = window.prompt(
+    "Rationale (optional but strongly encouraged — this is what makes the judgment reviewable):", "");
+  const event = await recordEvent(action, occurrenceId, member.record, hypothesis, rationale);
+  if (!event) return;
+  applyLocally(action, occurrenceId, hypothesis, rationale);
+  renderNav();
+  renderDetail();
+}
+
+async function handleSplit(cluster) {
+  if (!reviewerPrompt()) return;
+  const ids = cluster.members.map(m => m.record.occurrence_id);
+  const picked = window.prompt(
+    "Occurrence numbers to draw out into a new cluster, comma-separated (1–" + ids.length + "):", "");
+  if (!picked) return;
+  const chosen = picked.split(",").map(s => parseInt(s.trim(), 10))
+    .filter(n => n >= 1 && n <= ids.length).map(n => ids[n - 1]);
+  if (!chosen.length) { window.alert("No valid occurrence numbers given; nothing recorded."); return; }
+  const newId = window.prompt("Identifier for the new cluster:", cluster.proposal.cluster_id + "-a");
+  if (!newId) return;
+  const rationale = window.prompt("Rationale for splitting:", "");
+  const hypothesis = { split_into: { [newId]: chosen } };
+  const event = await recordEvent(
+    "SPLIT_CLUSTER", cluster.proposal.cluster_id, cluster.proposal, hypothesis, rationale);
+  if (event) { renderNav(); renderDetail(); }
+}
+
+async function handleMerge(cluster) {
+  if (!reviewerPrompt()) return;
+  const others = clusters().filter(c => c.proposal.cluster_id !== cluster.proposal.cluster_id);
+  const listed = others.slice(0, 40).map((c, i) => `${i + 1}. ${c.proposal.cluster_id}  ${c.sequence}`).join("\n");
+  const picked = window.prompt(
+    "Number of the cluster to merge INTO this one:\n\n" + listed, "");
+  const index = parseInt(picked, 10);
+  if (!(index >= 1 && index <= Math.min(40, others.length))) return;
+  const rationale = window.prompt("Rationale for merging:", "");
+  const hypothesis = { merged_cluster_ids: [others[index - 1].proposal.cluster_id] };
+  const event = await recordEvent(
+    "MERGE_CLUSTERS", cluster.proposal.cluster_id, cluster.proposal, hypothesis, rationale);
+  if (event) { renderNav(); renderDetail(); }
+}
+
+// ----------------------------------------------------------------- export
+
+function exportEvents() {
+  if (!sessionEvents.length) {
+    window.alert("No judgments recorded yet.");
+    return;
+  }
+  const payload = {
+    record_type: "unresolved_expert_annotation_session",
+    contract_version: CONTRACT_VERSION,
+    queue_policy: MANIFEST.queue_policy,
+    queue_channels_logical_sha256: MANIFEST.channels_logical_sha256 || null,
+    source_hashes: MANIFEST.source_hashes,
+    session_base_chain_head: null,
+    reviewer: { ...lastReviewer },
+    exported_utc: new Date().toISOString(),
+    ground_truth_status: "QUARANTINED_EXPERT_JUDGMENT",
+    events: sessionEvents,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
+  a.download = `workbench_events_${(lastReviewer.reviewer_id || "reviewer").replace(/\W+/g, "_")}_${stamp}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  window.alert(
+    "Exported " + sessionEvents.length + " event(s).\n\n" +
+    "Ingest with:\n  python scripts/phase4_workbench_ingest_events.py <file>\n\n" +
+    "Then run scripts/phase4_workbench_backup.py — an append-only log that is " +
+    "lost cannot be reconstructed.");
+}
+
+// ------------------------------------------------------------------- init
+
+function populateFilters() {
+  const members = allMembers();
+  const fill = (id, values, label) => {
+    const el = document.getElementById(id);
+    el.innerHTML = `<option value="">${label}</option>` +
+      values.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+  };
+  fill("filter-category", uniqueSorted(members.flatMap(m => m.record.categories)), "Any category");
+  fill("filter-language", uniqueSorted(members.map(m => m.record.language.effective || "<UNRESOLVED>")), "Any language");
+  fill("filter-site", uniqueSorted(members.map(m => m.catalog.site)), "Any site");
+  fill("filter-state", ["UNREVIEWED", "HYPOTHESIS", "REJECTED", "WITHHELD"], "Any review state");
+}
+
+function setChannel(next) {
+  channel = next;
+  selectedClusterId = null;
+  document.getElementById("channel-same").classList.toggle("active", next === "SAME_LANGUAGE_AS_QUERY");
+  document.getElementById("channel-cross").classList.toggle("active", next === "CROSS_LANGUAGE_PARALLEL");
+  document.getElementById("cross-banner").style.display =
+    next === "CROSS_LANGUAGE_PARALLEL" ? "block" : "none";
+  populateFilters();
+  renderSubsetBanner();
+  renderNav();
+  renderDetail();
+}
+
+function init() {
+  document.getElementById("cross-banner").innerHTML =
+    `<strong>Cross-language channel is ON.</strong> These groupings match sign sequences ` +
+    `<em>across</em> languages. A shared sequence between, say, a Hittite and a Hurrian line is a ` +
+    `prompt to look, not evidence that the two are the same form. Same-language evidence remains ` +
+    `in its own channel and is not mixed in.`;
+
+  document.getElementById("channel-same").addEventListener("click", () => setChannel("SAME_LANGUAGE_AS_QUERY"));
+  document.getElementById("channel-cross").addEventListener("click", () => {
+    if (!crossEnabled) {
+      const ok = window.confirm(
+        "Enable the cross-language channel?\n\n" +
+        "Cross-language groupings are an explicitly enabled assistance layer. " +
+        "They stay in a separate channel and never merge into same-language evidence.");
+      if (!ok) return;
+      crossEnabled = true;
+      document.getElementById("channel-cross").textContent = "Cross-language (on)";
+    }
+    setChannel("CROSS_LANGUAGE_PARALLEL");
+  });
+  document.getElementById("export-btn").addEventListener("click", exportEvents);
+
+  ["filter-text", "filter-category", "filter-language", "filter-site", "filter-state", "filter-mixed"]
+    .forEach(id => document.getElementById(id).addEventListener("input", renderNav));
+
+  const p = MANIFEST.policy_parameters;
+  document.getElementById("footer-stamp").innerHTML =
+    `Queue policy <code>${escapeHtml(MANIFEST.queue_policy)}</code> · contract ` +
+    `<code>${escapeHtml(MANIFEST.contract_version)}</code> · evidence policy ` +
+    `<code>${escapeHtml(MANIFEST.evidence_policy)}</code> · corpus ` +
+    `<code>${escapeHtml(MANIFEST.corpus_version)}</code> · git ` +
+    `<code>${escapeHtml((MANIFEST.git_commit || "").slice(0, 10))}</code><br>` +
+    `occurrences <code>${escapeHtml(MANIFEST.source_hashes.occurrences_logical_sha256)}</code><br>` +
+    `ranking: ${escapeHtml(p.ranking)} · context ±${p.context_lines_per_side} line(s) · ` +
+    `at most ${p.max_members_displayed_per_cluster} members shown per cluster.<br>` +
+    `Every record on this page is <code>NOT_CORPUS_TRUTH</code>. An expert judgment recorded here is ` +
+    `<code>QUARANTINED_EXPERT_JUDGMENT</code> and requires a separate adjudication gate before it could ` +
+    `reach any training artifact. Nothing here edits TLHdig.`;
+
+  document.getElementById("header-subtitle").textContent =
+    `— ${MANIFEST.channel_counts.SAME_LANGUAGE_AS_QUERY.queued} same-language + ` +
+    `${MANIFEST.channel_counts.CROSS_LANGUAGE_PARALLEL.queued} cross-language clusters queued`;
+
+  setChannel("SAME_LANGUAGE_AS_QUERY");
+  runSelfTest();
+}
+
+init();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 ## Result
 
-Contract v1.0.0 now represents single- and multi-sign candidate sets, explicit abstention, typed evidence, assistance layers, collapsed equal-support tails, and hash-bound expert decisions. The executable validator forbids automatic completion, per-option truth-probability claims, silent truncation, hidden dev-evaluation payloads, and automatic ground-truth mutation.
+Contract v1.1.0 now represents single- and multi-sign candidate sets, explicit abstention, typed evidence, assistance layers, collapsed equal-support tails, and hash-bound expert decisions. The executable validator forbids automatic completion, per-option truth-probability claims, silent truncation, hidden dev-evaluation payloads, and automatic ground-truth mutation. P4-D added a required `language` block (query language and its resolution status, mixed-language status, separated same-language and cross-language channels); an unresolved query language obliges an explicit LANGUAGE_* limitation, so a packet can never present itself as language-established when it is not.
 
 Four governed dev integration examples validate: 3 candidate packets and 1 abstention packet. P2-E4 rates remain option-rank group audits; P2-E6 rates remain whole-set group audits.
 

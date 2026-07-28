@@ -1,6 +1,8 @@
 # Unresolved Evidence Workbench contract
 
-**Status:** GATE 0 RATIFIED; machine schema version 1.0.0 (2026-07-25).
+**Status:** IMPLEMENTED; machine schema version **1.1.0**, ratified
+2026-07-27 (`reports/phase4_p4de_ratification.md`). Gate 0 ratified the
+original contract on 2026-07-25 at schema 1.0.0.
 
 ## Purpose
 
@@ -25,10 +27,12 @@ The intake pipeline must not merge different kinds of uncertainty:
 | `ILLEGIBLE_SIGN` | source explicitly records an unreadable sign/placeholder |
 | `PARTIALLY_PRESERVED_READING` | `laes` or comparable partial-preservation state |
 | `UNCERTAIN_TRANSCRIPTION` | editorial uncertainty/correction marker |
-| `LEXICAL_UNKNOWN` | a governed detector flags a rare or unresolved form; never inferred solely from tokenizer OOV |
+| `RARE_FORM` | a governed frequency detector finds the form rare in the declared universe; a claim about this corpus, never about Hittitology |
+| `LEXICAL_UNKNOWN` | a trained specialist asserts the form is lexically unidentified; **reserved for expert adjudication** and never set by extraction, since frequency cannot establish it |
 | `TOKENIZER_OOV` | engineering vocabulary miss |
 | `UNRECOGNIZED_LANGUAGE_TAG` | source language value is not ratified |
 | `EMPTY_LANGUAGE_TAG` | source contains an explicit-empty language attribute; preserve even when the ratified line-inheritance rule resolves effective language |
+| `MISSING_LANGUAGE_TAG` | source carries no language attribute at all; an absent attribute is not an empty, malformed, or unrecognized one |
 | `MALFORMED_LANGUAGE_TAG` | source language value cannot be represented or canonicalized safely |
 | `SYMBOL_OR_ENCODING_ANOMALY` | private-use, unusual Unicode, or unexplained symbol |
 | `PARSER_ANOMALY` | source/parser structure cannot be represented reliably |
@@ -79,7 +83,9 @@ Every cluster proposal records:
 - support and contradictions;
 - `scores_are_probabilities: false`.
 
-Model clusters begin as `MODEL_PROPOSAL`. A trained expert may merge, split,
+System-generated clusters begin as `SYSTEM_PROPOSAL` when the channel is
+deterministic and `MODEL_PROPOSAL` when a model produced them; a
+`SYSTEM_PROPOSAL` may not claim `model_derived`. A trained expert may merge, split,
 accept for organization, reject, or leave them unresolved. Even an expert-
 curated cluster is an annotation collection, not a corpus fact.
 
@@ -144,6 +150,34 @@ The interface should provide:
 The UI must not call a similarity score a probability or hide contradictory
 occurrences.
 
+### Implemented 2026-07-27 (P4-E2)
+
+`demo/workbench_unresolved_prototype.html`, fed by
+`scripts/phase4_workbench_review_export.py` and closed by
+`scripts/phase4_workbench_ingest_events.py`. Every requirement above is
+covered; see `reports/phase4_p4e2_expert_interface.md` for the mapping and for
+what remains unverified.
+
+A **review queue** sits between the ratified proposals and the interface,
+because clustering is Zipfian: the largest same-language proposal has 95,530
+members whose entire shared sequence is `x`, and ranking by document count
+instead surfaces the single signs `a`, `i`, `e`. Queue policy
+`contentful_sequence_length_v1` excludes clusters whose sequence is only
+placeholder characters, excludes sequences shorter than 2 signs, ranks by
+sequence length then document count, and bounds what is exported. **Both
+exclusions await ratification**: they decide what a specialist is shown.
+
+A queue is a *view*. It never mutates an occurrence, a proposal, or an
+accepted hash, and the interface must state on screen that it shows a subset,
+with the counts of what was held out.
+
+Whole canonical records travel with the queue so the browser hashes the same
+bytes that are on disk; a trimmed display object would bind an expert's
+judgment to something unverifiable. Ingest recomputes every event's
+`reviewed_record_sha256` from the record currently on disk, refuses on
+mismatch, refuses when the existing log's head appears in no backup ledger
+entry, and re-chains the session onto the real head.
+
 ## Storage layout
 
 Regenerable derived data:
@@ -157,10 +191,17 @@ Small, tracked artifacts:
 - `Phase4/phase4_out/unresolved_similarity_candidates.jsonl`
 - `Phase4/phase4_out/expert_annotation_events.jsonl`
 - `Phase4/phase4_out/unresolved_workbench_report.md`
+- `Phase4/phase4_out/workbench_ui_out/` — the review queue, its manifest, and
+  its report; regenerable from the artifacts above
 
 The Parquet files are gitignored and rebuilt from the pinned corpus plus
 append-only annotation events. Annotation events must be backed up separately
-before the workbench is used for real expert labor.
+before the workbench is used for real expert labor: run
+`scripts/phase4_workbench_backup.py` before and after every expert session. It
+verifies the hash chain before copying, writes timestamped backups under
+`Phase4/phase4_out/annotation_backups/`, and appends to a ledger recording
+event count, chain head, and file checksum. A lost event log is unrecoverable
+and un-reconstructable.
 
 ## Acceptance checks
 

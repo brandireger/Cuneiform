@@ -88,10 +88,10 @@
     "confidence_interval": "95% Wilson score interval",
     "time_budget_hours": 4
   },
-  "eligible_contexts": 68773,
-  "witness_supported_contexts": 17390,
-  "selector_accepted_contexts": 5542,
-  "selector_coverage_percent_of_all_eligible": 8.06,
+  "eligible_contexts": 65139,
+  "witness_supported_contexts": 16831,
+  "selector_accepted_contexts": 4983,
+  "selector_coverage_percent_of_all_eligible": 7.65,
   "formulaicity_statistics": {
     "universe_name": "real_composition_train_plus_dev_cth_formulaicity",
     "n_compositions": 490,
@@ -99,10 +99,10 @@
     "n_decomposed_rows": 1941659,
     "ambiguous_doc_ids_quarantined": 8,
     "requested_anchor_pair_counts": {
-      "2": 48411
+      "2": 45751
     },
     "observed_anchor_pair_counts": {
-      "2": 48411
+      "2": 45751
     },
     "maximum_middle_length": 12,
     "content_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2"
@@ -116,79 +116,79 @@
       "selected_rule": {
         "minimum_top_support_families": 2,
         "minimum_support_margin": 1,
-        "minimum_dominance": 0.5,
-        "maximum_alternatives": 4
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
       },
       "selected_rule_calibration_metrics": {
-        "rule_id": "s2_m1_d0p5_a4",
+        "rule_id": "s2_m1_d0p0_a2",
         "rule": {
           "minimum_top_support_families": 2,
           "minimum_support_margin": 1,
-          "minimum_dominance": 0.5,
-          "maximum_alternatives": 4
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
         },
-        "eligible_spans": 52904,
-        "spans_with_any_witness_alternative": 10505,
-        "spans_with_unique_evidence_top": 9607,
-        "accepted_spans": 2960,
-        "coverage_percent_of_eligible": 5.6,
-        "coverage_percent_of_supported": 28.18,
-        "top1_exact_agreement_spans": 2698,
-        "top1_exact_agreement_percent": 91.15,
-        "top1_exact_agreement_fraction": 0.9114864864864864,
+        "eligible_spans": 49888,
+        "spans_with_any_witness_alternative": 10363,
+        "spans_with_unique_evidence_top": 9483,
+        "accepted_spans": 2730,
+        "coverage_percent_of_eligible": 5.47,
+        "coverage_percent_of_supported": 26.34,
+        "top1_exact_agreement_spans": 2496,
+        "top1_exact_agreement_percent": 91.43,
+        "top1_exact_agreement_fraction": 0.9142857142857143,
         "top1_exact_wilson_95": [
-          0.900713,
-          0.921193
+          0.903194,
+          0.924213
         ],
-        "gold_anywhere_in_preserved_alternatives": 2748,
-        "gold_anywhere_percent": 92.84,
-        "mean_preserved_alternatives_when_accepted": 1.314
+        "gold_anywhere_in_preserved_alternatives": 2541,
+        "gold_anywhere_percent": 93.08,
+        "mean_preserved_alternatives_when_accepted": 1.198
       },
-      "calibration_contexts": 52904,
-      "evaluation_contexts": 15869,
-      "accepted_evaluation_contexts": 3023,
+      "calibration_contexts": 49888,
+      "evaluation_contexts": 15251,
+      "accepted_evaluation_contexts": 2514,
       "rank_calibration": {
         "1": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 2960,
-          "attested_agreement_contexts": 2698,
-          "calibrated_empirical_agreement": 0.911486,
+          "calibration_contexts_with_rank_available": 2730,
+          "attested_agreement_contexts": 2496,
+          "calibrated_empirical_agreement": 0.914286,
           "wilson_95": [
-            0.900713,
-            0.921193
+            0.903194,
+            0.924213
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 727,
-          "attested_agreement_contexts": 50,
-          "calibrated_empirical_agreement": 0.068776,
+          "calibration_contexts_with_rank_available": 541,
+          "attested_agreement_contexts": 45,
+          "calibrated_empirical_agreement": 0.083179,
           "wilson_95": [
-            0.052555,
-            0.08953
+            0.062745,
+            0.109492
           ],
           "not_an_instance_truth_probability": true
         },
         "3": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 168,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.022355
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
         "4": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 33,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.10427
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
@@ -209,13 +209,15 @@
       "fold": 1,
       "evaluation_cth": [
         40,
-        44,
+        84,
+        89,
         133,
-        233,
         375,
+        387,
+        543,
         576,
         616,
-        762
+        782
       ],
       "selected_rule": {
         "minimum_top_support_families": 1,
@@ -231,57 +233,57 @@
           "minimum_dominance": 0.67,
           "maximum_alternatives": 4
         },
-        "eligible_spans": 55473,
-        "spans_with_any_witness_alternative": 14631,
-        "spans_with_unique_evidence_top": 13280,
-        "accepted_spans": 4375,
-        "coverage_percent_of_eligible": 7.89,
-        "coverage_percent_of_supported": 29.9,
-        "top1_exact_agreement_spans": 3986,
-        "top1_exact_agreement_percent": 91.11,
-        "top1_exact_agreement_fraction": 0.9110857142857143,
+        "eligible_spans": 52677,
+        "spans_with_any_witness_alternative": 13889,
+        "spans_with_unique_evidence_top": 12612,
+        "accepted_spans": 4198,
+        "coverage_percent_of_eligible": 7.97,
+        "coverage_percent_of_supported": 30.23,
+        "top1_exact_agreement_spans": 3829,
+        "top1_exact_agreement_percent": 91.21,
+        "top1_exact_agreement_fraction": 0.9121010004764173,
         "top1_exact_wilson_95": [
-          0.902287,
-          0.919163
+          0.903155,
+          0.920294
         ],
-        "gold_anywhere_in_preserved_alternatives": 4088,
-        "gold_anywhere_percent": 93.44,
-        "mean_preserved_alternatives_when_accepted": 1.263
+        "gold_anywhere_in_preserved_alternatives": 3928,
+        "gold_anywhere_percent": 93.57,
+        "mean_preserved_alternatives_when_accepted": 1.267
       },
-      "calibration_contexts": 55473,
-      "evaluation_contexts": 13300,
+      "calibration_contexts": 52677,
+      "evaluation_contexts": 12462,
       "accepted_evaluation_contexts": 667,
       "rank_calibration": {
         "1": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 4375,
-          "attested_agreement_contexts": 3986,
-          "calibrated_empirical_agreement": 0.911086,
+          "calibration_contexts_with_rank_available": 4198,
+          "attested_agreement_contexts": 3829,
+          "calibrated_empirical_agreement": 0.912101,
           "wilson_95": [
-            0.902287,
-            0.919163
+            0.903155,
+            0.920294
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 962,
-          "attested_agreement_contexts": 98,
-          "calibrated_empirical_agreement": 0.101871,
+          "calibration_contexts_with_rank_available": 934,
+          "attested_agreement_contexts": 95,
+          "calibrated_empirical_agreement": 0.101713,
           "wilson_95": [
-            0.084313,
-            0.122596
+            0.08393,
+            0.122759
           ],
           "not_an_instance_truth_probability": true
         },
         "3": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 161,
+          "calibration_contexts_with_rank_available": 159,
           "attested_agreement_contexts": 4,
-          "calibrated_empirical_agreement": 0.024845,
+          "calibrated_empirical_agreement": 0.025157,
           "wilson_95": [
-            0.009703,
-            0.062132
+            0.009826,
+            0.062892
           ],
           "not_an_instance_truth_probability": true
         },
@@ -312,15 +314,15 @@
     {
       "fold": 2,
       "evaluation_cth": [
+        122,
         492,
-        540,
-        549,
         630,
         633,
         634,
         667,
         742,
-        782,
+        762,
+        812,
         821
       ],
       "selected_rule": {
@@ -337,46 +339,46 @@
           "minimum_dominance": 0.0,
           "maximum_alternatives": 2
         },
-        "eligible_spans": 55597,
-        "spans_with_any_witness_alternative": 14273,
-        "spans_with_unique_evidence_top": 12956,
-        "accepted_spans": 3936,
-        "coverage_percent_of_eligible": 7.08,
-        "coverage_percent_of_supported": 27.58,
-        "top1_exact_agreement_spans": 3595,
-        "top1_exact_agreement_percent": 91.34,
-        "top1_exact_agreement_fraction": 0.9133638211382114,
+        "eligible_spans": 52674,
+        "spans_with_any_witness_alternative": 13986,
+        "spans_with_unique_evidence_top": 12702,
+        "accepted_spans": 3797,
+        "coverage_percent_of_eligible": 7.21,
+        "coverage_percent_of_supported": 27.15,
+        "top1_exact_agreement_spans": 3470,
+        "top1_exact_agreement_percent": 91.39,
+        "top1_exact_agreement_fraction": 0.9138793784566763,
         "top1_exact_wilson_95": [
-          0.904168,
-          0.921754
+          0.904532,
+          0.92239
         ],
-        "gold_anywhere_in_preserved_alternatives": 3651,
+        "gold_anywhere_in_preserved_alternatives": 3522,
         "gold_anywhere_percent": 92.76,
-        "mean_preserved_alternatives_when_accepted": 1.198
+        "mean_preserved_alternatives_when_accepted": 1.199
       },
-      "calibration_contexts": 55597,
-      "evaluation_contexts": 13176,
-      "accepted_evaluation_contexts": 994,
+      "calibration_contexts": 52674,
+      "evaluation_contexts": 12465,
+      "accepted_evaluation_contexts": 958,
       "rank_calibration": {
         "1": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 3936,
-          "attested_agreement_contexts": 3595,
-          "calibrated_empirical_agreement": 0.913364,
+          "calibration_contexts_with_rank_available": 3797,
+          "attested_agreement_contexts": 3470,
+          "calibrated_empirical_agreement": 0.913879,
           "wilson_95": [
-            0.904168,
-            0.921754
+            0.904532,
+            0.92239
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 781,
-          "attested_agreement_contexts": 56,
-          "calibrated_empirical_agreement": 0.071703,
+          "calibration_contexts_with_rank_available": 755,
+          "attested_agreement_contexts": 52,
+          "calibrated_empirical_agreement": 0.068874,
           "wilson_95": [
-            0.055628,
-            0.09197
+            0.052907,
+            0.089206
           ],
           "not_an_instance_truth_probability": true
         },
@@ -419,70 +421,69 @@
       "fold": 3,
       "evaluation_cth": [
         63,
-        285,
         312,
         395,
         442,
-        543,
+        540,
+        549,
         682,
         716,
-        727,
-        773
+        727
       ],
       "selected_rule": {
         "minimum_top_support_families": 1,
         "minimum_support_margin": 2,
         "minimum_dominance": 0.67,
-        "maximum_alternatives": 4
+        "maximum_alternatives": 8
       },
       "selected_rule_calibration_metrics": {
-        "rule_id": "s1_m2_d0p67_a4",
+        "rule_id": "s1_m2_d0p67_a8",
         "rule": {
           "minimum_top_support_families": 1,
           "minimum_support_margin": 2,
           "minimum_dominance": 0.67,
-          "maximum_alternatives": 4
+          "maximum_alternatives": 8
         },
-        "eligible_spans": 55520,
-        "spans_with_any_witness_alternative": 14224,
-        "spans_with_unique_evidence_top": 12860,
-        "accepted_spans": 4485,
-        "coverage_percent_of_eligible": 8.08,
-        "coverage_percent_of_supported": 31.53,
-        "top1_exact_agreement_spans": 4080,
-        "top1_exact_agreement_percent": 90.97,
-        "top1_exact_agreement_fraction": 0.9096989966555183,
+        "eligible_spans": 52676,
+        "spans_with_any_witness_alternative": 13777,
+        "spans_with_unique_evidence_top": 12462,
+        "accepted_spans": 4408,
+        "coverage_percent_of_eligible": 8.37,
+        "coverage_percent_of_supported": 32.0,
+        "top1_exact_agreement_spans": 4020,
+        "top1_exact_agreement_percent": 91.2,
+        "top1_exact_agreement_fraction": 0.911978221415608,
         "top1_exact_wilson_95": [
-          0.900957,
-          0.91774
+          0.903251,
+          0.919988
         ],
-        "gold_anywhere_in_preserved_alternatives": 4167,
-        "gold_anywhere_percent": 92.91,
-        "mean_preserved_alternatives_when_accepted": 1.252
+        "gold_anywhere_in_preserved_alternatives": 4106,
+        "gold_anywhere_percent": 93.15,
+        "mean_preserved_alternatives_when_accepted": 1.253
       },
-      "calibration_contexts": 55520,
-      "evaluation_contexts": 13253,
-      "accepted_evaluation_contexts": 557,
+      "calibration_contexts": 52676,
+      "evaluation_contexts": 12463,
+      "accepted_evaluation_contexts": 459,
       "rank_calibration": {
         "1": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 4485,
-          "attested_agreement_contexts": 4080,
-          "calibrated_empirical_agreement": 0.909699,
+          "calibration_contexts_with_rank_available": 4408,
+          "attested_agreement_contexts": 4020,
+          "calibrated_empirical_agreement": 0.911978,
           "wilson_95": [
-            0.900957,
-            0.91774
+            0.903251,
+            0.919988
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 943,
-          "attested_agreement_contexts": 83,
-          "calibrated_empirical_agreement": 0.088017,
+          "calibration_contexts_with_rank_available": 923,
+          "attested_agreement_contexts": 80,
+          "calibrated_empirical_agreement": 0.086674,
           "wilson_95": [
-            0.071565,
-            0.107812
+            0.070193,
+            0.106581
           ],
           "not_an_instance_truth_probability": true
         },
@@ -499,16 +500,98 @@
         },
         "4": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 29,
+          "calibration_contexts_with_rank_available": 31,
           "attested_agreement_contexts": 0,
           "calibrated_empirical_agreement": 0.0,
           "wilson_95": [
             0.0,
-            0.11697
+            0.110255
           ],
           "not_an_instance_truth_probability": true
         },
         "5": {
+          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
+          "calibration_contexts_with_rank_available": 2,
+          "attested_agreement_contexts": 2,
+          "calibrated_empirical_agreement": 1.0,
+          "wilson_95": [
+            0.34238,
+            1.0
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "evaluation_cth": [
+        233,
+        285,
+        348,
+        407,
+        430,
+        569,
+        773,
+        777
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p0_a2",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
+        },
+        "eligible_spans": 52641,
+        "spans_with_any_witness_alternative": 15309,
+        "spans_with_unique_evidence_top": 13849,
+        "accepted_spans": 4370,
+        "coverage_percent_of_eligible": 8.3,
+        "coverage_percent_of_supported": 28.55,
+        "top1_exact_agreement_spans": 4002,
+        "top1_exact_agreement_percent": 91.58,
+        "top1_exact_agreement_fraction": 0.9157894736842105,
+        "top1_exact_wilson_95": [
+          0.907186,
+          0.923662
+        ],
+        "gold_anywhere_in_preserved_alternatives": 4064,
+        "gold_anywhere_percent": 93.0,
+        "mean_preserved_alternatives_when_accepted": 1.201
+      },
+      "calibration_contexts": 52641,
+      "evaluation_contexts": 12498,
+      "accepted_evaluation_contexts": 385,
+      "rank_calibration": {
+        "1": {
+          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
+          "calibration_contexts_with_rank_available": 4370,
+          "attested_agreement_contexts": 4002,
+          "calibrated_empirical_agreement": 0.915789,
+          "wilson_95": [
+            0.907186,
+            0.923662
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
+          "calibration_contexts_with_rank_available": 878,
+          "attested_agreement_contexts": 62,
+          "calibrated_empirical_agreement": 0.070615,
+          "wilson_95": [
+            0.055474,
+            0.089497
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
           "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
@@ -518,99 +601,15 @@
             null
           ],
           "not_an_instance_truth_probability": true
-        }
-      }
-    },
-    {
-      "fold": 4,
-      "evaluation_cth": [
-        84,
-        89,
-        122,
-        348,
-        387,
-        407,
-        430,
-        569,
-        777,
-        812
-      ],
-      "selected_rule": {
-        "minimum_top_support_families": 1,
-        "minimum_support_margin": 2,
-        "minimum_dominance": 0.67,
-        "maximum_alternatives": 4
-      },
-      "selected_rule_calibration_metrics": {
-        "rule_id": "s1_m2_d0p67_a4",
-        "rule": {
-          "minimum_top_support_families": 1,
-          "minimum_support_margin": 2,
-          "minimum_dominance": 0.67,
-          "maximum_alternatives": 4
-        },
-        "eligible_spans": 55598,
-        "spans_with_any_witness_alternative": 15927,
-        "spans_with_unique_evidence_top": 14413,
-        "accepted_spans": 4741,
-        "coverage_percent_of_eligible": 8.53,
-        "coverage_percent_of_supported": 29.77,
-        "top1_exact_agreement_spans": 4310,
-        "top1_exact_agreement_percent": 90.91,
-        "top1_exact_agreement_fraction": 0.9090909090909091,
-        "top1_exact_wilson_95": [
-          0.900573,
-          0.916946
-        ],
-        "gold_anywhere_in_preserved_alternatives": 4414,
-        "gold_anywhere_percent": 93.1,
-        "mean_preserved_alternatives_when_accepted": 1.256
-      },
-      "calibration_contexts": 55598,
-      "evaluation_contexts": 13175,
-      "accepted_evaluation_contexts": 301,
-      "rank_calibration": {
-        "1": {
-          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 4741,
-          "attested_agreement_contexts": 4310,
-          "calibrated_empirical_agreement": 0.909091,
-          "wilson_95": [
-            0.900573,
-            0.916946
-          ],
-          "not_an_instance_truth_probability": true
-        },
-        "2": {
-          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 1016,
-          "attested_agreement_contexts": 100,
-          "calibrated_empirical_agreement": 0.098425,
-          "wilson_95": [
-            0.081593,
-            0.118283
-          ],
-          "not_an_instance_truth_probability": true
-        },
-        "3": {
-          "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 169,
-          "attested_agreement_contexts": 4,
-          "calibrated_empirical_agreement": 0.023669,
-          "wilson_95": [
-            0.009242,
-            0.059269
-          ],
-          "not_an_instance_truth_probability": true
         },
         "4": {
           "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-          "calibration_contexts_with_rank_available": 29,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.11697
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
@@ -664,91 +663,91 @@
   },
   "all_witness_supported_candidate_sets": {
     "micro": {
-      "contexts": 17390,
-      "top1_exact_agreement_contexts": 13222,
-      "attested_lower_ranked_contexts": 897,
-      "attested_absent_contexts": 3271,
-      "full_set_attested_inclusion_contexts": 14119,
-      "full_set_attested_inclusion_percent": 81.19,
+      "contexts": 16831,
+      "top1_exact_agreement_contexts": 12761,
+      "attested_lower_ranked_contexts": 878,
+      "attested_absent_contexts": 3192,
+      "full_set_attested_inclusion_contexts": 13639,
+      "full_set_attested_inclusion_percent": 81.03,
       "full_set_attested_inclusion_wilson_95": [
-        0.806027,
-        0.817642
+        0.804357,
+        0.816201
       ],
       "candidate_set_size": {
-        "mean": 1.354,
-        "median": 1.0,
+        "mean": 1.352,
+        "median": 1,
         "p90": 2,
         "maximum": 24
       },
       "prefix_sets": {
         "1": {
-          "attested_inclusion_contexts": 13222,
-          "attested_inclusion_percent": 76.03,
+          "attested_inclusion_contexts": 12761,
+          "attested_inclusion_percent": 75.82,
           "attested_inclusion_wilson_95": [
-            0.75392,
-            0.766609
+            0.751657,
+            0.764594
           ],
           "mean_displayed_set_size": 1
         },
         "2": {
-          "attested_inclusion_contexts": 13942,
-          "attested_inclusion_percent": 80.17,
+          "attested_inclusion_contexts": 13472,
+          "attested_inclusion_percent": 80.04,
           "attested_inclusion_wilson_95": [
-            0.795733,
-            0.807584
+            0.794321,
+            0.806397
           ],
           "mean_displayed_set_size": 1.218
         },
         "3": {
-          "attested_inclusion_contexts": 14053,
-          "attested_inclusion_percent": 80.81,
+          "attested_inclusion_contexts": 13575,
+          "attested_inclusion_percent": 80.65,
           "attested_inclusion_wilson_95": [
-            0.802188,
-            0.813893
+            0.80051,
+            0.812445
           ],
-          "mean_displayed_set_size": 1.286
+          "mean_displayed_set_size": 1.285
         },
         "5": {
-          "attested_inclusion_contexts": 14095,
-          "attested_inclusion_percent": 81.05,
+          "attested_inclusion_contexts": 13616,
+          "attested_inclusion_percent": 80.9,
           "attested_inclusion_wilson_95": [
-            0.80463,
-            0.816279
+            0.802974,
+            0.814851
           ],
-          "mean_displayed_set_size": 1.328
+          "mean_displayed_set_size": 1.326
         }
       }
     },
     "composition_macro": {
-      "compositions_with_contexts": 32,
+      "compositions_with_contexts": 31,
       "attested_inclusion_percent": {
         "1": {
-          "mean": 75.74,
-          "median": 77.45,
+          "mean": 76.14,
+          "median": 77.48,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "2": {
-          "mean": 78.06,
-          "median": 79.0,
+          "mean": 78.53,
+          "median": 82.35,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "3": {
-          "mean": 78.28,
-          "median": 79.63,
+          "mean": 78.76,
+          "median": 82.35,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "5": {
-          "mean": 78.36,
-          "median": 79.85,
+          "mean": 78.85,
+          "median": 82.35,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "all": {
-          "mean": 78.38,
-          "median": 80.01,
+          "mean": 78.86,
+          "median": 82.35,
           "minimum": 0.0,
           "maximum": 100.0
         }
@@ -757,91 +756,91 @@
   },
   "selector_accepted_candidate_sets": {
     "micro": {
-      "contexts": 5542,
-      "top1_exact_agreement_contexts": 4921,
-      "attested_lower_ranked_contexts": 215,
-      "attested_absent_contexts": 406,
-      "full_set_attested_inclusion_contexts": 5136,
-      "full_set_attested_inclusion_percent": 92.67,
+      "contexts": 4983,
+      "top1_exact_agreement_contexts": 4518,
+      "attested_lower_ranked_contexts": 112,
+      "attested_absent_contexts": 353,
+      "full_set_attested_inclusion_contexts": 4630,
+      "full_set_attested_inclusion_percent": 92.92,
       "full_set_attested_inclusion_wilson_95": [
-        0.919582,
-        0.93331
+        0.9217,
+        0.935957
       ],
       "candidate_set_size": {
-        "mean": 1.358,
-        "median": 1.0,
+        "mean": 1.227,
+        "median": 1,
         "p90": 2,
-        "maximum": 4
+        "maximum": 3
       },
       "prefix_sets": {
         "1": {
-          "attested_inclusion_contexts": 4921,
-          "attested_inclusion_percent": 88.79,
+          "attested_inclusion_contexts": 4518,
+          "attested_inclusion_percent": 90.67,
           "attested_inclusion_wilson_95": [
-            0.879372,
-            0.895984
+            0.89829,
+            0.914449
           ],
           "mean_displayed_set_size": 1
         },
         "2": {
-          "attested_inclusion_contexts": 5104,
-          "attested_inclusion_percent": 92.1,
+          "attested_inclusion_contexts": 4630,
+          "attested_inclusion_percent": 92.92,
           "attested_inclusion_wilson_95": [
-            0.913569,
-            0.927782
+            0.9217,
+            0.935957
           ],
-          "mean_displayed_set_size": 1.275
+          "mean_displayed_set_size": 1.224
         },
         "3": {
-          "attested_inclusion_contexts": 5136,
-          "attested_inclusion_percent": 92.67,
+          "attested_inclusion_contexts": 4630,
+          "attested_inclusion_percent": 92.92,
           "attested_inclusion_wilson_95": [
-            0.919582,
-            0.93331
+            0.9217,
+            0.935957
           ],
-          "mean_displayed_set_size": 1.344
+          "mean_displayed_set_size": 1.227
         },
         "5": {
-          "attested_inclusion_contexts": 5136,
-          "attested_inclusion_percent": 92.67,
+          "attested_inclusion_contexts": 4630,
+          "attested_inclusion_percent": 92.92,
           "attested_inclusion_wilson_95": [
-            0.919582,
-            0.93331
+            0.9217,
+            0.935957
           ],
-          "mean_displayed_set_size": 1.358
+          "mean_displayed_set_size": 1.227
         }
       }
     },
     "composition_macro": {
-      "compositions_with_contexts": 22,
+      "compositions_with_contexts": 21,
       "attested_inclusion_percent": {
         "1": {
-          "mean": 82.16,
-          "median": 92.26,
+          "mean": 81.58,
+          "median": 91.58,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "2": {
-          "mean": 82.71,
-          "median": 93.28,
+          "mean": 82.09,
+          "median": 92.94,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "3": {
-          "mean": 82.76,
-          "median": 93.28,
+          "mean": 82.09,
+          "median": 92.94,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "5": {
-          "mean": 82.76,
-          "median": 93.28,
+          "mean": 82.09,
+          "median": 92.94,
           "minimum": 0.0,
           "maximum": 100.0
         },
         "all": {
-          "mean": 82.76,
-          "median": 93.28,
+          "mean": 82.09,
+          "median": 92.94,
           "minimum": 0.0,
           "maximum": 100.0
         }
@@ -849,44 +848,44 @@
     }
   },
   "observable_disagreement_audit": {
-    "disagreement_contexts": 621,
+    "disagreement_contexts": 465,
     "primary_observable_categories": {
       "ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT": {
-        "contexts": 67,
-        "percent_of_disagreements": 10.79
+        "contexts": 59,
+        "percent_of_disagreements": 12.69
       },
       "ATTESTED_READING_ABSENT_TOP_LONGER": {
-        "contexts": 186,
-        "percent_of_disagreements": 29.95
+        "contexts": 158,
+        "percent_of_disagreements": 33.98
       },
       "ATTESTED_READING_ABSENT_TOP_OMISSION": {
-        "contexts": 153,
-        "percent_of_disagreements": 24.64
+        "contexts": 136,
+        "percent_of_disagreements": 29.25
       },
       "ATTESTED_READING_LOWER_RANKED": {
-        "contexts": 215,
-        "percent_of_disagreements": 34.62
+        "contexts": 112,
+        "percent_of_disagreements": 24.09
       }
     },
     "nonexclusive_observable_flags": {
       "anchor_recurs_across_multiple_compositions": {
-        "contexts": 570,
-        "percent_of_disagreements": 91.79
+        "contexts": 415,
+        "percent_of_disagreements": 89.25
       },
       "attested_reading_absent_from_all_witness_alternatives": {
-        "contexts": 406,
-        "percent_of_disagreements": 65.38
+        "contexts": 353,
+        "percent_of_disagreements": 75.91
       },
       "multiple_attested_witness_middles": {
-        "contexts": 319,
-        "percent_of_disagreements": 51.37
+        "contexts": 175,
+        "percent_of_disagreements": 37.63
       },
       "same_anchor_repeats_within_query_fragment": {
-        "contexts": 143,
-        "percent_of_disagreements": 23.03
+        "contexts": 93,
+        "percent_of_disagreements": 20.0
       },
       "top_supported_by_multiple_independent_families": {
-        "contexts": 621,
+        "contexts": 465,
         "percent_of_disagreements": 100.0
       }
     },
@@ -901,7 +900,7 @@
   ],
   "input_hashes": {
     "config": "1172d813a2dde8ad73b5cf1b0cc633554c345f081db08177b7f3b1a8af553a7b",
-    "evidence_registry": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
+    "evidence_registry": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
     "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
     "decomposed_corpus_parquet": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
     "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",

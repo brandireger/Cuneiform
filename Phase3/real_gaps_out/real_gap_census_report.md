@@ -1,5 +1,14 @@
 # Real-gap structural census (step 1)
 
+<!-- p4d-staleness-stamp -->
+> **[LANGUAGE-BLIND POPULATION — read with P4-D in mind]** This census counts
+> real gaps without any language filter, which remains a correct description
+> of the corpus. Downstream steps now scope queries explicitly (P4-D,
+> 2026-07-26): on the witness-check slice ~9.5% of this population is
+> non-Hittite or unresolved-language and is excluded from Hittite-only
+> coverage figures. This report's own counts are unaffected and were not
+> recomputed. See `reports/phase4_p4d_language_aware_apis.md`.
+
 Pure structural count -- no witness lookup, no calibration, no UI.
 Scope: train + dev documents only (bins and test excluded; test
 exclusion checked via `lib.contracts.assert_no_test`, twice --

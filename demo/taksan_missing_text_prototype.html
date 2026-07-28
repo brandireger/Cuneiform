@@ -1194,6 +1194,29 @@ function renderDetail() {
     <div style="font-size:12px;color:var(--tk-faint);margin-top:.3em">${packet.assistance.model_generated_content_present ? "Contains model-generated content — flagged." : "No model-generated content in this packet."}</div>`;
   main.appendChild(assistDiv);
 
+  // P4-D: the expert must be able to see which language assignment the
+  // system worked under, and whether it was established or merely assumed.
+  // An unresolved status is stated in words, never left as a blank field
+  // that could be read as "Hittite, obviously".
+  const lang = packet.language;
+  if (lang) {
+    const langDiv = document.createElement("div");
+    const resolved = lang.query_language_status === "RESOLVED";
+    const queryLine = resolved
+      ? `query language: <span class="badge">${lang.query_language}</span>`
+      : `query language: <span class="badge" style="background:var(--tk-danger)">not established</span> <span style="font-size:12px;color:var(--tk-faint)">(${lang.query_language_status})</span>`;
+    const cross = lang.cross_language_assistance_enabled
+      ? `cross-language evidence channel ENABLED: ${lang.cross_language_source_languages.join(", ") || "no cross-language sources used"}`
+      : "cross-language evidence channel disabled — all displayed evidence is same-language or language-unverified";
+    langDiv.innerHTML = `<h3 style="font-size:13px;color:var(--tk-muted)">Language</h3>
+      <div>scope: <span class="badge">${lang.language_scope}</span></div>
+      <div>${queryLine}</div>
+      ${lang.mixed_language_query_line ? `<div style="font-size:12px;color:var(--tk-danger)">The query line carries more than one language.</div>` : ""}
+      <div style="font-size:12px;color:var(--tk-faint);margin-top:.3em">${cross}</div>
+      <div style="font-size:12px;color:var(--tk-faint)">Language annotations are ${lang.language_evidence_class.toLowerCase().replace(/_/g, " ")}, not observed artifact evidence.</div>`;
+    main.appendChild(langDiv);
+  }
+
   main.appendChild(document.createElement("hr")).className = "hairline";
 
   const actionBar = document.createElement("div");

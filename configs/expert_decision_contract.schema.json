@@ -226,6 +226,7 @@
         "contradictory_evidence",
         "limitations",
         "assistance",
+        "language",
         "workflow",
         "abstention"
       ],
@@ -234,7 +235,7 @@
           "const": "missing_text_suggestion_packet"
         },
         "contract_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "packet_id": {
           "type": "string",
@@ -348,6 +349,76 @@
         "assistance": {
           "type": "object"
         },
+        "language": {
+          "type": "object",
+          "required": [
+            "language_scope",
+            "query_language",
+            "query_language_status",
+            "mixed_language_query_line",
+            "source_languages",
+            "cross_language_source_languages",
+            "cross_language_assistance_enabled",
+            "language_rule_id",
+            "language_evidence_class"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "language_scope": {
+              "type": "string",
+              "enum": [
+                "HITTITE_ONLY",
+                "SAME_LANGUAGE_AS_QUERY",
+                "MULTILINGUAL_CONDITIONED",
+                "CROSS_LANGUAGE_PARALLEL",
+                "ALL_LANGUAGES_UNCONDITIONED"
+              ]
+            },
+            "query_language": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "query_language_status": {
+              "type": "string",
+              "enum": [
+                "RESOLVED",
+                "UNRESOLVED_IN_SOURCE_RUN",
+                "UNRESOLVED_SOURCE_ANOMALY",
+                "MIXED_LANGUAGE_QUERY_LINE"
+              ]
+            },
+            "mixed_language_query_line": {
+              "type": "boolean"
+            },
+            "source_languages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cross_language_source_languages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cross_language_assistance_enabled": {
+              "type": "boolean"
+            },
+            "language_rule_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "language_evidence_class": {
+              "type": "string",
+              "const": "EDITORIAL_TRANSCRIPTION"
+            }
+          }
+        },
         "workflow": {
           "type": "object"
         },
@@ -380,7 +451,7 @@
           "const": "expert_decision_record"
         },
         "contract_version": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "decision_id": {
           "type": "string"

@@ -84,15 +84,27 @@ def select_examples():
 
     p2e4_provenance = provenance("P2-E4", P2E4_PATH, P2E4_MANIFEST)
     p2e6_provenance = provenance("P2-E6", P2E6_PATH, P2E6_MANIFEST)
+    # P4-D: these examples are adapted from the persisted P2-E4/P2-E6 runs,
+    # which predate word-aware language resolution. Recording anything other
+    # than UNRESOLVED_IN_SOURCE_RUN would assert a language nobody
+    # established -- see demo/dm1_missing_text_export.py for the same
+    # reasoning.
+    language_context = edc.build_language_context(
+        language_scope="HITTITE_ONLY",
+        query_language_status="UNRESOLVED_IN_SOURCE_RUN",
+        cross_language_assistance_enabled=False,
+    )
     examples = [
         edc.adapt_p2e4_packet(
-            p2e4[0], "p2e7-example-single-sign", p2e4_provenance),
+            p2e4[0], "p2e7-example-single-sign", p2e4_provenance,
+            language_context),
     ]
     for index, outcome in enumerate(sorted(required), 1):
         examples.append(edc.adapt_p2e6_packet(
             by_outcome[outcome],
             f"p2e7-example-multisign-{index}",
             p2e6_provenance,
+            language_context,
         ))
     return examples
 
@@ -120,12 +132,17 @@ def write_report(summary):
         "",
         "## Result",
         "",
-        "Contract v1.0.0 now represents single- and multi-sign candidate sets, "
-        "explicit abstention, typed evidence, assistance layers, collapsed "
-        "equal-support tails, and hash-bound expert decisions. The executable "
-        "validator forbids automatic completion, per-option truth-probability "
-        "claims, silent truncation, hidden dev-evaluation payloads, and "
-        "automatic ground-truth mutation.",
+        f"Contract v{edc.CONTRACT_VERSION} now represents single- and "
+        "multi-sign candidate sets, explicit abstention, typed evidence, "
+        "assistance layers, collapsed equal-support tails, and hash-bound "
+        "expert decisions. The executable validator forbids automatic "
+        "completion, per-option truth-probability claims, silent truncation, "
+        "hidden dev-evaluation payloads, and automatic ground-truth mutation. "
+        "P4-D added a required `language` block (query language and its "
+        "resolution status, mixed-language status, separated same-language "
+        "and cross-language channels); an unresolved query language obliges "
+        "an explicit LANGUAGE_* limitation, so a packet can never present "
+        "itself as language-established when it is not.",
         "",
         f"Four governed dev integration examples validate: "
         f"{statuses.get('PRESENT_CANDIDATES', 0)} candidate packets and "
@@ -215,7 +232,7 @@ def main():
             "test_side_remains_unspent": True,
             "probe_results_promoted_for_citation": False,
             "recommended_next_workstream":
-                "expert UI prototype against contract v1.0.0",
+                f"expert UI prototype against contract v{edc.CONTRACT_VERSION}",
         },
         "input_hashes": {
             "schema": sha256(SCHEMA_PATH),

@@ -1,6 +1,6 @@
 {
   "work_item": "P2-E7 expert decision contract and Phase 2 closeout",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0",
   "schema": "configs/expert_decision_contract.schema.json",
   "validator": "lib/expert_decision_contract.py",
   "examples": "Phase2/phase2_out/p2e7_contract_examples.jsonl",
@@ -28,15 +28,15 @@
     "per_option_probability_established": false,
     "test_side_remains_unspent": true,
     "probe_results_promoted_for_citation": false,
-    "recommended_next_workstream": "expert UI prototype against contract v1.0.0"
+    "recommended_next_workstream": "expert UI prototype against contract v1.1.0"
   },
   "input_hashes": {
-    "schema": "faec855dd30a8e27b035e4bcc385519cdf8836f260250f7d8d78cd7a8c50ae32",
-    "evidence_registry": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
-    "p2e4_packets": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
-    "p2e4_manifest": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
-    "p2e6_packets": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
-    "p2e6_manifest": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+    "schema": "c6283c5adb107ac6bfa5650f93d055d69232217f9b68e005912ba437a0870b82",
+    "evidence_registry": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
+    "p2e4_packets": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
+    "p2e4_manifest": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
+    "p2e6_packets": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
+    "p2e6_manifest": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
     "splits": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312"
   }
 }

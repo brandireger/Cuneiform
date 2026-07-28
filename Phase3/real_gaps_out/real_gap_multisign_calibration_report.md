@@ -6,51 +6,51 @@ Scoped to the **39 CTHs** the existing 5 P2-E6 folds actually cover (union of al
 
 Same-line anchors only -- P2-E6's own folds were fit entirely on synthetic within-line masks, so there is no cross-line calibration to borrow (same posture as step 3's single-sign application).
 
-- **8,900** real gaps with mask length in [2, 3, 4, 5] found in scope.
-- **1,317** eligible (a same-line 1-sign anchor exists on both sides -- the base population P2-E6 itself starts from before trying longer anchors).
-- **923** presented (some anchor length 1-3 found independent witness support -- the adaptive selection rule, longest anchor first); **394** abstained (no anchor length had any support at all).
+- **7,464** real gaps with mask length in [2, 3, 4, 5] found in scope.
+- **1,060** eligible (a same-line 1-sign anchor exists on both sides -- the base population P2-E6 itself starts from before trying longer anchors).
+- **798** presented (some anchor length 1-3 found independent witness support -- the adaptive selection rule, longest anchor first); **262** abstained (no anchor length had any support at all).
 
 ### Mask-length distribution among eligible gaps
 
 | mask length | count |
 |---|---|
-| 2 | 657 |
-| 3 | 325 |
-| 4 | 206 |
-| 5 | 129 |
+| 2 | 506 |
+| 3 | 273 |
+| 4 | 174 |
+| 5 | 107 |
 
 ### Selected adaptive anchor length among eligible gaps
 
 | anchor length | count |
 |---|---|
-| 1 | 793 |
-| 2 | 89 |
-| 3 | 41 |
-| abstain | 394 |
+| 1 | 677 |
+| 2 | 82 |
+| 3 | 39 |
+| abstain | 262 |
 
-Of **784** presented `restored` spans checked against the calibrated candidate set: **328** have the editor's reading included in the tie-complete displayed set (a calibrated set-inclusion rate applies), **456** do not (the editor's reading is absent from every witnessed alternative at the selected anchor length), and **0** have no usable calibrated rate for their (mask_length, anchor_length) group (that combination never occurred in the OTHER folds' calibration data for this fold).
+Of **700** presented `restored` spans checked against the calibrated candidate set: **315** have the editor's reading included in the tie-complete displayed set (a calibrated set-inclusion rate applies), **385** do not (the editor's reading is absent from every witnessed alternative at the selected anchor length), and **0** have no usable calibrated rate for their (mask_length, anchor_length) group (that combination never occurred in the OTHER folds' calibration data for this fold).
 
-## Editor's restoration included in the calibrated candidate set (328 total, up to 8 shown)
+## Editor's restoration included in the calibrated candidate set (315 total, up to 8 shown)
 
-- `Bo 3322+`: 2-sign editor reading `a aš` is one of 4 displayed alternatives (adaptive anchor length 2) -- candidate sets in this (mask=2, anchor=2) group have historically included the true attested span about 64.5% of the time (95% CI 63.3-65.6%, n=6,967).
-- `Bo 9400+`: 2-sign editor reading `pa an` is one of 3 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288).
-- `Bo 9400+`: 2-sign editor reading `na ni` is one of 1 displayed alternatives (adaptive anchor length 2) -- candidate sets in this (mask=2, anchor=2) group have historically included the true attested span about 64.5% of the time (95% CI 63.3-65.6%, n=6,967).
-- `Bo 9400+`: 2-sign editor reading `ša an` is one of 1 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288).
-- `Bo 9400+`: 4-sign editor reading `ŠU GIŠ AB ia` is one of 11 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 16.3% of the time (95% CI 15.8-16.8%, n=24,447).
-- `CHDS 5.12`: 2-sign editor reading `DUG mar` is one of 36 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 32.1% of the time (95% CI 31.6-32.7%, n=30,719).
-- `CHDS 5.173`: 2-sign editor reading `ZA LAM` is one of 1 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 32.1% of the time (95% CI 31.6-32.7%, n=30,719).
-- `IBoT 1.29`: 2-sign editor reading `NINDA KU₇` is one of 5 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 35.1% of the time (95% CI 34.6-35.6%, n=36,475).
+- `Bo 3322+`: 2-sign editor reading `a aš` is one of 4 displayed alternatives (adaptive anchor length 2) -- candidate sets in this (mask=2, anchor=2) group have historically included the true attested span about 64.5% of the time (95% CI 63.3-65.6%, n=6,762).
+- `Bo 9400+`: 2-sign editor reading `pa an` is one of 3 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.3% of the time (95% CI 35.8-36.9%, n=33,418).
+- `Bo 9400+`: 2-sign editor reading `na ni` is one of 1 displayed alternatives (adaptive anchor length 2) -- candidate sets in this (mask=2, anchor=2) group have historically included the true attested span about 64.5% of the time (95% CI 63.3-65.6%, n=6,762).
+- `Bo 9400+`: 2-sign editor reading `ša an` is one of 1 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.3% of the time (95% CI 35.8-36.9%, n=33,418).
+- `Bo 9400+`: 4-sign editor reading `ŠU GIŠ AB ia` is one of 11 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 16.3% of the time (95% CI 15.9-16.8%, n=23,889).
+- `CHDS 5.12`: 2-sign editor reading `DUG mar` is one of 36 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 32.2% of the time (95% CI 31.7-32.8%, n=30,059).
+- `IBoT 1.29`: 2-sign editor reading `NINDA KU₇` is one of 5 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 35.8% of the time (95% CI 35.3-36.3%, n=35,419).
+- `IBoT 1.29`: 3-sign editor reading `LÚ pal wa` is one of 1 displayed alternatives (adaptive anchor length 1) -- candidate sets in this (mask=3, anchor=1) group have historically included the true attested span about 23.2% of the time (95% CI 22.7-23.7%, n=30,061).
 
-## Editor's restoration NOT found among the calibrated candidate set (456 total, up to 8 shown)
+## Editor's restoration NOT found among the calibrated candidate set (385 total, up to 8 shown)
 
-- `Bo 9400+`: 4-sign editor reading `kán D ka a` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `at I NA É ḫa`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 16.3% of the time (95% CI 15.8-16.8%, n=24,447). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `Bo 9400+`: 2-sign editor reading `a le` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `re`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `Bo 9400+`: 2-sign editor reading `UZU ZAG` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `zi <NUM>`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `Bo 9400+`: 2-sign editor reading `ZAG an` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `še e ra an`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `Bo 9400+`: 2-sign editor reading `iš ša` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `pí da a`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.4% of the time (95% CI 35.9-36.9%, n=34,288). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `CHDS 5.2`: 4-sign editor reading `NINDA a a an` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 14.5% of the time (95% CI 14.1-15.0%, n=26,090). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `CHDS 5.2`: 4-sign editor reading `NINDA LA AB KU` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 14.5% of the time (95% CI 14.1-15.0%, n=26,090). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
-- `CHDS 5.2`: 2-sign editor reading `DUG KAŠ` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 35.1% of the time (95% CI 34.6-35.6%, n=36,475). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `Bo 9400+`: 4-sign editor reading `kán D ka a` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `at I NA É ḫa`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 16.3% of the time (95% CI 15.9-16.8%, n=23,889). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `Bo 9400+`: 2-sign editor reading `UZU ZAG` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `zi <NUM>`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.3% of the time (95% CI 35.8-36.9%, n=33,418). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `Bo 9400+`: 2-sign editor reading `ZAG an` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `še e ra an`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.3% of the time (95% CI 35.8-36.9%, n=33,418). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `Bo 9400+`: 2-sign editor reading `iš ša` does not match any of 1 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `pí da a`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 36.3% of the time (95% CI 35.8-36.9%, n=33,418). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `CHDS 5.2`: 4-sign editor reading `NINDA a a an` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 15.4% of the time (95% CI 15.0-15.9%, n=25,244). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `CHDS 5.2`: 4-sign editor reading `NINDA LA AB KU` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 15.4% of the time (95% CI 15.0-15.9%, n=25,244). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `CHDS 5.2`: 2-sign editor reading `DUG KAŠ` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=2, anchor=1) group have historically included the true attested span about 35.8% of the time (95% CI 35.3-36.3%, n=35,419). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
+- `CHDS 5.2`: 4-sign editor reading `LÚ NINDA DÙ DÙ` does not match any of 5 displayed alternatives (adaptive anchor length 1; best-witnessed alternative is `(empty)`) -- candidate sets in this (mask=4, anchor=1) group have historically included the true attested span about 15.4% of the time (95% CI 15.0-15.9%, n=25,244). This is NOT the probability the editor is wrong -- it is the group's historical inclusion rate, reported per the same rule as everywhere else in this project.
 
 ## What this still does not establish
 

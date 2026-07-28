@@ -131,10 +131,22 @@ def decision_for(packet, action="SELECT_OPTION"):
     }
 
 
+def language_context(**overrides):
+    """A resolved Hittite language block unless a test overrides it."""
+    kwargs = {
+        "language_scope": "HITTITE_ONLY",
+        "query_language": "Hit",
+        "query_language_status": "RESOLVED",
+        "language_rule_id": "word_override_else_line_v2",
+    }
+    kwargs.update(overrides)
+    return edc.build_language_context(**kwargs)
+
+
 class TestExpertDecisionContract(unittest.TestCase):
     def test_single_sign_adapter_strips_hidden_gold(self):
         packet = edc.adapt_p2e4_packet(
-            p2e4_source(), "packet-1", provenance())
+            p2e4_source(), "packet-1", provenance(), language_context())
         self.assertNotIn("dev_evaluation_only", packet)
         self.assertNotIn(
             "SECRET",
@@ -146,7 +158,7 @@ class TestExpertDecisionContract(unittest.TestCase):
 
     def test_multisign_adapter_preserves_collapsed_tail(self):
         packet = edc.adapt_p2e6_packet(
-            p2e6_source(total=48), "packet-2", provenance())
+            p2e6_source(total=48), "packet-2", provenance(), language_context())
         self.assertTrue(packet["candidate_set"]["tail_collapsed"])
         self.assertEqual(packet["candidate_set"]["collapsed_tail_count"], 47)
         self.assertEqual(
@@ -156,7 +168,7 @@ class TestExpertDecisionContract(unittest.TestCase):
 
     def test_abstention_has_no_select_action_or_probability(self):
         packet = edc.adapt_p2e6_packet(
-            p2e6_source("ABSTAIN"), "packet-3", provenance())
+            p2e6_source("ABSTAIN"), "packet-3", provenance(), language_context())
         self.assertEqual(packet["candidate_set"]["options"], [])
         self.assertEqual(
             packet["workflow"]["allowed_actions"],
@@ -169,7 +181,7 @@ class TestExpertDecisionContract(unittest.TestCase):
 
     def test_validator_rejects_instance_probability(self):
         packet = edc.adapt_p2e6_packet(
-            p2e6_source(), "packet-4", provenance())
+            p2e6_source(), "packet-4", provenance(), language_context())
         unsafe = copy.deepcopy(packet)
         unsafe["candidate_set"]["set_audit"][
             "instance_truth_probability"] = True
@@ -178,7 +190,7 @@ class TestExpertDecisionContract(unittest.TestCase):
 
     def test_selection_is_hash_bound_and_quarantined(self):
         packet = edc.adapt_p2e4_packet(
-            p2e4_source(), "packet-5", provenance())
+            p2e4_source(), "packet-5", provenance(), language_context())
         decision = decision_for(packet)
         self.assertIs(edc.validate_expert_decision(decision, packet), decision)
         stale = copy.deepcopy(decision)
@@ -190,9 +202,69 @@ class TestExpertDecisionContract(unittest.TestCase):
         with self.assertRaises(edc.ContractError):
             edc.validate_expert_decision(unsafe, packet)
 
+    def test_packet_must_state_its_language_context(self):
+        # Contract 1.1.0: a packet may not be emitted without saying what
+        # language it believed it was working in.
+        with self.assertRaises(edc.ContractError):
+            edc.adapt_p2e4_packet(
+                p2e4_source(), "packet-7", provenance(), None)
+
+    def test_unresolved_language_forces_an_explicit_limitation(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_source(), "packet-8", provenance(),
+            language_context(
+                query_language=None,
+                query_language_status="UNRESOLVED_IN_SOURCE_RUN"))
+        codes = [item["code"] for item in packet["limitations"]]
+        self.assertIn("LANGUAGE_UNRESOLVED_IN_SOURCE_RUN", codes)
+        # Stripping the disclosure must not leave a silently language-free
+        # packet that still validates.
+        unsafe = copy.deepcopy(packet)
+        unsafe["limitations"] = [
+            item for item in unsafe["limitations"]
+            if not item["code"].startswith("LANGUAGE_")]
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(unsafe)
+
+    def test_unresolved_status_cannot_also_name_a_language(self):
+        with self.assertRaises(edc.ContractError):
+            edc.adapt_p2e4_packet(
+                p2e4_source(), "packet-9", provenance(),
+                language_context(
+                    query_language="Hit",
+                    query_language_status="UNRESOLVED_IN_SOURCE_RUN"))
+
+    def test_cross_language_evidence_requires_an_enabled_channel(self):
+        with self.assertRaises(edc.ContractError):
+            edc.adapt_p2e4_packet(
+                p2e4_source(), "packet-10", provenance(),
+                language_context(
+                    cross_language_source_languages=["Hur"],
+                    cross_language_assistance_enabled=False))
+
+    def test_query_language_cannot_appear_in_the_cross_language_channel(self):
+        # The two channels must stay separable, per PHASE4_CHARTER.md P4-D.
+        with self.assertRaises(edc.ContractError):
+            edc.adapt_p2e4_packet(
+                p2e4_source(), "packet-11", provenance(),
+                language_context(
+                    cross_language_source_languages=["Hit"],
+                    cross_language_assistance_enabled=True))
+
+    def test_language_fields_stay_editorial_transcription(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_source(), "packet-12", provenance(), language_context())
+        self.assertEqual(
+            packet["language"]["language_evidence_class"],
+            "EDITORIAL_TRANSCRIPTION")
+        unsafe = copy.deepcopy(packet)
+        unsafe["language"]["language_evidence_class"] = "OBSERVED_ARTIFACT"
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(unsafe)
+
     def test_abstention_rejects_selection(self):
         packet = edc.adapt_p2e6_packet(
-            p2e6_source("ABSTAIN"), "packet-6", provenance())
+            p2e6_source("ABSTAIN"), "packet-6", provenance(), language_context())
         decision = decision_for(packet, "WITHHOLD_JUDGMENT")
         self.assertIs(edc.validate_expert_decision(decision, packet), decision)
         decision["action"] = "SELECT_OPTION"

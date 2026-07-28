@@ -6,7 +6,7 @@
 const TAKSAN_DEMO_PACKETS = [
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-001",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -118,8 +118,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -152,7 +167,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-002",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -264,8 +279,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -298,7 +328,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-003",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -410,8 +440,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -444,7 +489,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-004",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -601,8 +646,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -635,7 +695,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-005",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -748,8 +808,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -782,7 +857,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-006",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -895,8 +970,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -929,7 +1019,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-007",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1042,8 +1132,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1076,7 +1181,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-008",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1189,8 +1294,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1223,7 +1343,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-009",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1333,8 +1453,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1367,7 +1502,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-010",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1477,8 +1612,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1511,7 +1661,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-011",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1627,8 +1777,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1661,7 +1826,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-012",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -1819,8 +1984,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -1853,7 +2033,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-013",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -2010,8 +2190,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -2044,7 +2239,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-014",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -2199,8 +2394,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -2233,7 +2443,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-015",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -2389,8 +2599,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -2423,7 +2648,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e4-016",
     "task": "MISSING_TEXT",
     "mode": "SINGLE_SIGN",
@@ -2583,8 +2808,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "NO_ENCODED_CONTRADICTION_DOES_NOT_MEAN_CONFIRMED",
         "message": "An empty contradictory-evidence list means no contradiction was encoded in this packet, not that the option is true."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -2617,7 +2857,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-001",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -2682,8 +2922,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -2714,7 +2969,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-002",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -3301,10 +3556,25 @@ const TAKSAN_DEMO_PACKETS = [
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
       },
       {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
         "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",
         "message": "36 additional equal-support or lower-display alternatives are preserved by count and must remain inspectable; they may not be silently discarded."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -3337,7 +3607,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-003",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -3614,8 +3884,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -3648,7 +3933,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-004",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -3713,8 +3998,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -3745,7 +4045,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-005",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -4297,10 +4597,25 @@ const TAKSAN_DEMO_PACKETS = [
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
       },
       {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
         "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",
         "message": "21 additional equal-support or lower-display alternatives are preserved by count and must remain inspectable; they may not be silently discarded."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -4333,7 +4648,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-006",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -4826,8 +5141,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -4860,7 +5190,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-007",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -4925,8 +5255,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -4957,7 +5302,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-008",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -5200,8 +5545,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -5234,7 +5594,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-009",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -5531,8 +5891,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -5565,7 +5940,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-010",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -5630,8 +6005,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -5662,7 +6052,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-011",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -6027,8 +6417,23 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "VARIABLE_WITNESS_MIDDLE_LENGTH",
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
+      },
+      {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [
@@ -6061,7 +6466,7 @@ const TAKSAN_DEMO_PACKETS = [
   },
   {
     "record_type": "missing_text_suggestion_packet",
-    "contract_version": "1.0.0",
+    "contract_version": "1.1.0",
     "packet_id": "p2e6-012",
     "task": "MISSING_TEXT",
     "mode": "MULTI_SIGN",
@@ -6624,10 +7029,25 @@ const TAKSAN_DEMO_PACKETS = [
         "message": "Witness alternatives may contain a different number of signs than the intentionally masked audit span."
       },
       {
+        "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
+        "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
         "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",
         "message": "3 additional equal-support or lower-display alternatives are preserved by count and must remain inspectable; they may not be silently discarded."
       }
     ],
+    "language": {
+      "language_scope": "HITTITE_ONLY",
+      "query_language": null,
+      "query_language_status": "UNRESOLVED_IN_SOURCE_RUN",
+      "mixed_language_query_line": false,
+      "source_languages": [],
+      "cross_language_source_languages": [],
+      "cross_language_assistance_enabled": false,
+      "language_rule_id": null,
+      "language_evidence_class": "EDITORIAL_TRANSCRIPTION"
+    },
     "assistance": {
       "evidence_policy": "catalog_assisted",
       "enabled_layers": [

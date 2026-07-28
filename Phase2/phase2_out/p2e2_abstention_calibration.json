@@ -107,19 +107,20 @@
   },
   "partition": {
     "method": "composition-disjoint greedy balance by primary-cell eligible span count",
-    "calibration_compositions": 22,
-    "evaluation_compositions": 20,
+    "calibration_compositions": 24,
+    "evaluation_compositions": 18,
     "calibration_cth": [
+      44,
+      84,
       89,
+      122,
       133,
       158,
       168,
-      233,
-      387,
+      285,
       395,
-      407,
       430,
-      540,
+      492,
       543,
       546,
       549,
@@ -128,23 +129,23 @@
       633,
       667,
       742,
-      773,
+      762,
       777,
       782,
-      812
+      812,
+      821
     ],
     "evaluation_cth": [
       40,
-      44,
       63,
-      84,
-      122,
-      285,
+      233,
       312,
       348,
       375,
+      387,
+      407,
       442,
-      492,
+      540,
       569,
       576,
       616,
@@ -152,32 +153,31 @@
       682,
       716,
       727,
-      762,
-      821
+      773
     ],
     "primary_eligible_span_balance": {
-      "calibration": 34376,
-      "evaluation": 34397
+      "calibration": 32559,
+      "evaluation": 32580
     },
     "primary_eligible_spans_by_cth": {
       "40": 5874,
-      "44": 368,
+      "44": 0,
       "63": 2584,
       "84": 108,
-      "89": 789,
-      "122": 649,
-      "133": 1119,
+      "89": 9,
+      "122": 337,
+      "133": 4,
       "158": 0,
       "168": 0,
       "233": 443,
       "285": 824,
       "312": 87,
-      "348": 2302,
+      "348": 2292,
       "375": 2525,
       "387": 857,
       "395": 2394,
       "407": 397,
-      "430": 1560,
+      "430": 1544,
       "442": 922,
       "492": 1195,
       "540": 236,
@@ -186,20 +186,20 @@
       "549": 711,
       "569": 3326,
       "576": 769,
-      "616": 1778,
-      "627": 15869,
-      "630": 2582,
-      "633": 1827,
-      "634": 4469,
+      "616": 1746,
+      "627": 15251,
+      "630": 2570,
+      "633": 1758,
+      "634": 4438,
       "667": 1259,
-      "682": 3870,
-      "716": 1437,
+      "682": 3782,
+      "716": 1335,
       "727": 412,
       "742": 5,
-      "762": 424,
+      "762": 426,
       "773": 555,
-      "777": 3184,
-      "782": 418,
+      "777": 3117,
+      "782": 402,
       "812": 3,
       "821": 474
     }
@@ -231,8 +231,8 @@
   },
   "cells": {
     "a1_m1": {
-      "calibration_records": 47475,
-      "evaluation_records": 47107,
+      "calibration_records": 45008,
+      "evaluation_records": 44891,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -242,22 +242,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 47475,
-          "spans_with_any_witness_alternative": 34373,
-          "spans_with_unique_evidence_top": 25144,
-          "accepted_spans": 25144,
-          "coverage_percent_of_eligible": 52.96,
-          "coverage_percent_of_supported": 73.15,
-          "top1_exact_agreement_spans": 12719,
-          "top1_exact_agreement_percent": 50.58,
-          "top1_exact_agreement_fraction": 0.5058463251670379,
+          "eligible_spans": 45008,
+          "spans_with_any_witness_alternative": 33588,
+          "spans_with_unique_evidence_top": 24129,
+          "accepted_spans": 24129,
+          "coverage_percent_of_eligible": 53.61,
+          "coverage_percent_of_supported": 71.84,
+          "top1_exact_agreement_spans": 12251,
+          "top1_exact_agreement_percent": 50.77,
+          "top1_exact_agreement_fraction": 0.5077292884081396,
           "top1_exact_wilson_95": [
-            0.499666,
-            0.512025
+            0.50142,
+            0.514036
           ],
-          "gold_anywhere_in_preserved_alternatives": 18104,
-          "gold_anywhere_percent": 72.0,
-          "mean_preserved_alternatives_when_accepted": 14.261
+          "gold_anywhere_in_preserved_alternatives": 17301,
+          "gold_anywhere_percent": 71.7,
+          "mean_preserved_alternatives_when_accepted": 13.651
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -267,127 +267,127 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 47107,
-          "spans_with_any_witness_alternative": 33783,
-          "spans_with_unique_evidence_top": 22836,
-          "accepted_spans": 22836,
-          "coverage_percent_of_eligible": 48.48,
-          "coverage_percent_of_supported": 67.6,
-          "top1_exact_agreement_spans": 12542,
-          "top1_exact_agreement_percent": 54.92,
-          "top1_exact_agreement_fraction": 0.5492205289893152,
+          "eligible_spans": 44891,
+          "spans_with_any_witness_alternative": 32696,
+          "spans_with_unique_evidence_top": 22456,
+          "accepted_spans": 22456,
+          "coverage_percent_of_eligible": 50.02,
+          "coverage_percent_of_supported": 68.68,
+          "top1_exact_agreement_spans": 12381,
+          "top1_exact_agreement_percent": 55.13,
+          "top1_exact_agreement_fraction": 0.551344852155326,
           "top1_exact_wilson_95": [
-            0.542759,
-            0.555665
+            0.544832,
+            0.557841
           ],
-          "gold_anywhere_in_preserved_alternatives": 15819,
-          "gold_anywhere_percent": 69.27,
-          "mean_preserved_alternatives_when_accepted": 5.606
+          "gold_anywhere_in_preserved_alternatives": 15599,
+          "gold_anywhere_percent": 69.46,
+          "mean_preserved_alternatives_when_accepted": 5.516
         }
       },
       "selected_rules": {
         "0.7": {
           "selected_on_calibration": {
-            "rule_id": "s2_m1_d0p5_a8",
+            "rule_id": "s1_m2_d0p0_a8",
             "rule": {
-              "minimum_top_support_families": 2,
-              "minimum_support_margin": 1,
-              "minimum_dominance": 0.5,
+              "minimum_top_support_families": 1,
+              "minimum_support_margin": 2,
+              "minimum_dominance": 0.0,
               "maximum_alternatives": 8
             },
-            "eligible_spans": 47475,
-            "spans_with_any_witness_alternative": 34373,
-            "spans_with_unique_evidence_top": 25144,
-            "accepted_spans": 7223,
-            "coverage_percent_of_eligible": 15.21,
-            "coverage_percent_of_supported": 21.01,
-            "top1_exact_agreement_spans": 5161,
-            "top1_exact_agreement_percent": 71.45,
-            "top1_exact_agreement_fraction": 0.7145230513636993,
+            "eligible_spans": 45008,
+            "spans_with_any_witness_alternative": 33588,
+            "spans_with_unique_evidence_top": 24129,
+            "accepted_spans": 6645,
+            "coverage_percent_of_eligible": 14.76,
+            "coverage_percent_of_supported": 19.78,
+            "top1_exact_agreement_spans": 4732,
+            "top1_exact_agreement_percent": 71.21,
+            "top1_exact_agreement_fraction": 0.7121143717080511,
             "top1_exact_wilson_95": [
-              0.703996,
-              0.724822
+              0.701108,
+              0.722876
             ],
-            "gold_anywhere_in_preserved_alternatives": 5978,
-            "gold_anywhere_percent": 82.76,
-            "mean_preserved_alternatives_when_accepted": 2.928
+            "gold_anywhere_in_preserved_alternatives": 5629,
+            "gold_anywhere_percent": 84.71,
+            "mean_preserved_alternatives_when_accepted": 3.689
           },
           "heldout_evaluation": {
-            "rule_id": "s2_m1_d0p5_a8",
+            "rule_id": "s1_m2_d0p0_a8",
             "rule": {
-              "minimum_top_support_families": 2,
-              "minimum_support_margin": 1,
-              "minimum_dominance": 0.5,
+              "minimum_top_support_families": 1,
+              "minimum_support_margin": 2,
+              "minimum_dominance": 0.0,
               "maximum_alternatives": 8
             },
-            "eligible_spans": 47107,
-            "spans_with_any_witness_alternative": 33783,
-            "spans_with_unique_evidence_top": 22836,
-            "accepted_spans": 7814,
-            "coverage_percent_of_eligible": 16.59,
-            "coverage_percent_of_supported": 23.13,
-            "top1_exact_agreement_spans": 5854,
-            "top1_exact_agreement_percent": 74.92,
-            "top1_exact_agreement_fraction": 0.7491681597133351,
+            "eligible_spans": 44891,
+            "spans_with_any_witness_alternative": 32696,
+            "spans_with_unique_evidence_top": 22456,
+            "accepted_spans": 7532,
+            "coverage_percent_of_eligible": 16.78,
+            "coverage_percent_of_supported": 23.04,
+            "top1_exact_agreement_spans": 5763,
+            "top1_exact_agreement_percent": 76.51,
+            "top1_exact_agreement_fraction": 0.7651354221986192,
             "top1_exact_wilson_95": [
-              0.739436,
-              0.758656
+              0.755428,
+              0.774572
             ],
-            "gold_anywhere_in_preserved_alternatives": 6513,
-            "gold_anywhere_percent": 83.35,
-            "mean_preserved_alternatives_when_accepted": 2.483
+            "gold_anywhere_in_preserved_alternatives": 6468,
+            "gold_anywhere_percent": 85.87,
+            "mean_preserved_alternatives_when_accepted": 3.031
           }
         },
         "0.8": {
           "selected_on_calibration": {
-            "rule_id": "s1_m2_d0p67_a4",
+            "rule_id": "s3_m1_d0p67_aany",
             "rule": {
-              "minimum_top_support_families": 1,
-              "minimum_support_margin": 2,
+              "minimum_top_support_families": 3,
+              "minimum_support_margin": 1,
               "minimum_dominance": 0.67,
-              "maximum_alternatives": 4
+              "maximum_alternatives": null
             },
-            "eligible_spans": 47475,
-            "spans_with_any_witness_alternative": 34373,
-            "spans_with_unique_evidence_top": 25144,
-            "accepted_spans": 3621,
-            "coverage_percent_of_eligible": 7.63,
-            "coverage_percent_of_supported": 10.53,
-            "top1_exact_agreement_spans": 2960,
-            "top1_exact_agreement_percent": 81.75,
-            "top1_exact_agreement_fraction": 0.8174537420602044,
+            "eligible_spans": 45008,
+            "spans_with_any_witness_alternative": 33588,
+            "spans_with_unique_evidence_top": 24129,
+            "accepted_spans": 2954,
+            "coverage_percent_of_eligible": 6.56,
+            "coverage_percent_of_supported": 8.79,
+            "top1_exact_agreement_spans": 2412,
+            "top1_exact_agreement_percent": 81.65,
+            "top1_exact_agreement_fraction": 0.8165199729180772,
             "top1_exact_wilson_95": [
-              0.804537,
-              0.829697
+              0.802154,
+              0.830064
             ],
-            "gold_anywhere_in_preserved_alternatives": 3089,
-            "gold_anywhere_percent": 85.31,
-            "mean_preserved_alternatives_when_accepted": 1.724
+            "gold_anywhere_in_preserved_alternatives": 2648,
+            "gold_anywhere_percent": 89.64,
+            "mean_preserved_alternatives_when_accepted": 2.802
           },
           "heldout_evaluation": {
-            "rule_id": "s1_m2_d0p67_a4",
+            "rule_id": "s3_m1_d0p67_aany",
             "rule": {
-              "minimum_top_support_families": 1,
-              "minimum_support_margin": 2,
+              "minimum_top_support_families": 3,
+              "minimum_support_margin": 1,
               "minimum_dominance": 0.67,
-              "maximum_alternatives": 4
+              "maximum_alternatives": null
             },
-            "eligible_spans": 47107,
-            "spans_with_any_witness_alternative": 33783,
-            "spans_with_unique_evidence_top": 22836,
-            "accepted_spans": 4231,
-            "coverage_percent_of_eligible": 8.98,
-            "coverage_percent_of_supported": 12.52,
-            "top1_exact_agreement_spans": 3639,
-            "top1_exact_agreement_percent": 86.01,
-            "top1_exact_agreement_fraction": 0.8600803592531316,
+            "eligible_spans": 44891,
+            "spans_with_any_witness_alternative": 32696,
+            "spans_with_unique_evidence_top": 22456,
+            "accepted_spans": 3371,
+            "coverage_percent_of_eligible": 7.51,
+            "coverage_percent_of_supported": 10.31,
+            "top1_exact_agreement_spans": 2951,
+            "top1_exact_agreement_percent": 87.54,
+            "top1_exact_agreement_fraction": 0.8754078908335805,
             "top1_exact_wilson_95": [
-              0.8493,
-              0.870207
+              0.86383,
+              0.886131
             ],
-            "gold_anywhere_in_preserved_alternatives": 3741,
-            "gold_anywhere_percent": 88.42,
-            "mean_preserved_alternatives_when_accepted": 1.583
+            "gold_anywhere_in_preserved_alternatives": 3063,
+            "gold_anywhere_percent": 90.86,
+            "mean_preserved_alternatives_when_accepted": 1.806
           }
         },
         "0.9": {
@@ -399,21 +399,21 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 1
             },
-            "eligible_spans": 47475,
-            "spans_with_any_witness_alternative": 34373,
-            "spans_with_unique_evidence_top": 25144,
-            "accepted_spans": 1075,
-            "coverage_percent_of_eligible": 2.26,
-            "coverage_percent_of_supported": 3.13,
-            "top1_exact_agreement_spans": 998,
-            "top1_exact_agreement_percent": 92.84,
-            "top1_exact_agreement_fraction": 0.9283720930232559,
+            "eligible_spans": 45008,
+            "spans_with_any_witness_alternative": 33588,
+            "spans_with_unique_evidence_top": 24129,
+            "accepted_spans": 913,
+            "coverage_percent_of_eligible": 2.03,
+            "coverage_percent_of_supported": 2.72,
+            "top1_exact_agreement_spans": 846,
+            "top1_exact_agreement_percent": 92.66,
+            "top1_exact_agreement_fraction": 0.9266155531215772,
             "top1_exact_wilson_95": [
-              0.911384,
-              0.94231
+              0.907854,
+              0.941802
             ],
-            "gold_anywhere_in_preserved_alternatives": 998,
-            "gold_anywhere_percent": 92.84,
+            "gold_anywhere_in_preserved_alternatives": 846,
+            "gold_anywhere_percent": 92.66,
             "mean_preserved_alternatives_when_accepted": 1.0
           },
           "heldout_evaluation": {
@@ -424,21 +424,21 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 1
             },
-            "eligible_spans": 47107,
-            "spans_with_any_witness_alternative": 33783,
-            "spans_with_unique_evidence_top": 22836,
-            "accepted_spans": 1428,
-            "coverage_percent_of_eligible": 3.03,
-            "coverage_percent_of_supported": 4.23,
-            "top1_exact_agreement_spans": 1313,
-            "top1_exact_agreement_percent": 91.95,
-            "top1_exact_agreement_fraction": 0.9194677871148459,
+            "eligible_spans": 44891,
+            "spans_with_any_witness_alternative": 32696,
+            "spans_with_unique_evidence_top": 22456,
+            "accepted_spans": 1541,
+            "coverage_percent_of_eligible": 3.43,
+            "coverage_percent_of_supported": 4.71,
+            "top1_exact_agreement_spans": 1418,
+            "top1_exact_agreement_percent": 92.02,
+            "top1_exact_agreement_fraction": 0.9201817001946788,
             "top1_exact_wilson_95": [
-              0.904203,
-              0.932482
+              0.905582,
+              0.932692
             ],
-            "gold_anywhere_in_preserved_alternatives": 1313,
-            "gold_anywhere_percent": 91.95,
+            "gold_anywhere_in_preserved_alternatives": 1418,
+            "gold_anywhere_percent": 92.02,
             "mean_preserved_alternatives_when_accepted": 1
           }
         },
@@ -449,8 +449,8 @@
       ]
     },
     "a1_m2": {
-      "calibration_records": 40580,
-      "evaluation_records": 40465,
+      "calibration_records": 38460,
+      "evaluation_records": 38446,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -460,22 +460,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 40580,
-          "spans_with_any_witness_alternative": 27905,
-          "spans_with_unique_evidence_top": 18802,
-          "accepted_spans": 18802,
-          "coverage_percent_of_eligible": 46.33,
-          "coverage_percent_of_supported": 67.38,
-          "top1_exact_agreement_spans": 5211,
-          "top1_exact_agreement_percent": 27.72,
-          "top1_exact_agreement_fraction": 0.2771513668758643,
+          "eligible_spans": 38460,
+          "spans_with_any_witness_alternative": 27395,
+          "spans_with_unique_evidence_top": 18152,
+          "accepted_spans": 18152,
+          "coverage_percent_of_eligible": 47.2,
+          "coverage_percent_of_supported": 66.26,
+          "top1_exact_agreement_spans": 5048,
+          "top1_exact_agreement_percent": 27.81,
+          "top1_exact_agreement_fraction": 0.2780960775672102,
           "top1_exact_wilson_95": [
-            0.2708,
-            0.283594
+            0.271625,
+            0.284661
           ],
-          "gold_anywhere_in_preserved_alternatives": 9686,
-          "gold_anywhere_percent": 51.52,
-          "mean_preserved_alternatives_when_accepted": 15.452
+          "gold_anywhere_in_preserved_alternatives": 9235,
+          "gold_anywhere_percent": 50.88,
+          "mean_preserved_alternatives_when_accepted": 14.588
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -485,22 +485,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 40465,
-          "spans_with_any_witness_alternative": 27519,
-          "spans_with_unique_evidence_top": 16891,
-          "accepted_spans": 16891,
-          "coverage_percent_of_eligible": 41.74,
-          "coverage_percent_of_supported": 61.38,
-          "top1_exact_agreement_spans": 5737,
-          "top1_exact_agreement_percent": 33.96,
-          "top1_exact_agreement_fraction": 0.33964833343200523,
+          "eligible_spans": 38446,
+          "spans_with_any_witness_alternative": 26525,
+          "spans_with_unique_evidence_top": 16572,
+          "accepted_spans": 16572,
+          "coverage_percent_of_eligible": 43.1,
+          "coverage_percent_of_supported": 62.48,
+          "top1_exact_agreement_spans": 5658,
+          "top1_exact_agreement_percent": 34.14,
+          "top1_exact_agreement_fraction": 0.34141926140477913,
           "top1_exact_wilson_95": [
-            0.332543,
-            0.346826
+            0.334237,
+            0.348675
           ],
-          "gold_anywhere_in_preserved_alternatives": 8184,
-          "gold_anywhere_percent": 48.45,
-          "mean_preserved_alternatives_when_accepted": 5.895
+          "gold_anywhere_in_preserved_alternatives": 8084,
+          "gold_anywhere_percent": 48.78,
+          "mean_preserved_alternatives_when_accepted": 5.893
         }
       },
       "selected_rules": {
@@ -513,21 +513,21 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 1
             },
-            "eligible_spans": 40580,
-            "spans_with_any_witness_alternative": 27905,
-            "spans_with_unique_evidence_top": 18802,
-            "accepted_spans": 259,
-            "coverage_percent_of_eligible": 0.64,
-            "coverage_percent_of_supported": 0.93,
-            "top1_exact_agreement_spans": 206,
-            "top1_exact_agreement_percent": 79.54,
-            "top1_exact_agreement_fraction": 0.7953667953667953,
+            "eligible_spans": 38460,
+            "spans_with_any_witness_alternative": 27395,
+            "spans_with_unique_evidence_top": 18152,
+            "accepted_spans": 215,
+            "coverage_percent_of_eligible": 0.56,
+            "coverage_percent_of_supported": 0.78,
+            "top1_exact_agreement_spans": 169,
+            "top1_exact_agreement_percent": 78.6,
+            "top1_exact_agreement_fraction": 0.786046511627907,
             "top1_exact_wilson_95": [
-              0.742087,
-              0.840013
+              0.72646,
+              0.83559
             ],
-            "gold_anywhere_in_preserved_alternatives": 206,
-            "gold_anywhere_percent": 79.54,
+            "gold_anywhere_in_preserved_alternatives": 169,
+            "gold_anywhere_percent": 78.6,
             "mean_preserved_alternatives_when_accepted": 1.0
           },
           "heldout_evaluation": {
@@ -538,21 +538,21 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 1
             },
-            "eligible_spans": 40465,
-            "spans_with_any_witness_alternative": 27519,
-            "spans_with_unique_evidence_top": 16891,
-            "accepted_spans": 313,
-            "coverage_percent_of_eligible": 0.77,
-            "coverage_percent_of_supported": 1.14,
-            "top1_exact_agreement_spans": 245,
-            "top1_exact_agreement_percent": 78.27,
-            "top1_exact_agreement_fraction": 0.7827476038338658,
+            "eligible_spans": 38446,
+            "spans_with_any_witness_alternative": 26525,
+            "spans_with_unique_evidence_top": 16572,
+            "accepted_spans": 365,
+            "coverage_percent_of_eligible": 0.95,
+            "coverage_percent_of_supported": 1.38,
+            "top1_exact_agreement_spans": 292,
+            "top1_exact_agreement_percent": 80.0,
+            "top1_exact_agreement_fraction": 0.8,
             "top1_exact_wilson_95": [
-              0.733784,
-              0.824855
+              0.755935,
+              0.837816
             ],
-            "gold_anywhere_in_preserved_alternatives": 245,
-            "gold_anywhere_percent": 78.27,
+            "gold_anywhere_in_preserved_alternatives": 292,
+            "gold_anywhere_percent": 80.0,
             "mean_preserved_alternatives_when_accepted": 1
           }
         },
@@ -567,8 +567,8 @@
       ]
     },
     "a1_m3": {
-      "calibration_records": 34376,
-      "evaluation_records": 34397,
+      "calibration_records": 32559,
+      "evaluation_records": 32580,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -578,22 +578,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 34376,
-          "spans_with_any_witness_alternative": 22840,
-          "spans_with_unique_evidence_top": 14664,
-          "accepted_spans": 14664,
-          "coverage_percent_of_eligible": 42.66,
-          "coverage_percent_of_supported": 64.2,
-          "top1_exact_agreement_spans": 2521,
-          "top1_exact_agreement_percent": 17.19,
-          "top1_exact_agreement_fraction": 0.1719176213857065,
+          "eligible_spans": 32559,
+          "spans_with_any_witness_alternative": 22492,
+          "spans_with_unique_evidence_top": 14154,
+          "accepted_spans": 14154,
+          "coverage_percent_of_eligible": 43.47,
+          "coverage_percent_of_supported": 62.93,
+          "top1_exact_agreement_spans": 2393,
+          "top1_exact_agreement_percent": 16.91,
+          "top1_exact_agreement_fraction": 0.16906881446940794,
           "top1_exact_wilson_95": [
-            0.165897,
-            0.17811
+            0.162984,
+            0.175333
           ],
-          "gold_anywhere_in_preserved_alternatives": 5232,
-          "gold_anywhere_percent": 35.68,
-          "mean_preserved_alternatives_when_accepted": 16.396
+          "gold_anywhere_in_preserved_alternatives": 4879,
+          "gold_anywhere_percent": 34.47,
+          "mean_preserved_alternatives_when_accepted": 15.11
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -603,22 +603,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 34397,
-          "spans_with_any_witness_alternative": 22397,
-          "spans_with_unique_evidence_top": 12882,
-          "accepted_spans": 12882,
-          "coverage_percent_of_eligible": 37.45,
-          "coverage_percent_of_supported": 57.52,
-          "top1_exact_agreement_spans": 2952,
-          "top1_exact_agreement_percent": 22.92,
-          "top1_exact_agreement_fraction": 0.22915696320447135,
+          "eligible_spans": 32580,
+          "spans_with_any_witness_alternative": 21505,
+          "spans_with_unique_evidence_top": 12580,
+          "accepted_spans": 12580,
+          "coverage_percent_of_eligible": 38.61,
+          "coverage_percent_of_supported": 58.5,
+          "top1_exact_agreement_spans": 2942,
+          "top1_exact_agreement_percent": 23.39,
+          "top1_exact_agreement_fraction": 0.23386327503974563,
           "top1_exact_wilson_95": [
-            0.221981,
-            0.236495
+            0.226548,
+            0.241341
           ],
-          "gold_anywhere_in_preserved_alternatives": 4387,
-          "gold_anywhere_percent": 34.06,
-          "mean_preserved_alternatives_when_accepted": 5.839
+          "gold_anywhere_in_preserved_alternatives": 4372,
+          "gold_anywhere_percent": 34.75,
+          "mean_preserved_alternatives_when_accepted": 5.884
         }
       },
       "selected_rules": {
@@ -635,8 +635,8 @@
       ]
     },
     "a1_m5": {
-      "calibration_records": 24028,
-      "evaluation_records": 24103,
+      "calibration_records": 22696,
+      "evaluation_records": 22656,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -646,22 +646,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24028,
-          "spans_with_any_witness_alternative": 14933,
-          "spans_with_unique_evidence_top": 9050,
-          "accepted_spans": 9050,
-          "coverage_percent_of_eligible": 37.66,
-          "coverage_percent_of_supported": 60.6,
-          "top1_exact_agreement_spans": 521,
-          "top1_exact_agreement_percent": 5.76,
-          "top1_exact_agreement_fraction": 0.05756906077348066,
+          "eligible_spans": 22696,
+          "spans_with_any_witness_alternative": 14795,
+          "spans_with_unique_evidence_top": 8723,
+          "accepted_spans": 8723,
+          "coverage_percent_of_eligible": 38.43,
+          "coverage_percent_of_supported": 58.96,
+          "top1_exact_agreement_spans": 496,
+          "top1_exact_agreement_percent": 5.69,
+          "top1_exact_agreement_fraction": 0.056861171615269976,
           "top1_exact_wilson_95": [
-            0.052955,
-            0.062558
+            0.052194,
+            0.061919
           ],
-          "gold_anywhere_in_preserved_alternatives": 1558,
-          "gold_anywhere_percent": 17.22,
-          "mean_preserved_alternatives_when_accepted": 17.355
+          "gold_anywhere_in_preserved_alternatives": 1413,
+          "gold_anywhere_percent": 16.2,
+          "mean_preserved_alternatives_when_accepted": 15.955
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -671,22 +671,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24103,
-          "spans_with_any_witness_alternative": 14748,
-          "spans_with_unique_evidence_top": 8099,
-          "accepted_spans": 8099,
-          "coverage_percent_of_eligible": 33.6,
-          "coverage_percent_of_supported": 54.92,
-          "top1_exact_agreement_spans": 843,
-          "top1_exact_agreement_percent": 10.41,
-          "top1_exact_agreement_fraction": 0.10408692431164342,
+          "eligible_spans": 22656,
+          "spans_with_any_witness_alternative": 14091,
+          "spans_with_unique_evidence_top": 7873,
+          "accepted_spans": 7873,
+          "coverage_percent_of_eligible": 34.75,
+          "coverage_percent_of_supported": 55.87,
+          "top1_exact_agreement_spans": 838,
+          "top1_exact_agreement_percent": 10.64,
+          "top1_exact_agreement_fraction": 0.10643973072526355,
           "top1_exact_wilson_95": [
-            0.097623,
-            0.110926
+            0.099818,
+            0.113445
           ],
-          "gold_anywhere_in_preserved_alternatives": 1368,
-          "gold_anywhere_percent": 16.89,
-          "mean_preserved_alternatives_when_accepted": 5.91
+          "gold_anywhere_in_preserved_alternatives": 1379,
+          "gold_anywhere_percent": 17.52,
+          "mean_preserved_alternatives_when_accepted": 5.977
         }
       },
       "selected_rules": {
@@ -703,8 +703,8 @@
       ]
     },
     "a2_m1": {
-      "calibration_records": 34376,
-      "evaluation_records": 34397,
+      "calibration_records": 32559,
+      "evaluation_records": 32580,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -714,21 +714,21 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 34376,
-          "spans_with_any_witness_alternative": 8915,
-          "spans_with_unique_evidence_top": 7984,
-          "accepted_spans": 7984,
-          "coverage_percent_of_eligible": 23.23,
-          "coverage_percent_of_supported": 89.56,
-          "top1_exact_agreement_spans": 6249,
-          "top1_exact_agreement_percent": 78.27,
-          "top1_exact_agreement_fraction": 0.7826903807615231,
+          "eligible_spans": 32559,
+          "spans_with_any_witness_alternative": 8616,
+          "spans_with_unique_evidence_top": 7704,
+          "accepted_spans": 7704,
+          "coverage_percent_of_eligible": 23.66,
+          "coverage_percent_of_supported": 89.42,
+          "top1_exact_agreement_spans": 5976,
+          "top1_exact_agreement_percent": 77.57,
+          "top1_exact_agreement_fraction": 0.7757009345794392,
           "top1_exact_wilson_95": [
-            0.773509,
-            0.7916
+            0.766251,
+            0.784877
           ],
-          "gold_anywhere_in_preserved_alternatives": 6493,
-          "gold_anywhere_percent": 81.33,
+          "gold_anywhere_in_preserved_alternatives": 6211,
+          "gold_anywhere_percent": 80.62,
           "mean_preserved_alternatives_when_accepted": 1.332
         },
         "evaluation": {
@@ -739,22 +739,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 34397,
-          "spans_with_any_witness_alternative": 8475,
-          "spans_with_unique_evidence_top": 7795,
-          "accepted_spans": 7795,
-          "coverage_percent_of_eligible": 22.66,
-          "coverage_percent_of_supported": 91.98,
-          "top1_exact_agreement_spans": 6429,
-          "top1_exact_agreement_percent": 82.48,
-          "top1_exact_agreement_fraction": 0.8247594611930725,
+          "eligible_spans": 32580,
+          "spans_with_any_witness_alternative": 8215,
+          "spans_with_unique_evidence_top": 7573,
+          "accepted_spans": 7573,
+          "coverage_percent_of_eligible": 23.24,
+          "coverage_percent_of_supported": 92.19,
+          "top1_exact_agreement_spans": 6267,
+          "top1_exact_agreement_percent": 82.75,
+          "top1_exact_agreement_fraction": 0.8275452264624323,
           "top1_exact_wilson_95": [
-            0.81616,
-            0.833039
+            0.818871,
+            0.835887
           ],
-          "gold_anywhere_in_preserved_alternatives": 6484,
-          "gold_anywhere_percent": 83.18,
-          "mean_preserved_alternatives_when_accepted": 1.128
+          "gold_anywhere_in_preserved_alternatives": 6322,
+          "gold_anywhere_percent": 83.48,
+          "mean_preserved_alternatives_when_accepted": 1.126
         }
       },
       "selected_rules": {
@@ -767,21 +767,21 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": null
             },
-            "eligible_spans": 34376,
-            "spans_with_any_witness_alternative": 8915,
-            "spans_with_unique_evidence_top": 7984,
-            "accepted_spans": 7984,
-            "coverage_percent_of_eligible": 23.23,
-            "coverage_percent_of_supported": 89.56,
-            "top1_exact_agreement_spans": 6249,
-            "top1_exact_agreement_percent": 78.27,
-            "top1_exact_agreement_fraction": 0.7826903807615231,
+            "eligible_spans": 32559,
+            "spans_with_any_witness_alternative": 8616,
+            "spans_with_unique_evidence_top": 7704,
+            "accepted_spans": 7704,
+            "coverage_percent_of_eligible": 23.66,
+            "coverage_percent_of_supported": 89.42,
+            "top1_exact_agreement_spans": 5976,
+            "top1_exact_agreement_percent": 77.57,
+            "top1_exact_agreement_fraction": 0.7757009345794392,
             "top1_exact_wilson_95": [
-              0.773509,
-              0.7916
+              0.766251,
+              0.784877
             ],
-            "gold_anywhere_in_preserved_alternatives": 6493,
-            "gold_anywhere_percent": 81.33,
+            "gold_anywhere_in_preserved_alternatives": 6211,
+            "gold_anywhere_percent": 80.62,
             "mean_preserved_alternatives_when_accepted": 1.332
           },
           "heldout_evaluation": {
@@ -792,22 +792,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": null
             },
-            "eligible_spans": 34397,
-            "spans_with_any_witness_alternative": 8475,
-            "spans_with_unique_evidence_top": 7795,
-            "accepted_spans": 7795,
-            "coverage_percent_of_eligible": 22.66,
-            "coverage_percent_of_supported": 91.98,
-            "top1_exact_agreement_spans": 6429,
-            "top1_exact_agreement_percent": 82.48,
-            "top1_exact_agreement_fraction": 0.8247594611930725,
+            "eligible_spans": 32580,
+            "spans_with_any_witness_alternative": 8215,
+            "spans_with_unique_evidence_top": 7573,
+            "accepted_spans": 7573,
+            "coverage_percent_of_eligible": 23.24,
+            "coverage_percent_of_supported": 92.19,
+            "top1_exact_agreement_spans": 6267,
+            "top1_exact_agreement_percent": 82.75,
+            "top1_exact_agreement_fraction": 0.8275452264624323,
             "top1_exact_wilson_95": [
-              0.81616,
-              0.833039
+              0.818871,
+              0.835887
             ],
-            "gold_anywhere_in_preserved_alternatives": 6484,
-            "gold_anywhere_percent": 83.18,
-            "mean_preserved_alternatives_when_accepted": 1.128
+            "gold_anywhere_in_preserved_alternatives": 6322,
+            "gold_anywhere_percent": 83.48,
+            "mean_preserved_alternatives_when_accepted": 1.126
           }
         },
         "0.8": {
@@ -819,22 +819,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": null
             },
-            "eligible_spans": 34376,
-            "spans_with_any_witness_alternative": 8915,
-            "spans_with_unique_evidence_top": 7984,
-            "accepted_spans": 3622,
-            "coverage_percent_of_eligible": 10.54,
-            "coverage_percent_of_supported": 40.63,
-            "top1_exact_agreement_spans": 3062,
-            "top1_exact_agreement_percent": 84.54,
-            "top1_exact_agreement_fraction": 0.8453892876863611,
+            "eligible_spans": 32559,
+            "spans_with_any_witness_alternative": 8616,
+            "spans_with_unique_evidence_top": 7704,
+            "accepted_spans": 3351,
+            "coverage_percent_of_eligible": 10.29,
+            "coverage_percent_of_supported": 38.89,
+            "top1_exact_agreement_spans": 2813,
+            "top1_exact_agreement_percent": 83.95,
+            "top1_exact_agreement_fraction": 0.8394509101760669,
             "top1_exact_wilson_95": [
-              0.83325,
-              0.856797
+              0.826634,
+              0.851491
             ],
-            "gold_anywhere_in_preserved_alternatives": 3306,
-            "gold_anywhere_percent": 91.28,
-            "mean_preserved_alternatives_when_accepted": 1.733
+            "gold_anywhere_in_preserved_alternatives": 3048,
+            "gold_anywhere_percent": 90.96,
+            "mean_preserved_alternatives_when_accepted": 1.763
           },
           "heldout_evaluation": {
             "rule_id": "s2_m1_d0p0_aany",
@@ -844,74 +844,74 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": null
             },
-            "eligible_spans": 34397,
-            "spans_with_any_witness_alternative": 8475,
-            "spans_with_unique_evidence_top": 7795,
-            "accepted_spans": 2583,
-            "coverage_percent_of_eligible": 7.51,
-            "coverage_percent_of_supported": 30.48,
-            "top1_exact_agreement_spans": 2342,
-            "top1_exact_agreement_percent": 90.67,
-            "top1_exact_agreement_fraction": 0.9066976384049554,
+            "eligible_spans": 32580,
+            "spans_with_any_witness_alternative": 8215,
+            "spans_with_unique_evidence_top": 7573,
+            "accepted_spans": 2625,
+            "coverage_percent_of_eligible": 8.06,
+            "coverage_percent_of_supported": 31.95,
+            "top1_exact_agreement_spans": 2384,
+            "top1_exact_agreement_percent": 90.82,
+            "top1_exact_agreement_fraction": 0.9081904761904762,
             "top1_exact_wilson_95": [
-              0.894869,
-              0.917318
+              0.89654,
+              0.918648
             ],
-            "gold_anywhere_in_preserved_alternatives": 2397,
-            "gold_anywhere_percent": 92.8,
-            "mean_preserved_alternatives_when_accepted": 1.386
+            "gold_anywhere_in_preserved_alternatives": 2439,
+            "gold_anywhere_percent": 92.91,
+            "mean_preserved_alternatives_when_accepted": 1.365
           }
         },
         "0.9": {
           "selected_on_calibration": {
-            "rule_id": "s1_m2_d0p0_a2",
+            "rule_id": "s1_m2_d0p8_a4",
             "rule": {
               "minimum_top_support_families": 1,
               "minimum_support_margin": 2,
-              "minimum_dominance": 0.0,
-              "maximum_alternatives": 2
+              "minimum_dominance": 0.8,
+              "maximum_alternatives": 4
             },
-            "eligible_spans": 34376,
-            "spans_with_any_witness_alternative": 8915,
-            "spans_with_unique_evidence_top": 7984,
-            "accepted_spans": 2775,
-            "coverage_percent_of_eligible": 8.07,
-            "coverage_percent_of_supported": 31.13,
-            "top1_exact_agreement_spans": 2533,
-            "top1_exact_agreement_percent": 91.28,
-            "top1_exact_agreement_fraction": 0.9127927927927928,
+            "eligible_spans": 32559,
+            "spans_with_any_witness_alternative": 8616,
+            "spans_with_unique_evidence_top": 7704,
+            "accepted_spans": 2358,
+            "coverage_percent_of_eligible": 7.24,
+            "coverage_percent_of_supported": 27.37,
+            "top1_exact_agreement_spans": 2161,
+            "top1_exact_agreement_percent": 91.65,
+            "top1_exact_agreement_fraction": 0.9164546225614928,
             "top1_exact_wilson_95": [
-              0.901717,
-              0.922728
+              0.904597,
+              0.926957
             ],
-            "gold_anywhere_in_preserved_alternatives": 2567,
-            "gold_anywhere_percent": 92.5,
-            "mean_preserved_alternatives_when_accepted": 1.225
+            "gold_anywhere_in_preserved_alternatives": 2174,
+            "gold_anywhere_percent": 92.2,
+            "mean_preserved_alternatives_when_accepted": 1.214
           },
           "heldout_evaluation": {
-            "rule_id": "s1_m2_d0p0_a2",
+            "rule_id": "s1_m2_d0p8_a4",
             "rule": {
               "minimum_top_support_families": 1,
               "minimum_support_margin": 2,
-              "minimum_dominance": 0.0,
-              "maximum_alternatives": 2
+              "minimum_dominance": 0.8,
+              "maximum_alternatives": 4
             },
-            "eligible_spans": 34397,
-            "spans_with_any_witness_alternative": 8475,
-            "spans_with_unique_evidence_top": 7795,
-            "accepted_spans": 2155,
-            "coverage_percent_of_eligible": 6.27,
-            "coverage_percent_of_supported": 25.43,
-            "top1_exact_agreement_spans": 1993,
-            "top1_exact_agreement_percent": 92.48,
-            "top1_exact_agreement_fraction": 0.9248259860788863,
+            "eligible_spans": 32580,
+            "spans_with_any_witness_alternative": 8215,
+            "spans_with_unique_evidence_top": 7573,
+            "accepted_spans": 2132,
+            "coverage_percent_of_eligible": 6.54,
+            "coverage_percent_of_supported": 25.95,
+            "top1_exact_agreement_spans": 1992,
+            "top1_exact_agreement_percent": 93.43,
+            "top1_exact_agreement_fraction": 0.9343339587242027,
             "top1_exact_wilson_95": [
-              0.912922,
-              0.935218
+              0.923019,
+              0.944087
             ],
-            "gold_anywhere_in_preserved_alternatives": 2025,
-            "gold_anywhere_percent": 93.97,
-            "mean_preserved_alternatives_when_accepted": 1.134
+            "gold_anywhere_in_preserved_alternatives": 2009,
+            "gold_anywhere_percent": 94.23,
+            "mean_preserved_alternatives_when_accepted": 1.091
           }
         },
         "0.95": null
@@ -921,8 +921,8 @@
       ]
     },
     "a2_m2": {
-      "calibration_records": 28865,
-      "evaluation_records": 28950,
+      "calibration_records": 27299,
+      "evaluation_records": 27327,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -932,22 +932,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 28865,
-          "spans_with_any_witness_alternative": 6161,
-          "spans_with_unique_evidence_top": 5260,
-          "accepted_spans": 5260,
-          "coverage_percent_of_eligible": 18.22,
-          "coverage_percent_of_supported": 85.38,
-          "top1_exact_agreement_spans": 3303,
-          "top1_exact_agreement_percent": 62.79,
-          "top1_exact_agreement_fraction": 0.6279467680608365,
+          "eligible_spans": 27299,
+          "spans_with_any_witness_alternative": 5961,
+          "spans_with_unique_evidence_top": 5098,
+          "accepted_spans": 5098,
+          "coverage_percent_of_eligible": 18.67,
+          "coverage_percent_of_supported": 85.52,
+          "top1_exact_agreement_spans": 3149,
+          "top1_exact_agreement_percent": 61.77,
+          "top1_exact_agreement_fraction": 0.6176932130247156,
           "top1_exact_wilson_95": [
-            0.614796,
-            0.640911
+            0.60427,
+            0.630939
           ],
-          "gold_anywhere_in_preserved_alternatives": 3520,
-          "gold_anywhere_percent": 66.92,
-          "mean_preserved_alternatives_when_accepted": 1.432
+          "gold_anywhere_in_preserved_alternatives": 3358,
+          "gold_anywhere_percent": 65.87,
+          "mean_preserved_alternatives_when_accepted": 1.431
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -957,22 +957,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 28950,
-          "spans_with_any_witness_alternative": 5745,
-          "spans_with_unique_evidence_top": 5073,
-          "accepted_spans": 5073,
-          "coverage_percent_of_eligible": 17.52,
-          "coverage_percent_of_supported": 88.3,
-          "top1_exact_agreement_spans": 3518,
-          "top1_exact_agreement_percent": 69.35,
-          "top1_exact_agreement_fraction": 0.6934752611866746,
+          "eligible_spans": 27327,
+          "spans_with_any_witness_alternative": 5557,
+          "spans_with_unique_evidence_top": 4903,
+          "accepted_spans": 4903,
+          "coverage_percent_of_eligible": 17.94,
+          "coverage_percent_of_supported": 88.23,
+          "top1_exact_agreement_spans": 3436,
+          "top1_exact_agreement_percent": 70.08,
+          "top1_exact_agreement_fraction": 0.7007954313685498,
           "top1_exact_wilson_95": [
-            0.680646,
-            0.706012
+            0.687825,
+            0.713451
           ],
-          "gold_anywhere_in_preserved_alternatives": 3590,
-          "gold_anywhere_percent": 70.77,
-          "mean_preserved_alternatives_when_accepted": 1.13
+          "gold_anywhere_in_preserved_alternatives": 3507,
+          "gold_anywhere_percent": 71.53,
+          "mean_preserved_alternatives_when_accepted": 1.132
         }
       },
       "selected_rules": {
@@ -985,22 +985,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 28865,
-            "spans_with_any_witness_alternative": 6161,
-            "spans_with_unique_evidence_top": 5260,
-            "accepted_spans": 1816,
-            "coverage_percent_of_eligible": 6.29,
-            "coverage_percent_of_supported": 29.48,
-            "top1_exact_agreement_spans": 1333,
-            "top1_exact_agreement_percent": 73.4,
-            "top1_exact_agreement_fraction": 0.7340308370044053,
+            "eligible_spans": 27299,
+            "spans_with_any_witness_alternative": 5961,
+            "spans_with_unique_evidence_top": 5098,
+            "accepted_spans": 1695,
+            "coverage_percent_of_eligible": 6.21,
+            "coverage_percent_of_supported": 28.43,
+            "top1_exact_agreement_spans": 1226,
+            "top1_exact_agreement_percent": 72.33,
+            "top1_exact_agreement_fraction": 0.7233038348082595,
             "top1_exact_wilson_95": [
-              0.71323,
-              0.753843
+              0.70152,
+              0.744078
             ],
-            "gold_anywhere_in_preserved_alternatives": 1496,
-            "gold_anywhere_percent": 82.38,
-            "mean_preserved_alternatives_when_accepted": 1.774
+            "gold_anywhere_in_preserved_alternatives": 1383,
+            "gold_anywhere_percent": 81.59,
+            "mean_preserved_alternatives_when_accepted": 1.811
           },
           "heldout_evaluation": {
             "rule_id": "s2_m1_d0p0_a4",
@@ -1010,22 +1010,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 28950,
-            "spans_with_any_witness_alternative": 5745,
-            "spans_with_unique_evidence_top": 5073,
-            "accepted_spans": 1345,
-            "coverage_percent_of_eligible": 4.65,
-            "coverage_percent_of_supported": 23.41,
-            "top1_exact_agreement_spans": 1069,
-            "top1_exact_agreement_percent": 79.48,
-            "top1_exact_agreement_fraction": 0.7947955390334572,
+            "eligible_spans": 27327,
+            "spans_with_any_witness_alternative": 5557,
+            "spans_with_unique_evidence_top": 4903,
+            "accepted_spans": 1373,
+            "coverage_percent_of_eligible": 5.02,
+            "coverage_percent_of_supported": 24.71,
+            "top1_exact_agreement_spans": 1105,
+            "top1_exact_agreement_percent": 80.48,
+            "top1_exact_agreement_fraction": 0.8048069919883467,
             "top1_exact_wilson_95": [
-              0.772388,
-              0.815524
+              0.783004,
+              0.824909
             ],
-            "gold_anywhere_in_preserved_alternatives": 1140,
-            "gold_anywhere_percent": 84.76,
-            "mean_preserved_alternatives_when_accepted": 1.471
+            "gold_anywhere_in_preserved_alternatives": 1175,
+            "gold_anywhere_percent": 85.58,
+            "mean_preserved_alternatives_when_accepted": 1.452
           }
         },
         "0.8": null,
@@ -1039,8 +1039,8 @@
       ]
     },
     "a2_m3": {
-      "calibration_records": 24028,
-      "evaluation_records": 24103,
+      "calibration_records": 22696,
+      "evaluation_records": 22656,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1050,22 +1050,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24028,
-          "spans_with_any_witness_alternative": 4263,
-          "spans_with_unique_evidence_top": 3489,
-          "accepted_spans": 3489,
-          "coverage_percent_of_eligible": 14.52,
-          "coverage_percent_of_supported": 81.84,
-          "top1_exact_agreement_spans": 1739,
-          "top1_exact_agreement_percent": 49.84,
-          "top1_exact_agreement_fraction": 0.4984236170822585,
+          "eligible_spans": 22696,
+          "spans_with_any_witness_alternative": 4127,
+          "spans_with_unique_evidence_top": 3381,
+          "accepted_spans": 3381,
+          "coverage_percent_of_eligible": 14.9,
+          "coverage_percent_of_supported": 81.92,
+          "top1_exact_agreement_spans": 1645,
+          "top1_exact_agreement_percent": 48.65,
+          "top1_exact_agreement_fraction": 0.4865424430641822,
           "top1_exact_wilson_95": [
-            0.481844,
-            0.515007
+            0.46972,
+            0.503396
           ],
-          "gold_anywhere_in_preserved_alternatives": 1892,
-          "gold_anywhere_percent": 54.23,
-          "mean_preserved_alternatives_when_accepted": 1.487
+          "gold_anywhere_in_preserved_alternatives": 1784,
+          "gold_anywhere_percent": 52.77,
+          "mean_preserved_alternatives_when_accepted": 1.486
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1075,40 +1075,90 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24103,
-          "spans_with_any_witness_alternative": 3984,
-          "spans_with_unique_evidence_top": 3404,
-          "accepted_spans": 3404,
-          "coverage_percent_of_eligible": 14.12,
-          "coverage_percent_of_supported": 85.44,
-          "top1_exact_agreement_spans": 1943,
-          "top1_exact_agreement_percent": 57.08,
-          "top1_exact_agreement_fraction": 0.5707990599294948,
+          "eligible_spans": 22656,
+          "spans_with_any_witness_alternative": 3857,
+          "spans_with_unique_evidence_top": 3296,
+          "accepted_spans": 3296,
+          "coverage_percent_of_eligible": 14.55,
+          "coverage_percent_of_supported": 85.46,
+          "top1_exact_agreement_spans": 1904,
+          "top1_exact_agreement_percent": 57.77,
+          "top1_exact_agreement_fraction": 0.5776699029126213,
           "top1_exact_wilson_95": [
-            0.554101,
-            0.587338
+            0.560727,
+            0.594432
           ],
-          "gold_anywhere_in_preserved_alternatives": 1994,
-          "gold_anywhere_percent": 58.58,
-          "mean_preserved_alternatives_when_accepted": 1.137
+          "gold_anywhere_in_preserved_alternatives": 1955,
+          "gold_anywhere_percent": 59.31,
+          "mean_preserved_alternatives_when_accepted": 1.14
         }
       },
       "selected_rules": {
-        "0.7": null,
+        "0.7": {
+          "selected_on_calibration": {
+            "rule_id": "s4_m1_d0p67_a2",
+            "rule": {
+              "minimum_top_support_families": 4,
+              "minimum_support_margin": 1,
+              "minimum_dominance": 0.67,
+              "maximum_alternatives": 2
+            },
+            "eligible_spans": 22696,
+            "spans_with_any_witness_alternative": 4127,
+            "spans_with_unique_evidence_top": 3381,
+            "accepted_spans": 105,
+            "coverage_percent_of_eligible": 0.46,
+            "coverage_percent_of_supported": 2.54,
+            "top1_exact_agreement_spans": 83,
+            "top1_exact_agreement_percent": 79.05,
+            "top1_exact_agreement_fraction": 0.7904761904761904,
+            "top1_exact_wilson_95": [
+              0.703084,
+              0.857364
+            ],
+            "gold_anywhere_in_preserved_alternatives": 89,
+            "gold_anywhere_percent": 84.76,
+            "mean_preserved_alternatives_when_accepted": 1.6
+          },
+          "heldout_evaluation": {
+            "rule_id": "s4_m1_d0p67_a2",
+            "rule": {
+              "minimum_top_support_families": 4,
+              "minimum_support_margin": 1,
+              "minimum_dominance": 0.67,
+              "maximum_alternatives": 2
+            },
+            "eligible_spans": 22656,
+            "spans_with_any_witness_alternative": 3857,
+            "spans_with_unique_evidence_top": 3296,
+            "accepted_spans": 190,
+            "coverage_percent_of_eligible": 0.84,
+            "coverage_percent_of_supported": 4.93,
+            "top1_exact_agreement_spans": 150,
+            "top1_exact_agreement_percent": 78.95,
+            "top1_exact_agreement_fraction": 0.7894736842105263,
+            "top1_exact_wilson_95": [
+              0.72606,
+              0.841414
+            ],
+            "gold_anywhere_in_preserved_alternatives": 167,
+            "gold_anywhere_percent": 87.89,
+            "mean_preserved_alternatives_when_accepted": 1.468
+          }
+        },
         "0.8": null,
         "0.9": null,
         "0.95": null
       },
       "targets_unattainable_on_calibration": [
-        "0.7",
         "0.8",
         "0.9",
         "0.95"
       ]
     },
     "a2_m5": {
-      "calibration_records": 16251,
-      "evaluation_records": 16243,
+      "calibration_records": 15274,
+      "evaluation_records": 15126,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1118,22 +1168,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 16251,
-          "spans_with_any_witness_alternative": 2138,
-          "spans_with_unique_evidence_top": 1690,
-          "accepted_spans": 1690,
-          "coverage_percent_of_eligible": 10.4,
-          "coverage_percent_of_supported": 79.05,
-          "top1_exact_agreement_spans": 508,
-          "top1_exact_agreement_percent": 30.06,
-          "top1_exact_agreement_fraction": 0.3005917159763314,
+          "eligible_spans": 15274,
+          "spans_with_any_witness_alternative": 2081,
+          "spans_with_unique_evidence_top": 1646,
+          "accepted_spans": 1646,
+          "coverage_percent_of_eligible": 10.78,
+          "coverage_percent_of_supported": 79.1,
+          "top1_exact_agreement_spans": 451,
+          "top1_exact_agreement_percent": 27.4,
+          "top1_exact_agreement_fraction": 0.27399756986634266,
           "top1_exact_wilson_95": [
-            0.279204,
-            0.322884
+            0.252996,
+            0.296052
           ],
-          "gold_anywhere_in_preserved_alternatives": 551,
-          "gold_anywhere_percent": 32.6,
-          "mean_preserved_alternatives_when_accepted": 1.54
+          "gold_anywhere_in_preserved_alternatives": 494,
+          "gold_anywhere_percent": 30.01,
+          "mean_preserved_alternatives_when_accepted": 1.533
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1143,22 +1193,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 16243,
-          "spans_with_any_witness_alternative": 2027,
-          "spans_with_unique_evidence_top": 1665,
-          "accepted_spans": 1665,
-          "coverage_percent_of_eligible": 10.25,
-          "coverage_percent_of_supported": 82.14,
-          "top1_exact_agreement_spans": 647,
-          "top1_exact_agreement_percent": 38.86,
-          "top1_exact_agreement_fraction": 0.3885885885885886,
+          "eligible_spans": 15126,
+          "spans_with_any_witness_alternative": 1938,
+          "spans_with_unique_evidence_top": 1601,
+          "accepted_spans": 1601,
+          "coverage_percent_of_eligible": 10.58,
+          "coverage_percent_of_supported": 82.61,
+          "top1_exact_agreement_spans": 651,
+          "top1_exact_agreement_percent": 40.66,
+          "top1_exact_agreement_fraction": 0.4066208619612742,
           "top1_exact_wilson_95": [
-            0.365458,
-            0.412232
+            0.382811,
+            0.430878
           ],
-          "gold_anywhere_in_preserved_alternatives": 662,
-          "gold_anywhere_percent": 39.76,
-          "mean_preserved_alternatives_when_accepted": 1.115
+          "gold_anywhere_in_preserved_alternatives": 666,
+          "gold_anywhere_percent": 41.6,
+          "mean_preserved_alternatives_when_accepted": 1.119
         }
       },
       "selected_rules": {
@@ -1175,8 +1225,8 @@
       ]
     },
     "a3_m1": {
-      "calibration_records": 24028,
-      "evaluation_records": 24103,
+      "calibration_records": 22696,
+      "evaluation_records": 22656,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1186,22 +1236,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24028,
-          "spans_with_any_witness_alternative": 2635,
-          "spans_with_unique_evidence_top": 2510,
-          "accepted_spans": 2510,
-          "coverage_percent_of_eligible": 10.45,
-          "coverage_percent_of_supported": 95.26,
-          "top1_exact_agreement_spans": 2088,
-          "top1_exact_agreement_percent": 83.19,
-          "top1_exact_agreement_fraction": 0.8318725099601594,
+          "eligible_spans": 22696,
+          "spans_with_any_witness_alternative": 2521,
+          "spans_with_unique_evidence_top": 2395,
+          "accepted_spans": 2395,
+          "coverage_percent_of_eligible": 10.55,
+          "coverage_percent_of_supported": 95.0,
+          "top1_exact_agreement_spans": 1967,
+          "top1_exact_agreement_percent": 82.13,
+          "top1_exact_agreement_fraction": 0.821294363256785,
           "top1_exact_wilson_95": [
-            0.816737,
-            0.845993
+            0.80544,
+            0.836119
           ],
-          "gold_anywhere_in_preserved_alternatives": 2133,
-          "gold_anywhere_percent": 84.98,
-          "mean_preserved_alternatives_when_accepted": 1.072
+          "gold_anywhere_in_preserved_alternatives": 2010,
+          "gold_anywhere_percent": 83.92,
+          "mean_preserved_alternatives_when_accepted": 1.075
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1211,22 +1261,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 24103,
-          "spans_with_any_witness_alternative": 2631,
-          "spans_with_unique_evidence_top": 2550,
-          "accepted_spans": 2550,
-          "coverage_percent_of_eligible": 10.58,
-          "coverage_percent_of_supported": 96.92,
-          "top1_exact_agreement_spans": 2223,
-          "top1_exact_agreement_percent": 87.18,
-          "top1_exact_agreement_fraction": 0.8717647058823529,
+          "eligible_spans": 22656,
+          "spans_with_any_witness_alternative": 2579,
+          "spans_with_unique_evidence_top": 2497,
+          "accepted_spans": 2497,
+          "coverage_percent_of_eligible": 11.02,
+          "coverage_percent_of_supported": 96.82,
+          "top1_exact_agreement_spans": 2186,
+          "top1_exact_agreement_percent": 87.55,
+          "top1_exact_agreement_fraction": 0.8754505406487786,
           "top1_exact_wilson_95": [
-            0.858226,
-            0.884185
+            0.861919,
+            0.887828
           ],
-          "gold_anywhere_in_preserved_alternatives": 2237,
-          "gold_anywhere_percent": 87.73,
-          "mean_preserved_alternatives_when_accepted": 1.049
+          "gold_anywhere_in_preserved_alternatives": 2200,
+          "gold_anywhere_percent": 88.11,
+          "mean_preserved_alternatives_when_accepted": 1.048
         }
       },
       "selected_rules": {
@@ -1239,22 +1289,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 24028,
-            "spans_with_any_witness_alternative": 2635,
-            "spans_with_unique_evidence_top": 2510,
-            "accepted_spans": 2510,
-            "coverage_percent_of_eligible": 10.45,
-            "coverage_percent_of_supported": 95.26,
-            "top1_exact_agreement_spans": 2088,
-            "top1_exact_agreement_percent": 83.19,
-            "top1_exact_agreement_fraction": 0.8318725099601594,
+            "eligible_spans": 22696,
+            "spans_with_any_witness_alternative": 2521,
+            "spans_with_unique_evidence_top": 2395,
+            "accepted_spans": 2395,
+            "coverage_percent_of_eligible": 10.55,
+            "coverage_percent_of_supported": 95.0,
+            "top1_exact_agreement_spans": 1967,
+            "top1_exact_agreement_percent": 82.13,
+            "top1_exact_agreement_fraction": 0.821294363256785,
             "top1_exact_wilson_95": [
-              0.816737,
-              0.845993
+              0.80544,
+              0.836119
             ],
-            "gold_anywhere_in_preserved_alternatives": 2133,
-            "gold_anywhere_percent": 84.98,
-            "mean_preserved_alternatives_when_accepted": 1.072
+            "gold_anywhere_in_preserved_alternatives": 2010,
+            "gold_anywhere_percent": 83.92,
+            "mean_preserved_alternatives_when_accepted": 1.075
           },
           "heldout_evaluation": {
             "rule_id": "s1_m1_d0p0_a4",
@@ -1264,22 +1314,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 24103,
-            "spans_with_any_witness_alternative": 2631,
-            "spans_with_unique_evidence_top": 2550,
-            "accepted_spans": 2550,
-            "coverage_percent_of_eligible": 10.58,
-            "coverage_percent_of_supported": 96.92,
-            "top1_exact_agreement_spans": 2223,
-            "top1_exact_agreement_percent": 87.18,
-            "top1_exact_agreement_fraction": 0.8717647058823529,
+            "eligible_spans": 22656,
+            "spans_with_any_witness_alternative": 2579,
+            "spans_with_unique_evidence_top": 2497,
+            "accepted_spans": 2497,
+            "coverage_percent_of_eligible": 11.02,
+            "coverage_percent_of_supported": 96.82,
+            "top1_exact_agreement_spans": 2186,
+            "top1_exact_agreement_percent": 87.55,
+            "top1_exact_agreement_fraction": 0.8754505406487786,
             "top1_exact_wilson_95": [
-              0.858226,
-              0.884185
+              0.861919,
+              0.887828
             ],
-            "gold_anywhere_in_preserved_alternatives": 2237,
-            "gold_anywhere_percent": 87.73,
-            "mean_preserved_alternatives_when_accepted": 1.049
+            "gold_anywhere_in_preserved_alternatives": 2200,
+            "gold_anywhere_percent": 88.11,
+            "mean_preserved_alternatives_when_accepted": 1.048
           }
         },
         "0.8": {
@@ -1291,22 +1341,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 24028,
-            "spans_with_any_witness_alternative": 2635,
-            "spans_with_unique_evidence_top": 2510,
-            "accepted_spans": 2510,
-            "coverage_percent_of_eligible": 10.45,
-            "coverage_percent_of_supported": 95.26,
-            "top1_exact_agreement_spans": 2088,
-            "top1_exact_agreement_percent": 83.19,
-            "top1_exact_agreement_fraction": 0.8318725099601594,
+            "eligible_spans": 22696,
+            "spans_with_any_witness_alternative": 2521,
+            "spans_with_unique_evidence_top": 2395,
+            "accepted_spans": 2395,
+            "coverage_percent_of_eligible": 10.55,
+            "coverage_percent_of_supported": 95.0,
+            "top1_exact_agreement_spans": 1967,
+            "top1_exact_agreement_percent": 82.13,
+            "top1_exact_agreement_fraction": 0.821294363256785,
             "top1_exact_wilson_95": [
-              0.816737,
-              0.845993
+              0.80544,
+              0.836119
             ],
-            "gold_anywhere_in_preserved_alternatives": 2133,
-            "gold_anywhere_percent": 84.98,
-            "mean_preserved_alternatives_when_accepted": 1.072
+            "gold_anywhere_in_preserved_alternatives": 2010,
+            "gold_anywhere_percent": 83.92,
+            "mean_preserved_alternatives_when_accepted": 1.075
           },
           "heldout_evaluation": {
             "rule_id": "s1_m1_d0p0_a4",
@@ -1316,22 +1366,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 4
             },
-            "eligible_spans": 24103,
-            "spans_with_any_witness_alternative": 2631,
-            "spans_with_unique_evidence_top": 2550,
-            "accepted_spans": 2550,
-            "coverage_percent_of_eligible": 10.58,
-            "coverage_percent_of_supported": 96.92,
-            "top1_exact_agreement_spans": 2223,
-            "top1_exact_agreement_percent": 87.18,
-            "top1_exact_agreement_fraction": 0.8717647058823529,
+            "eligible_spans": 22656,
+            "spans_with_any_witness_alternative": 2579,
+            "spans_with_unique_evidence_top": 2497,
+            "accepted_spans": 2497,
+            "coverage_percent_of_eligible": 11.02,
+            "coverage_percent_of_supported": 96.82,
+            "top1_exact_agreement_spans": 2186,
+            "top1_exact_agreement_percent": 87.55,
+            "top1_exact_agreement_fraction": 0.8754505406487786,
             "top1_exact_wilson_95": [
-              0.858226,
-              0.884185
+              0.861919,
+              0.887828
             ],
-            "gold_anywhere_in_preserved_alternatives": 2237,
-            "gold_anywhere_percent": 87.73,
-            "mean_preserved_alternatives_when_accepted": 1.049
+            "gold_anywhere_in_preserved_alternatives": 2200,
+            "gold_anywhere_percent": 88.11,
+            "mean_preserved_alternatives_when_accepted": 1.048
           }
         },
         "0.9": {
@@ -1343,22 +1393,22 @@
               "minimum_dominance": 0.67,
               "maximum_alternatives": 2
             },
-            "eligible_spans": 24028,
-            "spans_with_any_witness_alternative": 2635,
-            "spans_with_unique_evidence_top": 2510,
-            "accepted_spans": 637,
-            "coverage_percent_of_eligible": 2.65,
-            "coverage_percent_of_supported": 24.17,
-            "top1_exact_agreement_spans": 593,
-            "top1_exact_agreement_percent": 93.09,
-            "top1_exact_agreement_fraction": 0.9309262166405023,
+            "eligible_spans": 22696,
+            "spans_with_any_witness_alternative": 2521,
+            "spans_with_unique_evidence_top": 2395,
+            "accepted_spans": 591,
+            "coverage_percent_of_eligible": 2.6,
+            "coverage_percent_of_supported": 23.44,
+            "top1_exact_agreement_spans": 547,
+            "top1_exact_agreement_percent": 92.55,
+            "top1_exact_agreement_fraction": 0.9255499153976311,
             "top1_exact_wilson_95": [
-              0.908541,
-              0.948145
+              0.901528,
+              0.944075
             ],
-            "gold_anywhere_in_preserved_alternatives": 600,
-            "gold_anywhere_percent": 94.19,
-            "mean_preserved_alternatives_when_accepted": 1.104
+            "gold_anywhere_in_preserved_alternatives": 554,
+            "gold_anywhere_percent": 93.74,
+            "mean_preserved_alternatives_when_accepted": 1.112
           },
           "heldout_evaluation": {
             "rule_id": "s1_m2_d0p67_a2",
@@ -1368,22 +1418,22 @@
               "minimum_dominance": 0.67,
               "maximum_alternatives": 2
             },
-            "eligible_spans": 24103,
-            "spans_with_any_witness_alternative": 2631,
-            "spans_with_unique_evidence_top": 2550,
-            "accepted_spans": 546,
-            "coverage_percent_of_eligible": 2.27,
-            "coverage_percent_of_supported": 20.75,
-            "top1_exact_agreement_spans": 505,
-            "top1_exact_agreement_percent": 92.49,
-            "top1_exact_agreement_fraction": 0.924908424908425,
+            "eligible_spans": 22656,
+            "spans_with_any_witness_alternative": 2579,
+            "spans_with_unique_evidence_top": 2497,
+            "accepted_spans": 574,
+            "coverage_percent_of_eligible": 2.53,
+            "coverage_percent_of_supported": 22.26,
+            "top1_exact_agreement_spans": 533,
+            "top1_exact_agreement_percent": 92.86,
+            "top1_exact_agreement_fraction": 0.9285714285714286,
             "top1_exact_wilson_95": [
-              0.899713,
-              0.944167
+              0.904531,
+              0.946913
             ],
-            "gold_anywhere_in_preserved_alternatives": 517,
-            "gold_anywhere_percent": 94.69,
-            "mean_preserved_alternatives_when_accepted": 1.11
+            "gold_anywhere_in_preserved_alternatives": 545,
+            "gold_anywhere_percent": 94.95,
+            "mean_preserved_alternatives_when_accepted": 1.105
           }
         },
         "0.95": null
@@ -1393,8 +1443,8 @@
       ]
     },
     "a3_m2": {
-      "calibration_records": 19806,
-      "evaluation_records": 19891,
+      "calibration_records": 18677,
+      "evaluation_records": 18607,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1404,22 +1454,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 19806,
-          "spans_with_any_witness_alternative": 1657,
-          "spans_with_unique_evidence_top": 1548,
-          "accepted_spans": 1548,
-          "coverage_percent_of_eligible": 7.82,
-          "coverage_percent_of_supported": 93.42,
-          "top1_exact_agreement_spans": 1124,
-          "top1_exact_agreement_percent": 72.61,
-          "top1_exact_agreement_fraction": 0.7260981912144703,
+          "eligible_spans": 18677,
+          "spans_with_any_witness_alternative": 1589,
+          "spans_with_unique_evidence_top": 1485,
+          "accepted_spans": 1485,
+          "coverage_percent_of_eligible": 7.95,
+          "coverage_percent_of_supported": 93.46,
+          "top1_exact_agreement_spans": 1048,
+          "top1_exact_agreement_percent": 70.57,
+          "top1_exact_agreement_fraction": 0.7057239057239058,
           "top1_exact_wilson_95": [
-            0.703343,
-            0.747734
+            0.682039,
+            0.728347
           ],
-          "gold_anywhere_in_preserved_alternatives": 1150,
-          "gold_anywhere_percent": 74.29,
-          "mean_preserved_alternatives_when_accepted": 1.086
+          "gold_anywhere_in_preserved_alternatives": 1074,
+          "gold_anywhere_percent": 72.32,
+          "mean_preserved_alternatives_when_accepted": 1.088
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1429,75 +1479,75 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 19891,
-          "spans_with_any_witness_alternative": 1738,
-          "spans_with_unique_evidence_top": 1657,
-          "accepted_spans": 1657,
-          "coverage_percent_of_eligible": 8.33,
-          "coverage_percent_of_supported": 95.34,
-          "top1_exact_agreement_spans": 1271,
-          "top1_exact_agreement_percent": 76.7,
-          "top1_exact_agreement_fraction": 0.7670488835244418,
+          "eligible_spans": 18607,
+          "spans_with_any_witness_alternative": 1708,
+          "spans_with_unique_evidence_top": 1624,
+          "accepted_spans": 1624,
+          "coverage_percent_of_eligible": 8.73,
+          "coverage_percent_of_supported": 95.08,
+          "top1_exact_agreement_spans": 1256,
+          "top1_exact_agreement_percent": 77.34,
+          "top1_exact_agreement_fraction": 0.7733990147783252,
           "top1_exact_wilson_95": [
-            0.746092,
-            0.78677
+            0.752407,
+            0.7931
           ],
-          "gold_anywhere_in_preserved_alternatives": 1283,
-          "gold_anywhere_percent": 77.43,
-          "mean_preserved_alternatives_when_accepted": 1.063
+          "gold_anywhere_in_preserved_alternatives": 1268,
+          "gold_anywhere_percent": 78.08,
+          "mean_preserved_alternatives_when_accepted": 1.065
         }
       },
       "selected_rules": {
         "0.7": {
           "selected_on_calibration": {
-            "rule_id": "s1_m1_d0p0_a8",
+            "rule_id": "s2_m1_d0p0_a4",
             "rule": {
-              "minimum_top_support_families": 1,
+              "minimum_top_support_families": 2,
               "minimum_support_margin": 1,
               "minimum_dominance": 0.0,
-              "maximum_alternatives": 8
+              "maximum_alternatives": 4
             },
-            "eligible_spans": 19806,
-            "spans_with_any_witness_alternative": 1657,
-            "spans_with_unique_evidence_top": 1548,
-            "accepted_spans": 1548,
-            "coverage_percent_of_eligible": 7.82,
-            "coverage_percent_of_supported": 93.42,
-            "top1_exact_agreement_spans": 1124,
-            "top1_exact_agreement_percent": 72.61,
-            "top1_exact_agreement_fraction": 0.7260981912144703,
+            "eligible_spans": 18677,
+            "spans_with_any_witness_alternative": 1589,
+            "spans_with_unique_evidence_top": 1485,
+            "accepted_spans": 293,
+            "coverage_percent_of_eligible": 1.57,
+            "coverage_percent_of_supported": 18.44,
+            "top1_exact_agreement_spans": 237,
+            "top1_exact_agreement_percent": 80.89,
+            "top1_exact_agreement_fraction": 0.8088737201365188,
             "top1_exact_wilson_95": [
-              0.703343,
-              0.747734
+              0.75997,
+              0.849784
             ],
-            "gold_anywhere_in_preserved_alternatives": 1150,
-            "gold_anywhere_percent": 74.29,
-            "mean_preserved_alternatives_when_accepted": 1.086
+            "gold_anywhere_in_preserved_alternatives": 262,
+            "gold_anywhere_percent": 89.42,
+            "mean_preserved_alternatives_when_accepted": 1.427
           },
           "heldout_evaluation": {
-            "rule_id": "s1_m1_d0p0_a8",
+            "rule_id": "s2_m1_d0p0_a4",
             "rule": {
-              "minimum_top_support_families": 1,
+              "minimum_top_support_families": 2,
               "minimum_support_margin": 1,
               "minimum_dominance": 0.0,
-              "maximum_alternatives": 8
+              "maximum_alternatives": 4
             },
-            "eligible_spans": 19891,
-            "spans_with_any_witness_alternative": 1738,
-            "spans_with_unique_evidence_top": 1657,
-            "accepted_spans": 1657,
-            "coverage_percent_of_eligible": 8.33,
-            "coverage_percent_of_supported": 95.34,
-            "top1_exact_agreement_spans": 1271,
-            "top1_exact_agreement_percent": 76.7,
-            "top1_exact_agreement_fraction": 0.7670488835244418,
+            "eligible_spans": 18607,
+            "spans_with_any_witness_alternative": 1708,
+            "spans_with_unique_evidence_top": 1624,
+            "accepted_spans": 342,
+            "coverage_percent_of_eligible": 1.84,
+            "coverage_percent_of_supported": 20.02,
+            "top1_exact_agreement_spans": 296,
+            "top1_exact_agreement_percent": 86.55,
+            "top1_exact_agreement_fraction": 0.8654970760233918,
             "top1_exact_wilson_95": [
-              0.746092,
-              0.78677
+              0.82525,
+              0.897625
             ],
-            "gold_anywhere_in_preserved_alternatives": 1283,
-            "gold_anywhere_percent": 77.43,
-            "mean_preserved_alternatives_when_accepted": 1.063
+            "gold_anywhere_in_preserved_alternatives": 308,
+            "gold_anywhere_percent": 90.06,
+            "mean_preserved_alternatives_when_accepted": 1.307
           }
         },
         "0.8": {
@@ -1509,22 +1559,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 2
             },
-            "eligible_spans": 19806,
-            "spans_with_any_witness_alternative": 1657,
-            "spans_with_unique_evidence_top": 1548,
-            "accepted_spans": 287,
-            "coverage_percent_of_eligible": 1.45,
-            "coverage_percent_of_supported": 17.32,
-            "top1_exact_agreement_spans": 254,
-            "top1_exact_agreement_percent": 88.5,
-            "top1_exact_agreement_fraction": 0.8850174216027874,
+            "eligible_spans": 18677,
+            "spans_with_any_witness_alternative": 1589,
+            "spans_with_unique_evidence_top": 1485,
+            "accepted_spans": 262,
+            "coverage_percent_of_eligible": 1.4,
+            "coverage_percent_of_supported": 16.49,
+            "top1_exact_agreement_spans": 230,
+            "top1_exact_agreement_percent": 87.79,
+            "top1_exact_agreement_fraction": 0.8778625954198473,
             "top1_exact_wilson_95": [
-              0.842919,
-              0.916945
+              0.832664,
+              0.912141
             ],
-            "gold_anywhere_in_preserved_alternatives": 260,
-            "gold_anywhere_percent": 90.59,
-            "mean_preserved_alternatives_when_accepted": 1.22
+            "gold_anywhere_in_preserved_alternatives": 236,
+            "gold_anywhere_percent": 90.08,
+            "mean_preserved_alternatives_when_accepted": 1.229
           },
           "heldout_evaluation": {
             "rule_id": "s2_m1_d0p0_a2",
@@ -1534,22 +1584,22 @@
               "minimum_dominance": 0.0,
               "maximum_alternatives": 2
             },
-            "eligible_spans": 19891,
-            "spans_with_any_witness_alternative": 1738,
-            "spans_with_unique_evidence_top": 1657,
-            "accepted_spans": 305,
-            "coverage_percent_of_eligible": 1.53,
-            "coverage_percent_of_supported": 17.55,
-            "top1_exact_agreement_spans": 261,
-            "top1_exact_agreement_percent": 85.57,
-            "top1_exact_agreement_fraction": 0.8557377049180328,
+            "eligible_spans": 18607,
+            "spans_with_any_witness_alternative": 1708,
+            "spans_with_unique_evidence_top": 1624,
+            "accepted_spans": 329,
+            "coverage_percent_of_eligible": 1.77,
+            "coverage_percent_of_supported": 19.26,
+            "top1_exact_agreement_spans": 285,
+            "top1_exact_agreement_percent": 86.63,
+            "top1_exact_agreement_fraction": 0.8662613981762918,
             "top1_exact_wilson_95": [
-              0.811878,
-              0.890748
+              0.825224,
+              0.898844
             ],
-            "gold_anywhere_in_preserved_alternatives": 271,
-            "gold_anywhere_percent": 88.85,
-            "mean_preserved_alternatives_when_accepted": 1.259
+            "gold_anywhere_in_preserved_alternatives": 295,
+            "gold_anywhere_percent": 89.67,
+            "mean_preserved_alternatives_when_accepted": 1.24
           }
         },
         "0.9": null,
@@ -1561,8 +1611,8 @@
       ]
     },
     "a3_m3": {
-      "calibration_records": 16251,
-      "evaluation_records": 16243,
+      "calibration_records": 15274,
+      "evaluation_records": 15126,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1572,22 +1622,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 16251,
-          "spans_with_any_witness_alternative": 1083,
-          "spans_with_unique_evidence_top": 1003,
-          "accepted_spans": 1003,
-          "coverage_percent_of_eligible": 6.17,
-          "coverage_percent_of_supported": 92.61,
-          "top1_exact_agreement_spans": 616,
-          "top1_exact_agreement_percent": 61.42,
-          "top1_exact_agreement_fraction": 0.6141575274177468,
+          "eligible_spans": 15274,
+          "spans_with_any_witness_alternative": 1039,
+          "spans_with_unique_evidence_top": 956,
+          "accepted_spans": 956,
+          "coverage_percent_of_eligible": 6.26,
+          "coverage_percent_of_supported": 92.01,
+          "top1_exact_agreement_spans": 557,
+          "top1_exact_agreement_percent": 58.26,
+          "top1_exact_agreement_fraction": 0.5826359832635983,
           "top1_exact_wilson_95": [
-            0.58365,
-            0.643794
+            0.551107,
+            0.613503
           ],
-          "gold_anywhere_in_preserved_alternatives": 626,
-          "gold_anywhere_percent": 62.41,
-          "mean_preserved_alternatives_when_accepted": 1.076
+          "gold_anywhere_in_preserved_alternatives": 567,
+          "gold_anywhere_percent": 59.31,
+          "mean_preserved_alternatives_when_accepted": 1.079
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1597,90 +1647,40 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 16243,
-          "spans_with_any_witness_alternative": 1170,
-          "spans_with_unique_evidence_top": 1089,
-          "accepted_spans": 1089,
-          "coverage_percent_of_eligible": 6.7,
-          "coverage_percent_of_supported": 93.08,
-          "top1_exact_agreement_spans": 724,
-          "top1_exact_agreement_percent": 66.48,
-          "top1_exact_agreement_fraction": 0.6648301193755739,
+          "eligible_spans": 15126,
+          "spans_with_any_witness_alternative": 1150,
+          "spans_with_unique_evidence_top": 1072,
+          "accepted_spans": 1072,
+          "coverage_percent_of_eligible": 7.09,
+          "coverage_percent_of_supported": 93.22,
+          "top1_exact_agreement_spans": 725,
+          "top1_exact_agreement_percent": 67.63,
+          "top1_exact_agreement_fraction": 0.6763059701492538,
           "top1_exact_wilson_95": [
-            0.636258,
-            0.692244
+            0.647711,
+            0.703642
           ],
-          "gold_anywhere_in_preserved_alternatives": 730,
-          "gold_anywhere_percent": 67.03,
-          "mean_preserved_alternatives_when_accepted": 1.055
+          "gold_anywhere_in_preserved_alternatives": 731,
+          "gold_anywhere_percent": 68.19,
+          "mean_preserved_alternatives_when_accepted": 1.056
         }
       },
       "selected_rules": {
-        "0.7": {
-          "selected_on_calibration": {
-            "rule_id": "s2_m1_d0p0_a2",
-            "rule": {
-              "minimum_top_support_families": 2,
-              "minimum_support_margin": 1,
-              "minimum_dominance": 0.0,
-              "maximum_alternatives": 2
-            },
-            "eligible_spans": 16251,
-            "spans_with_any_witness_alternative": 1083,
-            "spans_with_unique_evidence_top": 1003,
-            "accepted_spans": 138,
-            "coverage_percent_of_eligible": 0.85,
-            "coverage_percent_of_supported": 12.74,
-            "top1_exact_agreement_spans": 109,
-            "top1_exact_agreement_percent": 78.99,
-            "top1_exact_agreement_fraction": 0.7898550724637681,
-            "top1_exact_wilson_95": [
-              0.7145,
-              0.84951
-            ],
-            "gold_anywhere_in_preserved_alternatives": 109,
-            "gold_anywhere_percent": 78.99,
-            "mean_preserved_alternatives_when_accepted": 1.312
-          },
-          "heldout_evaluation": {
-            "rule_id": "s2_m1_d0p0_a2",
-            "rule": {
-              "minimum_top_support_families": 2,
-              "minimum_support_margin": 1,
-              "minimum_dominance": 0.0,
-              "maximum_alternatives": 2
-            },
-            "eligible_spans": 16243,
-            "spans_with_any_witness_alternative": 1170,
-            "spans_with_unique_evidence_top": 1089,
-            "accepted_spans": 154,
-            "coverage_percent_of_eligible": 0.95,
-            "coverage_percent_of_supported": 13.16,
-            "top1_exact_agreement_spans": 127,
-            "top1_exact_agreement_percent": 82.47,
-            "top1_exact_agreement_fraction": 0.8246753246753247,
-            "top1_exact_wilson_95": [
-              0.75693,
-              0.876617
-            ],
-            "gold_anywhere_in_preserved_alternatives": 131,
-            "gold_anywhere_percent": 85.06,
-            "mean_preserved_alternatives_when_accepted": 1.364
-          }
-        },
+        "0.7": null,
         "0.8": null,
         "0.9": null,
         "0.95": null
       },
       "targets_unattainable_on_calibration": [
+        "0.7",
         "0.8",
         "0.9",
         "0.95"
       ]
     },
     "a3_m5": {
-      "calibration_records": 10661,
-      "evaluation_records": 10471,
+      "calibration_records": 9901,
+      "evaluation_records": 9662,
       "baseline": {
         "calibration": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1690,22 +1690,22 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 10661,
-          "spans_with_any_witness_alternative": 482,
-          "spans_with_unique_evidence_top": 438,
-          "accepted_spans": 438,
-          "coverage_percent_of_eligible": 4.11,
-          "coverage_percent_of_supported": 90.87,
-          "top1_exact_agreement_spans": 182,
-          "top1_exact_agreement_percent": 41.55,
-          "top1_exact_agreement_fraction": 0.4155251141552511,
+          "eligible_spans": 9901,
+          "spans_with_any_witness_alternative": 448,
+          "spans_with_unique_evidence_top": 404,
+          "accepted_spans": 404,
+          "coverage_percent_of_eligible": 4.08,
+          "coverage_percent_of_supported": 90.18,
+          "top1_exact_agreement_spans": 144,
+          "top1_exact_agreement_percent": 35.64,
+          "top1_exact_agreement_fraction": 0.3564356435643564,
           "top1_exact_wilson_95": [
-            0.370303,
-            0.462217
+            0.311286,
+            0.40429
           ],
-          "gold_anywhere_in_preserved_alternatives": 182,
-          "gold_anywhere_percent": 41.55,
-          "mean_preserved_alternatives_when_accepted": 1.098
+          "gold_anywhere_in_preserved_alternatives": 144,
+          "gold_anywhere_percent": 35.64,
+          "mean_preserved_alternatives_when_accepted": 1.106
         },
         "evaluation": {
           "rule_id": "s1_m1_d0p0_aany",
@@ -1715,21 +1715,21 @@
             "minimum_dominance": 0.0,
             "maximum_alternatives": null
           },
-          "eligible_spans": 10471,
-          "spans_with_any_witness_alternative": 540,
-          "spans_with_unique_evidence_top": 504,
-          "accepted_spans": 504,
-          "coverage_percent_of_eligible": 4.81,
-          "coverage_percent_of_supported": 93.33,
-          "top1_exact_agreement_spans": 261,
-          "top1_exact_agreement_percent": 51.79,
-          "top1_exact_agreement_fraction": 0.5178571428571429,
+          "eligible_spans": 9662,
+          "spans_with_any_witness_alternative": 532,
+          "spans_with_unique_evidence_top": 496,
+          "accepted_spans": 496,
+          "coverage_percent_of_eligible": 5.13,
+          "coverage_percent_of_supported": 93.23,
+          "top1_exact_agreement_spans": 266,
+          "top1_exact_agreement_percent": 53.63,
+          "top1_exact_agreement_fraction": 0.5362903225806451,
           "top1_exact_wilson_95": [
-            0.474263,
-            0.561181
+            0.492293,
+            0.57973
           ],
-          "gold_anywhere_in_preserved_alternatives": 261,
-          "gold_anywhere_percent": 51.79,
+          "gold_anywhere_in_preserved_alternatives": 266,
+          "gold_anywhere_percent": 53.63,
           "mean_preserved_alternatives_when_accepted": 1.024
         }
       },
@@ -1771,8 +1771,8 @@
     "selection_rule": {
       "minimum_top_support_families": 1,
       "minimum_support_margin": 2,
-      "minimum_dominance": 0.0,
-      "maximum_alternatives": 2
+      "minimum_dominance": 0.8,
+      "maximum_alternatives": 4
     },
     "dev_evaluation_only": true
   },

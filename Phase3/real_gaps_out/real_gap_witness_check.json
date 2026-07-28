@@ -7,27 +7,55 @@
     647
   ],
   "scope_documents": 867,
-  "gaps_in_scope": 25559,
-  "gaps_with_full_anchor": 19339,
-  "gaps_same_line_anchor": 1960,
-  "gaps_cross_line_anchor": 17379,
-  "cross_line_lines_crossed_histogram": {
-    "1": 13807,
-    "2": 1831,
-    "3": 935,
-    "4": 511,
-    "5": 211,
-    "6": 84
+  "language_scope": "HITTITE_ONLY",
+  "query_language": null,
+  "mixed_line_policy": "EXCLUDE_LINE",
+  "language_rule_id": "word_override_else_line_v2",
+  "language_contract_path": "configs\\language_layers_v2.json",
+  "ablation_only": false,
+  "language_dataset_path": "Phase4\\phase4_out\\multilingual_tokens_v2.parquet",
+  "language_dataset_file_sha256": "d891168291dce3ca8997426b7601d1a1c15a8d712270394b760250b48c354ee2",
+  "language_dataset_rows_loaded": 250611,
+  "language_dataset_documents_loaded": 859,
+  "line_decisions": {
+    "HITTITE_ONLY": {
+      "IN_SCOPE": 24208,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 590,
+      "MIXED_LANGUAGE_LINE": 889,
+      "OUT_OF_SCOPE_LANGUAGE": 1181,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 1
+    }
   },
-  "gaps_in_fragments_with_no_preserved_edge": 17684,
-  "gaps_in_fragments_with_preserved_edge": 7875,
+  "gaps_excluded_by_language": {
+    "OUT_OF_SCOPE_LANGUAGE": 1216,
+    "MIXED_LANGUAGE_LINE": 943,
+    "LINE_NOT_IN_LANGUAGE_DATASET": 275,
+    "UNRESOLVED_LEXICAL_LANGUAGE": 1
+  },
+  "query_language_counts": {
+    "Hit": 23124
+  },
+  "gaps_in_scope": 23124,
+  "gaps_with_full_anchor": 17240,
+  "gaps_same_line_anchor": 1741,
+  "gaps_cross_line_anchor": 15499,
+  "cross_line_lines_crossed_histogram": {
+    "1": 12232,
+    "2": 1647,
+    "3": 866,
+    "4": 481,
+    "5": 197,
+    "6": 76
+  },
+  "gaps_in_fragments_with_no_preserved_edge": 15965,
+  "gaps_in_fragments_with_preserved_edge": 7159,
   "gaps_edge_status_unknown": 0,
   "same_line": {
-    "n_with_coverage": 821,
-    "n_no_coverage": 1139,
-    "restored_match": 561,
-    "restored_no_match": 198,
-    "restored_no_coverage": 881,
+    "n_with_coverage": 740,
+    "n_no_coverage": 1001,
+    "restored_match": 504,
+    "restored_no_match": 178,
+    "restored_no_coverage": 770,
     "match_examples": [
       {
         "doc_id": "AT 454",
@@ -58,21 +86,23 @@
         "lines_crossed": 0
       },
       {
-        "doc_id": "Bo 5601+",
-        "fragment_id": "Bo 5601+",
+        "doc_id": "Bo 7850",
+        "fragment_id": "Bo 7850",
         "editor_reading": [
-          "URU"
+          "ma",
+          "aš",
+          "ša"
         ],
-        "witness_proposal_count": 2,
+        "witness_proposal_count": 1,
         "lines_crossed": 0
       },
       {
-        "doc_id": "Bo 5601+",
-        "fragment_id": "Bo 5601+",
+        "doc_id": "CHDS 4.226",
+        "fragment_id": "CHDS 4.226",
         "editor_reading": [
-          "NIN"
+          "pár"
         ],
-        "witness_proposal_count": 1,
+        "witness_proposal_count": 2,
         "lines_crossed": 0
       }
     ],
@@ -88,6 +118,25 @@
             "ku",
             "uš",
             "ú",
+            "et",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "na",
+            "aš",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "ku",
+            "uš",
+            "ú",
             "e",
             "er",
             "na",
@@ -99,10 +148,11 @@
           [
             "ku",
             "uš",
+            "ú",
+            "et",
             "na",
             "aš",
             "<NUM>",
-            "an",
             "ar"
           ],
           [
@@ -114,26 +164,6 @@
             "aš",
             "<NUM>",
             "an",
-            "ar"
-          ],
-          [
-            "ku",
-            "uš",
-            "ú",
-            "et",
-            "aš",
-            "<NUM>",
-            "an",
-            "ar"
-          ],
-          [
-            "ku",
-            "uš",
-            "ú",
-            "et",
-            "na",
-            "aš",
-            "<NUM>",
             "ar"
           ]
         ],
@@ -149,6 +179,18 @@
         ],
         "witness_proposals_sample": [
           [
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
+            "e",
+            "at",
+            "<NUM>",
+            "an",
+            "ar"
+          ],
+          [
             "et",
             "na",
             "aš",
@@ -160,32 +202,17 @@
           [
             "et",
             "na",
-            "aš"
-          ],
-          [
-            "e",
-            "er",
-            "na",
-            "at",
+            "aš",
             "<NUM>",
             "an",
             "ar"
           ],
           [
-            "e",
-            "at",
-            "<NUM>",
-            "an",
-            "ar"
-          ],
-          [
-            "e",
-            "er",
+            "et",
             "na",
-            "at",
-            "kán",
-            "pé",
-            "an",
+            "aš",
+            "<NUM>",
+            "〈an〉",
             "ar"
           ]
         ],
@@ -213,40 +240,32 @@
         "lines_crossed": 0
       },
       {
-        "doc_id": "Bo 5601+",
-        "fragment_id": "Bo 5601+",
+        "doc_id": "DAAM 1.56+",
+        "fragment_id": "DAAM 1.56+",
         "editor_reading": [
-          "na",
-          "at"
+          "UL"
         ],
         "witness_proposals_sample": [
           [
-            "ku",
-            "ra",
-            "an",
-            "da",
-            "a",
-            "i",
-            "na",
-            "at"
+            "A",
+            "NA",
+            "DINGIR",
+            "MEŠ"
           ]
         ],
         "witness_proposal_count": 1,
         "lines_crossed": 0
       },
       {
-        "doc_id": "Bo 5601+",
-        "fragment_id": "Bo 5601+",
+        "doc_id": "DAAM 1.56+",
+        "fragment_id": "DAAM 1.56+",
         "editor_reading": [
-          "ḫu",
-          "te",
-          "il"
+          "iš"
         ],
         "witness_proposals_sample": [
           [
-            "ḫu",
-            "te",
-            "el"
+            "iš",
+            "ŠA"
           ]
         ],
         "witness_proposal_count": 1,
@@ -255,11 +274,11 @@
     ]
   },
   "cross_line": {
-    "n_with_coverage": 3462,
-    "n_no_coverage": 13917,
-    "restored_match": 758,
-    "restored_no_match": 2164,
-    "restored_no_coverage": 10696,
+    "n_with_coverage": 3071,
+    "n_no_coverage": 12428,
+    "restored_match": 666,
+    "restored_no_match": 1901,
+    "restored_no_coverage": 9490,
     "match_examples": [
       {
         "doc_id": "ABoT 2.114+",
@@ -269,25 +288,6 @@
           "NI"
         ],
         "witness_proposal_count": 4,
-        "lines_crossed": 1
-      },
-      {
-        "doc_id": "ABoT 2.140",
-        "fragment_id": "ABoT 2.140",
-        "editor_reading": [
-          "ḫi"
-        ],
-        "witness_proposal_count": 1,
-        "lines_crossed": 1
-      },
-      {
-        "doc_id": "ABoT 2.140",
-        "fragment_id": "ABoT 2.140",
-        "editor_reading": [
-          "a",
-          "ri"
-        ],
-        "witness_proposal_count": 1,
         "lines_crossed": 1
       },
       {
@@ -308,6 +308,27 @@
           "DUMU"
         ],
         "witness_proposal_count": 2,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.148",
+        "fragment_id": "ABoT 2.148",
+        "editor_reading": [
+          "DUMU",
+          "aš",
+          "QA",
+          "TAM"
+        ],
+        "witness_proposal_count": 2,
+        "lines_crossed": 1
+      },
+      {
+        "doc_id": "ABoT 2.230",
+        "fragment_id": "ABoT 2.230",
+        "editor_reading": [
+          "da"
+        ],
+        "witness_proposal_count": 23,
         "lines_crossed": 1
       }
     ],
@@ -432,14 +453,14 @@
         ],
         "witness_proposals_sample": [
           [
-            "SA₂₀",
-            "A",
-            "TI"
-          ],
-          [
             "GAL",
             "KÙ",
             "BABBAR"
+          ],
+          [
+            "SA₂₀",
+            "A",
+            "TI"
           ]
         ],
         "witness_proposal_count": 2,

@@ -99,8 +99,8 @@
     "maximum_packet_alignments_per_alternative": 3,
     "time_budget_hours": 4
   },
-  "p2e4_selector_accepted_contexts": 5542,
-  "posthoc_exact_anchor_absence_contexts": 406,
+  "p2e4_selector_accepted_contexts": 4983,
+  "posthoc_exact_anchor_absence_contexts": 353,
   "formulaicity_statistics": {
     "universe_name": "real_composition_train_plus_dev_cth_formulaicity",
     "n_compositions": 490,
@@ -108,10 +108,10 @@
     "n_decomposed_rows": 1941659,
     "ambiguous_doc_ids_quarantined": 8,
     "requested_anchor_pair_counts": {
-      "2": 48411
+      "2": 45751
     },
     "observed_anchor_pair_counts": {
-      "2": 48411
+      "2": 45751
     },
     "maximum_middle_length": 12,
     "content_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2"
@@ -125,79 +125,79 @@
       "selected_rule": {
         "minimum_top_support_families": 2,
         "minimum_support_margin": 1,
-        "minimum_dominance": 0.5,
-        "maximum_alternatives": 4
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
       },
       "selected_rule_calibration_metrics": {
-        "rule_id": "s2_m1_d0p5_a4",
+        "rule_id": "s2_m1_d0p0_a2",
         "rule": {
           "minimum_top_support_families": 2,
           "minimum_support_margin": 1,
-          "minimum_dominance": 0.5,
-          "maximum_alternatives": 4
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
         },
-        "eligible_spans": 52904,
-        "spans_with_any_witness_alternative": 10505,
-        "spans_with_unique_evidence_top": 9607,
-        "accepted_spans": 2960,
-        "coverage_percent_of_eligible": 5.6,
-        "coverage_percent_of_supported": 28.18,
-        "top1_exact_agreement_spans": 2698,
-        "top1_exact_agreement_percent": 91.15,
-        "top1_exact_agreement_fraction": 0.9114864864864864,
+        "eligible_spans": 49888,
+        "spans_with_any_witness_alternative": 10363,
+        "spans_with_unique_evidence_top": 9483,
+        "accepted_spans": 2730,
+        "coverage_percent_of_eligible": 5.47,
+        "coverage_percent_of_supported": 26.34,
+        "top1_exact_agreement_spans": 2496,
+        "top1_exact_agreement_percent": 91.43,
+        "top1_exact_agreement_fraction": 0.9142857142857143,
         "top1_exact_wilson_95": [
-          0.900713,
-          0.921193
+          0.903194,
+          0.924213
         ],
-        "gold_anywhere_in_preserved_alternatives": 2748,
-        "gold_anywhere_percent": 92.84,
-        "mean_preserved_alternatives_when_accepted": 1.314
+        "gold_anywhere_in_preserved_alternatives": 2541,
+        "gold_anywhere_percent": 93.08,
+        "mean_preserved_alternatives_when_accepted": 1.198
       },
-      "calibration_contexts": 52904,
-      "evaluation_contexts": 15869,
-      "accepted_evaluation_contexts": 3023,
+      "calibration_contexts": 49888,
+      "evaluation_contexts": 15251,
+      "accepted_evaluation_contexts": 2514,
       "rank_calibration": {
         "1": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 2960,
-          "attested_agreement_contexts": 2698,
-          "calibrated_empirical_agreement": 0.911486,
+          "calibration_contexts_with_rank_available": 2730,
+          "attested_agreement_contexts": 2496,
+          "calibrated_empirical_agreement": 0.914286,
           "wilson_95": [
-            0.900713,
-            0.921193
+            0.903194,
+            0.924213
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 727,
-          "attested_agreement_contexts": 50,
-          "calibrated_empirical_agreement": 0.068776,
+          "calibration_contexts_with_rank_available": 541,
+          "attested_agreement_contexts": 45,
+          "calibrated_empirical_agreement": 0.083179,
           "wilson_95": [
-            0.052555,
-            0.08953
+            0.062745,
+            0.109492
           ],
           "not_an_instance_truth_probability": true
         },
         "3": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 168,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.022355
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
         "4": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 33,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.10427
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
@@ -218,13 +218,15 @@
       "fold": 1,
       "evaluation_cth": [
         40,
-        44,
+        84,
+        89,
         133,
-        233,
         375,
+        387,
+        543,
         576,
         616,
-        762
+        782
       ],
       "selected_rule": {
         "minimum_top_support_families": 1,
@@ -240,57 +242,57 @@
           "minimum_dominance": 0.67,
           "maximum_alternatives": 4
         },
-        "eligible_spans": 55473,
-        "spans_with_any_witness_alternative": 14631,
-        "spans_with_unique_evidence_top": 13280,
-        "accepted_spans": 4375,
-        "coverage_percent_of_eligible": 7.89,
-        "coverage_percent_of_supported": 29.9,
-        "top1_exact_agreement_spans": 3986,
-        "top1_exact_agreement_percent": 91.11,
-        "top1_exact_agreement_fraction": 0.9110857142857143,
+        "eligible_spans": 52677,
+        "spans_with_any_witness_alternative": 13889,
+        "spans_with_unique_evidence_top": 12612,
+        "accepted_spans": 4198,
+        "coverage_percent_of_eligible": 7.97,
+        "coverage_percent_of_supported": 30.23,
+        "top1_exact_agreement_spans": 3829,
+        "top1_exact_agreement_percent": 91.21,
+        "top1_exact_agreement_fraction": 0.9121010004764173,
         "top1_exact_wilson_95": [
-          0.902287,
-          0.919163
+          0.903155,
+          0.920294
         ],
-        "gold_anywhere_in_preserved_alternatives": 4088,
-        "gold_anywhere_percent": 93.44,
-        "mean_preserved_alternatives_when_accepted": 1.263
+        "gold_anywhere_in_preserved_alternatives": 3928,
+        "gold_anywhere_percent": 93.57,
+        "mean_preserved_alternatives_when_accepted": 1.267
       },
-      "calibration_contexts": 55473,
-      "evaluation_contexts": 13300,
+      "calibration_contexts": 52677,
+      "evaluation_contexts": 12462,
       "accepted_evaluation_contexts": 667,
       "rank_calibration": {
         "1": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 4375,
-          "attested_agreement_contexts": 3986,
-          "calibrated_empirical_agreement": 0.911086,
+          "calibration_contexts_with_rank_available": 4198,
+          "attested_agreement_contexts": 3829,
+          "calibrated_empirical_agreement": 0.912101,
           "wilson_95": [
-            0.902287,
-            0.919163
+            0.903155,
+            0.920294
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 962,
-          "attested_agreement_contexts": 98,
-          "calibrated_empirical_agreement": 0.101871,
+          "calibration_contexts_with_rank_available": 934,
+          "attested_agreement_contexts": 95,
+          "calibrated_empirical_agreement": 0.101713,
           "wilson_95": [
-            0.084313,
-            0.122596
+            0.08393,
+            0.122759
           ],
           "not_an_instance_truth_probability": true
         },
         "3": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 161,
+          "calibration_contexts_with_rank_available": 159,
           "attested_agreement_contexts": 4,
-          "calibrated_empirical_agreement": 0.024845,
+          "calibrated_empirical_agreement": 0.025157,
           "wilson_95": [
-            0.009703,
-            0.062132
+            0.009826,
+            0.062892
           ],
           "not_an_instance_truth_probability": true
         },
@@ -321,15 +323,15 @@
     {
       "fold": 2,
       "evaluation_cth": [
+        122,
         492,
-        540,
-        549,
         630,
         633,
         634,
         667,
         742,
-        782,
+        762,
+        812,
         821
       ],
       "selected_rule": {
@@ -346,46 +348,46 @@
           "minimum_dominance": 0.0,
           "maximum_alternatives": 2
         },
-        "eligible_spans": 55597,
-        "spans_with_any_witness_alternative": 14273,
-        "spans_with_unique_evidence_top": 12956,
-        "accepted_spans": 3936,
-        "coverage_percent_of_eligible": 7.08,
-        "coverage_percent_of_supported": 27.58,
-        "top1_exact_agreement_spans": 3595,
-        "top1_exact_agreement_percent": 91.34,
-        "top1_exact_agreement_fraction": 0.9133638211382114,
+        "eligible_spans": 52674,
+        "spans_with_any_witness_alternative": 13986,
+        "spans_with_unique_evidence_top": 12702,
+        "accepted_spans": 3797,
+        "coverage_percent_of_eligible": 7.21,
+        "coverage_percent_of_supported": 27.15,
+        "top1_exact_agreement_spans": 3470,
+        "top1_exact_agreement_percent": 91.39,
+        "top1_exact_agreement_fraction": 0.9138793784566763,
         "top1_exact_wilson_95": [
-          0.904168,
-          0.921754
+          0.904532,
+          0.92239
         ],
-        "gold_anywhere_in_preserved_alternatives": 3651,
+        "gold_anywhere_in_preserved_alternatives": 3522,
         "gold_anywhere_percent": 92.76,
-        "mean_preserved_alternatives_when_accepted": 1.198
+        "mean_preserved_alternatives_when_accepted": 1.199
       },
-      "calibration_contexts": 55597,
-      "evaluation_contexts": 13176,
-      "accepted_evaluation_contexts": 994,
+      "calibration_contexts": 52674,
+      "evaluation_contexts": 12465,
+      "accepted_evaluation_contexts": 958,
       "rank_calibration": {
         "1": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 3936,
-          "attested_agreement_contexts": 3595,
-          "calibrated_empirical_agreement": 0.913364,
+          "calibration_contexts_with_rank_available": 3797,
+          "attested_agreement_contexts": 3470,
+          "calibrated_empirical_agreement": 0.913879,
           "wilson_95": [
-            0.904168,
-            0.921754
+            0.904532,
+            0.92239
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 781,
-          "attested_agreement_contexts": 56,
-          "calibrated_empirical_agreement": 0.071703,
+          "calibration_contexts_with_rank_available": 755,
+          "attested_agreement_contexts": 52,
+          "calibrated_empirical_agreement": 0.068874,
           "wilson_95": [
-            0.055628,
-            0.09197
+            0.052907,
+            0.089206
           ],
           "not_an_instance_truth_probability": true
         },
@@ -428,70 +430,69 @@
       "fold": 3,
       "evaluation_cth": [
         63,
-        285,
         312,
         395,
         442,
-        543,
+        540,
+        549,
         682,
         716,
-        727,
-        773
+        727
       ],
       "selected_rule": {
         "minimum_top_support_families": 1,
         "minimum_support_margin": 2,
         "minimum_dominance": 0.67,
-        "maximum_alternatives": 4
+        "maximum_alternatives": 8
       },
       "selected_rule_calibration_metrics": {
-        "rule_id": "s1_m2_d0p67_a4",
+        "rule_id": "s1_m2_d0p67_a8",
         "rule": {
           "minimum_top_support_families": 1,
           "minimum_support_margin": 2,
           "minimum_dominance": 0.67,
-          "maximum_alternatives": 4
+          "maximum_alternatives": 8
         },
-        "eligible_spans": 55520,
-        "spans_with_any_witness_alternative": 14224,
-        "spans_with_unique_evidence_top": 12860,
-        "accepted_spans": 4485,
-        "coverage_percent_of_eligible": 8.08,
-        "coverage_percent_of_supported": 31.53,
-        "top1_exact_agreement_spans": 4080,
-        "top1_exact_agreement_percent": 90.97,
-        "top1_exact_agreement_fraction": 0.9096989966555183,
+        "eligible_spans": 52676,
+        "spans_with_any_witness_alternative": 13777,
+        "spans_with_unique_evidence_top": 12462,
+        "accepted_spans": 4408,
+        "coverage_percent_of_eligible": 8.37,
+        "coverage_percent_of_supported": 32.0,
+        "top1_exact_agreement_spans": 4020,
+        "top1_exact_agreement_percent": 91.2,
+        "top1_exact_agreement_fraction": 0.911978221415608,
         "top1_exact_wilson_95": [
-          0.900957,
-          0.91774
+          0.903251,
+          0.919988
         ],
-        "gold_anywhere_in_preserved_alternatives": 4167,
-        "gold_anywhere_percent": 92.91,
-        "mean_preserved_alternatives_when_accepted": 1.252
+        "gold_anywhere_in_preserved_alternatives": 4106,
+        "gold_anywhere_percent": 93.15,
+        "mean_preserved_alternatives_when_accepted": 1.253
       },
-      "calibration_contexts": 55520,
-      "evaluation_contexts": 13253,
-      "accepted_evaluation_contexts": 557,
+      "calibration_contexts": 52676,
+      "evaluation_contexts": 12463,
+      "accepted_evaluation_contexts": 459,
       "rank_calibration": {
         "1": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 4485,
-          "attested_agreement_contexts": 4080,
-          "calibrated_empirical_agreement": 0.909699,
+          "calibration_contexts_with_rank_available": 4408,
+          "attested_agreement_contexts": 4020,
+          "calibrated_empirical_agreement": 0.911978,
           "wilson_95": [
-            0.900957,
-            0.91774
+            0.903251,
+            0.919988
           ],
           "not_an_instance_truth_probability": true
         },
         "2": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 943,
-          "attested_agreement_contexts": 83,
-          "calibrated_empirical_agreement": 0.088017,
+          "calibration_contexts_with_rank_available": 923,
+          "attested_agreement_contexts": 80,
+          "calibrated_empirical_agreement": 0.086674,
           "wilson_95": [
-            0.071565,
-            0.107812
+            0.070193,
+            0.106581
           ],
           "not_an_instance_truth_probability": true
         },
@@ -508,16 +509,98 @@
         },
         "4": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 29,
+          "calibration_contexts_with_rank_available": 31,
           "attested_agreement_contexts": 0,
           "calibrated_empirical_agreement": 0.0,
           "wilson_95": [
             0.0,
-            0.11697
+            0.110255
           ],
           "not_an_instance_truth_probability": true
         },
         "5": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 2,
+          "attested_agreement_contexts": 2,
+          "calibrated_empirical_agreement": 1.0,
+          "wilson_95": [
+            0.34238,
+            1.0
+          ],
+          "not_an_instance_truth_probability": true
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "evaluation_cth": [
+        233,
+        285,
+        348,
+        407,
+        430,
+        569,
+        773,
+        777
+      ],
+      "selected_rule": {
+        "minimum_top_support_families": 1,
+        "minimum_support_margin": 2,
+        "minimum_dominance": 0.0,
+        "maximum_alternatives": 2
+      },
+      "selected_rule_calibration_metrics": {
+        "rule_id": "s1_m2_d0p0_a2",
+        "rule": {
+          "minimum_top_support_families": 1,
+          "minimum_support_margin": 2,
+          "minimum_dominance": 0.0,
+          "maximum_alternatives": 2
+        },
+        "eligible_spans": 52641,
+        "spans_with_any_witness_alternative": 15309,
+        "spans_with_unique_evidence_top": 13849,
+        "accepted_spans": 4370,
+        "coverage_percent_of_eligible": 8.3,
+        "coverage_percent_of_supported": 28.55,
+        "top1_exact_agreement_spans": 4002,
+        "top1_exact_agreement_percent": 91.58,
+        "top1_exact_agreement_fraction": 0.9157894736842105,
+        "top1_exact_wilson_95": [
+          0.907186,
+          0.923662
+        ],
+        "gold_anywhere_in_preserved_alternatives": 4064,
+        "gold_anywhere_percent": 93.0,
+        "mean_preserved_alternatives_when_accepted": 1.201
+      },
+      "calibration_contexts": 52641,
+      "evaluation_contexts": 12498,
+      "accepted_evaluation_contexts": 385,
+      "rank_calibration": {
+        "1": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 4370,
+          "attested_agreement_contexts": 4002,
+          "calibrated_empirical_agreement": 0.915789,
+          "wilson_95": [
+            0.907186,
+            0.923662
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "2": {
+          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
+          "calibration_contexts_with_rank_available": 878,
+          "attested_agreement_contexts": 62,
+          "calibrated_empirical_agreement": 0.070615,
+          "wilson_95": [
+            0.055474,
+            0.089497
+          ],
+          "not_an_instance_truth_probability": true
+        },
+        "3": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
           "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
@@ -527,99 +610,15 @@
             null
           ],
           "not_an_instance_truth_probability": true
-        }
-      }
-    },
-    {
-      "fold": 4,
-      "evaluation_cth": [
-        84,
-        89,
-        122,
-        348,
-        387,
-        407,
-        430,
-        569,
-        777,
-        812
-      ],
-      "selected_rule": {
-        "minimum_top_support_families": 1,
-        "minimum_support_margin": 2,
-        "minimum_dominance": 0.67,
-        "maximum_alternatives": 4
-      },
-      "selected_rule_calibration_metrics": {
-        "rule_id": "s1_m2_d0p67_a4",
-        "rule": {
-          "minimum_top_support_families": 1,
-          "minimum_support_margin": 2,
-          "minimum_dominance": 0.67,
-          "maximum_alternatives": 4
-        },
-        "eligible_spans": 55598,
-        "spans_with_any_witness_alternative": 15927,
-        "spans_with_unique_evidence_top": 14413,
-        "accepted_spans": 4741,
-        "coverage_percent_of_eligible": 8.53,
-        "coverage_percent_of_supported": 29.77,
-        "top1_exact_agreement_spans": 4310,
-        "top1_exact_agreement_percent": 90.91,
-        "top1_exact_agreement_fraction": 0.9090909090909091,
-        "top1_exact_wilson_95": [
-          0.900573,
-          0.916946
-        ],
-        "gold_anywhere_in_preserved_alternatives": 4414,
-        "gold_anywhere_percent": 93.1,
-        "mean_preserved_alternatives_when_accepted": 1.256
-      },
-      "calibration_contexts": 55598,
-      "evaluation_contexts": 13175,
-      "accepted_evaluation_contexts": 301,
-      "rank_calibration": {
-        "1": {
-          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 4741,
-          "attested_agreement_contexts": 4310,
-          "calibrated_empirical_agreement": 0.909091,
-          "wilson_95": [
-            0.900573,
-            0.916946
-          ],
-          "not_an_instance_truth_probability": true
-        },
-        "2": {
-          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 1016,
-          "attested_agreement_contexts": 100,
-          "calibrated_empirical_agreement": 0.098425,
-          "wilson_95": [
-            0.081593,
-            0.118283
-          ],
-          "not_an_instance_truth_probability": true
-        },
-        "3": {
-          "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 169,
-          "attested_agreement_contexts": 4,
-          "calibrated_empirical_agreement": 0.023669,
-          "wilson_95": [
-            0.009242,
-            0.059269
-          ],
-          "not_an_instance_truth_probability": true
         },
         "4": {
           "estimand": "P2-E4 rank-conditioned calibration used only to reconstruct the frozen selector; P2-E5 alignment scores remain uncalibrated",
-          "calibration_contexts_with_rank_available": 29,
+          "calibration_contexts_with_rank_available": 0,
           "attested_agreement_contexts": 0,
-          "calibrated_empirical_agreement": 0.0,
+          "calibrated_empirical_agreement": null,
           "wilson_95": [
-            0.0,
-            0.11697
+            null,
+            null
           ],
           "not_an_instance_truth_probability": true
         },
@@ -682,64 +681,64 @@
   },
   "alignment_residual_diagnostic": {
     "micro": {
-      "diagnostic_contexts": 406,
-      "contexts_with_alignment_candidates": 267,
-      "alignment_candidate_coverage_percent": 65.76,
-      "exact_rescue_anywhere_contexts": 6,
-      "exact_rescue_anywhere_percent": 1.48,
+      "diagnostic_contexts": 353,
+      "contexts_with_alignment_candidates": 231,
+      "alignment_candidate_coverage_percent": 65.44,
+      "exact_rescue_anywhere_contexts": 5,
+      "exact_rescue_anywhere_percent": 1.42,
       "exact_rescue_anywhere_wilson_95": [
-        0.00679,
-        0.031862
+        0.006065,
+        0.032724
       ],
-      "no_exact_rescue_contexts": 400,
+      "no_exact_rescue_contexts": 348,
       "candidate_set_size_when_supported": {
-        "mean": 1.61,
+        "mean": 1.368,
         "median": 1,
-        "p90": 3,
-        "maximum": 25
+        "p90": 2,
+        "maximum": 6
       },
       "prefix_sets": {
         "1": {
           "exact_rescue_contexts": 2,
-          "exact_rescue_percent": 0.49,
+          "exact_rescue_percent": 0.57,
           "exact_rescue_wilson_95": [
-            0.001352,
-            0.017781
+            0.001555,
+            0.02042
           ],
-          "mean_options_added_per_diagnostic_context": 0.658
+          "mean_options_added_per_diagnostic_context": 0.654
         },
         "2": {
-          "exact_rescue_contexts": 6,
-          "exact_rescue_percent": 1.48,
+          "exact_rescue_contexts": 5,
+          "exact_rescue_percent": 1.42,
           "exact_rescue_wilson_95": [
-            0.00679,
-            0.031862
+            0.006065,
+            0.032724
           ],
-          "mean_options_added_per_diagnostic_context": 0.852
+          "mean_options_added_per_diagnostic_context": 0.813
         },
         "3": {
-          "exact_rescue_contexts": 6,
-          "exact_rescue_percent": 1.48,
+          "exact_rescue_contexts": 5,
+          "exact_rescue_percent": 1.42,
           "exact_rescue_wilson_95": [
-            0.00679,
-            0.031862
+            0.006065,
+            0.032724
           ],
-          "mean_options_added_per_diagnostic_context": 0.936
+          "mean_options_added_per_diagnostic_context": 0.856
         },
         "5": {
-          "exact_rescue_contexts": 6,
-          "exact_rescue_percent": 1.48,
+          "exact_rescue_contexts": 5,
+          "exact_rescue_percent": 1.42,
           "exact_rescue_wilson_95": [
-            0.00679,
-            0.031862
+            0.006065,
+            0.032724
           ],
-          "mean_options_added_per_diagnostic_context": 0.995
+          "mean_options_added_per_diagnostic_context": 0.892
         }
       },
       "retrieval": {
         "contexts_with_seed_truncation": 0,
-        "total_seeded_independent_witness_lines": 7153,
-        "total_seeded_witness_lines_scored": 7153
+        "total_seeded_independent_witness_lines": 5268,
+        "total_seeded_witness_lines_scored": 5268
       }
     },
     "composition_macro_at_5": {
@@ -751,82 +750,82 @@
     },
     "by_prior_observable_category": {
       "ATTESTED_READING_ABSENT_TOP_EQUAL_LENGTH_DIFFERENT": {
-        "diagnostic_contexts": 67,
-        "contexts_with_alignment_candidates": 38,
-        "alignment_candidate_coverage_percent": 56.72,
+        "diagnostic_contexts": 59,
+        "contexts_with_alignment_candidates": 34,
+        "alignment_candidate_coverage_percent": 57.63,
         "exact_rescue_anywhere_contexts": 1,
-        "exact_rescue_anywhere_percent": 1.49,
+        "exact_rescue_anywhere_percent": 1.69,
         "exact_rescue_anywhere_wilson_95": [
-          0.00264,
-          0.079819
+          0.002998,
+          0.089957
         ],
-        "no_exact_rescue_contexts": 66,
+        "no_exact_rescue_contexts": 58,
         "candidate_set_size_when_supported": {
-          "mean": 1.526,
+          "mean": 1.353,
           "median": 1.0,
-          "p90": 3,
+          "p90": 2,
           "maximum": 4
         },
         "prefix_sets": {
           "1": {
             "exact_rescue_contexts": 1,
-            "exact_rescue_percent": 1.49,
+            "exact_rescue_percent": 1.69,
             "exact_rescue_wilson_95": [
-              0.00264,
-              0.079819
+              0.002998,
+              0.089957
             ],
-            "mean_options_added_per_diagnostic_context": 0.567
+            "mean_options_added_per_diagnostic_context": 0.576
           },
           "2": {
             "exact_rescue_contexts": 1,
-            "exact_rescue_percent": 1.49,
+            "exact_rescue_percent": 1.69,
             "exact_rescue_wilson_95": [
-              0.00264,
-              0.079819
+              0.002998,
+              0.089957
             ],
-            "mean_options_added_per_diagnostic_context": 0.746
+            "mean_options_added_per_diagnostic_context": 0.712
           },
           "3": {
             "exact_rescue_contexts": 1,
-            "exact_rescue_percent": 1.49,
+            "exact_rescue_percent": 1.69,
             "exact_rescue_wilson_95": [
-              0.00264,
-              0.079819
+              0.002998,
+              0.089957
             ],
-            "mean_options_added_per_diagnostic_context": 0.821
+            "mean_options_added_per_diagnostic_context": 0.746
           },
           "5": {
             "exact_rescue_contexts": 1,
-            "exact_rescue_percent": 1.49,
+            "exact_rescue_percent": 1.69,
             "exact_rescue_wilson_95": [
-              0.00264,
-              0.079819
+              0.002998,
+              0.089957
             ],
-            "mean_options_added_per_diagnostic_context": 0.866
+            "mean_options_added_per_diagnostic_context": 0.78
           }
         },
         "retrieval": {
           "contexts_with_seed_truncation": 0,
-          "total_seeded_independent_witness_lines": 1085,
-          "total_seeded_witness_lines_scored": 1085
+          "total_seeded_independent_witness_lines": 963,
+          "total_seeded_witness_lines_scored": 963
         }
       },
       "ATTESTED_READING_ABSENT_TOP_LONGER": {
-        "diagnostic_contexts": 186,
-        "contexts_with_alignment_candidates": 131,
-        "alignment_candidate_coverage_percent": 70.43,
+        "diagnostic_contexts": 158,
+        "contexts_with_alignment_candidates": 113,
+        "alignment_candidate_coverage_percent": 71.52,
         "exact_rescue_anywhere_contexts": 2,
-        "exact_rescue_anywhere_percent": 1.08,
+        "exact_rescue_anywhere_percent": 1.27,
         "exact_rescue_anywhere_wilson_95": [
-          0.002954,
-          0.038352
+          0.003478,
+          0.044973
         ],
-        "no_exact_rescue_contexts": 184,
+        "no_exact_rescue_contexts": 156,
         "candidate_set_size_when_supported": {
-          "mean": 1.878,
+          "mean": 1.487,
           "median": 1,
-          "p90": 3,
-          "maximum": 25
+          "p90": 2,
+          "maximum": 5
         },
         "prefix_sets": {
           "1": {
@@ -834,118 +833,118 @@
             "exact_rescue_percent": 0.0,
             "exact_rescue_wilson_95": [
               0.0,
-              0.020235
+              0.023736
             ],
-            "mean_options_added_per_diagnostic_context": 0.704
+            "mean_options_added_per_diagnostic_context": 0.715
           },
           "2": {
             "exact_rescue_contexts": 2,
-            "exact_rescue_percent": 1.08,
+            "exact_rescue_percent": 1.27,
             "exact_rescue_wilson_95": [
-              0.002954,
-              0.038352
+              0.003478,
+              0.044973
             ],
-            "mean_options_added_per_diagnostic_context": 0.973
+            "mean_options_added_per_diagnostic_context": 0.943
           },
           "3": {
             "exact_rescue_contexts": 2,
-            "exact_rescue_percent": 1.08,
+            "exact_rescue_percent": 1.27,
             "exact_rescue_wilson_95": [
-              0.002954,
-              0.038352
+              0.003478,
+              0.044973
             ],
-            "mean_options_added_per_diagnostic_context": 1.097
+            "mean_options_added_per_diagnostic_context": 1.006
           },
           "5": {
             "exact_rescue_contexts": 2,
-            "exact_rescue_percent": 1.08,
+            "exact_rescue_percent": 1.27,
             "exact_rescue_wilson_95": [
-              0.002954,
-              0.038352
+              0.003478,
+              0.044973
             ],
-            "mean_options_added_per_diagnostic_context": 1.194
+            "mean_options_added_per_diagnostic_context": 1.063
           }
         },
         "retrieval": {
           "contexts_with_seed_truncation": 0,
-          "total_seeded_independent_witness_lines": 3557,
-          "total_seeded_witness_lines_scored": 3557
+          "total_seeded_independent_witness_lines": 2245,
+          "total_seeded_witness_lines_scored": 2245
         }
       },
       "ATTESTED_READING_ABSENT_TOP_OMISSION": {
-        "diagnostic_contexts": 153,
-        "contexts_with_alignment_candidates": 98,
-        "alignment_candidate_coverage_percent": 64.05,
-        "exact_rescue_anywhere_contexts": 3,
-        "exact_rescue_anywhere_percent": 1.96,
+        "diagnostic_contexts": 136,
+        "contexts_with_alignment_candidates": 84,
+        "alignment_candidate_coverage_percent": 61.76,
+        "exact_rescue_anywhere_contexts": 2,
+        "exact_rescue_anywhere_percent": 1.47,
         "exact_rescue_anywhere_wilson_95": [
-          0.00669,
-          0.056057
+          0.004042,
+          0.052032
         ],
-        "no_exact_rescue_contexts": 150,
+        "no_exact_rescue_contexts": 134,
         "candidate_set_size_when_supported": {
-          "mean": 1.286,
+          "mean": 1.214,
           "median": 1.0,
           "p90": 2,
-          "maximum": 7
+          "maximum": 6
         },
         "prefix_sets": {
           "1": {
             "exact_rescue_contexts": 1,
-            "exact_rescue_percent": 0.65,
+            "exact_rescue_percent": 0.74,
             "exact_rescue_wilson_95": [
-              0.001155,
-              0.03609
+              0.001299,
+              0.040473
             ],
-            "mean_options_added_per_diagnostic_context": 0.641
+            "mean_options_added_per_diagnostic_context": 0.618
           },
           "2": {
-            "exact_rescue_contexts": 3,
-            "exact_rescue_percent": 1.96,
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.47,
             "exact_rescue_wilson_95": [
-              0.00669,
-              0.056057
+              0.004042,
+              0.052032
             ],
-            "mean_options_added_per_diagnostic_context": 0.752
+            "mean_options_added_per_diagnostic_context": 0.706
           },
           "3": {
-            "exact_rescue_contexts": 3,
-            "exact_rescue_percent": 1.96,
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.47,
             "exact_rescue_wilson_95": [
-              0.00669,
-              0.056057
+              0.004042,
+              0.052032
             ],
-            "mean_options_added_per_diagnostic_context": 0.791
+            "mean_options_added_per_diagnostic_context": 0.728
           },
           "5": {
-            "exact_rescue_contexts": 3,
-            "exact_rescue_percent": 1.96,
+            "exact_rescue_contexts": 2,
+            "exact_rescue_percent": 1.47,
             "exact_rescue_wilson_95": [
-              0.00669,
-              0.056057
+              0.004042,
+              0.052032
             ],
-            "mean_options_added_per_diagnostic_context": 0.81
+            "mean_options_added_per_diagnostic_context": 0.743
           }
         },
         "retrieval": {
           "contexts_with_seed_truncation": 0,
-          "total_seeded_independent_witness_lines": 2511,
-          "total_seeded_witness_lines_scored": 2511
+          "total_seeded_independent_witness_lines": 2060,
+          "total_seeded_witness_lines_scored": 2060
         }
       }
     }
   },
   "oracle_residual_only_ceiling": {
     "warning": "Uses the hidden evaluation label to identify residuals and cannot be implemented at inference time.",
-    "selected_contexts": 5542,
-    "exact_anchor_full_set_included_contexts": 5136,
-    "alignment_rescues_at_5": 6,
-    "before_percent": 92.67,
-    "after_percent": 92.78,
-    "increase_percentage_points": 0.11
+    "selected_contexts": 4983,
+    "exact_anchor_full_set_included_contexts": 4630,
+    "alignment_rescues_at_5": 5,
+    "before_percent": 92.92,
+    "after_percent": 93.02,
+    "increase_percentage_points": 0.1
   },
   "evidence_packet_count": 10,
-  "interpretation": "Alignment recovered only 6/406 post-hoc residuals while adding candidates to many more contexts; even the residual-only oracle ceiling is +0.11 percentage points. This exploratory yield does not justify integrating or calibrating the alignment layer. Preserve exact-anchor candidate sets and abstention; next map set-valued utility across multi-sign spans, which the intended expert UI must also support.",
+  "interpretation": "Alignment recovered only 5/353 post-hoc residuals while adding candidates to many more contexts; even the residual-only oracle ceiling is +0.1 percentage points. This exploratory yield does not justify integrating or calibrating the alignment layer. Preserve exact-anchor candidate sets and abstention; next map set-valued utility across multi-sign spans, which the intended expert UI must also support.",
   "interpretation_limits": [
     "The 387-context diagnostic subset was selected post hoc using the hidden attested evaluation reading; it is not a deployable selector or unbiased end-to-end estimate.",
     "Alignment retrieval and ranking used observed context only; the hidden reading entered evaluation after ranking.",
@@ -954,7 +953,7 @@
   ],
   "input_hashes": {
     "config": "8b377b3d339419f73c34503d33797a119cc5bccce18e71c30c29d63cf9f1db79",
-    "evidence_registry": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
+    "evidence_registry": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
     "edges_parquet": "e80c03275bf1f547d4abe2b37fef3fefd672702c78f3b5f5e33515f910b071bd",
     "decomposed_corpus_parquet": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
     "splits_parquet": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",

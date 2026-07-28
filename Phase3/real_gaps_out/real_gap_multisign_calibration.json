@@ -41,6 +41,32 @@
     821
   ],
   "scope_documents": 741,
+  "language_scope": "HITTITE_ONLY",
+  "query_language": null,
+  "mixed_line_policy": "EXCLUDE_LINE",
+  "language_rule_id": "word_override_else_line_v2",
+  "language_contract_path": "configs\\language_layers_v2.json",
+  "ablation_only": false,
+  "language_dataset_path": "Phase4\\phase4_out\\multilingual_tokens_v2.parquet",
+  "language_dataset_file_sha256": "d891168291dce3ca8997426b7601d1a1c15a8d712270394b760250b48c354ee2",
+  "language_dataset_rows_loaded": 211385,
+  "language_dataset_documents_loaded": 726,
+  "line_decisions": {
+    "HITTITE_ONLY": {
+      "IN_SCOPE": 18747,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 833,
+      "MIXED_LANGUAGE_LINE": 106,
+      "OUT_OF_SCOPE_LANGUAGE": 3584
+    }
+  },
+  "gaps_excluded_by_language": {
+    "LINE_NOT_IN_LANGUAGE_DATASET": 243,
+    "OUT_OF_SCOPE_LANGUAGE": 1146,
+    "MIXED_LANGUAGE_LINE": 47
+  },
+  "query_language_counts": {
+    "Hit": 7464
+  },
   "calibrated_anchor_lengths": [
     1,
     2,
@@ -54,25 +80,25 @@
   ],
   "nominal_display_depth": 5,
   "candidate_set_calibration_estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-  "gaps_in_scope": 8900,
-  "eligible_gaps": 1317,
-  "presented_gaps": 923,
-  "abstained_gaps": 394,
+  "gaps_in_scope": 7464,
+  "eligible_gaps": 1060,
+  "presented_gaps": 798,
+  "abstained_gaps": 262,
   "mask_length_counts": {
-    "2": 657,
-    "3": 325,
-    "4": 206,
-    "5": 129
+    "2": 506,
+    "3": 273,
+    "4": 174,
+    "5": 107
   },
   "selected_anchor_length_counts": {
-    "1": 793,
-    "2": 89,
-    "3": 41,
-    "abstain": 394
+    "1": 677,
+    "2": 82,
+    "3": 39,
+    "abstain": 262
   },
-  "restored_checked": 784,
-  "restored_included_in_displayed_set": 328,
-  "restored_not_included_in_displayed_set": 456,
+  "restored_checked": 700,
+  "restored_included_in_displayed_set": 315,
+  "restored_not_included_in_displayed_set": 385,
   "restored_no_rate_available": 0,
   "included_examples": [
     {
@@ -85,12 +111,12 @@
         "aš"
       ],
       "displayed_set_size": 4,
-      "group_calibration_rate": 0.64461,
+      "group_calibration_rate": 0.644928,
       "group_wilson_95": [
-        0.633294,
-        0.655767
+        0.633442,
+        0.656248
       ],
-      "group_sample_size": 6967
+      "group_sample_size": 6762
     },
     {
       "doc_id": "Bo 9400+",
@@ -102,12 +128,12 @@
         "an"
       ],
       "displayed_set_size": 3,
-      "group_calibration_rate": 0.364384,
+      "group_calibration_rate": 0.363337,
       "group_wilson_95": [
-        0.359306,
-        0.369493
+        0.358196,
+        0.368509
       ],
-      "group_sample_size": 34288
+      "group_sample_size": 33418
     },
     {
       "doc_id": "Bo 9400+",
@@ -119,12 +145,12 @@
         "ni"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.64461,
+      "group_calibration_rate": 0.644928,
       "group_wilson_95": [
-        0.633294,
-        0.655767
+        0.633442,
+        0.656248
       ],
-      "group_sample_size": 6967
+      "group_sample_size": 6762
     },
     {
       "doc_id": "Bo 9400+",
@@ -136,12 +162,12 @@
         "an"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.364384,
+      "group_calibration_rate": 0.363337,
       "group_wilson_95": [
-        0.359306,
-        0.369493
+        0.358196,
+        0.368509
       ],
-      "group_sample_size": 34288
+      "group_sample_size": 33418
     },
     {
       "doc_id": "Bo 9400+",
@@ -155,12 +181,12 @@
         "ia"
       ],
       "displayed_set_size": 11,
-      "group_calibration_rate": 0.162883,
+      "group_calibration_rate": 0.163255,
       "group_wilson_95": [
-        0.158307,
-        0.167565
+        0.158622,
+        0.167996
       ],
-      "group_sample_size": 24447
+      "group_sample_size": 23889
     },
     {
       "doc_id": "CHDS 5.12",
@@ -172,29 +198,12 @@
         "mar"
       ],
       "displayed_set_size": 36,
-      "group_calibration_rate": 0.32143,
+      "group_calibration_rate": 0.322366,
       "group_wilson_95": [
-        0.31623,
-        0.326674
+        0.317105,
+        0.327672
       ],
-      "group_sample_size": 30719
-    },
-    {
-      "doc_id": "CHDS 5.173",
-      "fragment_id": "CHDS 5.173",
-      "mask_length": 2,
-      "adaptive_anchor_length": 1,
-      "editor_reading": [
-        "ZA",
-        "LAM"
-      ],
-      "displayed_set_size": 1,
-      "group_calibration_rate": 0.32143,
-      "group_wilson_95": [
-        0.31623,
-        0.326674
-      ],
-      "group_sample_size": 30719
+      "group_sample_size": 30059
     },
     {
       "doc_id": "IBoT 1.29",
@@ -206,12 +215,30 @@
         "KU₇"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.350925,
+      "group_calibration_rate": 0.358395,
       "group_wilson_95": [
-        0.346043,
-        0.355839
+        0.353417,
+        0.363404
       ],
-      "group_sample_size": 36475
+      "group_sample_size": 35419
+    },
+    {
+      "doc_id": "IBoT 1.29",
+      "fragment_id": "IBoT 1.29",
+      "mask_length": 3,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "LÚ",
+        "pal",
+        "wa"
+      ],
+      "displayed_set_size": 1,
+      "group_calibration_rate": 0.232161,
+      "group_wilson_95": [
+        0.227423,
+        0.236968
+      ],
+      "group_sample_size": 30061
     }
   ],
   "not_included_examples": [
@@ -227,12 +254,12 @@
         "a"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.162883,
+      "group_calibration_rate": 0.163255,
       "group_wilson_95": [
-        0.158307,
-        0.167565
+        0.158622,
+        0.167996
       ],
-      "group_sample_size": 24447,
+      "group_sample_size": 23889,
       "top_alternative": [
         "at",
         "I",
@@ -247,36 +274,16 @@
       "mask_length": 2,
       "adaptive_anchor_length": 1,
       "editor_reading": [
-        "a",
-        "le"
-      ],
-      "displayed_set_size": 1,
-      "group_calibration_rate": 0.364384,
-      "group_wilson_95": [
-        0.359306,
-        0.369493
-      ],
-      "group_sample_size": 34288,
-      "top_alternative": [
-        "re"
-      ]
-    },
-    {
-      "doc_id": "Bo 9400+",
-      "fragment_id": "Bo 9400+",
-      "mask_length": 2,
-      "adaptive_anchor_length": 1,
-      "editor_reading": [
         "UZU",
         "ZAG"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.364384,
+      "group_calibration_rate": 0.363337,
       "group_wilson_95": [
-        0.359306,
-        0.369493
+        0.358196,
+        0.368509
       ],
-      "group_sample_size": 34288,
+      "group_sample_size": 33418,
       "top_alternative": [
         "zi",
         "<NUM>"
@@ -292,12 +299,12 @@
         "an"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.364384,
+      "group_calibration_rate": 0.363337,
       "group_wilson_95": [
-        0.359306,
-        0.369493
+        0.358196,
+        0.368509
       ],
-      "group_sample_size": 34288,
+      "group_sample_size": 33418,
       "top_alternative": [
         "še",
         "e",
@@ -315,12 +322,12 @@
         "ša"
       ],
       "displayed_set_size": 1,
-      "group_calibration_rate": 0.364384,
+      "group_calibration_rate": 0.363337,
       "group_wilson_95": [
-        0.359306,
-        0.369493
+        0.358196,
+        0.368509
       ],
-      "group_sample_size": 34288,
+      "group_sample_size": 33418,
       "top_alternative": [
         "pí",
         "da",
@@ -339,12 +346,12 @@
         "an"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.145343,
+      "group_calibration_rate": 0.154136,
       "group_wilson_95": [
-        0.141119,
-        0.149672
+        0.149734,
+        0.158642
       ],
-      "group_sample_size": 26090,
+      "group_sample_size": 25244,
       "top_alternative": []
     },
     {
@@ -359,12 +366,12 @@
         "KU"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.145343,
+      "group_calibration_rate": 0.154136,
       "group_wilson_95": [
-        0.141119,
-        0.149672
+        0.149734,
+        0.158642
       ],
-      "group_sample_size": 26090,
+      "group_sample_size": 25244,
       "top_alternative": []
     },
     {
@@ -377,12 +384,32 @@
         "KAŠ"
       ],
       "displayed_set_size": 5,
-      "group_calibration_rate": 0.350925,
+      "group_calibration_rate": 0.358395,
       "group_wilson_95": [
-        0.346043,
-        0.355839
+        0.353417,
+        0.363404
       ],
-      "group_sample_size": 36475,
+      "group_sample_size": 35419,
+      "top_alternative": []
+    },
+    {
+      "doc_id": "CHDS 5.2",
+      "fragment_id": "CHDS 5.2",
+      "mask_length": 4,
+      "adaptive_anchor_length": 1,
+      "editor_reading": [
+        "LÚ",
+        "NINDA",
+        "DÙ",
+        "DÙ"
+      ],
+      "displayed_set_size": 5,
+      "group_calibration_rate": 0.154136,
+      "group_wilson_95": [
+        0.149734,
+        0.158642
+      ],
+      "group_sample_size": 25244,
       "top_alternative": []
     }
   ]

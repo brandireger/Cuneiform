@@ -28,6 +28,13 @@ jobs:
           python -m unittest discover -s tests -v
           python lib/contracts.py
 
+      - name: Check P4-D staleness stamps
+        # Guards the one thing a reader cannot verify for themselves: that a
+        # report still carrying pre-P4-D numbers still says so. Removing a
+        # stamp is only legitimate when the report has actually been rerun,
+        # which also removes its entry from TARGETS in the same change.
+        run: python scripts/p4d_stamp_stale_reports.py --check
+
       - name: Lint active Python
         run: ruff check lib scripts tests demo
 
