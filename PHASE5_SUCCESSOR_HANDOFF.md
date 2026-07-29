@@ -25,7 +25,7 @@ Read `AGENTS.md` first — it remains the design authority.
 |---|---|
 | CI staleness guard | `p4d_stamp_stale_reports.py --check` runs in CI, two-sided invariant |
 | **P4-G rerun** | all ten artifacts recomputed under P4-D; decision 5 closed |
-| **P4-E2** | expert interface for the workbench (never opened in a browser) |
+| **P4-E2** | expert interface browser-smoke-tested; native dialogs replaced |
 | **P2-E8** | cross-line recoverability census |
 | **P2-E9** | cross-line per-rank calibration; **applied in production** |
 | **P2-E10** | cross-line multi-sign calibration; **deliberately not applied** |
@@ -111,9 +111,11 @@ never read `cu`, Gate 3 closed. Additionally:
    restricted by P2-E4's 38-CTH scope. The application now uses the union of
    38 same-line and 279 cross-line CTH sets (288 distinct); see
    `reports/phase5_real_gap_scope_widening.md`.
-2. **Open the expert interface in a browser.** It has never been run. Field
-   contract, hash vector, and every Python path are verified; rendering is
-   not. Treat the first run as a smoke test.
+2. ~~**Open the expert interface in a browser.**~~ **DONE 2026-07-29.**
+   Rendering, filters, cross-language opt-in, and a browser-only quarantined
+   judgment passed after replacing unsupported native prompts with an in-page
+   dialog. No event was exported or ingested; see
+   `reports/phase5_p4e2_browser_smoke.md`.
 3. **Ratify the two P4-E2 queue exclusions** (placeholder-only sequences;
    sequences under 2 signs). They decide what a specialist is shown.
 4. **The empty-middle observation.** A rank-1 proposal can be the *empty*
@@ -126,7 +128,7 @@ never read `cu`, Gate 3 closed. Additionally:
 ## Validation at handoff
 
 ```powershell
-python -m unittest discover -s tests      # 211 pass
+python -m unittest discover -s tests      # 213 pass
 ruff check lib scripts tests demo         # clean
 python lib/contracts.py                   # 20/20
 python scripts/00_tracers.py              # 0 blocking failures

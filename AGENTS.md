@@ -562,8 +562,11 @@ never released. See `reports/phase4_p4e_unresolved_workbench.md`.
   length before document count -- clustering is Zipfian (largest same-language
   cluster: 95,530 members, sequence `x`; ranking by document count instead
   surfaces the single signs `a`, `i`, `e`). **Both exclusions await
-  ratification** -- they decide what a specialist is shown. The page has not
-  yet been opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
+  ratification** -- they decide what a specialist is shown. **Browser smoke
+  test passed 2026-07-29** after unsupported native prompts were replaced with
+  an accessible in-page dialog. The test event remained browser-local and was
+  discarded; nothing was exported or ingested. See
+  `reports/phase5_p4e2_browser_smoke.md`.
 
 - **P4-G downstream rerun DONE (2026-07-27)** (`reports/phase4_p4g_rerun.md`).
   All ten artifacts recomputed under the required word-aware `HITTITE_ONLY`

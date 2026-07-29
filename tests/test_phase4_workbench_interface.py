@@ -100,6 +100,30 @@ class TestQueueRanking(unittest.TestCase):
         self.assertEqual(export.sequence_length(proposal_with("")), 0)
 
 
+class TestBrowserDialogContract(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.html = (
+            ROOT / "demo" / "workbench_unresolved_prototype.html"
+        ).read_text(encoding="utf-8")
+
+    def test_browser_unsupported_native_dialogs_are_absent(self):
+        for native_call in ("window.prompt(", "window.alert(", "window.confirm("):
+            with self.subTest(native_call=native_call):
+                self.assertNotIn(native_call, self.html)
+
+    def test_in_page_dialog_is_the_review_input_surface(self):
+        for contract_piece in (
+                'id="review-dialog"',
+                'id="review-dialog-input" aria-labelledby="review-dialog-label"',
+                'id="review-dialog-textarea" aria-labelledby="review-dialog-label"',
+                "function uiPrompt(",
+                "function uiConfirm(",
+                "function uiAlert("):
+            with self.subTest(contract_piece=contract_piece):
+                self.assertIn(contract_piece, self.html)
+
+
 class TestBackupGuard(unittest.TestCase):
     def test_empty_log_needs_no_backup(self):
         self.assertTrue(ingest.backup_is_current([]))

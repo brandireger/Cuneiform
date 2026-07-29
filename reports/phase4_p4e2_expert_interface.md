@@ -1,8 +1,8 @@
 # Phase 4 P4-E2 — expert interface for the Unresolved Evidence Workbench
 
-**Status:** implemented 2026-07-27. The queue's two selection exclusions are
-**awaiting ratification** and the page has **not been opened in a browser** —
-both stated plainly under "What is not verified" below.
+**Status:** implemented 2026-07-27; browser smoke-tested 2026-07-29. The
+queue's two selection exclusions are still **awaiting ratification**. See
+`reports/phase5_p4e2_browser_smoke.md` for the bounded browser result.
 
 Ratification decision 7 made this the next build: the workbench data layer was
 complete and had no UI, so a Hittitologist could not use it.
@@ -22,7 +22,7 @@ D14 checkpoint is untouched, and Gate 3 remains closed.
 | Review-queue export | `scripts/phase4_workbench_review_export.py` |
 | Interface | `demo/workbench_unresolved_prototype.html` |
 | Expert-session ingest | `scripts/phase4_workbench_ingest_events.py` |
-| Tests (15) | `tests/test_phase4_workbench_interface.py` |
+| Tests (17) | `tests/test_phase4_workbench_interface.py` |
 
 The shape follows the Takšan prototype, which already works in this repo: a
 Python export writes a data file, a static HTML page reads it, and judgments
@@ -130,21 +130,22 @@ adjudication, and the adjudication gate deliberately does not exist yet.
 
 ## What is not verified
 
-**The page has not been opened in a browser.** This session had no browser
-available. What *was* checked: every field the page reads is present in the
-payload (32 paths per cluster plus 20 manifest paths, verified against the
-generated file); the client-side canonical hash matches the Python function's
-vector exactly; and every Python path — export, ingest, refusals — was run
-against the real artifacts. Rendering, layout, and interaction are unverified.
-A first run by a human should be treated as a smoke test, not a review session.
+**No specialist usability review has occurred.** The 2026-07-29 in-app-browser
+smoke test verified rendering, filtering, the separate cross-language opt-in,
+reviewer/rationale entry, local event state, and clean discard on reload. It
+found that the original native `window.prompt` path was unsupported in that
+browser; the page now uses an accessible in-page dialog for prompts,
+confirmations, and alerts. The test did not download an export file and did not
+exercise ingest. The earlier field-contract, hash-vector, export/ingest, and
+refusal-path checks remain the evidence for those paths.
 
 **No expert has used it.** The event log is still empty, and
 `Phase4/phase4_out/annotation_backups/` still does not exist. It is created on
 first backup.
 
-**Prompt-based input.** Hypotheses are collected with `window.prompt`. That is
-adequate for a prototype and poor for a working session; a real form is the
-obvious next increment.
+**Prototype dialog input.** Hypotheses are collected through one reusable
+modal dialog. This is browser-compatible and keyboard-labelled, but it is
+still a sequential prototype rather than a specialist-designed review form.
 
 ## Open decisions for Ixca
 

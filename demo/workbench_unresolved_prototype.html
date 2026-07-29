@@ -108,6 +108,22 @@
   .hyp-item .who { font-size: 11px; color: var(--tk-muted); }
   footer.stamp { padding: 1em 1.2em; font-size: 11px; color: var(--tk-faint); border-top: 1px solid var(--tk-border); }
   .empty { color: var(--tk-muted); font-style: italic; padding: 2em; }
+
+  dialog {
+    width: min(620px, calc(100vw - 2em)); max-height: calc(100vh - 2em);
+    color: var(--tk-text); background: var(--tk-panel);
+    border: 1px solid var(--tk-border); border-radius: 8px; padding: 0;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .55);
+  }
+  dialog::backdrop { background: rgba(0, 0, 0, .72); }
+  .review-dialog-form { padding: 1.1em 1.2em; }
+  .review-dialog-message {
+    white-space: pre-wrap; color: var(--tk-text-2); max-height: 45vh;
+    overflow-y: auto; margin: 0 0 1em;
+  }
+  .review-dialog-field { margin: 0 0 1em; }
+  .review-dialog-field[hidden] { display: none; }
+  .review-dialog-actions { display: flex; justify-content: flex-end; gap: .6em; }
 </style>
 </head>
 <body>
@@ -158,6 +174,24 @@
 
 <footer class="stamp" id="footer-stamp"></footer>
 
+<dialog id="review-dialog" aria-labelledby="review-dialog-title">
+  <form class="review-dialog-form" id="review-dialog-form">
+    <h2 id="review-dialog-title">Review action</h2>
+    <div class="review-dialog-message" id="review-dialog-message"></div>
+    <div class="review-dialog-field" id="review-dialog-field">
+      <label id="review-dialog-label">Response</label>
+      <input type="text" id="review-dialog-input" aria-labelledby="review-dialog-label"
+             autocomplete="off">
+      <textarea id="review-dialog-textarea" aria-labelledby="review-dialog-label"
+                rows="5" hidden></textarea>
+    </div>
+    <div class="review-dialog-actions">
+      <button type="button" id="review-dialog-cancel">Cancel</button>
+      <button type="submit" id="review-dialog-confirm" class="primary">Continue</button>
+    </div>
+  </form>
+</dialog>
+
 <script src="../Phase4/phase4_out/workbench_ui_out/workbench_review_queue.js"></script>
 <script>
 "use strict";
@@ -174,6 +208,71 @@ function canonicalStringify(value) {
   if (Array.isArray(value)) return "[" + value.map(canonicalStringify).join(",") + "]";
   const keys = Object.keys(value).sort();
   return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalStringify(value[k])).join(",") + "}";
+}
+
+function showReviewDialog({
+  title, message, mode = "prompt", defaultValue = "", multiline = false,
+  confirmLabel = "Continue",
+}) {
+  const dialog = document.getElementById("review-dialog");
+  const form = document.getElementById("review-dialog-form");
+  const field = document.getElementById("review-dialog-field");
+  const input = document.getElementById("review-dialog-input");
+  const textarea = document.getElementById("review-dialog-textarea");
+  const cancel = document.getElementById("review-dialog-cancel");
+  const confirm = document.getElementById("review-dialog-confirm");
+
+  document.getElementById("review-dialog-title").textContent = title;
+  document.getElementById("review-dialog-message").textContent = message;
+  field.hidden = mode !== "prompt";
+  input.hidden = multiline;
+  textarea.hidden = !multiline;
+  input.value = multiline ? "" : defaultValue;
+  textarea.value = multiline ? defaultValue : "";
+  cancel.hidden = mode === "alert";
+  confirm.textContent = confirmLabel;
+
+  return new Promise(resolve => {
+    let settled = false;
+    const finish = value => {
+      if (settled) return;
+      settled = true;
+      if (dialog.open) dialog.close();
+      resolve(value);
+    };
+    form.onsubmit = event => {
+      event.preventDefault();
+      if (mode === "prompt") finish(multiline ? textarea.value : input.value);
+      else if (mode === "confirm") finish(true);
+      else finish(null);
+    };
+    cancel.onclick = () => finish(mode === "confirm" ? false : null);
+    dialog.oncancel = event => {
+      event.preventDefault();
+      finish(mode === "confirm" ? false : null);
+    };
+    dialog.showModal();
+    if (mode === "prompt") (multiline ? textarea : input).focus();
+    else confirm.focus();
+  });
+}
+
+function uiPrompt(title, message, defaultValue = "", multiline = false) {
+  return showReviewDialog({
+    title, message, mode: "prompt", defaultValue, multiline,
+  });
+}
+
+function uiConfirm(title, message, confirmLabel = "Continue") {
+  return showReviewDialog({
+    title, message, mode: "confirm", confirmLabel,
+  });
+}
+
+function uiAlert(title, message) {
+  return showReviewDialog({
+    title, message, mode: "alert", confirmLabel: "OK",
+  });
 }
 
 async function canonicalSha256(value) {
@@ -464,11 +563,15 @@ function renderDetail() {
 
 // ------------------------------------------------------------ event build
 
-function reviewerPrompt() {
+async function reviewerPrompt() {
   if (!lastReviewer.reviewer_id) {
-    const who = window.prompt("Reviewer name (recorded with every judgment):", "");
+    const who = await uiPrompt(
+      "Reviewer identity required",
+      "Reviewer name (recorded with every judgment):");
     if (!who) return false;
-    const role = window.prompt("Declared role (e.g. Hittitologist):", "");
+    const role = await uiPrompt(
+      "Reviewer role required",
+      "Declared role (for example, Hittitologist):");
     if (!role) return false;
     lastReviewer.reviewer_id = who;
     lastReviewer.declared_role = role;
@@ -509,7 +612,10 @@ async function recordEvent(action, targetId, reviewedRecord, hypothesis, rationa
   };
   const problems = localValidate(event);
   if (problems.length) {
-    window.alert("This judgment was not recorded — it would violate the contract:\n\n• " + problems.join("\n• "));
+    await uiAlert(
+      "Judgment refused",
+      "This judgment was not recorded — it would violate the contract:\n\n• "
+      + problems.join("\n• "));
     return null;
   }
   sessionEvents.push(event);
@@ -532,35 +638,43 @@ function applyLocally(action, targetId, hypothesis, rationale) {
 }
 
 async function handleAction(action, occurrenceId, cluster) {
-  if (!reviewerPrompt()) return;
+  if (!(await reviewerPrompt())) return;
   const member = cluster.members.find(m => m.record.occurrence_id === occurrenceId);
   if (!member) return;
 
   let hypothesis = null;
   if (action === "PROPOSE_READING") {
-    const reading = window.prompt("Proposed reading for the unresolved run (signs, space-separated):", "");
+    const reading = await uiPrompt(
+      "Propose a reading",
+      "Proposed reading for the unresolved run (signs, space-separated):");
     if (!reading) return;
     hypothesis = { proposed_reading: reading };
   } else if (action === "PROPOSE_PHRASE") {
-    const phrase = window.prompt("Proposed phrase spanning this occurrence:", "");
+    const phrase = await uiPrompt(
+      "Propose a phrase", "Proposed phrase spanning this occurrence:");
     if (!phrase) return;
     hypothesis = { proposed_phrase: phrase };
   } else if (action === "PROPOSE_LANGUAGE") {
-    const language = window.prompt(
+    const language = await uiPrompt(
+      "Propose a language",
       "Proposed language for this occurrence (Hit, Akk, Sum, Hat, Luw, Pal, Hur):",
       member.record.language.effective || "");
     if (!language) return;
     hypothesis = { proposed_language: language };
   } else if (action === "PROPOSE_LEXICAL_IDENTITY") {
-    const lexeme = window.prompt("Proposed lexical identity (lemma or known form):", "");
+    const lexeme = await uiPrompt(
+      "Propose lexical identity",
+      "Proposed lexical identity (lemma or known form):");
     if (!lexeme) return;
     hypothesis = { proposed_lexical_identity: lexeme };
   } else if (action === "REMOVE_FROM_CLUSTER") {
     hypothesis = { cluster_id: cluster.proposal.cluster_id };
   }
 
-  const rationale = window.prompt(
-    "Rationale (optional but strongly encouraged — this is what makes the judgment reviewable):", "");
+  const rationale = await uiPrompt(
+    "Record rationale",
+    "Rationale (optional but strongly encouraged — this is what makes the judgment reviewable):",
+    "", true);
   const event = await recordEvent(action, occurrenceId, member.record, hypothesis, rationale);
   if (!event) return;
   applyLocally(action, occurrenceId, hypothesis, rationale);
@@ -569,17 +683,25 @@ async function handleAction(action, occurrenceId, cluster) {
 }
 
 async function handleSplit(cluster) {
-  if (!reviewerPrompt()) return;
+  if (!(await reviewerPrompt())) return;
   const ids = cluster.members.map(m => m.record.occurrence_id);
-  const picked = window.prompt(
-    "Occurrence numbers to draw out into a new cluster, comma-separated (1–" + ids.length + "):", "");
+  const picked = await uiPrompt(
+    "Split cluster",
+    "Occurrence numbers to draw out into a new cluster, comma-separated (1–"
+    + ids.length + "):");
   if (!picked) return;
   const chosen = picked.split(",").map(s => parseInt(s.trim(), 10))
     .filter(n => n >= 1 && n <= ids.length).map(n => ids[n - 1]);
-  if (!chosen.length) { window.alert("No valid occurrence numbers given; nothing recorded."); return; }
-  const newId = window.prompt("Identifier for the new cluster:", cluster.proposal.cluster_id + "-a");
+  if (!chosen.length) {
+    await uiAlert("Split refused", "No valid occurrence numbers given; nothing recorded.");
+    return;
+  }
+  const newId = await uiPrompt(
+    "Name the new cluster", "Identifier for the new cluster:",
+    cluster.proposal.cluster_id + "-a");
   if (!newId) return;
-  const rationale = window.prompt("Rationale for splitting:", "");
+  const rationale = await uiPrompt(
+    "Record rationale", "Rationale for splitting:", "", true);
   const hypothesis = { split_into: { [newId]: chosen } };
   const event = await recordEvent(
     "SPLIT_CLUSTER", cluster.proposal.cluster_id, cluster.proposal, hypothesis, rationale);
@@ -587,14 +709,16 @@ async function handleSplit(cluster) {
 }
 
 async function handleMerge(cluster) {
-  if (!reviewerPrompt()) return;
+  if (!(await reviewerPrompt())) return;
   const others = clusters().filter(c => c.proposal.cluster_id !== cluster.proposal.cluster_id);
   const listed = others.slice(0, 40).map((c, i) => `${i + 1}. ${c.proposal.cluster_id}  ${c.sequence}`).join("\n");
-  const picked = window.prompt(
-    "Number of the cluster to merge INTO this one:\n\n" + listed, "");
+  const picked = await uiPrompt(
+    "Merge clusters",
+    "Number of the cluster to merge INTO this one:\n\n" + listed);
   const index = parseInt(picked, 10);
   if (!(index >= 1 && index <= Math.min(40, others.length))) return;
-  const rationale = window.prompt("Rationale for merging:", "");
+  const rationale = await uiPrompt(
+    "Record rationale", "Rationale for merging:", "", true);
   const hypothesis = { merged_cluster_ids: [others[index - 1].proposal.cluster_id] };
   const event = await recordEvent(
     "MERGE_CLUSTERS", cluster.proposal.cluster_id, cluster.proposal, hypothesis, rationale);
@@ -603,9 +727,9 @@ async function handleMerge(cluster) {
 
 // ----------------------------------------------------------------- export
 
-function exportEvents() {
+async function exportEvents() {
   if (!sessionEvents.length) {
-    window.alert("No judgments recorded yet.");
+    await uiAlert("Nothing to export", "No judgments recorded yet.");
     return;
   }
   const payload = {
@@ -628,7 +752,8 @@ function exportEvents() {
   a.download = `workbench_events_${(lastReviewer.reviewer_id || "reviewer").replace(/\W+/g, "_")}_${stamp}.json`;
   a.click();
   URL.revokeObjectURL(url);
-  window.alert(
+  await uiAlert(
+    "Export complete",
     "Exported " + sessionEvents.length + " event(s).\n\n" +
     "Ingest with:\n  python scripts/phase4_workbench_ingest_events.py <file>\n\n" +
     "Then run scripts/phase4_workbench_backup.py — an append-only log that is " +
@@ -671,19 +796,22 @@ function init() {
     `in its own channel and is not mixed in.`;
 
   document.getElementById("channel-same").addEventListener("click", () => setChannel("SAME_LANGUAGE_AS_QUERY"));
-  document.getElementById("channel-cross").addEventListener("click", () => {
+  document.getElementById("channel-cross").addEventListener("click", async () => {
     if (!crossEnabled) {
-      const ok = window.confirm(
+      const ok = await uiConfirm(
+        "Enable cross-language assistance?",
         "Enable the cross-language channel?\n\n" +
         "Cross-language groupings are an explicitly enabled assistance layer. " +
-        "They stay in a separate channel and never merge into same-language evidence.");
+        "They stay in a separate channel and never merge into same-language evidence.",
+        "Enable");
       if (!ok) return;
       crossEnabled = true;
       document.getElementById("channel-cross").textContent = "Cross-language (on)";
     }
     setChannel("CROSS_LANGUAGE_PARALLEL");
   });
-  document.getElementById("export-btn").addEventListener("click", exportEvents);
+  document.getElementById("export-btn").addEventListener(
+    "click", () => { void exportEvents(); });
 
   ["filter-text", "filter-category", "filter-language", "filter-site", "filter-state", "filter-mixed"]
     .forEach(id => document.getElementById(id).addEventListener("input", renderNav));
