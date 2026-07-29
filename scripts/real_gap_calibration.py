@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Real-gaps production pipeline -- Step 3: apply existing calibration.
+"""Real-gaps production pipeline -- Step 3: apply existing calibrations.
 
 Ixca's direction: one step at a time, evaluate before continuing. This
-step attaches the ALREADY-COMPUTED, ALREADY-FROZEN calibration from
-Phase2/phase2_out/p2e4_candidate_set_audit.json (5-fold, composition-
-disjoint rank_calibration tables -- the same numbers the demo's own
-packets already display, e.g. "90.9% [90.0-91.6%], n=5214" for rank 1)
-to real gaps, instead of the synthetic evaluation contexts it was
-originally computed on. No recalibration happens here -- this is
-reuse, not re-derivation.
+step attaches ALREADY-COMPUTED, composition-disjoint calibrations to
+real gaps, instead of the synthetic evaluation contexts on which they
+were measured. Same-line gaps use P2-E4; cross-line gaps use their own
+ratified P2-E9 calibration. No recalibration happens here -- this is
+reuse, not re-derivation, and the two populations are never pooled.
 
 First increment (frozen in history, see git log) scoped to step 2's
 top-5-gap-count CTHs (628, 627, 701, 577, 647) and found only **CTH
@@ -22,11 +20,14 @@ that scope from scratch -- still no recalibration, just applying the
 same frozen rates to a properly-matched, much larger scope.
 
 Further scope, for the same reason: only same-line anchors (cross-line
-has no calibration of its own yet -- flagged, not borrowed), and only
-single-sign gaps (run length == 1), since this specific calibration file
-was computed at anchor_length=2, mask_length=1 (configs/
-p2e4_candidate_set_audit.json). Multi-sign real gaps would need the
-analogous P2-E6 fold structure, not this one -- a separate increment.
+uses its own independently ratified calibration), and only single-sign
+gaps (run length == 1). The production scope is the union of CTHs with
+applicable P2-E4 same-line folds and applicable P2-E9 cross-line folds.
+This is important: passing only the P2-E4 CTHs to `prepare_scope()` would
+silently discard valid P2-E9 coverage before cross-line eligibility was
+even checked. Multi-sign real gaps remain a separate P2-E6 application;
+P2-E10 established that cross-line multi-sign is not decision-support
+and must not be wired here.
 
 Usage:
     python scripts/real_gap_calibration.py
@@ -98,13 +99,40 @@ def load_cross_line_fold_map():
     }
 
 
+def calibration_scope_cths(cth_to_fold, cross):
+    """Return typed and unioned CTH scopes for real-gap application.
+
+    Scope is set before `prepare_scope()` loads any content. Keeping the
+    same-line and cross-line sets explicit prevents either calibration
+    population from silently restricting the other.
+    """
+    same_line = sorted(int(cth) for cth in cth_to_fold)
+    cross_line = (
+        sorted(int(cth) for cth in cross["cth_to_fold"])
+        if cross is not None else []
+    )
+    return {
+        "same_line": same_line,
+        "cross_line": cross_line,
+        "union": sorted(set(same_line) | set(cross_line)),
+    }
+
+
 def main():
     cth_to_fold, config = load_cth_fold_map()
     calibrated_anchor_length = config["anchor_length"]
     calibrated_mask_length = config["mask_length"]
+    cross = load_cross_line_fold_map()
 
-    calibration_cths = sorted(cth_to_fold.keys())
-    print(f"CTHs with applicable existing calibration ({len(calibration_cths)}): {calibration_cths}")
+    calibration_scopes = calibration_scope_cths(cth_to_fold, cross)
+    same_line_cths = calibration_scopes["same_line"]
+    cross_line_cths = calibration_scopes["cross_line"]
+    calibration_cths = calibration_scopes["union"]
+    print(
+        "CTHs with applicable calibration: "
+        f"{len(same_line_cths)} same-line, "
+        f"{len(cross_line_cths)} cross-line, "
+        f"{len(calibration_cths)} in their union")
 
     scope = rgw.prepare_scope(calibration_cths)
     with_anchor = scope["with_anchor"]
@@ -131,7 +159,6 @@ def main():
     # two populations differ by roughly 5x in gold inclusion, so they are
     # scored separately and reported separately -- never pooled into one
     # headline number.
-    cross = load_cross_line_fold_map()
     cross_eligible = []
     cross_index = None
     if cross is not None:
@@ -287,6 +314,8 @@ def main():
         cross_summary = {
             "admission_rule": cross["admission_rule"],
             "calibration_target": cross["config"]["calibration_target"],
+            "applicable_cths": cross_line_cths,
+            "applicable_cth_count": len(cross_line_cths),
             "eligible_gaps": len(cross_eligible),
             "selector_accepted": cross_accepted,
             "selector_rejected": cross_rejected,
@@ -308,7 +337,11 @@ def main():
 
     result = {
         "cross_line": cross_summary,
+        "calibration_scope_policy":
+            "UNION_OF_APPLICABLE_SAME_LINE_AND_CROSS_LINE_FOLDS",
         "calibration_scope_cths": scope["top_cth_ids"],
+        "same_line_calibration_scope_cths": same_line_cths,
+        "cross_line_calibration_scope_cths": cross_line_cths,
         "cths_with_applicable_calibration": overlap_cths,
         "scope_documents": len(scope["slice_doc_ids"]),
         **scope["language_scope"].manifest_entry(),
@@ -334,21 +367,23 @@ def main():
     report_lines = [
         "# Real-gap calibration application (step 3)",
         "",
-        "Reuses the already-computed, already-frozen fold calibration from "
-        "`Phase2/phase2_out/p2e4_candidate_set_audit.json` -- no recalibration, "
-        "the same rank-by-rank rates the demo's own packets already display.",
+        "Reuses already-computed, composition-disjoint fold calibrations -- "
+        "P2-E4 for same-line gaps and the separately ratified P2-E9 calibration "
+        "for cross-line gaps. No recalibration happens here, and their rates "
+        "and counts are never pooled.",
         "",
-        f"Scoped directly to the **{len(result['cths_with_applicable_calibration'])} CTHs** any "
-        "fold's held-out evaluation set actually covers (union of all 5 folds' `evaluation_cth` "
-        "lists) -- widened from the first increment, which only intersected step 2's unrelated "
-        "\"top gap count\" list and found just CTH 627 overlapping. This increment asks "
-        f"`prepare_scope()` for the calibration-covered CTHs directly: "
-        f"**{result['scope_documents']:,} documents** in scope, vs. step 2's original 867.",
+        f"Production scope is the union of **{len(same_line_cths)} same-line "
+        f"CTHs** covered by P2-E4 and **{len(cross_line_cths)} cross-line "
+        f"CTHs** covered by usable P2-E9 folds: **{len(calibration_cths)} "
+        f"distinct CTHs and {result['scope_documents']:,} documents**. The "
+        "previous application passed only the same-line set into "
+        "`prepare_scope()`, unintentionally discarding cross-line CTHs before "
+        "P2-E9 eligibility was checked.",
         "",
-        f"Further scoped to same-line anchors and length-{calibrated_mask_length} gaps only "
-        f"(this calibration file is anchor_length={calibrated_anchor_length}, "
-        f"mask_length={calibrated_mask_length} specifically -- other lengths and cross-line "
-        "anchors have no matching calibration and are not guessed at).",
+        f"Same-line remains restricted to anchor_length={calibrated_anchor_length}, "
+        f"mask_length={calibrated_mask_length} under P2-E4. Cross-line remains "
+        "restricted to P2-E9's own single-sign cell and ratified policy. "
+        "Neither population borrows the other's calibration.",
         "",
         f"- **{result['eligible_gaps']:,}** real gaps eligible under this scope.",
         f"- **{result['selector_accepted']:,}** pass the fold's own selector rule (a real "
@@ -403,11 +438,11 @@ def main():
         "",
         "A calibrated rank-1 rate is a property of many past comparisons at that rank, not this "
         "specific instance -- exactly the distinction Ixca asked to have made clearer in the "
-        "demo UI. This is still the full extent of what these 5 folds cover -- CTHs outside "
-        "this list have no P2-E4 calibration at all, and widening further would mean computing "
-        "new folds, not reusing these. Multi-sign real gaps need the analogous P2-E6 fold "
-        "structure; cross-line anchors have no calibration at all yet. Each is a real, "
-        "separately-scoped next step, not something to fold in silently.",
+        "demo UI. Same-line CTHs outside the P2-E4 set have no applicable same-line "
+        "calibration; cross-line CTHs outside the usable P2-E9 folds have no applicable "
+        "cross-line calibration. Multi-sign real gaps use the separate P2-E6 path. "
+        "P2-E10 measured cross-line multi-sign and found it unfit for decision-support, "
+        "so it remains deliberately unapplied.",
     ]
     if cross_summary is not None:
         held = cross_summary["held_out_quality"]

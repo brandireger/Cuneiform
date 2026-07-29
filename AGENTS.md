@@ -669,6 +669,19 @@ never released. See `reports/phase4_p4e_unresolved_workbench.md`.
   artifacts are missing or the target is unratified, cross-line stays gated
   rather than borrowing same-line rates.
 
+- **Real-gap production scope widened (2026-07-28).** The first cross-line
+  application above inherited P2-E4's 38-CTH same-line scope, even though
+  P2-E9 has usable folds for 279 CTHs. `real_gap_calibration.py` now passes the
+  UNION of the applicable same-line and cross-line CTH sets to
+  `prepare_scope()` while preserving each population's own eligibility check:
+  38 same-line CTHs + 279 cross-line CTHs = **288 distinct CTHs / 6,145
+  documents**. Same-line remains exactly **703 eligible / 41 accepted**;
+  cross-line expands from 5,062 / 61 to **46,118 eligible / 577 accepted**.
+  This is a scope correction, not recalibration: P2-E4 and P2-E9 artifacts,
+  targets, fold assignments, and held-out quality claims are unchanged.
+  Missing or unratified P2-E9 artifacts still fail closed to the same-line
+  scope. See `reports/phase5_real_gap_scope_widening.md`.
+
 - **P2-E10 cross-line MULTI-SIGN calibration DONE (2026-07-28) -- NEGATIVE
   RESULT, deliberately not applied** (`reports/phase2_p2e10_cross_line_multisign.md`).
   Set-inclusion estimand (not per-rank; an expert is shown a SET), adaptive

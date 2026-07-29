@@ -1,10 +1,10 @@
 # Real-gap calibration application (step 3)
 
-Reuses the already-computed, already-frozen fold calibration from `Phase2/phase2_out/p2e4_candidate_set_audit.json` -- no recalibration, the same rank-by-rank rates the demo's own packets already display.
+Reuses already-computed, composition-disjoint fold calibrations -- P2-E4 for same-line gaps and the separately ratified P2-E9 calibration for cross-line gaps. No recalibration happens here, and their rates and counts are never pooled.
 
-Scoped directly to the **38 CTHs** any fold's held-out evaluation set actually covers (union of all 5 folds' `evaluation_cth` lists) -- widened from the first increment, which only intersected step 2's unrelated "top gap count" list and found just CTH 627 overlapping. This increment asks `prepare_scope()` for the calibration-covered CTHs directly: **739 documents** in scope, vs. step 2's original 867.
+Production scope is the union of **38 same-line CTHs** covered by P2-E4 and **279 cross-line CTHs** covered by usable P2-E9 folds: **288 distinct CTHs and 6,145 documents**. The previous application passed only the same-line set into `prepare_scope()`, unintentionally discarding cross-line CTHs before P2-E9 eligibility was checked.
 
-Further scoped to same-line anchors and length-1 gaps only (this calibration file is anchor_length=2, mask_length=1 specifically -- other lengths and cross-line anchors have no matching calibration and are not guessed at).
+Same-line remains restricted to anchor_length=2, mask_length=1 under P2-E4. Cross-line remains restricted to P2-E9's own single-sign cell and ratified policy. Neither population borrows the other's calibration.
 
 - **703** real gaps eligible under this scope.
 - **41** pass the fold's own selector rule (a real candidate set would be presented); **662** do not (the evidence doesn't meet the bar the calibration itself was computed under -- these would abstain, not receive an unreliable rate).
@@ -40,15 +40,15 @@ Of **40** selector-accepted `restored` spans checked against the calibrated rank
 
 ## What this still does not establish
 
-A calibrated rank-1 rate is a property of many past comparisons at that rank, not this specific instance -- exactly the distinction Ixca asked to have made clearer in the demo UI. This is still the full extent of what these 5 folds cover -- CTHs outside this list have no P2-E4 calibration at all, and widening further would mean computing new folds, not reusing these. Multi-sign real gaps need the analogous P2-E6 fold structure; cross-line anchors have no calibration at all yet. Each is a real, separately-scoped next step, not something to fold in silently.
+A calibrated rank-1 rate is a property of many past comparisons at that rank, not this specific instance -- exactly the distinction Ixca asked to have made clearer in the demo UI. Same-line CTHs outside the P2-E4 set have no applicable same-line calibration; cross-line CTHs outside the usable P2-E9 folds have no applicable cross-line calibration. Multi-sign real gaps use the separate P2-E6 path. P2-E10 measured cross-line multi-sign and found it unfit for decision-support, so it remains deliberately unapplied.
 
 ## Cross-line gaps (separate population, separate calibration)
 
 Admission rule **LAYOUT_AGNOSTIC**, ratified target **0.75**. Cross-line has its own calibration (P2-E9) and its own target; this is NOT the same-line 0.90 rate applied to a wider population.
 
-- **5,062** cross-line gaps eligible (single-sign, CTH covered by a usable P2-E9 fold).
-- **61** pass the fold's own selector; 5,001 do not, and abstain rather than receive an uncertified rate.
-- Of 52 selector-accepted `restored` spans, 36 have the editor's reading somewhere among the witness-ranked alternatives -- corroboration, never proof.
+- **46,118** cross-line gaps eligible (single-sign, CTH covered by a usable P2-E9 fold).
+- **577** pass the fold's own selector; 45,541 do not, and abstain rather than receive an uncertified rate.
+- Of 458 selector-accepted `restored` spans, 308 have the editor's reading somewhere among the witness-ranked alternatives -- corroboration, never proof.
 
 **Which rate is attached.** `rank_calibration_calibration_set` -- fit on compositions disjoint from this fold's evaluation CTHs, matching how the same-line path applies P2-E4. The held-out table is the quality claim, not the per-gap number: it is measured on the very compositions these gaps come from, so attaching it here would be circular.
 

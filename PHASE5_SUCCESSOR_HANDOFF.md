@@ -2,10 +2,11 @@
 
 **Handoff date:** 2026-07-28
 **Repository state:** P4-D/E ratified; **P4-E2 expert interface, P4-G rerun,
-and the full cross-line calibration line (P2-E8 → E9 → E10) complete.**
-Cross-line single-sign is applied in production. Cross-line multi-sign is
-measured and deliberately **not** applied. Protected-test access and GPU
-training remain unauthorized; Gate 3 is untouched.
+the full cross-line calibration line (P2-E8 → E9 → E10), and production
+real-gap scope widening complete.** Cross-line single-sign is applied across
+its applicable P2-E9 composition scope. Cross-line multi-sign is measured and
+deliberately **not** applied. Protected-test access and GPU training remain
+unauthorized; Gate 3 is untouched.
 
 Read `AGENTS.md` first — it remains the design authority.
 
@@ -28,6 +29,7 @@ Read `AGENTS.md` first — it remains the design authority.
 | **P2-E8** | cross-line recoverability census |
 | **P2-E9** | cross-line per-rank calibration; **applied in production** |
 | **P2-E10** | cross-line multi-sign calibration; **deliberately not applied** |
+| real-gap scope | union of applicable P2-E4/P2-E9 CTHs; **288 CTHs / 6,145 docs** |
 
 ## The through-line, and the one number that matters
 
@@ -40,8 +42,11 @@ Where it landed:
 
 - **Single-sign cross-line works.** Held-out rank-1 agreement **77.5%** on
   8,208 spans across 279 compositions, clearing the ratified 0.75 target with
-  a **0.0-point** transfer gap. Applied: real-gap single-sign calibrated
-  coverage went **41 → 102** gaps (same-line 41 unchanged, cross-line +61).
+  a **0.0-point** transfer gap. The first application found 61 accepted
+  cross-line gaps because it inherited P2-E4's 38-CTH scope. Production now
+  uses the union of the applicable P2-E4 and P2-E9 sets: same-line remains
+  **703 eligible / 41 accepted**; cross-line is **46,118 eligible / 577
+  accepted**.
 - **Multi-sign cross-line does not.** Set inclusion **13.8%** at two signs
   falling to **6.7%** at five. The calibration is sound (0.0 transfer gap on
   235k–377k held-out spans); what it establishes is that the channel does not
@@ -101,8 +106,11 @@ never read `cu`, Gate 3 closed. Additionally:
 
 ## Open, in the order I would take them
 
-1. **Widen the real-gap scope beyond 5 CTHs.** Still the largest single
-   coverage lever, and it now pays twice: more gaps *and* more held-out mass.
+1. ~~**Widen the real-gap scope.**~~ **DONE 2026-07-28.** The top-5 figure was
+   the descriptive witness-check slice, while production was actually
+   restricted by P2-E4's 38-CTH scope. The application now uses the union of
+   38 same-line and 279 cross-line CTH sets (288 distinct); see
+   `reports/phase5_real_gap_scope_widening.md`.
 2. **Open the expert interface in a browser.** It has never been run. Field
    contract, hash vector, and every Python path are verified; rendering is
    not. Treat the first run as a smoke test.
@@ -118,7 +126,7 @@ never read `cu`, Gate 3 closed. Additionally:
 ## Validation at handoff
 
 ```powershell
-python -m unittest discover -s tests      # 208 pass
+python -m unittest discover -s tests      # 211 pass
 ruff check lib scripts tests demo         # clean
 python lib/contracts.py                   # 20/20
 python scripts/00_tracers.py              # 0 blocking failures
