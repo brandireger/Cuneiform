@@ -493,7 +493,7 @@ Provincial + multilingual material also supplies hard negatives.
   for the prepared multilingual-dataset and unresolved-evidence phase.
   Give every later phase its own top-level folder.
 
-## Current successor phase (Gate 2 passed 2026-07-25)
+## Current successor program (Gate 2 passed; Phase 5 handoff current)
 
 `PHASE4_CHARTER.md` governs the successor phase. It has two linked
 deliverables:
@@ -503,16 +503,17 @@ deliverables:
 2. an Unresolved Evidence Workbench that preserves unknown signs, words,
    language tags, and anomalies with context for expert grouping.
 
-Operational handoff, accepted hashes, and the next bounded work are recorded
-in `PHASE4_SUCCESSOR_HANDOFF.md`.
+`PHASE4_SUCCESSOR_HANDOFF.md` preserves the accepted hashes, rebuild commands,
+and Gates 0–2 history. The current operational status and next bounded work are
+recorded in `PHASE5_SUCCESSOR_HANDOFF.md`.
 
 **Phase 4 Gate 2 passed 2026-07-25.** The deterministic, split-gated
 language-span migration and 2,923,640-row multilingual token dataset are
-accepted. P4-D language-aware API and P4-E workbench implementation are
-authorized; protected-test access and GPU training remain unauthorized. The
-frozen D14 checkpoint remains a historical multilingual-unconditioned
-baseline. Expert workbench records are append-only quarantined annotations
-and never become corpus truth automatically.
+accepted. P4-D language-aware APIs, P4-E, P4-E2, and the pre-training P4-G
+rerun are complete. Protected-test access and GPU training remain
+unauthorized. The frozen D14 checkpoint remains a historical
+multilingual-unconditioned baseline. Expert workbench records are append-only
+quarantined annotations and never become corpus truth automatically.
 
 Gate 2 found that the historical frozen decomposed-token cache conflates at
 least one distinct archive-stem pair under one `doc_id`, yielding conflicting

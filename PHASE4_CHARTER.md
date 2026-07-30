@@ -1,6 +1,10 @@
 # PHASE4_CHARTER.md — governed multilingual reconstruction and unresolved evidence
 
-**Status:** GATE 2 PASSED; P4-D AND P4-E IMPLEMENTED (2026-07-26) AND RATIFIED (2026-07-27, `reports/phase4_p4de_ratification.md`). Gate 3 (training) remains unauthorized.
+**Status:** GATE 2 PASSED; P4-D AND P4-E IMPLEMENTED (2026-07-26) AND
+RATIFIED (2026-07-27, `reports/phase4_p4de_ratification.md`). P4-E2 is
+implemented and browser-smoke-tested; the pre-training P4-G rerun is complete.
+Gate 3 (training) remains unauthorized. Current operational status lives in
+`PHASE5_SUCCESSOR_HANDOFF.md`.
 
 Phase 4 is the successor to the Phase 3 expert-playground and real-gap work.
 It corrects the language model at the data boundary before any new training,
@@ -150,8 +154,10 @@ rerun, and the "Expert interface" contract lives in the workbench spec.
 verifying ingest path for expert sessions. A review queue is a *view* over
 ratified artifacts and mutates nothing. Its two selection exclusions
 (placeholder-only sequences; sequences under 2 signs) **await ratification**,
-because they decide what a specialist is shown. The page has not yet been
-opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
+because they decide what a specialist is shown. The page passed its first
+browser smoke test on 2026-07-29 after unsupported native dialogs were
+replaced; no test event was exported or ingested. See
+`reports/phase5_p4e2_browser_smoke.md`.
 
 ### P4-F — Language-conditioned pretraining
 

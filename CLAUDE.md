@@ -519,19 +519,20 @@ Provincial + multilingual material also supplies hard negatives.
   `lib/` imports are resolved relative to the script file itself. See
   `README.md` for the live/archive map.
 
-## Current successor phase (Gate 2 passed 2026-07-25)
+## Current successor program (Gate 2 passed; Phase 5 handoff current)
 
 `PHASE4_CHARTER.md` pairs a word-aware multilingual dataset and
 language-conditioned retraining plan with an Unresolved Evidence Workbench
 for unknown signs, words, language tags, and anomalies. Gate 2 accepted the
 deterministic language-span migration and 2,923,640-row multilingual token
-dataset. Language-aware API and workbench implementation may proceed;
-protected-test access and GPU training remain unauthorized. Expert workbench
-events are append-only quarantined annotations and never become corpus truth
-automatically.
+dataset. P4-D language-aware APIs, P4-E, P4-E2, and the pre-training P4-G
+rerun are complete. Protected-test access and GPU training remain
+unauthorized. Expert workbench events are append-only quarantined annotations
+and never become corpus truth automatically.
 
-See `PHASE4_SUCCESSOR_HANDOFF.md` for accepted hashes, rebuild commands, the
-cache-collision warning, and the exact P4-D/P4-E next steps.
+See `PHASE4_SUCCESSOR_HANDOFF.md` for accepted hashes, rebuild commands, and
+the cache-collision warning. Continue operational work from
+`PHASE5_SUCCESSOR_HANDOFF.md`.
 
 Gate 2 found that the historical decomposed-token cache conflates at least
 one distinct archive-stem pair under one `doc_id`. Phase 4 token construction
@@ -581,8 +582,11 @@ cached rows. The historical cache remains immutable.
   length before document count -- clustering is Zipfian (largest same-language
   cluster: 95,530 members, sequence `x`; ranking by document count instead
   surfaces the single signs `a`, `i`, `e`). **Both exclusions await
-  ratification** -- they decide what a specialist is shown. The page has not
-  yet been opened in a browser. See `reports/phase4_p4e2_expert_interface.md`.
+  ratification** -- they decide what a specialist is shown. **Browser smoke
+  test passed 2026-07-29** after unsupported native prompts were replaced with
+  an accessible in-page dialog. The test event remained browser-local and was
+  discarded; nothing was exported or ingested. See
+  `reports/phase5_p4e2_browser_smoke.md`.
 
 - **P4-G downstream rerun DONE (2026-07-27)** (`reports/phase4_p4g_rerun.md`).
   All ten artifacts recomputed under the required word-aware `HITTITE_ONLY`

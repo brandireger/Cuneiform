@@ -16,13 +16,15 @@ intervals, the evidence for and against each option, and an explicit
 users, and top-1 exact match is not its sole success criterion.
 
 **Phase 2 is complete; Phase 3 produced the expert playground and a
-partially integrated real-gap pipeline. Phase 4 Gate 2 has passed.** The
-accepted dataset handles language at document, line, and
-word granularity through a governed multilingual token dataset. It is the
-foundation for the planned Unresolved Evidence Workbench for expert grouping
-of unidentified signs, words, phrases, language tags, and encoding anomalies.
-Training-dataset export, GPU training, and test access remain gated. The next
-authorized work is language-aware API and workbench implementation.
+partially integrated real-gap pipeline; Phase 4 Gates 0–2, P4-D, P4-E, P4-E2,
+and the pre-training P4-G rerun are complete.** The governed dataset handles
+language at document, line, and word granularity. The Unresolved Evidence
+Workbench now has a browser-smoke-tested expert interface, and separately
+calibrated cross-line single-sign evidence is active over the widened real-gap
+scope. Cross-line multi-sign evidence is a completed negative result and is
+deliberately not applied. Training export, GPU training, and protected-test
+access remain gated; the current operational handoff is
+[`PHASE5_SUCCESSOR_HANDOFF.md`](PHASE5_SUCCESSOR_HANDOFF.md).
 
 A separate, non-migrating corpus-expansion audit has now compared the pinned
 TLHdig 0.2 archive with TLHdig 0.3 under a split-gated cleanroom boundary.
@@ -94,8 +96,11 @@ keeps every expert decision quarantined pending adjudication. See
   multilingual dataset correction, explicit language APIs, retraining gates,
   and the unresolved-evidence workbench.
 - [`PHASE4_SUCCESSOR_HANDOFF.md`](PHASE4_SUCCESSOR_HANDOFF.md) — Gates 0–2
-  results, accepted hashes, cache-collision warning, and exact P4-D/P4-E next
-  steps.
+  results, accepted hashes, and cache-collision warning. Its original
+  "next-work" section is historical and is superseded by the Phase 5 handoff.
+- [`PHASE5_SUCCESSOR_HANDOFF.md`](PHASE5_SUCCESSOR_HANDOFF.md) — current
+  operational status, completed cross-line calibration/application, workbench
+  browser result, standing constraints, and the remaining decision gates.
 - [`specs/LANGUAGE_LAYERS_V2.md`](specs/LANGUAGE_LAYERS_V2.md) — ratified
   document/line/word language model and dataset acceptance contract.
 - [`specs/UNRESOLVED_EVIDENCE_WORKBENCH.md`](specs/UNRESOLVED_EVIDENCE_WORKBENCH.md)
@@ -127,7 +132,7 @@ may explicitly supersede either file.
 | `Phase1_pipeline/` | Live, carried-forward outputs of the original numbered P2/P3/P4 pipeline steps (parser, baselines, tokenizer/pretraining) — `p2_out/`, `p3_out/`, `p4_out/`. Small tracked artifacts plus local, gitignored derived data required by active work. Distinct from `Archive/`'s frozen copy of the same steps. |
 | `Phase2/` | Outputs of the current lettered Phase 2 research plan (P2a–P2e evidence-policy probes, corpus-expansion audit) — `phase2_out/` (small manifests and machine-readable probe outputs) and `corpus_audit_out/` (corpus-expansion audit results and manifests; raw candidate archives stay quarantined and gitignored). |
 | `Phase3/` | Outputs of the Phase 3 real-gaps production pipeline and Takšan demo track — `real_gaps_out/` (census, witness-check, and calibration reports from `scripts/real_gap_*.py`) and `demo_out/` (exported browser-ready JS/JSON consumed by `demo/taksan_missing_text_prototype.html`). |
-| `Phase4/` | Governed output root for the word-aware multilingual dataset, language-conditioned experiments, and Unresolved Evidence Workbench. Gate 2 dataset acceptance is complete; API/workbench work is next and training remains gated. |
+| `Phase4/` | Governed output root for the word-aware multilingual dataset, future language-conditioned experiments, and Unresolved Evidence Workbench. Gates 0–2 and P4-D/E/E2 are complete; training remains gated. |
 | `reports/` | Current reports and selected Phase 1 closeout material used by Phase 2. |
 | `specs/` | Current and carried-forward specifications. |
 | `Archive/` | Frozen Phase 1 snapshot, including the complete numbered pipeline, historical results, reports, and references. Do not rewrite the frozen snapshot in place. Also hosts `Archive/superseded_docs/` — absorbed/superseded root docs (original expert-advisory request, prior handoff, session provenance ledger) kept for record-keeping only, not design authority; see `Archive/superseded_docs/README.md`. |

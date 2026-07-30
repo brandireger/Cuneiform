@@ -37,7 +37,9 @@ written to the append-only annotation log.
    from the shared `Response` label.
 
 `tests/test_phase4_workbench_interface.py` now guards against reintroducing
-unsupported native dialog calls and asserts the in-page dialog contract.
+unsupported native dialog calls, asserts the in-page dialog contract, and
+pins export as an explicit local JSON download with no direct network or
+ingest path.
 
 ## Deliberate bounds
 
@@ -54,8 +56,8 @@ unsupported native dialog calls and asserts the in-page dialog contract.
 ## Validation
 
 ```powershell
-python -m unittest tests.test_phase4_workbench_interface  # 17 pass
-python -m unittest discover -s tests                       # 213 pass
+python -m unittest tests.test_phase4_workbench_interface  # 19 pass
+python -m unittest discover -s tests                       # 215 pass
 ruff check lib scripts tests demo                          # clean
 python lib/contracts.py                                    # 20/20
 python scripts/00_tracers.py                               # 0 blocking failures

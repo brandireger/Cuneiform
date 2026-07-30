@@ -22,7 +22,7 @@ D14 checkpoint is untouched, and Gate 3 remains closed.
 | Review-queue export | `scripts/phase4_workbench_review_export.py` |
 | Interface | `demo/workbench_unresolved_prototype.html` |
 | Expert-session ingest | `scripts/phase4_workbench_ingest_events.py` |
-| Tests (17) | `tests/test_phase4_workbench_interface.py` |
+| Tests (19) | `tests/test_phase4_workbench_interface.py` |
 
 The shape follows the Takšan prototype, which already works in this repo: a
 Python export writes a data file, a static HTML page reads it, and judgments

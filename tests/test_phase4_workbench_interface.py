@@ -123,6 +123,24 @@ class TestBrowserDialogContract(unittest.TestCase):
             with self.subTest(contract_piece=contract_piece):
                 self.assertIn(contract_piece, self.html)
 
+    def test_browser_export_is_an_explicit_local_json_download(self):
+        for contract_piece in (
+                "new Blob([JSON.stringify(payload, null, 2)]",
+                '{ type: "application/json" }',
+                "a.download = `workbench_events_",
+                "a.click();",
+                "URL.revokeObjectURL(url);"):
+            with self.subTest(contract_piece=contract_piece):
+                self.assertIn(contract_piece, self.html)
+
+    def test_browser_has_no_direct_network_or_ingest_path(self):
+        for prohibited_path in (
+                "fetch(",
+                "XMLHttpRequest",
+                "phase4_workbench_ingest_events.py("):
+            with self.subTest(prohibited_path=prohibited_path):
+                self.assertNotIn(prohibited_path, self.html)
+
 
 class TestBackupGuard(unittest.TestCase):
     def test_empty_log_needs_no_backup(self):

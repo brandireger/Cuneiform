@@ -110,6 +110,12 @@ is the argument for having wired it in.
 
 ## What this does not change
 
+> **Later-status note (2026-07-30):** The bullets below record what remained
+> true at the close of P4-G on 2026-07-27. P2-E9 subsequently calibrated and
+> activated cross-line single-sign evidence, and the production scope was
+> widened; P2-E10 measured cross-line multi-sign evidence and deliberately did
+> not apply it. See `PHASE5_SUCCESSOR_HANDOFF.md`.
+
 - Cross-line anchors are still uncalibrated. Descriptive coverage only.
 - Calibration still covers 5 CTHs of 543 real compositions.
 - The tokenizer vocabulary is still the language-blind Phase 1 one; that is

@@ -1,5 +1,13 @@
 # Phase 4 successor handoff — Gates 0–2 complete, P4-D/E done, P4-E2 added
 
+> **Historical handoff, superseded for current operations.** Preserve this
+> file as the Gates 0–2/P4-D/E record, but do not use its "Next work" section
+> as the current backlog. Since it was written, P4-E2 was browser-smoke-tested,
+> P4-G was rerun, P2-E9 cross-line single-sign calibration was ratified and
+> applied over a widened production scope, and P2-E10 closed cross-line
+> multi-sign as a negative result. Continue from
+> `PHASE5_SUCCESSOR_HANDOFF.md`.
+
 **Handoff date:** 2026-07-27 (P4-E2 appended same day)
 **Repository state:** Gate 2 accepted; **P4-D language-aware APIs and P4-E
 Unresolved Evidence Workbench implemented and ratified; P4-E2 expert interface
@@ -96,7 +104,7 @@ python scripts/phase4_unresolved_clustering.py --cross-language
 | Review-queue export | `scripts/phase4_workbench_review_export.py` |
 | Interface | `demo/workbench_unresolved_prototype.html` |
 | Expert-session ingest | `scripts/phase4_workbench_ingest_events.py` |
-| Tests (15) | `tests/test_phase4_workbench_interface.py` |
+| Tests (19) | `tests/test_phase4_workbench_interface.py` |
 
 Rebuild: `python scripts/phase4_workbench_review_export.py`, then open the HTML
 file. Judgments leave the browser as a session JSON and come back through
@@ -124,9 +132,10 @@ Two things about it that are load-bearing:
 Ingest recomputes each event's `reviewed_record_sha256` from the record on
 disk and refuses on mismatch, refuses to append when the log's current head
 appears in no backup-ledger entry, and re-chains the session onto the real
-head. **The page has not been opened in a browser** — no browser was available
-in the implementing session. Field-contract, hash-vector, and every Python
-path were verified; rendering and interaction were not.
+head. **Later status (2026-07-29):** the page passed an in-app-browser smoke
+test after unsupported native prompts were replaced with an accessible
+in-page dialog. The test event remained browser-local and was discarded; no
+event was exported or ingested. See `reports/phase5_p4e2_browser_smoke.md`.
 
 ## Standing constraints you must not violate
 

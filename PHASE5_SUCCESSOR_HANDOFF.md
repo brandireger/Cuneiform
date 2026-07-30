@@ -1,6 +1,8 @@
 # Phase 5 successor handoff — cross-line calibration built, applied, and bounded
 
 **Handoff date:** 2026-07-28
+**Refreshed:** 2026-07-30 (P4-E2 browser fix/report and current-status
+documentation reconciliation)
 **Repository state:** P4-D/E ratified; **P4-E2 expert interface, P4-G rerun,
 the full cross-line calibration line (P2-E8 → E9 → E10), and production
 real-gap scope widening complete.** Cross-line single-sign is applied across
@@ -18,6 +20,13 @@ Read `AGENTS.md` first — it remains the design authority.
 - `reports/phase4_p4g_rerun.md` — why every prior coverage number moved
 - `reports/phase2_p2e10_cross_line_multisign.md` — read the **conclusion**
 - `reports/phase4_p4e2_expert_interface.md`
+- `reports/phase5_p4e2_browser_smoke.md` — what the browser did and did not
+  verify
+
+Older `PHASE4_SUCCESSOR_HANDOFF.md` "Next work" text is a historical record,
+not the current queue. `README.md`, `PHASE4_CHARTER.md`, `Phase4/README.md`,
+and the corresponding Claude authority text were reconciled on 2026-07-30 so
+they point here rather than reviving already-completed work.
 
 ## What this session did
 
@@ -117,18 +126,40 @@ never read `cu`, Gate 3 closed. Additionally:
    dialog. No event was exported or ingested; see
    `reports/phase5_p4e2_browser_smoke.md`.
 3. **Ratify the two P4-E2 queue exclusions** (placeholder-only sequences;
-   sequences under 2 signs). They decide what a specialist is shown.
+   sequences under 2 signs). They decide what a specialist is shown and must
+   be settled before real expert labor.
 4. **The empty-middle observation.** A rank-1 proposal can be the *empty*
    middle — witnesses attesting both anchors adjacent with nothing between.
    For a one-sign gap that is disagreement with the query's structure, not a
    reading. It arises identically in the same-line path; filtering it is a
    scoring change needing its own justification.
-5. **Gate 3** still requires a full proposal.
+5. **First real specialist session.** It must run
+   `scripts/phase4_workbench_backup.py` before and after, exercise an actual
+   browser JSON download and the verifying ingest path, and remain
+   quarantined. The 2026-07-29 test event never left browser memory. Queue
+   size, the separate queue needed for roughly 13,900 ungrouped occurrences,
+   and shared-versus-per-reviewer logs are real follow-up decisions but do not
+   authorize automatic truth promotion.
+6. **Gate 3 proposal.** Training is still unauthorized. A proposal must name
+   the hypothesis, falsifier, config, sampling policy, time/GPU budget,
+   conditioned-versus-unconditioned tracer, and new paths that cannot
+   overwrite frozen D14. Only after ratification may P4-F training and its
+   required comparisons begin.
+7. **Later product/evaluation gates.** The real-gap pipeline and Takšan
+   playground are not yet one production expert mode. Protected-test/P6 runs
+   remain one-shot and separately unauthorized. P7 candidate export, expert
+   verification, and paper drafting come only after their standing human
+   gates. The full model-ladder commitment must either be completed or
+   explicitly amended before final publication claims.
+
+Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
+completed negative result, and leaving it unapplied is the ratified
+evidence-bounded behavior.
 
 ## Validation at handoff
 
 ```powershell
-python -m unittest discover -s tests      # 213 pass
+python -m unittest discover -s tests      # 215 pass
 ruff check lib scripts tests demo         # clean
 python lib/contracts.py                   # 20/20
 python scripts/00_tracers.py              # 0 blocking failures
