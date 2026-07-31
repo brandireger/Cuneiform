@@ -4,9 +4,13 @@
 > file as the Gates 0–2/P4-D/E record, but do not use its "Next work" section
 > as the current backlog. Since it was written, P4-E2 was browser-smoke-tested,
 > P4-G was rerun, P2-E9 cross-line single-sign calibration was ratified and
-> applied over a widened production scope, and P2-E10 closed cross-line
-> multi-sign as a negative result. Continue from
-> `PHASE5_SUCCESSOR_HANDOFF.md`.
+> applied over a widened production scope, P2-E10 closed cross-line
+> multi-sign as a negative result, the empty middle was measured and resolved
+> at the display layer, both expert prototypes were browser-verified, and the
+> two queue exclusions below were **decided** (contentless ratified, minimum
+> length deferred). **Every "awaiting ratification" claim in this file is
+> therefore stale**; check `PHASE5_SUCCESSOR_HANDOFF.md` for current status
+> before treating anything here as open.
 
 **Handoff date:** 2026-07-27 (P4-E2 appended same day)
 **Repository state:** Gate 2 accepted; **P4-D language-aware APIs and P4-E

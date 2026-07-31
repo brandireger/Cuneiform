@@ -1,8 +1,13 @@
 # Phase 4 P4-E2 — expert interface for the Unresolved Evidence Workbench
 
-**Status:** implemented 2026-07-27; browser smoke-tested 2026-07-29. The
-queue's two selection exclusions are still **awaiting ratification**. See
-`reports/phase5_p4e2_browser_smoke.md` for the bounded browser result.
+**Status:** implemented 2026-07-27; browser smoke-tested 2026-07-29, then fully
+browser-verified 2026-07-31 (`reports/phase5_browser_verification.md`, which
+supersedes `reports/phase5_p4e2_browser_smoke.md`). The queue's two selection
+exclusions were **decided separately on 2026-07-31** — contentless
+**RATIFIED**, minimum length **UNRATIFIED and DEFERRED** — so the policy here
+is superseded by `contentful_sequence_length_v2`; see
+`reports/phase5_p4e2_queue_policy_ratification.md`. This report is otherwise
+current as the P4-E2 build record.
 
 Ratification decision 7 made this the next build: the workbench data layer was
 complete and had no UI, so a Hittitologist could not use it.
