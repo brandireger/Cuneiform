@@ -46,7 +46,7 @@ At most **60** clusters per channel are exported, to bound the browser payload. 
 
 - `Phase4/phase4_out/workbench_ui_out/workbench_review_queue.js` — 1.96 MB
 - content hash `3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee` (stable across rebuilds)
-- file hash `6fff90bd4f1a1e68b0cbeeca70742cae7aaa994a29b9a341b6ab68e0f06bcde0` (moves with the clock; the records carry their own provenance)
+- file hash `5f0225f1b96a44f2eb275eb083c62638108b048582112cf47cfd86d5a1183224` (moves with the clock; the records carry their own provenance)
 - Whole canonical records travel with the queue, so the browser hashes the same bytes that are on disk; a display object would bind an expert's judgment to something unverifiable.
 
 ## Source artifacts (unmodified)

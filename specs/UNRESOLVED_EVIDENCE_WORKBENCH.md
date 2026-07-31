@@ -162,10 +162,20 @@ A **review queue** sits between the ratified proposals and the interface,
 because clustering is Zipfian: the largest same-language proposal has 95,530
 members whose entire shared sequence is `x`, and ranking by document count
 instead surfaces the single signs `a`, `i`, `e`. Queue policy
-`contentful_sequence_length_v1` excludes clusters whose sequence is only
-placeholder characters, excludes sequences shorter than 2 signs, ranks by
-sequence length then document count, and bounds what is exported. **Both
-exclusions await ratification**: they decide what a specialist is shown.
+`contentful_sequence_length_v2` excludes clusters whose sequence is only
+editorial-apparatus characters, excludes sequences shorter than 2 signs, ranks
+by sequence length then document count, and bounds what is exported.
+
+The two exclusions were decided separately on 2026-07-31
+(`reports/phase5_p4e2_queue_policy_ratification.md`); the ratification record
+is `configs/p4e2_queue_policy.json` and the export fails closed without it.
+The contentless exclusion is **RATIFIED** with its character set widened and
+pinned by codepoint; the minimum-length rule is **UNRATIFIED and DEFERRED** to
+the second queue, where it has consequences. Consumers must present the two
+differently and must not extend one ratification to the other. The remaining
+queue parameters — `max_clusters_per_channel`, `max_members_displayed_per_cluster`,
+the ranking, and `context_lines_per_side` — are still unratified, and they
+decide what a specialist is shown.
 
 A queue is a *view*. It never mutates an occurrence, a proposal, or an
 accepted hash, and the interface must state on screen that it shows a subset,

@@ -1,7 +1,8 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
 **Handoff date:** 2026-07-28
-**Refreshed:** 2026-07-31 (both expert prototypes browser-verified)
+**Refreshed:** 2026-07-31 (both expert prototypes browser-verified; P4-E2
+queue policy ratified and versioned to `v2`)
 **Prior refresh:** 2026-07-30 (workbench readability + single-language
 sessions; empty-middle measured and resolved by display treatment)
 **Repository state:** P4-D/E ratified; **P4-E2 expert interface, P4-G rerun,
@@ -13,6 +14,11 @@ Protected-test access and GPU training remain unauthorized; Gate 3 is
 untouched.
 
 Read `AGENTS.md` first — it remains the design authority.
+
+**Where this work lives.** Branch `agent/phase5-real-gap-scope`, nine commits
+ahead of `master`, open as **PR #6** (not draft, CI green). Everything
+described below is committed and pushed; the working tree is clean. If the PR
+has since merged, work from `master` instead.
 
 ## Start here
 
@@ -296,7 +302,10 @@ never read `cu`, Gate 3 closed. Additionally:
    playground are not yet one production expert mode — this is where a cover
    page, a search front door, and a language mode selector carrying
    per-language evidence state belong; they span both prototypes and should
-   follow item 2, not precede it. Protected-test/P6 runs remain one-shot and
+   follow the first specialist session (item 6), not precede it — the point of
+   that session is to learn what the front door needs to do. Ixca raised all
+   three on 2026-07-30 and they are deliberately parked, not forgotten.
+   Protected-test/P6 runs remain one-shot and
    separately unauthorized. P7 candidate export, expert verification, and
    paper drafting come only after their standing human gates. The full
    model-ladder commitment must either be completed or explicitly amended
@@ -319,13 +328,28 @@ than a producer-side invariant, that is a version bump needing ratification.
 ## Validation at handoff
 
 ```powershell
-python -m unittest discover -s tests      # 274 pass
+python -m unittest discover -s tests      # 289 pass
 ruff check lib scripts tests demo         # clean
 python lib/contracts.py                   # 20/20
 python scripts/00_tracers.py              # 0 blocking failures
 python scripts/p4d_stamp_stale_reports.py --check   # exit 0
 git diff --check                          # clean
 ```
+
+To rebuild the review queue under the ratified `v2` policy:
+
+```powershell
+python scripts/phase4_workbench_review_export.py
+# optional single-language session, e.g.:
+python scripts/phase4_workbench_review_export.py --language Akk
+```
+
+The visible queue's `channels_logical_sha256` must stay `3e4e66ea…`. If it
+moves without a deliberate policy change, something altered what a specialist
+sees. `git_commit` and `payload_sha256` **do** move on every rebuild by design
+— they record provenance, not content — so a rebuild dirties those three
+tracked artifacts without meaning anything changed. Check the logical hash, not
+`git status`.
 
 The tracer suite passing after this much change is the reassurance worth
 having: the plumbing that caught E2 is still live, and every rerun script

@@ -6,7 +6,7 @@
   "corpus_version": "TLHdig_0.2.0-beta",
   "evidence_policy": "transcription_assisted",
   "seed": 20260727,
-  "git_commit": "e1b03e87c1b09dabb0d778b74b0179d3d624f2be",
+  "git_commit": "850737e62a4f80e29a144487ae3ed4340815853b",
   "source_hashes": {
     "occurrences_logical_sha256": "fd387b97a9aeb1cb9b7e9a89f3b20f8b015ef50af524695cec6567b64b191f47",
     "contract_version": "1.1.0",
@@ -138,5 +138,5 @@
   "default_channel": "SAME_LANGUAGE_AS_QUERY",
   "cross_language_requires_explicit_enable": true,
   "channels_logical_sha256": "3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee",
-  "payload_sha256": "6fff90bd4f1a1e68b0cbeeca70742cae7aaa994a29b9a341b6ab68e0f06bcde0"
+  "payload_sha256": "5f0225f1b96a44f2eb275eb083c62638108b048582112cf47cfd86d5a1183224"
 }

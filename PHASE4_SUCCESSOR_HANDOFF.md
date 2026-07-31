@@ -120,6 +120,13 @@ sequences under 2 signs, then ranks by sequence length before document count.
 **Both exclusions await ratification** — they decide what a specialist is
 shown, and `--min-sequence-length 1` reverses the second one today.
 
+> **SUPERSEDED 2026-07-31.** The policy is now
+> `contentful_sequence_length_v2` and the two exclusions were decided
+> separately: contentless **RATIFIED** (character set widened), minimum length
+> **UNRATIFIED, DEFERRED**. See `reports/phase5_p4e2_queue_policy_ratification.md`
+> and `configs/p4e2_queue_policy.json`. The paragraph above is retained as the
+> Phase 4 record.
+
 Two things about it that are load-bearing:
 
 - **A queue is a view.** It never mutates an occurrence, a proposal, or an

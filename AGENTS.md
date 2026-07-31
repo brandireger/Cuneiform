@@ -558,12 +558,12 @@ never released. See `reports/phase4_p4e_unresolved_workbench.md`.
   `reviewed_record_sha256` against the record on disk, refuses on mismatch,
   refuses when the log's head is in no backup ledger entry, and re-chains onto
   the real head. A queue is a VIEW: it never mutates an occurrence, a proposal,
-  or an accepted hash. Queue policy `contentful_sequence_length_v1` excludes
+  or an accepted hash. Queue policy `contentful_sequence_length_v2` excludes
   placeholder-only sequences and sequences under 2 signs and ranks by sequence
   length before document count -- clustering is Zipfian (largest same-language
   cluster: 95,530 members, sequence `x`; ranking by document count instead
-  surfaces the single signs `a`, `i`, `e`). **Both exclusions await
-  ratification** -- they decide what a specialist is shown. **Browser smoke
+  surfaces the single signs `a`, `i`, `e`). **The two exclusions were decided
+  separately on 2026-07-31** -- see the ratification bullet below. **Browser smoke
   test passed 2026-07-29** after unsupported native prompts were replaced with
   an accessible in-page dialog. The test event remained browser-local and was
   discarded; nothing was exported or ingested. See
@@ -697,6 +697,66 @@ never released. See `reports/phase4_p4e_unresolved_workbench.md`.
   set-inclusion rate is honest but not decision-support. This bounds where
   cross-line evidence helps -- single-sign yes (P2-E9, applied), multi-sign no.
 
+- **Empty-middle display treatment RATIFIED (2026-07-30)**
+  (`reports/phase5_empty_middle_census.md`,
+  `reports/phase5_empty_middle_display_treatment.md`). Both anchor-index
+  builders iterate `range(MAX_WITNESS_MIDDLE + 1)`, so a middle of length ZERO
+  -- the two anchors standing adjacent in a witness -- is a first-class
+  proposal and can rank first on real support. For a single-sign gap it is not
+  a reading: observed gold lengths are `{1: 703}`, so it can be ranked but
+  never correct. Measured before acting: **109 of 577 accepted cross-line gaps
+  (18.9%)** show it at rank 1, against 1 of 41 same-line, and in **79 of those
+  109 it is the ONLY alternative** -- filtering surfaces an abstention, not a
+  better reading (zero rank-1 changes, accepts 577 -> 517). Filtering is also
+  not free: the empty middle was in the index when P2-E4 and P2-E9 were FIT,
+  so any filter must ship with a refit or it decouples the rate from the thing
+  it rates. **Adopted: the option keeps its rank and witness support but is
+  rendered as typed contradictory evidence, not a candidate reading, and its
+  rank-level group rate is WITHHELD** -- that rate's estimand is agreement with
+  the true attested middle, which this option cannot be. Four branches by query
+  kind (`lib/expert_decision_contract.py`), because they are four different
+  situations: illegible trace (57), **editorial restoration (41) -- the system
+  catching a scholarly bracket the witness tradition contradicts, cleanroom
+  rules 3 and 6 in operation**, indeterminate lacuna (11), hidden attested sign
+  (evaluation only). Schema validation is two-sided: an option proposing no
+  signs MUST carry a display block, and a display block on an option that
+  proposes signs is rejected.
+
+- **P4-E2 queue policy RATIFIED, in part (2026-07-31)**
+  (`reports/phase5_p4e2_queue_policy_ratification.md`,
+  `configs/p4e2_queue_policy.json`). The two exclusions had been bundled since
+  P4-E2; measured separately they are not comparable, so they got different
+  answers. **Contentless-sequence exclusion: RATIFIED**, character set widened
+  on the line *the editor's apparatus is contentless; anything that could have
+  been on the tablet is not*. It is load-bearing -- with the rule off, 21 of
+  the 60 visible same-language slots become runs of `x` and `_`, and since
+  ranking is length-DESCENDING the top item would be twelve underscores.
+  **Digits are deliberately kept**: `10` alone occurs in 81 documents and
+  `d 10` in 70 -- the Storm God with a damaged determinative; `30` is the Moon
+  God. Excluding digits would silently delete divine names from expert review.
+  Safety invariant: no sequence carrying a sign value can be caught, since the
+  only letter in the set is the illegible placeholder `x`. The set is pinned
+  **by codepoint** in tests after a homoglyph near-miss (corpus uses
+  U+2329/U+232A; the visually identical CJK U+3008/U+3009 occur zero times).
+  **Minimum sequence length 2: UNRATIFIED, DEFERRED** to the second queue --
+  it is a no-op (rebuilding with 1 leaves the queue content hash
+  byte-identical), and its rare tail is not noise (468 of 592 rare
+  single-sign clusters are plain sign readings, largely Sumerograms).
+  `phase4_workbench_review_export.load_queue_policy()` fails closed without the
+  record; per-rule status travels into the manifest as `selection_rule_status`
+  and onto the screen. Policy versioned `contentful_sequence_length_v2`,
+  because a changed selection rule changes the queue an expert worked from.
+  `max_clusters_per_channel`, `max_members_displayed_per_cluster`, the ranking,
+  and `context_lines_per_side` remain UNRATIFIED.
+
+- **Both expert prototypes browser-verified (2026-07-31)**
+  (`reports/phase5_browser_verification.md`) -- first ever recorded browser
+  check for `demo/taksan_missing_text_prototype.html`. A human visual check
+  against a supplied checklist, not an automated capture; no screenshots or DOM
+  dumps were retained. Still open and named there: no export was downloaded and
+  no ingest exercised, and **no automated regression capture exists** -- the
+  string-level tests pin that required wording and hooks are present but cannot
+  observe a CSS selector matching nothing.
 
 ## Phase sequence
 

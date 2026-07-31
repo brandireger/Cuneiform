@@ -53,6 +53,14 @@ others.
 
 ## Queue policy `contentful_sequence_length_v1`
 
+> **SUPERSEDED 2026-07-31 by `contentful_sequence_length_v2`.** The two
+> exclusions below were decided separately: contentless **RATIFIED** with a
+> widened character set, minimum length **UNRATIFIED and DEFERRED**. The counts
+> in this section are the v1 counts and are retained as the record of what was
+> presented for ratification. Current status:
+> `reports/phase5_p4e2_queue_policy_ratification.md`,
+> `configs/p4e2_queue_policy.json`.
+
 | channel | proposals | contentless | below min length | eligible | queued |
 |---|---:|---:|---:|---:|---:|
 | `SAME_LANGUAGE_AS_QUERY` | 4,566 | 125 | 1,544 | 2,897 | 60 |
@@ -68,7 +76,9 @@ first. Removes 125 same-language clusters covering 131,963 occurrences.
 **Minimum sequence length 2.** Removes 1,544 same-language clusters covering
 75,018 occurrences — the single-sign floor described above.
 
-**Both are display policies awaiting Ixca's ratification**, not findings.
+**Both were display policies awaiting Ixca's ratification** at the time of
+writing, not findings — see the superseding note above for how each was
+decided.
 Nothing excluded is deleted, altered, or judged uninteresting; illegible runs
 and single signs remain in the extraction at their ratified hashes, and a
 future queue keyed on *surrounding context* rather than shared surface form
