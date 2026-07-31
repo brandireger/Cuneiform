@@ -112,6 +112,13 @@
   .evidence { border-left: 2px solid var(--tk-accent-2); padding-left: .8em; margin: .6em 0; font-size: 13px; }
   .evidence.contra { border-left-color: var(--tk-danger); }
   .not-a-score { font-size: 11px; color: var(--tk-warn); }
+  .rule-status {
+    display: inline-block; font-size: 10px; text-transform: uppercase;
+    letter-spacing: .06em; padding: .05em .45em; border-radius: 3px;
+    border: 1px solid currentColor; white-space: nowrap;
+  }
+  .rule-status.ratified { color: var(--tk-accent); }
+  .rule-status.deferred { color: var(--tk-warn); }
 
   .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .5em; }
 
@@ -469,6 +476,23 @@ function escapeHtml(value) {
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+// A ratified exclusion and a deferred one must not read as equally settled.
+// The status comes from configs/p4e2_queue_policy.json via the manifest, so
+// this page cannot claim a rule was ratified when the record says otherwise.
+function ruleStatusLabel(rule) {
+  const status = (MANIFEST.selection_rule_status || {})[rule];
+  if (status === "RATIFIED") {
+    return `<span class="rule-status ratified">ratified</span>`;
+  }
+  if (status === "UNRATIFIED_DEFERRED") {
+    return `<span class="rule-status deferred">awaiting ratification — deferred</span>`;
+  }
+  if (status === "UNRATIFIED") {
+    return `<span class="rule-status deferred">awaiting ratification</span>`;
+  }
+  return `<span class="rule-status deferred">status not recorded</span>`;
+}
+
 // Standing display rule 5 requires the screen to state that the queue is a
 // subset, with these counts. The statement stays; only the itemised
 // accounting moves behind a disclosure, so it stops competing with the
@@ -499,17 +523,19 @@ function renderSubsetBanner() {
     `<ul>` +
     `<li><strong>${counts.excluded_contentless_sequence.toLocaleString()}</strong> contentless ` +
     `(the shared sequence is only placeholders), covering ` +
-    `${counts.excluded_contentless_occurrences.toLocaleString()} occurrences.</li>` +
+    `${counts.excluded_contentless_occurrences.toLocaleString()} occurrences. ` +
+    ruleStatusLabel("contentless_sequence_exclusion") + `</li>` +
     `<li><strong>${counts.excluded_below_min_sequence_length.toLocaleString()}</strong> shorter than ` +
     `${p.min_sequence_length} signs, covering ` +
-    `${counts.excluded_below_min_occurrences.toLocaleString()} occurrences.</li>` +
+    `${counts.excluded_below_min_occurrences.toLocaleString()} occurrences. ` +
+    ruleStatusLabel("minimum_sequence_length") + `</li>` +
     offLanguage +
     `<li><strong>${counts.not_queued_payload_bound.toLocaleString()}</strong> eligible clusters ` +
     `unqueued for payload size.</li>` +
     `</ul>` +
     `<strong>Unqueued is not rejected.</strong> Nothing excluded here is deleted, altered, or judged ` +
-    `uninteresting; it remains in the extraction at its accepted hash. The first two exclusions are ` +
-    `display policies still awaiting ratification.` +
+    `uninteresting; it remains in the extraction at its accepted hash. Both remain display policies ` +
+    `rather than findings, and they do not have the same standing — see the tags above.` +
     `</div></details>`;
 }
 

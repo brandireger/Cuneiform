@@ -1,6 +1,6 @@
 # Phase 4 — workbench review queue
 
-**Policy:** `contentful_sequence_length_v1` · contract `unresolved_evidence_contract` v1.1.0 · every record `NOT_CORPUS_TRUTH`.
+**Policy:** `contentful_sequence_length_v2` · contract `unresolved_evidence_contract` v1.1.0 · every record `NOT_CORPUS_TRUTH`.
 
 A queue is a **view** over ratified artifacts. Nothing here modifies an occurrence, a cluster proposal, or an accepted hash, and exclusion from the queue is not a judgment that a cluster is uninteresting.
 
@@ -8,8 +8,8 @@ A queue is a **view** over ratified artifacts. Nothing here modifies an occurren
 
 | channel | proposals | contentless | below min length | eligible | queued |
 |---|---:|---:|---:|---:|---:|
-| `SAME_LANGUAGE_AS_QUERY` | 4,566 | 125 | 1,544 | 2,897 | 60 |
-| `CROSS_LANGUAGE_PARALLEL` | 1,278 | 38 | 542 | 698 | 60 |
+| `SAME_LANGUAGE_AS_QUERY` | 4,566 | 148 | 1,523 | 2,895 | 60 |
+| `CROSS_LANGUAGE_PARALLEL` | 1,278 | 42 | 538 | 698 | 60 |
 
 ## Language selection
 
@@ -19,18 +19,22 @@ Contentful clusters available per language, before any selection — the ceiling
 
 | channel | `<UNRESOLVED>` | `Akk` | `Hat` | `Hit` | `Hur` | `Luw` | `Pal` | `Sum` |
 |---|---|---|---|---|---|---|---|---|
-| `SAME_LANGUAGE_AS_QUERY` | 2 | 65 | 58 | 2,621 | 129 | 15 | 1 | 6 |
+| `SAME_LANGUAGE_AS_QUERY` | 2 | 65 | 58 | 2,619 | 129 | 15 | 1 | 6 |
 | `CROSS_LANGUAGE_PARALLEL` | 5 | 209 | 206 | 665 | 372 | 81 | 26 | 13 |
 
 **A single-language session is a review surface, not a prediction surface.** No per-language calibration exists. Nothing in this project licenses transferring a rate fit on one language to another, and the sparser languages here (`Pal`, `Sum`, `Luw`) do not have the composition mass to support a leakage-safe calibration at all.
 
-### Two exclusions, both awaiting ratification
+### Two exclusions, with different standing
 
-**Contentless sequences.** A cluster whose shared sequence is nothing but placeholder characters (` ()._x` — the illegible `x`, the indeterminate filler `_`, editorial parentheses) groups occurrences by the absence of a reading. That gives an expert nothing to compare, and it is what produces the 95,530-member proposal that would otherwise open the interface. Same-language channel: 125 cluster(s) covering 131,963 occurrence(s).
+**Contentless sequences — RATIFIED 2026-07-31.** A cluster whose shared sequence is nothing but placeholder characters (` !().=?_x}̣…〈〉`) groups occurrences by the absence of a reading. That gives an expert nothing to compare. Measured: with the rule off, **21 of the 60 visible same-language clusters and 16 of 60 cross-language** become runs of `x` and `_`, displacing that many real clusters out of view — and because ranking is length-descending, the top item would be twelve underscores. Same-language channel: 148 cluster(s) covering 132,129 occurrence(s).
 
-**Sequences shorter than 2 signs.** Ranking an earlier draft of this queue by document count alone put the single signs `a` (3,542 documents), `i`, and `e` at the top. A damaged common sign appears everywhere; shared-sequence evidence gets its force from specificity, not from recurrence alone. This is the second Zipfian floor, one level up from `x`. Same-language channel: 1,544 cluster(s) covering 75,018 occurrence(s).
+The character set was **widened on ratification**, on the line that *the editor's apparatus is contentless but anything that could have been on the tablet is not*. Derived empirically: every distinct sequence containing no alphabetic character was enumerated and classified. Digits were deliberately **kept** — `10` occurs alone in 81 documents and `d 10` in 70, which is the Storm God with a damaged determinative. See `configs/p4e2_queue_policy.json`.
 
-Both are **display policies**, not findings. Nothing excluded here is judged uninteresting, deleted, or altered; illegible runs and single signs remain in the extraction, and a future queue keyed on surrounding context rather than shared surface form would reach them. The pair needs Ixca's ratification before the queue is used for real expert labor, because they decide what a specialist is shown.
+**Sequences shorter than 2 signs — UNRATIFIED, DEFERRED 2026-07-31.** Ranking an earlier draft by document count alone put the single signs `a` (3,542 documents), `i`, and `e` at the top, so the rule has a real target. But it is currently a **no-op**: rebuilding with `--min-sequence-length 1` grows the eligible pool from 2,897 to 4,441 and leaves the queue content hash byte-identical, because single-sign clusters can never reach a 60-cluster window under length-descending ranking. Same-language channel: 1,523 cluster(s) covering 74,864 occurrence(s).
+
+Its rare tail is **not** noise: 468 of the 592 same-language single-sign clusters with ≤2 documents are plain sign readings, largely Sumerograms (`numun`, `kalam`, `géštug`, `ibila`, `gišgigir`). Whether those should be reviewed is deferred to the second queue, ranked by rarity rather than length, where the decision would actually have consequences.
+
+Both remain **display policies**, not findings. Nothing excluded here is judged uninteresting, deleted, or altered; illegible runs and single signs remain in the extraction at their accepted hashes, and a future queue keyed on surrounding context rather than shared surface form would reach them.
 
 ### Sampling within a cluster
 
@@ -42,7 +46,7 @@ At most **60** clusters per channel are exported, to bound the browser payload. 
 
 - `Phase4/phase4_out/workbench_ui_out/workbench_review_queue.js` — 1.96 MB
 - content hash `3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee` (stable across rebuilds)
-- file hash `5efb0f270e137cfaaccfc8b6c90b0fbe7a9cb5cd5e07ca4a12ddbfee558953c5` (moves with the clock; the records carry their own provenance)
+- file hash `6fff90bd4f1a1e68b0cbeeca70742cae7aaa994a29b9a341b6ab68e0f06bcde0` (moves with the clock; the records carry their own provenance)
 - Whole canonical records travel with the queue, so the browser hashes the same bytes that are on disk; a display object would bind an expert's judgment to something unverifiable.
 
 ## Source artifacts (unmodified)

@@ -100,6 +100,131 @@ class TestQueueRanking(unittest.TestCase):
         self.assertEqual(export.sequence_length(proposal_with("")), 0)
 
 
+class TestQueuePolicyRatification(unittest.TestCase):
+    """The two selection rules do not have the same standing.
+
+    Contentless exclusion was ratified 2026-07-31 after measurement; the
+    minimum-length rule was deferred because it is a no-op at the current
+    ranking and payload bound. Presenting them as equally settled would
+    misrepresent what a specialist's judgments were made under.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.policy = json.loads(
+            (ROOT / "configs" / "p4e2_queue_policy.json").read_text(
+                encoding="utf-8"))
+
+    def test_contentless_exclusion_is_ratified(self):
+        self.assertEqual(
+            self.policy["contentless_sequence_exclusion"]["status"], "RATIFIED")
+
+    def test_minimum_length_is_not_presented_as_ratified(self):
+        self.assertEqual(
+            self.policy["minimum_sequence_length"]["status"],
+            "UNRATIFIED_DEFERRED")
+
+    def test_the_policy_name_is_versioned_past_the_widening(self):
+        """A changed selection rule must change the queue's name, so a reader
+        of an expert's annotations can tell which queue produced them."""
+        self.assertEqual(
+            self.policy["queue_policy"], "contentful_sequence_length_v2")
+        self.assertEqual(
+            self.policy["supersedes"], "contentful_sequence_length_v1")
+
+    def test_the_export_reads_its_rules_from_the_record(self):
+        self.assertEqual(export.QUEUE_POLICY, self.policy["queue_policy"])
+        self.assertEqual(
+            export.CONTENTLESS_CHARS,
+            frozenset(self.policy["contentless_sequence_exclusion"]["chars"]))
+        self.assertEqual(
+            export.MIN_SEQUENCE_LENGTH,
+            self.policy["minimum_sequence_length"]["value_in_use"])
+
+    def test_an_unknown_status_is_refused(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "policy.json"
+            broken = json.loads(json.dumps(self.policy))
+            broken["minimum_sequence_length"]["status"] = "PROBABLY_FINE"
+            path.write_text(json.dumps(broken), encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                export.load_queue_policy(path)
+
+    def test_a_missing_record_is_refused(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(SystemExit):
+                export.load_queue_policy(Path(tmp) / "absent.json")
+
+
+class TestContentlessSafetyInvariant(unittest.TestCase):
+    """No sequence carrying a sign value may be excluded as contentless.
+
+    A real reading always contains a letter, and the only letter in the set is
+    the illegible placeholder `x`. This is the invariant that makes widening
+    the character set safe, so it is asserted rather than inspected.
+    """
+
+    def test_no_letter_other_than_x_is_contentless(self):
+        offenders = sorted(
+            c for c in export.CONTENTLESS_CHARS if c.isalpha() and c != "x")
+        self.assertEqual(offenders, [])
+
+    def test_digits_are_never_contentless(self):
+        """`10` alone is in 81 documents and `d 10` in 70 -- the Storm God with
+        a damaged determinative. `30` is the Moon God. A numeral is content."""
+        for digit in "0123456789":
+            with self.subTest(digit=digit):
+                self.assertNotIn(digit, export.CONTENTLESS_CHARS)
+        for sequence in ("10", "30", "7", "d 10"):
+            with self.subTest(sequence=sequence):
+                self.assertFalse(
+                    export.sequence_is_contentless(proposal_with(sequence)))
+
+    def test_the_ratified_apparatus_marks_are_contentless(self):
+        for sequence in ("…", "(…)", "? ? ?", "(?)", "!", "==", "}",
+                         "〈〉", "(_ …)", "…..", "x x x",
+                         "(_)"):
+            with self.subTest(sequence=sequence):
+                self.assertTrue(
+                    export.sequence_is_contentless(proposal_with(sequence)))
+
+    def test_the_character_set_is_pinned_by_codepoint(self):
+        """Homoglyphs are the live risk here, and they fail silently.
+
+        The corpus uses U+2329/U+232A angle brackets; U+3008/U+3009 are
+        visually identical CJK characters that occur in it zero times. A
+        future edit that pastes the wrong one would leave the rule looking
+        correct while catching nothing, so the set is pinned by codepoint
+        rather than by appearance. This test caught exactly that mistake in
+        its own first draft.
+        """
+        self.assertEqual(
+            sorted(f"U+{ord(c):04X}" for c in export.CONTENTLESS_CHARS),
+            ["U+0020", "U+0021", "U+0028", "U+0029", "U+002E", "U+003D",
+             "U+003F", "U+005F", "U+0078", "U+007D", "U+0323", "U+2026",
+             "U+2329", "U+232A"])
+
+    def test_cjk_angle_bracket_homoglyphs_are_not_in_the_set(self):
+        for homoglyph in ("〈", "〉", "《", "》"):
+            with self.subTest(homoglyph=homoglyph):
+                self.assertNotIn(homoglyph, export.CONTENTLESS_CHARS)
+
+    def test_apparatus_attached_to_a_reading_stays(self):
+        """One uncertainty mark inside a real sequence is still evidence."""
+        for sequence in ("an!", "al?", "at〉", "an da x zi", "ma a an"):
+            with self.subTest(sequence=sequence):
+                self.assertFalse(
+                    export.sequence_is_contentless(proposal_with(sequence)))
+
+    def test_marks_the_scribe_made_are_not_apparatus(self):
+        """U+12471 is a cuneiform punctuation sign and `×` belongs to compound
+        sign names like SI×SÁ. Both are on the tablet, not notes about it."""
+        for sequence in ("\U00012471", "×"):
+            with self.subTest(sequence=sequence):
+                self.assertFalse(
+                    export.sequence_is_contentless(proposal_with(sequence)))
+
+
 class TestLanguageSelection(unittest.TestCase):
     """`--language` decides which language a specialist spends a session in.
 
@@ -243,6 +368,21 @@ class TestBrowserDisclosureContract(unittest.TestCase):
                       'body[data-damage="off"]'):
             with self.subTest(piece=piece):
                 self.assertIn(piece, self.html)
+
+    def test_rule_status_is_read_from_the_manifest_not_hardcoded(self):
+        """The page must not claim a rule was ratified when the record says
+        otherwise, so the status travels with the queue."""
+        self.assertIn("function ruleStatusLabel(", self.html)
+        self.assertIn("MANIFEST.selection_rule_status", self.html)
+        for state in ("ratified", "awaiting ratification — deferred",
+                      "status not recorded"):
+            with self.subTest(state=state):
+                self.assertIn(state, self.html)
+
+    def test_the_old_both_unratified_claim_is_gone(self):
+        """Contentless was ratified 2026-07-31; saying otherwise is false."""
+        self.assertNotIn("display policies still awaiting ratification",
+                         self.html)
 
     def test_single_language_queue_disclaims_calibration(self):
         """A review surface must never be mistaken for a prediction surface."""

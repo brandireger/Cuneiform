@@ -68,10 +68,15 @@ Neither 2026-07-30 change moved a ratified number. The default review queue's
 | work | outcome |
 |---|---|
 | **browser verification** | both prototypes rendered and checked in Chrome; `data-damage` selectors apply, and no percentage appears beside an empty middle |
+| **P4-E2 queue policy** | contentless exclusion **ratified** and widened; minimum-length **deferred**; policy versioned to `v2` |
 
 First recorded browser check for `demo/taksan_missing_text_prototype.html`.
 Human visual check against a checklist, not an automated capture — see the
 report's deliberate bounds.
+
+The queue's visible content hash is unchanged by the ratification
+(`3e4e66ea…`); the widening removes 26 apparatus clusters that were already
+below the display cut.
 
 ## The through-line, and the one number that matters
 
@@ -117,6 +122,20 @@ Where it landed:
    rate's estimand is agreement with the true attested middle, which this
    option cannot be.
 
+**2026-07-31** (`reports/phase5_p4e2_queue_policy_ratification.md`,
+`configs/p4e2_queue_policy.json`)
+
+4. **The contentless-sequence exclusion is ratified**, with its character set
+   widened on the line *the editor's apparatus is contentless; anything that
+   could have been on the tablet is not*. Digits are deliberately kept — `10`
+   alone is in 81 documents and `d 10` in 70, the Storm God with a damaged
+   determinative. Safety invariant: no sequence carrying a sign value can be
+   caught, since the only letter in the set is the illegible placeholder `x`.
+5. **The minimum-sequence-length rule is NOT ratified**, and is deferred to
+   the second queue. Consumers must present it as such and must not extend
+   the contentless ratification to it. `require`-style fail-closed loading is
+   in `phase4_workbench_review_export.load_queue_policy()`.
+
 ## Traps hit, so you don't
 
 1. **A calibration-set rate is not a held-out rate, and they have different
@@ -141,7 +160,7 @@ Where it landed:
 5. **Clustering is Zipfian and it only bites with a human in front of it.**
    The largest workbench cluster has 95,530 members whose whole sequence is
    `x`; ranking by document count instead surfaces the single signs `a`, `i`,
-   `e`. Queue policy `contentful_sequence_length_v1` handles both.
+   `e`. Queue policy `contentful_sequence_length_v2` handles both.
 6. **Verbose UI text is often contractual, not sloppy.** The "not a
    probability" and "absence of a recorded objection" lines exist because
    standing display rules require them. Collapsing a required statement is a
@@ -152,7 +171,19 @@ Where it landed:
    empty middle looked like noise. Measured, 41 of 109 cases are the system
    automatically catching an editorial restoration that the witness tradition
    contradicts — a headline deliverable, not a defect. Measure before fixing.
-8. **Check which key an artifact actually stores its options under.** The
+8. **Homoglyphs fail silently and survive code review.** The corpus uses
+   U+2329/U+232A angle brackets; U+3008/U+3009 are visually identical CJK
+   characters occurring in it zero times. The first draft of the queue-policy
+   tests pasted the wrong pair — the rule looked right and caught nothing.
+   Character sets that gate what a specialist sees are now pinned **by
+   codepoint** in tests, not by appearance.
+9. **Two rules presented as a pair may not be comparable.** The P4-E2 queue
+   exclusions had been bundled since they were written. Measured separately,
+   one turned out load-bearing (removing it costs 35% of visible slots) and
+   the other a no-op (the queue hash is byte-identical either way). They got
+   different answers. Measure each rule against what a specialist actually
+   sees before bundling a decision.
+10. **Check which key an artifact actually stores its options under.** The
    first empty-middle count read `candidate_set.alternatives` and reported 5;
    P2-E6 stores `tie_complete_alternatives`, and the real figure was 10,
    including one at rank 1 on 19 families.
@@ -193,18 +224,50 @@ never read `cu`, Gate 3 closed. Additionally:
    matching nothing, which is exactly the failure class that made the manual
    check necessary. A future markup change can still break rendering silently.
 
-2. **Ratify the two P4-E2 queue exclusions** (placeholder-only sequences;
-   sequences under 2 signs). They decide what a specialist is shown and must
-   be settled before real expert labor. **This gates the queue redesign** —
-   the 2026-07-30 pass deliberately changed only presentation, not what the
-   queue contains.
+2. ~~**Ratify the two P4-E2 queue exclusions.**~~ **DECIDED 2026-07-31**
+   (`reports/phase5_p4e2_queue_policy_ratification.md`,
+   `configs/p4e2_queue_policy.json`). They were presented as a pair since
+   P4-E2; measuring them separately showed they are not comparable, so they
+   got different answers.
+   - **Contentless exclusion: RATIFIED**, character set widened on the line
+     *the editor's apparatus is contentless, anything that could have been on
+     the tablet is not*. It is load-bearing: with the rule off, 21 of the 60
+     visible same-language slots become runs of `x` and `_`, and the top item
+     is twelve underscores. Digits were deliberately kept — `10` alone is in
+     81 documents and `d 10` in 70, the Storm God with a damaged
+     determinative.
+   - **Minimum length 2: UNRATIFIED, DEFERRED** to the second queue. It is a
+     no-op — rebuilding with 1 leaves the queue content hash byte-identical,
+     because ranking already suppresses single-sign clusters. And its rare
+     tail is not noise: 468 of 592 are plain sign readings, largely
+     Sumerograms. Ratifying it would assert something the data contradicts;
+     rejecting it would change nothing. The real question belongs to item 4.
+
+   Queue policy is now `contentful_sequence_length_v2`; the export reads its
+   rules from the record and fails closed without it, and per-rule status is
+   shown on screen.
 
 3. **Review the empty-middle branch wording as copy.** The four branch texts
    in `lib/expert_decision_contract.py` are the sentences a Hittitologist will
    actually read. They were written from the encoded evidence and reviewed as
    logic, not as philological prose.
 
-4. **Two scope questions surfaced by the empty-middle work**, deliberately not
+4. **The second queue: rare single signs and ungrouped occurrences.** This is
+   where the deferred minimum-length decision actually has consequences.
+   Two populations are unreachable through a cluster-first queue ranked by
+   sequence length:
+   - **468 rare single-sign clusters** (same-language, ≤2 documents, 79.1% of
+     that tail) — largely Sumerograms: `numun`, `kalam`, `géštug`, `ereš`,
+     `naga`, `ḫabrud`, `gišnú`, `giškim`, `ibila`, `gišgigir`, `iku`, `i₇`.
+     Ranking by **rarity** rather than length would surface them.
+   - **~13,900 ungrouped occurrences** whose sequence is unique, so they are
+     in no cluster at all — arguably the most interesting material, and the
+     P4-E2 report already flagged that a queue keyed on surrounding context
+     rather than shared surface form would be a separate build.
+
+   Settle `minimum_sequence_length` together with this, not before it.
+
+5. **Two scope questions surfaced by the empty-middle work**, deliberately not
    settled as side effects of a display change:
    - **`…` indeterminate lacunae are counted as single-sign gaps** — 2,725 of
      46,118 cross-line eligible, 35,221 restored ellipsis tokens corpus-wide.
@@ -215,7 +278,7 @@ never read `cu`, Gate 3 closed. Additionally:
      the site-prefix table; it bears on the Hattusa→provincial generalization
      experiment.
 
-5. **First real specialist session.** It must run
+6. **First real specialist session.** It must run
    `scripts/phase4_workbench_backup.py` before and after, exercise an actual
    browser JSON download and the verifying ingest path, and remain
    quarantined. The 2026-07-29 test event never left browser memory. Queue
@@ -223,13 +286,13 @@ never read `cu`, Gate 3 closed. Additionally:
    and shared-versus-per-reviewer logs are real follow-up decisions but do not
    authorize automatic truth promotion.
 
-6. **Gate 3 proposal.** Training is still unauthorized. A proposal must name
+7. **Gate 3 proposal.** Training is still unauthorized. A proposal must name
    the hypothesis, falsifier, config, sampling policy, time/GPU budget,
    conditioned-versus-unconditioned tracer, and new paths that cannot
    overwrite frozen D14. Only after ratification may P4-F training and its
    required comparisons begin.
 
-7. **Later product/evaluation gates.** The real-gap pipeline and Takšan
+8. **Later product/evaluation gates.** The real-gap pipeline and Takšan
    playground are not yet one production expert mode — this is where a cover
    page, a search front door, and a language mode selector carrying
    per-language evidence state belong; they span both prototypes and should

@@ -1,0 +1,50 @@
+{
+  "_comment": "Ratification record for the P4-E2 review-queue selection policy. A queue is a VIEW over ratified artifacts: nothing here modifies an occurrence, a cluster proposal, or an accepted hash. But these rules decide what a specialist is shown, so they carry ratification status the same way configs/p2e9_cross_line_calibration.json carries the calibration target. Consumers must surface each rule's status rather than presenting the whole policy as settled.",
+
+  "queue_policy": "contentful_sequence_length_v2",
+  "supersedes": "contentful_sequence_length_v1",
+  "version_bump_reason": "CONTENTLESS_CHARS widened on 2026-07-31. The policy name is versioned so a reader of an expert's annotations can tell which queue produced them; any change to the selection rules must bump it.",
+
+  "contentless_sequence_exclusion": {
+    "status": "RATIFIED",
+    "ratified_date": "2026-07-31",
+    "ratified_by": "Ixca",
+    "chars": " !().=?_x}̣…〈〉",
+    "rule": "A cluster whose shared sequence consists entirely of these characters is excluded from the queue. A character test rather than a token list, because the placeholders combine: 'x', 'x x', ')x', '(_)', 'x x x x x( )x' are all the same nothing.",
+    "rationale": "Measured, not asserted. With the rule off, 21 of the 60 visible same-language clusters (35%) and 16 of 60 cross-language become runs of 'x' and '_', displacing that many real clusters out of view. Because ranking is sequence-length descending, LONGER placeholder runs rank HIGHER: the top item would be '_ _ _ _ _ _ _ _ _ _ _ _', twelve underscores across one document. All 58 distinct contentless sequences are placeholder variants; 'x' alone covers 108,109 occurrences.",
+
+    "widening_2026_07_31": {
+      "line_drawn": "The editor's apparatus is contentless; anything that could have been on the tablet is not.",
+      "method": "Empirical, not guessed. Every distinct cluster sequence containing no alphabetic character was enumerated (45 of 4,087) and classified; the additions are exactly the apparatus half of that list.",
+      "added": ["… indeterminate-lacuna ellipsis", "? uncertainty", "! editorial correction", "=", "〈 〉 empty editorial insertion brackets", "} stray brace", "̣ bare combining dot below, seen attached to ellipsis runs"],
+      "deliberately_not_added": {
+        "digits": "'10' occurs alone in 81 documents and 'd 10' in 70 -- that is the Storm God with a damaged determinative, and '30' is the Moon God. A numeral is content.",
+        "U+12471": "The cuneiform vertical-colon punctuation sign is a mark the scribe actually made, not an editor's note about it.",
+        "U+00D7": "The multiplication sign belongs to compound sign names such as SI×SÁ."
+      },
+      "effect": "26 clusters / 277 occurrences newly excluded across both channels. The visible top 60 does not change today; the first apparatus cluster sits at rank 313 of 2,897. Its value is that apparatus is now excluded ON THE GROUNDS THAT IT IS APPARATUS, independently of the deferred minimum-length rule that was incidentally catching most of it.",
+      "safety_invariant": "A real reading always contains a letter, and no letter except the illegible placeholder 'x' is in the set, so no sequence carrying a sign value can be caught. Verified: 0 excluded sequences contain a non-'x' letter. Asserted in tests, not left to inspection."
+    }
+  },
+
+  "minimum_sequence_length": {
+    "status": "UNRATIFIED_DEFERRED",
+    "deferred_date": "2026-07-31",
+    "deferred_by": "Ixca",
+    "value_in_use": 2,
+    "defer_to": "the second queue for rare single-sign and ungrouped occurrences",
+    "why_deferred": "It is currently a no-op. Rebuilding with --min-sequence-length 1 grows the eligible pool from 2,897 to 4,441 but leaves the queue content hash byte-identical (3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee): ranking is sequence-length descending, so single-sign clusters sort below a 4,441-cluster pool of which 60 are shown and can never surface. What actually excludes them is the ranking and the payload bound, not this rule. Ratifying or rejecting it would change nothing a specialist sees.",
+    "what_it_would_discard_if_it_did_bite": "Its rare tail is not noise. 592 same-language single-sign clusters have <=2 documents, and 468 of those (79.1%) are plain sign readings -- largely Sumerograms such as numun, kalam, geštug, ereš, naga, ḫabrud, gišnú, giškim, ibila, gišgigir, iku, i₇. The rule's stated justification (specificity beats recurrence) holds for the Zipfian floor ('a' across 3,542 documents) but does not describe that tail.",
+    "the_real_question": "Whether those 468 rare single-sign clusters should be reviewed. If yes, the answer is not relaxing this rule but a second queue ranked by rarity rather than by length -- the same build the P4-E2 report already anticipates for the ~13,900 ungrouped occurrences.",
+    "consumers_must": "Present this rule as awaiting ratification, and must NOT present the contentless exclusion that way -- that one is ratified."
+  },
+
+  "not_ratified_by_this_record": [
+    "max_clusters_per_channel (60) -- a payload bound, not a judgment about the remainder",
+    "max_members_displayed_per_cluster (12) -- a display sample; member_count always reports true size",
+    "ranking (sequence_length desc, distinct_document_count desc, member_count desc, cluster_id asc)",
+    "context_lines_per_side (2)"
+  ],
+
+  "standing": "Exclusion from this queue is a display decision. Nothing excluded is deleted, altered, or judged uninteresting; every occurrence and cluster proposal remains in the extraction at its accepted hash, and a future queue keyed on surrounding context rather than shared surface form would reach the excluded material."
+}

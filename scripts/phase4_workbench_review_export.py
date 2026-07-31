@@ -51,7 +51,34 @@ POLICY_NAME = "transcription_assisted"
 # Versioned deliberately. If any value below changes, the queue an expert
 # worked from changes, and a reader of their annotations needs to be able to
 # tell which queue produced them.
-QUEUE_POLICY = "contentful_sequence_length_v1"
+QUEUE_POLICY_PATH = Path("configs/p4e2_queue_policy.json")
+
+
+def load_queue_policy(path=QUEUE_POLICY_PATH):
+    """Load the ratification record for the queue's selection rules.
+
+    Fails closed if the file is missing or if a rule carries an unknown
+    status. A queue whose rules cannot state whether they were ratified is
+    exactly what this record exists to prevent -- the screen has to be able to
+    say which exclusions a specialist's judgments were made under.
+    """
+    if not path.exists():
+        raise SystemExit(
+            f"{path} not found. The queue's selection rules carry ratification "
+            "status and cannot be applied without it.")
+    policy = json.loads(path.read_text(encoding="utf-8"))
+    permitted = {"RATIFIED", "UNRATIFIED_DEFERRED", "UNRATIFIED"}
+    for key in ("contentless_sequence_exclusion", "minimum_sequence_length"):
+        status = policy[key]["status"]
+        if status not in permitted:
+            raise SystemExit(
+                f"{path}: {key} has unknown status {status!r}; expected one of "
+                f"{sorted(permitted)}.")
+    return policy
+
+
+QUEUE_POLICY_RECORD = load_queue_policy()
+QUEUE_POLICY = QUEUE_POLICY_RECORD["queue_policy"]
 
 # Characters that carry no sign value: the illegible placeholder `x`, the
 # indeterminate-length filler `_`, and editorial parentheses/periods. A token
@@ -61,14 +88,48 @@ QUEUE_POLICY = "contentful_sequence_length_v1"
 # 95,530-member `x` cluster. A character test rather than a token list because
 # the placeholders combine: `x`, `x x`, `)x`, `(_)`, `x x x x x( )x` are all
 # the same nothing. Excluded from the QUEUE, never from the extraction.
-CONTENTLESS_CHARS = frozenset("x_(). ")
+#
+# The line this set draws (widened and ratified 2026-07-31): **the editor's
+# apparatus is contentless; anything that could have been on the tablet is
+# not.** Derived empirically rather than guessed -- every distinct cluster
+# sequence containing no alphabetic character was enumerated and classified,
+# and the additions below are exactly the apparatus half of that list.
+#
+# Added: the indeterminate-lacuna ellipsis, the uncertainty `?`, the editorial
+# correction `!`, `=`, empty editorial insertion brackets, a stray brace, and
+# the bare combining dot below that appears attached to ellipsis runs. All are
+# the edition talking about the tablet.
+#
+# DELIBERATELY NOT ADDED, and the reason matters:
+#   - digits. `10` occurs alone in 81 documents and `d 10` in 70: that is the
+#     Storm God with a damaged determinative, and `30` is the Moon God. A
+#     numeral is content.
+#   - U+12471, the cuneiform vertical-colon punctuation sign. It is a mark the
+#     scribe actually made, not an editor's note about it.
+#   - `×`, which belongs to compound sign names such as `SI×SÁ`.
+# Adding any of those would exclude readable material as though it were noise.
+#
+# Safe by construction: a real reading always contains a letter, and no letter
+# is in this set, so no sequence carrying a sign value can be caught. That
+# invariant is asserted in tests rather than left to inspection.
+CONTENTLESS_CHARS = frozenset(
+    QUEUE_POLICY_RECORD["contentless_sequence_exclusion"]["chars"])
 
 # Shared-sequence evidence gets its force from specificity. Two documents
 # sharing a five-sign damaged phrase is a parallel worth an expert's time;
 # 3,542 documents sharing the single sign `a` is a frequency artifact wearing
 # the same clothes. Single-sign clusters are therefore held out of the queue by
 # default -- the second Zipfian floor, one level up from `x`.
-MIN_SEQUENCE_LENGTH = 2
+#
+# UNRATIFIED AND DEFERRED (2026-07-31). It is currently a no-op: rebuilding
+# with 1 grows the eligible pool from 2,897 to 4,441 but leaves the queue
+# content hash byte-identical, because ranking is length-descending and
+# single-sign clusters can never reach a 60-cluster window. Its rare tail is
+# also not noise -- 468 of the 592 same-language single-sign clusters with <=2
+# documents are plain sign readings, largely Sumerograms. The decision is
+# deferred to the second queue, where it would actually have consequences.
+MIN_SEQUENCE_LENGTH = int(
+    QUEUE_POLICY_RECORD["minimum_sequence_length"]["value_in_use"])
 
 # An expert reviews a sample of a large cluster; the UI must never imply the
 # whole cluster was seen. The cap is on DISPLAY, and `member_count` always
@@ -480,6 +541,15 @@ def main():
         "source_hashes": accepted_hashes,
         "split_manifest_hash": digest_file(SPLITS_PATH),
         "config_hash": digest_file(CONFIG_PATH),
+        "queue_policy_config_hash": digest_file(QUEUE_POLICY_PATH),
+        # Per-rule ratification status. The screen must not present a ratified
+        # exclusion and a deferred one as though they had the same standing.
+        "selection_rule_status": {
+            "contentless_sequence_exclusion":
+                QUEUE_POLICY_RECORD["contentless_sequence_exclusion"]["status"],
+            "minimum_sequence_length":
+                QUEUE_POLICY_RECORD["minimum_sequence_length"]["status"],
+        },
         "policy_parameters": {
             "contentless_chars": "".join(sorted(CONTENTLESS_CHARS)),
             "min_sequence_length": args.min_sequence_length,
@@ -635,32 +705,51 @@ def main():
         "and the sparser languages here (`Pal`, `Sum`, `Luw`) do not have the "
         "composition mass to support a leakage-safe calibration at all.",
         "",
-        "### Two exclusions, both awaiting ratification",
+        "### Two exclusions, with different standing",
         "",
-        "**Contentless sequences.** A cluster whose shared sequence is nothing "
-        f"but placeholder characters (`{''.join(sorted(CONTENTLESS_CHARS))}` — "
-        "the illegible `x`, the indeterminate filler `_`, editorial "
-        "parentheses) groups occurrences by the absence of a reading. That "
-        "gives an expert nothing to compare, and it is what produces the "
-        "95,530-member proposal that would otherwise open the interface. Same-"
+        "**Contentless sequences — RATIFIED 2026-07-31.** A cluster whose "
+        "shared sequence is nothing but placeholder characters "
+        f"(`{''.join(sorted(CONTENTLESS_CHARS))}`) groups occurrences by the "
+        "absence of a reading. That gives an expert nothing to compare. "
+        "Measured: with the rule off, **21 of the 60 visible same-language "
+        "clusters and 16 of 60 cross-language** become runs of `x` and `_`, "
+        "displacing that many real clusters out of view — and because ranking "
+        "is length-descending, the top item would be twelve underscores. Same-"
         f"language channel: {same['excluded_contentless_sequence']:,} cluster(s)"
         f" covering {same['excluded_contentless_occurrences']:,} occurrence(s).",
         "",
-        f"**Sequences shorter than {args.min_sequence_length} signs.** Ranking "
-        "an earlier draft of this queue by document count alone put the single "
-        "signs `a` (3,542 documents), `i`, and `e` at the top. A damaged common "
-        "sign appears everywhere; shared-sequence evidence gets its force from "
-        "specificity, not from recurrence alone. This is the second Zipfian "
-        "floor, one level up from `x`. Same-language channel: "
-        f"{same['excluded_below_min_sequence_length']:,} cluster(s) covering "
-        f"{same['excluded_below_min_occurrences']:,} occurrence(s).",
+        "The character set was **widened on ratification**, on the line that "
+        "*the editor's apparatus is contentless but anything that could have "
+        "been on the tablet is not*. Derived empirically: every distinct "
+        "sequence containing no alphabetic character was enumerated and "
+        "classified. Digits were deliberately **kept** — `10` occurs alone in "
+        "81 documents and `d 10` in 70, which is the Storm God with a damaged "
+        "determinative. See `configs/p4e2_queue_policy.json`.",
         "",
-        "Both are **display policies**, not findings. Nothing excluded here is "
-        "judged uninteresting, deleted, or altered; illegible runs and single "
-        "signs remain in the extraction, and a future queue keyed on "
-        "surrounding context rather than shared surface form would reach them. "
-        "The pair needs Ixca's ratification before the queue is used for real "
-        "expert labor, because they decide what a specialist is shown.",
+        f"**Sequences shorter than {args.min_sequence_length} signs — "
+        "UNRATIFIED, DEFERRED 2026-07-31.** Ranking an earlier draft by "
+        "document count alone put the single signs `a` (3,542 documents), `i`, "
+        "and `e` at the top, so the rule has a real target. But it is "
+        "currently a **no-op**: rebuilding with `--min-sequence-length 1` "
+        "grows the eligible pool from 2,897 to 4,441 and leaves the queue "
+        "content hash byte-identical, because single-sign clusters can never "
+        "reach a 60-cluster window under length-descending ranking. Same-"
+        f"language channel: {same['excluded_below_min_sequence_length']:,} "
+        f"cluster(s) covering {same['excluded_below_min_occurrences']:,} "
+        "occurrence(s).",
+        "",
+        "Its rare tail is **not** noise: 468 of the 592 same-language "
+        "single-sign clusters with ≤2 documents are plain sign readings, "
+        "largely Sumerograms (`numun`, `kalam`, `géštug`, `ibila`, "
+        "`gišgigir`). Whether those should be reviewed is deferred to the "
+        "second queue, ranked by rarity rather than length, where the decision "
+        "would actually have consequences.",
+        "",
+        "Both remain **display policies**, not findings. Nothing excluded here "
+        "is judged uninteresting, deleted, or altered; illegible runs and "
+        "single signs remain in the extraction at their accepted hashes, and a "
+        "future queue keyed on surrounding context rather than shared surface "
+        "form would reach them.",
         "",
         "### Sampling within a cluster",
         "",
