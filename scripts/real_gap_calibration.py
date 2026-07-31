@@ -481,13 +481,38 @@ def main():
             "**Never pool these with the same-line counts above.** "
             + cross_summary["must_not_be_pooled_with_same_line"],
             "",
-            "**Observation for review:** a rank-1 proposal may be the *empty* "
-            "middle -- witnesses attesting the two anchors adjacent with "
-            "nothing between. For a one-sign gap that is evidence of "
-            "disagreement with the query's own structure, not a reading. It "
-            "arises identically in the same-line path and is left as-is; "
-            "filtering it would be a scoring change needing its own "
-            "justification.",
+            "**The empty middle: measured, and resolved by display.** A "
+            "rank-1 proposal may be the *empty* middle -- witnesses attesting "
+            "the two anchors adjacent with nothing between. For a one-sign "
+            "gap that is disagreement with the query's own structure, not a "
+            "reading. It was measured "
+            "(`reports/phase5_empty_middle_census.md`): **109 of 577 accepted "
+            "cross-line gaps (18.9%)**, against 1 of 41 same-line.",
+            "",
+            "It is **deliberately still ranked**. Filtering it was measured "
+            "too and does not surface a better reading -- it surfaces an "
+            "abstention (zero rank-1 changes; net accepts 577 -> 517). More "
+            "importantly the empty middle was in the index when P2-E4 and "
+            "P2-E9 were FIT, so the ratified rates already price it in, and "
+            "removing it at application time only would decouple the rate "
+            "from the thing it rates.",
+            "",
+            "The adopted remedy is display-layer: the option keeps its rank "
+            "and witness support, but is labelled as typed contradictory "
+            "evidence rather than a reading, and its rank-level group rate is "
+            "withheld -- that rate's estimand is agreement with the true "
+            "attested middle, which this option cannot be. See "
+            "`lib/expert_decision_contract.py`'s "
+            "`annotate_empty_middle_options()`. The wording branches on what "
+            "the editor actually wrote, because these are four different "
+            "situations, not one:",
+            "",
+            "| the gap is | share of the 109 | what 'witnesses show nothing' means |",
+            "|---|---:|---|",
+            "| illegible trace (`x`) | 57 | your trace is off-formula for this collocation |",
+            "| an editorial restoration | 41 | **the witnesses contradict a scholarly bracket** |",
+            "| an indeterminate lacuna (`…`) | 11 | the parallel tradition has no gap here |",
+            "| a hidden attested sign (evaluation contexts only) | n/a | cannot be correct by construction |",
             "",
         ]
 

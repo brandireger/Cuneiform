@@ -124,6 +124,49 @@ def _validate_rate(rate, label):
             f"{label}: group audit rates cannot be instance probabilities")
 
 
+def _validate_option_display(option):
+    """Enforce the option `display` block, and require it where it matters.
+
+    Two-sided on purpose. A malformed block is rejected, and an option that
+    proposes no signs is REQUIRED to carry one -- an empty-middle option
+    reaching a renderer without it is exactly the defect this exists to stop,
+    and it fails silently (the UI draws an empty candidate) rather than
+    loudly, so the schema has to catch it.
+    """
+    display = option.get("display")
+    if display is None:
+        if is_empty_middle_option(option):
+            raise ContractError(
+                "option: an option proposing no signs must carry a display "
+                "block; call annotate_empty_middle_options(). Without it a "
+                "renderer shows an empty candidate as if it were a reading.")
+        return
+    _require(
+        display,
+        ["kind", "query_kind", "is_a_reading", "render_signs_as",
+         "headline", "detail"],
+        "option.display",
+    )
+    if display["kind"] != "EMPTY_MIDDLE":
+        raise ContractError(
+            f"option.display: unknown kind {display['kind']!r}")
+    if display["query_kind"] not in EMPTY_MIDDLE_QUERY_KINDS:
+        raise ContractError(
+            f"option.display: unknown query kind {display['query_kind']!r}")
+    if display["is_a_reading"] is not False:
+        raise ContractError(
+            "option.display: an empty middle is never a reading")
+    if not is_empty_middle_option(option):
+        raise ContractError(
+            "option.display: EMPTY_MIDDLE display on an option that proposes "
+            "signs")
+    if option["option_audit"]["kind"] != "UNAVAILABLE":
+        raise ContractError(
+            "option.display: an empty-middle option must not carry a "
+            "rank-level group audit rate; its estimand is agreement with the "
+            "true attested middle, which this option cannot be")
+
+
 def _validate_language_block(packet):
     """Enforce the P4-D language-transparency invariants on one packet.
 
@@ -355,6 +398,7 @@ def validate_suggestion_packet(packet):
         if support["share"] is not None and not 0 <= support["share"] <= 1:
             raise ContractError("option.support: share must be in [0, 1]")
         _validate_rate(option["option_audit"], "option.option_audit")
+        _validate_option_display(option)
 
     for field in ("supporting_evidence", "contradictory_evidence"):
         for item in packet[field]:
@@ -570,6 +614,203 @@ def _supporting_evidence(options):
     ]
 
 
+# ---------------------------------------------------------------- empty middle
+#
+# A witness proposal is whatever sits between the query's two anchors in an
+# independent witness. The anchor indices deliberately admit a middle of
+# length zero, so "the two anchors stand adjacent in this witness" is a
+# first-class proposal and can rank first on real witness support.
+#
+# For a single-sign query it is not a reading. The query asserts a sign stood
+# there -- whether by damage markup or, in a synthetic evaluation context, by
+# hiding a known attested one -- and a witness with no sign contradicts that
+# assertion. Rendered as a ranked candidate with a rate beside it, it reads as
+# "the missing sign is: nothing", which is a claim no calibration measured.
+#
+# The remedy here is DISPLAY-ONLY and that is the point. The option keeps its
+# rank and its witness support, so the applied ranking stays the construction
+# that P2-E4/P2-E9 calibrated; removing it would decouple the rate from the
+# thing it rates. What changes is that it is labelled as contradictory
+# evidence rather than as a reading, and its rank-level group rate is withheld
+# -- that rate's estimand is "the fraction whose hidden/true attested middle
+# occurs at that rank", and an option that cannot be an attested middle is not
+# in that estimand's support.
+#
+# Measured incidence, real gaps (reports/phase5_empty_middle_census.md):
+# 109 of 577 accepted cross-line gaps, and 5 of 16 P2-E4 packets.
+
+EMPTY_MIDDLE_LIMITATION_CODE = "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE"
+
+# Why the query believes a sign is there. The branches are not cosmetic: they
+# are four different epistemic situations, and "witnesses show nothing here"
+# means something different in each. Collapsing them into one sentence is the
+# defect this replaces.
+EMPTY_MIDDLE_QUERY_KINDS = {
+    # Editor saw a trace and could not read it (damage_state illegible_x).
+    # 57 of the 109 measured real-gap cases.
+    "ILLEGIBLE_TRACE": {
+        "headline": "Witnesses show no sign here — your trace is off-formula.",
+        "detail": (
+            "Independent witnesses attest the two anchors directly adjacent, "
+            "with nothing between them. That does not read the illegible "
+            "trace; it establishes that the parallel tradition has no sign in "
+            "this position. Either the trace is not a separate sign, or this "
+            "manuscript carries a variant the witnesses do not."
+        ),
+    },
+    # Editor proposed a specific sign. 41 of the 109. This is the
+    # cleanroom-rule-6 case: a bracket contradicted by the witness tradition.
+    "EDITORIAL_RESTORATION": {
+        "headline": "Witnesses contradict the editorial restoration.",
+        "detail": (
+            "Independent witnesses attest the two anchors directly adjacent, "
+            "with nothing between them, while the edition restores a sign "
+            "here. Restorations are scholarly hypotheses, not attested text, "
+            "so this is a disagreement between two editorial judgements and "
+            "not a correction of one by the other."
+        ),
+    },
+    # Editor marked an indeterminate-length lacuna (an ellipsis token).
+    # 11 of the 109. Here "nothing" is close to an answer.
+    "INDETERMINATE_LACUNA": {
+        "headline": "Witnesses show no gap here at all.",
+        "detail": (
+            "The edition marks a lacuna of undetermined length. Independent "
+            "witnesses attest the two anchors directly adjacent, so the "
+            "parallel tradition has no gap in this position. Note that the "
+            "query's own gap length was never established, so this bears on "
+            "whether a gap exists, not on how long it is."
+        ),
+    },
+    # Synthetic evaluation context: a known attested sign was deliberately
+    # hidden. Nothing is damaged; the sign is known to exist.
+    "HIDDEN_ATTESTED_SIGN": {
+        "headline": "Witnesses show no sign where one is known to stand.",
+        "detail": (
+            "This is an evaluation context: a genuinely attested sign was "
+            "hidden on purpose, so a sign certainly stood here. Independent "
+            "witnesses nevertheless attest the two anchors adjacent, which "
+            "makes this proposal a measure of witness divergence rather than "
+            "a candidate reading. It cannot be correct by construction."
+        ),
+    },
+}
+
+EMPTY_MIDDLE_AUDIT_WITHHELD = (
+    "No applicable group audit rate. The rank-level rate estimates how often "
+    "the true attested middle appears at this rank; this option proposes no "
+    "sign at all and so cannot be that middle."
+)
+
+
+# The editorial ellipsis. In TLHdig this marks a lacuna of undetermined
+# length, so a run consisting of one is NOT a one-sign gap in the way a
+# restored sign is -- it is "an unknown amount is missing". It reaches the
+# single-sign population anyway (2,725 of 46,118 cross-line eligible gaps),
+# which is a separate open scope question; what matters here is that the
+# display must not describe it as though the editor had proposed a sign.
+INDETERMINATE_LACUNA_TOKEN = "…"
+
+
+def is_empty_middle_option(option):
+    """True when an option proposes no signs at all."""
+    return not option.get("signs")
+
+
+def empty_middle_query_kind_for_damage(damage_state, token=None):
+    """Map a real-gap run's encoded damage to its empty-middle branch.
+
+    Real gaps carry `damage_state` from the document-order state machine over
+    `<del_in>/<del_fin>` and `<laes_in>/<laes_fin>`. Synthetic evaluation
+    contexts (P2-E4/P2-E6) have no damage at all and must not come through
+    here -- their adapters pass `HIDDEN_ATTESTED_SIGN` directly.
+
+    Fails closed on anything unrecognized rather than defaulting, for the same
+    reason `classify_empty_middle` does.
+    """
+    if token is not None and token == INDETERMINATE_LACUNA_TOKEN:
+        return "INDETERMINATE_LACUNA"
+    if damage_state == "illegible_x":
+        return "ILLEGIBLE_TRACE"
+    if damage_state in ("restored", "laes"):
+        return "EDITORIAL_RESTORATION"
+    raise ContractError(
+        f"empty_middle_query_kind_for_damage: unrecognized damage state "
+        f"{damage_state!r} (token {token!r}). An 'attested' run is not a gap, "
+        "and a synthetic hidden-sign context must pass "
+        "'HIDDEN_ATTESTED_SIGN' directly rather than being inferred here.")
+
+
+def classify_empty_middle(query_kind):
+    """Return the display copy for one empty-middle situation.
+
+    Fails closed on an unknown kind rather than emitting a generic sentence:
+    the whole purpose of the branch is that these situations differ, so a
+    caller that has not decided which one applies must not get a default.
+    """
+    if query_kind not in EMPTY_MIDDLE_QUERY_KINDS:
+        raise ContractError(
+            f"classify_empty_middle: unknown query kind {query_kind!r}; "
+            f"expected one of {sorted(EMPTY_MIDDLE_QUERY_KINDS)}. There is no "
+            "default -- 'witnesses show nothing' means something different in "
+            "each case.")
+    return dict(EMPTY_MIDDLE_QUERY_KINDS[query_kind], query_kind=query_kind)
+
+
+def annotate_empty_middle_options(packet, *, query_kind):
+    """Label any empty-middle option as contradictory evidence, in place.
+
+    Does NOT reorder, drop, or reweight anything. The candidate set, the ranks,
+    and the witness support counts are exactly what the calibrated ranking
+    produced.
+    """
+    classification = classify_empty_middle(query_kind)
+    annotated = []
+    for option in packet["candidate_set"]["options"]:
+        if not is_empty_middle_option(option):
+            continue
+        option["display"] = {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": classification["query_kind"],
+            "is_a_reading": False,
+            "render_signs_as": "(no sign)",
+            "headline": classification["headline"],
+            "detail": classification["detail"],
+        }
+        option["option_audit"] = unavailable_rate(EMPTY_MIDDLE_AUDIT_WITHHELD)
+        annotated.append(option)
+
+    for option in annotated:
+        packet["contradictory_evidence"].append({
+            "evidence_id": f"contradiction-{option['option_id']}",
+            "type": "WITNESS_ANCHORS_ADJACENT",
+            "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+            "evidence_class": option["evidence_class"],
+            "summary": (
+                f"{option['support']['independent_witness_family_count']} "
+                "independent witness family/families attest the left and "
+                "right anchors directly adjacent, with no sign between them. "
+                + classification["headline"]
+            ),
+            "source_refs": list(
+                option["support"]["supporting_witness_families"]),
+        })
+
+    if annotated:
+        packet["limitations"].append({
+            "code": EMPTY_MIDDLE_LIMITATION_CODE,
+            "message": (
+                f"{len(annotated)} option(s) in this set propose no sign at "
+                "all. They are retained at their measured rank because the "
+                "calibration was fit over rankings that included them, but "
+                "they are contradictory evidence about the query's structure, "
+                "not candidate readings, and carry no rank-level rate. "
+                + classification["detail"]
+            ),
+        })
+    return packet
+
+
 def _base_packet(
         source, packet_id, source_provenance, mode, mask_length,
         language_context):
@@ -717,6 +958,10 @@ def adapt_p2e4_packet(
         },
     ]
     _append_language_limitation(packet)
+    # P2-E4 contexts are synthetic by construction: a genuinely attested sign
+    # was hidden, so a sign certainly stood here. The kind is fixed rather
+    # than passed in, so a caller cannot mislabel it.
+    annotate_empty_middle_options(packet, query_kind="HIDDEN_ATTESTED_SIGN")
     return validate_suggestion_packet(packet)
 
 
@@ -775,4 +1020,10 @@ def adapt_p2e6_packet(
                 "remain inspectable; they may not be silently discarded."
             ),
         })
+    # Same reasoning as the single-sign path. The multi-sign set is NOT free
+    # of this: 5 of the 12 exported P2-E6 packets carry an empty middle, one
+    # of them at rank 1 on 19 independent families. Here the withheld rate is
+    # the set-inclusion rate, on the same grounds -- an option that proposes
+    # no signs cannot be the masked span the set is audited against.
+    annotate_empty_middle_options(packet, query_kind="HIDDEN_ATTESTED_SIGN")
     return validate_suggestion_packet(packet)

@@ -180,6 +180,18 @@
   .option-card .rank { color: var(--tk-faint); font-size: 12px; }
   .option-card .signs { font-size: 17px; margin: .2em 0; }
   .option-card .signs.empty { color: var(--tk-faint); font-style: italic; font-size: 13px; }
+  /* An empty middle is contradictory evidence, not a candidate reading. It is
+     drawn to look unlike a reading so it cannot be skim-read as one. */
+  .option-card.empty-middle { border-left: 3px solid var(--tk-warn, #C99A3F); }
+  .option-card .not-a-reading {
+    color: var(--tk-warn, #C99A3F); text-transform: uppercase;
+    letter-spacing: .06em; font-size: 11px;
+  }
+  .option-card .empty-middle-note {
+    font-size: 12px; line-height: 1.55; margin: .4em 0 .2em;
+    color: var(--tk-warn, #C99A3F);
+  }
+  .option-card .empty-middle-note div { color: var(--tk-text-2, #B8B0A2); margin-top: .3em; }
   .option-card .witnesses-label, .option-card .track-record-label {
     font-size: 10px; text-transform: uppercase; letter-spacing: .03em; color: var(--tk-faint); margin-top: .6em;
   }
@@ -412,6 +424,14 @@ let previewOption = null;
 let fragmentRestorationMode = "encoded";
 
 function fmtPct(x) { return (x * 100).toFixed(1) + "%"; }
+
+// Matches the workbench prototype's escaper. The contract text injected below
+// is repo-controlled, but transliteration and witness ids are corpus data and
+// this page builds HTML by string concatenation throughout.
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, c => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
 
 function fragmentPacketsFor(docId) {
   return PACKETS.filter(p => baseDocId(p.query.fragment_id) === docId);
@@ -804,7 +824,10 @@ function renderPreviewDropdown(packet) {
   const currentValue = (previewOption && previewOption.packetId === packet.packet_id)
     ? previewOption.optionId : "";
   const optionsHtml = top5.map(opt => {
-    const signsText = opt.signs.length ? opt.signs.join(" ") : "(empty — witnessed omission)";
+    const isEmptyMiddle = opt.display && opt.display.kind === "EMPTY_MIDDLE";
+    const signsText = isEmptyMiddle
+      ? "(no sign — contradicts the markup, not a reading)"
+      : (opt.signs.length ? opt.signs.join(" ") : "(no sign)");
     return `<option value="${opt.option_id}" ${opt.option_id === currentValue ? "selected" : ""}>#${opt.rank} ${signsText} — ${optionAuditShortLabel(opt.option_audit)}</option>`;
   }).join("");
   wrap.innerHTML = `
@@ -1126,21 +1149,36 @@ function renderDetail() {
       const card = document.createElement("div");
       const isPreviewed = previewOption && previewOption.packetId === packet.packet_id && previewOption.optionId === opt.option_id;
       card.className = "option-card selectable" + (isPreviewed ? " previewed" : "");
-      const signsHtml = opt.signs.length
-        ? `<div class="signs">${opt.signs.join(" ")}</div>`
-        : `<div class="signs empty">(empty — a witnessed omission, not missing data)</div>`;
+      // An option proposing no signs is NOT a reading. It says the witnesses
+      // attest the two anchors adjacent, which contradicts the query's own
+      // assertion that a sign stands here. It keeps its rank and its witness
+      // support -- that is the ranking the calibration was fit on -- but it
+      // is drawn as contradictory evidence, and it carries no rank rate.
+      // See reports/phase5_empty_middle_census.md.
+      const em = opt.display && opt.display.kind === "EMPTY_MIDDLE" ? opt.display : null;
+      if (em) card.className += " empty-middle";
+      const signsHtml = em
+        ? `<div class="signs empty">${escapeHtml(em.render_signs_as)}</div>
+           <div class="empty-middle-note">
+             <strong>${escapeHtml(em.headline)}</strong>
+             <div>${escapeHtml(em.detail)}</div>
+           </div>`
+        : (opt.signs.length
+          ? `<div class="signs">${opt.signs.join(" ")}</div>`
+          : `<div class="signs empty">(no sign)</div>`);
       const famsHtml = opt.support.supporting_witness_families.map(f => `<span class="fam">${f}</span>`).join("");
       const shareHtml = opt.support.share !== null
         ? ` · evidence share ${fmtPct(opt.support.share)} of encoded witnesses (not a probability)`
         : "";
       card.innerHTML = `
-        <div class="rank">rank ${opt.rank} · ${opt.option_id} · ${opt.evidence_class}</div>
+        <div class="rank">rank ${opt.rank} · ${opt.option_id} · ${opt.evidence_class}${em ? ' · <span class="not-a-reading">not a reading</span>' : ""}</div>
         ${signsHtml}
         <div class="witnesses-label">Witness support (evidence, not a rate)</div>
         <div class="witnesses">${opt.support.independent_witness_family_count} independent witness famil${opt.support.independent_witness_family_count === 1 ? "y" : "ies"}${shareHtml}<br>${famsHtml}</div>
       `;
       const rateWrap = document.createElement("div");
-      rateWrap.innerHTML = `<div class="track-record-label">Track record of this rank (calibration, not evidence)</div>`;
+      rateWrap.innerHTML = `<div class="track-record-label">${
+        em ? "No rank track record applies here" : "Track record of this rank (calibration, not evidence)"}</div>`;
       rateWrap.appendChild(renderRate(opt.option_audit, "Option audit"));
       card.appendChild(rateWrap);
       card.addEventListener("click", (e) => {
@@ -1152,7 +1190,13 @@ function renderDetail() {
       if (packet.workflow.allowed_actions.includes("SELECT_OPTION")) {
         const selectBtn = document.createElement("button");
         selectBtn.className = "primary";
-        selectBtn.textContent = isPreviewed ? "✓ Previewing — click to record this choice" : "Select this option";
+        // Still selectable: concluding that no sign stood here, against the
+        // markup, is a legitimate expert judgment. But it is not "selecting a
+        // reading", so it is not labelled as one.
+        selectBtn.textContent = em
+          ? (isPreviewed ? "✓ Previewing — click to record that no sign stood here"
+                         : "Record that no sign stood here (disputes the markup)")
+          : (isPreviewed ? "✓ Previewing — click to record this choice" : "Select this option");
         selectBtn.addEventListener("click", () => recordDecision(packet, "SELECT_OPTION", opt.option_id, null));
         card.appendChild(document.createElement("br"));
         card.appendChild(selectBtn);

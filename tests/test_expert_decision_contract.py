@@ -143,6 +143,188 @@ def language_context(**overrides):
     return edc.build_language_context(**kwargs)
 
 
+def p2e4_empty_middle_source():
+    """A P2-E4 source whose rank-1 witness proposal is the empty middle."""
+    source = p2e4_source()
+    source["candidate_set"]["alternatives"][0]["middle"] = []
+    return source
+
+
+class TestEmptyMiddleDisplay(unittest.TestCase):
+    """The empty middle is contradictory evidence, not a candidate reading.
+
+    Measured at 109 of 577 accepted cross-line real gaps and 10 of the 28
+    exported demo packets, so this is a live display path, not a hypothetical.
+    The remedy is display-only ON PURPOSE: the option keeps its rank and its
+    witness support because that is the ranking P2-E4/P2-E9 were fit over, and
+    removing it would decouple the calibrated rate from the thing it rates.
+    """
+
+    def build(self):
+        return edc.adapt_p2e4_packet(
+            p2e4_empty_middle_source(), "packet-em", provenance(),
+            language_context())
+
+    def test_the_option_is_not_dropped_or_reordered(self):
+        """Filtering it would change the applied ranking. It must not."""
+        packet = self.build()
+        options = packet["candidate_set"]["options"]
+        self.assertEqual(len(options), 1)
+        self.assertEqual(options[0]["rank"], 1)
+        self.assertEqual(options[0]["signs"], [])
+        self.assertEqual(
+            options[0]["support"]["independent_witness_family_count"], 2)
+
+    def test_it_is_labelled_as_not_a_reading(self):
+        display = self.build()["candidate_set"]["options"][0]["display"]
+        self.assertEqual(display["kind"], "EMPTY_MIDDLE")
+        self.assertFalse(display["is_a_reading"])
+        self.assertTrue(display["render_signs_as"])
+        self.assertTrue(display["headline"])
+
+    def test_the_rank_group_rate_is_withheld(self):
+        """The rank rate's estimand is agreement with the true attested
+        middle; an option proposing no signs cannot be that middle."""
+        option = self.build()["candidate_set"]["options"][0]
+        self.assertEqual(option["option_audit"]["kind"], "UNAVAILABLE")
+        self.assertIsNone(option["option_audit"]["estimate"])
+        self.assertIsNone(option["option_audit"]["sample_size"])
+
+    def test_it_produces_typed_contradictory_evidence(self):
+        packet = self.build()
+        contra = packet["contradictory_evidence"]
+        self.assertEqual(len(contra), 1)
+        self.assertEqual(contra[0]["type"], "WITNESS_ANCHORS_ADJACENT")
+        self.assertEqual(contra[0]["polarity"], "CONTRADICTS_QUERY_STRUCTURE")
+        self.assertEqual(contra[0]["source_refs"], ["A", "B"])
+
+    def test_it_carries_the_limitation_code(self):
+        codes = [item["code"] for item in self.build()["limitations"]]
+        self.assertIn(edc.EMPTY_MIDDLE_LIMITATION_CODE, codes)
+
+    def test_an_ordinary_option_is_untouched(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_source(), "packet-ok", provenance(), language_context())
+        option = packet["candidate_set"]["options"][0]
+        self.assertNotIn("display", option)
+        self.assertEqual(option["option_audit"]["kind"], "GROUP_AUDIT_RATE")
+        self.assertEqual(packet["contradictory_evidence"], [])
+
+    def test_p2e6_multisign_is_covered_too(self):
+        """5 of the 12 exported P2-E6 packets carry one, one at rank 1 on 19
+        families. The set-inclusion rate is withheld on the same grounds."""
+        source = p2e6_source()
+        source["candidate_set"]["tie_complete_alternatives"][0]["middle"] = []
+        packet = edc.adapt_p2e6_packet(
+            source, "packet-em6", provenance(), language_context())
+        option = packet["candidate_set"]["options"][0]
+        self.assertEqual(option["display"]["kind"], "EMPTY_MIDDLE")
+        self.assertEqual(option["option_audit"]["kind"], "UNAVAILABLE")
+
+
+class TestEmptyMiddleFailsClosed(unittest.TestCase):
+    def test_an_unknown_query_kind_is_refused(self):
+        """No default: 'witnesses show nothing' means something different for
+        an illegible trace, a restoration, a lacuna, and a hidden sign."""
+        with self.assertRaises(edc.ContractError):
+            edc.classify_empty_middle("SOMETHING_ELSE")
+
+    def test_every_declared_kind_has_copy(self):
+        for kind in edc.EMPTY_MIDDLE_QUERY_KINDS:
+            with self.subTest(kind=kind):
+                classification = edc.classify_empty_middle(kind)
+                self.assertTrue(classification["headline"])
+                self.assertTrue(classification["detail"])
+                self.assertEqual(classification["query_kind"], kind)
+
+    def test_the_four_real_situations_are_all_covered(self):
+        self.assertEqual(
+            set(edc.EMPTY_MIDDLE_QUERY_KINDS),
+            {"ILLEGIBLE_TRACE", "EDITORIAL_RESTORATION",
+             "INDETERMINATE_LACUNA", "HIDDEN_ATTESTED_SIGN"})
+
+    def test_damage_state_maps_to_the_right_branch(self):
+        self.assertEqual(
+            edc.empty_middle_query_kind_for_damage("illegible_x"),
+            "ILLEGIBLE_TRACE")
+        self.assertEqual(
+            edc.empty_middle_query_kind_for_damage("restored"),
+            "EDITORIAL_RESTORATION")
+        self.assertEqual(
+            edc.empty_middle_query_kind_for_damage("laes"),
+            "EDITORIAL_RESTORATION")
+
+    def test_the_ellipsis_token_wins_over_its_damage_state(self):
+        """An indeterminate lacuna is tagged `restored`, but the editor
+        proposed no sign -- describing it as a restoration would misreport
+        what they actually wrote."""
+        self.assertEqual(
+            edc.empty_middle_query_kind_for_damage(
+                "restored", token=edc.INDETERMINATE_LACUNA_TOKEN),
+            "INDETERMINATE_LACUNA")
+
+    def test_an_attested_run_is_refused(self):
+        """An attested run is not a gap; inferring a branch would hide a bug."""
+        with self.assertRaises(edc.ContractError):
+            edc.empty_middle_query_kind_for_damage("attested")
+
+    def test_an_unknown_damage_state_is_refused(self):
+        with self.assertRaises(edc.ContractError):
+            edc.empty_middle_query_kind_for_damage(None)
+
+    def test_the_mapping_only_returns_declared_kinds(self):
+        for damage in ("illegible_x", "restored", "laes"):
+            with self.subTest(damage=damage):
+                self.assertIn(
+                    edc.empty_middle_query_kind_for_damage(damage),
+                    edc.EMPTY_MIDDLE_QUERY_KINDS)
+
+    def test_an_unannotated_empty_option_is_rejected(self):
+        """The defect this replaces fails silently -- a renderer just draws an
+        empty candidate -- so the schema has to catch it."""
+        packet = edc.adapt_p2e4_packet(
+            p2e4_empty_middle_source(), "packet-em", provenance(),
+            language_context())
+        del packet["candidate_set"]["options"][0]["display"]
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(packet)
+
+    def test_an_empty_option_may_not_carry_a_rank_rate(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_empty_middle_source(), "packet-em", provenance(),
+            language_context())
+        packet["candidate_set"]["options"][0]["option_audit"] = {
+            "kind": "GROUP_AUDIT_RATE", "scope": "OPTION_RANK",
+            "estimand": "rank group agreement",
+            "estimate": 0.8,
+            "interval": {"method": "WILSON_SCORE", "level": 0.95,
+                         "lower": 0.71, "upper": 0.87},
+            "sample_size": 100, "instance_truth_probability": False,
+            "ui_label": "x",
+        }
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(packet)
+
+    def test_a_display_block_on_a_real_reading_is_rejected(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_source(), "packet-ok", provenance(), language_context())
+        packet["candidate_set"]["options"][0]["display"] = {
+            "kind": "EMPTY_MIDDLE", "query_kind": "ILLEGIBLE_TRACE",
+            "is_a_reading": False, "render_signs_as": "(no sign)",
+            "headline": "h", "detail": "d",
+        }
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(packet)
+
+    def test_a_display_block_claiming_to_be_a_reading_is_rejected(self):
+        packet = edc.adapt_p2e4_packet(
+            p2e4_empty_middle_source(), "packet-em", provenance(),
+            language_context())
+        packet["candidate_set"]["options"][0]["display"]["is_a_reading"] = True
+        with self.assertRaises(edc.ContractError):
+            edc.validate_suggestion_packet(packet)
+
+
 class TestExpertDecisionContract(unittest.TestCase):
     def test_single_sign_adapter_strips_hidden_gold(self):
         packet = edc.adapt_p2e4_packet(

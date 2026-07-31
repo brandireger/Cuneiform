@@ -14,9 +14,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -65,14 +65,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
+            "estimate": 0.912101,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
+              "lower": 0.903155,
+              "upper": 0.920294
             },
-            "sample_size": 4375,
+            "sample_size": 4198,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -175,9 +175,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -226,14 +226,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909699,
+            "estimate": 0.911978,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900957,
-              "upper": 0.91774
+              "lower": 0.903251,
+              "upper": 0.919988
             },
-            "sample_size": 4485,
+            "sample_size": 4408,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -336,9 +336,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -387,14 +387,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909091,
+            "estimate": 0.915789,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900573,
-              "upper": 0.916946
+              "lower": 0.907186,
+              "upper": 0.923662
             },
-            "sample_size": 4741,
+            "sample_size": 4370,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -497,9 +497,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -549,14 +549,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
+            "estimate": 0.912101,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
+              "lower": 0.903155,
+              "upper": 0.920294
             },
-            "sample_size": 4375,
+            "sample_size": 4198,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -582,14 +582,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.101871,
+            "estimate": 0.101713,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.084313,
-              "upper": 0.122596
+              "lower": 0.08393,
+              "upper": 0.122759
             },
-            "sample_size": 962,
+            "sample_size": 934,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -703,9 +703,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -755,14 +755,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
+            "estimate": 0.912101,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
+              "lower": 0.903155,
+              "upper": 0.920294
             },
-            "sample_size": 4375,
+            "sample_size": 4198,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -865,9 +865,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -917,14 +917,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909699,
+            "estimate": 0.911978,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900957,
-              "upper": 0.91774
+              "lower": 0.903251,
+              "upper": 0.919988
             },
-            "sample_size": 4485,
+            "sample_size": 4408,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1027,9 +1027,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1079,14 +1079,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909091,
+            "estimate": 0.915789,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900573,
-              "upper": 0.916946
+              "lower": 0.907186,
+              "upper": 0.923662
             },
-            "sample_size": 4741,
+            "sample_size": 4370,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1189,9 +1189,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1241,14 +1241,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
+            "estimate": 0.912101,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
+              "lower": 0.903155,
+              "upper": 0.920294
             },
-            "sample_size": 4375,
+            "sample_size": 4198,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1351,9 +1351,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1397,19 +1397,22 @@ const TAKSAN_DEMO_PACKETS = [
             "share_is_probability": false
           },
           "option_audit": {
-            "kind": "GROUP_AUDIT_RATE",
-            "scope": "OPTION_RANK",
-            "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
-            "interval": {
-              "method": "WILSON_SCORE",
-              "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
-            },
-            "sample_size": 4375,
+            "kind": "UNAVAILABLE",
+            "scope": "NONE",
+            "estimand": null,
+            "estimate": null,
+            "interval": null,
+            "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         }
       ],
@@ -1444,7 +1447,19 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "2 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 14.8+",
+          "KBo 50.13+"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "RANK_GROUP_RATE_NOT_INSTANCE_PROBABILITY",
@@ -1457,6 +1472,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -1510,9 +1529,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1556,19 +1575,22 @@ const TAKSAN_DEMO_PACKETS = [
             "share_is_probability": false
           },
           "option_audit": {
-            "kind": "GROUP_AUDIT_RATE",
-            "scope": "OPTION_RANK",
-            "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
-            "interval": {
-              "method": "WILSON_SCORE",
-              "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
-            },
-            "sample_size": 4375,
+            "kind": "UNAVAILABLE",
+            "scope": "NONE",
+            "estimand": null,
+            "estimate": null,
+            "interval": null,
+            "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         }
       ],
@@ -1603,7 +1625,19 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "2 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 16.65+",
+          "KUB 31.59"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "RANK_GROUP_RATE_NOT_INSTANCE_PROBABILITY",
@@ -1616,6 +1650,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -1669,9 +1707,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1718,19 +1756,22 @@ const TAKSAN_DEMO_PACKETS = [
             "share_is_probability": false
           },
           "option_audit": {
-            "kind": "GROUP_AUDIT_RATE",
-            "scope": "OPTION_RANK",
-            "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909091,
-            "interval": {
-              "method": "WILSON_SCORE",
-              "level": 0.95,
-              "lower": 0.900573,
-              "upper": 0.916946
-            },
-            "sample_size": 4741,
+            "kind": "UNAVAILABLE",
+            "scope": "NONE",
+            "estimand": null,
+            "estimate": null,
+            "interval": null,
+            "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         }
       ],
@@ -1768,7 +1809,22 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "5 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 19.112",
+          "KBo 26.112",
+          "KBo 26.79",
+          "KUB 33.103",
+          "KUB 36.16"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "RANK_GROUP_RATE_NOT_INSTANCE_PROBABILITY",
@@ -1781,6 +1837,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -1834,9 +1894,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -1881,19 +1941,22 @@ const TAKSAN_DEMO_PACKETS = [
             "share_is_probability": false
           },
           "option_audit": {
-            "kind": "GROUP_AUDIT_RATE",
-            "scope": "OPTION_RANK",
-            "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
-            "interval": {
-              "method": "WILSON_SCORE",
-              "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
-            },
-            "sample_size": 4375,
+            "kind": "UNAVAILABLE",
+            "scope": "NONE",
+            "estimand": null,
+            "estimate": null,
+            "interval": null,
+            "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -1920,14 +1983,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.101871,
+            "estimate": 0.101713,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.084313,
-              "upper": 0.122596
+              "lower": 0.08393,
+              "upper": 0.122759
             },
-            "sample_size": 962,
+            "sample_size": 934,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -1975,7 +2038,20 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "3 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KUB 17.21+",
+          "KUB 23.17+",
+          "KUB 31.124+"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "RANK_GROUP_RATE_NOT_INSTANCE_PROBABILITY",
@@ -1988,6 +2064,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -2041,9 +2121,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2095,14 +2175,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911086,
+            "estimate": 0.912101,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.902287,
-              "upper": 0.919163
+              "lower": 0.903155,
+              "upper": 0.920294
             },
-            "sample_size": 4375,
+            "sample_size": 4198,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2126,14 +2206,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.101871,
+            "estimate": 0.101713,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.084313,
-              "upper": 0.122596
+              "lower": 0.08393,
+              "upper": 0.122759
             },
-            "sample_size": 962,
+            "sample_size": 934,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2247,9 +2327,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2295,19 +2375,22 @@ const TAKSAN_DEMO_PACKETS = [
             "share_is_probability": false
           },
           "option_audit": {
-            "kind": "GROUP_AUDIT_RATE",
-            "scope": "OPTION_RANK",
-            "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.911486,
-            "interval": {
-              "method": "WILSON_SCORE",
-              "level": 0.95,
-              "lower": 0.900713,
-              "upper": 0.921193
-            },
-            "sample_size": 2960,
+            "kind": "UNAVAILABLE",
+            "scope": "NONE",
+            "estimand": null,
+            "estimate": null,
+            "interval": null,
+            "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -2329,14 +2412,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.068776,
+            "estimate": 0.083179,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.052555,
-              "upper": 0.08953
+              "lower": 0.062745,
+              "upper": 0.109492
             },
-            "sample_size": 727,
+            "sample_size": 541,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2385,7 +2468,21 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "4 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 10.25+",
+          "KBo 27.42",
+          "KBo 30.105",
+          "KBo 56.77+"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "RANK_GROUP_RATE_NOT_INSTANCE_PROBABILITY",
@@ -2398,6 +2495,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -2451,9 +2552,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2463,7 +2564,7 @@ const TAKSAN_DEMO_PACKETS = [
       "location": {
         "line_index_in_doc": 29,
         "sign_offset_in_line": 5,
-        "span_ordinal": 88
+        "span_ordinal": 85
       },
       "gap_extent": {
         "kind": "EXACT",
@@ -2504,14 +2605,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.913364,
+            "estimate": 0.913879,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.904168,
-              "upper": 0.921754
+              "lower": 0.904532,
+              "upper": 0.92239
             },
-            "sample_size": 3936,
+            "sample_size": 3797,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2535,14 +2636,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.071703,
+            "estimate": 0.068874,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.055628,
-              "upper": 0.09197
+              "lower": 0.052907,
+              "upper": 0.089206
             },
-            "sample_size": 781,
+            "sample_size": 755,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2656,9 +2757,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E4",
       "source_artifact": "Phase2/phase2_out/p2e4_candidate_set_packets.jsonl",
-      "source_artifact_sha256": "5034803712aeaf18cff56567347511b8b43a4c0fe90c7fa58208c9182b0870ee",
+      "source_artifact_sha256": "81fd5ad52f67afba3103331a91ec225765e30a7ddc11b309a9854914dd525d6d",
       "source_manifest": "Phase2/phase2_out/p2e4_candidate_set_audit_manifest.json",
-      "source_manifest_sha256": "fad23b9740ee0eff6734f0eb99c4595f5106f2dcd126f90ef87b2aa0a2e051ca",
+      "source_manifest_sha256": "f43c3d11ed9197a38657dc574bddd0ebf57ab2788496b71d320908aca57f05b6",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2711,14 +2812,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.909699,
+            "estimate": 0.911978,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.900957,
-              "upper": 0.91774
+              "lower": 0.903251,
+              "upper": 0.919988
             },
-            "sample_size": 4485,
+            "sample_size": 4408,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2742,14 +2843,14 @@ const TAKSAN_DEMO_PACKETS = [
             "kind": "GROUP_AUDIT_RATE",
             "scope": "OPTION_RANK",
             "estimand": "Among selector-accepted calibration-composition spans where this candidate rank exists, the fraction whose intentionally hidden attested middle occurs at that rank",
-            "estimate": 0.088017,
+            "estimate": 0.086674,
             "interval": {
               "method": "WILSON_SCORE",
               "level": 0.95,
-              "lower": 0.071565,
-              "upper": 0.107812
+              "lower": 0.070193,
+              "upper": 0.106581
             },
-            "sample_size": 943,
+            "sample_size": 923,
             "instance_truth_probability": false,
             "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
           }
@@ -2865,9 +2966,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -2977,9 +3078,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -3045,7 +3146,15 @@ const TAKSAN_DEMO_PACKETS = [
             "interval": null,
             "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "No transferable group audit rate is available."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -3389,14 +3498,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.364384,
+        "estimate": 0.363337,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.359306,
-          "upper": 0.369493
+          "lower": 0.358196,
+          "upper": 0.368509
         },
-        "sample_size": 34288,
+        "sample_size": 33418,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -3545,7 +3654,36 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "19 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 12.27",
+          "KBo 14.10",
+          "KBo 14.13",
+          "KBo 14.7",
+          "KBo 19.45+",
+          "KBo 19.48+",
+          "KBo 19.49+",
+          "KBo 19.54",
+          "KBo 22.48",
+          "KBo 40.293+",
+          "KBo 40.6",
+          "KBo 5.6",
+          "KBo 50.11+",
+          "KBo 50.13+",
+          "KBo 50.14+",
+          "KBo 50.16",
+          "KBo 8.29",
+          "KUB 19.18",
+          "KUB 31.7"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "SET_GROUP_RATE_NOT_OPTION_PROBABILITY",
@@ -3562,6 +3700,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",
         "message": "36 additional equal-support or lower-display alternatives are preserved by count and must remain inspectable; they may not be silently discarded."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -3615,9 +3757,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -3807,14 +3949,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.364384,
+        "estimate": 0.363337,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.359306,
-          "upper": 0.369493
+          "lower": 0.358196,
+          "upper": 0.368509
         },
-        "sample_size": 34288,
+        "sample_size": 33418,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -3941,9 +4083,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4053,9 +4195,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4444,14 +4586,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.239514,
+        "estimate": 0.23972,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.23465,
-          "upper": 0.244447
+          "lower": 0.234795,
+          "upper": 0.244716
         },
-        "sample_size": 29159,
+        "sample_size": 28454,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -4656,9 +4798,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -4707,7 +4849,15 @@ const TAKSAN_DEMO_PACKETS = [
             "interval": null,
             "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "No transferable group audit rate is available."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -5007,14 +5157,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.239514,
+        "estimate": 0.23972,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.23465,
-          "upper": 0.244447
+          "lower": 0.234795,
+          "upper": 0.244716
         },
-        "sample_size": 29159,
+        "sample_size": 28454,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -5132,7 +5282,19 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "2 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 14.15",
+          "KUB 34.23"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "SET_GROUP_RATE_NOT_OPTION_PROBABILITY",
@@ -5145,6 +5307,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -5198,9 +5364,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5310,9 +5476,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5482,14 +5648,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.162883,
+        "estimate": 0.163255,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.158307,
-          "upper": 0.167565
+          "lower": 0.158622,
+          "upper": 0.167996
         },
-        "sample_size": 24447,
+        "sample_size": 23889,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -5602,9 +5768,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -5707,7 +5873,15 @@ const TAKSAN_DEMO_PACKETS = [
             "interval": null,
             "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "No transferable group audit rate is available."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -5806,14 +5980,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.162883,
+        "estimate": 0.163255,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.158307,
-          "upper": 0.167565
+          "lower": 0.158622,
+          "upper": 0.167996
         },
-        "sample_size": 24447,
+        "sample_size": 23889,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -5882,7 +6056,18 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-003",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "1 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KUB 34.23"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "SET_GROUP_RATE_NOT_OPTION_PROBABILITY",
@@ -5895,6 +6080,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -5948,9 +6137,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -6060,9 +6249,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -6110,7 +6299,15 @@ const TAKSAN_DEMO_PACKETS = [
             "interval": null,
             "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "No transferable group audit rate is available."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -6324,14 +6521,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.11392,
+        "estimate": 0.114382,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.109601,
-          "upper": 0.118387
+          "lower": 0.110009,
+          "upper": 0.118905
         },
-        "sample_size": 20093,
+        "sample_size": 19671,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -6408,7 +6605,18 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "1 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 19.53"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "SET_GROUP_RATE_NOT_OPTION_PROBABILITY",
@@ -6421,6 +6629,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "LANGUAGE_UNRESOLVED_IN_SOURCE_RUN",
         "message": "This packet's source run predates word-aware language resolution, so the language of the query span was never established. Treat the displayed evidence as language-unverified rather than assuming Hittite."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
@@ -6474,9 +6686,9 @@ const TAKSAN_DEMO_PACKETS = [
     "source_provenance": {
       "source_probe": "P2-E6",
       "source_artifact": "Phase2/phase2_out/p2e6_multisign_packets.jsonl",
-      "source_artifact_sha256": "6af77e931a64b0f9ba3b59918136dcb6d87cc1ec35bb7879680de5084fb45904",
+      "source_artifact_sha256": "f318ac8e06dfd5b699a47d8c3b7fd2582303db7e71ef9ce1f4cc541e58772542",
       "source_manifest": "Phase2/phase2_out/p2e6_multisign_horizon_manifest.json",
-      "source_manifest_sha256": "a07bbffe32bd270a40c9e0f80a95c86aa4f87248f39c9e3bb82893c61cf3330c",
+      "source_manifest_sha256": "b3b73a5ece98c8ef6b570e1638d1a116eb95e13a4cef5e42e506627ec0070518",
       "dev_example_only": true,
       "hidden_evaluation_payload_removed": true
     },
@@ -6533,7 +6745,15 @@ const TAKSAN_DEMO_PACKETS = [
             "interval": null,
             "sample_size": null,
             "instance_truth_probability": false,
-            "ui_label": "No transferable group audit rate is available."
+            "ui_label": "No applicable group audit rate. The rank-level rate estimates how often the true attested middle appears at this rank; this option proposes no sign at all and so cannot be that middle."
+          },
+          "display": {
+            "kind": "EMPTY_MIDDLE",
+            "query_kind": "HIDDEN_ATTESTED_SIGN",
+            "is_a_reading": false,
+            "render_signs_as": "(no sign)",
+            "headline": "Witnesses show no sign where one is known to stand.",
+            "detail": "This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
           }
         },
         {
@@ -6875,14 +7095,14 @@ const TAKSAN_DEMO_PACKETS = [
         "kind": "GROUP_AUDIT_RATE",
         "scope": "CANDIDATE_SET",
         "estimand": "Among witness-supported calibration-composition spans with the same mask length and selected adaptive anchor length, the fraction whose intentionally hidden attested span occurs in the tie-complete displayed set",
-        "estimate": 0.11392,
+        "estimate": 0.114382,
         "interval": {
           "method": "WILSON_SCORE",
           "level": 0.95,
-          "lower": 0.109601,
-          "upper": 0.118387
+          "lower": 0.110009,
+          "upper": 0.118905
         },
-        "sample_size": 20093,
+        "sample_size": 19671,
         "instance_truth_probability": false,
         "ui_label": "Historical group audit rate; not the probability that this option or set is correct."
       }
@@ -7018,7 +7238,27 @@ const TAKSAN_DEMO_PACKETS = [
         ]
       }
     ],
-    "contradictory_evidence": [],
+    "contradictory_evidence": [
+      {
+        "evidence_id": "contradiction-option-001",
+        "type": "WITNESS_ANCHORS_ADJACENT",
+        "polarity": "CONTRADICTS_QUERY_STRUCTURE",
+        "evidence_class": "EDITORIAL_TRANSCRIPTION",
+        "summary": "10 independent witness family/families attest the left and right anchors directly adjacent, with no sign between them. Witnesses show no sign where one is known to stand.",
+        "source_refs": [
+          "KBo 14.4",
+          "KBo 40.293+",
+          "KBo 42.71",
+          "KBo 5.6",
+          "KBo 50.13+",
+          "KUB 19.12",
+          "KUB 19.18",
+          "KUB 19.22",
+          "KUB 34.23",
+          "KUB 34.32"
+        ]
+      }
+    ],
     "limitations": [
       {
         "code": "SET_GROUP_RATE_NOT_OPTION_PROBABILITY",
@@ -7035,6 +7275,10 @@ const TAKSAN_DEMO_PACKETS = [
       {
         "code": "EQUAL_SUPPORT_TAIL_COLLAPSED",
         "message": "3 additional equal-support or lower-display alternatives are preserved by count and must remain inspectable; they may not be silently discarded."
+      },
+      {
+        "code": "EMPTY_MIDDLE_CONTRADICTS_QUERY_STRUCTURE",
+        "message": "1 option(s) in this set propose no sign at all. They are retained at their measured rank because the calibration was fit over rankings that included them, but they are contradictory evidence about the query's structure, not candidate readings, and carry no rank-level rate. This is an evaluation context: a genuinely attested sign was hidden on purpose, so a sign certainly stood here. Independent witnesses nevertheless attest the two anchors adjacent, which makes this proposal a measure of witness divergence rather than a candidate reading. It cannot be correct by construction."
       }
     ],
     "language": {
