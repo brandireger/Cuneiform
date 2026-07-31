@@ -105,17 +105,24 @@ empty card — so the schema has to catch it rather than relying on callers.
 
 ## What is not verified
 
-**No browser render check.** No browser tool was available. Verification was
-an esprima parse of the page script, HTML tag-nesting validation, and the test
-suite. **The Takšan prototype needs a smoke test before expert use** — the
-option card, preview dropdown, and select button all changed, and this page
-has never had a recorded browser smoke test at all (unlike the workbench).
-This is now the second page awaiting one.
+**Browser-verified 2026-07-31** (`reports/phase5_browser_verification.md`) —
+the Takšan page's first ever recorded browser check. Ixca confirmed in Chrome
+that empty-middle options render with `(no sign)`, the NOT A READING tag, the
+warning border, and the branch explanation; that the preview dropdown and
+select-button labels are correct; that ordinary options in the same packets
+are untouched; and — the point of the whole change — **that no percentage
+appears beside an empty middle**, the audit box rendering as unavailable under
+"No rank track record applies here". Checked on `p2e4-009`, `p2e4-011`, and
+`p2e6-002` (rank 1 on 19 witness families).
 
 **No specialist has assessed the wording.** The four branch texts are my
 reading of what the witnesses establish in each case. They are the sentences a
-Hittitologist will actually read, and they should be reviewed as copy, not
-just as logic.
+Hittitologist will actually read, and they have now been verified to *render*
+— not reviewed as philological prose. That remains open.
+
+**No automated regression capture exists.** `tests/test_taksan_empty_middle_render.py`
+pins the display contract at string level, but a future change could break
+rendering without any test observing it.
 
 ## Two open items surfaced by this work, not folded into it
 

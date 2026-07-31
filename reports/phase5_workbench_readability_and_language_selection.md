@@ -151,16 +151,21 @@ Ixca, not a UI change.
 
 ## What is not verified
 
-**No browser render check was performed in this session** — no browser tool
-was available. Verification was: esprima parse of the extracted page script
-(OK), HTML tag-nesting validation (no unclosed or mismatched tags), and the
-test suite. The 2026-07-29 smoke test in
-`reports/phase5_p4e2_browser_smoke.md` covered the *previous* markup; **this
-pass changes the header, sidebar, banner, evidence card, action area, and
-footer, so it needs a repeat smoke test before any expert session.** The
-`<details>`/`<summary>` disclosure and the `data-damage` attribute selectors
-are the specific things to check, on the same in-app browser that rejected
-`window.prompt()`.
+**Browser-verified 2026-07-31** (`reports/phase5_browser_verification.md`).
+At implementation time no browser tool was available and this section recorded
+the gap; Ixca has since rendered the page in Chrome and confirmed the subset
+headline stays outside its disclosure, the three action groups render with
+tooltips, the footer quarantine statement stays visible, the in-page dialog
+completes a `WITHHOLD_JUDGMENT` and discards it on reload, and — the
+highest-risk item — the `data-damage` attribute selectors actually apply, so
+the overlay restyles the transliteration and swaps its legend across all three
+modes.
+
+Still unverified: **no export was downloaded and no ingest was exercised**, so
+those paths remain covered by the Python tests only. And **no automated
+regression capture exists** — the string-level tests pin that the required
+wording and hooks are present, but they cannot observe a CSS selector matching
+nothing, which is the class of failure that made a manual check necessary.
 
 **No specialist has assessed whether the grouping helps.** The action
 taxonomy here is an engineering judgment about what the seven actions *do*,

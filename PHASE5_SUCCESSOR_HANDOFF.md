@@ -1,8 +1,9 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
 **Handoff date:** 2026-07-28
-**Refreshed:** 2026-07-30 (workbench readability + single-language sessions;
-empty-middle measured and resolved by display treatment)
+**Refreshed:** 2026-07-31 (both expert prototypes browser-verified)
+**Prior refresh:** 2026-07-30 (workbench readability + single-language
+sessions; empty-middle measured and resolved by display treatment)
 **Repository state:** P4-D/E ratified; **P4-E2 expert interface, P4-G rerun,
 the full cross-line calibration line (P2-E8 → E9 → E10), production real-gap
 scope widening, and the 2026-07-30 expert-surface work complete.** Cross-line
@@ -25,8 +26,10 @@ Read `AGENTS.md` first — it remains the design authority.
 - `reports/phase5_empty_middle_display_treatment.md` — what was adopted
 - `reports/phase5_workbench_readability_and_language_selection.md`
 - `reports/phase4_p4e2_expert_interface.md`
-- `reports/phase5_p4e2_browser_smoke.md` — what the browser did and did not
-  verify
+- `reports/phase5_browser_verification.md` — both prototypes rendered and
+  checked; read its "deliberate bounds"
+- `reports/phase5_p4e2_browser_smoke.md` — the earlier, narrower workbench
+  check that this supersedes
 
 Older `PHASE4_SUCCESSOR_HANDOFF.md` "Next work" text is a historical record,
 not the current queue. `README.md`, `PHASE4_CHARTER.md`, `Phase4/README.md`,
@@ -59,6 +62,16 @@ they point here rather than reviving already-completed work.
 Neither 2026-07-30 change moved a ratified number. The default review queue's
 `channels_logical_sha256` is unchanged, and real-gap counts are unchanged at
 703/41 same-line and 46,118/577 cross-line.
+
+**2026-07-31 session**
+
+| work | outcome |
+|---|---|
+| **browser verification** | both prototypes rendered and checked in Chrome; `data-damage` selectors apply, and no percentage appears beside an empty middle |
+
+First recorded browser check for `demo/taksan_missing_text_prototype.html`.
+Human visual check against a checklist, not an automated capture — see the
+report's deliberate bounds.
 
 ## The through-line, and the one number that matters
 
@@ -165,18 +178,20 @@ never read `cu`, Gate 3 closed. Additionally:
 
 ## Open, in the order I would take them
 
-1. **Browser-verify two prototypes.** Both changed on 2026-07-30 and neither
-   is verified.
-   - `demo/workbench_unresolved_prototype.html` passed a smoke test on
-     2026-07-29 (`reports/phase5_p4e2_browser_smoke.md`), but the readability
-     pass then rewrote its header, sidebar, banner, evidence card, action
-     area, and footer. Re-verify the `<details>`/`<summary>` disclosures and
-     the `data-damage` attribute selectors.
-   - `demo/taksan_missing_text_prototype.html` has **never** had a recorded
-     browser smoke test. Its option card, preview dropdown, and select button
-     changed with the empty-middle treatment.
+1. ~~**Browser-verify two prototypes.**~~ **DONE 2026-07-31**
+   (`reports/phase5_browser_verification.md`). Ixca rendered both pages in
+   Chrome over a local `http.server` and confirmed every checklist item. The
+   two highest-risk items passed: the workbench's `data-damage` attribute
+   selectors actually apply, and **no percentage appears beside an empty
+   middle** in Takšan — the defect the whole treatment exists to remove. This
+   was the Takšan page's first ever recorded browser check.
 
-   Use the same in-app browser that rejected `window.prompt()`.
+   Not covered, and still open: **no export was downloaded and no ingest was
+   exercised** (those remain covered by Python tests only), and **no automated
+   regression capture exists** — the string-level tests pin that the required
+   wording and hooks are present, but they cannot observe a CSS selector
+   matching nothing, which is exactly the failure class that made the manual
+   check necessary. A future markup change can still break rendering silently.
 
 2. **Ratify the two P4-E2 queue exclusions** (placeholder-only sequences;
    sequences under 2 signs). They decide what a specialist is shown and must
@@ -253,7 +268,9 @@ The tracer suite passing after this much change is the reassurance worth
 having: the plumbing that caught E2 is still live, and every rerun script
 re-ran its own C1 encoding assertion on the way through.
 
-**No browser verification was possible in the 2026-07-30 session** — no
-browser tool was available. Page changes were verified by esprima parse of the
-extracted scripts, HTML tag-nesting validation, and the test suite. That is
-open item 1.
+**Both prototypes were browser-verified on 2026-07-31**
+(`reports/phase5_browser_verification.md`) — a human visual check against a
+supplied checklist, not an automated capture, since no browser automation tool
+was available. What that check could not cover is recorded there and in open
+item 1: no export/ingest was exercised, and no automated regression capture
+exists for rendering.
