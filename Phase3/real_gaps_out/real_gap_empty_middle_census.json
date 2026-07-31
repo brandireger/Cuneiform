@@ -1,0 +1,151 @@
+{
+  "task": "real_gap_empty_middle_census",
+  "handoff_item": "PHASE5_SUCCESSOR_HANDOFF.md open item 4",
+  "is_a_census_not_a_scoring_change": true,
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "mask_length": 1,
+  "same_line": {
+    "population": "same_line",
+    "counts": {
+      "accepted_empty_rank_1_sole_alternative": 1,
+      "accepted_with_empty_at_rank_1": 1,
+      "accepted_with_empty_present": 5,
+      "cf_accepted_becomes_rejected": 1,
+      "cf_no_alternatives_left": 9,
+      "cf_rejected_becomes_accepted": 3,
+      "eligible": 703,
+      "empty_at_rank_1": 22,
+      "empty_present": 32,
+      "no_alternatives": 543,
+      "selector_accepted": 41,
+      "with_alternatives": 160
+    },
+    "empty_middle_rank_histogram": {
+      "1": 22,
+      "2": 6,
+      "3": 4
+    },
+    "accepted_empty_rank_1_alternative_count_histogram": {
+      "1": 1
+    },
+    "examples_accepted_with_empty_at_rank_1": [
+      {
+        "doc_id": "KBo 45.89",
+        "fragment_id": "KBo 45.89",
+        "empty_middle_support": 2,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      }
+    ]
+  },
+  "cross_line": {
+    "population": "cross_line",
+    "counts": {
+      "accepted_empty_rank_1_sole_alternative": 79,
+      "accepted_with_empty_at_rank_1": 109,
+      "accepted_with_empty_present": 142,
+      "cf_accepted_becomes_rejected": 109,
+      "cf_no_alternatives_left": 311,
+      "cf_rejected_becomes_accepted": 49,
+      "eligible": 46118,
+      "empty_at_rank_1": 840,
+      "empty_present": 1081,
+      "no_alternatives": 40442,
+      "selector_accepted": 577,
+      "with_alternatives": 5676
+    },
+    "empty_middle_rank_histogram": {
+      "1": 840,
+      "2": 184,
+      "3": 25,
+      "4": 20,
+      "5": 6,
+      "6+": 6
+    },
+    "accepted_empty_rank_1_alternative_count_histogram": {
+      "1": 79,
+      "2": 21,
+      "3": 5,
+      "4+": 4
+    },
+    "examples_accepted_with_empty_at_rank_1": [
+      {
+        "doc_id": "ABoT 2.13+",
+        "fragment_id": "ABoT 2.13+::4",
+        "empty_middle_support": 2,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "empty_middle_support": 5,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "AT 454",
+        "fragment_id": "AT 454",
+        "empty_middle_support": 5,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "Bo 3531",
+        "fragment_id": "Bo 3531",
+        "empty_middle_support": 2,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "CHDS 4.14+",
+        "fragment_id": "CHDS 4.14+",
+        "empty_middle_support": 5,
+        "runner_up_proposal": [
+          "<NUM>",
+          "RA",
+          "UP",
+          "NI"
+        ],
+        "runner_up_support": 1,
+        "alternative_count": 2
+      },
+      {
+        "doc_id": "CHDS 5.183",
+        "fragment_id": "CHDS 5.183",
+        "empty_middle_support": 2,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "DBH 46_2.169",
+        "fragment_id": "DBH 46_2.169",
+        "empty_middle_support": 2,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      },
+      {
+        "doc_id": "HKM 39",
+        "fragment_id": "HKM 39",
+        "empty_middle_support": 3,
+        "runner_up_proposal": null,
+        "runner_up_support": 0,
+        "alternative_count": 1
+      }
+    ]
+  },
+  "structural_facts": {
+    "empty_middle_is_indexed_deliberately": "build_anchor_index and build_cross_line_index both iterate range(MAX_WITNESS_MIDDLE + 1), so middle_length 0 -- two anchors adjacent in a witness -- is a first-class proposal.",
+    "empty_middle_can_never_be_gold_here": "gold length is always 1 for this population; observed gold lengths {1: 703}; a zero-length gold does not occur.",
+    "calibration_already_prices_it_in": "P2-E4 and P2-E9 were fit over rankings built by these same index functions, so the empty middle consumed rank positions during calibration too. The ratified rates are therefore honest about it; they are not inflated by its presence.",
+    "why_filtering_is_not_free": "Dropping it at application time only would make the applied ranking a different construction from the calibrated one. Any filter must be accompanied by a refit, not bolted on."
+  },
+  "counterfactual_is_not_a_proposal": "The cf_* counts size the decision. Adopting a filter because the counterfactual looks better would report a search as a measurement; the change needs its own justification and refit."
+}
