@@ -6,7 +6,7 @@
   "corpus_version": "TLHdig_0.2.0-beta",
   "evidence_policy": "transcription_assisted",
   "seed": 20260727,
-  "git_commit": "4d898929483c95b8580e142737ea64c92c74c523",
+  "git_commit": "aa9e217fb19edce30bc561b15478e4b2ac9548c3",
   "source_hashes": {
     "occurrences_logical_sha256": "fd387b97a9aeb1cb9b7e9a89f3b20f8b015ef50af524695cec6567b64b191f47",
     "contract_version": "1.1.0",
@@ -21,7 +21,29 @@
     "max_members_displayed_per_cluster": 12,
     "max_clusters_per_channel": 60,
     "context_lines_per_side": 2,
-    "ranking": "sequence_length desc, distinct_document_count desc, member_count desc, cluster_id asc"
+    "ranking": "sequence_length desc, distinct_document_count desc, member_count desc, cluster_id asc",
+    "language_selection": null
+  },
+  "language_selection": {
+    "requested": null,
+    "evidence_class": "OBSERVED_DOCUMENT_STRUCTURE",
+    "source": "cluster proposal supporting_evidence[].languages, as declared by the clustering run's validated language_scope",
+    "canonical_codes": [
+      "Hit",
+      "Akk",
+      "Sum",
+      "Hat",
+      "Hur",
+      "Luw",
+      "Pal"
+    ],
+    "language_contract_version": "2.0.0",
+    "semantics_by_channel": {
+      "SAME_LANGUAGE_AS_QUERY": "clusters are single-language by construction, so a selection yields clusters wholly in that language",
+      "CROSS_LANGUAGE_PARALLEL": "clusters span languages by construction, so a selection yields clusters that INVOLVE that language; their other members are in other languages by design"
+    },
+    "selection_is_a_view_not_a_finding": "Restricting the queue to a language is a display decision. It does not assert that the excluded material is irrelevant, and it does not change any occurrence, proposal, or hash.",
+    "no_calibration_is_implied": "A single-language review session is a review surface only. No per-language calibration exists for any language, and no rate shown anywhere in this project may be transferred to a language it was not fit on."
   },
   "channel_counts": {
     "SAME_LANGUAGE_AS_QUERY": {
@@ -30,6 +52,19 @@
       "excluded_contentless_occurrences": 131963,
       "excluded_below_min_sequence_length": 1544,
       "excluded_below_min_occurrences": 75018,
+      "excluded_off_language": 0,
+      "excluded_off_language_occurrences": 0,
+      "contentful_before_language_selection": 2897,
+      "contentful_clusters_by_language": {
+        "<UNRESOLVED>": 2,
+        "Akk": 65,
+        "Hat": 58,
+        "Hit": 2621,
+        "Hur": 129,
+        "Luw": 15,
+        "Pal": 1,
+        "Sum": 6
+      },
       "eligible_after_exclusions": 2897,
       "queued": 60,
       "not_queued_payload_bound": 2837,
@@ -45,6 +80,19 @@
       "excluded_contentless_occurrences": 131899,
       "excluded_below_min_sequence_length": 542,
       "excluded_below_min_occurrences": 72457,
+      "excluded_off_language": 0,
+      "excluded_off_language_occurrences": 0,
+      "contentful_before_language_selection": 698,
+      "contentful_clusters_by_language": {
+        "<UNRESOLVED>": 5,
+        "Akk": 209,
+        "Hat": 206,
+        "Hit": 665,
+        "Hur": 372,
+        "Luw": 81,
+        "Pal": 26,
+        "Sum": 13
+      },
       "eligible_after_exclusions": 698,
       "queued": 60,
       "not_queued_payload_bound": 638,
@@ -67,9 +115,23 @@
     "Pal": 3,
     "Sum": 1
   },
+  "queued_member_language_counts_by_channel": {
+    "SAME_LANGUAGE_AS_QUERY": {
+      "Hit": 149
+    },
+    "CROSS_LANGUAGE_PARALLEL": {
+      "Akk": 17,
+      "Hat": 13,
+      "Hit": 179,
+      "Hur": 29,
+      "Luw": 8,
+      "Pal": 3,
+      "Sum": 1
+    }
+  },
   "selection_is_a_view_not_a_finding": "Exclusion from this queue is a display decision under contentful_sequence_length_v1. No occurrence, proposal, or hash is modified, and an excluded cluster is not thereby judged uninteresting.",
   "default_channel": "SAME_LANGUAGE_AS_QUERY",
   "cross_language_requires_explicit_enable": true,
   "channels_logical_sha256": "3e4e66ea8d7796739901d379b8bb86cc1cb130c7b19226b7857f2a70ae432bee",
-  "payload_sha256": "bf48d9dbc9e24b23ba94926c0a7c2786b0ca7cc7da6ac1ea68567cb578edf236"
+  "payload_sha256": "5efb0f270e137cfaaccfc8b6c90b0fbe7a9cb5cd5e07ca4a12ddbfee558953c5"
 }

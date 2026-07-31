@@ -100,6 +100,156 @@ class TestQueueRanking(unittest.TestCase):
         self.assertEqual(export.sequence_length(proposal_with("")), 0)
 
 
+class TestLanguageSelection(unittest.TestCase):
+    """`--language` decides which language a specialist spends a session in.
+
+    It fails closed on an unknown code for a specific reason: a silently empty
+    queue is indistinguishable from "this language has no unresolved
+    material", which is a different and far more interesting claim.
+    """
+
+    CODES = ["Hit", "Akk", "Sum", "Hat", "Hur", "Luw", "Pal"]
+
+    def parse(self, values):
+        return export.parse_language_selection(
+            values, canonical_codes=self.CODES)
+
+    def test_no_selection_means_no_restriction(self):
+        for values in (None, [], [""], [" , "]):
+            with self.subTest(values=values):
+                self.assertIsNone(self.parse(values))
+
+    def test_repeated_and_comma_separated_forms_agree(self):
+        self.assertEqual(self.parse(["Akk", "Hur"]), frozenset({"Akk", "Hur"}))
+        self.assertEqual(self.parse(["Akk,Hur"]), frozenset({"Akk", "Hur"}))
+        self.assertEqual(self.parse(["Akk, Hur"]), frozenset({"Akk", "Hur"}))
+
+    def test_unknown_code_is_refused_not_silently_empty(self):
+        for bad in ("Akkadian", "akk", "AKK", "Hittite", "xx"):
+            with self.subTest(bad=bad):
+                with self.assertRaises(SystemExit):
+                    self.parse([bad])
+
+    def test_unresolved_sentinel_must_be_requested_by_name(self):
+        """It is not a canonical code and is never swept in with a real one."""
+        self.assertEqual(
+            self.parse([export.UNRESOLVED_LANGUAGE]),
+            frozenset({export.UNRESOLVED_LANGUAGE}))
+        selection = self.parse(["Hit"])
+        self.assertNotIn(export.UNRESOLVED_LANGUAGE, selection)
+
+    def test_cluster_languages_reads_the_declared_evidence(self):
+        proposal = proposal_with("an da")
+        self.assertEqual(export.cluster_languages(proposal), ["Hit"])
+
+    def test_a_null_language_becomes_the_unresolved_sentinel(self):
+        proposal = proposal_with("an da")
+        proposal["supporting_evidence"][0]["languages"] = [None]
+        self.assertEqual(
+            export.cluster_languages(proposal), [export.UNRESOLVED_LANGUAGE])
+
+    def test_selection_admits_only_matching_clusters(self):
+        hittite = proposal_with("an da")
+        akkadian = proposal_with("an da")
+        akkadian["supporting_evidence"][0]["languages"] = ["Akk"]
+        selection = frozenset({"Akk"})
+        self.assertFalse(export.proposal_matches_language(hittite, selection))
+        self.assertTrue(export.proposal_matches_language(akkadian, selection))
+
+    def test_no_selection_admits_everything(self):
+        proposal = proposal_with("an da")
+        self.assertTrue(export.proposal_matches_language(proposal, None))
+
+    def test_a_cross_language_cluster_matches_on_any_declared_language(self):
+        """Cross-language clusters span languages BY DESIGN.
+
+        Selecting `Luw` there means "clusters that involve Luwian", whose other
+        members are in other languages. That is the channel working, not a leak.
+        """
+        cross = proposal_with("an da")
+        cross["supporting_evidence"][0]["languages"] = ["Hit", "Luw"]
+        self.assertTrue(
+            export.proposal_matches_language(cross, frozenset({"Luw"})))
+        self.assertTrue(
+            export.proposal_matches_language(cross, frozenset({"Hit"})))
+        self.assertFalse(
+            export.proposal_matches_language(cross, frozenset({"Akk"})))
+
+
+class TestBrowserDisclosureContract(unittest.TestCase):
+    """The mandated disclosures moved behind progressive disclosure.
+
+    They are still on the page in full. These tests exist so a later
+    readability pass cannot quietly delete one: collapsing a required
+    statement is a presentation change, deleting it is a contract breach, and
+    the two look identical in a diff of a 900-line HTML file.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.html = (
+            ROOT / "demo" / "workbench_unresolved_prototype.html"
+        ).read_text(encoding="utf-8")
+
+    def test_counts_are_never_presented_as_probabilities(self):
+        """Standing display rule 2."""
+        self.assertIn(
+            "counts of matching occurrences, not a probability or a "
+            "confidence score", self.html)
+
+    def test_absent_contradictory_evidence_is_not_read_as_agreement(self):
+        """Standing display rule 3."""
+        self.assertIn(
+            "That is the absence of a recorded objection, not evidence of "
+            "its soundness", self.html)
+
+    def test_the_subset_statement_stays_outside_the_disclosure(self):
+        """Standing display rule 5: the headline must not be collapsible."""
+        headline = self.html.index("This is a subset, not the corpus.")
+        disclosure = self.html.index("What was held out, and why")
+        self.assertLess(headline, disclosure)
+
+    def test_quarantine_statement_is_present_and_uncollapsed(self):
+        self.assertIn("QUARANTINED_EXPERT_JUDGMENT", self.html)
+        quarantine = self.html.index(
+            "requires a separate adjudication gate")
+        provenance = self.html.index("Provenance and queue parameters")
+        self.assertLess(quarantine, provenance)
+
+    def test_withhold_judgment_is_always_offered(self):
+        """Standing display rule 4."""
+        self.assertIn("WITHHOLD_JUDGMENT", self.html)
+        self.assertIn("Assert nothing", self.html)
+
+    def test_actions_are_grouped_by_what_the_click_records(self):
+        for group_label in ("Record a claim about this occurrence",
+                            "Correct this grouping",
+                            "Assert nothing"):
+            with self.subTest(group_label=group_label):
+                self.assertIn(group_label, self.html)
+
+    def test_every_action_carries_an_explanatory_title(self):
+        """A specialist must know what a click records before clicking."""
+        for action in ("PROPOSE_READING", "PROPOSE_PHRASE", "PROPOSE_LANGUAGE",
+                       "PROPOSE_LEXICAL_IDENTITY", "REMOVE_FROM_CLUSTER",
+                       "REJECT_HYPOTHESIS", "WITHHOLD_JUDGMENT"):
+            with self.subTest(action=action):
+                self.assertIn(f'["{action}"', self.html)
+
+    def test_damage_overlay_is_display_only_and_has_a_legend(self):
+        for piece in ('id="damage-mode"', "function applyDamageMode(",
+                      "DAMAGE_LEGENDS", 'id="damage-legend"',
+                      'body[data-damage="attested"]',
+                      'body[data-damage="off"]'):
+            with self.subTest(piece=piece):
+                self.assertIn(piece, self.html)
+
+    def test_single_language_queue_disclaims_calibration(self):
+        """A review surface must never be mistaken for a prediction surface."""
+        self.assertIn("review surface, not a prediction surface", self.html)
+        self.assertIn("No per-language", self.html)
+
+
 class TestBrowserDialogContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

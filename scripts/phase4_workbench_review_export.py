@@ -97,6 +97,10 @@ CANDIDATES = {
 }
 SPLITS_PATH = Path("Phase1_pipeline/p2_out/splits.parquet")
 CONFIG_PATH = Path("configs/language_layers_v2.json")
+
+# Sentinel for a cluster whose members carry no resolved language. It is not a
+# canonical code and must be requested by name, never swept in with a real one.
+UNRESOLVED_LANGUAGE = "<UNRESOLVED>"
 CLUSTER_MANIFEST_PATH = OUT_DIR / "unresolved_extraction_manifest.json"
 
 QUEUE_JS_PATH = UI_DIR / "workbench_review_queue.js"
@@ -149,6 +153,65 @@ def distinct_document_count(proposal):
         if evidence.get("type") == "EXACT_NORMALIZED_SIGN_SEQUENCE":
             return int(evidence.get("distinct_document_count", 0))
     return 0
+
+
+def cluster_languages(proposal):
+    """The languages the clustering itself declared for this proposal.
+
+    Read from the proposal's own supporting evidence rather than recomputed
+    from member records: the clustering ran under a validated `language_scope`,
+    and re-deriving the language here would be a second implementation of a
+    selection the ratified artifact already made.
+    """
+    for evidence in proposal.get("supporting_evidence", []):
+        if evidence.get("type") == "EXACT_NORMALIZED_SIGN_SEQUENCE":
+            return [lang or UNRESOLVED_LANGUAGE
+                    for lang in evidence.get("languages", [])]
+    return []
+
+
+def parse_language_selection(values, *, canonical_codes):
+    """Validate `--language` into a frozen set, or `None` for no selection.
+
+    Fails closed on an unknown code rather than silently returning an empty
+    queue: `--language Hittite` and `--language hit` are typos a specialist
+    would not otherwise see, and a silently empty session looks identical to
+    "this language has no unresolved material", which is a different and much
+    more interesting claim.
+    """
+    if not values:
+        return None
+    requested = []
+    for value in values:
+        requested.extend(part.strip() for part in value.split(",") if part.strip())
+    permitted = set(canonical_codes) | {UNRESOLVED_LANGUAGE}
+    unknown = [code for code in requested if code not in permitted]
+    if unknown:
+        raise SystemExit(
+            f"Unknown language code(s): {', '.join(sorted(set(unknown)))}. "
+            f"Ratified canonical codes are {', '.join(canonical_codes)} "
+            f"(plus {UNRESOLVED_LANGUAGE} for occurrences with no resolved "
+            "language). Codes are case-sensitive and come from "
+            f"{CONFIG_PATH.as_posix()}.")
+    if not requested:
+        return None
+    return frozenset(requested)
+
+
+def proposal_matches_language(proposal, selection):
+    """Whether a cluster is admitted by the requested language selection.
+
+    The test is "declares at least one requested language", and it means
+    different things per channel by construction. A `SAME_LANGUAGE_AS_QUERY`
+    cluster is single-language, so this selects genuinely Akkadian (or Luwian,
+    or Hurrian) clusters. A `CROSS_LANGUAGE_PARALLEL` cluster spans languages
+    by definition, so this selects clusters that *involve* the requested
+    language -- their other members are deliberately in other languages, and
+    that is the point of the channel, not a leak.
+    """
+    if selection is None:
+        return True
+    return any(lang in selection for lang in cluster_languages(proposal))
 
 
 def rank_key(proposal):
@@ -206,11 +269,26 @@ def main():
         "--min-sequence-length", type=int, default=MIN_SEQUENCE_LENGTH,
         help="shortest shared sequence admitted to the queue; 1 admits "
              "single-sign clusters, which are dominated by frequency")
+    parser.add_argument(
+        "--language", action="append", metavar="CODE",
+        help="restrict the queue to clusters declaring this language "
+             "(repeatable, or comma-separated). Without it the queue spans "
+             "every language, and since ranking is by sequence length and "
+             "Hittite is ~89%% of lexical tokens, the result is overwhelmingly "
+             "Hittite -- a single-language session is not reachable by "
+             "filtering in the browser alone.")
     args = parser.parse_args()
 
     for path in (OCCURRENCES_PATH, TOKENS_V2_PATH, SPLITS_PATH):
         if not path.exists():
             raise SystemExit(f"{path} not found; rebuild Phase 4 artifacts first.")
+
+    language_contract = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    canonical_codes = language_contract["canonical_codes"]
+    language_selection = parse_language_selection(
+        args.language, canonical_codes=canonical_codes)
+    if language_selection:
+        print(f"Language selection: {', '.join(sorted(language_selection))}")
 
     occurrence_frame = pd.read_parquet(
         OCCURRENCES_PATH, columns=["occurrence_id", "record"])
@@ -239,11 +317,22 @@ def main():
         remaining = [p for p in proposals if not sequence_is_contentless(p)]
         too_short = [p for p in remaining
                      if sequence_length(p) < args.min_sequence_length]
-        eligible = [p for p in remaining
-                    if sequence_length(p) >= args.min_sequence_length]
+        contentful = [p for p in remaining
+                      if sequence_length(p) >= args.min_sequence_length]
+        # Language selection is a separate, separately counted stage. Folding
+        # it into the line above would make one number ("eligible") answer two
+        # different questions, and the screen has to be able to say which
+        # exclusion removed what.
+        off_language = [p for p in contentful
+                        if not proposal_matches_language(p, language_selection)]
+        eligible = [p for p in contentful
+                    if proposal_matches_language(p, language_selection)]
         eligible.sort(key=rank_key)
         queued = eligible[:args.max_clusters]
         channels[scope] = queued
+        channel_language_counts = Counter()
+        for proposal in contentful:
+            channel_language_counts.update(set(cluster_languages(proposal)))
         policy_counts[scope] = {
             "proposals_available": len(proposals),
             "excluded_contentless_sequence": len(contentless),
@@ -252,6 +341,12 @@ def main():
             "excluded_below_min_sequence_length": len(too_short),
             "excluded_below_min_occurrences": sum(
                 len(p["member_occurrence_ids"]) for p in too_short),
+            "excluded_off_language": len(off_language),
+            "excluded_off_language_occurrences": sum(
+                len(p["member_occurrence_ids"]) for p in off_language),
+            "contentful_before_language_selection": len(contentful),
+            "contentful_clusters_by_language": dict(
+                sorted(channel_language_counts.items())),
             "eligible_after_exclusions": len(eligible),
             "queued": len(queued),
             "not_queued_payload_bound": max(0, len(eligible) - len(queued)),
@@ -263,7 +358,14 @@ def main():
         }
         print(f"{scope}: {len(proposals):,} proposals -> {len(queued):,} queued "
               f"({len(contentless):,} contentless, {len(too_short):,} "
-              f"below min length {args.min_sequence_length} excluded)")
+              f"below min length {args.min_sequence_length}"
+              + (f", {len(off_language):,} off-language" if language_selection
+                 else "") + " excluded)")
+        if language_selection and not queued:
+            print(f"  NOTE: no cluster in {scope} declares "
+                  f"{', '.join(sorted(language_selection))} at sequence length "
+                  f">= {args.min_sequence_length}. That is a real absence in "
+                  "this channel, not a failed filter.")
 
     # Which occurrences and context lines the payload actually needs.
     needed_ids = set()
@@ -351,12 +453,20 @@ def main():
 
     category_counts = Counter()
     language_counts = Counter()
-    for queued in payload_channels.values():
+    # Per channel as well as pooled: a cross-language cluster contains members
+    # in languages other than the requested one BY DESIGN, so a single pooled
+    # tally makes an Akkadian session look contaminated when it is correct.
+    language_counts_by_channel = {}
+    for scope, queued in payload_channels.items():
+        scope_counts = Counter()
         for cluster in queued:
             for member in cluster["members"]:
                 category_counts.update(member["record"]["categories"])
-                language_counts.update([
-                    member["record"]["language"]["effective"] or "<UNRESOLVED>"])
+                effective = (member["record"]["language"]["effective"]
+                             or UNRESOLVED_LANGUAGE)
+                language_counts.update([effective])
+                scope_counts.update([effective])
+        language_counts_by_channel[scope] = dict(sorted(scope_counts.items()))
 
     queue_manifest = {
         "task": "phase4_workbench_review_export",
@@ -378,10 +488,40 @@ def main():
             "context_lines_per_side": CONTEXT_LINES,
             "ranking": "sequence_length desc, distinct_document_count desc, "
                        "member_count desc, cluster_id asc",
+            "language_selection": (
+                sorted(language_selection) if language_selection else None),
+        },
+        "language_selection": {
+            "requested": sorted(language_selection) if language_selection else None,
+            "evidence_class": "OBSERVED_DOCUMENT_STRUCTURE",
+            "source": "cluster proposal supporting_evidence[].languages, as "
+                      "declared by the clustering run's validated "
+                      "language_scope",
+            "canonical_codes": canonical_codes,
+            "language_contract_version": language_contract["contract_version"],
+            "semantics_by_channel": {
+                "SAME_LANGUAGE_AS_QUERY":
+                    "clusters are single-language by construction, so a "
+                    "selection yields clusters wholly in that language",
+                "CROSS_LANGUAGE_PARALLEL":
+                    "clusters span languages by construction, so a selection "
+                    "yields clusters that INVOLVE that language; their other "
+                    "members are in other languages by design",
+            },
+            "selection_is_a_view_not_a_finding": (
+                "Restricting the queue to a language is a display decision. "
+                "It does not assert that the excluded material is irrelevant, "
+                "and it does not change any occurrence, proposal, or hash."),
+            "no_calibration_is_implied": (
+                "A single-language review session is a review surface only. "
+                "No per-language calibration exists for any language, and no "
+                "rate shown anywhere in this project may be transferred to a "
+                "language it was not fit on."),
         },
         "channel_counts": policy_counts,
         "queued_member_category_counts": dict(sorted(category_counts.items())),
         "queued_member_language_counts": dict(sorted(language_counts.items())),
+        "queued_member_language_counts_by_channel": language_counts_by_channel,
         "selection_is_a_view_not_a_finding": (
             "Exclusion from this queue is a display decision under "
             f"{QUEUE_POLICY}. No occurrence, proposal, or hash is modified, and "
@@ -432,6 +572,68 @@ def main():
             f"{counts['eligible_after_exclusions']:,} | {counts['queued']:,} |")
     same = policy_counts["SAME_LANGUAGE_AS_QUERY"]
     report += [
+        "",
+        "## Language selection",
+        "",
+    ]
+    if language_selection:
+        report += [
+            f"This queue is restricted to **{', '.join(sorted(language_selection))}** "
+            "and is therefore a single-language review surface.",
+            "",
+            "The test is *declares at least one requested language*, and it "
+            "means different things per channel by construction. In "
+            "`SAME_LANGUAGE_AS_QUERY` clusters are single-language, so the "
+            "queue is wholly in the requested language. In "
+            "`CROSS_LANGUAGE_PARALLEL` clusters span languages, so the queue "
+            "is clusters that *involve* it — their other members are in other "
+            "languages by design, which is the point of the channel.",
+            "",
+            "| channel | contentful | off-language | eligible | queued |",
+            "|---|---:|---:|---:|---:|",
+        ]
+        for scope, counts in policy_counts.items():
+            report.append(
+                f"| `{scope}` | {counts['contentful_before_language_selection']:,} | "
+                f"{counts['excluded_off_language']:,} | "
+                f"{counts['eligible_after_exclusions']:,} | {counts['queued']:,} |")
+    else:
+        report += [
+            "No language selection was applied, so this queue spans every "
+            "language. Because ranking is by sequence length and Hittite is "
+            "~89% of lexical tokens, an unrestricted queue is overwhelmingly "
+            "Hittite; the browser's language filter narrows *this* queue and "
+            "cannot reach material the queue never contained. Use "
+            "`--language Akk` (repeatable, or comma-separated) to build a "
+            "genuine single-language session.",
+        ]
+    report += [
+        "",
+        "Contentful clusters available per language, before any selection — "
+        "the ceiling on what a single-language session could contain:",
+        "",
+        "| channel | " + " | ".join(
+            f"`{code}`" for code in
+            sorted({lang for counts in policy_counts.values()
+                    for lang in counts["contentful_clusters_by_language"]})) + " |",
+        "|---" * (1 + len({lang for counts in policy_counts.values()
+                           for lang in counts["contentful_clusters_by_language"]}))
+        + "|",
+    ]
+    all_langs = sorted({lang for counts in policy_counts.values()
+                        for lang in counts["contentful_clusters_by_language"]})
+    for scope, counts in policy_counts.items():
+        cells = " | ".join(
+            f"{counts['contentful_clusters_by_language'].get(lang, 0):,}"
+            for lang in all_langs)
+        report.append(f"| `{scope}` | {cells} |")
+    report += [
+        "",
+        "**A single-language session is a review surface, not a prediction "
+        "surface.** No per-language calibration exists. Nothing in this "
+        "project licenses transferring a rate fit on one language to another, "
+        "and the sparser languages here (`Pal`, `Sum`, `Luw`) do not have the "
+        "composition mass to support a leakage-safe calibration at all.",
         "",
         "### Two exclusions, both awaiting ratification",
         "",

@@ -31,7 +31,12 @@
   button:disabled { opacity: .4; cursor: not-allowed; }
   button.primary { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
   button.danger { color: var(--tk-danger); }
+  button.danger:hover:not(:disabled) { border-color: var(--tk-danger); }
   button.active { background: var(--tk-accent-bg); border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  button:focus-visible, a:focus-visible, summary:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--tk-accent); outline-offset: 2px;
+  }
   input[type=text], textarea, select {
     font: inherit; background: var(--tk-cell); color: var(--tk-text);
     border: 1px solid var(--tk-border); border-radius: 4px; padding: .35em .55em; width: 100%;
@@ -49,6 +54,11 @@
   }
   header.app .subtitle { color: var(--tk-muted); font-size: 13px; font-weight: 400; }
   .grow { flex: 1 1 auto; }
+  .channel-switch { display: flex; align-items: center; gap: .4em; }
+  .channel-switch .switch-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--tk-muted); margin-right: .2em;
+  }
 
   .banner {
     padding: .7em 1.2em; font-size: 13px; border-bottom: 1px solid var(--tk-border);
@@ -104,6 +114,51 @@
   .not-a-score { font-size: 11px; color: var(--tk-warn); }
 
   .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .5em; }
+
+  /* ---- Action hierarchy. Seven equal buttons in a flat grid gave no signal
+     about which action is safe, which is a correction, and which records a
+     claim. Three labelled groups, safe default first. ---- */
+  .action-group { margin-top: .8em; }
+  .action-group > .group-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--tk-muted); margin-bottom: .35em;
+  }
+  .action-group.safe > .group-label { color: var(--tk-accent); }
+  .action-group.claim > .group-label { color: var(--tk-warn); }
+  .action-hint { font-size: 11px; color: var(--tk-faint); margin-top: .3em; }
+
+  /* ---- Progressive disclosure. The mandated disclosures stay on the page in
+     full; they stop competing with the reading for first attention. ---- */
+  details.disclose { margin: .5em 0; }
+  details.disclose > summary {
+    cursor: pointer; font-size: 12px; color: var(--tk-text-2);
+    list-style: none; display: inline-flex; align-items: center; gap: .4em;
+    border: 1px solid var(--tk-border); border-radius: 999px; padding: .15em .7em;
+  }
+  details.disclose > summary::-webkit-details-marker { display: none; }
+  details.disclose > summary::before { content: "▸"; color: var(--tk-muted); }
+  details.disclose[open] > summary::before { content: "▾"; }
+  details.disclose > summary:hover { border-color: var(--tk-accent-2); color: var(--tk-accent); }
+  details.disclose > .disclose-body {
+    font-size: 12px; color: var(--tk-muted); line-height: 1.6;
+    border-left: 2px solid var(--tk-border); padding: .5em 0 .2em .8em; margin-top: .5em;
+  }
+  .headline { font-size: 13px; }
+
+  /* ---- Damage-state legend and overlay modes ---- */
+  .legend { display: flex; flex-wrap: wrap; gap: .2em .9em; font-size: 11px; margin-top: .4em; }
+  .legend span.swatch { font-family: "Source Code Pro", ui-monospace, monospace; }
+  .legend .attested { color: var(--tk-text); }
+  body[data-damage="off"] .tok.restored,
+  body[data-damage="off"] .tok.laes,
+  body[data-damage="off"] .tok.illegible { color: inherit; }
+  /* Attested-vs-not: collapse the four states to the one distinction that
+     matters for cleanroom rule 6 -- was this sign on the clay, or not. */
+  body[data-damage="attested"] .tok.restored,
+  body[data-damage="attested"] .tok.laes,
+  body[data-damage="attested"] .tok.illegible {
+    color: var(--tk-faint); opacity: .55; text-decoration: underline dotted;
+  }
   .hyp-item { border: 1px solid var(--tk-border); border-radius: 4px; padding: .5em .6em; margin-bottom: .4em; font-size: 13px; }
   .hyp-item .who { font-size: 11px; color: var(--tk-muted); }
   footer.stamp { padding: 1em 1.2em; font-size: 11px; color: var(--tk-faint); border-top: 1px solid var(--tk-border); }
@@ -133,9 +188,15 @@
 <header class="app">
   <h1>Unresolved Evidence Workbench <span class="subtitle" id="header-subtitle">— prototype</span></h1>
   <div class="grow"></div>
-  <button type="button" id="channel-same" class="active">Same-language</button>
-  <button type="button" id="channel-cross">Cross-language (off)</button>
-  <button type="button" id="export-btn" class="primary">Export events (0)</button>
+  <div class="channel-switch" role="group" aria-label="Evidence channel">
+    <span class="switch-label" id="channel-switch-label">Evidence channel</span>
+    <button type="button" id="channel-same" class="active"
+            title="Clusters whose members are all in one language. This is the default evidence channel.">Same-language</button>
+    <button type="button" id="channel-cross"
+            title="Clusters matching sign sequences ACROSS languages. An assistance layer — asks for explicit opt-in and stays in its own channel.">Cross-language (off)</button>
+  </div>
+  <button type="button" id="export-btn" class="primary"
+          title="Download this session's judgments as a local JSON file. Nothing is sent anywhere and nothing is ingested until you run the ingest script.">Export events (0)</button>
 </header>
 
 <div class="banner" id="subset-banner"></div>
@@ -144,7 +205,17 @@
 <div class="layout">
   <aside class="sidebar">
     <div class="filter-row">
-      <label for="filter-text">Filter by sequence, document, or CTH</label>
+      <label for="damage-mode">Sign display</label>
+      <select id="damage-mode" title="Changes how surviving and non-surviving signs are shown. Display only — it never alters a record.">
+        <option value="states">Colour by damage state</option>
+        <option value="attested">Attested vs. not attested</option>
+        <option value="off">Plain text (no highlighting)</option>
+      </select>
+      <div class="legend" id="damage-legend"></div>
+    </div>
+    <hr class="hairline">
+    <div class="filter-row">
+      <label for="filter-text">Search sequence, document, or CTH</label>
       <input type="text" id="filter-text" placeholder="e.g. ninda, KBo 23.70, 706">
     </div>
     <div class="filter-row">
@@ -166,7 +237,10 @@
     <div class="filter-row">
       <label><input type="checkbox" id="filter-mixed" style="width:auto"> Mixed-language lines only</label>
     </div>
+    <div id="language-scope-note"></div>
+    <hr class="hairline">
     <div class="nav-count" id="nav-count"></div>
+    <div class="kv" style="margin-bottom:.5em">Select a cluster to review its occurrences.</div>
     <div id="cluster-nav"></div>
   </aside>
   <main class="detail" id="cluster-detail"></main>
@@ -352,6 +426,34 @@ function damageClass(state) {
   return "";
 }
 
+// Damage state is corpus-encoded (the document-order state machine over
+// <del_in>/<del_fin> and <laes_in>/<laes_fin>), not inferred here. The overlay
+// only changes how it is drawn; no mode adds, hides, or reinterprets a sign.
+const DAMAGE_LEGENDS = {
+  states: [
+    ["attested", "attested", "on the clay"],
+    ["restored", "restored", "editor's restoration, not attested"],
+    ["laes", "laes.", "partially preserved"],
+    ["illegible", "illegible", "no reading proposed"],
+  ],
+  attested: [
+    ["attested", "attested", "on the clay"],
+    ["illegible", "not attested", "restored, partial, or illegible"],
+  ],
+  off: [],
+};
+
+function applyDamageMode() {
+  const mode = document.getElementById("damage-mode").value;
+  document.body.dataset.damage = mode;
+  const legend = DAMAGE_LEGENDS[mode] || [];
+  document.getElementById("damage-legend").innerHTML = legend.length
+    ? legend.map(([cls, label, meaning]) =>
+        `<span title="${escapeHtml(meaning)}"><span class="swatch tok ${escapeHtml(cls)}">${escapeHtml(label)}</span></span>`
+      ).join("")
+    : `<span class="kv">Highlighting off. Damage state is still recorded per sign and is shown on each occurrence.</span>`;
+}
+
 function renderTokenLine(tokens, focusRange) {
   return tokens.map((t, i) => {
     const token = typeof t === "string" ? t : t.token;
@@ -367,20 +469,75 @@ function escapeHtml(value) {
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+// Standing display rule 5 requires the screen to state that the queue is a
+// subset, with these counts. The statement stays; only the itemised
+// accounting moves behind a disclosure, so it stops competing with the
+// reading for first attention. Nothing here is removed or softened.
 function renderSubsetBanner() {
   const counts = MANIFEST.channel_counts[channel];
   const p = MANIFEST.policy_parameters;
-  document.getElementById("subset-banner").innerHTML =
-    `<strong>This is a subset, not the corpus.</strong> Showing ` +
-    `<strong>${counts.queued.toLocaleString()}</strong> of ` +
-    `${counts.proposals_available.toLocaleString()} ${channel === "SAME_LANGUAGE_AS_QUERY" ? "same-language" : "cross-language"} ` +
-    `cluster proposals under policy <code>${escapeHtml(MANIFEST.queue_policy)}</code>. ` +
-    `Held out: ${counts.excluded_contentless_sequence.toLocaleString()} contentless ` +
-    `(sequence is only placeholders) covering ${counts.excluded_contentless_occurrences.toLocaleString()} occurrences, ` +
-    `and ${counts.excluded_below_min_sequence_length.toLocaleString()} shorter than ` +
-    `${p.min_sequence_length} signs covering ${counts.excluded_below_min_occurrences.toLocaleString()} occurrences. ` +
-    `A further ${counts.not_queued_payload_bound.toLocaleString()} eligible clusters are unqueued for payload size — ` +
-    `unqueued is not rejected. Every record here is <code>NOT_CORPUS_TRUTH</code>.`;
+  const selection = (MANIFEST.language_selection || {}).requested;
+  const channelName = channel === "SAME_LANGUAGE_AS_QUERY" ? "same-language" : "cross-language";
+
+  const headline =
+    `<span class="headline"><strong>This is a subset, not the corpus.</strong> ` +
+    `Showing <strong>${counts.queued.toLocaleString()}</strong> of ` +
+    `${counts.proposals_available.toLocaleString()} ${channelName} cluster proposals` +
+    (selection ? ` restricted to <strong>${escapeHtml(selection.join(", "))}</strong>` : "") +
+    `. Every record here is <code>NOT_CORPUS_TRUTH</code>.</span>`;
+
+  const offLanguage = counts.excluded_off_language
+    ? `<li><strong>${counts.excluded_off_language.toLocaleString()}</strong> in another language ` +
+      `(covering ${(counts.excluded_off_language_occurrences || 0).toLocaleString()} occurrences), ` +
+      `because this queue was exported for ${escapeHtml((selection || []).join(", "))}.</li>`
+    : "";
+
+  document.getElementById("subset-banner").innerHTML = headline +
+    `<details class="disclose"><summary>What was held out, and why</summary>` +
+    `<div class="disclose-body">` +
+    `Queue policy <code>${escapeHtml(MANIFEST.queue_policy)}</code>. Held out of this channel:` +
+    `<ul>` +
+    `<li><strong>${counts.excluded_contentless_sequence.toLocaleString()}</strong> contentless ` +
+    `(the shared sequence is only placeholders), covering ` +
+    `${counts.excluded_contentless_occurrences.toLocaleString()} occurrences.</li>` +
+    `<li><strong>${counts.excluded_below_min_sequence_length.toLocaleString()}</strong> shorter than ` +
+    `${p.min_sequence_length} signs, covering ` +
+    `${counts.excluded_below_min_occurrences.toLocaleString()} occurrences.</li>` +
+    offLanguage +
+    `<li><strong>${counts.not_queued_payload_bound.toLocaleString()}</strong> eligible clusters ` +
+    `unqueued for payload size.</li>` +
+    `</ul>` +
+    `<strong>Unqueued is not rejected.</strong> Nothing excluded here is deleted, altered, or judged ` +
+    `uninteresting; it remains in the extraction at its accepted hash. The first two exclusions are ` +
+    `display policies still awaiting ratification.` +
+    `</div></details>`;
+}
+
+// A single-language queue is a review surface. It is not, and must not be
+// read as, a per-language prediction capability: no per-language calibration
+// exists anywhere in this project.
+function renderLanguageScopeNote() {
+  const info = MANIFEST.language_selection || {};
+  const selection = info.requested;
+  const note = document.getElementById("language-scope-note");
+  if (!selection) {
+    note.innerHTML =
+      `<details class="disclose"><summary>Queue spans all languages</summary>` +
+      `<div class="disclose-body">The filters above narrow <em>this</em> queue and cannot reach ` +
+      `material the queue never contained. Ranking is by sequence length and Hittite is ~89% of ` +
+      `lexical tokens, so an unrestricted queue is overwhelmingly Hittite. For a genuine ` +
+      `single-language session, re-export with ` +
+      `<code>--language Akk</code> (repeatable, or comma-separated).</div></details>`;
+    return;
+  }
+  const semantics = (info.semantics_by_channel || {})[channel] || "";
+  note.innerHTML =
+    `<details class="disclose"><summary>Single-language queue: ${escapeHtml(selection.join(", "))}</summary>` +
+    `<div class="disclose-body">In this channel, ${escapeHtml(semantics)}.<br><br>` +
+    `<strong>This is a review surface, not a prediction surface.</strong> No per-language ` +
+    `calibration exists. No rate from anywhere in this project transfers to a language it was ` +
+    `not fit on, and the sparser languages lack the composition mass for a leakage-safe ` +
+    `calibration at all.</div></details>`;
 }
 
 function renderNav() {
@@ -445,7 +602,6 @@ function renderEvidence(cluster) {
       <div class="kv">${(e.member_count || 0).toLocaleString()} occurrence(s) across
         ${(e.distinct_document_count || 0).toLocaleString()} document(s) ·
         language(s) ${escapeHtml((e.languages || []).join(", "))}</div>
-      <div class="not-a-score">These are counts of matching occurrences, not a probability or a confidence score.</div>
     </div>`).join("");
 
   // Contradictory evidence is rendered unconditionally and never collapsed.
@@ -455,18 +611,26 @@ function renderEvidence(cluster) {
       <div>${escapeHtml(e.summary || "")}</div>
     </div>`).join("") || `<div class="kv">No contradictory evidence recorded for this proposal. That is the absence of a recorded objection, not evidence of its soundness.</div>`;
 
+  // Standing display rule 2: no count may be presented as a probability. The
+  // note stays adjacent to the counts it qualifies, but is stated once for
+  // the section rather than repeated under every evidence item -- repetition
+  // was training the eye to skip it.
   return `
     <div class="card">
-      <h3>Supporting evidence</h3>${support}
+      <h3>Supporting evidence</h3>
+      <div class="not-a-score">The figures below are counts of matching occurrences, not a probability or a confidence score.</div>
+      ${support}
       <hr class="hairline">
       <h3>Contradictory evidence</h3>${contra}
-      <div class="kv" style="margin-top:.8em">
-        Grouping method <b>${escapeHtml(proposal.method.name)}</b> ·
-        status <b>${escapeHtml(proposal.status)}</b> ·
-        evidence class <b>${escapeHtml(proposal.method.evidence_class)}</b> ·
-        model consulted: <b>${proposal.method.model_derived ? "yes" : "no"}</b> ·
-        <b>${escapeHtml(proposal.ground_truth_status)}</b>
-      </div>
+      <details class="disclose"><summary>How this grouping was made</summary>
+        <div class="disclose-body">
+          Grouping method <b>${escapeHtml(proposal.method.name)}</b> ·
+          status <b>${escapeHtml(proposal.status)}</b> ·
+          evidence class <b>${escapeHtml(proposal.method.evidence_class)}</b> ·
+          model consulted: <b>${proposal.method.model_derived ? "yes" : "no"}</b> ·
+          <b>${escapeHtml(proposal.ground_truth_status)}</b>
+        </div>
+      </details>
     </div>`;
 }
 
@@ -512,17 +676,64 @@ function renderMember(member, cluster) {
     </div>
     ${hyps ? `<hr class="hairline"><h3>Hypotheses recorded this session</h3>${hyps}` : ""}
     <hr class="hairline">
-    <div class="action-grid">
-      <button type="button" data-act="PROPOSE_READING" data-occ="${escapeHtml(record.occurrence_id)}">Propose a reading</button>
-      <button type="button" data-act="PROPOSE_PHRASE" data-occ="${escapeHtml(record.occurrence_id)}">Propose a phrase</button>
-      <button type="button" data-act="PROPOSE_LANGUAGE" data-occ="${escapeHtml(record.occurrence_id)}">Propose a language</button>
-      <button type="button" data-act="PROPOSE_LEXICAL_IDENTITY" data-occ="${escapeHtml(record.occurrence_id)}">Propose lexical identity</button>
-      <button type="button" data-act="REMOVE_FROM_CLUSTER" data-occ="${escapeHtml(record.occurrence_id)}">Doesn't belong in this cluster</button>
-      <button type="button" data-act="REJECT_HYPOTHESIS" data-occ="${escapeHtml(record.occurrence_id)}" class="danger">Reject hypothesis</button>
-      <button type="button" data-act="WITHHOLD_JUDGMENT" data-occ="${escapeHtml(record.occurrence_id)}">Withhold judgment</button>
-    </div>
-    <div class="kv" style="margin-top:.5em">More than one reading may be proposed for the same occurrence; competing hypotheses are kept side by side, never merged into one answer.</div>
+    ${renderActions(record.occurrence_id)}
   </div>`;
+}
+
+// Seven equal-weight buttons gave no signal about what any of them would do,
+// or which was safe. Grouped by what the click actually records: a claim
+// about the text, a correction to the grouping, or a decision not to assert.
+const ACTION_GROUPS = [
+  {
+    cls: "claim",
+    label: "Record a claim about this occurrence",
+    hint: "Each opens a form and records one quarantined hypothesis. More than one may be proposed for the same occurrence; competing hypotheses are kept side by side, never merged into one answer.",
+    actions: [
+      ["PROPOSE_READING", "Propose a reading",
+       "Record a proposed sign reading for the unresolved run."],
+      ["PROPOSE_PHRASE", "Propose a phrase",
+       "Record a proposed phrase spanning this occurrence."],
+      ["PROPOSE_LANGUAGE", "Propose a language",
+       "Record a proposed language for this occurrence, against the tagged one."],
+      ["PROPOSE_LEXICAL_IDENTITY", "Propose lexical identity",
+       "Record a proposed lemma or known form."],
+    ],
+  },
+  {
+    cls: "correct",
+    label: "Correct this grouping",
+    hint: "These judge the system's proposed cluster, not the text itself.",
+    actions: [
+      ["REMOVE_FROM_CLUSTER", "Doesn't belong in this cluster",
+       "Record that this occurrence was wrongly grouped here."],
+      ["REJECT_HYPOTHESIS", "Reject hypothesis",
+       "Record that the proposed grouping or reading is wrong.", "danger"],
+    ],
+  },
+  {
+    cls: "safe",
+    label: "Assert nothing",
+    hint: "Always available. Abstention is a recorded outcome here, not a skipped one.",
+    actions: [
+      ["WITHHOLD_JUDGMENT", "Withhold judgment",
+       "Record that the evidence does not support a decision either way."],
+    ],
+  },
+];
+
+function renderActions(occurrenceId) {
+  const occ = escapeHtml(occurrenceId);
+  return ACTION_GROUPS.map(group => `
+    <div class="action-group ${group.cls}">
+      <div class="group-label">${escapeHtml(group.label)}</div>
+      <div class="action-grid">
+        ${group.actions.map(([act, label, title, cls]) => `
+          <button type="button" data-act="${act}" data-occ="${occ}"
+                  class="${cls || ""}" title="${escapeHtml(title)}">${escapeHtml(label)}</button>`
+        ).join("")}
+      </div>
+      <div class="action-hint">${escapeHtml(group.hint)}</div>
+    </div>`).join("");
 }
 
 function renderDetail() {
@@ -545,9 +756,12 @@ function renderDetail() {
       ${sampled ? `<div class="banner" style="margin-top:.8em;border:none;padding:.5em .7em;border-radius:4px">
         Showing <strong>${cluster.members.length}</strong> of ${cluster.member_count.toLocaleString()} occurrences.
         Reviewing this sample does not mean the cluster has been seen.</div>` : ""}
-      <div style="margin-top:.8em">
-        <button type="button" id="split-btn">Split this cluster…</button>
-        <button type="button" id="merge-btn">Merge another cluster into this one…</button>
+      <div class="action-group correct" style="margin-top:.8em">
+        <div class="group-label">Correct this cluster as a whole</div>
+        <button type="button" id="split-btn"
+                title="Record that this cluster contains occurrences that should be separated into a new cluster.">Split this cluster…</button>
+        <button type="button" id="merge-btn"
+                title="Record that another queued cluster belongs together with this one.">Merge another cluster into this one…</button>
       </div>
     </div>
     ${renderEvidence(cluster)}
@@ -784,6 +998,7 @@ function setChannel(next) {
     next === "CROSS_LANGUAGE_PARALLEL" ? "block" : "none";
   populateFilters();
   renderSubsetBanner();
+  renderLanguageScopeNote();
   renderNav();
   renderDetail();
 }
@@ -815,24 +1030,35 @@ function init() {
 
   ["filter-text", "filter-category", "filter-language", "filter-site", "filter-state", "filter-mixed"]
     .forEach(id => document.getElementById(id).addEventListener("input", renderNav));
+  document.getElementById("damage-mode").addEventListener("change", applyDamageMode);
+  applyDamageMode();
 
+  // The quarantine statement stays visible; the provenance block that nobody
+  // reads on every screen moves behind a disclosure without losing a field.
   const p = MANIFEST.policy_parameters;
   document.getElementById("footer-stamp").innerHTML =
+    `<span class="headline">Every record on this page is <code>NOT_CORPUS_TRUTH</code>. An expert judgment ` +
+    `recorded here is <code>QUARANTINED_EXPERT_JUDGMENT</code> and requires a separate adjudication gate ` +
+    `before it could reach any training artifact. Nothing here edits TLHdig.</span>` +
+    `<details class="disclose"><summary>Provenance and queue parameters</summary>` +
+    `<div class="disclose-body">` +
     `Queue policy <code>${escapeHtml(MANIFEST.queue_policy)}</code> · contract ` +
     `<code>${escapeHtml(MANIFEST.contract_version)}</code> · evidence policy ` +
     `<code>${escapeHtml(MANIFEST.evidence_policy)}</code> · corpus ` +
     `<code>${escapeHtml(MANIFEST.corpus_version)}</code> · git ` +
     `<code>${escapeHtml((MANIFEST.git_commit || "").slice(0, 10))}</code><br>` +
     `occurrences <code>${escapeHtml(MANIFEST.source_hashes.occurrences_logical_sha256)}</code><br>` +
+    `language selection: <code>${escapeHtml(
+      (p.language_selection || ["none — all languages"]).join(", "))}</code><br>` +
     `ranking: ${escapeHtml(p.ranking)} · context ±${p.context_lines_per_side} line(s) · ` +
-    `at most ${p.max_members_displayed_per_cluster} members shown per cluster.<br>` +
-    `Every record on this page is <code>NOT_CORPUS_TRUTH</code>. An expert judgment recorded here is ` +
-    `<code>QUARANTINED_EXPERT_JUDGMENT</code> and requires a separate adjudication gate before it could ` +
-    `reach any training artifact. Nothing here edits TLHdig.`;
+    `at most ${p.max_members_displayed_per_cluster} members shown per cluster.` +
+    `</div></details>`;
 
+  const selection = (MANIFEST.language_selection || {}).requested;
   document.getElementById("header-subtitle").textContent =
     `— ${MANIFEST.channel_counts.SAME_LANGUAGE_AS_QUERY.queued} same-language + ` +
-    `${MANIFEST.channel_counts.CROSS_LANGUAGE_PARALLEL.queued} cross-language clusters queued`;
+    `${MANIFEST.channel_counts.CROSS_LANGUAGE_PARALLEL.queued} cross-language clusters queued` +
+    (selection ? ` · ${selection.join(", ")} only` : "");
 
   setChannel("SAME_LANGUAGE_AS_QUERY");
   runSelfTest();
