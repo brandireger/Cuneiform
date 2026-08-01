@@ -1,7 +1,10 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
 **Handoff date:** 2026-07-28
-**Refreshed:** 2026-07-31 (both expert prototypes browser-verified; P4-E2
+**Refreshed:** 2026-07-31 (session 2 — Phase 5 branch merged to local `master`;
+item 5a lacuna scope ratified as split estimand; contract version closed at
+1.1.0; `AT 454` resolved. See the commit-state warning below.)
+**Prior refresh:** 2026-07-31 (both expert prototypes browser-verified; P4-E2
 queue policy ratified and versioned to `v2`)
 **Prior refresh:** 2026-07-30 (workbench readability + single-language
 sessions; empty-middle measured and resolved by display treatment)
@@ -15,10 +18,27 @@ untouched.
 
 Read `AGENTS.md` first — it remains the design authority.
 
-**Where this work lives.** Branch `agent/phase5-real-gap-scope`, nine commits
-ahead of `master`, open as **PR #6** (not draft, CI green). Everything
-described below is committed and pushed; the working tree is clean. If the PR
-has since merged, work from `master` instead.
+**Where this work lives — READ THIS BEFORE ASSUMING ANYTHING IS PUSHED.**
+The Phase 5 branch `agent/phase5-real-gap-scope` was opened as PR #6 (CI green).
+As of the **2026-07-31 (session 2)** work below, that branch was
+**fast-forward-merged into local `master`** inside a working session, and two
+further changes were made **but NOT committed**:
+
+- `specs/EXPERT_DECISION_CONTRACT.md` — modified (deferred-bump note; see
+  "Ratified decisions").
+- `reports/phase5_lacuna_scope_decision.md` — new file, item 5a ratification.
+
+At the time of writing, local `master` was 11 commits ahead of
+`origin/master`, and the two files above existed **only in an ephemeral session
+container** (`/home/claude/Cuneiform`), which is discarded when the session
+ends. **They are not on GitHub and no automated successor can push them.**
+If you are reading this from a fresh clone and cannot see
+`reports/phase5_lacuna_scope_decision.md`, the session ended before Ixca
+reproduced it locally — the decision it records (5a → split estimand) and the
+spec note still stand as decisions; re-apply them from this handoff's
+"Ratified decisions" section. If PR #6 already merged, `master` has the Phase 5
+work; the two loose files are the only session-2 artifacts and must be
+re-created or copied from the session output.
 
 ## Start here
 
@@ -141,6 +161,36 @@ Where it landed:
    the second queue. Consumers must present it as such and must not extend
    the contentless ratification to it. `require`-style fail-closed loading is
    in `phase4_workbench_review_export.load_queue_policy()`.
+
+**2026-07-31 (session 2)** — three decisions, one memo, one spec note. Note the
+implementation column: two of these are *decided* but not yet *executed*.
+
+6. **Indeterminate lacunae (`…`) — split estimand** (item 5a; recorded in
+   `reports/phase5_lacuna_scope_decision.md`). The 2,725 `…` tokens inside the
+   cross-line single-sign eligible set (5.9% of 46,118) mean "unknown amount
+   missing," not one sign. Rather than filter them (drops the denominator) or
+   keep them silently (inflates it), single-sign coverage is **reported on two
+   denominators** — full eligible (46,118) and ellipsis-excluded (43,393) —
+   with the gap disclosed. No positions leave calibration; no accepted count or
+   ratified rate changes. **Implementation pending:** rerun
+   `scripts/real_gap_calibration.py` to emit both denominators and add a
+   `tests/test_real_gap_calibration_scope.py` case. Not yet run.
+7. **CONTRACT_VERSION stays 1.1.0; the hard-renderer requirement is a deferred
+   major bump** (spec note appended to `specs/EXPERT_DECISION_CONTRACT.md`
+   §Versioning). The empty-middle `display` block is a producer-side invariant
+   — the schema refuses to emit an unannotated empty option — so the only
+   renderer that exists cannot draw a blank candidate. Making honoring `display`
+   a *compliance* requirement is deferred until a second renderer exists (the
+   unified front door). This closes the former "Optional contract question."
+8. **`AT 454` is not mis-assigned by any active mechanism** (item 5b). The
+   `AT = Alalakh` siglum→site association exists **only as CLAUDE.md prose**
+   marked "verify against inventory"; it is **not wired into any site-prefix
+   mapping** in `lib`/`scripts`/`configs`. `AT 454` appears only as a witness
+   siglum in join-candidate sets, never as an anchor carrying auto-assigned
+   provenance, so nothing feeds it into the Hattusa→provincial experiment
+   today. **Standing note for the future:** if a site-prefix table is ever
+   *implemented*, `AT` must be excluded or hand-verified — it is a
+   single-document siglum. No code change now.
 
 ## Traps hit, so you don't
 
@@ -273,16 +323,22 @@ never read `cu`, Gate 3 closed. Additionally:
 
    Settle `minimum_sequence_length` together with this, not before it.
 
-5. **Two scope questions surfaced by the empty-middle work**, deliberately not
-   settled as side effects of a display change:
-   - **`…` indeterminate lacunae are counted as single-sign gaps** — 2,725 of
-     46,118 cross-line eligible, 35,221 restored ellipsis tokens corpus-wide.
-     A `…` means "an unknown amount is missing", not one sign, so these
-     arguably do not belong in a single-sign population at all.
-   - **`AT 454` is filed under CTH 577** and reads as a Hittite oracle report,
-     but `AT` is CLAUDE.md's Alalakh siglum with exactly one document. Check
-     the site-prefix table; it bears on the Hattusa→provincial generalization
-     experiment.
+5. **Two scope questions surfaced by the empty-middle work** — **both resolved
+   2026-07-31 (session 2).**
+   - ~~**`…` indeterminate lacunae counted as single-sign gaps.**~~
+     **RATIFIED: split estimand** (`reports/phase5_lacuna_scope_decision.md`).
+     Single-sign coverage is reported on two denominators — full eligible
+     (46,118) and ellipsis-excluded (43,393) — with the gap disclosed; nothing
+     is filtered from calibration. **Implementation pending:** rerun
+     `scripts/real_gap_calibration.py` to emit both denominators and add a
+     `tests/test_real_gap_calibration_scope.py` case. Decision made; rerun not
+     yet run.
+   - ~~**`AT 454` filed under CTH 577.**~~ **RESOLVED: non-issue.** The
+     `AT = Alalakh` association is CLAUDE.md prose only, not wired into any
+     active site-prefix mapping; `AT 454` is never an anchor with auto-assigned
+     provenance, so nothing feeds it into the generalization experiment today.
+     Standing note: exclude/hand-verify `AT` if a site-prefix table is ever
+     implemented (single-document siglum).
 
 6. **First real specialist session.** It must run
    `scripts/phase4_workbench_backup.py` before and after, exercise an actual
@@ -316,14 +372,12 @@ completed negative result, and leaving it unapplied is the ratified
 evidence-bounded behavior. The empty middle is **not** an open item either:
 option 2 is adopted and implemented; only the copy review (item 3) remains.
 
-## Optional contract question
+## Contract question — DECIDED
 
-`expert_decision_contract.CONTRACT_VERSION` stays **1.1.0**. The empty-middle
-additions are additive, and the schema now refuses to emit an unannotated
-empty option, so the producer side is safe. But a renderer written against
-1.1.0 that ignores the new `display` block would draw an empty candidate —
-the exact defect. If the block should be a hard *renderer* requirement rather
-than a producer-side invariant, that is a version bump needing ratification.
+`expert_decision_contract.CONTRACT_VERSION` stays **1.1.0**; making `display` a
+hard renderer requirement is a **deferred major bump** (see Ratified decisions
+item 7, and the note appended to `specs/EXPERT_DECISION_CONTRACT.md`
+§Versioning). No longer open.
 
 ## Validation at handoff
 
