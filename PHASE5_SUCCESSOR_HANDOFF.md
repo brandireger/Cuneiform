@@ -1,9 +1,13 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
 **Handoff date:** 2026-07-28
-**Refreshed:** 2026-07-31 (session 2 — Phase 5 branch merged to local `master`;
-item 5a lacuna scope ratified as split estimand; contract version closed at
-1.1.0; `AT 454` resolved. See the commit-state warning below.)
+**Refreshed:** 2026-08-01 (session 3 — the session-2 commit-state gap below is
+now closed: PR #6 is merged to `origin/master`; the lacuna split-estimand
+rerun is implemented, verified against a from-scratch rebuild of the full
+derived-data chain, and committed on `agent/phase5-lacuna-split-estimand`.)
+**Prior refresh:** 2026-07-31 (session 2 — Phase 5 branch merged to local
+`master`; item 5a lacuna scope ratified as split estimand; contract version
+closed at 1.1.0; `AT 454` resolved.)
 **Prior refresh:** 2026-07-31 (both expert prototypes browser-verified; P4-E2
 queue policy ratified and versioned to `v2`)
 **Prior refresh:** 2026-07-30 (workbench readability + single-language
@@ -18,27 +22,33 @@ untouched.
 
 Read `AGENTS.md` first — it remains the design authority.
 
-**Where this work lives — READ THIS BEFORE ASSUMING ANYTHING IS PUSHED.**
-The Phase 5 branch `agent/phase5-real-gap-scope` was opened as PR #6 (CI green).
-As of the **2026-07-31 (session 2)** work below, that branch was
-**fast-forward-merged into local `master`** inside a working session, and two
-further changes were made **but NOT committed**:
-
-- `specs/EXPERT_DECISION_CONTRACT.md` — modified (deferred-bump note; see
-  "Ratified decisions").
-- `reports/phase5_lacuna_scope_decision.md` — new file, item 5a ratification.
-
-At the time of writing, local `master` was 11 commits ahead of
-`origin/master`, and the two files above existed **only in an ephemeral session
-container** (`/home/claude/Cuneiform`), which is discarded when the session
-ends. **They are not on GitHub and no automated successor can push them.**
-If you are reading this from a fresh clone and cannot see
-`reports/phase5_lacuna_scope_decision.md`, the session ended before Ixca
-reproduced it locally — the decision it records (5a → split estimand) and the
-spec note still stand as decisions; re-apply them from this handoff's
-"Ratified decisions" section. If PR #6 already merged, `master` has the Phase 5
-work; the two loose files are the only session-2 artifacts and must be
-re-created or copied from the session output.
+**Where this work lives.** PR #6 (`agent/phase5-real-gap-scope`) is merged
+into `origin/master`. The two session-2 artifacts that previously existed only
+in an ephemeral session container — `specs/EXPERT_DECISION_CONTRACT.md`'s
+deferred-bump note and `reports/phase5_lacuna_scope_decision.md` — are
+reproduced from the original session output and committed, along with item
+5a's implementation (the `real_gap_calibration.py` split-estimand rerun and
+its test), on branch `agent/phase5-lacuna-split-estimand`. **Session-3 note
+worth keeping:** none of the raw corpus, derived parquet, or Phase 4
+language-layer artifacts this rerun depends on are checked into git (by
+design — see `README.md`'s Corpus setup section). Verifying the rerun required
+downloading the pinned TLHdig 0.2.0-beta zip from Zenodo (MD5-checked against
+the pin) and rebuilding the entire chain from `Archive/scripts/01_inventory.py`
+through `10_resplit.py`, then `lib/decompose_corpus.py`,
+`scripts/line_lang_rebuild.py`, `scripts/phase4_language_layers_v2.py`, and
+`scripts/phase4_multilingual_token_dataset.py` — in that order, since each
+depends on the previous. `splits.json`/`.parquet` is seed-derived (seed
+20260721) and frozen/constitutional; the rebuild reproduced it exactly rather
+than re-rolling it. The rebuild's fidelity was confirmed two ways: the
+*unmodified* `real_gap_calibration.py` reproduced the already-committed
+46,118/577 figures exactly, including a byte-identical
+`language_dataset_file_sha256`; and `scripts/line_lang_rebuild.py`'s own
+manifest step currently throws (`EvidencePolicyError`: registered class
+`EDITORIAL_TRANSCRIPTION` for `line_lang` isn't permitted by the
+`artifact_strict` policy the script requests) — a real, pre-existing latent
+bug unrelated to this work, harmless here only because the parquet write
+happens before that crash and nothing downstream hashes the stale manifest.
+Worth a follow-up, not fixed in this pass.
 
 ## Start here
 
@@ -162,8 +172,7 @@ Where it landed:
    the contentless ratification to it. `require`-style fail-closed loading is
    in `phase4_workbench_review_export.load_queue_policy()`.
 
-**2026-07-31 (session 2)** — three decisions, one memo, one spec note. Note the
-implementation column: two of these are *decided* but not yet *executed*.
+**2026-07-31 (session 2)** — three decisions, one memo, one spec note.
 
 6. **Indeterminate lacunae (`…`) — split estimand** (item 5a; recorded in
    `reports/phase5_lacuna_scope_decision.md`). The 2,725 `…` tokens inside the
@@ -172,9 +181,12 @@ implementation column: two of these are *decided* but not yet *executed*.
    keep them silently (inflates it), single-sign coverage is **reported on two
    denominators** — full eligible (46,118) and ellipsis-excluded (43,393) —
    with the gap disclosed. No positions leave calibration; no accepted count or
-   ratified rate changes. **Implementation pending:** rerun
-   `scripts/real_gap_calibration.py` to emit both denominators and add a
-   `tests/test_real_gap_calibration_scope.py` case. Not yet run.
+   ratified rate changes. **Implemented and verified 2026-08-01:**
+   `scripts/real_gap_calibration.py` was rerun against a from-scratch,
+   MD5-verified rebuild of the full derived-data chain (nothing was locally
+   cached) and reproduces 43,393/46,118 exactly, with
+   `tests/test_real_gap_calibration_scope.py` pinning the new
+   `exclude_indeterminate_lacunae()` function.
 7. **CONTRACT_VERSION stays 1.1.0; the hard-renderer requirement is a deferred
    major bump** (spec note appended to `specs/EXPERT_DECISION_CONTRACT.md`
    §Versioning). The empty-middle `display` block is a producer-side invariant
@@ -329,10 +341,9 @@ never read `cu`, Gate 3 closed. Additionally:
      **RATIFIED: split estimand** (`reports/phase5_lacuna_scope_decision.md`).
      Single-sign coverage is reported on two denominators — full eligible
      (46,118) and ellipsis-excluded (43,393) — with the gap disclosed; nothing
-     is filtered from calibration. **Implementation pending:** rerun
-     `scripts/real_gap_calibration.py` to emit both denominators and add a
-     `tests/test_real_gap_calibration_scope.py` case. Decision made; rerun not
-     yet run.
+     is filtered from calibration. **Implemented and verified 2026-08-01:**
+     `scripts/real_gap_calibration.py` reruns to exactly 43,393/46,118, pinned
+     by `tests/test_real_gap_calibration_scope.py`.
    - ~~**`AT 454` filed under CTH 577.**~~ **RESOLVED: non-issue.** The
      `AT = Alalakh` association is CLAUDE.md prose only, not wired into any
      active site-prefix mapping; `AT 454` is never an anchor with auto-assigned

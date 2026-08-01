@@ -38,6 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
 
+import expert_decision_contract as edc  # noqa: E402
 import p2e2_abstention_calibration as p2e2  # noqa: E402
 import p2e8_cross_line_recoverability as p2e8  # noqa: E402
 import p2e9_cross_line_calibration as p2e9  # noqa: E402
@@ -118,6 +119,20 @@ def calibration_scope_cths(cth_to_fold, cross):
     }
 
 
+def exclude_indeterminate_lacunae(gaps):
+    """Split estimand (item 5a, reports/phase5_lacuna_scope_decision.md,
+    ratified 2026-07-31). An indeterminate lacuna (`...`) asserts an UNKNOWN
+    amount of text is missing, not one sign, yet its encoded damage_state
+    (`restored`) admits it into the single-sign population anyway. This does
+    not filter `gaps` in place -- it returns a second, narrower view so
+    single-sign coverage can be reported on both denominators; nothing is
+    removed from calibration or scoring itself."""
+    return [
+        g for g in gaps
+        if tuple(g["run"]["tokens"]) != (edc.INDETERMINATE_LACUNA_TOKEN,)
+    ]
+
+
 def main():
     cth_to_fold, config = load_cth_fold_map()
     calibrated_anchor_length = config["anchor_length"]
@@ -160,6 +175,7 @@ def main():
     # scored separately and reported separately -- never pooled into one
     # headline number.
     cross_eligible = []
+    cross_eligible_ellipsis_excluded = []
     cross_index = None
     if cross is not None:
         cross_eligible = [
@@ -168,6 +184,13 @@ def main():
             and g["run"]["length"] == cross["config"]["mask_length"]
             and fragment_cth.get(g["fragment_id"]) in cross["cth_to_fold"]
         ]
+        # Split estimand (item 5a, reports/phase5_lacuna_scope_decision.md,
+        # ratified 2026-07-31): single-sign coverage is reported on both the
+        # full eligible population and this narrower, ellipsis-excluded
+        # view. Nothing is filtered from calibration or scoring -- this
+        # second count is a reporting-layer figure only.
+        cross_eligible_ellipsis_excluded = exclude_indeterminate_lacunae(
+            cross_eligible)
         if cross_eligible:
             anchor_length = int(cross["config"]["anchor_length"])
             requested = {}
@@ -180,7 +203,8 @@ def main():
                 scope["line_sequences"], fragment_families, fragment_cth,
                 anchor_length, requested)
         print(f"Real gaps eligible for CROSS-LINE calibration "
-              f"({cross['admission_rule']}): {len(cross_eligible):,}")
+              f"({cross['admission_rule']}): {len(cross_eligible):,} "
+              f"({len(cross_eligible_ellipsis_excluded):,} ellipsis-excluded)")
     else:
         print("Cross-line calibration unavailable or unratified -- "
               "cross-line gaps remain gated.")
@@ -317,6 +341,19 @@ def main():
             "applicable_cths": cross_line_cths,
             "applicable_cth_count": len(cross_line_cths),
             "eligible_gaps": len(cross_eligible),
+            "eligible_gaps_ellipsis_excluded": len(cross_eligible_ellipsis_excluded),
+            "eligible_gaps_indeterminate_lacuna_count": (
+                len(cross_eligible) - len(cross_eligible_ellipsis_excluded)),
+            "eligible_gaps_split_estimand_note": (
+                "Split estimand ratified 2026-07-31, "
+                "reports/phase5_lacuna_scope_decision.md (item 5a). "
+                "'eligible_gaps' is the full single-sign population; "
+                "'eligible_gaps_ellipsis_excluded' additionally excludes "
+                "indeterminate-lacuna (`...`) tokens, which assert an "
+                "unknown amount of text is missing rather than one sign. "
+                "Both denominators are reported -- nothing is filtered from "
+                "calibration or scoring, and no accepted-gap count or "
+                "ratified rate changes."),
             "selector_accepted": cross_accepted,
             "selector_rejected": cross_rejected,
             "restored_checked": cross_restored_checked,
@@ -456,7 +493,18 @@ def main():
             "same-line 0.90 rate applied to a wider population.",
             "",
             f"- **{cross_summary['eligible_gaps']:,}** cross-line gaps eligible "
-            "(single-sign, CTH covered by a usable P2-E9 fold).",
+            "(single-sign, CTH covered by a usable P2-E9 fold). Of those, "
+            f"**{cross_summary['eligible_gaps_indeterminate_lacuna_count']:,}** "
+            "are indeterminate-lacuna (`…`) tokens -- encoded as a "
+            "single-sign `restored` position but asserting only that an "
+            "*unknown* amount of text is missing. Single-sign coverage is "
+            "therefore reported on two denominators, split-estimand ratified "
+            "2026-07-31 (`reports/phase5_lacuna_scope_decision.md`, item "
+            "5a): the full eligible population above, and "
+            f"**{cross_summary['eligible_gaps_ellipsis_excluded']:,}** with "
+            "those tokens excluded. Nothing is filtered from calibration or "
+            "scoring -- the accepted-gap counts below are unaffected either "
+            "way.",
             f"- **{cross_summary['selector_accepted']:,}** pass the fold's own "
             f"selector; {cross_summary['selector_rejected']:,} do not, and "
             "abstain rather than receive an uncertified rate.",

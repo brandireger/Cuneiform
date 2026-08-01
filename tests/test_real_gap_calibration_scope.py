@@ -27,6 +27,23 @@ class TestRealGapCalibrationScope(unittest.TestCase):
         self.assertEqual(scopes["cross_line"], [])
         self.assertEqual(scopes["union"], [10, 20])
 
+    def test_exclude_indeterminate_lacunae_drops_only_bare_ellipsis_runs(self):
+        # Split estimand (item 5a, reports/phase5_lacuna_scope_decision.md):
+        # a single-sign run whose only token is the indeterminate-lacuna
+        # ellipsis asserts an UNKNOWN amount of text is missing, not one
+        # sign, so it is excluded from the narrower denominator. A run that
+        # merely contains the ellipsis alongside other tokens, or an
+        # ordinary restored sign, is a real single-sign (or multi-sign)
+        # claim and must be kept.
+        lacuna = {"run": {"tokens": ["…"]}}
+        restored_sign = {"run": {"tokens": ["ku"]}}
+        multi_sign_with_ellipsis = {"run": {"tokens": ["…", "ku"]}}
+
+        kept = rgc.exclude_indeterminate_lacunae(
+            [lacuna, restored_sign, multi_sign_with_ellipsis])
+
+        self.assertEqual(kept, [restored_sign, multi_sign_with_ellipsis])
+
 
 if __name__ == "__main__":
     unittest.main()

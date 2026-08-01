@@ -46,7 +46,7 @@ A calibrated rank-1 rate is a property of many past comparisons at that rank, no
 
 Admission rule **LAYOUT_AGNOSTIC**, ratified target **0.75**. Cross-line has its own calibration (P2-E9) and its own target; this is NOT the same-line 0.90 rate applied to a wider population.
 
-- **46,118** cross-line gaps eligible (single-sign, CTH covered by a usable P2-E9 fold).
+- **46,118** cross-line gaps eligible (single-sign, CTH covered by a usable P2-E9 fold). Of those, **2,725** are indeterminate-lacuna (`…`) tokens -- encoded as a single-sign `restored` position but asserting only that an *unknown* amount of text is missing. Single-sign coverage is therefore reported on two denominators, split-estimand ratified 2026-07-31 (`reports/phase5_lacuna_scope_decision.md`, item 5a): the full eligible population above, and **43,393** with those tokens excluded. Nothing is filtered from calibration or scoring -- the accepted-gap counts below are unaffected either way.
 - **577** pass the fold's own selector; 45,541 do not, and abstain rather than receive an uncertified rate.
 - Of 458 selector-accepted `restored` spans, 308 have the editor's reading somewhere among the witness-ranked alternatives -- corroboration, never proof.
 

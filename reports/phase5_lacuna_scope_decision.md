@@ -1,10 +1,10 @@
 # Phase 5 — indeterminate-lacuna scope decision
 
-**Status: RATIFIED 2026-07-31 (split estimand).** Closes handoff item 5a. This
-memo drafted both options and their measured downstream effects; the decision
-is recorded at the bottom. Implementation (rerun + test) is pending in Ixca's
-environment. No protected-test access, model, or training is involved; this is
-a population-composition question, not a calibration-quality one.
+**Status: RATIFIED 2026-07-31 (split estimand); IMPLEMENTED AND VERIFIED
+2026-08-01.** Closes handoff item 5a. This memo drafted both options and their
+measured downstream effects; the decision is recorded at the bottom. No
+protected-test access, model, or training is involved; this is a
+population-composition question, not a calibration-quality one.
 
 ## The question
 
@@ -98,10 +98,18 @@ defensible if you are undecided, because it shows the reader exactly what the
 > exists so a reader can see exactly what they contribute rather than take it on
 > faith.
 
-**On ratification:** rerun `python scripts/real_gap_calibration.py` to emit both
-denominators (`real_gap_calibration.json` + report; the CI staleness guard will
-require the stamp), and add a `tests/test_real_gap_calibration_scope.py` case
-pinning the dual-estimand output alongside the existing union-scope test.
-Neither has been run yet — this memo records the decision; the rerun and test
-are the implementation step, to be done in your environment where the full
-calibration inputs are present.
+**Implemented and verified 2026-08-01.** The full derived-data chain (raw
+TLHdig 0.2.0-beta corpus, MD5-verified against the pin; the archived P1/P2.5
+pipeline; the P4-D language-layer artifacts) was rebuilt from scratch in a
+fresh environment, since none of it is checked into git by design. Before
+touching anything, the *unmodified* `real_gap_calibration.py` was run against
+the rebuilt data and reproduced the already-committed 46,118/577 figures
+exactly, including a byte-identical `language_dataset_file_sha256` — proof the
+rebuild is faithful, not just plausible. `real_gap_calibration.py` was then
+extended with `exclude_indeterminate_lacunae()` and rerun: it reports
+**43,393** ellipsis-excluded against the **46,118** full eligible population,
+an implied **2,725** indeterminate-lacuna count — exactly matching this
+memo's figures. `real_gap_calibration.json` and its report now carry both
+denominators, and `tests/test_real_gap_calibration_scope.py` pins the new
+function alongside the existing union-scope tests. No position was filtered
+from calibration; no accepted-gap count or ratified rate changed.
