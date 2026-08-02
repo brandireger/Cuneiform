@@ -537,6 +537,46 @@
       "candidates_logical_sha256": "573ed092f8dcbf2300119eb12e9b03f33e70c79232ddeac8a2bc3b48c5c98f51",
       "candidates_file_sha256": "6dd9391123ff2b7d83d692a1f29da7379b2fc68801044b17032a5d5c43d5e8de",
       "file_hash_is_not_stable": "Every record embeds provenance.created_utc and git_commit, so candidates_file_sha256 changes on every rerun regardless of content; compare candidates_logical_sha256 to check reproducibility."
+    },
+    "LOCAL_CONTEXT_PARALLEL": {
+      "method": "local_left_right_context_k1",
+      "model_derived": false,
+      "context_window": 1,
+      "ungrouped_by_sequence_count": 13901,
+      "ungrouped_occurrences_joining_a_context_cluster": 4089,
+      "clusters_found": 1240,
+      "clusters_emitted": 1240,
+      "min_cluster_size": 2,
+      "multi_document_clusters": 1228,
+      "cluster_size_histogram": {
+        "2": 728,
+        "3": 233,
+        "4": 107,
+        "5": 55,
+        "6": 39,
+        "7": 23,
+        "8": 11,
+        "9": 9,
+        "10": 4,
+        "11": 6,
+        "12": 5,
+        "13": 3,
+        "14": 4,
+        "15": 1,
+        "16": 2,
+        "17": 2,
+        "20": 2,
+        "21": 1,
+        "24": 1,
+        "32": 2,
+        "43": 1,
+        "133": 1
+      },
+      "scores_are_probabilities": false,
+      "candidates_path": "Phase4/phase4_out/unresolved_similarity_candidates_local_context.jsonl",
+      "candidates_logical_sha256": "96779e1a91c2edb5342303890e592bd7a29bc93e9e47774941f16c7a63172a67",
+      "candidates_file_sha256": "86e3d3267312978e17de8073787b14b689193d744aae8e4dbc23965adb8a2f64",
+      "file_hash_is_not_stable": "Every record embeds provenance.created_utc and git_commit, so candidates_file_sha256 changes on every rerun regardless of content; compare candidates_logical_sha256 to check reproducibility."
     }
   }
 }

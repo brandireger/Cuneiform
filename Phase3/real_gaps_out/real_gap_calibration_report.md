@@ -64,7 +64,7 @@ The adopted remedy is display-layer: the option keeps its rank and witness suppo
 
 | the gap is | share of the 109 | what 'witnesses show nothing' means |
 |---|---:|---|
-| illegible trace (`x`) | 57 | your trace is off-formula for this collocation |
+| illegible trace (`x`) | 57 | the trace is off-formula for this collocation |
 | an editorial restoration | 41 | **the witnesses contradict a scholarly bracket** |
 | an indeterminate lacuna (`…`) | 11 | the parallel tradition has no gap here |
 | a hidden attested sign (evaluation contexts only) | n/a | cannot be correct by construction |
