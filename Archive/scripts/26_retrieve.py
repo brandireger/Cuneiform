@@ -42,7 +42,7 @@ EDGE_N_VALUES = (3, 5)
 
 def get_git_commit():
     try:
-        result = subprocess.run([r"C:\Program Files\Git\bin\git.exe", "rev-parse", "HEAD"],
+        result = subprocess.run(["git", "rev-parse", "HEAD"],
                                  capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except Exception as e:  # noqa: BLE001

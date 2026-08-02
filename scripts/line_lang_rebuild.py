@@ -156,7 +156,14 @@ def main():
     print(f"Wrote {CANONICAL_PARQUET}")
 
     registry = ep.load_registry(REGISTRY_PATH)
-    policy = ep.load_policy("artifact_strict", POLICIES_PATH)
+    # "artifact_strict" only permits OBSERVED_ARTIFACT/OBSERVED_DOCUMENT_
+    # STRUCTURE/SYSTEM_TECHNICAL. `line_lang` was reclassified from
+    # OBSERVED_DOCUMENT_STRUCTURE to EDITORIAL_TRANSCRIPTION by the Gate 0
+    # ruling (2026-07-25, see configs/evidence_registry.yaml) -- lb@lg is
+    # source-encoded editorial linguistic annotation, not directly observed
+    # structure. "transcription_assisted" is the minimal policy that permits
+    # it while still denying cu/mrp/lemma fields.
+    policy = ep.load_policy("transcription_assisted", POLICIES_PATH)
     manifest = ep.build_manifest(
         task="line_lang_rebuild_step_c",
         evidence_policy=policy.name,
