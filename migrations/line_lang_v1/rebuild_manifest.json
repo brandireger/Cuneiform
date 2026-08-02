@@ -1,6 +1,6 @@
 {
   "task": "line_lang_rebuild_step_c",
-  "evidence_policy": "artifact_strict",
+  "evidence_policy": "transcription_assisted",
   "features_requested": [
     "line_lang"
   ],
@@ -8,21 +8,21 @@
     "line_lang"
   ],
   "evidence_classes_used": [
-    "OBSERVED_DOCUMENT_STRUCTURE"
+    "EDITORIAL_TRANSCRIPTION"
   ],
   "prohibited_features_encountered": [],
-  "editorial_content_fraction": 0.0,
+  "editorial_content_fraction": 1.0,
   "restored_content_fraction": 0.0,
   "model_derived_content_fraction": 0.0,
   "dataset_manifest_hash": "",
   "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
-  "config_hash": "1560f78fb59918cf6406d257847c49a9fdb02306f2cba462ec49d0bceb2af658",
-  "git_commit": "7afdeb3e5ba4c6d1f5203d4b65b5a70c92178027",
+  "config_hash": "32559e46dd8908a28dd04476dce29deb2b50b1a582fda15cbc1dedcfc07d5e3e",
+  "git_commit": "5e5c7509900d7e54fb1ce3d55647eec3f565ac9b",
   "git_dirty": true,
   "corpus_version": "TLHdig 0.2.0-beta",
   "seed": 20260725,
   "declared_statistics_universe": "all documents, all splits (mechanical rule application only; test-side values never printed, sampled, or ranked)",
-  "created_utc": "2026-07-25T21:23:46.472731+00:00",
+  "created_utc": "2026-08-01T17:11:32.124984+00:00",
   "zip_md5": "93e71e2560f5e109c87713d5590cb059",
   "zip_md5_matches_claude_md_pin": true,
   "ratified_vocabulary": [

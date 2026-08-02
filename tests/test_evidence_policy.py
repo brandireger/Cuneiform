@@ -194,6 +194,20 @@ class TestEvidencePolicy(unittest.TestCase):
             with self.subTest(policy=policy.name):
                 self.assertNotIn(ep.EvidenceClass.EDITORIAL_RELATION, policy.allowed)
 
+    # --- extra: line_lang / artifact_strict drift regression (2026-08-02
+    # sweep). `line_lang` was reclassified from OBSERVED_DOCUMENT_STRUCTURE
+    # to EDITORIAL_TRANSCRIPTION by the Gate 0 ruling, but
+    # scripts/line_lang_rebuild.py and scripts/line_lang_audit.py kept
+    # requesting "artifact_strict" and crashed on every run since. Both were
+    # fixed to request "transcription_assisted" -- this pins that the field's
+    # actual registered class stays incompatible with "artifact_strict" (so a
+    # future reclassification back would be caught here, not by a script
+    # crashing in the field) and compatible with "transcription_assisted".
+    def test_line_lang_requires_transcription_assisted_not_artifact_strict(self):
+        with self.assertRaises(ep.EvidencePolicyError):
+            ep.validate_fields(["line_lang"], self.registry, self.strict)
+        ep.validate_fields(["line_lang"], self.registry, self.transcription)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

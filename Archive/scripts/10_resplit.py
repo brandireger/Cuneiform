@@ -65,8 +65,7 @@ def size_band(n):
 
 def get_git_commit():
     try:
-        env_path = r"C:\Program Files\Git\bin\git.exe"
-        result = subprocess.run([env_path, "rev-parse", "HEAD"],
+        result = subprocess.run(["git", "rev-parse", "HEAD"],
                                  capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except Exception as e:  # noqa: BLE001

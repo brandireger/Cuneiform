@@ -298,8 +298,9 @@ def main() -> None:
     print(f"Provenance patched: provincial docs {before_prov}->{after_prov}.")
 
     print("Re-running 04_edges.py against the patched corpus...")
+    edges_script = Path(__file__).resolve().parent / "04_edges.py"
     result = subprocess.run(
-        [sys.executable, "04_edges.py", zip_path],
+        [sys.executable, str(edges_script), zip_path],
         capture_output=True, text=True)
     print(result.stdout)
     if result.returncode != 0:
