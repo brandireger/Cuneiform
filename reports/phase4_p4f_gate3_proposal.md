@@ -10,10 +10,52 @@ not authorize") states, no more: Stage 0 (the code change, no GPU) and
 Stage 1 (the two named runs, at the named budget, against the named
 falsifier). Stage 2 and everything past it remain separately gated.
 
-**Execution status:** Stage 0 is implementable now (no GPU required) and is
-the next work in this session. Stage 1 remains blocked on GPU access this
-environment does not have — see the handoff for whoever picks this up with
-one.
+**Execution status: Stage 0 partially complete, 2026-08-02.** Delivered,
+verified, and tested — no GPU used or needed:
+
+- `lib/hittite_model_p4f.py` — `P4FEncoder`, a fresh (not `Archive/`-modifying)
+  reproduction of D14's architecture with the proposed language-embedding
+  addition behind `condition_on_language`. **Verified, not assumed**:
+  instantiated unconditioned with D14's exact config and vocab size, its
+  parameter count is **12,817,991 — matching `Archive/reports/pretrain_report.md`
+  exactly**. The conditioned variant adds exactly 3,072 params (8 language
+  codes × d_model=384), matching §4's "one addition" framing as a literal
+  code fact, not just prose.
+- `language_ids_for_tokens()` — maps the existing P4-D
+  `effective_lang_canonical` field to the embedding table's row indices,
+  failing closed on any value outside the ratified 7-code vocabulary rather
+  than guessing.
+- The §9 tracer, both as importable functions (`lib/hittite_model_p4f.py`)
+  and as a standalone runnable check
+  (`scripts/phase4_p4f_conditioning_tracer.py`, mirroring
+  `scripts/00_tracers.py`'s style). **Run, not just written**: all three
+  items pass on a freshly initialized model and a synthetic canary batch.
+  Item 1's and item 3's failure paths are also verified — a deliberately
+  collapsed embedding table and a deliberately confounded manifest pair
+  are both caught, so the checks are known to be able to fail, not just
+  built to always print PASS.
+- 18 new unit tests (`tests/test_hittite_model_p4f.py`), guarded with
+  `unittest.skipUnless(TORCH_AVAILABLE, ...)` and **verified to skip
+  cleanly rather than break CI**: run against a from-scratch venv built
+  from `requirements-ci.txt` only (no torch, matching what GitHub Actions
+  actually runs) — 309 collected, 18 skipped, 0 failures.
+
+**Not yet done, and explicitly scoped out of this session rather than
+silently incomplete:** the actual Stage 1 training script/data-loader
+integration (adapting `Archive/scripts/19_pretrain.py`'s masking,
+boundary-example sampling, checkpointing, and wall-clock-budget loop to call
+`P4FEncoder` and supply real per-batch `lang_ids` from the P4-D dataset).
+That work is best done together with real GPU access, where it can be
+smoke-tested end-to-end rather than trusted on faith — a training script
+that has never actually run a step is a materially different risk than the
+CPU-verifiable architecture module and tracer above. Whoever picks up Stage
+1 with GPU access should treat that integration as the remaining Stage 0
+work, run the tracer script first (Sec.9, non-negotiable per this
+document), and only then start the two named runs. Local verification here
+used CPU-only `torch==2.13.0`, not the CUDA-pinned `torch==2.6.0+cu124` in
+`requirements.txt` — the architecture code has no version-specific API
+usage found during this work, but this is a real environment difference
+worth re-checking on first GPU run, not assumed away.
 
 No GPU is available in the environment this was drafted in, so nothing here
 has been executed. Every figure either comes from an existing frozen
