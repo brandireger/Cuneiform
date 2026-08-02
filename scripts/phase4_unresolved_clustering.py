@@ -57,6 +57,18 @@ OCCURRENCES_PATH = OUT_DIR / "unresolved_occurrences.parquet"
 CANDIDATES_PATH = OUT_DIR / "unresolved_similarity_candidates.jsonl"
 CROSS_CANDIDATES_PATH = (
     OUT_DIR / "unresolved_similarity_candidates_cross_language.jsonl")
+# `--local-context` is a third, separately written channel (same reasoning as
+# the cross-language split above): it groups occurrences the first two
+# channels cannot reach at all -- see build_context_clusters().
+LOCAL_CONTEXT_CANDIDATES_PATH = (
+    OUT_DIR / "unresolved_similarity_candidates_local_context.jsonl")
+# Measured, not guessed (reports/phase5_second_queue.md): among the ~13,900
+# occurrences with no same-language sequence peer, requiring the single
+# immediately-adjacent attested token on each side to match admits 4,089 of
+# them into 1,240 clusters. Two full tokens on each side collapses the yield
+# to 73 -- Hittite scribal formulae are short enough that anything stricter
+# is not "more precise," it is "empty."
+LOCAL_CONTEXT_WINDOW = 1
 SNAPSHOT_PATH = OUT_DIR / "unresolved_cluster_snapshot.parquet"
 EVENTS_PATH = OUT_DIR / "expert_annotation_events.jsonl"
 MANIFEST_PATH = OUT_DIR / "unresolved_extraction_manifest.json"
@@ -128,6 +140,8 @@ def load_occurrences():
             "main_split": row.main_split,
             "categories": list(row.categories),
             "tokens": record["display"].get("tokens", []),
+            "left": record["context"].get("left", []),
+            "right": record["context"].get("right", []),
         })
     return rows
 
@@ -169,18 +183,197 @@ def build_clusters(rows, *, cross_language):
     return clusters
 
 
+def ungrouped_by_sequence(rows):
+    """Occurrences with no same-language sequence peer at all.
+
+    The exact-sequence channel above requires MIN_CLUSTER_SIZE members
+    sharing a sequence; a truly unique sequence never reaches it. This is
+    the ~13,900-occurrence population named in
+    reports/phase4_p4e2_expert_interface.md's open decision 3 -- computed
+    from the SAME same-language buckets build_clusters() uses, not a
+    separate reimplementation that could drift from what "ungrouped" means
+    there.
+    """
+    buckets = defaultdict(list)
+    for row in rows:
+        if not row["tokens"]:
+            continue
+        key = (normalized_sequence(row["tokens"]), row["language"] or "<UNRESOLVED>")
+        buckets[key].append(row)
+    return [members[0] for members in buckets.values() if len(members) == 1]
+
+
+def build_context_clusters(rows, *, window=LOCAL_CONTEXT_WINDOW):
+    """Group occurrences with no sequence peer by their immediate flanking
+    context instead -- specs/UNRESOLVED_EVIDENCE_WORKBENCH.md's second named
+    channel ("local left/right textual context"), distinct from the
+    exact-sequence channel build_clusters() implements.
+
+    Two occurrences whose own content differs (or is differently damaged)
+    but which sit in the identical immediate environment are evidence about
+    the SLOT, not the content -- an expert comparing them is asking "what,
+    in general, goes between these two words," which a sequence-keyed
+    cluster cannot answer for material with no surface-form match anywhere
+    else in the corpus.
+
+    `window` tokens must be present on BOTH sides for an occurrence to
+    join -- a one-sided match halves the precision of the signal for a
+    yield that measurement showed is not needed at window=1 (4,089 of
+    13,901 already join with both sides required).
+    """
+    candidates = ungrouped_by_sequence(rows)
+    buckets = defaultdict(list)
+    for row in candidates:
+        left = tuple(t.casefold() for t in row["left"][-window:])
+        right = tuple(t.casefold() for t in row["right"][:window])
+        if len(left) < window or len(right) < window:
+            continue
+        language = row["language"] or "<UNRESOLVED>"
+        buckets[(left, right, language)].append(row)
+
+    clusters = []
+    for key, members in sorted(buckets.items(), key=lambda item: str(item[0])):
+        if len(members) < MIN_CLUSTER_SIZE:
+            continue
+        documents = sorted({m["doc_id"] for m in members})
+        clusters.append({
+            "left": list(key[0]),
+            "right": list(key[1]),
+            "language": key[2],
+            "members": members,
+            "documents": documents,
+        })
+    # Opposite ranking philosophy from build_clusters() by design: that
+    # channel already favors well-attested material, so this one favors
+    # what it does NOT surface -- more corroborating members first, since
+    # unlike the rarity channel below this is about how well-supported the
+    # SLOT is, not how rare the content in it is.
+    clusters.sort(
+        key=lambda c: (-len(c["documents"]), -len(c["members"]),
+                        c["left"], c["right"]))
+    return clusters
+
+
+def run_local_context(args):
+    """Self-contained so the exact-sequence code path above is never touched
+    by this channel's presence -- same reasoning as keeping same-line and
+    cross-line real-gap calibration structurally separate: two populations
+    that must never be pooled are safer kept in two code paths than merged
+    into one with a flag threaded through every line."""
+    del args  # no local-context-specific CLI options today
+    rows = load_occurrences()
+    print(f"Occurrences loaded: {len(rows):,}")
+
+    ungrouped = ungrouped_by_sequence(rows)
+    print(f"Occurrences with no same-language sequence peer: {len(ungrouped):,}")
+
+    clusters = build_context_clusters(rows)
+    scope = "SAME_LANGUAGE_AS_QUERY"
+    method = f"local_left_right_context_k{LOCAL_CONTEXT_WINDOW}"
+    joined = sum(len(c["members"]) for c in clusters)
+    print(f"Clusters (LOCAL_CONTEXT_PARALLEL, window={LOCAL_CONTEXT_WINDOW}): "
+          f"{len(clusters):,} ({joined:,} of {len(ungrouped):,} ungrouped "
+          "occurrences join one)")
+
+    provenance = ue.build_provenance(
+        split_manifest_hash=digest_file(SPLITS_PATH),
+        language_layer_hash=digest_file(TOKENS_V2_PATH),
+        config_hash=digest_file(CONFIG_PATH),
+        git_commit=ep._git_commit(),
+        seed=SEED,
+        evidence_policy=POLICY_NAME,
+    )
+
+    emitted = []
+    for index, cluster in enumerate(clusters[:MAX_CLUSTERS_EMITTED], 1):
+        members = cluster["members"]
+        proposal = ue.build_cluster_proposal(
+            cluster_id=f"ctx-s-{index:05d}",
+            member_occurrence_ids=[m["occurrence_id"] for m in members],
+            method_name=method,
+            evidence_class="EDITORIAL_TRANSCRIPTION",
+            model_derived=False,
+            language_scope=scope,
+            supporting_evidence=[{
+                "type": "LOCAL_LEFT_RIGHT_CONTEXT",
+                "left": " ".join(cluster["left"]),
+                "right": " ".join(cluster["right"]),
+                "context_window": LOCAL_CONTEXT_WINDOW,
+                "member_count": len(members),
+                "distinct_document_count": len(cluster["documents"]),
+                "languages": [cluster["language"]],
+                "value_is_a_count_not_a_score": True,
+            }],
+            contradictory_evidence=[{
+                "type": "SINGLE_DOCUMENT_CLUSTER",
+                "summary": (
+                    "Every member comes from one document, so this may be one "
+                    "scribe repeating a form rather than a recurring one."),
+            }] if len(cluster["documents"]) == 1 else [],
+            provenance=provenance,
+        )
+        emitted.append(proposal)
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    with open(LOCAL_CONTEXT_CANDIDATES_PATH, "w", encoding="utf-8") as handle:
+        for proposal in emitted:
+            handle.write(json.dumps(
+                proposal, ensure_ascii=False, sort_keys=True) + "\n")
+
+    size_histogram = Counter(
+        len(proposal["member_occurrence_ids"]) for proposal in emitted)
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    manifest.setdefault("clustering", {})["LOCAL_CONTEXT_PARALLEL"] = {
+        "method": method,
+        "model_derived": False,
+        "context_window": LOCAL_CONTEXT_WINDOW,
+        "ungrouped_by_sequence_count": len(ungrouped),
+        "ungrouped_occurrences_joining_a_context_cluster": joined,
+        "clusters_found": len(clusters),
+        "clusters_emitted": len(emitted),
+        "min_cluster_size": MIN_CLUSTER_SIZE,
+        "multi_document_clusters": sum(
+            1 for cluster in clusters if len(cluster["documents"]) > 1),
+        "cluster_size_histogram": dict(sorted(size_histogram.items())),
+        "scores_are_probabilities": False,
+        "candidates_path": str(LOCAL_CONTEXT_CANDIDATES_PATH),
+        "candidates_logical_sha256": logical_hash(emitted),
+        "candidates_file_sha256": digest_file(LOCAL_CONTEXT_CANDIDATES_PATH),
+        "file_hash_is_not_stable": (
+            "Every record embeds provenance.created_utc and git_commit, so "
+            "candidates_file_sha256 changes on every rerun regardless of "
+            "content; compare candidates_logical_sha256 to check "
+            "reproducibility."),
+    }
+    MANIFEST_PATH.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8")
+
+    print(f"  emitted {len(emitted):,} proposals to {LOCAL_CONTEXT_CANDIDATES_PATH}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--cross-language", action="store_true",
         help="emit the explicitly enabled cross-language parallel channel "
              "instead of the same-language default")
+    parser.add_argument(
+        "--local-context", action="store_true",
+        help="emit the local left/right context channel over occurrences "
+             "with no same-language sequence peer, instead of the "
+             "exact-sequence channel (mutually exclusive with "
+             "--cross-language; a separate build, kept as a separate run)")
     args = parser.parse_args()
 
     if not OCCURRENCES_PATH.exists():
         raise SystemExit(
             f"{OCCURRENCES_PATH} not found. Run "
             "scripts/phase4_unresolved_extraction.py first.")
+
+    if args.local_context:
+        run_local_context(args)
+        return
 
     rows = load_occurrences()
     print(f"Occurrences loaded: {len(rows):,}")

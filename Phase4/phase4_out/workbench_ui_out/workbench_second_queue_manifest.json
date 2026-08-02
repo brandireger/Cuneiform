@@ -1,0 +1,79 @@
+{
+  "task": "phase4_workbench_second_queue_export",
+  "queue_policy": "contentful_sequence_length_v2",
+  "contract_version": "1.1.0",
+  "ground_truth_status": "NOT_CORPUS_TRUTH",
+  "corpus_version": "TLHdig_0.2.0-beta",
+  "evidence_policy": "transcription_assisted",
+  "seed": 20260802,
+  "git_commit": "889ffd16a59f58a1f55a2e24e69cb14ca43d144d",
+  "source_hashes": {
+    "occurrences_logical_sha256": "fd387b97a9aeb1cb9b7e9a89f3b20f8b015ef50af524695cec6567b64b191f47",
+    "contract_version": "1.1.0",
+    "SAME_LANGUAGE_AS_QUERY_candidates_logical_sha256": "33c3cff9985a4ee26716515d3b764b2b1f812328a93ca0ffa195dce711f3c21b",
+    "LOCAL_CONTEXT_PARALLEL_candidates_logical_sha256": "96779e1a91c2edb5342303890e592bd7a29bc93e9e47774941f16c7a63172a67"
+  },
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "policy_parameters": {
+    "contentless_chars": " !().=?_x}̣…〈〉",
+    "minimum_sequence_length_rule": "not applied in this queue -- see module docstring",
+    "local_context_window": 1,
+    "max_members_displayed_per_cluster": 12,
+    "max_clusters_per_channel": 60,
+    "context_lines_per_side": 2,
+    "ranking": {
+      "RARE_BY_RARITY": "distinct_document_count asc, member_count asc, cluster_id asc",
+      "LOCAL_CONTEXT_PARALLEL": "distinct_document_count desc, member_count desc, cluster_id asc"
+    }
+  },
+  "channel_counts": {
+    "RARE_BY_RARITY": {
+      "proposals_available": 4566,
+      "excluded_contentless": 148,
+      "excluded_contentless_occurrences": 132129,
+      "eligible_after_exclusions": 4418,
+      "queued": 60,
+      "not_queued_payload_bound": 4358
+    },
+    "LOCAL_CONTEXT_PARALLEL": {
+      "proposals_available": 1240,
+      "excluded_contentless": 283,
+      "excluded_contentless_occurrences": 1309,
+      "eligible_after_exclusions": 957,
+      "queued": 60,
+      "not_queued_payload_bound": 897
+    }
+  },
+  "queued_member_category_counts": {
+    "PARTIALLY_PRESERVED_READING": 463,
+    "RARE_FORM": 48,
+    "TOKENIZER_OOV": 125,
+    "UNCERTAIN_TRANSCRIPTION": 2
+  },
+  "queued_member_language_counts": {
+    "Akk": 30,
+    "Hat": 2,
+    "Hit": 521,
+    "Hur": 8,
+    "Luw": 2,
+    "Sum": 22
+  },
+  "queued_member_language_counts_by_channel": {
+    "RARE_BY_RARITY": {
+      "Akk": 30,
+      "Hat": 2,
+      "Hit": 56,
+      "Hur": 8,
+      "Luw": 2,
+      "Sum": 22
+    },
+    "LOCAL_CONTEXT_PARALLEL": {
+      "Hit": 465
+    }
+  },
+  "selection_is_a_view_not_a_finding": "Exclusion from this queue is a display decision. No occurrence, proposal, or hash is modified, and an excluded cluster is not thereby judged uninteresting.",
+  "relationship_to_first_queue": "A separate queue, not a mode on the first. workbench_review_queue.js and its channels_logical_sha256 are untouched by this script.",
+  "default_channel": "RARE_BY_RARITY",
+  "channels_logical_sha256": "571bb93bec2942de00cd5a1ca9239a9b6250705baa46c813c6e4deae74319dd3",
+  "payload_sha256": "1523f1b883a5c257ff1565ff2eb7c38e17c7ba5c2a11633927d7819f159bb9a5"
+}
