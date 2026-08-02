@@ -649,7 +649,7 @@ EMPTY_MIDDLE_QUERY_KINDS = {
     # Editor saw a trace and could not read it (damage_state illegible_x).
     # 57 of the 109 measured real-gap cases.
     "ILLEGIBLE_TRACE": {
-        "headline": "Witnesses show no sign here — your trace is off-formula.",
+        "headline": "Witnesses show no sign here — the trace is off-formula.",
         "detail": (
             "Independent witnesses attest the two anchors directly adjacent, "
             "with nothing between them. That does not read the illegible "
