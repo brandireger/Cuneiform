@@ -123,3 +123,12 @@ optional fields increment the minor version. Wording-only clarifications
 increment the patch version. Stored decisions always retain the original
 contract version and packet hash; migrations create new records rather than
 rewriting the expert's historical action.
+
+The empty-middle `display` block is a **producer-side invariant** as of 1.1.0:
+the schema refuses to emit an unannotated empty option, so no ratified renderer
+can currently draw a blank candidate. Making `display` a **hard renderer
+requirement** — such that honoring it is required for compliance rather than
+guaranteed only at production — is a **deferred major version bump**, to be
+taken when a second renderer exists (e.g. the unified front door). Until then a
+renderer that ignores unknown fields could reintroduce the blank-candidate
+defect; this deferral is recorded so that risk is not silently trusted.
