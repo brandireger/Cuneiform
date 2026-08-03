@@ -1,7 +1,13 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
 **Handoff date:** 2026-07-28
-**Refreshed:** 2026-08-01 (session 3 — the session-2 commit-state gap below is
+**Refreshed:** 2026-08-03 (session 4 — open items 3, 4 and 7 are CLOSED.
+The copy review and the second queue shipped 2026-08-02; **Gate 3 was
+ratified 2026-08-02 and its Stage 1 ran to completion 2026-08-03 with the
+pre-registered hypothesis REJECTED** — see item 7 and
+`reports/phase4_p4f_stage1.md`. Stage 2 remains unauthorized. The remaining
+open items are 1's uncovered residue, 4's UI/policy residue, 6, and 8.)
+**Prior refresh:** 2026-08-01 (session 3 — the session-2 commit-state gap below is
 now closed: PR #6 is merged to `origin/master`; the lacuna split-estimand
 rerun is implemented, verified against a from-scratch rebuild of the full
 derived-data chain, and committed on `agent/phase5-lacuna-split-estimand`.)
@@ -251,7 +257,23 @@ Where it landed:
    the other a no-op (the queue hash is byte-identical either way). They got
    different answers. Measure each rule against what a specialist actually
    sees before bundling a decision.
-10. **Check which key an artifact actually stores its options under.** The
+10. **A training-time eval is not a measurement.** P4-F Stage 1's evals run
+   ~80 boundary examples and swing ~4 AUC points with no trend — twice the
+   +0.02 effect the falsifier had to detect. Arm B's last one read 0.8839
+   against the 0.7263 that survived a proper n=1,920 paired pass. Never read
+   a verdict off a loss curve; build the evaluation the falsifier named, and
+   pair the arms on one shared, model-independent example set so the interval
+   is on the *difference*.
+
+11. **An ablation scope can silently hand one arm more data.** Giving P4-F's
+   unconditioned arm the ratified `ALL_LANGUAGES_UNCONDITIONED` scope looks
+   like the obviously correct label, and would have broken the experiment:
+   `language_lookup_v2._classify` short-circuits every filter for an ablation
+   scope, admitting the unresolved and conflated lines the conditioned arm
+   must refuse. Data admission and conditioning are separate concepts and are
+   now separate manifest fields.
+
+12. **Check which key an artifact actually stores its options under.** The
    first empty-middle count read `candidate_set.alternatives` and reported 5;
    P2-E6 stores `tie_complete_alternatives`, and the real figure was 10,
    including one at rank 1 on 19 families.
@@ -315,25 +337,26 @@ never read `cu`, Gate 3 closed. Additionally:
    rules from the record and fails closed without it, and per-rule status is
    shown on screen.
 
-3. **Review the empty-middle branch wording as copy.** The four branch texts
-   in `lib/expert_decision_contract.py` are the sentences a Hittitologist will
-   actually read. They were written from the encoded evidence and reviewed as
-   logic, not as philological prose.
+3. ~~**Review the empty-middle branch wording as copy.**~~ **DONE 2026-08-02**
+   (`reports/phase5_empty_middle_copy_review.md`).
 
-4. **The second queue: rare single signs and ungrouped occurrences.** This is
-   where the deferred minimum-length decision actually has consequences.
-   Two populations are unreachable through a cluster-first queue ranked by
-   sequence length:
-   - **468 rare single-sign clusters** (same-language, ≤2 documents, 79.1% of
-     that tail) — largely Sumerograms: `numun`, `kalam`, `géštug`, `ereš`,
-     `naga`, `ḫabrud`, `gišnú`, `giškim`, `ibila`, `gišgigir`, `iku`, `i₇`.
-     Ranking by **rarity** rather than length would surface them.
-   - **~13,900 ungrouped occurrences** whose sequence is unique, so they are
-     in no cluster at all — arguably the most interesting material, and the
-     P4-E2 report already flagged that a queue keyed on surrounding context
-     rather than shared surface form would be a separate build.
+4. ~~**The second queue: rare single signs and ungrouped occurrences.**~~
+   **DONE 2026-08-02, data/export layer only** (`reports/phase5_second_queue.md`,
+   `scripts/phase4_workbench_second_queue_export.py`). `RARE_BY_RARITY` ranks
+   by ascending document count — the literal opposite of the first queue's
+   rank key — and `LOCAL_CONTEXT_PARALLEL` is a genuinely new channel keyed on
+   flanking attested context rather than own content, joining 4,089 of the
+   13,901 ungrouped occurrences at the measured window=1 (window=2 joins 73).
+   A separate script, never a mode on the first queue: that queue's
+   `channels_logical_sha256` is a pinned invariant and is verified untouched
+   after every run.
 
-   Settle `minimum_sequence_length` together with this, not before it.
+   **Still open from this item:** no UI (wiring `window.WORKBENCH_SECOND_QUEUE`
+   into a page is presentation work needing its own review), no `--language`
+   variant, queue size 60/channel inherited rather than re-ratified, and
+   `minimum_sequence_length` still `UNRATIFIED_DEFERRED` — `RARE_BY_RARITY`
+   exists precisely to admit what its length-descending sibling suppresses,
+   so neither building it nor ranking by rarity ratified that rule either way.
 
 5. **Two scope questions surfaced by the empty-middle work** — **both resolved
    2026-07-31 (session 2).**
@@ -359,11 +382,26 @@ never read `cu`, Gate 3 closed. Additionally:
    and shared-versus-per-reviewer logs are real follow-up decisions but do not
    authorize automatic truth promotion.
 
-7. **Gate 3 proposal.** Training is still unauthorized. A proposal must name
-   the hypothesis, falsifier, config, sampling policy, time/GPU budget,
-   conditioned-versus-unconditioned tracer, and new paths that cannot
-   overwrite frozen D14. Only after ratification may P4-F training and its
-   required comparisons begin.
+7. ~~**Gate 3 proposal.**~~ **RATIFIED 2026-08-02; Stage 1 RUN AND REJECTED
+   2026-08-03** (`reports/phase4_p4f_gate3_proposal.md`,
+   `reports/phase4_p4f_stage1.md`).
+
+   Ratification authorized Stage 0 and the two named runs only. Both reached
+   60,000 steps. `in_doc` AUC: arm A **0.6981**, arm B **0.7263**, delta
+   **+0.0282**, paired bootstrap 95% CI **[+0.0144, +0.0424]**. The +0.02
+   margin is met on the point estimate; the clause requiring arm B to exceed
+   **D14's 0.7461** is not, and either failure rejects. **Stage 2 is NOT
+   authorized** and needs a new proposal.
+
+   Read the report before writing that proposal, because the verdict and the
+   effect point different ways: **conditioning helped on every tier** and the
+   CI excludes zero, but the CI's lower bound is below the margin, and **arm A
+   — the control — is below D14 on every tier**, so arm B adds a real ~+0.03
+   to a baseline that already could not reach the bar. Three candidate causes
+   are recorded and none were tested: `MULTILINGUAL_CONDITIONED` admission
+   refuses 7,610 lines D14 trained on (2.1%), a different seed, and a D14
+   reference number computed on a different fragment population. The rule was
+   deliberately not relitigated after the data came in.
 
 8. **Later product/evaluation gates.** The real-gap pipeline and Takšan
    playground are not yet one production expert mode — this is where a cover

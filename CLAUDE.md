@@ -519,15 +519,18 @@ Provincial + multilingual material also supplies hard negatives.
   `lib/` imports are resolved relative to the script file itself. See
   `README.md` for the live/archive map.
 
-## Current successor program (Gate 2 passed; Phase 5 handoff current)
+## Current successor program (Gate 3 Stage 1 complete; Phase 5 handoff current)
 
 `PHASE4_CHARTER.md` pairs a word-aware multilingual dataset and
 language-conditioned retraining plan with an Unresolved Evidence Workbench
 for unknown signs, words, language tags, and anomalies. Gate 2 accepted the
 deterministic language-span migration and 2,923,640-row multilingual token
 dataset. P4-D language-aware APIs, P4-E, P4-E2, and the pre-training P4-G
-rerun are complete. Protected-test access and GPU training remain
-unauthorized. Expert workbench events are append-only quarantined annotations
+rerun are complete. **Gate 3 was ratified 2026-08-02 for Stage 0 and the two
+named Stage 1 runs only; both ran, and the pre-registered hypothesis was
+REJECTED (see the P4-F bullets below). Stage 2 is NOT authorized.** All other
+GPU training, and protected-test access in any form, remain unauthorized.
+Expert workbench events are append-only quarantined annotations
 and never become corpus truth automatically.
 
 See `PHASE4_SUCCESSOR_HANDOFF.md` for accepted hashes, rebuild commands, and
@@ -763,6 +766,81 @@ cached rows. The historical cache remains immutable.
   no ingest exercised, and **no automated regression capture exists** -- the
   string-level tests pin that required wording and hooks are present but cannot
   observe a CSS selector matching nothing.
+
+- **Empty-middle branch wording reviewed as copy (2026-08-02)**
+  (`reports/phase5_empty_middle_copy_review.md`). Closes the former handoff
+  item 3: the four `EMPTY_MIDDLE_QUERY_KINDS` texts in
+  `lib/expert_decision_contract.py` had been reviewed as logic but never as
+  the prose a Hittitologist reads cold, mid-review, with nothing else on
+  screen.
+
+- **The second queue DONE (2026-08-02)** (`reports/phase5_second_queue.md`,
+  `scripts/phase4_workbench_second_queue_export.py`). Closes the former
+  handoff item 4 at the **data/export layer only -- no UI**. Two populations
+  were structurally unreachable through the first queue: **468-599 rare
+  single-sign clusters** (surfaced by `RARE_BY_RARITY`, ranked by ascending
+  document count -- the literal opposite of the first queue's rank key) and
+  **~13,900 ungrouped occurrences** whose sequence is unique (surfaced by
+  `LOCAL_CONTEXT_PARALLEL`, a genuinely new channel grouping by flanking
+  attested context rather than own content). A separate script, never a mode
+  on the first queue: `workbench_review_queue.js`'s
+  `channels_logical_sha256` is a pinned invariant and stays untouched.
+  Window size was measured, not guessed (window=1 joins 4,089 of 13,901;
+  window=2 joins 73). `minimum_sequence_length` remains
+  `UNRATIFIED_DEFERRED` -- `RARE_BY_RARITY` exists precisely to admit what
+  its length-descending sibling suppresses.
+
+- **Deferred-issues sweep (2026-08-02)**
+  (`reports/phase5_deferred_issues_sweep.md`). Three real fixes, each
+  confirmed by running it: `line_lang_rebuild.py`/`line_lang_audit.py`
+  requested `artifact_strict` while asking for `line_lang`, which Gate 0
+  reclassified to `EDITORIAL_TRANSCRIPTION` (both had been throwing on their
+  manifest step ever since, after the visible artifact was already written);
+  `07_metadata_patch.py`'s auto-chain to `04_edges.py` never resolved under
+  its own documented usage; four `Archive/scripts` files hardcoded a Windows
+  git path. **Known and unfixed: JSON key-order nondeterminism** from
+  Python's per-process hash randomization -- values are identical, byte order
+  is not, so a rebuilt report diffs dirty without meaning anything changed.
+  Pinning `PYTHONHASHSEED` is a project-wide reproducibility decision, not a
+  discrete bug.
+
+- **P4-F Gate 3 RATIFIED 2026-08-02** (`reports/phase4_p4f_gate3_proposal.md`).
+  Authorizes **Stage 0 (code) and Stage 1 (two named runs) ONLY**. Stage 2
+  (Hittite-only retrain, sampling ablation, granularity ablation), any use of
+  a conditioned checkpoint beyond `[PROBE -- not for citation]`, any P4-G
+  rerun against a new checkpoint, and protected-test access all remain
+  separately gated. `--tag base` is reserved and refused: it is D14's own path.
+
+- **P4-F Stage 1 DONE (2026-08-03) -- pre-registered hypothesis REJECTED**
+  (`reports/phase4_p4f_stage1.md`, `scripts/phase4_p4f_pretrain.py`,
+  `scripts/phase4_p4f_stage1_eval.py`). Both arms reached 60,000 steps.
+  `in_doc` AUC: arm A (unconditioned) **0.6981**, arm B (conditioned)
+  **0.7263**, delta **+0.0282**, paired bootstrap 95% CI **[+0.0144,
+  +0.0424]**. The margin clause (>= +0.02) is met on the point estimate; the
+  clause requiring arm B to exceed **D14's 0.7461** is NOT met, and either
+  failure rejects. **Stage 2 is therefore not authorized.**
+  Kept distinct from the verdict: **conditioning helped on every tier**
+  (cross_genre +0.034, random +0.065, pooled +0.031) and the CI excludes
+  zero, so the effect is real -- but the CI's lower bound sits BELOW the
+  margin, so "conditioning helps" is supported while "helps by >= +0.02" is
+  not. What failed is the absolute bar: **arm A, the control, is below D14 on
+  every tier**, and arm B adds its ~+0.03 to that lower baseline. Candidate
+  causes recorded, none tested: `MULTILINGUAL_CONDITIONED` admission refuses
+  7,610 lines D14 trained on (2.1%); different seed; and the falsifier's D14
+  clause compares against a number computed on a different fragment
+  population. **The rule was not relitigated after seeing the data.**
+  The verdict is deliberately NOT read off the loss curve -- training-time
+  evals see ~80 examples and swing ~4 AUC points with no trend, and arm B's
+  final one read 0.8839. The eval reproduces D14's protocol exactly, verified
+  rather than assumed: same tier composition to the example (`in_doc` n=1,649
+  of 1,920) under a different seed, with the arms paired on one shared,
+  model-independent example set.
+  **Standing constraint for Phase 4 data code:** data admission is NOT an
+  arm's conditioning scope. Handing an unconditioned arm the ratified
+  `ALL_LANGUAGES_UNCONDITIONED` scope silently gives it MORE data, because
+  `language_lookup_v2._classify` short-circuits every filter for an ablation
+  scope. Both arms admit under `MULTILINGUAL_CONDITIONED`; only conditioning
+  differs.
 
 ## Phase sequence
 
