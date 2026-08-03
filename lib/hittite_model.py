@@ -126,12 +126,24 @@ class HittiteEncoder(nn.Module):
 
 def apply_span_masking(token_ids, mask_id, gap_id, vocab_size, specials_ids,
                         del_span_lengths, rng, mask_rate=0.15, gap_mode_prob=0.3,
-                        max_span_len=20):
+                        max_span_len=20, aux=None):
     """token_ids: list[int]. Returns (corrupted_ids, labels) where
     labels[i] = original token id if position i should be predicted
     (i.e. is a <MASK> position from a reconstruction-target span), else
     -100 (ignored in loss, matching torch's CrossEntropyLoss default
-    ignore_index convention)."""
+    ignore_index convention).
+
+    aux: optional list parallel to `token_ids` (P4-F Stage 0: per-token
+    language ids). When given, the return becomes
+    (corrupted_ids, labels, aux_kept) with `aux_kept` filtered by the
+    SAME gap-collapse predicate that drops positions from
+    `corrupted_ids`, so a caller cannot end up with a language vector
+    that is silently misaligned with the token vector it conditions.
+    Recovering that predicate outside this function would mean
+    reimplementing the masking loop -- forbidden per CLAUDE.md's
+    model-input encoding rule -- so the alignment is done here, once.
+    Default None preserves the exact 2-tuple contract D14 was trained
+    under; pinned by tests/test_phase4_p4f_pretrain.py."""
     n = len(token_ids)
     maskable = [i for i, t in enumerate(token_ids) if t not in specials_ids]
     budget = int(len(maskable) * mask_rate)
@@ -167,7 +179,16 @@ def apply_span_masking(token_ids, mask_id, gap_id, vocab_size, specials_ids,
     # remove positions marked None (gap-collapsed extra slots), re-pad at caller
     out_ids = [c for c in corrupted if c is not None]
     out_labels = [labels[i] for i, c in enumerate(corrupted) if c is not None]
-    return out_ids, out_labels
+    if aux is None:
+        return out_ids, out_labels
+    if len(aux) != n:
+        raise ValueError(
+            f"apply_span_masking: aux has length {len(aux)} but token_ids has "
+            f"{n}. A per-token side channel must be exactly parallel to the "
+            "tokens it describes -- a length mismatch here would shift every "
+            "language assignment after the first divergence.")
+    out_aux = [aux[i] for i, c in enumerate(corrupted) if c is not None]
+    return out_ids, out_labels, out_aux
 
 
 # ---------------------------------------------------------------- boundary examples
@@ -177,7 +198,8 @@ def find_boundary_positions(tokens, line_id, par_id):
 
 
 def build_boundary_example(tokens, boundary_pos, all_boundary_pos, rng,
-                            negatives_pool, window=32, max_reject_tries=8):
+                            negatives_pool, window=32, max_reject_tries=8,
+                            aux=None, aux_key=None):
     """tokens: list[int] for the source fragment. boundary_pos: index
     of a <LINE>/<PAR> token within `tokens`. all_boundary_pos: every
     boundary position in `tokens` (for the in-document negative tier).
@@ -202,20 +224,45 @@ def build_boundary_example(tokens, boundary_pos, all_boundary_pos, rng,
     isn't enough content on either side -- tier is one of
     'true_continuation', 'in_doc', 'cross_genre', 'random', added for
     the D14 report's per-negative-type AUC breakdown
-    (21_pretrain_report.py); training callers may ignore it."""
-    context = tokens[max(0, boundary_pos - window):boundary_pos + 1]
+    (21_pretrain_report.py); training callers may ignore it.
+
+    aux / aux_key (P4-F Stage 0): `aux` is a list parallel to `tokens`
+    (per-token language ids); `aux_key` names the same side channel on
+    the candidate dicts in `negatives_pool`, since a negative
+    continuation is spliced in from a DIFFERENT document and must carry
+    that document's languages, not the context's. When `aux` is given
+    the return becomes a 6-tuple with (aux_context, aux_continuation)
+    appended, sliced at exactly the same offsets as the tokens they
+    describe. Default None preserves the 4-tuple contract D14 used."""
+    want_aux = aux is not None
+    if want_aux and len(aux) != len(tokens):
+        raise ValueError(
+            f"build_boundary_example: aux has length {len(aux)} but tokens has "
+            f"{len(tokens)}. A per-token side channel must be exactly parallel "
+            "to the tokens it describes.")
+
+    def result(context, cont, label, tier, aux_context=None, aux_cont=None):
+        if not want_aux:
+            return context, cont, label, tier
+        return context, cont, label, tier, aux_context, aux_cont
+
+    lo = max(0, boundary_pos - window)
+    context = tokens[lo:boundary_pos + 1]
     true_cont = tokens[boundary_pos + 1: boundary_pos + 1 + window]
     if len(true_cont) < 4 or len(context) < 4:
         return None
+    aux_context = aux[lo:boundary_pos + 1] if want_aux else None
     if rng.random() < 0.5:
-        return context, true_cont, 1, "true_continuation"
+        return result(context, true_cont, 1, "true_continuation", aux_context,
+                      aux[boundary_pos + 1: boundary_pos + 1 + window] if want_aux else None)
     # negative: curriculum order in_doc -> cross_genre -> random
     in_doc_candidates = [p for p in all_boundary_pos if abs(p - boundary_pos) > window]
     if in_doc_candidates:
         p = in_doc_candidates[rng.randrange(len(in_doc_candidates))]
         cand = tokens[p + 1: p + 1 + window]
         if len(cand) >= 4:
-            return context, cand, 0, "in_doc"
+            return result(context, cand, 0, "in_doc", aux_context,
+                          aux[p + 1: p + 1 + window] if want_aux else None)
     for tier in ("cross_genre", "random"):
         cand_list, exclude_cth = negatives_pool.get(tier, ([], None))
         if not cand_list:
@@ -229,6 +276,13 @@ def build_boundary_example(tokens, boundary_pos, all_boundary_pos, rng,
                 start = rng.randrange(0, len(other_tokens) - window)
                 cand = other_tokens[start:start + window]
                 if len(cand) >= 4:
-                    return context, cand, 0, tier
+                    other_aux = None
+                    if want_aux:
+                        other_aux = other[aux_key][start:start + window]
+                        if len(other_aux) != len(cand):
+                            raise ValueError(
+                                "build_boundary_example: negative candidate's "
+                                f"{aux_key!r} is not parallel to its 'ids'.")
+                    return result(context, cand, 0, tier, aux_context, other_aux)
             break
     return None

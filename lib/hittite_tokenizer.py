@@ -103,6 +103,51 @@ def build_structured_sequence(doc_id, line_idxs, line_index, top_edge_lost,
     return seq
 
 
+def iter_structured_attested(doc_id, line_idxs, line_index, top_edge_lost,
+                              bottom_edge_lost, on_physical_edge_by_line,
+                              line_lang_lookup=None, emptied_lines=None):
+    """The single traversal behind ATTESTED rendering. Yields
+    (token_string, line_index_in_doc_or_None, word_pos_or_None).
+
+    line_index_in_doc/word_pos are None for structural specials
+    (<EDGE_*>, <LINE>, <GAP>) and carry the token's exact source
+    identity otherwise. `word_pos` is the position in the line's FULL
+    token list, counted BEFORE restored tokens are dropped -- that is
+    the identity the Gate 2 language dataset is keyed by
+    (lib/language_lookup_v2.py), so a consumer can attach a per-token
+    language without re-deriving positions from the filtered output.
+
+    Extracted (2026-08-02, P4-F Stage 0) so the language-conditioned
+    data path in `lib/p4f_data.py` shares ONE implementation of this
+    traversal with `build_structured_sequence_attested` below, rather
+    than reimplementing the emit order and then drifting from it. A
+    parallel implementation of a model-input construction step is the
+    exact shape of the E2 defect (CLAUDE.md, "Model-input encoding").
+
+    emptied_lines: optional set of line indices whose token content is
+    suppressed, with their separator slots preserved -- the same
+    treatment `_line_tokens` gives a language-filtered line, exposed so
+    a v2 (word-aware) caller can apply its own admission decision
+    without this module depending on the Phase 4 language stack."""
+    yield ("<EDGE_T>" if not top_edge_lost else "<GAP>", None, None)
+    sorted_idxs = sorted(line_idxs)
+    for pos, idx in enumerate(sorted_idxs):
+        toks = _line_tokens(doc_id, idx, line_index, line_lang_lookup)
+        if emptied_lines is not None and idx in emptied_lines:
+            toks = []
+        line_edge = on_physical_edge_by_line.get(idx)
+        if line_edge == "left":
+            yield ("<EDGE_L>", None, None)
+        for word_pos, (t, st) in enumerate(toks):
+            if st != RESTORED:
+                yield (t, idx, word_pos)
+        if line_edge == "right":
+            yield ("<EDGE_R>", None, None)
+        if pos < len(sorted_idxs) - 1:
+            yield ("<LINE>", None, None)
+    yield ("<EDGE_B>" if not bottom_edge_lost else "<GAP>", None, None)
+
+
 def build_structured_sequence_attested(doc_id, line_idxs, line_index, top_edge_lost,
                                         bottom_edge_lost, on_physical_edge_by_line,
                                         line_lang_lookup=None):
@@ -117,20 +162,9 @@ def build_structured_sequence_attested(doc_id, line_idxs, line_index, top_edge_l
     unaffected) -- see CLAUDE.md's multilingual-layer note; this keeps
     non-Hittite content out of a Hittite-only rendering without
     discarding it from the underlying corpus."""
-    seq = ["<EDGE_T>" if not top_edge_lost else "<GAP>"]
-    sorted_idxs = sorted(line_idxs)
-    for pos, idx in enumerate(sorted_idxs):
-        toks = _line_tokens(doc_id, idx, line_index, line_lang_lookup)
-        line_edge = on_physical_edge_by_line.get(idx)
-        if line_edge == "left":
-            seq.append("<EDGE_L>")
-        seq.extend(t for t, st in toks if st != RESTORED)
-        if line_edge == "right":
-            seq.append("<EDGE_R>")
-        if pos < len(sorted_idxs) - 1:
-            seq.append("<LINE>")
-    seq.append("<EDGE_B>" if not bottom_edge_lost else "<GAP>")
-    return seq
+    return [tok for tok, _, _ in iter_structured_attested(
+        doc_id, line_idxs, line_index, top_edge_lost, bottom_edge_lost,
+        on_physical_edge_by_line, line_lang_lookup)]
 
 
 def encode_fragment_window(lines, *, include_restored=False):

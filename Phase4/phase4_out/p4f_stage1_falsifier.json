@@ -1,0 +1,71 @@
+{
+  "estimand": "Dev-side boundary-head AUC on the in_doc negative tier, paired across arms on one shared, model-independent evaluation set.",
+  "evaluation": {
+    "n_examples_total": 1920,
+    "n_examples_in_doc_tier": 1649,
+    "batches": 120,
+    "seed": 20260803,
+    "bootstrap_replicates": 2000
+  },
+  "arms": {
+    "A": {
+      "checkpoint": "runs\\pretrain_multilingual_unconditioned_p4f\\checkpoint.pt",
+      "final_step": 59999,
+      "condition_on_language": false,
+      "boundary_auc_pooled": 0.7475347952251048,
+      "by_tier": {
+        "in_doc": {
+          "auc": 0.6980972884906319,
+          "n": 1649
+        },
+        "cross_genre": {
+          "auc": 0.8728953449983492,
+          "n": 1221
+        },
+        "random": {
+          "auc": 0.8388291071809078,
+          "n": 1026
+        }
+      }
+    },
+    "B": {
+      "checkpoint": "runs\\pretrain_multilingual_conditioned_p4f\\checkpoint.pt",
+      "final_step": 59999,
+      "condition_on_language": true,
+      "boundary_auc_pooled": 0.7786897708119754,
+      "by_tier": {
+        "in_doc": {
+          "auc": 0.7263439641813715,
+          "n": 1649
+        },
+        "cross_genre": {
+          "auc": 0.9067696477906553,
+          "n": 1221
+        },
+        "random": {
+          "auc": 0.9038994246750478,
+          "n": 1026
+        }
+      }
+    }
+  },
+  "falsifier": {
+    "pre_registered_margin": 0.02,
+    "d14_reference_in_doc_auc": 0.7461,
+    "arm_A_in_doc_auc": 0.6980972884906319,
+    "arm_B_in_doc_auc": 0.7263439641813715,
+    "delta_B_minus_A": 0.028246675690739576,
+    "delta_ci95": [
+      0.014429390508203997,
+      0.04236765446704349
+    ],
+    "clears_margin": true,
+    "arm_B_exceeds_d14": false,
+    "verdict": "REJECTED"
+  },
+  "caveats": [
+    "One seed per arm. Proposal Sec.8: a single seed is not a robustness claim and this result is not evidence about seed variance.",
+    "[PROBE -- not for citation] per Gate 4, regardless of outcome.",
+    "Beating an unconditioned sibling is not beating BM25; Phase 1's finding that BM25 leads this architecture family is untouched."
+  ]
+}
