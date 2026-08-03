@@ -42,6 +42,7 @@ separate manifest fields here.
 """
 
 import hittite_tokenizer as ht
+import language_lookup_v2 as llv2
 import language_scope as ls
 from hittite_model import apply_span_masking, build_boundary_example, find_boundary_positions
 from hittite_model_p4f import LANGUAGE_TO_ID, UNRESOLVED_LANGUAGE, language_ids_for_tokens
@@ -134,9 +135,18 @@ def load_pretrain_data(tok, frags, line_index, edge_info, seq_len,
             continue  # test-side: NEVER touched, cleanroom rule 1
 
         line_idxs, top_lost, bot_lost, by_line = edge_info[row.fragment_id]
+        before = language_index.decision_counts.copy()
         tokens, lang_ids = render_example_with_languages(
             row.parent_doc, line_idxs, line_index, top_lost, bot_lost, by_line,
             admission_scope=admission_scope, language_index=language_index)
+        # Counted from the index's own decisions rather than tracked
+        # separately: an earlier version of this counter was never
+        # incremented and reported 0 regardless, which reads as evidence of
+        # absence rather than as the missing instrumentation it was.
+        stats["lines_emptied_by_language_admission"] += sum(
+            count - before.get(key, 0)
+            for key, count in language_index.decision_counts.items()
+            if key[1] != llv2.REASON_IN_SCOPE)
 
         ids = tok.encode(tokens)[:seq_len]
         lang_ids = lang_ids[:seq_len]

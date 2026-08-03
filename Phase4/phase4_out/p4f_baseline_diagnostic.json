@@ -1,0 +1,46 @@
+{
+  "question": "Is D14's recorded in_doc AUC (0.7461) comparable to the Stage 1 arms', or was it measured on a different population?",
+  "method": "D14's frozen checkpoint scored on the byte-identical evaluation set the Stage 1 falsifier used (same builder, same seed 20260803, same 120 batches). Inference only; no training; dev split only.",
+  "architecture_reproduction_check": {
+    "max_hidden_state_diff": 0.0,
+    "max_boundary_logit_diff": 0.0
+  },
+  "d14_recorded_on_its_own_population": {
+    "in_doc": 0.7461,
+    "cross_genre": 0.9006,
+    "random": 0.9473,
+    "pooled": 0.7904
+  },
+  "d14_measured_on_stage1_population": {
+    "in_doc": 0.7551602589623132,
+    "cross_genre": 0.913902451738458,
+    "random": 0.8728958022586831,
+    "pooled": 0.7996461833851716
+  },
+  "arm_A_in_doc_auc": 0.6980972884906319,
+  "d14_minus_armA_in_doc": 0.057062970471681296,
+  "d14_minus_armA_ci95": [
+    0.040451591572816525,
+    0.07429835004466727
+  ],
+  "population": {
+    "dev_fragments": 883,
+    "evaluation_examples": 1920,
+    "line_decisions": {
+      "MULTILINGUAL_CONDITIONED": {
+        "IN_SCOPE": 355538,
+        "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+        "UNRESOLVED_LEXICAL_LANGUAGE": 31
+      }
+    },
+    "data_stats": {
+      "fragments_seen": 22726,
+      "fragments_without_edge_info": 0,
+      "fragments_too_short": 24,
+      "test_side_fragments_skipped": 806,
+      "lines_emptied_by_language_admission": 0,
+      "tokens_kept": 2042938
+    }
+  },
+  "not_a_revision_of": "The Stage 1 verdict. The falsifier was pre-registered against D14's RECORDED number and failed; that stands. This is input to the Stage 2 proposal a rejection requires (proposal Sec.3)."
+}

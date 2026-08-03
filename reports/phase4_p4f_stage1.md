@@ -4,6 +4,23 @@
 **Every number here is `[PROBE — not for citation]` per Gate 4, regardless of
 outcome.**
 
+> **SUPERSEDED IN ITS EXPLANATION, 2026-08-03 — read
+> `reports/phase4_p4f_baseline_diagnostic.md` before citing anything below
+> about D14.** The follow-up investigation found the cause of arm A's
+> underperformance, and it is none of the three candidates this report
+> lists: **both arms trained at `mlm_batch_size`/`boundary_batch_size` 16
+> against D14's 32, so they saw exactly 50% of D14's examples.** That is a
+> configuration defect in the Stage 0 integration, confirmed from D14's own
+> checkpoint.
+>
+> The **arm A vs arm B comparison below is unaffected** — both arms ran under
+> byte-identical config, so the +0.0282 conditioning effect stands. What is
+> affected is the falsifier's second clause: "arm B must exceed D14's
+> 0.7461" required a model trained on half the examples to beat one trained
+> on twice as many. The REJECTED verdict stands as a matter of
+> pre-registration, but its *explanation* is a config error in this session's
+> integration, not a finding about language conditioning.
+
 Authorized by `reports/phase4_p4f_gate3_proposal.md` (RATIFIED 2026-08-02),
 which permits Stage 0 and the two named Stage 1 runs and nothing further.
 Stage 2 remains unauthorized, and this rejection does not change that.
