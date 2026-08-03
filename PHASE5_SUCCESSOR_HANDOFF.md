@@ -297,6 +297,33 @@ never read `cu`, Gate 3 closed. Additionally:
   all; whether `Hur`/`Akk`/`Hat` can is a separate, separately gated question,
   and each would need its own ratified target.
 
+- **Never trade numerical comparability for wall clock while a frozen
+  baseline is in the comparison.** Training throughput work is APPROVED by
+  Ixca (2026-08-03) for the **next** training experiment, and was
+  deliberately NOT applied to the P4-F Stage 1 matched rerun.
+
+  Apply on all arms from step 0, once no fp32 baseline is being matched:
+  **bf16 autocast** (neither `19_pretrain.py` nor
+  `scripts/phase4_p4f_pretrain.py` uses any mixed precision; ~1.5-2x on this
+  Ampere card) and **`torch.compile`** (~1.2-1.8x at 12.8M params). Two
+  numerically inert micro-fixes are worth folding in at the same time:
+  `sample_boundary_batch` rebuilds a 21,013-entry `by_genre` index every step
+  over a pool that never changes (~1%), and the per-step CSV write opens and
+  closes the file 60,000 times per run (~1-2%).
+
+  Why not on the matched rerun: D14 was trained fp32, and precision changes
+  would have reintroduced exactly the confound the rerun exists to remove --
+  as well as breaking the arm-A-vs-arm-B comparison, since arm A was already
+  running. See `reports/phase4_p4f_baseline_diagnostic.md`.
+
+  Throughput facts worth not re-deriving (RTX 3060 12GB, shared with the
+  desktop): batch 32 runs ~3.03 steps/s on a clear GPU and ~1.89 under
+  contention; batch 16 reached 5.7 steps/s clear. Contention from ordinary
+  desktop applications swung throughput by up to 17x across one overnight
+  run, so quote rates measured on a clear GPU and say so. `loss_curve.csv`'s
+  `elapsed_s` RESETS on every resume -- sum the segments; reading the last
+  row as total wall clock understates D14's 8.8h as 4.6h.
+
 ## Open, in the order I would take them
 
 1. ~~**Browser-verify two prototypes.**~~ **DONE 2026-07-31**
