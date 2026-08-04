@@ -32,7 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -155,7 +155,9 @@ def load_universe(scope_names, dev_query_languages=None):
                     if row["by_line"].get(lidx):
                         admitted.append(lidx)
                 else:
-                    refusals[key][getattr(d, "reason", "UNKNOWN")] += 1
+                    reason = getattr(d, "reason", "UNKNOWN")
+                    refusals[key][reason] += 1
+                    row.setdefault(f"{key}::why", Counter())[reason] += 1
             # admitted line INDICES are kept alongside the segments: the
             # Tier C overlap-exclusive path (§5.2) must intersect a scope's
             # admissions with a pair's exclusive lines, and matching segments
@@ -393,14 +395,28 @@ def scope_matrix(cand_rows, query_rows, scope_name, channel, lang_groups):
 
 # ----------------------------------------------------------------- §2 fitting
 
-def fit_frozen_weights(query_rows, cand_rows, zb, zu, zg, pooled_positives,
-                       fold_of, family_map):
-    """Fit (alpha_u, alpha_b) ONCE on the POOLED objective, out of fold.
+def cross_fitted_predictions(query_rows, cand_rows, zb, zu, zg, pooled_positives,
+                             cells_positives, fold_of, family_map):
+    """Genuine cross-fitting: every held-out prediction is produced by weights
+    selected WITHOUT that query's fold.
 
-    Returns the per-fold selections and the held-out per-query records for the
-    two fitted arms. The weights are then frozen for every cell and stratum --
-    check C5 asserts that nothing re-fits them."""
-    ho_u, ho_ub, per_fold = {}, {}, []
+    The first version of this run searched weights out of fold, then discarded
+    the held-out predictions, took the MODAL weights across all five folds, and
+    re-scored all of dev with them. Every query was then scored under weights
+    partly chosen using its own fold, which makes the result an adaptive dev
+    number rather than a cross-fitted test. This function keeps the fold-local
+    predictions instead.
+
+    Weights are still fitted ONCE per fold on the POOLED objective and then
+    used unchanged for every relation cell in that fold -- that is protocol §2's
+    freeze, now correctly scoped to the fold rather than to the whole run
+    (check C5).
+
+    Returns (per_fold, held) where held[cell]['u'|'ub'] maps query_id ->
+    per-query record, concatenated across folds.
+    """
+    per_fold = []
+    held = {cell: {"u": {}, "ub": {}} for cell in cells_positives}
     for f in range(_comb.N_FOLDS):
         fit_idx = [i for i, r in enumerate(query_rows) if fold_of[r["cth"]] != f]
         ev_idx = [i for i, r in enumerate(query_rows) if fold_of[r["cth"]] == f]
@@ -423,32 +439,64 @@ def fit_frozen_weights(query_rows, cand_rows, zb, zu, zg, pooled_positives,
                 if r > best_rp + 1e-12:
                     best_pair, best_rp = (au, ab), r
 
-        pq_u, _ = retrieve(query_rows, cand_rows, zb + best_u * zu,
-                           pooled_positives, family_map, ev_idx)
-        pq_ub, _ = retrieve(query_rows, cand_rows,
-                            zb + best_pair[0] * zu + best_pair[1] * zg,
-                            pooled_positives, family_map, ev_idx)
-        ho_u.update({r["query_id"]: r for r in pq_u})
-        ho_ub.update({r["query_id"]: r for r in pq_ub})
+        scores_u = zb + best_u * zu
+        scores_ub = zb + best_pair[0] * zu + best_pair[1] * zg
+        weights_by_cell = {}
+        for cell, positives in cells_positives.items():
+            pq_u, _ = retrieve(query_rows, cand_rows, scores_u, positives,
+                               family_map, ev_idx)
+            pq_ub, _ = retrieve(query_rows, cand_rows, scores_ub, positives,
+                                family_map, ev_idx)
+            held[cell]["u"].update({r["query_id"]: r for r in pq_u})
+            held[cell]["ub"].update({r["query_id"]: r for r in pq_ub})
+            weights_by_cell[cell] = {"alpha_unigram_only": best_u,
+                                     "alpha_pair": list(best_pair)}
+
         per_fold.append({"fold": f, "alpha_unigram_only": best_u,
                          "alpha_pair": list(best_pair),
                          "fit_recall@1_unigram": best_ru,
                          "fit_recall@1_pair": best_rp,
-                         "n_fit": len(fit_idx), "n_eval": len(ev_idx)})
+                         "n_fit": len(fit_idx), "n_eval": len(ev_idx),
+                         "weights_by_cell": weights_by_cell})
         print(f"    fold {f}: a_u={best_u} pair={best_pair} "
-              f"fit_u={best_ru:.4f} fit_pair={best_rp:.4f}")
-    return per_fold, ho_u, ho_ub
+              f"fit_u={best_ru:.4f} fit_pair={best_rp:.4f} "
+              f"(applied to {len(ev_idx)} held-out queries)")
+    return per_fold, held
+
+
+def check_c5_weights_constant_within_fold(per_fold):
+    """C5, corrected: within each fold the SAME weights must serve every cell
+    and every stratum. Across folds they are expected to differ -- that is what
+    cross-fitting means, and asserting one global weight would re-introduce the
+    defect this check exists to catch."""
+    offenders = []
+    for d in per_fold:
+        distinct = {json.dumps(v, sort_keys=True)
+                    for v in d["weights_by_cell"].values()}
+        if len(distinct) > 1:
+            offenders.append({"fold": d["fold"], "distinct": sorted(distinct)})
+    return {"passed": not offenders, "offenders": offenders,
+            "weights_per_fold": [
+                {"fold": d["fold"], "alpha_unigram_only": d["alpha_unigram_only"],
+                 "alpha_pair": d["alpha_pair"]} for d in per_fold],
+            "note": ("weights differ ACROSS folds by construction; a single "
+                     "global weight would mean the evaluation was not "
+                     "cross-fitted")}
 
 
 # -------------------------------------------------------------- §5 evaluation
 
-def evaluate_cell(query_rows, cand_rows, scores_u, scores_ub, positives,
-                  family_map, cluster_of, label):
-    """One relation cell under frozen weights: both arms, paired delta with
-    relation-aware cluster bootstrap."""
-    pq_u, agg_u = retrieve(query_rows, cand_rows, scores_u, positives, family_map)
-    pq_ub, agg_ub = retrieve(query_rows, cand_rows, scores_ub, positives, family_map)
-    cu, cub = correct_at1(pq_u), correct_at1(pq_ub)
+def cell_result(records_u, records_ub, cluster_of, label):
+    """One relation cell from CONCATENATED HELD-OUT predictions.
+
+    Takes fold-local records rather than a score matrix, so nothing here can
+    silently re-score dev under weights chosen with dev."""
+    pq_u = list(records_u.values())
+    pq_ub = list(records_ub.values())
+    agg_u = eh.aggregate_metrics(pq_u, ks=KS)
+    agg_ub = eh.aggregate_metrics(pq_ub, ks=KS)
+    cu = {q: r["recall@1"] for q, r in records_u.items()}
+    cub = {q: r["recall@1"] for q, r in records_ub.items()}
     common = sorted(set(cu) & set(cub))
 
     by_cluster = defaultdict(list)
@@ -541,19 +589,28 @@ def check_c6_bin(bin_ids, positives, cand_ids_non_bin):
 
 # ------------------------------------------------------------------- §5.2
 
-def tier_c_exclusive_segments(rows_by_id, join_meta, reconstructed, scope_name):
-    """Dev generalization of `eval_harness.tier_c_exclusive_tokens`.
+def tier_c_pair_instances(rows_by_id, join_meta, reconstructed, scope_name):
+    """Tier C as PAIR INSTANCES, each with its own exclusive rendering.
 
-    Same logic -- exclusive line sets from `unjoin_reconstructed.jsonl` --
-    rendered through THIS run's segmented, scope-aware path rather than the
-    flat `render_fragment`. Returns (substituted_segments, eval_pairs,
-    counts). The frozen P3 helper is left untouched.
+    The first version keyed substitutions by fragment_id, so a fragment in two
+    Tier C pairs kept only the last partner's exclusive set -- a rendering that
+    is genuinely partner-dependent, stored as if it were fragment-dependent.
+    32 dev fragments are in that position. Here each PAIR carries its own
+    renderings and is evaluated as its own instance, so nothing is overwritten.
+
+    Returns [{a, b, segs_a, segs_b, n_partners_a, n_partners_b}], plus counts.
     """
-    subs, eval_pairs = {}, []
+    partners = defaultdict(set)
+    for pair, p in join_meta.items():
+        if p["tier"] == "C":
+            a, b = p["fragment_id_a"], p["fragment_id_b"]
+            partners[a].add(b)
+            partners[b].add(a)
+
+    out = []
     counts = {"considered": 0, "exclusive_untestable": 0,
               "no_reconstruction": 0, "empty_exclusive": 0, "usable": 0,
-              "fragment_in_multiple_pairs": 0}
-    seen = set()
+              "usable_single_partner_only": 0}
     for pair, p in join_meta.items():
         if p["tier"] != "C":
             continue
@@ -568,42 +625,33 @@ def tier_c_exclusive_segments(rows_by_id, join_meta, reconstructed, scope_name):
             counts["no_reconstruction"] += 1
             continue
         sig_a, sig_b = a.split("::")[1], b.split("::")[1]
-        lines_a = rec["member_lines"].get(sig_a, [])
-        lines_b = rec["member_lines"].get(sig_b, [])
-        excl_a = {e["line_idx"] for e in lines_a if sig_b not in e["shared_with"]}
-        excl_b = {e["line_idx"] for e in lines_b if sig_a not in e["shared_with"]}
-        if not excl_a or not excl_b:
-            counts["empty_exclusive"] += 1
-            continue
-        staged, ok = {}, True
-        for fid, keep in ((a, excl_a), (b, excl_b)):
+        excl = {}
+        ok = True
+        for fid, sig, other in ((a, sig_a, sig_b), (b, sig_b, sig_a)):
             row = rows_by_id.get(fid)
-            if row is None:
+            key = scope_key_for(row, scope_name) if row else None
+            if row is None or key is None:
                 ok = False
                 break
-            # intersect the pair's exclusive lines with the lines this scope
-            # admits, by line INDEX -- never by content, which would collide
-            # between two identical lines.
-            key = scope_key_for(row, scope_name)
-            if key is None:
-                ok = False
-                break
+            keep = {e["line_idx"] for e in rec["member_lines"].get(sig, [])
+                    if other not in e["shared_with"]}
             admitted = [i for i in row.get(f"{key}::lines", []) if i in keep]
             if not admitted:
                 ok = False
                 break
-            staged[fid] = [list(row["by_line"][i]) for i in admitted]
+            excl[fid] = [list(row["by_line"][i]) for i in admitted]
         if not ok:
             counts["empty_exclusive"] += 1
             continue
-        for fid, segs in staged.items():
-            if fid in seen:
-                counts["fragment_in_multiple_pairs"] += 1
-            seen.add(fid)
-            subs[fid] = segs
-        eval_pairs.append((a, b))
         counts["usable"] += 1
-    return subs, eval_pairs, counts
+        single = len(partners[a]) == 1 and len(partners[b]) == 1
+        if single:
+            counts["usable_single_partner_only"] += 1
+        out.append({"a": a, "b": b, "segs_a": excl[a], "segs_b": excl[b],
+                    "n_partners_a": len(partners[a]),
+                    "n_partners_b": len(partners[b]),
+                    "single_partner": single})
+    return out, counts
 
 
 # --------------------------------------------------------------------- main
@@ -810,9 +858,47 @@ def main():
             "positive_relations_lost": base_rel - scope_rel,
             "eligible_candidate_set_size": len(s_index) - 1,
         }
+        # Pre-registered: lost positive relations broken down BY CELL and by
+        # the refusal reason of the endpoint(s) that became unscorable.
+        s_ids_all = ({r["fragment_id"] for r in s_queries}
+                     | {r["fragment_id"] for r in s_index})
+
+        def why_unscorable(fid):
+            row = by_id.get(fid)
+            if row is None:
+                return "NOT_IN_UNIVERSE"
+            key = scope_key_for(row, scope_name)
+            if key is None:
+                return UNRESOLVED
+            why = row.get(f"{key}::why")
+            return why.most_common(1)[0][0] if why else "BELOW_TOKEN_FLOOR"
+
+        lost_detail = {}
+        for cell in PRIMARY_CELLS:
+            seen, by_reason, n_lost = set(), Counter(), 0
+            for q, targets in positives[cell].items():
+                for t in targets:
+                    key = frozenset((q, t))
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    bad = [e for e in (q, t) if e not in s_ids_all]
+                    if not bad:
+                        continue
+                    n_lost += 1
+                    for e in bad:
+                        by_reason[why_unscorable(e)] += 1
+            lost_detail[cell] = {
+                "relations_lost": n_lost,
+                "endpoint_refusal_reasons": dict(by_reason.most_common()),
+            }
+        coverage["relations_lost_by_cell"] = lost_detail
         print(f"  coverage: queries {len(s_queries)}/{len(dev_rows)}, "
               f"index {len(s_index)}/{len(labeled)}, "
               f"relations {scope_rel}/{base_rel}")
+        for cell, v in lost_detail.items():
+            print(f"    lost {cell:11s} {v['relations_lost']:6d} "
+                  f"{v['endpoint_refusal_reasons']}")
 
         lang_groups = defaultdict(list)
         for i, r in enumerate(s_queries):
@@ -842,38 +928,43 @@ def main():
         zg = _comb.znorm_rows(scope_matrix(
             s_index, s_queries, scope_name, "bigram_only_tfidf", lang_groups))
 
-        print("  fitting frozen weights on the POOLED objective ...")
-        per_fold, _ho_u, _ho_ub = fit_frozen_weights(
-            s_queries, s_index, zb, zu, zg, s_pos["pooled"], s_fold_of,
-            family_map)
-        au = float(np.mean([d["alpha_pair"][0] for d in per_fold]))
-        ab = float(np.mean([d["alpha_pair"][1] for d in per_fold]))
-        # Frozen weights are the modal fold selection, so a single declared
-        # pair travels to every cell and stratum (C5).
-        pairs = [tuple(d["alpha_pair"]) for d in per_fold]
-        frozen = max(set(pairs), key=pairs.count)
-        frozen_u = max(set(d["alpha_unigram_only"] for d in per_fold),
-                       key=[d["alpha_unigram_only"] for d in per_fold].count)
-        print(f"  frozen weights: unigram-only a_u={frozen_u}, pair={frozen} "
-              f"(fold means a_u={au:.3f} a_b={ab:.3f})")
+        print("  cross-fitting: weights per fold on the POOLED objective, "
+              "applied to that fold's held-out queries only ...")
+        per_fold, held = cross_fitted_predictions(
+            s_queries, s_index, zb, zu, zg, s_pos["pooled"],
+            {c: s_pos[c] for c in PRIMARY_CELLS}, s_fold_of, family_map)
+        c5 = check_c5_weights_constant_within_fold(per_fold)
+        print(f"  C5 weights constant within each fold: {c5['passed']}")
+        if not c5["passed"]:
+            raise SystemExit(f"C5 FAILED in {scope_name}; run is void.")
 
-        scores_u = zb + frozen_u * zu
-        scores_ub = zb + frozen[0] * zu + frozen[1] * zg
+        # A modal/all-dev configuration is retained for possible future
+        # deployment ONLY. It carries no dev performance claim: every number
+        # reported below comes from the cross-fitted held-out predictions.
+        pairs = [tuple(d["alpha_pair"]) for d in per_fold]
+        modal_pair = max(set(pairs), key=pairs.count)
+        us = [d["alpha_unigram_only"] for d in per_fold]
+        modal_u = max(set(us), key=us.count)
+        print(f"  modal config (deployment candidate, NOT evaluated): "
+              f"a_u={modal_u}, pair={modal_pair}")
 
         block = {
             "per_fold_weight_selection": per_fold,
-            "frozen_weights": {"alpha_unigram_only": frozen_u,
-                               "alpha_pair": list(frozen)},
+            "deployment_candidate_config": {
+                "alpha_unigram_only": modal_u, "alpha_pair": list(modal_pair),
+                "status": "MODAL_ACROSS_FOLDS -- retained for possible future "
+                          "deployment; carries NO dev performance claim, since "
+                          "every reported number is cross-fitted",
+            },
             "coverage": coverage,
-            "cells": {}, "strata": {},
+            "cells": {}, "strata": {}, "checks": {"C5": c5},
         }
 
         strata = stratify_joins(s_meta, by_id, site_of, raw_fields)
         for cell in PRIMARY_CELLS:
             clusters = s_clusters[cell]
-            res, cu, cub = evaluate_cell(
-                s_queries, s_index, scores_u, scores_ub, s_pos[cell],
-                family_map, clusters, cell)
+            res, cu, cub = cell_result(
+                held[cell]["u"], held[cell]["ub"], clusters, cell)
             block["cells"][cell] = res
             print(f"  {cell:11s} d={res['delta_recall@1']:+.4f} "
                   f"CI [{res['cluster_ci95'][0]:+.4f},{res['cluster_ci95'][1]:+.4f}] "
@@ -901,66 +992,137 @@ def main():
                     "delta_recall@1": d_c, "cluster_ci95": ci_c,
                 }
 
-        # --- §5.1 joins-only, second row: index augmented with bin joins ---
-        aug_index = s_index + scorable(bin_rows, scope_name)
-        aug_queries = s_queries + scorable(bin_rows, scope_name)
-        aug_pos, aug_meta, aug_deg = build_positives(aug_queries, frags)
+        # --- §5.1 joins-only, second row: the bin-exception population ------
+        # Bin-exception fragments never enter any weight fit -- they are
+        # discovery-side and carry no main_split -- so the deployment-candidate
+        # config is out-of-sample for them BY CONSTRUCTION. They are therefore
+        # reported as their own population rather than concatenated with the
+        # cross-fitted dev queries, which would mix two weight sources inside
+        # one number.
+        bin_scorable = scorable(bin_rows, scope_name)
+        aug_index = s_index + bin_scorable
+        aug_pos, aug_meta, aug_deg = build_positives(
+            s_queries + bin_scorable, frags)
         block["degenerate_self_join_pairs_excluded"] = aug_deg
+        bin_ids_scorable = {r["fragment_id"] for r in bin_scorable}
+        bin_only_pos = {q: v for q, v in aug_pos["joins"].items()
+                        if q in bin_ids_scorable}
         aug_clusters = join_components(aug_meta)
-        bm25_a = scope_matrix(aug_index, aug_queries, scope_name, "bm25", lang_groups)
-        zb_a = _comb.znorm_rows(bm25_a)
-        zu_a = _comb.znorm_rows(scope_matrix(
-            aug_index, aug_queries, scope_name, "unigram_tfidf", lang_groups))
-        zg_a = _comb.znorm_rows(scope_matrix(
-            aug_index, aug_queries, scope_name, "bigram_only_tfidf", lang_groups))
-        res_a, cu_a, cub_a = evaluate_cell(
-            aug_queries, aug_index,
-            zb_a + frozen_u * zu_a,
-            zb_a + frozen[0] * zu_a + frozen[1] * zg_a,
-            aug_pos["joins"], family_map, aug_clusters,
-            "joins_with_bin_exception")
-        block["cells"]["joins_with_bin_exception"] = res_a
-        print(f"  joins+bin   d={res_a['delta_recall@1']:+.4f} "
-              f"n={res_a['n_paired']} clusters={res_a['n_clusters']}")
+        if bin_only_pos:
+            bm25_a = scope_matrix(aug_index, bin_scorable, scope_name, "bm25",
+                                  defaultdict(list))
+            zb_a = _comb.znorm_rows(bm25_a)
+            zu_a = _comb.znorm_rows(scope_matrix(
+                aug_index, bin_scorable, scope_name, "unigram_tfidf",
+                defaultdict(list)))
+            zg_a = _comb.znorm_rows(scope_matrix(
+                aug_index, bin_scorable, scope_name, "bigram_only_tfidf",
+                defaultdict(list)))
+            pq_u, _ = retrieve(bin_scorable, aug_index, zb_a + modal_u * zu_a,
+                               bin_only_pos, family_map)
+            pq_ub, _ = retrieve(
+                bin_scorable, aug_index,
+                zb_a + modal_pair[0] * zu_a + modal_pair[1] * zg_a,
+                bin_only_pos, family_map)
+            res_a, _cu_a, _cub_a = cell_result(
+                {r["query_id"]: r for r in pq_u},
+                {r["query_id"]: r for r in pq_ub},
+                aug_clusters, "joins_bin_exception_population")
+            res_a["weights"] = {"alpha_unigram_only": modal_u,
+                                "alpha_pair": list(modal_pair)}
+            res_a["weight_provenance"] = (
+                "deployment-candidate config; out-of-sample for this "
+                "population by construction, since bin-exception fragments "
+                "never enter any weight fit")
+            block["cells"]["joins_bin_exception_population"] = res_a
+            print(f"  joins(bin)  d={res_a['delta_recall@1']:+.4f} "
+                  f"n={res_a['n_paired']} clusters={res_a['n_clusters']}")
 
         # --- §5.2 Tier C, overlap-exclusive --------------------------------
-        subs, tc_pairs, tc_counts = tier_c_exclusive_segments(
+        # --- §5.2 Tier C as PAIR INSTANCES, full vs exclusive, same population
+        instances, tc_counts = tier_c_pair_instances(
             by_id, s_meta, reconstructed, scope_name)
-        block["tier_c"] = {"counts": tc_counts,
-                           "n_eval_pairs": len(tc_pairs)}
-        if tc_pairs:
-            tc_key = "__TIERC__"
-            tc_index = []
-            for r in s_index:
-                rr = dict(r)
-                rr[tc_key] = subs.get(r["fragment_id"],
-                                      r[scope_key_for(r, scope_name)])
-                tc_index.append(rr)
-            tc_by_id = {r["fragment_id"]: r for r in tc_index}
-            tc_queries = [tc_by_id[f] for f, _ in tc_pairs if f in tc_by_id]
-            tc_pos = {}
-            for a, b in tc_pairs:
-                tc_pos.setdefault(a, set()).add(b)
-                tc_pos.setdefault(b, set()).add(a)
-            bm_t = _fc.bm25_similarity(tc_index, tc_queries, tc_key)
-            zb_t = _comb.znorm_rows(bm_t)
-            zu_t = _comb.znorm_rows(_fc.channel_similarity(
-                tc_index, tc_queries, tc_key, "unigram_tfidf"))
-            zg_t = _comb.znorm_rows(_fc.channel_similarity(
-                tc_index, tc_queries, tc_key, "bigram_only_tfidf"))
-            res_t, _cu, _cub = evaluate_cell(
-                tc_queries, tc_index, zb_t + frozen_u * zu_t,
-                zb_t + frozen[0] * zu_t + frozen[1] * zg_t,
-                tc_pos, family_map, s_cluster_join,
-                "tier_c_overlap_exclusive")
-            block["tier_c"]["overlap_exclusive"] = res_t
-            print(f"  tierC excl  n_pairs={len(tc_pairs)} "
-                  f"d={res_t['delta_recall@1']}")
-        block["tier_c"]["note"] = (
-            "Full-rendering Tier C numbers appear only under "
-            "strata.joins.tier['C'], which is a CONTAMINATED UPPER BOUND: "
-            "those pairs share editor-aligned lines.")
+        tc_block = {"counts": tc_counts, "n_pair_instances": len(instances)}
+        if instances:
+            tc_key = "__TC__"
+            fold_weights = {d["fold"]: d for d in per_fold}
 
+            def weights_for(qid):
+                """Cross-fitted: a Tier C query is a dev query, so it uses its
+                own fold's weights, exactly as the main cells do."""
+                row = by_id.get(qid)
+                f = s_fold_of.get(row["cth"]) if row else None
+                d = fold_weights.get(f) or per_fold[0]
+                return d["alpha_unigram_only"], tuple(d["alpha_pair"])
+
+            def run_variant(exclusive):
+                recs_u, recs_ub = {}, {}
+                for inst in instances:
+                    idx = []
+                    for r in s_index:
+                        rr = dict(r)
+                        if exclusive and r["fragment_id"] == inst["a"]:
+                            rr[tc_key] = inst["segs_a"]
+                        elif exclusive and r["fragment_id"] == inst["b"]:
+                            rr[tc_key] = inst["segs_b"]
+                        else:
+                            rr[tc_key] = r[scope_key_for(r, scope_name)]
+                        idx.append(rr)
+                    pos = {inst["a"]: {inst["b"]}, inst["b"]: {inst["a"]}}
+                    qrows = [x for x in idx
+                             if x["fragment_id"] in (inst["a"], inst["b"])]
+                    bm_t = _fc.bm25_similarity(idx, qrows, tc_key)
+                    zb_t = _comb.znorm_rows(bm_t)
+                    zu_t = _comb.znorm_rows(_fc.channel_similarity(
+                        idx, qrows, tc_key, "unigram_tfidf"))
+                    zg_t = _comb.znorm_rows(_fc.channel_similarity(
+                        idx, qrows, tc_key, "bigram_only_tfidf"))
+                    for qi, qrow in enumerate(qrows):
+                        wu, wp = weights_for(qrow["fragment_id"])
+                        for arm, sc, sink in (
+                                ("u", zb_t + wu * zu_t, recs_u),
+                                ("ub", zb_t + wp[0] * zu_t + wp[1] * zg_t,
+                                 recs_ub)):
+                            pq, _ = retrieve(qrows, idx, sc, pos, family_map,
+                                             [qi])
+                            for rec in pq:
+                                # key by PAIR INSTANCE, not fragment: a
+                                # fragment in two pairs is two instances.
+                                sink[(inst["a"], inst["b"],
+                                      rec["query_id"])] = rec
+                return recs_u, recs_ub
+
+            full_u, full_ub = run_variant(False)
+            exc_u, exc_ub = run_variant(True)
+            inst_cluster = {k: f"joincomp::{k[0]}" for k in full_u}
+            tc_block["full_rendering_contaminated"], _c1, _c2 = cell_result(
+                full_u, full_ub, inst_cluster, "tier_c_full_CONTAMINATED")
+            tc_block["overlap_exclusive"], _c3, _c4 = cell_result(
+                exc_u, exc_ub, inst_cluster, "tier_c_overlap_exclusive")
+            single = {k for k, _v in full_u.items()
+                      if any(i["single_partner"] and i["a"] == k[0]
+                             and i["b"] == k[1] for i in instances)}
+            if single:
+                tc_block["overlap_exclusive_single_partner_only"], _a, _b = \
+                    cell_result({k: exc_u[k] for k in single if k in exc_u},
+                                {k: exc_ub[k] for k in single if k in exc_ub},
+                                inst_cluster,
+                                "tier_c_exclusive_single_partner")
+            f_r = tc_block["full_rendering_contaminated"]
+            e_r = tc_block["overlap_exclusive"]
+            print(f"  tierC pairs={len(instances)} "
+                  f"full r@1 {f_r['bm25_unigram']['recall@1']:.4f}->"
+                  f"{f_r['bm25_unigram_bigram']['recall@1']:.4f} "
+                  f"| exclusive r@1 {e_r['bm25_unigram']['recall@1']:.4f}->"
+                  f"{e_r['bm25_unigram_bigram']['recall@1']:.4f} "
+                  f"d={e_r['delta_recall@1']:+.4f}")
+        tc_block["note"] = (
+            "Full and exclusive are computed on EXACTLY the same pair "
+            "instances, so the absolute drop between them is a paired "
+            "comparison. Each pair instance carries its own exclusive "
+            "rendering, so a fragment with several Tier C partners is several "
+            "instances rather than one overwritten rendering.")
+        block["tier_c"] = tc_block
         result["scopes"][scope_name] = block
 
     # --- §6 Holm-Bonferroni on the one declared family ---------------------

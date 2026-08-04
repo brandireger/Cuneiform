@@ -169,6 +169,105 @@ class TestInference(unittest.TestCase):
 
 
 @unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
+class TestC5CrossFitting(unittest.TestCase):
+    """The corrected C5.
+
+    The first run searched weights out of fold, discarded the held-out
+    predictions, took the MODAL weights over all five folds and re-scored all
+    of dev -- so every query was scored under weights partly chosen using its
+    own fold. C5 now asserts the fold-local invariant instead: within a fold,
+    one weight pair serves every cell; across folds they may differ, and
+    demanding a single global weight is exactly the defect."""
+
+    def test_constant_within_fold_passes(self):
+        per_fold = [
+            {"fold": 0, "alpha_unigram_only": 0.5, "alpha_pair": [0.1, 1.0],
+             "weights_by_cell": {
+                 "joins": {"alpha_unigram_only": 0.5, "alpha_pair": [0.1, 1.0]},
+                 "duplicates": {"alpha_unigram_only": 0.5, "alpha_pair": [0.1, 1.0]}}},
+            {"fold": 1, "alpha_unigram_only": 0.75, "alpha_pair": [0.4, 0.4],
+             "weights_by_cell": {
+                 "joins": {"alpha_unigram_only": 0.75, "alpha_pair": [0.4, 0.4]},
+                 "duplicates": {"alpha_unigram_only": 0.75, "alpha_pair": [0.4, 0.4]}}},
+        ]
+        res = tb.check_c5_weights_constant_within_fold(per_fold)
+        self.assertTrue(res["passed"],
+                        "weights differing ACROSS folds is what cross-fitting "
+                        "looks like and must not fail C5")
+
+    def test_differing_weights_within_one_fold_fails(self):
+        per_fold = [
+            {"fold": 0, "alpha_unigram_only": 0.5, "alpha_pair": [0.1, 1.0],
+             "weights_by_cell": {
+                 "joins": {"alpha_unigram_only": 0.5, "alpha_pair": [0.1, 1.0]},
+                 "duplicates": {"alpha_unigram_only": 0.9, "alpha_pair": [0.9, 0.2]}}},
+        ]
+        res = tb.check_c5_weights_constant_within_fold(per_fold)
+        self.assertFalse(res["passed"])
+        self.assertEqual(res["offenders"][0]["fold"], 0)
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
+class TestTierCPairInstances(unittest.TestCase):
+    """A fragment with two Tier C partners must yield two instances with
+    DIFFERENT exclusive renderings, not one that overwrites the other."""
+
+    def _fixture(self):
+        rows_by_id = {}
+        for fid in ("P::1", "P::2", "P::3"):
+            rows_by_id[fid] = {
+                "fragment_id": fid, "language": "Hit",
+                "by_line": {0: ["a"], 1: ["b"], 2: ["c"]},
+                "HITTITE_ONLY::lines": [0, 1, 2],
+                "HITTITE_ONLY": [["a"], ["b"], ["c"]],
+            }
+        meta = {
+            frozenset(("P::1", "P::2")): {
+                "tier": "C", "fragment_id_a": "P::1", "fragment_id_b": "P::2",
+                "exclusive_untestable": False},
+            frozenset(("P::1", "P::3")): {
+                "tier": "C", "fragment_id_a": "P::1", "fragment_id_b": "P::3",
+                "exclusive_untestable": False},
+        }
+        reconstructed = {"P": {"member_lines": {
+            "1": [{"line_idx": 0, "shared_with": ["2"]},
+                  {"line_idx": 1, "shared_with": ["3"]},
+                  {"line_idx": 2, "shared_with": []}],
+            "2": [{"line_idx": 0, "shared_with": ["1"]},
+                  {"line_idx": 2, "shared_with": []}],
+            "3": [{"line_idx": 1, "shared_with": ["1"]},
+                  {"line_idx": 2, "shared_with": []}],
+        }}}
+        return rows_by_id, meta, reconstructed
+
+    def test_a_shared_fragment_gets_partner_specific_renderings(self):
+        rows_by_id, meta, rec = self._fixture()
+        instances, counts = tb.tier_c_pair_instances(
+            rows_by_id, meta, rec, "HITTITE_ONLY")
+        self.assertEqual(counts["usable"], 2)
+        by_partner = {(i["a"], i["b"]): i for i in instances}
+        # vs P::2 the shared line is 0, so line 0 must be excluded but 1 kept;
+        # vs P::3 the shared line is 1, so the opposite.
+        segs_vs2 = by_partner[("P::1", "P::2")]["segs_a"]
+        segs_vs3 = by_partner[("P::1", "P::3")]["segs_a"]
+        self.assertNotEqual(segs_vs2, segs_vs3,
+                            "P::1's exclusive rendering must depend on WHICH "
+                            "partner it is being scored against")
+        self.assertIn(["b"], segs_vs2)
+        self.assertNotIn(["a"], segs_vs2)
+        self.assertIn(["a"], segs_vs3)
+        self.assertNotIn(["b"], segs_vs3)
+
+    def test_single_partner_instances_are_counted_separately(self):
+        rows_by_id, meta, rec = self._fixture()
+        instances, counts = tb.tier_c_pair_instances(
+            rows_by_id, meta, rec, "HITTITE_ONLY")
+        # P::1 has two partners, so neither instance is single-partner.
+        self.assertEqual(counts["usable_single_partner_only"], 0)
+        self.assertFalse(any(i["single_partner"] for i in instances))
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
 class TestScopeSelection(unittest.TestCase):
 
     def test_unresolved_query_language_has_no_query_relative_rendering(self):

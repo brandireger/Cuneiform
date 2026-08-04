@@ -1,6 +1,27 @@
 # Task B transfer and language-scope comparison — results
 
-**Status: COMPLETE for the two fixed scopes, PRE-REGISTERED, 2026-08-04.**
+> **WITHDRAWN 2026-08-04 — EVERY NUMBER BELOW IS SUPERSEDED. DO NOT QUOTE.**
+> Ixca's review found the evaluation was not cross-fitted. Weights were
+> searched out of fold, but the held-out predictions were then **discarded**,
+> the modal weights across all five folds were taken, and all of dev was
+> re-scored with them — so every query was scored under weights partly chosen
+> using its own fold. The Holm rejections below are therefore **adaptive dev
+> results, not cross-fitted tests**.
+>
+> The Tier C comparison is also withdrawn on two counts: full rendering
+> (94 queries) and overlap-exclusive (42 scored queries) were computed on
+> **different populations**, so the absolute drop was not a paired estimate;
+> and exclusive renderings were keyed by fragment, so each of 32 fragments
+> with several Tier C partners kept only the last partner's rendering — a
+> partner-dependent quantity stored as a fragment-dependent one.
+>
+> A corrected run is in progress under the second protocol amendment. The
+> findings most likely to survive, because they do not depend on the weight
+> path, are the **zero-overlap qualification**, the **bin exception**, and the
+> **self-join corpus finding**. Nothing here should be cited until the
+> corrected results file replaces it.
+
+**Status: WITHDRAWN, superseded by the corrected cross-fitted run.**
 Protocol: `reports/phase5_taskb_transfer_protocol.md`, pre-registered at
 `318e153`, amended and authorized at `3f334b9`, both **before** this run.
 Dev queries only; the protected test split was never loaded. No representation

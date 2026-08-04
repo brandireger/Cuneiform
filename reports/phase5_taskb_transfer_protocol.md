@@ -11,6 +11,18 @@ from the commit of this revision; the first draft was NOT authorized to run.**
 **No representation learning or gradient training; fusion weights are fitted
 out of fold.**
 
+> **SECOND AMENDMENT, 2026-08-04, after Ixca reviewed the first results.** The
+> first implementation searched weights out of fold but then **discarded the
+> held-out predictions**, took the modal weights across all five folds, and
+> re-scored all of dev with them — so every query was scored under weights
+> partly chosen using its own fold. The reported Holm rejections were adaptive
+> dev results, not cross-fitted tests. **Every number from that run is
+> withdrawn.** §2 and §6 below are amended to require genuine cross-fitting;
+> §5.2 is amended to evaluate Tier C as pair instances, because the first
+> version compared full and exclusive renderings on different populations and
+> made a partner-dependent rendering fragment-dependent; and §4 is amended to
+> break lost relations down by cell and endpoint refusal reason.
+
 Executes **step 3** of the required sequence in
 `reports/phase5_classical_control_review.md`. Steps 1 and 2 are complete
 (`reports/phase5_statistics_universe_results.md`,
@@ -63,13 +75,22 @@ bootstrap) is imported from `phase5_factorial_control` and
 Sparsity in the joins cell makes per-stratum fitting both unstable and
 circular. Therefore, **per scope**:
 
-1. Fit (α_u, α_b) **once**, on the **pooled** relation objective, over
-   composition-level fit folds (recall@1, the inherited 12-value `ALPHA_GRID`
+1. **For each fold f**, fit (α_u, α_b) on the **pooled** relation objective
+   using the other folds only (recall@1, the inherited 12-value `ALPHA_GRID`
    for α_u and `[0.0, 0.1, 0.2, 0.4, 0.75, 1.0, 1.5]` for α_b, both containing
    0, ties to the smallest).
-2. **Freeze** them.
-3. Evaluate joins-only, duplicates-only, pooled, and **every** stratum with the
-   frozen weights.
+2. **Freeze those weights within fold f** and use them, unchanged, for every
+   relation cell and every stratum, to score **fold f's held-out queries only**.
+3. **Concatenate the held-out predictions across folds.** Deltas, clustered
+   intervals, p-values, Holm decisions and strata are all computed on that
+   concatenation.
+
+**No held-out prediction may be produced by weights selected with that query's
+own fold.** A modal or all-dev configuration may be retained as a deployment
+candidate, but it **receives no dev performance claim** and no reported number
+is computed from it — except for the bin-exception population, which never
+enters any fit and for which that configuration is therefore out-of-sample by
+construction (§5.1).
 
 No weight is ever tuned on a result stratum. A stratum's number is a readout of
 a system fitted elsewhere.
@@ -143,7 +164,10 @@ because it would hide precisely the coverage effect this run must measure.
   - queries that become unscorable,
   - candidate documents that become unscorable,
   - **positive relations lost because either endpoint became unscorable**,
-  broken down by refusal reason.
+    broken down **by relation cell** (joins / duplicates / pooled) **and** by
+    the refusal reason of the endpoint that became unscorable. A single
+    aggregate count is not sufficient: losing join evidence and losing
+    duplicate evidence are different costs.
 - A **common-population sensitivity analysis** across the three symmetric
   scopes is reported additionally, so both readings are visible.
 
@@ -236,6 +260,25 @@ explicit line list, so no second rendering implementation is introduced.
   **only as a clearly labeled contaminated upper bound**, never as the Tier C
   result and never pooled into an overall joins number without the label.
 
+**Amended: Tier C is evaluated as PAIR INSTANCES.** The first version compared
+a full-rendering number computed on 94 Tier C queries against an exclusive
+number computed on 42 scored queries — different populations, so the absolute
+drop between them was not a paired estimate. It also keyed exclusive
+renderings by `fragment_id`, so a fragment with several Tier C partners kept
+only the last partner's exclusive set: a rendering that is genuinely
+*partner*-dependent, stored as though it were *fragment*-dependent. 32 dev
+fragments are in that position. Therefore:
+
+1. Each **pair** is its own instance and carries its own exclusive renderings
+   for both members, so nothing is overwritten.
+2. **Full and exclusive are computed on exactly the same pair instances**, so
+   the drop between them is paired.
+3. A **sensitivity analysis restricted to fragments belonging to exactly one
+   Tier C pair** is reported alongside.
+
+Until those three hold, the zero-overlap stratum — not the Tier C
+comparison — is the load-bearing qualification of the joins result.
+
 ### 5.3 Honest labels on two stratifiers
 
 **`genre_band`** is `eval_harness.load_fragment_universe`'s
@@ -299,8 +342,11 @@ eligible candidate-set size**, for every cell.
 - **C3, split purity.** Dev-query CTHs disjoint from train-index CTHs.
 - **C4, joins/duplicates are a partition.** No pair appears in both positive
   sets (`build_duplicate_positives` excludes join pairs; asserted, not assumed).
-- **C5, frozen weights are frozen.** The (α_u, α_b) recorded for a scope is
-  byte-identical across all three cells and all strata for that scope.
+- **C5, frozen weights are frozen WITHIN EACH FOLD.** The (α_u, α_b) used in
+  fold *f* is identical across all three cells and all strata for that fold.
+  Weights are **expected to differ across folds** — that is what cross-fitting
+  means, and asserting a single global weight would re-introduce exactly the
+  defect this check now exists to catch.
 - **C6, the bin exception stays in its lane.** No bin-exception fragment
   appears in any duplicate positive, in the duplicates or pooled cells, or in
   the candidate index used by non-bin queries (§5.1's three prohibitions,

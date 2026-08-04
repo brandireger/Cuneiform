@@ -708,8 +708,9 @@ never read `cu`, Gate 3 closed. Additionally:
    in this line that they do: joins **+0.1111** CI [+0.0625, +0.1688] p=0.001,
    pooled **+0.0875** CI [+0.0591, +0.1277] p=0.001, duplicates **+0.0627** CI
    [+0.0370, +0.1131] p=0.013. Frozen CANINE reached none of them; the step-2
-   results were Task A only. It replicates under the unrestricted control, so
-   it is not an artifact of the language scope.
+   results were Task A only. It is **robust to** the unrestricted control —
+   overlapping evidence on largely the same queries, NOT independent
+   replication — so it is not an artifact of the language scope.
 
    **Read the qualification before quoting the joins number.** Ixca's Tier C
    amendment is what makes it visible. On overlap-exclusive Tier C content,
@@ -718,9 +719,11 @@ never read `cu`, Gate 3 closed. Additionally:
    stratum says it continuously: 0 shared lines **+0.0294 CI [−0.0645,
    +0.1481]** (−0.0278 under the control), 1–2 +0.1163, 3–9 +0.1304, 10+
    +0.1600. Indirect `(+)` joins likewise show nothing. **The channel transfers
-   to duplicate retrieval, and to joins in proportion to text the two fragments
-   already share; on joins with no shared lines — the case the matrix model
-   exists to solve — there is no evidence it helps.**
+   to duplicate retrieval, and its help on joins is CONCENTRATED WHERE
+   EDITOR-ALIGNED TEXT IS SHARED; on joins with no shared lines — the case the
+   matrix model exists to solve — there is no evidence it helps.**
+   Shared-line count is confounded with tier, length and other pair
+   properties, so this is not a dose-response relationship.
 
    **Language scope, on the common population** (the only comparable basis,
    since the scopes serve 766 vs 865 queries): the unrestricted scope is equal
