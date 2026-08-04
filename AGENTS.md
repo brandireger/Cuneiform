@@ -372,6 +372,11 @@ arbitrary lost span. Therefore:
    tie-breaker (α=0.5); unfitted equal-weight rank fusion is 7-8 points worse
    than BM25 alone, and 32 queries regress.
    `reports/phase5_bm25_combiner_results.md`.
+   **Task A ONLY — it does not clearly transfer** (2026-08-04,
+   `reports/phase5_combiner_taskb_results.md`): on Task B, joins +0.0165
+   (CI includes 0) and duplicates +0.0197 (CI includes 0); only the pooled
+   cell is significant, which is the cell the three-way rule exists to stop
+   us reporting alone. Name the task in any claim.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

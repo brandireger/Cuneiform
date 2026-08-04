@@ -109,6 +109,18 @@ that merely matches the frozen combiner would not be worth its GPU budget.
 **Advancing is still not authorization to train.** No proposal has been
 written and no training has been started.
 
+## FOLLOW-UP — this is a Task A result and does not clearly transfer
+
+`reports/phase5_combiner_taskb_results.md` (2026-08-04) ran the same
+combiner on Task B under the standing three-way rule. **Joins +0.0165 (CI
+[−0.0165, +0.0495]) and duplicates +0.0197 (CI [−0.0023, +0.0416]) — neither
+individually significant.** Only the pooled cell excludes zero, and that is
+the cell the three-way rule exists to prevent reporting alone.
+
+Nothing above is retracted: the Task A measurement stands as made. But
+"+0.0462" must always be qualified by the task it was measured on, and may
+not be cited as a general retrieval gain.
+
 ## Standing limitations
 
 - **Dev-side only, 53 compositions.** The BM25 reference here is 0.6312; the

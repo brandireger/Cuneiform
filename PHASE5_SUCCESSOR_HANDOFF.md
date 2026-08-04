@@ -486,6 +486,23 @@ never read `cu`, Gate 3 closed. Additionally:
    combiner's +0.0462?", since matching it would not be worth the GPU budget.
    Contamination is still unresolved and is now more load-bearing, because
    there is a positive result to explain.
+   **UPDATE 2026-08-04, third — that +0.0462 is Task A ONLY and does NOT
+   clearly transfer** (`reports/phase5_combiner_taskb_results.md`,
+   pre-registered as `5b67048`). The full three-way matrix the standing rule
+   requires: joins (n=182) **+0.0165, CI [-0.0165, +0.0495]**; duplicates
+   (n=865) **+0.0197, CI [-0.0023, +0.0416]**; pooled **+0.0266, CI
+   [+0.0058, +0.0486]**. **Neither individual cell reaches significance**;
+   the only significant cell is pooled, which is exactly the cell the
+   three-way rule exists to stop us reporting alone (its positive set is the
+   union of the other two, and its own recall@10 does not exclude zero).
+   A rung-4 proposal must therefore name WHICH task it expects to improve
+   and may not cite +0.0462 as a general retrieval gain. Untested hypothesis
+   on file for the difference: Task A ranks 53 compositions by best-matching
+   fragment, giving a weak per-fragment signal several chances to surface,
+   which Task B's fragment-level ranking does not. Note this run used a
+   dev-only 876-fragment index, so its absolute numbers are NOT comparable to
+   the published dev figures and the easier setup may itself compress the
+   headroom.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified
