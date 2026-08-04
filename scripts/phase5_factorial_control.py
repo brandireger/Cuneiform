@@ -170,8 +170,15 @@ def _sum_by_owner(X, owner, n_rows):
     return G @ X
 
 
-def channel_similarity(index_rows, query_rows, rendering, channel):
+def channel_similarity(index_rows, query_rows, rendering, channel,
+                       query_rendering=None):
     """Cosine (n_queries x n_index) for one (rendering, channel).
+
+    `query_rendering` defaults to `rendering` and exists for the one scope that
+    needs an asymmetric pair: `CROSS_LANGUAGE_PARALLEL` admits only lines whose
+    language DIFFERS from the query's, so it can render the index but not the
+    query. Passing it here keeps that scope on this single count-then-weight
+    implementation instead of a second copy. Default behaviour is unchanged.
 
     Counting happens per SEGMENT and weighting happens per FRAGMENT, and the
     order matters. Running a TF-IDF vectorizer directly over segments would
@@ -199,7 +206,8 @@ def channel_similarity(index_rows, query_rows, rendering, channel):
         min_df = 1
 
     idx_docs, idx_owner = _segment_docs(index_rows, rendering, channel)
-    q_docs, q_owner = _segment_docs(query_rows, rendering, channel)
+    q_docs, q_owner = _segment_docs(
+        query_rows, query_rendering or rendering, channel)
     Dc = _sum_by_owner(vec.fit_transform(idx_docs), idx_owner, len(index_rows))
     Qc = _sum_by_owner(vec.transform(q_docs), q_owner, len(query_rows))
 
@@ -214,12 +222,17 @@ def channel_similarity(index_rows, query_rows, rendering, channel):
     return (Q @ D.T).toarray()
 
 
-def bm25_similarity(index_rows, query_rows, rendering):
+def bm25_similarity(index_rows, query_rows, rendering, query_rendering=None):
     """BM25 over the rendering's admitted tokens. BM25 is a bag of tokens, so
-    segmentation cannot affect it -- check C1 asserts exactly that."""
-    def toks(rows):
-        return [[t for seg in r[rendering] for t in seg] for r in rows]
-    return eh.bm25_score_matrix(toks(index_rows), toks(query_rows))[0].toarray()
+    segmentation cannot affect it -- check C1 asserts exactly that.
+
+    `query_rendering` mirrors `channel_similarity`'s parameter, for the
+    asymmetric CROSS_LANGUAGE_PARALLEL pair."""
+    def toks(rows, key):
+        return [[t for seg in r[key] for t in seg] for r in rows]
+    return eh.bm25_score_matrix(
+        toks(index_rows, rendering),
+        toks(query_rows, query_rendering or rendering))[0].toarray()
 
 
 # -------------------------------------------------------------------- arms
