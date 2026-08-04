@@ -528,6 +528,26 @@ never read `cu`, Gate 3 closed. Additionally:
    fits TF-IDF over the 876 dev fragments — a query-derived subset AGENTS.md
    forbids for deployed statistics. The BM25 reference is fit the same way,
    so the deltas stand; an absolute deployed number does not.
+   **UPDATE 2026-08-04, fifth — the character framing was OVERSTATED and is
+   corrected** (`reports/phase5_bigram_control_results.md`, pre-registered
+   `4b74171`). `add_bigrams()` has been in `eval_harness` since P3 and was
+   never measured; P3 only reported `bm25_sign`, `bm25_lemma`,
+   `tfidf_cosine_sign`. **Sign bigrams alone recover 86.3% of the gain
+   (+0.1017 of +0.1179), and character granularity's increment over them is
+   +0.0162, CI [-0.0012, +0.0324] -- includes zero.** Given both signals the
+   fold fit set alpha_bigram = 0 in all five folds, so this measured char
+   INSTEAD OF bigram, not char on top of it: they are **near-substitutes**.
+   What is established is that **n-gram context beyond single signs** helps,
+   NOT that character granularity does. Every measurement stands; the
+   explanation did not. Not measured and worth closing if bigrams become the
+   recommendation: CANINE's increment over *bigrams* specifically (it was
+   measured over char n-grams only), and Task B with bigrams.
+   **START HERE: `reports/phase5_classical_control_handoff.md`** is the
+   combined handoff and second-opinion packet for this whole line, including
+   a confidence table and six named challenges to the result -- the first
+   being that every arm fits its statistics on the 876 dev fragments, a
+   query-derived subset AGENTS.md forbids, and that n-gram TF-IDF may benefit
+   from that more than unigram BM25 does.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

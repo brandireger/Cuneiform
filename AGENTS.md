@@ -387,6 +387,13 @@ arbitrary lost span. Therefore:
    Recommendation: neither owed Gate-3 proposal should be written on
    retrieval grounds — the pretrained models were measured against the right
    control and lost.
+   **CORRECTED same day** (`reports/phase5_bigram_control_results.md`): the
+   win is **n-gram CONTEXT, not character granularity**. Sign bigrams —
+   unused in the repo since P3 — recover 86.3% of it (+0.1017), and char
+   granularity's increment is +0.0162, CI [-0.0012, +0.0324], includes zero.
+   They are near-substitutes. Measurements stand; the explanation did not.
+   Handoff + second-opinion packet:
+   `reports/phase5_classical_control_handoff.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

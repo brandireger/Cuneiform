@@ -1,9 +1,22 @@
 # Classical character n-gram control — results
 
 **Status: COMPLETE 2026-08-04. Verdict CANINE_REDUNDANT.**
-**A classical character n-gram model beats every pretrained candidate, on
+**A classical n-gram model beats every pretrained candidate, on
 every task cell, with no GPU and no pretrained weights.**
 `[PROBE — not for citation]`; dev split only, test never loaded.
+
+> **CORRECTION 2026-08-04, from `reports/phase5_bigram_control_results.md`.**
+> This report concluded the useful signal is **character-level**. That
+> conclusion was overstated and its design could not support it. A sign-bigram
+> control run afterwards recovers **86.3%** of the gain (+0.1017 of +0.1179),
+> and character granularity's increment over it is **+0.0162, 95% CI
+> [−0.0012, +0.0324] — includes zero**.
+>
+> **Every measurement below stands.** What changes is the explanation: what
+> helps is **n-gram context beyond single signs**, not character granularity
+> specifically. Sign bigrams and character n-grams are near-substitutes.
+> Read "character n-gram" below as "an n-gram context feature, of which this
+> is one of two near-equivalent implementations."
 
 Executes `reports/phase5_char_ngram_control_protocol.md` (PRE-REGISTERED,
 committed as `2580d85` before the run). Training-free.
@@ -68,6 +81,12 @@ glyphs, truncated words, a sign split across the fracture. Whole-token BM25
 scores those as misses; character n-grams match the surviving fragment of the
 sign. The classical model helps most precisely where the tablet is broken,
 which is the project's subject matter.
+
+*(Caveat added after the bigram control: this partial-sign story is a
+plausible reading of the joins result, not a demonstrated mechanism. Sign
+bigrams — which cannot match a partial sign — recover 86% of the Task A gain,
+so context alone explains most of it. The Task B joins cell has not been rerun
+with bigrams, which is the measurement that would actually separate the two.)*
 
 ## What this settles, and what it costs
 
