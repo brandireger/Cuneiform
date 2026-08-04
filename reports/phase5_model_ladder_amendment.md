@@ -25,6 +25,13 @@ day by its own reinstatement mechanism. Read
 > The claim-limits below are revised accordingly and are restated in the
 > results report. The reasoning about *why* the amendment was made stands;
 > its conclusion for two of three rungs did not survive measurement.
+>
+> **Second follow-up, same day** (`reports/phase5_bm25_combiner_results.md`):
+> a pre-registered combiner test found the screen's oracle headroom is ~51%
+> realizable — BM25 + frozen CANINE reaches held-out dev recall@1 0.6775 vs
+> BM25's 0.6312, **+0.0462, 95% CI [+0.0254, +0.0682]**, with no training at
+> all. That adds one claim the paper may now make and removes none; see the
+> "may claim" list below.
 
 `AGENTS.md` commits to a six-rung model ladder, "run in this order; every rung
 reported," and `PHASE5_SUCCESSOR_HANDOFF.md` item 8 requires that commitment
@@ -111,7 +118,15 @@ It **may** claim, and should:
 - that a classical MaxEnt replication underperformed its own published
   figure at both scales;
 - that these are negative results reported in full, including the two
-  pretraining runs whose falsifier was pre-registered and failed.
+  pretraining runs whose falsifier was pre-registered and failed;
+- **(added 2026-08-04, from the combiner test)** that a *frozen*, un-fine-tuned
+  pretrained character-level encoder (CANINE-s) adds measurable signal to
+  BM25 on the dev split — held-out Task A recall@1 0.6775 vs 0.6312, +0.0462,
+  95% CI [+0.0254, +0.0682] — provided the claim carries its three
+  qualifications: 32 of 865 queries regress, the effect requires a fitted
+  down-weight (unfitted equal-weight fusion is 7–8 points worse than BM25
+  alone), and it is dev-side only against a 0.6312 reference that is not the
+  published test-side 0.7831.
 
 ## Why now, and why not later
 

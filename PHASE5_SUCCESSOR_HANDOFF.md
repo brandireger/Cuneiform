@@ -469,6 +469,23 @@ never read `cu`, Gate 3 closed. Additionally:
    representation learning" clause is answered only for the architecture
    family actually tested, so no claim may generalize to neural methods at
    large and Yavasan & Gordin is related work, not a measured contrast.
+   **UPDATE 2026-08-04, second: that oracle is now MEASURED, not bounded**
+   (`reports/phase5_bm25_combiner_results.md`, pre-registered as `50b6455`).
+   A fold-fitted linear combiner over frozen CANINE embeddings reaches
+   held-out dev recall@1 **0.6775 vs BM25's 0.6312, delta +0.0462, 95% CI
+   [+0.0254, +0.0682]** — REALIZABLE by the pre-registered rule, recovering
+   51.2% of the oracle, positive in all five folds, and costing **nothing in
+   GPU training**. Three qualifications travel with it and must not be
+   dropped: 32 queries REGRESS against 72 gained; unfitted equal-weight RRF
+   is 7-8 points WORSE than BM25 alone, so the candidate works only as a
+   down-weighted tie-breaker (α = 0.5) and the mixing weight is load-bearing;
+   and the joint CANINE+XLM-R arm is worse (+0.0301) than CANINE alone, so
+   there is no evidence the two contribute independently. **This raises the
+   bar for the owed proposals rather than lowering it**: a rung-4 proposal
+   must now pre-register the question "does fine-tuning beat the FROZEN
+   combiner's +0.0462?", since matching it would not be worth the GPU budget.
+   Contamination is still unresolved and is now more load-bearing, because
+   there is a positive result to explain.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

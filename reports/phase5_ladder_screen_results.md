@@ -150,6 +150,15 @@ perfect per-query selector; a real combiner recovers only a fraction. And
 ~28–31% of queries (241 / 265) are missed by both, a hard core neither signal
 reaches.
 
+> **FOLLOW-UP, 2026-08-04 — the fraction is now measured.**
+> `reports/phase5_bm25_combiner_results.md` fits a real combiner under a
+> pre-registered rule: held-out recall@1 **0.6775 vs 0.6312, +0.0462, 95% CI
+> [+0.0254, +0.0682]**, i.e. **51.2% of the +0.0902 oracle**, with frozen
+> weights and no training. It also found that unfitted equal-weight rank
+> fusion is 7–8 points *worse* than BM25 alone — the candidate helps only as
+> a down-weighted tie-breaker — and that 32 queries regress. Read that report
+> before writing either owed proposal; it changes what they must ask.
+
 ## What happens next — and what does NOT
 
 **Advancing is not authorization to train.** Per the protocol, each ADVANCE

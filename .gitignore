@@ -13,6 +13,12 @@ external_corpora/
 # Small human-readable reports (.md/.csv/.json/.jsonl) ARE tracked.
 *.parquet
 
+# Frozen-embedding caches (e.g. the ladder screen / combiner .npz). Model-
+# derived float matrices, regenerable by re-running their script against the
+# pinned pretrained weights. Same rule as above: the JSON results and the
+# report are tracked, the binary is not.
+*.npz
+
 # Python
 .venv/
 __pycache__/

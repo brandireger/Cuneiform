@@ -390,6 +390,13 @@ arbitrary lost span. Therefore:
    **SCREENED IN 2026-08-04**: frozen recall@1 **0.3711**, highest of the
    four and the only CI clearing the bar outright; 78 queries correct that
    BM25 misses. Owes a Gate-3 proposal; not trained.
+   **Combiner measured 2026-08-04**: BM25 + frozen CANINE reaches held-out
+   dev recall@1 **0.6775 vs BM25's 0.6312 (+0.0462, CI [+0.0254, +0.0682])**
+   with NO training — so the proposal must ask whether fine-tuning beats the
+   FROZEN combiner, not whether it beats BM25. Only works as a down-weighted
+   tie-breaker (α=0.5); unfitted equal-weight rank fusion is 7-8 points worse
+   than BM25 alone, and 32 queries regress.
+   `reports/phase5_bm25_combiner_results.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on
