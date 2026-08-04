@@ -451,8 +451,15 @@ never read `cu`, Gate 3 closed. Additionally:
    Protected-test/P6 runs remain one-shot and
    separately unauthorized. P7 candidate export, expert verification, and
    paper drafting come only after their standing human gates. The full
-   model-ladder commitment must either be completed or explicitly amended
-   before final publication claims.
+   model-ladder commitment was **explicitly AMENDED 2026-08-04** (ratified;
+   `reports/phase5_model_ladder_amendment.md`): rungs 3 (ByT5), 4 (CANINE)
+   and 6 (XLM-R/mT5) were never run and are **withdrawn from publication
+   scope**, reinstatable by a Gate-3-style proposal. Rungs 1, 2 and 5 are
+   run and reported. **This is no longer a blocker.** The binding
+   consequence travels with it: the research question's "modern
+   representation learning" clause is answered only for the architecture
+   family actually tested, so no claim may generalize to neural methods at
+   large and Yavasan & Gordin is related work, not a measured contrast.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

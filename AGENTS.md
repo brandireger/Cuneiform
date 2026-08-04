@@ -358,16 +358,38 @@ arbitrary lost span. Therefore:
    and full scale).
 3. ByT5 (small→base) — primary neural candidate (byte-level; T5
    lineage comparable to Yavasan & Gordin).
+   **WITHDRAWN from publication scope, ratified 2026-08-04** — see
+   `reports/phase5_model_ladder_amendment.md`. Never run.
 4. CANINE — alternate tokenization-free encoder.
+   **WITHDRAWN from publication scope, ratified 2026-08-04.** Never run.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on
    one GPU.
 6. XLM-R / mT5 — subword control, expected to lose; run it anyway.
+   **WITHDRAWN from publication scope, ratified 2026-08-04.** Never run.
 
 Model selection on dev split only. All results, including losers, go
 in the paper. Single consumer GPU is the compute budget; if a design
 exceeds it, redesign.
+
+**AMENDED 2026-08-04 (ratified by Ixca).** Rungs 3, 4 and 6 were never
+run and are **withdrawn from publication scope**, satisfying the
+"completed or explicitly amended" requirement the standing commitment
+carries. Rungs 1, 2 and 5 were run and are reported. Evidence: BM25
+beats the from-scratch architecture family decisively at every scale
+(`P5_CLOSEOUT.md`), language conditioning of that family produced
++0.0073 `in_doc` AUC with a CI including zero
+(`reports/phase4_p4f_stage1_matched.md`), and the classical MaxEnt
+replication itself underperformed its published figure (0.390 vs 0.67).
+**Binding consequence for the paper:** the research question's "modern
+representation learning" clause is answered ONLY for the architecture
+family tested. No pretrained byte-level or multilingual subword model
+was evaluated, so no claim may generalize to neural methods at large,
+and Yavasan & Gordin may be cited as related work but NOT as a measured
+contrast. Withdrawn rungs are reinstatable by a Gate-3-style proposal.
+Full statement of what may and may not be claimed:
+`reports/phase5_model_ladder_amendment.md`.
 
 ## Cleanroom rules (non-negotiable)
 
