@@ -576,6 +576,50 @@ never read `cu`, Gate 3 closed. Additionally:
    full-distractor factorial control with explicit language scope, structural
    boundaries, composition-cluster inference, and join-tier stratification.
 
+   **UPDATE 2026-08-04, seventh and current — STEP 1 OF THAT SEQUENCE IS DONE**
+   (`reports/phase5_statistics_universe_results.md`, pre-registered `b83c96e`).
+   The declared-universe refit and full labeled distractor index ran together
+   as one three-universe design, holding the arm set and the rendering fixed so
+   the universe was the only moving part. Verdict
+   **`SURVIVES_DECLARED_UNIVERSE`**: the bigram arm reads **+0.0601,
+   composition-cluster CI [+0.0368, +0.0905]** against 7,490 candidates over
+   490 compositions — real, but **41% below the +0.1017 it was reported at**.
+   The reproduction check recovered both published deltas to four decimals
+   before any new number was read, so the shrinkage is the universe, not a
+   reimplementation.
+
+   Handoff self-doubts 6.1 and 6.2 are both answered, and both split by arm.
+   The 876-fragment fitting set flattered the n-gram arms roughly twice as
+   much as the unigram arm (T1 −0.0162 bigram, −0.0185 char, −0.0081 unigram);
+   and adding distractors **helps** the unigram arm (+0.0116) while **hurting**
+   the n-gram arms (−0.0254 bigram, −0.0370 char). §6.2 asked for a principled
+   prediction and got one: both of its candidate stories are true, of different
+   arms.
+
+   **What actually changes the project: the arms converge.** At full scale they
+   are +0.0555 / +0.0601 / +0.0624 — a spread smaller than the declared 0.010
+   margin — and the paired "sequence context" component that the corrective
+   review put at +0.0497 falls to **+0.0046, CI [−0.0146, +0.0236]**. Review
+   correction 2 is superseded. The supportable claim is now that **a second
+   lexical similarity score is worth ~+0.055–0.062 held-out Task A recall@1**;
+   which one is unresolved, and every pairwise contrast between the three
+   contains zero. **Stop quoting +0.10 anywhere**, including the shipping-stage
+   suggestion, which becomes ~+0.06 and keeps all three of its unmet
+   preconditions.
+
+   Consequences for the remaining steps. Step 2's factorial must run at full
+   scale from the start — the unigram/bigram/character question it exists to
+   answer is precisely the one that collapsed here, and running it at dev scale
+   would re-measure the artifact. Step 3's Task B matrix inherits a known bias:
+   every Task B cell in this line was measured under the dev-fit/dev-index
+   universe, now shown to be the one most generous to n-gram arms, so those
+   numbers should be expected to shrink too. The frozen-CANINE increment has
+   the same problem in a sharper form — it was measured *over the char arm*, in
+   that same universe, and the char arm's edge over the cheapest classical arm
+   is what evaporated. Re-measuring it at full scale needs no training (frozen
+   embeddings for 7,490 fragments) and was deliberately left outside the
+   protocol.
+
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified
 evidence-bounded behavior. The empty middle is **not** an open item either:

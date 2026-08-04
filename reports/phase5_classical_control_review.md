@@ -1,6 +1,20 @@
 # Expert review and correction — Phase 5 classical-control line
 
 **Date: 2026-08-04. Status: corrective review adopted on the review branch.**
+
+> **STEP 1 OF §"Required sequence before P6" IS DONE, AND IT SUPERSEDES
+> CORRECTION 2 OF THIS REVIEW.** See
+> `reports/phase5_statistics_universe_results.md` (pre-registered `b83c96e`).
+> Refit over the declared labeled non-test universe with a full distractor
+> index, the bigram arm survives at **+0.0601, composition-cluster CI
+> [+0.0368, +0.0905]** — but the three arms converge to +0.0555 / +0.0601 /
+> +0.0624, a spread inside the declared 0.010 margin, and the **+0.0497
+> sequence-context component named in correction 2 falls to +0.0046, CI
+> [−0.0146, +0.0236]**. The unigram TF-IDF component survives and grows
+> slightly (+0.0555). Correction 2's *first* half stands; its second half does
+> not. This review's executive judgment should now read "about +0.055–0.062 for
+> adding a second lexical similarity score, with which score unresolved."
+> Corrections 1 and 3–6, and the required sequence itself, are unaffected.
 This file reviews `reports/phase5_classical_control_handoff.md` against its
 protocols, result artifacts, implementation, `AGENTS.md`, `EXPERT_OPINION.md`,
 `P5_CLOSEOUT.md`, and `PHASE5_SUCCESSOR_HANDOFF.md`.

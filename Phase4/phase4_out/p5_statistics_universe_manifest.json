@@ -1,0 +1,39 @@
+{
+  "task": "phase5_statistics_universe_and_distractor_control",
+  "evidence_policy": "discovery_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "cth",
+    "bm25_score",
+    "tfidf_cosine_score"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "cth",
+    "bm25_score",
+    "tfidf_cosine_score"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "MODEL_DERIVED",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.2,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.4,
+  "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "96973946770a4c58394333ef8c52912164980a5c88455670d6ab400eb0fd8bc0",
+  "git_commit": "b83c96ee8f4c5df5b194bb942a2b088265188dad",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260722,
+  "declared_statistics_universe": "U1 reproduces the historical dev-fit universe; U2/U3 fit over the declared labeled non-test universe (main_split in {train, dev}; bins excluded as main_split='discovery'; test never read)",
+  "created_utc": "2026-08-04T16:01:48.299103+00:00",
+  "language_scope": "LEGACY_LANGUAGE_BLIND_REPRODUCTION_ONLY",
+  "governance_warning": "Legacy language-blind rendering is held fixed so that the universe is the only variable that moves; it is prohibited for a promoted scorer."
+}

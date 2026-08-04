@@ -397,6 +397,27 @@ arbitrary lost span. Therefore:
    equivalence result. See `reports/phase5_unigram_tfidf_control_results.md`.
    Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
    `reports/phase5_classical_control_review.md`.
+   **DECLARED-UNIVERSE REFIT DONE 2026-08-04 — THE GAIN SURVIVES; THE
+   MECHANISM CLAIM DOES NOT** (`reports/phase5_statistics_universe_results.md`,
+   pre-registered `b83c96e`). Every arm above fit its statistics on the same
+   876 dev fragments that were also the candidate index. Refit over the
+   declared labeled non-test universe (7,490 fragments) with a full distractor
+   index (876 → 7,490 candidates, 53 → 490 compositions), the bigram arm reads
+   **+0.0601, composition-cluster CI [+0.0368, +0.0905]** — positive, but 41%
+   below the +0.1017 it was reported at. Both threats were real and split by
+   arm: the small fitting set flattered the n-gram arms about twice as much as
+   the unigram arm (−0.0162/−0.0185 vs −0.0081), and more distractors HELP the
+   unigram arm (+0.0116) while HURTING the bigram and char arms
+   (−0.0254/−0.0370). **The consequential result is convergence:** at full
+   scale the three arms are +0.0555 / +0.0601 / +0.0624, a spread inside the
+   declared 0.010 margin, and the review's +0.0497 "sequence context"
+   component falls to **+0.0046, CI [−0.0146, +0.0236]**. Correction 2 of the
+   review is therefore superseded: what is established is that **a second
+   lexical similarity score is worth ~+0.055–0.062**; WHICH one is unresolved.
+   Never quote +0.10 again. The frozen-CANINE increment was measured over the
+   char arm in the dev-fit/dev-index universe now known to be the most
+   generous one to that comparator; re-measuring it at full scale is feasible
+   and was not done.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

@@ -8,6 +8,18 @@
 > every memorised component; and the approximately +0.10 bigram-arm gain is
 > partly (+0.052) unigram TF-IDF scoring complementarity rather than context
 > alone.
+>
+> **§6.1 AND §6.2 ARE NOW ANSWERED, AND THE ~+0.10 IS ~+0.06.** See
+> `reports/phase5_statistics_universe_results.md` (pre-registered `b83c96e`).
+> Both self-doubts were well founded. The dev-fitted statistics flattered the
+> n-gram arms about twice as much as the unigram arm, and more distractors
+> **help** the unigram arm while **hurting** the n-gram arms — so §6.2's two
+> rival predictions are both correct, of different arms. Under the declared
+> universe with a full index the bigram arm survives at **+0.0601, cluster CI
+> [+0.0368, +0.0905]**, but the three arms converge to +0.0555 / +0.0601 /
+> +0.0624 and the sequence-context component collapses from +0.0497 to
+> **+0.0046**. §4's shipping-stage figure is therefore ~+0.06, not ~+0.10, and
+> §3's row "the bigram arm is worth ~+0.10" is retired.
 
 **Date: 2026-08-04. Branch merged to `master` at `a293cd4` + follow-ups.**
 **Everything here is `[PROBE — not for citation]`: dev split only, dev-only

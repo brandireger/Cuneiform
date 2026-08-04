@@ -397,28 +397,59 @@ arbitrary lost span. Therefore:
    tie-breaker (α=0.5); unfitted equal-weight rank fusion is 7-8 points worse
    than BM25 alone, and 32 queries regress.
    `reports/phase5_bm25_combiner_results.md`.
-   **Task A ONLY — it does not clearly transfer** (2026-08-04,
+   **Task A ONLY — the individual Task B strata are inconclusive** (2026-08-04,
    `reports/phase5_combiner_taskb_results.md`): on Task B, joins +0.0165
-   (CI includes 0) and duplicates +0.0197 (CI includes 0); only the pooled
-   cell is significant, which is the cell the three-way rule exists to stop
-   us reporting alone. Name the task in any claim.
-   **ANSWERED 2026-08-04 — CANINE IS REDUNDANT**
-   (`reports/phase5_char_ngram_control_results.md`). Contamination was
-   rejected first (relabeling retention 1.016), which showed the gain is
-   NOT knowledge of Hittite but generic character-sequence similarity — so a
-   classical control was run. **BM25 + char n-gram TF-IDF (4,6) beats it
-   2.55x on Task A (+0.1179 vs +0.0462) and 5-7x on every Task B cell, and
-   CANINE adds NOTHING on top (I = -0.0046, CI [-0.0162, +0.0058]).**
-   Recommendation: neither owed Gate-3 proposal should be written on
-   retrieval grounds — the pretrained models were measured against the right
-   control and lost.
-   **CORRECTED same day** (`reports/phase5_bigram_control_results.md`): the
-   win is **n-gram CONTEXT, not character granularity**. Sign bigrams —
-   unused in the repo since P3 — recover 86.3% of it (+0.1017), and char
-   granularity's increment is +0.0162, CI [-0.0012, +0.0324], includes zero.
-   They are near-substitutes. Measurements stand; the explanation did not.
-   Handoff + second-opinion packet:
-   `reports/phase5_classical_control_handoff.md`.
+   (CI includes 0) and duplicates +0.0197 (CI includes 0). The pooled
+   any-relation cell is positive and must be reported alongside, not as a
+   substitute for, the individual cells. Name the task and estimand in any
+   claim; do not treat non-significance as evidence of no transfer.
+   **HISTORICAL 2026-08-04, SUPERSEDED BY THE CORRECTIVE REVIEW BELOW:**
+   contamination was rejected first (relabeling retention 1.016) and a
+   classical control then measured **BM25 + char n-gram TF-IDF (4,6) at
+   +0.1179 on Task A with CANINE adding nothing on top (I = -0.0046, CI
+   [-0.0162, +0.0058])**, labeled `CANINE_REDUNDANT`
+   (`reports/phase5_char_ngram_control_results.md`). A same-day sign-bigram
+   control then found the win was **n-gram context, not character
+   granularity**: sign bigrams recover 86.3% (+0.1017) and char granularity's
+   increment is +0.0162, CI [-0.0012, +0.0324]
+   (`reports/phase5_bigram_control_results.md`).
+   **CORRECTIVE REVIEW ADOPTED 2026-08-04**
+   (`reports/phase5_classical_control_review.md`) — measurements stand, four
+   inferences narrow. CI-includes-zero is not equivalence, so
+   `CANINE_REDUNDANT` becomes **no measured frozen increment as large as
+   +0.010 over the char arm in this setup**, and char-over-bigram becomes
+   **INCONCLUSIVE** (its interval permits both zero and effects above the
+   margin). Retention 1.016 shows only that **correct Hittite passage
+   sequence is not necessary for aggregate gain** — it does not exclude a
+   memorised component or prove the signal non-linguistic. And the +0.1017 is
+   not all context: a post-hoc unigram TF-IDF control recovers +0.0520, with
+   the separately tuned bigram arm adding +0.0497 over it
+   (`reports/phase5_unigram_tfidf_control_results.md`). Nothing here closes
+   fine-tuned adaptation or non-retrieval tasks; declining a Gate-3 proposal
+   is a priority decision, not a scientific closure.
+   **DECLARED-UNIVERSE REFIT DONE 2026-08-04 — THE GAIN SURVIVES; THE
+   MECHANISM CLAIM DOES NOT** (`reports/phase5_statistics_universe_results.md`,
+   pre-registered `b83c96e`). Every arm above fit its statistics on the same
+   876 dev fragments that were also the candidate index. Refit over the
+   declared labeled non-test universe (7,490 fragments) with a full distractor
+   index (876 → 7,490 candidates, 53 → 490 compositions), the bigram arm reads
+   **+0.0601, composition-cluster CI [+0.0368, +0.0905]** — positive, but 41%
+   below the +0.1017 it was reported at. Both threats were real and split by
+   arm: the small fitting set flattered the n-gram arms about twice as much as
+   the unigram arm (−0.0162/−0.0185 vs −0.0081), and more distractors HELP the
+   unigram arm (+0.0116) while HURTING the bigram and char arms
+   (−0.0254/−0.0370). **The consequential result is convergence:** at full
+   scale the three arms are +0.0555 / +0.0601 / +0.0624, a spread inside the
+   declared 0.010 margin, and the review's +0.0497 "sequence context"
+   component falls to **+0.0046, CI [−0.0146, +0.0236]**. Correction 2 of the
+   review is therefore superseded: what is established is that **a second
+   lexical similarity score is worth ~+0.055–0.062**; WHICH one is unresolved.
+   Never quote +0.10 again. The frozen-CANINE increment was measured over the
+   char arm in the dev-fit/dev-index universe now known to be the most
+   generous one to that comparator; re-measuring it at full scale is feasible
+   and was not done.
+   Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
+   `reports/phase5_classical_control_review.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

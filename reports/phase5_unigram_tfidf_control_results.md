@@ -1,6 +1,18 @@
 # Unigram TF-IDF decomposition control — results
 
 **Status: COMPLETE POST-HOC REVIEWER AUDIT, 2026-08-04.**
+
+> **SUPERSEDED IN PART 2026-08-04 by the declared-universe refit**
+> (`reports/phase5_statistics_universe_results.md`). The measurements below
+> are reproduced exactly under that run's U1 universe. But they were fit on
+> the 876 dev fragments that were also the candidate index, and under the
+> declared non-test universe with a full distractor index the decomposition
+> changes shape: the **unigram component survives and grows (+0.0520 →
+> +0.0555)**, while the **+0.0497 bigram-over-unigram component falls to
+> +0.0046, CI [−0.0146, +0.0236]**. The "corrected conclusion" below — that
+> adding sign-sequence context improves it further — is not supported at full
+> scale. What survives is its first clause: adding a second lexical similarity
+> score improves BM25.
 **Not preregistered; dev-only; test never loaded; not for citation as a
 confirmatory result.** Protocol and disclosure:
 `reports/phase5_unigram_tfidf_control_protocol.md`.
