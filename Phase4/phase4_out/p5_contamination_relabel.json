@@ -1,0 +1,210 @@
+{
+  "protocol": "reports/phase5_contamination_protocol.md (PRE-REGISTERED 2026-08-04, committed before this run)",
+  "training_free": true,
+  "split": "dev only; test never loaded",
+  "original_delta_canine": 0.0462,
+  "permutation_seeds": [
+    20260804,
+    20260805,
+    20260806,
+    20260807,
+    20260808
+  ],
+  "bm25_reference_recall@1": 0.63121387283237,
+  "permutations": [
+    {
+      "seed": 20260804,
+      "relabeled_fraction": 0.9554341075642777,
+      "bm25_invariant": true,
+      "arms": {
+        "google/canine-s": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6786127167630058,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.047398843930635835,
+          "delta_ci95": [
+            0.024277456647398842,
+            0.07052023121387284
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 75,
+          "n_lost": 34
+        },
+        "xlm-roberta-base": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6658959537572254,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.03468208092485549,
+          "delta_ci95": [
+            0.013872832369942197,
+            0.056647398843930635
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 61,
+          "n_lost": 31
+        }
+      }
+    },
+    {
+      "seed": 20260805,
+      "relabeled_fraction": 0.9994659048565395,
+      "bm25_invariant": true,
+      "arms": {
+        "google/canine-s": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6786127167630058,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.047398843930635835,
+          "delta_ci95": [
+            0.024277456647398842,
+            0.07167630057803469
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 76,
+          "n_lost": 35
+        },
+        "xlm-roberta-base": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6520231213872832,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.020809248554913295,
+          "delta_ci95": [
+            0.0023121387283236996,
+            0.04046242774566474
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 48,
+          "n_lost": 30
+        }
+      }
+    },
+    {
+      "seed": 20260806,
+      "relabeled_fraction": 0.9996770587504658,
+      "bm25_invariant": true,
+      "arms": {
+        "google/canine-s": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6751445086705202,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.04393063583815029,
+          "delta_ci95": [
+            0.020809248554913295,
+            0.06820809248554913
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 77,
+          "n_lost": 39
+        },
+        "xlm-roberta-base": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6682080924855491,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.03699421965317919,
+          "delta_ci95": [
+            0.017341040462427744,
+            0.056647398843930635
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 54,
+          "n_lost": 22
+        }
+      }
+    },
+    {
+      "seed": 20260807,
+      "relabeled_fraction": 0.9761271891690473,
+      "bm25_invariant": true,
+      "arms": {
+        "google/canine-s": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6728323699421965,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.04161849710982659,
+          "delta_ci95": [
+            0.020809248554913295,
+            0.06242774566473988
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 67,
+          "n_lost": 31
+        },
+        "xlm-roberta-base": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6554913294797687,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.024277456647398842,
+          "delta_ci95": [
+            0.003468208092485549,
+            0.046271676300578005
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 56,
+          "n_lost": 35
+        }
+      }
+    },
+    {
+      "seed": 20260808,
+      "relabeled_fraction": 0.9989752825735934,
+      "bm25_invariant": true,
+      "arms": {
+        "google/canine-s": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6855491329479769,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.05433526011560694,
+          "delta_ci95": [
+            0.03236994219653179,
+            0.07745664739884393
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 76,
+          "n_lost": 29
+        },
+        "xlm-roberta-base": {
+          "n_paired": 865,
+          "combiner_recall@1": 0.6658959537572254,
+          "bm25_recall@1": 0.63121387283237,
+          "delta": 0.03468208092485549,
+          "delta_ci95": [
+            0.017341040462427744,
+            0.05433526011560694
+          ],
+          "ci_excludes_zero": true,
+          "n_gained": 51,
+          "n_lost": 21
+        }
+      }
+    }
+  ],
+  "pooled": {
+    "google/canine-s": {
+      "n_queries": 865,
+      "mean_delta_across_permutations": 0.0469364161849711,
+      "delta_ci95": [
+        0.026583815028901735,
+        0.06867052023121387
+      ],
+      "ci_excludes_zero": true,
+      "retention_vs_original": 1.015939744263444
+    },
+    "xlm-roberta-base": {
+      "n_queries": 865,
+      "mean_delta_across_permutations": 0.030289017341040465,
+      "delta_ci95": [
+        0.014098265895953758,
+        0.049023121387283236
+      ],
+      "ci_excludes_zero": true,
+      "retention_vs_original": 0.6556064359532568
+    }
+  },
+  "decision": {
+    "primary_candidate": "google/canine-s",
+    "retention": 1.015939744263444,
+    "ci_excludes_zero": true,
+    "verdict": "MEMORISATION_REJECTED",
+    "note": "The rule is one-sided by design: survival rejects memorisation, but collapse is ambiguous between contamination, legitimate transfer, and sensitivity to natural-language character statistics. See the protocol."
+  }
+}
