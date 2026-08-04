@@ -1,0 +1,10 @@
+# Quarantined dependencies for the withdrawn-rung screening study ONLY
+# (reports/phase5_ladder_screen_protocol.md, ratified 2026-08-04).
+#
+# Deliberately NOT merged into requirements.txt: these exist to run a
+# training-free diagnostic that may well conclude "none of these rungs is
+# worth pursuing", in which case the dependency should leave with it. Promote
+# to requirements.txt only if a rung is actually reinstated.
+transformers==4.57.1
+sentencepiece==0.2.1
+protobuf==7.35.1

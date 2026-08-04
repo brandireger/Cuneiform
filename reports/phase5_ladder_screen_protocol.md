@@ -1,6 +1,7 @@
 # Withdrawn-rung screening protocol — PRE-REGISTRATION
 
-**Status: AWAITING RATIFICATION (Ixca). Nothing has been run.**
+**Status: RATIFIED by Ixca 2026-08-04, as drafted. Execution in progress;
+results in `reports/phase5_ladder_screen_results.md`.**
 
 `reports/phase5_model_ladder_amendment.md` withdrew rungs 3 (ByT5), 4
 (CANINE) and 6 (XLM-R/mT5) from publication scope. Its evidence base is two

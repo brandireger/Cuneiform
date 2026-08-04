@@ -608,7 +608,8 @@ def run_retrieval(query_ids, query_tokens, candidate_ids, candidate_tokens,
 
 def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
                candidate_ids, candidate_tokens, candidate_parent_doc, candidate_cth,
-               method="bm25", ks=(1, 5, 10), family_map=None):
+               method="bm25", ks=(1, 5, 10), family_map=None,
+               precomputed_scores=None):
     """Zero-shot composition assignment, leave-one-out. A query's
     candidate pool excludes ALL fragments sharing its parent_doc (not
     just itself) -- otherwise a sibling join-member of the same
@@ -620,8 +621,29 @@ def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
     fragment belonging to that composition. Compositions with zero
     eligible same-CTH candidates after this exclusion (single-witness
     on test side) are counted and excluded from the metric, never
-    silently dropped."""
-    if method == "bm25":
+    silently dropped.
+
+    precomputed_scores (added 2026-08-04 for the ratified withdrawn-rung
+    screen, reports/phase5_ladder_screen_protocol.md): a dense
+    (n_queries, n_candidates) array of similarities, supplied when the
+    scorer is neither BM25 nor TF-IDF -- e.g. cosine similarity between
+    frozen pretrained embeddings. It replaces ONLY the score matrix; the
+    leave-one-out exclusions, best-fragment-per-composition ranking and
+    single-witness handling below are the same code path BM25 goes
+    through, so a screened candidate and the BM25 reference are compared
+    under identical protocol rather than under two implementations of
+    it. Reimplementing this ranking for a new scorer is exactly the
+    pattern that produced E2 (CLAUDE.md, 'Model-input encoding')."""
+    if precomputed_scores is not None:
+        scores = np.asarray(precomputed_scores)
+        expected = (len(query_ids), len(candidate_ids))
+        if scores.shape != expected:
+            raise ValueError(
+                f"run_task_a: precomputed_scores has shape {scores.shape}, "
+                f"expected {expected} (n_queries, n_candidates). A transposed "
+                "or misaligned matrix would silently score every query "
+                "against the wrong fragment.")
+    elif method == "bm25":
         scores, _ = bm25_score_matrix(candidate_tokens, query_tokens)
     else:
         scores, _ = tfidf_score_matrix(candidate_tokens, query_tokens)
@@ -636,7 +658,8 @@ def run_task_a(query_ids, query_tokens, query_parent_doc, query_cth,
     for qi, qid in enumerate(query_ids):
         q_parent = query_parent_doc[qi]
         q_cth = query_cth[qi]
-        row = scores[qi].toarray().ravel()
+        row = scores[qi]
+        row = row.toarray().ravel() if hasattr(row, "toarray") else np.asarray(row).ravel()
         if family_map is not None:
             q_family = family_map.get(q_parent, q_parent)
             mask = cand_family_arr != q_family

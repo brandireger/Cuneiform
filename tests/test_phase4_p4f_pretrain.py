@@ -291,3 +291,37 @@ class TestScopeSeparation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestRunTaskAPrecomputedScores(unittest.TestCase):
+    """The withdrawn-rung screen (reports/phase5_ladder_screen_protocol.md)
+    scores frozen-embedding candidates through run_task_a's precomputed path
+    so that the candidate and the BM25 reference go through ONE ranking
+    implementation. If that path ever diverges from the BM25 path on the same
+    scores, the screen stops comparing like with like."""
+
+    def setUp(self):
+        import eval_harness as eh
+        self.eh = eh
+        self.ids = ["a", "b", "c", "d"]
+        self.toks = [["x", "y"], ["x", "z"], ["p", "q"], ["p", "r"]]
+        self.parent = ["d1", "d2", "d3", "d4"]
+        self.cth = ["C1", "C1", "C2", "C2"]
+
+    def _args(self):
+        return (self.ids, self.toks, self.parent, self.cth,
+                self.ids, self.toks, self.parent, self.cth)
+
+    def test_precomputed_bm25_matrix_reproduces_the_bm25_path(self):
+        pq1, a1 = self.eh.run_task_a(*self._args(), method="bm25")
+        matrix, _ = self.eh.bm25_score_matrix(self.toks, self.toks)
+        pq2, a2 = self.eh.run_task_a(*self._args(),
+                                     precomputed_scores=matrix.toarray())
+        self.assertEqual(pq1, pq2)
+        self.assertEqual(a1, a2)
+
+    def test_wrong_shape_fails_closed(self):
+        import numpy as np
+        with self.assertRaises(ValueError):
+            self.eh.run_task_a(*self._args(),
+                               precomputed_scores=np.zeros((3, 4)))
