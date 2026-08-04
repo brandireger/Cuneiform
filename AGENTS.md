@@ -457,6 +457,25 @@ arbitrary lost span. Therefore:
    language-unrestricted despite being described as Hittite fragment
    retrieval** — a task-definition gap, not contamination; multilingual
    material is legitimate evidence in this corpus.
+   **TASK B TRANSFER MEASURED 2026-08-04**
+   (`reports/phase5_taskb_transfer_results.md`). Under frozen, out-of-fold
+   weights, **all three Task B cells reject H₀ under Holm–Bonferroni** —
+   joins +0.1111, pooled +0.0875, duplicates +0.0627 — the first time in this
+   line that they do, and it replicates under the unrestricted scope.
+   **The qualification is mandatory whenever the joins number is quoted:** on
+   overlap-exclusive Tier C content, absolute recall@1 falls 0.8617 → **0.1569**
+   and the channel contributes **−0.0238, CI [−0.0769, 0.0000]**; by
+   shared-line count the gain is +0.1600 (10+ lines) falling to **+0.0294, CI
+   [−0.0645, +0.1481]** at zero shared lines. **The channel helps duplicate
+   retrieval, and helps joins in proportion to text the fragments already
+   share; on no-overlap joins — the case the fragment-as-matrix model exists to
+   solve — there is no evidence it helps.** Bin-parent physical joins carry
+   most of the join evidence (54 → 252 independent join components) and the
+   effect survives there. Two `join_pairs.jsonl` rows assert a fragment joins
+   itself and are excluded and counted. Geometry must NOT be reported as an
+   independent stratum (perfectly confounded with tier on dev), and all 171 dev
+   join queries are Hattusa, so nothing here speaks to provincial
+   generalization.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

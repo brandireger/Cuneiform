@@ -1,0 +1,44 @@
+{
+  "task": "phase5_taskb_transfer_and_language_scope",
+  "evidence_policy": "discovery_assisted",
+  "features_requested": [
+    "token",
+    "damage_state",
+    "cth",
+    "bm25_score",
+    "tfidf_cosine_score",
+    "line_lang"
+  ],
+  "features_observed": [
+    "token",
+    "damage_state",
+    "cth",
+    "bm25_score",
+    "tfidf_cosine_score",
+    "line_lang"
+  ],
+  "evidence_classes_used": [
+    "CATALOG_METADATA",
+    "EDITORIAL_TRANSCRIPTION",
+    "MODEL_DERIVED",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.3333333333333333,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.3333333333333333,
+  "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "95a89cd049f09b8d9a9f03a2f84515615e90e3b97693f58da0ae3702221651c3",
+  "git_commit": "cb755f42dab503e127d2973b08424408986fb0e1",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260722,
+  "declared_statistics_universe": "labeled non-test universe (train+dev); vectorizers fit on the index side; protected test never loaded",
+  "created_utc": "2026-08-04T19:58:26.263834+00:00",
+  "language_dataset_sha256": "d891168291dce3ca8997426b7601d1a1c15a8d712270394b760250b48c354ee2",
+  "scopes_run": [
+    "HITTITE_ONLY",
+    "ALL_LANGUAGES_UNCONDITIONED"
+  ]
+}

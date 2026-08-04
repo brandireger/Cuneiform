@@ -158,6 +158,15 @@ class TestInference(unittest.TestCase):
         comps = tb.join_components(meta)
         self.assertNotEqual(comps["a"], comps["x"])
 
+    def test_join_components_survive_a_degenerate_pair(self):
+        """Two corpus rows give both members the same siglum, so the pair
+        frozenset collapses to one element. That crashed the first run. The
+        real fix drops such pairs upstream, but the graph builder must not be
+        the thing that explodes if one ever reaches it."""
+        meta = {frozenset(("a", "b")): {}, frozenset(("solo",)): {}}
+        comps = tb.join_components(meta)
+        self.assertEqual(comps["a"], comps["b"])
+
 
 @unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
 class TestScopeSelection(unittest.TestCase):

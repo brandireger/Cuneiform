@@ -700,11 +700,56 @@ never read `cu`, Gate 3 closed. Additionally:
    the last. These are dev-side characterization results, not independent
    confirmation.
 
-   Step 3 (Task B and join-tier stratification) is the next item, ratified by
-   Ixca 2026-08-04 with a detailed specification — see
-   `reports/phase5_taskb_transfer_protocol.md`. It must compare language scopes
-   against each other rather than adopt one, since scope choice is now known to
-   move absolute accuracy.
+   **UPDATE 2026-08-04, ninth and current — STEP 3 DONE for the two fixed
+   scopes** (`reports/phase5_taskb_transfer_results.md`; protocol
+   pre-registered `318e153`, amended and authorized `3f334b9`).
+
+   **All three Task B cells reject H₀ under Holm–Bonferroni**, the first time
+   in this line that they do: joins **+0.1111** CI [+0.0625, +0.1688] p=0.001,
+   pooled **+0.0875** CI [+0.0591, +0.1277] p=0.001, duplicates **+0.0627** CI
+   [+0.0370, +0.1131] p=0.013. Frozen CANINE reached none of them; the step-2
+   results were Task A only. It replicates under the unrestricted control, so
+   it is not an artifact of the language scope.
+
+   **Read the qualification before quoting the joins number.** Ixca's Tier C
+   amendment is what makes it visible. On overlap-exclusive Tier C content,
+   absolute recall@1 falls from 0.8617 to **0.1569** and the bigram channel
+   contributes **−0.0238, CI [−0.0769, 0.0000], p=0.51**. The shared-line
+   stratum says it continuously: 0 shared lines **+0.0294 CI [−0.0645,
+   +0.1481]** (−0.0278 under the control), 1–2 +0.1163, 3–9 +0.1304, 10+
+   +0.1600. Indirect `(+)` joins likewise show nothing. **The channel transfers
+   to duplicate retrieval, and to joins in proportion to text the two fragments
+   already share; on joins with no shared lines — the case the matrix model
+   exists to solve — there is no evidence it helps.**
+
+   **Language scope, on the common population** (the only comparable basis,
+   since the scopes serve 766 vs 865 queries): the unrestricted scope is equal
+   or marginally BETTER in absolute recall in all three cells (joins 0.6686 vs
+   0.6667, duplicates 0.4597 vs 0.4543, pooled 0.6091 vs 0.6031) while
+   `HITTITE_ONLY` shows the larger increment — the step-2 pattern again, the
+   reference weakening faster than the system. Cost of the restriction: **97
+   queries, 768 candidates, 2,832 positive relations**. Still an
+   evidence-policy and coverage choice, not an accuracy gain.
+
+   **The bin exception is where the join evidence actually is.** Admitting
+   bin-parent physical joins takes the joins cell from 171 queries / 54
+   components to **675 / 252** with Δ +0.1274 CI [+0.0969, +0.1595] — four
+   times the independent join evidence, effect intact. C6 confirmed all three
+   prohibitions on every run.
+
+   **Corpus data-quality finding to carry to the TLHdig team:** two
+   `join_pairs.jsonl` rows give both members the same siglum, asserting a
+   fragment joins itself (`KUB 28.89+`, `KBo 22.130a+`; both bin-parent and
+   discovery-side). Excluded and counted — a self-positive is unretrievable by
+   construction, so keeping it manufactures guaranteed misses.
+
+   **Owed and not run:** the two query-relative scopes are implemented but
+   deferred to a second pass, and the **cross-task transfer arm** (Task-A
+   frozen weights applied to Task B, protocol §2) was never implemented.
+   **Do not report geometry as an independent stratum** — in this dev slice
+   horizontal ≡ tier C and vertical ≡ tiers A+B, perfectly confounded. **The
+   site stratum is empty of contrast**: all 171 dev join queries are Hattusa,
+   so this run says nothing about Hattusa→provincial generalization.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

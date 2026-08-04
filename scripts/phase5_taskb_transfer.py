@@ -103,10 +103,15 @@ def load_universe(scope_names, dev_query_languages=None):
             if lidx is None or tok.startswith("<"):
                 continue
             by_line.setdefault(lidx, []).append(tok)
+        # Damage proxy: the share of the editor's full reading that is NOT
+        # epigraphically attested. Derived from the corpus renderings the
+        # harness already carries, so it needs no damage oracle of its own.
+        n_full = len(json.loads(row.sign_full)) if row.sign_full else 0
+        damage = (1.0 - (row.n_attested_signs / n_full)) if n_full else None
         out.append({
             "fragment_id": row.fragment_id, "parent_doc": row.parent_doc,
             "cth": int(row.cth), "main_split": row.main_split,
-            "is_bin": bool(row.is_bin),
+            "is_bin": bool(row.is_bin), "damage_rate": damage,
             # (cth // 100) * 100 -- a coarse numeric CTH catalogue band, NOT a
             # philological genre and not a "century": CTH numbers are
             # catalogue positions. `site` is not a column here; it comes from
@@ -198,6 +203,23 @@ def scorable(rows, scope_name):
 
 # -------------------------------------------------------------- §5 positives
 
+def raw_join_fields():
+    """fragment-id pair -> the raw join_pairs.jsonl row.
+
+    `eval_harness.build_join_positives` keeps tier/join_type/parent_is_bin but
+    DROPS `n_shared_lines` and `geometry`. Stratifying on shared-line count
+    without this silently reports a constant -- which is exactly what the first
+    run did, marking every pair `no_overlap=True`."""
+    out = {}
+    with open(Path("Phase1_pipeline/p2_out/join_pairs.jsonl"), encoding="utf-8") as f:
+        for line in f:
+            p = json.loads(line)
+            a = f"{p['parent_doc']}::{p['member_a']['siglum']}"
+            b = f"{p['parent_doc']}::{p['member_b']['siglum']}"
+            out[frozenset((a, b))] = p
+    return out
+
+
 def build_positives(rows, all_frags):
     """joins / duplicates / pooled over `rows`, plus join metadata per pair.
 
@@ -209,8 +231,20 @@ def build_positives(rows, all_frags):
                      for p in join_pairs}
 
     joins, join_meta = {}, {}
+    degenerate = []
     for p in join_pairs:
         a, b = p["fragment_id_a"], p["fragment_id_b"]
+        if a == b:
+            # Corpus data-quality artifact, not a join: two rows in
+            # join_pairs.jsonl give both members the SAME siglum, so the pair
+            # asserts that a fragment joins itself (KUB 28.89+::1,
+            # KBo 22.130a+::1 -- both bin-parent, both discovery-side, which
+            # is why they surface only under the §5.1 exception). Excluded and
+            # counted, never silently kept: `run_retrieval` excludes the query
+            # id from its own ranking, so a self-positive is unretrievable by
+            # construction and would manufacture a guaranteed miss.
+            degenerate.append(a)
+            continue
         if a in ids and b in ids:
             joins.setdefault(a, set()).add(b)
             joins.setdefault(b, set()).add(a)
@@ -226,7 +260,8 @@ def build_positives(rows, all_frags):
     pooled = {q: set(v) for q, v in joins.items()}
     for q, v in dups.items():
         pooled.setdefault(q, set()).update(v)
-    return {"joins": joins, "duplicates": dups, "pooled": pooled}, join_meta
+    return ({"joins": joins, "duplicates": dups, "pooled": pooled},
+            join_meta, sorted(set(degenerate)))
 
 
 def join_components(join_meta):
@@ -247,8 +282,14 @@ def join_components(join_meta):
             parent[ra] = rb
 
     for pair in join_meta:
-        a, b = tuple(pair)
-        union(a, b)
+        members = tuple(pair)
+        if len(members) != 2:
+            # A degenerate self-pair collapses under frozenset. These are
+            # dropped in build_positives; this guard exists so the graph
+            # builder cannot be what fails if one ever reaches it.
+            find(members[0])
+            continue
+        union(*members)
     return {f: find(f) for f in parent}
 
 
@@ -567,15 +608,18 @@ def tier_c_exclusive_segments(rows_by_id, join_meta, reconstructed, scope_name):
 
 # --------------------------------------------------------------------- main
 
-def stratify_joins(join_meta, frag_by_id, site_of):
+def stratify_joins(join_meta, frag_by_id, site_of, raw_fields):
     """query_id -> {stratum_name: value}, from the join pair it belongs to."""
     out = defaultdict(dict)
     for pair, p in join_meta.items():
+        raw = raw_fields.get(pair, {})
         for fid in pair:
             row = frag_by_id.get(fid)
             if row is None:
                 continue
-            n_shared = p.get("n_shared_lines")
+            # n_shared_lines lives only on the raw row (see raw_join_fields).
+            n_shared = raw.get("n_shared_lines")
+            dmg = row.get("damage_rate")
             out[fid] = {
                 "join_type": p.get("join_type") or "unspecified",
                 "tier": p["tier"],
@@ -584,12 +628,16 @@ def stratify_joins(join_meta, frag_by_id, site_of):
                                      "1-2" if n_shared <= 2 else
                                      "3-9" if n_shared <= 9 else "10+"),
                 "parent_is_bin": bool(p["parent_is_bin"]),
+                "geometry": raw.get("geometry") or "unspecified",
                 "language": row["language"],
                 "genre_band": row["genre_band"],
                 "site": site_of.get(row["parent_doc"], "unknown"),
                 "length_band": ("short" if n_content(row, BASE_SCOPE) < 30 else
                                 "medium" if n_content(row, BASE_SCOPE) < 120
                                 else "long"),
+                "damage_band": ("unknown" if dmg is None else
+                                "low" if dmg < 0.15 else
+                                "medium" if dmg < 0.40 else "high"),
             }
     return out
 
@@ -657,7 +705,10 @@ def main():
     print(f"  labeled index {len(labeled)}, dev queries {len(dev_rows)}, "
           f"query languages {dev_langs}")
 
-    positives, join_meta = build_positives(dev_rows, frags)
+    positives, join_meta, degenerate = build_positives(dev_rows, frags)
+    if degenerate:
+        print(f"  corpus data quality: {len(degenerate)} degenerate self-join "
+              f"pair(s) excluded: {degenerate}")
     family_map = eh.build_family_map(frags)
     _fold_of, fold_loads = _comb.assign_folds(dev_rows)
 
@@ -691,6 +742,17 @@ def main():
         raise SystemExit("C6 FAILED -- the bin exception leaked; run is void.")
 
     reconstructed = eh.load_reconstructed()
+    raw_fields = raw_join_fields()
+
+    # §4 common population: the queries EVERY run scope can serve. Cross-scope
+    # absolute numbers are otherwise on different query sets and are not
+    # comparable -- the sensitivity analysis exists to make that visible.
+    common_ids = None
+    for name in scope_names:
+        ids = {r["fragment_id"] for r in scorable(dev_rows, name)}
+        common_ids = ids if common_ids is None else (common_ids & ids)
+    common_ids = common_ids or set()
+    print(f"  common population across {scope_names}: {len(common_ids)} queries")
 
     result = {
         "protocol": f"{PROTOCOL} (PRE-REGISTERED and amended 2026-08-04, "
@@ -706,6 +768,14 @@ def main():
             "n_bin_exception_fragments": len(bin_ids),
             "n_join_pairs_dev": len(join_meta),
             "n_bin_parent_join_pairs": len(bin_join_pairs),
+        },
+        "corpus_data_quality": {
+            "degenerate_self_join_pairs_excluded": degenerate,
+            "note": ("join_pairs.jsonl rows whose two members carry the SAME "
+                     "siglum, asserting that a fragment joins itself. Excluded "
+                     "from positives and counted. Both known cases are "
+                     "bin-parent and discovery-side, so they reach an "
+                     "evaluation only through the §5.1 exception."),
         },
         "fold_query_loads": fold_loads,
         "refusals_by_rendering": refusals,
@@ -725,7 +795,7 @@ def main():
         # counted, not scored as failure.
         s_index = scorable(labeled, scope_name)
         s_queries = scorable(dev_rows, scope_name)
-        s_pos, s_meta = build_positives(s_queries, frags)
+        s_pos, s_meta, _deg = build_positives(s_queries, frags)
         base_rel = sum(len(v) for v in positives["pooled"].values()) // 2
         scope_rel = sum(len(v) for v in s_pos["pooled"].values()) // 2
         coverage = {
@@ -798,7 +868,7 @@ def main():
             "cells": {}, "strata": {},
         }
 
-        strata = stratify_joins(s_meta, by_id, site_of)
+        strata = stratify_joins(s_meta, by_id, site_of, raw_fields)
         for cell in PRIMARY_CELLS:
             clusters = s_clusters[cell]
             res, cu, cub = evaluate_cell(
@@ -815,11 +885,27 @@ def main():
             if cell == "joins":
                 block["strata"]["joins"] = descriptive_strata(
                     cu, cub, strata, clusters)
+            # §4 sensitivity: same frozen system, restricted to the queries
+            # every scope can serve, so scopes become comparable.
+            cu_c = {q: v for q, v in cu.items() if q in common_ids}
+            cub_c = {q: v for q, v in cub.items() if q in common_ids}
+            if cu_c:
+                by_cl = defaultdict(list)
+                for q in cu_c:
+                    by_cl[clusters.get(q, q)].append(float(cub_c[q] - cu_c[q]))
+                d_c, ci_c = cluster_bootstrap(by_cl)
+                block.setdefault("common_population", {})[cell] = {
+                    "n_queries": len(cu_c), "n_clusters": len(by_cl),
+                    "recall@1_unigram": float(np.mean(list(cu_c.values()))),
+                    "recall@1_unigram_bigram": float(np.mean(list(cub_c.values()))),
+                    "delta_recall@1": d_c, "cluster_ci95": ci_c,
+                }
 
         # --- §5.1 joins-only, second row: index augmented with bin joins ---
         aug_index = s_index + scorable(bin_rows, scope_name)
         aug_queries = s_queries + scorable(bin_rows, scope_name)
-        aug_pos, aug_meta = build_positives(aug_queries, frags)
+        aug_pos, aug_meta, aug_deg = build_positives(aug_queries, frags)
+        block["degenerate_self_join_pairs_excluded"] = aug_deg
         aug_clusters = join_components(aug_meta)
         bm25_a = scope_matrix(aug_index, aug_queries, scope_name, "bm25", lang_groups)
         zb_a = _comb.znorm_rows(bm25_a)
