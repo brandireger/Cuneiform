@@ -575,12 +575,31 @@ def top_k_ranking(scores_row, candidate_ids, exclude_id, family_map=None,
 
 def run_retrieval(query_ids, query_tokens, candidate_ids, candidate_tokens,
                    positives_by_query, method="bm25", ks=(1, 5, 10, 100),
-                   family_map=None):
+                   family_map=None, precomputed_scores=None):
     """Core Task B runner for one (scorer, index_variant, rendering)
     combination. positives_by_query: dict query_id -> set(candidate_id).
     Returns (per_query_rows, aggregate_metrics). Pass family_map (from
-    build_family_map) to apply the H1 same-family exclusion."""
-    if method == "bm25":
+    build_family_map) to apply the H1 same-family exclusion.
+
+    precomputed_scores (added 2026-08-04, mirroring the same parameter on
+    run_task_a): a dense (n_queries, n_candidates) array of similarities,
+    supplied when the scorer is neither BM25 nor TF-IDF -- e.g. a BM25 +
+    frozen-embedding combiner. It replaces ONLY the score matrix; the
+    self-exclusion, H1 same-family exclusion, ranking and metric code below
+    stay the code path BM25 goes through, so a combiner and its baseline are
+    compared under identical protocol rather than under two implementations
+    of it. Reimplementing this ranking for a new scorer is exactly the
+    pattern that produced E2 (AGENTS.md, 'Model-input encoding')."""
+    if precomputed_scores is not None:
+        scores = np.asarray(precomputed_scores)
+        expected = (len(query_ids), len(candidate_ids))
+        if scores.shape != expected:
+            raise ValueError(
+                f"run_retrieval: precomputed_scores has shape {scores.shape}, "
+                f"expected {expected} (n_queries, n_candidates). A transposed "
+                "or misaligned matrix would silently score every query "
+                "against the wrong fragment.")
+    elif method == "bm25":
         scores, _ = bm25_score_matrix(candidate_tokens, query_tokens)
     else:
         scores, _ = tfidf_score_matrix(candidate_tokens, query_tokens)

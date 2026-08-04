@@ -325,3 +325,33 @@ class TestRunTaskAPrecomputedScores(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.eh.run_task_a(*self._args(),
                                precomputed_scores=np.zeros((3, 4)))
+
+
+class TestRunRetrievalPrecomputedScores(unittest.TestCase):
+    """Same guarantee for Task B (reports/phase5_combiner_taskb_protocol.md).
+    run_retrieval carries self-exclusion and the H1 same-family exclusion, so
+    a combiner must reach those through the same code BM25 does rather than
+    through a second ranking implementation."""
+
+    def setUp(self):
+        import eval_harness as eh
+        self.eh = eh
+        self.ids = ["a", "b", "c", "d"]
+        self.toks = [["x", "y"], ["x", "z"], ["p", "q"], ["p", "r"]]
+        self.pos = {"a": {"b"}, "b": {"a"}, "c": {"d"}, "d": {"c"}}
+
+    def test_precomputed_bm25_matrix_reproduces_the_bm25_path(self):
+        pq1, a1 = self.eh.run_retrieval(self.ids, self.toks, self.ids,
+                                        self.toks, self.pos, method="bm25")
+        matrix, _ = self.eh.bm25_score_matrix(self.toks, self.toks)
+        pq2, a2 = self.eh.run_retrieval(self.ids, self.toks, self.ids,
+                                        self.toks, self.pos,
+                                        precomputed_scores=matrix.toarray())
+        self.assertEqual(pq1, pq2)
+        self.assertEqual(a1, a2)
+
+    def test_wrong_shape_fails_closed(self):
+        import numpy as np
+        with self.assertRaises(ValueError):
+            self.eh.run_retrieval(self.ids, self.toks, self.ids, self.toks,
+                                  self.pos, precomputed_scores=np.zeros((3, 9)))
