@@ -4,6 +4,14 @@
 **Every number here is `[PROBE — not for citation]` per Gate 4, regardless of
 outcome.**
 
+> **SUPERSEDED 2026-08-04 — the corrected rerun is
+> `reports/phase4_p4f_stage1_matched.md`; read it before citing anything
+> here.** Both arms below trained on HALF D14's examples. At matched config
+> the conditioning effect drops from +0.0282 to **+0.0073 with a CI that
+> includes zero**, and the verdict is still REJECTED but on the OTHER clause
+> (margin not met; arm B now clears D14). The numbers below remain valid as a
+> half-budget measurement and are retained as a training-budget ablation.
+>
 > **SUPERSEDED IN ITS EXPLANATION, 2026-08-03 — read
 > `reports/phase4_p4f_baseline_diagnostic.md` before citing anything below
 > about D14.** The follow-up investigation found the cause of arm A's

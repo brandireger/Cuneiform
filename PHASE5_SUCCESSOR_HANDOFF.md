@@ -409,8 +409,8 @@ never read `cu`, Gate 3 closed. Additionally:
    and shared-versus-per-reviewer logs are real follow-up decisions but do not
    authorize automatic truth promotion.
 
-7. ~~**Gate 3 proposal.**~~ **RATIFIED 2026-08-02; Stage 1 RUN AND REJECTED
-   2026-08-03** (`reports/phase4_p4f_gate3_proposal.md`,
+7. ~~**Gate 3 proposal.**~~ **RATIFIED 2026-08-02; Stage 1 RUN, REJECTED, AND
+   RERUN AFTER A BASELINE DEFECT -- REJECTED AGAIN 2026-08-04** (`reports/phase4_p4f_gate3_proposal.md`,
    `reports/phase4_p4f_stage1.md`).
 
    Ratification authorized Stage 0 and the two named runs only. Both reached
@@ -429,6 +429,17 @@ never read `cu`, Gate 3 closed. Additionally:
    refuses 7,610 lines D14 trained on (2.1%), a different seed, and a D14
    reference number computed on a different fragment population. The rule was
    deliberately not relitigated after the data came in.
+
+   **CORRECTED RERUN, 2026-08-04** (`reports/phase4_p4f_stage1_matched.md`).
+   Both arms retrained at D14's real config. `in_doc`: arm A 0.7521, arm B
+   0.7594, delta **+0.0073, CI [-0.0063, +0.0196] -- includes zero**. Verdict
+   still REJECTED, but the clauses swapped: margin NOT met, D14 clause now
+   PASSED. **At a correct training budget the conditioning effect cannot be
+   distinguished from zero.** Matched arm A (0.7521) reproduces D14 (0.7552),
+   confirming the batch-size diagnosis on the falsifier's own metric and
+   retiring seed as an explanation for the original gap. Stage 2 is now
+   harder to justify, not easier; a future proposal should lead with seed
+   variance.
 
 8. **Later product/evaluation gates.** The real-gap pipeline and Takšan
    playground are not yet one production expert mode — this is where a cover

@@ -9,6 +9,21 @@ none. This report tests them. Two are eliminated outright, the third is
 reduced to 0.81%, and the actual cause — unlisted, because it was not
 suspected — is confirmed from D14's own checkpoint.
 
+## Outcome (2026-08-04)
+
+The corrected rerun ran and is reported in
+`reports/phase4_p4f_stage1_matched.md`. It confirms this diagnosis on the
+falsifier's own metric: **matched arm A scores `in_doc` 0.7521 against D14's
+0.7552** (gap 0.003, where the batch-16 arm was 0.057 below). Seed — the only
+candidate this report left untested — is therefore also ruled out as an
+explanation for the original gap, since matched arm A reproduces D14 while
+using a different seed from the first attempt.
+
+The scientific consequence was not the one expected: at matched budget the
+conditioning effect falls to **+0.0073 with a 95% CI of [−0.0063, +0.0196],
+which includes zero.** The hypothesis is still REJECTED, but on the margin
+clause rather than the D14 clause.
+
 ## The finding
 
 **Arm A and arm B trained on exactly half of D14's examples.**

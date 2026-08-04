@@ -842,6 +842,34 @@ cached rows. The historical cache remains immutable.
   scope. Both arms admit under `MULTILINGUAL_CONDITIONED`; only conditioning
   differs.
 
+
+- **P4-F Stage 1 CORRECTED RERUN DONE (2026-08-04) -- STILL REJECTED, ON THE
+  OTHER CLAUSE** (`reports/phase4_p4f_stage1_matched.md`). The first attempt
+  trained both arms at half D14's batch size
+  (`reports/phase4_p4f_baseline_diagnostic.md`); both were retrained at D14's
+  actual config (32/32/warmup 2000, seed 20260722), authorized as covered by
+  the existing Gate 3 ratification. Falsifier, eval script, example set and
+  seed all UNCHANGED, so the numbers are directly comparable.
+  `in_doc` AUC: arm A **0.7521**, arm B **0.7594**, delta **+0.0073**, 95% CI
+  **[-0.0063, +0.0196] -- INCLUDES ZERO**. The clauses swapped: the margin is
+  now NOT met while arm B now DOES clear D14's 0.7461. Both clauses have now
+  been tested under conditions where they could pass; neither does.
+  **Headline: at a correct training budget the conditioning effect is not
+  distinguishable from zero.** The +0.0282 measured at half budget did not
+  survive proper training, and the per-tier picture agrees -- arm B is now
+  BELOW arm A on cross_genre (0.8996 vs 0.9033), which is what noise looks
+  like. **NOT claimed:** that the two deltas differ significantly; their CIs
+  overlap, so "conditioning helps only when under-trained" is a hypothesis
+  consistent with two runs, not a result.
+  The batch-size diagnosis is confirmed on the falsifier's own metric:
+  **matched arm A 0.7521 vs D14 0.7552** (gap 0.003, against the batch-16
+  arm's 0.057), which also retires seed as an explanation for the original
+  gap. **Stage 2 remains NOT authorized and is now HARDER to justify** -- the
+  first rejection could be blamed on a defective baseline; this one cannot.
+  Any future proposal should lead with seed variance: one seed per arm is
+  still the binding limitation, and an effect this small cannot be settled by
+  a single draw. The batch-16 pair is RETAINED as a training-budget ablation.
+
 ## Phase sequence
 
 - **P1 Inventory** (`01_inventory.py`) — schema census; where CTH,
