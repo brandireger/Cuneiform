@@ -19,14 +19,19 @@
 > **STEP 2 IS ALSO DONE, AND IT VINDICATES THIS REVIEW TWICE**
 > (`reports/phase5_factorial_control_results.md`, pre-registered `318e153`).
 > Correction 2's demand for a factorial **with a bigram-only cell** was
-> load-bearing: separating bigrams into their own fitted channel raises their
-> increment over BM25+unigram from +0.0046 to **+0.0431**, and to **+0.0940,
-> cluster CI [+0.0641, +0.1497]** under boundary-preserving, word-aware
-> rendering. The step-1 note above therefore stands as a description of merged
-> arms only — sequence context is NOT worth ~+0.005. Correction 4's objection
-> to cross-line n-grams is confirmed with a number: forbidding them is worth
-> +0.0287. And its scepticism about the partial-sign story is confirmed
-> outright — the within-sign character channel contributes exactly 0.0000.
+> load-bearing: on the factorial population the merged contrast is
+> **+0.00261, cluster CI [−0.0192, +0.0192]** while a separately weighted
+> bigram channel over the same reference is **+0.0431, CI [+0.0096, +0.0821]**,
+> reaching **+0.0940** under boundary-preserving, word-aware rendering. The
+> step-1 note above therefore stands as a description of merged arms only.
+> Correction 4's objection to cross-line n-grams is confirmed with a number:
+> forbidding them is worth +0.0287, and it is a genuine accuracy gain. Its
+> scepticism about the partial-sign reading is confirmed for the operationalization
+> available to us — the within-sign **Latin-transliteration** channel
+> contributes exactly 0.0000; physical partial-glyph evidence is untested and
+> unencoded. **One caution the step-2 report adds:** applying `HITTITE_ONLY`
+> raises the increment but LOWERS absolute recall@1 by −0.0131, so language
+> restriction is an evidence-policy and coverage choice, not an accuracy gain.
 This file reviews `reports/phase5_classical_control_handoff.md` against its
 protocols, result artifacts, implementation, `AGENTS.md`, `EXPERT_OPINION.md`,
 `P5_CLOSEOUT.md`, and `PHASE5_SUCCESSOR_HANDOFF.md`.

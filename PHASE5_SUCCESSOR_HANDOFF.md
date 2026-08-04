@@ -633,46 +633,78 @@ never read `cu`, Gate 3 closed. Additionally:
    `unigram+bigram TF-IDF` puts two feature families into ONE L2-normalized
    vector, and the unigram mass that `BM25 + unigram` already carries dominates
    it. Step 1 therefore measured "what does adding bigram mass to an existing
-   unigram vector buy" (+0.0046) and reported it as the value of sequence
-   context. Give bigrams **their own fitted weight** and the same comparison,
-   same universe, same rendering, same population, reads **+0.0431** — rising
-   to **+0.0718** once line boundaries are respected and **+0.0940, cluster CI
-   [+0.0641, +0.1497]** under `HITTITE_ONLY`. Had the line stopped at step 1,
-   the project would have dropped sign-sequence context as worth ~+0.005. It
-   is worth roughly twenty times that. **The review was right to demand a
-   factorial with a bigram-only cell.**
+   unigram vector buy" and reported it as the value of sequence context. On the
+   factorial population that merged contrast reads **+0.00261, cluster CI
+   [−0.0192, +0.0192]** — indistinguishable from zero — while a separately
+   weighted bigram channel over the same reference reads **+0.0431, CI
+   [+0.0096, +0.0821]**, rising to **+0.0718** once line boundaries are
+   respected and **+0.0940, CI [+0.0641, +0.1497]** under `HITTITE_ONLY`. Two
+   parameterizations of one feature family, two different answers. **Do not
+   express this as a ratio** — the denominator's interval spans zero, so any
+   multiplier is unstable. **The review was right to demand a factorial with a
+   bigram-only cell**; had the line stopped at step 1 the project would have
+   concluded sign-sequence context contributes nothing measurable.
 
    Three results that now stand on their own:
 
    - **Review correction 4 is vindicated with a number.** Cross-line bigrams —
      the fabricated adjacencies the flat loader permits — were not neutral
      noise. Forbidding them is worth **+0.0287** of conditional increment and
-     lifts the marginal bigram arm from +0.1044 to +0.1266.
-   - **The partial-sign story is dead.** `char_within_sign`, which cannot see
-     across a sign, contributes **exactly 0.0000** (the joint fit chose weight
-     0 in all five folds — the identity property working). `char_across_sign`
-     gives +0.0470, half of sign bigrams' +0.0940. Character n-grams are a
-     **cruder proxy for the same cross-sign context**, not a different kind of
-     evidence. Character granularity was never the point.
+     lifts the marginal bigram arm from +0.1044 to +0.1266. Because the
+     `BOUNDARY` reference is identical to `LEGACY`'s (check C1), this one is a
+     genuine **accuracy** gain: the absolute system moves 0.5039 → 0.5326.
+   - **The within-sign transliteration proxy is rejected.** `char_within_sign`,
+     which cannot see across a sign, contributes **exactly 0.0000** (the joint
+     fit chose weight 0 in all five folds — the identity property working).
+     `char_across_sign` gives +0.0470, half of sign bigrams' +0.0940. Within
+     the transliteration signal this project has, character n-grams are a
+     **cruder proxy for cross-sign context**. Note the bound: this tests a
+     Latin-transliteration proxy, **not** physical partial-glyph evidence,
+     which TLHdig does not encode and which is out of scope for this project.
    - **Merging dilutes, as a general caution.** `bigram_only` beats
      `unigram_plus_bigram` in every rendering. Two feature families in one
      TF-IDF vector is not a factorial, and a contrast between such arms does
      not measure either family's marginal value.
 
-   **Independent of all of the above:** the ratified `HITTITE_ONLY` scope
-   refuses 15.07% of lines, and **104 of 883 dev fragments (11.8%)** have too
-   little admitted content to score — overwhelmingly genuine
-   `OUT_OF_SCOPE_LANGUAGE` (22,343 lines against 4,868
-   `LINE_NOT_IN_LANGUAGE_DATASET`), the KUB 4.x Akkadian/Sumerian bilinguals.
-   **Task A has been scoring non-Hittite fragments as Hittite throughout this
-   project's history**; `main_split` never asked what language a fragment was
-   in. That is a finding in its own right and belongs in the paper.
+   **`HITTITE_ONLY` IS NOT AN ACCURACY GAIN — read this before quoting
+   +0.0940.** The scope raises the conditional increment only because the
+   reference weakens faster than the system does:
 
-   Step 3 (Task B and join-tier stratification) is the next item and should
-   carry a `bigram_only` channel under `SCOPED`, not the merged arm this line
-   has been reporting — every Task B cell measured so far used both the merged
-   parameterization and the flat rendering, and both are now known to
-   understate a bigram channel.
+   | rendering | BM25 + unigram | final (+ `bigram_only`) | increment |
+   |---|---:|---:|---:|
+   | `BOUNDARY` | 0.4608 | **0.5326** | +0.0718 |
+   | `SCOPED` | 0.4256 | **0.5196** | +0.0940 |
+
+   Held-out recall@1 **falls −0.0131** under the scope. Language restriction is
+   an **evidence-policy and coverage choice buying a named estimand**, not a
+   performance improvement, and which trade is right is not something this
+   measurement settles.
+
+   The scope refuses 15.07% of lines (22,343 `OUT_OF_SCOPE_LANGUAGE` against
+   4,868 `LINE_NOT_IN_LANGUAGE_DATASET`, 2,129 `MIXED_LANGUAGE_LINE`, 21
+   `UNRESOLVED_LEXICAL_LANGUAGE`). Dev denominators reconcile as **883 raw →
+   779 passing the ≥4-token floor under all three renderings → 766 actually
+   scored**; the final 13 are single-witness queries whose CTH has no other
+   `parent_doc` in the population, excluded and counted by
+   `n_excluded_single_witness` rather than scored as silent failures.
+
+   The defensible framing of the language finding is that **historical Task A
+   was language-unrestricted despite being described as Hittite fragment
+   retrieval**. That is a **task-definition** gap, not contamination:
+   multilingual material is legitimate evidence here, and the standing rule is
+   not to discard non-Hittite layers. What was missing was a *declared* scope
+   naming the estimand.
+
+   **Framing constraint:** the factorial design was developed adaptively on
+   this same dev material across three pre-registered runs that each reacted to
+   the last. These are dev-side characterization results, not independent
+   confirmation.
+
+   Step 3 (Task B and join-tier stratification) is the next item, ratified by
+   Ixca 2026-08-04 with a detailed specification — see
+   `reports/phase5_taskb_transfer_protocol.md`. It must compare language scopes
+   against each other rather than adopt one, since scope choice is now known to
+   move absolute accuracy.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

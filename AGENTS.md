@@ -425,28 +425,38 @@ arbitrary lost span. Therefore:
    merges two feature families into ONE L2-normalized vector, where the unigram
    mass that `BM25 + unigram` already carries dominates — so step 1's contrast
    asked what adding bigram mass to an existing unigram vector buys (+0.0046),
-   not what sequence context is worth. Given its **own fitted weight**, a
-   bigram-only channel's increment over `BM25 + unigram` is **+0.0431** at
-   step 1's own rendering, **+0.0718** with line boundaries respected, and
-   **+0.0940, cluster CI [+0.0641, +0.1497]** under the ratified word-aware
-   `HITTITE_ONLY` scope. **Sequence context is worth roughly twenty times what
-   step 1 concluded; do not cite "context adds ~+0.005".**
+   not what sequence context is worth. On the factorial population that merged
+   contrast reads **+0.00261, cluster CI [−0.0192, +0.0192]** — indistinguishable
+   from zero — while a separately weighted `bigram_only` channel over the same
+   reference reads **+0.0431, CI [+0.0096, +0.0821]** at step 1's own rendering,
+   **+0.0718** with line boundaries respected, and **+0.0940, CI [+0.0641,
+   +0.1497]** under `HITTITE_ONLY`. **Do not cite "context adds ~+0.005", and
+   never express the correction as a ratio** — the denominator's interval spans
+   zero, so any multiplier is unstable.
    Three further standing results. (i) **Cross-line n-grams were costing
    accuracy**: forbidding bigrams that bridge a line break — review correction
-   4's objection — is worth +0.0287, vindicating it. (ii) **The partial-sign
-   story is dead**: `char_within_sign` (which cannot see across a sign)
-   contributes exactly 0.0000 (weight 0 chosen in all five folds), while
-   `char_across_sign` gives +0.0470, half of what sign bigrams give — character
-   n-grams are a cruder proxy for the same cross-sign context, never a
-   different kind of evidence. (iii) **Merging dilutes**: two feature families
+   4's objection — is worth +0.0287, and here the increment and the absolute
+   system move together (0.5039 → 0.5326), so this one IS an accuracy gain.
+   (ii) **The within-sign transliteration proxy is rejected**: `char_within_sign`
+   contributes exactly 0.0000 (weight 0 chosen in all five folds) and
+   `char_across_sign` gives +0.0470, half of sign bigrams — within the
+   transliteration signal we have, character n-grams are a cruder proxy for
+   cross-sign context. This does NOT test physical partial-glyph evidence,
+   which TLHdig does not encode. (iii) **Merging dilutes**: two feature families
    in one TF-IDF vector is not a factorial, and a contrast between such arms
    does not measure either family's marginal value.
-   Also established independently: `HITTITE_ONLY` refuses 15.07% of lines and
-   **104 of 883 dev fragments (11.8%)** have too little admitted content to
-   score, overwhelmingly as genuine `OUT_OF_SCOPE_LANGUAGE` (the KUB 4.x
-   Akkadian/Sumerian bilinguals). **Task A has been scoring non-Hittite
-   fragments as Hittite throughout this project's history** — `main_split`
-   never asked what language a fragment was in.
+   **`HITTITE_ONLY` IS NOT AN ACCURACY GAIN.** It raises the conditional
+   increment (+0.0718 → +0.0940) only because the reference weakens faster than
+   the system: BM25+unigram 0.4608 → 0.4256, final system 0.5326 → **0.5196**,
+   so held-out recall@1 **falls −0.0131**. Language restriction is an
+   **evidence-policy and coverage choice with a named estimand**, not a
+   performance improvement. The scope refuses 15.07% of lines; dev denominators
+   reconcile as **883 raw → 779 passing the all-renderings floor → 766 scored**
+   (13 single-witness queries with no eligible same-CTH candidate). The
+   defensible framing of the language finding is that **historical Task A was
+   language-unrestricted despite being described as Hittite fragment
+   retrieval** — a task-definition gap, not contamination; multilingual
+   material is legitimate evidence in this corpus.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

@@ -47,18 +47,25 @@ The merged arm reproduces step 1 to four decimals. Step 1's convergence finding
 is real and is confirmed. But its *interpretation* was wrong, because
 `unigram+bigram TF-IDF` puts both feature types into **one L2-normalized vector
 at a fixed relative weight**, and the unigram mass — which `BM25 + unigram`
-already has — dominates it. So step 1's contrast asked "what does adding bigram
-mass to an already-present unigram vector buy?", and the honest answer to that
-question is +0.0046.
+already has — dominates it.
 
-Give the bigrams **their own channel and their own fitted weight** — the
-`bigram-only` cell the review explicitly named as required — and the same
-comparison, same universe, same rendering, same population, reads **+0.0431**.
+The parameterization sensitivity, measured on this population under `LEGACY`:
 
-**So the review was right to demand a factorial, and step 1's reading of its
-own numbers was wrong.** Had the line stopped at step 1, the project would have
-concluded that sign-sequence context is worth ~+0.005 and dropped it. It is
-worth roughly twenty times that.
+| contrast, same universe / rendering / population | delta | cluster CI |
+|---|---:|---:|
+| merged `unigram+bigram` **minus** `unigram` | **+0.00261** | [−0.0192, +0.0192] |
+| separately weighted `bigram_only` over `unigram` | **+0.0431** | [+0.0096, +0.0821] |
+
+The merged contrast is indistinguishable from zero; the separately weighted one
+is not. **The two parameterizations of the same feature family give different
+answers, and that is the finding** — deliberately stated as a pair of measured
+effects rather than as a ratio, since dividing by an estimate whose interval
+spans zero produces an unstable multiplier that would misrepresent the
+evidence.
+
+**So the review was right to demand a factorial with a `bigram-only` cell.**
+Had the line stopped at step 1, the project would have concluded that
+sign-sequence context contributes nothing measurable and dropped it.
 
 ## The decomposition, one declared factor at a time
 
@@ -66,7 +73,7 @@ Conditional increment of a bigram channel over `BM25 + unigram TF-IDF`:
 
 | change | increment | what moved |
 |---|---:|---|
-| step 1's merged parameterization, `LEGACY` | +0.0046 | — |
+| step 1's merged parameterization, `LEGACY` | +0.00261 | — |
 | bigrams get their own weight, `LEGACY` | **+0.0431** | parameterization |
 | line boundaries respected, `BOUNDARY` | **+0.0718** | rendering |
 | ratified `HITTITE_ONLY` applied, `SCOPED` | **+0.0940** | language scope |
@@ -80,16 +87,46 @@ loader strips structural tokens, so an n-gram may silently bridge a line break
 cross-line bigrams were not neutral noise: forbidding them is worth **+0.0287**
 of conditional increment (+0.0431 → +0.0718), and it raises the marginal
 bigram-only arm from +0.1044 to +0.1266. The fabricated adjacencies were
-actively costing accuracy.
+actively costing accuracy. **This row is a genuine accuracy gain** — the
+`BOUNDARY` reference is identical to `LEGACY`'s (C1), so the increment and the
+absolute system move together, 0.5039 → 0.5326.
 
-Applying the ratified language scope adds a further +0.0222.
+### The last row is NOT an accuracy gain, and must not be read as one
 
-## The partial-sign story is dead
+Applying `HITTITE_ONLY` raises the *conditional increment* from +0.0718 to
++0.0940. It does so because **the reference weakens faster than the system
+does**:
+
+| rendering | BM25 | BM25 + unigram | final: + `bigram_only` | increment |
+|---|---:|---:|---:|---:|
+| `BOUNDARY` | 0.4034 | 0.4608 | **0.5326** | +0.0718 |
+| `SCOPED` | 0.3943 | 0.4256 | **0.5196** | +0.0940 |
+
+Final held-out recall@1 **falls by −0.0131** under the scope. Every component
+of the scoped system is absolutely worse; the increment grows only because its
+baseline fell further.
+
+The defensible reading is that **language restriction is an evidence-policy and
+coverage choice, not a performance improvement**. It buys a named, auditable
+estimand — retrieval over material the corpus resolves as Hittite — and it
+costs accuracy and coverage. Which is the right trade is a scientific and
+product decision, not something this measurement settles.
+
+## The within-sign transliteration proxy is rejected
 
 The review flagged as unsupported the philological reading that character
 n-grams help at fracture seams because they match partially preserved signs.
-This run tests it directly: if that story were true, `char_within_sign`
-(`analyzer='char_wb'`, which cannot see across a sign) should carry the signal.
+This run tests **one operationalization** of it: if the signal lived inside
+sign readings, `char_within_sign` (`analyzer='char_wb'`, which cannot see
+across a sign) should carry it.
+
+**Scope of this test, stated first.** `char_within_sign` sees substrings of
+**Latin transliteration** of sign readings. It is a proxy for within-sign
+evidence, not a test of physical partial-glyph evidence — broken wedges,
+surviving sign fragments, paleographic traces. TLHdig does not encode that
+modality at all (and 3D break geometry is explicitly out of scope for this
+project). So what is rejected here is **the within-sign transliteration
+proxy**, not the philological hypothesis about clay.
 
 It carries nothing. Under `LEGACY` and `BOUNDARY` its conditional increment is
 **exactly 0.0000, CI [0.0000, 0.0000]** — the joint fit selected weight 0 in
@@ -101,15 +138,17 @@ which is mild weight overfitting and is reported rather than smoothed away.
 
 Meanwhile `char_across_sign` — the historical arm — does contribute (+0.0470),
 but **only half of what sign bigrams contribute** (+0.0940), and its marginal
-arm is beaten by bigram-only in every rendering. The character channel is
-therefore a *cruder proxy for the same cross-sign sequence signal*, not a
-different kind of evidence. Character granularity was never the point; it was a
-worse way of seeing context.
+arm is beaten by bigram-only in every rendering. Within the transliteration
+signal this project actually has, the character channel is therefore a *cruder
+proxy for the same cross-sign sequence evidence*, not a different kind of
+evidence. Character granularity was never the point; it was a worse way of
+seeing context.
 
 ## Full marginal results
 
 Held-out Task A recall@1 delta over the BM25 reference of the same rendering,
-on 779 dev queries against 6,722 candidates.
+on **766 scored dev queries** (of 779 in the population) against 6,722
+candidates.
 
 | channel | LEGACY | BOUNDARY | SCOPED |
 |---|---:|---:|---:|
@@ -166,25 +205,57 @@ Reported as a finding, not a discard. `HITTITE_ONLY` refuses **29,361 of
 | `MIXED_LANGUAGE_LINE` | 2,129 |
 | `UNRESOLVED_LEXICAL_LANGUAGE` | 21 |
 
-**104 of 883 dev fragments (11.8%)** and 887 of 7,609 labeled fragments fall
-below the four-content-token floor under at least one rendering and are outside
-this run's population. The refusals are overwhelmingly genuine rather than
-coverage gaps — `OUT_OF_SCOPE_LANGUAGE` outnumbers `LINE_NOT_IN_LANGUAGE_DATASET`
-4.6 to 1 — and the excluded fragments are recognizable Akkadian/Sumerian
-material such as the KUB 4.x bilinguals.
+The refusals are overwhelmingly language decisions rather than coverage gaps —
+`OUT_OF_SCOPE_LANGUAGE` outnumbers `LINE_NOT_IN_LANGUAGE_DATASET` 4.6 to 1 —
+and the fragments they empty are recognizable Akkadian/Sumerian material such
+as the KUB 4.x bilinguals.
 
-**That Task A has been scoring non-Hittite fragments as though they were
-Hittite, throughout this project's history, is itself a result**, and it is
-independent of everything else here. The `main_split` machinery never asked
-what language a fragment was in.
+### Denominator reconciliation
+
+Every dev-side number in this report rests on this chain, stated in full:
+
+| stage | n | what removes the difference |
+|---|---:|---|
+| dev fragments in the labeled universe | **883** | — |
+| pass the ≥4-content-token floor under **all three** renderings | **779** | 104 fragments; overwhelmingly emptied by `HITTITE_ONLY` |
+| **actually scored** | **766** | 13 **single-witness** queries |
+
+The final 13 are the only fragment of their CTH in this population, so after
+`run_task_a`'s leave-one-out exclusion of the query's own `parent_doc` there is
+no eligible same-composition candidate. The harness excludes them and counts
+them (`n_excluded_single_witness`) rather than scoring them as silent failures.
+They are: KBo 1.28, KUB 27.42, UBT 11, KUB 28.83, VBoT 68, DAAM 2.9, KUB 43.38,
+KUB 36.108, KUB 31.141, KUB 18.12+, KUB 23.102, KBo 8.66, KUB 21.39.
+
+### What the language finding actually is
+
+The defensible statement is that **historical Task A was language-unrestricted
+despite being described as Hittite fragment retrieval**. The evaluation ranked
+and scored fragments without reference to what language the corpus records them
+in, and `main_split` never asked.
+
+That is a **task-definition** problem, not evidence of contamination.
+Multilingual material is legitimate evidence in this corpus — Akkadian and
+Sumerian witnesses stand in real relations to Hittite compositions, and the
+project's own standing rule is not to silently discard non-Hittite layers. What
+was missing was a *declared* scope, so that the estimand being measured was
+named. It now can be, and step 3 measures scopes against each other rather than
+assuming one.
 
 ## What this does and does not license
 
 **Licenses:** step 3 (Task B and join-tier stratification), which should now
-carry a `bigram_only` channel under the `SCOPED` rendering rather than the
-merged arm this line has been reporting; and it makes the choice of shipping
-feature a real question again, at ~+0.09–0.13 rather than the ~+0.005 step 1
-implied.
+carry a separately weighted `bigram_only` channel rather than the merged arm
+this line has been reporting, and which must **compare language scopes against
+each other rather than adopt one** — this run establishes that scope choice
+moves absolute accuracy, so running scoped-only would confound the estimand
+with the measurement.
+
+**A framing constraint on everything above.** The factorial design was
+developed adaptively on this same dev material, across three pre-registered
+runs that each reacted to the last. These are dev-side characterization
+results, not independent confirmation, and the eventual protected-test run
+remains one-shot and separately gated.
 
 **Does not license:** any test-side or deployed number (protected, one-shot,
 not run); any Task B claim (every Task B cell in this line was measured under

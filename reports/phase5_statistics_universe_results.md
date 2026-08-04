@@ -9,14 +9,18 @@
 > artifact of **how the channel was parameterized**, not a property of the
 > data. `unigram+bigram TF-IDF` merges both feature families into one
 > L2-normalized vector, where the unigram mass that `BM25 + unigram` already
-> carries dominates. Giving bigrams their own fitted weight, at the same
-> universe, rendering and population, the increment is **+0.0431** — and
-> **+0.0940** once line boundaries are respected and the ratified language
-> scope applied. The convergence finding below is confirmed *for merged arms
-> under the flat rendering* and dissolves outside those conditions.
-> **Do not cite "context adds ~+0.005".** What stands from this report: the
-> declared-universe and full-distractor effects (T1 and T2), the reproduction
-> check, and the caution that dev-fitted statistics flatter n-gram arms.
+> carries dominates. On the factorial population the merged contrast reads
+> **+0.00261, cluster CI [−0.0192, +0.0192]** — indistinguishable from zero —
+> while a separately weighted bigram channel, same reference, same universe and
+> rendering, reads **+0.0431, cluster CI [+0.0096, +0.0821]**. Two
+> parameterizations of one feature family, two different answers. The
+> convergence finding below is confirmed *for merged arms under the flat
+> rendering* and dissolves outside those conditions.
+> **Do not cite "context adds ~+0.005"**, and do not express the correction as
+> a ratio — the denominator's interval spans zero, so any multiplier is
+> unstable. What stands from this report: the declared-universe and
+> full-distractor effects (T1 and T2), the reproduction check, and the caution
+> that dev-fitted statistics flatter n-gram arms.
 Protocol: `reports/phase5_statistics_universe_protocol.md`, committed at
 `b83c96e` **before** this run. Dev queries only; test never loaded;
 training-free; nothing deployed.
