@@ -444,10 +444,39 @@ arbitrary lost span. Therefore:
    component falls to **+0.0046, CI [−0.0146, +0.0236]**. Correction 2 of the
    review is therefore superseded: what is established is that **a second
    lexical similarity score is worth ~+0.055–0.062**; WHICH one is unresolved.
-   Never quote +0.10 again. The frozen-CANINE increment was measured over the
+   The frozen-CANINE increment was measured over the
    char arm in the dev-fit/dev-index universe now known to be the most
    generous one to that comparator; re-measuring it at full scale is feasible
    and was not done.
+   **FACTORIAL DONE 2026-08-04 — THE PRECEDING CONVERGENCE READING WAS A
+   PARAMETERIZATION ARTIFACT** (`reports/phase5_factorial_control_results.md`,
+   pre-registered `318e153`). Verdict **`CHANNEL_ADDS`**. Every step-1 number
+   reproduces, but its interpretation does not survive: `unigram+bigram TF-IDF`
+   merges two feature families into ONE L2-normalized vector, where the unigram
+   mass that `BM25 + unigram` already carries dominates — so step 1's contrast
+   asked what adding bigram mass to an existing unigram vector buys (+0.0046),
+   not what sequence context is worth. Given its **own fitted weight**, a
+   bigram-only channel's increment over `BM25 + unigram` is **+0.0431** at
+   step 1's own rendering, **+0.0718** with line boundaries respected, and
+   **+0.0940, cluster CI [+0.0641, +0.1497]** under the ratified word-aware
+   `HITTITE_ONLY` scope. **Sequence context is worth roughly twenty times what
+   step 1 concluded; do not cite "context adds ~+0.005".**
+   Three further standing results. (i) **Cross-line n-grams were costing
+   accuracy**: forbidding bigrams that bridge a line break — review correction
+   4's objection — is worth +0.0287, vindicating it. (ii) **The partial-sign
+   story is dead**: `char_within_sign` (which cannot see across a sign)
+   contributes exactly 0.0000 (weight 0 chosen in all five folds), while
+   `char_across_sign` gives +0.0470, half of what sign bigrams give — character
+   n-grams are a cruder proxy for the same cross-sign context, never a
+   different kind of evidence. (iii) **Merging dilutes**: two feature families
+   in one TF-IDF vector is not a factorial, and a contrast between such arms
+   does not measure either family's marginal value.
+   Also established independently: `HITTITE_ONLY` refuses 15.07% of lines and
+   **104 of 883 dev fragments (11.8%)** have too little admitted content to
+   score, overwhelmingly as genuine `OUT_OF_SCOPE_LANGUAGE` (the KUB 4.x
+   Akkadian/Sumerian bilinguals). **Task A has been scoring non-Hittite
+   fragments as Hittite throughout this project's history** — `main_split`
+   never asked what language a fragment was in.
    Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
    `reports/phase5_classical_control_review.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**

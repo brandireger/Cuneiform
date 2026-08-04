@@ -15,6 +15,18 @@
 > not. This review's executive judgment should now read "about +0.055–0.062 for
 > adding a second lexical similarity score, with which score unresolved."
 > Corrections 1 and 3–6, and the required sequence itself, are unaffected.
+>
+> **STEP 2 IS ALSO DONE, AND IT VINDICATES THIS REVIEW TWICE**
+> (`reports/phase5_factorial_control_results.md`, pre-registered `318e153`).
+> Correction 2's demand for a factorial **with a bigram-only cell** was
+> load-bearing: separating bigrams into their own fitted channel raises their
+> increment over BM25+unigram from +0.0046 to **+0.0431**, and to **+0.0940,
+> cluster CI [+0.0641, +0.1497]** under boundary-preserving, word-aware
+> rendering. The step-1 note above therefore stands as a description of merged
+> arms only — sequence context is NOT worth ~+0.005. Correction 4's objection
+> to cross-line n-grams is confirmed with a number: forbidding them is worth
+> +0.0287. And its scepticism about the partial-sign story is confirmed
+> outright — the within-sign character channel contributes exactly 0.0000.
 This file reviews `reports/phase5_classical_control_handoff.md` against its
 protocols, result artifacts, implementation, `AGENTS.md`, `EXPERT_OPINION.md`,
 `P5_CLOSEOUT.md`, and `PHASE5_SUCCESSOR_HANDOFF.md`.

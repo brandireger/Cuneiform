@@ -1,6 +1,22 @@
 # Statistics-universe and full-distractor control — results
 
 **Status: COMPLETE, PRE-REGISTERED, 2026-08-04.**
+
+> **THIS REPORT'S CENTRAL INTERPRETATION IS WRONG AND IS CORRECTED BY STEP 2**
+> (`reports/phase5_factorial_control_results.md`, pre-registered `318e153`).
+> Every measurement below reproduces exactly. But the conclusion drawn from
+> them — that sequence context adds only +0.0046 and the arms converge — is an
+> artifact of **how the channel was parameterized**, not a property of the
+> data. `unigram+bigram TF-IDF` merges both feature families into one
+> L2-normalized vector, where the unigram mass that `BM25 + unigram` already
+> carries dominates. Giving bigrams their own fitted weight, at the same
+> universe, rendering and population, the increment is **+0.0431** — and
+> **+0.0940** once line boundaries are respected and the ratified language
+> scope applied. The convergence finding below is confirmed *for merged arms
+> under the flat rendering* and dissolves outside those conditions.
+> **Do not cite "context adds ~+0.005".** What stands from this report: the
+> declared-universe and full-distractor effects (T1 and T2), the reproduction
+> check, and the caution that dev-fitted statistics flatter n-gram arms.
 Protocol: `reports/phase5_statistics_universe_protocol.md`, committed at
 `b83c96e` **before** this run. Dev queries only; test never loaded;
 training-free; nothing deployed.
