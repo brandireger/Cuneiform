@@ -1030,10 +1030,14 @@ def main():
                 aug_clusters, "joins_bin_exception_population")
             res_a["weights"] = {"alpha_unigram_only": modal_u,
                                 "alpha_pair": list(modal_pair)}
+            res_a["status"] = "DESCRIPTIVE_NOT_CROSS_FITTED"
             res_a["weight_provenance"] = (
-                "deployment-candidate config; out-of-sample for this "
-                "population by construction, since bin-exception fragments "
-                "never enter any weight fit")
+                "deployment-candidate config; EXTERNAL TO WEIGHT FITTING, "
+                "since bin-exception fragments never enter any fold's fit. "
+                "This is NOT a cross-fitted result and NOT independent "
+                "confirmation: these fragments share the same corpus "
+                "construction, the same index, and the same fitted feature "
+                "statistics as the dev cells. Descriptive only.")
             block["cells"]["joins_bin_exception_population"] = res_a
             print(f"  joins(bin)  d={res_a['delta_recall@1']:+.4f} "
                   f"n={res_a['n_paired']} clusters={res_a['n_clusters']}")
@@ -1055,6 +1059,8 @@ def main():
                 d = fold_weights.get(f) or per_fold[0]
                 return d["alpha_unigram_only"], tuple(d["alpha_pair"])
 
+            index_signatures = {}
+
             def run_variant(exclusive):
                 recs_u, recs_ub = {}, {}
                 for inst in instances:
@@ -1068,6 +1074,18 @@ def main():
                         else:
                             rr[tc_key] = r[scope_key_for(r, scope_name)]
                         idx.append(rr)
+                    # Same distractor universe in both variants: identical
+                    # index membership and identical content for every
+                    # fragment except the pair's own two. Otherwise the
+                    # rendering contrast could move more than the one factor
+                    # it is supposed to isolate.
+                    sig = tuple(r["fragment_id"] for r in idx)
+                    key = (inst["a"], inst["b"])
+                    if key in index_signatures and index_signatures[key] != sig:
+                        raise SystemExit(
+                            "TIER C FAILED: full and exclusive variants used "
+                            f"different candidate universes for {key}.")
+                    index_signatures[key] = sig
                     pos = {inst["a"]: {inst["b"]}, inst["b"]: {inst["a"]}}
                     qrows = [x for x in idx
                              if x["fragment_id"] in (inst["a"], inst["b"])]
@@ -1094,7 +1112,12 @@ def main():
 
             full_u, full_ub = run_variant(False)
             exc_u, exc_ub = run_variant(True)
-            inst_cluster = {k: f"joincomp::{k[0]}" for k in full_u}
+            # Cluster Tier C instances by PHYSICAL JOIN COMPONENT (§6), not by
+            # the pair's first member. Two pairs drawn from one physical object
+            # are not independent evidence, and keying on `inst_a` would have
+            # split them into separate clusters and narrowed the interval.
+            inst_cluster = {k: s_cluster_join.get(k[0], f"frag::{k[0]}")
+                            for k in full_u}
             tc_block["full_rendering_contaminated"], _c1, _c2 = cell_result(
                 full_u, full_ub, inst_cluster, "tier_c_full_CONTAMINATED")
             tc_block["overlap_exclusive"], _c3, _c4 = cell_result(
@@ -1118,10 +1141,14 @@ def main():
                   f"d={e_r['delta_recall@1']:+.4f}")
         tc_block["note"] = (
             "Full and exclusive are computed on EXACTLY the same pair "
-            "instances, so the absolute drop between them is a paired "
-            "comparison. Each pair instance carries its own exclusive "
-            "rendering, so a fragment with several Tier C partners is several "
-            "instances rather than one overwritten rendering.")
+            "instances and the SAME candidate universe -- identical index "
+            "membership, identical content for every fragment except the "
+            "pair's own two -- so the drop between them is paired and isolates "
+            "the rendering factor. Each pair instance carries its own "
+            "exclusive rendering, so a fragment with several Tier C partners "
+            "is several instances rather than one overwritten rendering. "
+            "Instances are clustered by PHYSICAL JOIN COMPONENT, so two pairs "
+            "from one object are not counted as independent evidence.")
         block["tier_c"] = tc_block
         result["scopes"][scope_name] = block
 

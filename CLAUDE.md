@@ -493,11 +493,15 @@ arbitrary lost span. Therefore:
    joins +0.1111, pooled +0.0875, duplicates +0.0627 — the first time in this
    line that they do, and it is robust to the unrestricted scope (overlapping
    evidence on largely the same queries, NOT independent replication).
-   **The qualification is mandatory whenever the joins number is quoted:** on
-   overlap-exclusive Tier C content, absolute recall@1 falls 0.8617 → **0.1569**
-   and the channel contributes **−0.0238, CI [−0.0769, 0.0000]**; by
+   **The qualification is mandatory whenever the joins number is quoted:** by
    shared-line count the gain is +0.1600 (10+ lines) falling to **+0.0294, CI
-   [−0.0645, +0.1481]** at zero shared lines. **The channel helps duplicate
+   [−0.0645, +0.1481]** at zero shared lines (−0.0278 under the unrestricted
+   control). On properly paired Tier C — pair instances, same candidate
+   universe, clustered by physical join component — absolute recall@1 falls
+   from 0.3824 (full rendering) to **0.0000–0.0392** overlap-exclusive on the
+   SAME instances, with the single-partner sensitivity at exactly 0.0000; but
+   the bigram contribution within Tier C is **unresolved** (p=0.109 full,
+   p=0.123 exclusive, 23 clusters). **The channel helps duplicate
    retrieval, and its help on joins is CONCENTRATED WHERE EDITOR-ALIGNED TEXT
    IS SHARED; on no-overlap joins — the case the fragment-as-matrix model
    exists to solve — there is no evidence it helps.** Shared-line count is

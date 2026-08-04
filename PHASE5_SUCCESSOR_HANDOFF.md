@@ -701,29 +701,50 @@ never read `cu`, Gate 3 closed. Additionally:
    confirmation.
 
    **UPDATE 2026-08-04, ninth and current — STEP 3 DONE for the two fixed
-   scopes** (`reports/phase5_taskb_transfer_results.md`; protocol
-   pre-registered `318e153`, amended and authorized `3f334b9`).
+   scopes, CROSS-FITTED** (`reports/phase5_taskb_transfer_results.md`; protocol
+   `318e153`, amendments `3f334b9` and `2735e49`).
+
+   **An earlier version of this run was withdrawn in full**: it searched
+   weights out of fold but then discarded the held-out predictions, took the
+   modal weights across all folds and re-scored all of dev, so every query was
+   scored under weights partly chosen using its own fold. Those were adaptive
+   dev numbers, not cross-fitted tests. **Do not quote them or use them as a
+   comparison target.** The current numbers below are cross-fitted: weights
+   fitted per fold on the pooled objective, applied to that fold's held-out
+   queries only, predictions concatenated.
 
    **All three Task B cells reject H₀ under Holm–Bonferroni**, the first time
-   in this line that they do: joins **+0.1111** CI [+0.0625, +0.1688] p=0.001,
-   pooled **+0.0875** CI [+0.0591, +0.1277] p=0.001, duplicates **+0.0627** CI
-   [+0.0370, +0.1131] p=0.013. Frozen CANINE reached none of them; the step-2
-   results were Task A only. It is **robust to** the unrestricted control —
-   overlapping evidence on largely the same queries, NOT independent
-   replication — so it is not an artifact of the language scope.
+   in this line that they do: joins **+0.1111** CI [+0.0602, +0.1768] p=0.001
+   (n=171, 54 clusters, +22/−3), pooled **+0.0875** CI [+0.0591, +0.1230]
+   p=0.001 (n=766, 35 clusters), duplicates **+0.0627** CI [+0.0378, +0.1076]
+   p=0.007. Frozen CANINE reached none of them; the step-2 results were Task A
+   only. It is **robust to** the unrestricted control — overlapping evidence on
+   largely the same queries, NOT independent replication.
+   **The word "transfer" is withheld** from every claim until the Task-A-frozen
+   arm exists: the system evaluated here is fitted to Task B.
 
-   **Read the qualification before quoting the joins number.** Ixca's Tier C
-   amendment is what makes it visible. On overlap-exclusive Tier C content,
-   absolute recall@1 falls from 0.8617 to **0.1569** and the bigram channel
-   contributes **−0.0238, CI [−0.0769, 0.0000], p=0.51**. The shared-line
-   stratum says it continuously: 0 shared lines **+0.0294 CI [−0.0645,
+   **Read the qualification before quoting the joins number.** The
+   load-bearing one is the **zero-overlap stratum**, which rests on the primary
+   cells' own cross-fitted predictions: 0 shared lines **+0.0294 CI [−0.0645,
    +0.1481]** (−0.0278 under the control), 1–2 +0.1163, 3–9 +0.1304, 10+
-   +0.1600. Indirect `(+)` joins likewise show nothing. **The channel transfers
-   to duplicate retrieval, and its help on joins is CONCENTRATED WHERE
+   +0.1600; indirect `(+)` joins +0.0526 CI includes 0. **The channel improves
+   duplicate retrieval, and its help on joins is CONCENTRATED WHERE
    EDITOR-ALIGNED TEXT IS SHARED; on joins with no shared lines — the case the
-   matrix model exists to solve — there is no evidence it helps.**
-   Shared-line count is confounded with tier, length and other pair
-   properties, so this is not a dose-response relationship.
+   matrix model exists to solve — there is no evidence it helps.** Shared-line
+   count is confounded with tier, length and other pair properties, so this is
+   NOT a dose-response relationship.
+
+   **Tier C, now properly paired** (pair instances, same candidate universe,
+   clustered by physical join component): on the SAME instances, absolute
+   recall@1 falls from 0.3824 (full rendering) to **0.0000–0.0392**
+   (overlap-exclusive), and the single-partner sensitivity analysis lands at
+   exactly 0.0000 for both arms — so the collapse is not an artifact of the
+   multi-partner rendering problem the first version had. **But the bigram
+   contribution within Tier C is unresolved**: neither the full (p=0.109) nor
+   the exclusive (p=0.123) delta clears significance on 23 clusters.
+   **Never compare these absolutes to the tier-C row in the strata table** —
+   a stratum query may hit ANY of its partners, a pair instance must hit the
+   SPECIFIC one. Different estimands.
 
    **Language scope, on the common population** (the only comparable basis,
    since the scopes serve 766 vs 865 queries): the unrestricted scope is equal
@@ -734,11 +755,23 @@ never read `cu`, Gate 3 closed. Additionally:
    queries, 768 candidates, 2,832 positive relations**. Still an
    evidence-policy and coverage choice, not an accuracy gain.
 
-   **The bin exception is where the join evidence actually is.** Admitting
-   bin-parent physical joins takes the joins cell from 171 queries / 54
-   components to **675 / 252** with Δ +0.1274 CI [+0.0969, +0.1595] — four
-   times the independent join evidence, effect intact. C6 confirmed all three
-   prohibitions on every run.
+   **The bin exception is where the join evidence actually is** — 504 queries
+   across **198 join components** against 54 in the labelled dev cell, Δ
+   +0.1349 CI [+0.1000, +0.1687]. C6 confirmed all three prohibitions on every
+   run. **Status `DESCRIPTIVE_NOT_CROSS_FITTED`:** these fragments are external
+   to weight fitting (they never enter any fold), but that is NOT cross-fitting
+   and NOT independent confirmation — they share the same corpus construction,
+   index, and fitted feature statistics as the dev cells.
+
+   **Lost-relation decomposition is a standalone finding.** Of 2,832 relations
+   `HITTITE_ONLY` removes, **2,825 are duplicates and 7 are joins** — the scope
+   barely touches join evidence. And the two causes must be kept separate:
+   `OUT_OF_SCOPE_LANGUAGE` (1,614 duplicate endpoints) is an affirmative
+   non-Hittite classification, while `LINE_NOT_IN_LANGUAGE_DATASET` (1,693) is
+   a **coverage gap in our own Gate-2 dataset**, not a statement about the
+   tablet. Roughly half the discarded duplicate evidence is lost to our own
+   pipeline's coverage — a fixable engineering deficit, distinct from the
+   estimand choice.
 
    **Corpus data-quality finding to carry to the TLHdig team:** two
    `join_pairs.jsonl` rows give both members the same siglum, asserting a
