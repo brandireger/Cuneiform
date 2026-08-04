@@ -402,6 +402,16 @@ arbitrary lost span. Therefore:
    (CI includes 0) and duplicates +0.0197 (CI includes 0); only the pooled
    cell is significant, which is the cell the three-way rule exists to stop
    us reporting alone. Name the task in any claim.
+   **ANSWERED 2026-08-04 — CANINE IS REDUNDANT**
+   (`reports/phase5_char_ngram_control_results.md`). Contamination was
+   rejected first (relabeling retention 1.016), which showed the gain is
+   NOT knowledge of Hittite but generic character-sequence similarity — so a
+   classical control was run. **BM25 + char n-gram TF-IDF (4,6) beats it
+   2.55x on Task A (+0.1179 vs +0.0462) and 5-7x on every Task B cell, and
+   CANINE adds NOTHING on top (I = -0.0046, CI [-0.0162, +0.0058]).**
+   Recommendation: neither owed Gate-3 proposal should be written on
+   retrieval grounds — the pretrained models were measured against the right
+   control and lost.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

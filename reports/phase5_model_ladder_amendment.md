@@ -32,6 +32,17 @@ day by its own reinstatement mechanism. Read
 > BM25's 0.6312, **+0.0462, 95% CI [+0.0254, +0.0682]**, with no training at
 > all. That adds one claim the paper may now make and removes none; see the
 > "may claim" list below.
+>
+> **Third follow-up, same day — the amendment's CONCLUSION is vindicated on
+> new evidence, though its reasoning still was not.**
+> `reports/phase5_char_ngram_control_results.md`: a classical character
+> n-gram TF-IDF beats the frozen CANINE combiner 2.55× on Task A and is
+> significant in every Task B cell where CANINE reached none, and CANINE adds
+> nothing when stacked on it (I = −0.0046, CI includes zero). Rungs 4 and 6
+> are therefore answered — but by *measurement against the right control*,
+> which is what the screen correctly insisted on and what this amendment
+> originally skipped. The right lesson is unchanged: the inductive leap was
+> not acceptable, even though its conclusion happened to survive.
 
 `AGENTS.md` commits to a six-rung model ladder, "run in this order; every rung
 reported," and `PHASE5_SUCCESSOR_HANDOFF.md` item 8 requires that commitment
@@ -126,7 +137,14 @@ It **may** claim, and should:
   qualifications: 32 of 865 queries regress, the effect requires a fitted
   down-weight (unfitted equal-weight fusion is 7–8 points worse than BM25
   alone), and it is dev-side only against a 0.6312 reference that is not the
-  published test-side 0.7831.
+  published test-side 0.7831;
+- **(added 2026-08-04, from the contamination and char n-gram controls)** that
+  the useful signal in that frozen encoder is **not knowledge of Hittite** —
+  it survives a bijective relabeling of the entire sign vocabulary at
+  retention 1.016 — and that a **classical character n-gram model captures it
+  better** (Task A +0.1179 vs +0.0462; significant in all three Task B cells,
+  where the pretrained encoder was significant in none), with the pretrained
+  encoder adding nothing on top. Both dev-side.
 
 ## Why now, and why not later
 

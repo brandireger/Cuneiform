@@ -158,6 +158,17 @@ reaches.
 > fusion is 7–8 points *worse* than BM25 alone — the candidate helps only as
 > a down-weighted tie-breaker — and that 32 queries regress. Read that report
 > before writing either owed proposal; it changes what they must ask.
+>
+> **SECOND FOLLOW-UP, 2026-08-04 — and it answers the rung question.**
+> `reports/phase5_char_ngram_control_results.md`: a classical character
+> n-gram TF-IDF reaches **+0.1179 on Task A (2.55× CANINE)** and is
+> significant in **every Task B cell**, where CANINE reached none — and
+> CANINE adds **nothing** on top of it (I = −0.0046, CI [−0.0162, +0.0058]).
+> Verdict **CANINE_REDUNDANT**. The recommendation is now that neither owed
+> proposal be written on retrieval grounds. This screen was still worth
+> running: it is what produced the candidates whose relabeling behaviour
+> revealed the signal was character-level rather than linguistic, which is
+> what motivated the classical control.
 
 ## What happens next — and what does NOT
 

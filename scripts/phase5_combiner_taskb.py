@@ -17,6 +17,7 @@ A combiner, and the ranking from `eval_harness.run_retrieval`'s
 `precomputed_scores` path.
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -136,6 +137,14 @@ def cell_result(held_out, base_per_query, label):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--signal", default="canine", choices=["canine", "char"],
+                    help="which side signal to combine with BM25. 'char' is "
+                         "the classical character n-gram control, added after "
+                         "it beat CANINE on Task A by 2.5x "
+                         "(reports/phase5_char_ngram_control_results.md)")
+    args = ap.parse_args()
+
     print("Loading dev fragments (test never loaded)...")
     rows = _screen.load_dev_fragments()
     fold_of, load = _comb.assign_folds(rows)
@@ -148,25 +157,36 @@ def main():
                                 [r["tokens"] for r in rows])[0].toarray()
     zb = _comb.znorm_rows(bm25)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    cand = next(c for c in _screen.CANDIDATES if c["name"] == _comb.PRIMARY)
-    cache = Path("Phase4/phase4_out/p5_combiner_embeddings.npz")
-    if cache.exists() and np.load(cache)[_comb.PRIMARY].shape[0] == len(rows):
-        print(f"  reusing cached {_comb.PRIMARY} embeddings")
-        vecs = np.load(cache)[_comb.PRIMARY]
+    if args.signal == "char":
+        # (4,6) was selected in all five Task A folds; fixed here rather than
+        # refitted, so the Task B run tests transfer of a settled
+        # configuration instead of searching a second time.
+        _ngram = __import__("phase5_char_ngram_control")
+        signal_name = "char_ngram_tfidf_4_6"
+        zc = _comb.znorm_rows(_ngram.char_similarity(rows, (4, 6)))
     else:
-        vecs = _screen.embed(rows, cand, device)
-    zc = _comb.znorm_rows(_screen.cosine_matrix(vecs))
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        cand = next(c for c in _screen.CANDIDATES if c["name"] == _comb.PRIMARY)
+        cache = Path("Phase4/phase4_out/p5_combiner_embeddings.npz")
+        if cache.exists() and np.load(cache)[_comb.PRIMARY].shape[0] == len(rows):
+            print(f"  reusing cached {_comb.PRIMARY} embeddings")
+            vecs = np.load(cache)[_comb.PRIMARY]
+        else:
+            vecs = _screen.embed(rows, cand, device)
+        signal_name = _comb.PRIMARY
+        zc = _comb.znorm_rows(_screen.cosine_matrix(vecs))
 
     result = {
         "protocol": "reports/phase5_combiner_taskb_protocol.md "
                     "(PRE-REGISTERED 2026-08-04, committed before this run)",
         "training_free": True,
         "split": "dev only; dev-only candidate index; test never loaded",
-        "candidate": _comb.PRIMARY,
+        "candidate": signal_name,
         "n_dev_fragments": len(rows), "positive_counts": counts,
         "cells": {},
     }
+    out_path = (OUT if args.signal == "canine"
+                else OUT.with_name("p5_combiner_taskb_char.json"))
 
     for label in ("joins", "duplicates", "pooled"):
         pos = positives[label]
@@ -195,10 +215,10 @@ def main():
                   f"(+{c['n_gained']}/-{c['n_lost']})")
         print(f"  alphas by fold: {[d['alpha_selected'] for d in per_fold]}")
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUT, "w", encoding="utf-8") as f:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"\nwritten to {OUT}")
+    print(f"\nwritten to {out_path}")
 
 
 if __name__ == "__main__":

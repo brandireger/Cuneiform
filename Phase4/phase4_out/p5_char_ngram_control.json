@@ -1,0 +1,215 @@
+{
+  "protocol": "reports/phase5_char_ngram_control_protocol.md (PRE-REGISTERED 2026-08-04, committed before this run)",
+  "training_free": true,
+  "split": "dev only; test never loaded",
+  "ngram_grid": [
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      4,
+      6
+    ]
+  ],
+  "canine_delta_reference": 0.0462,
+  "bm25_reference_recall@1": 0.63121387283237,
+  "arms": {
+    "bm25_plus_char": {
+      "n_paired": 865,
+      "combiner_recall@1": 0.7491329479768786,
+      "bm25_recall@1": 0.63121387283237,
+      "delta": 0.11791907514450867,
+      "delta_ci95": [
+        0.09130057803468208,
+        0.14450867052023122
+      ],
+      "ci_excludes_zero": true,
+      "n_gained": 125,
+      "n_lost": 23,
+      "per_fold": [
+        {
+          "fold": 0,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.0
+          ],
+          "fit_recall@1": 0.7229508196721312,
+          "held_out_recall@1": 0.8117647058823529
+        },
+        {
+          "fold": 1,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.0
+          ],
+          "fit_recall@1": 0.7405329593267882,
+          "held_out_recall@1": 0.7894736842105263
+        },
+        {
+          "fold": 2,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.0
+          ],
+          "fit_recall@1": 0.758765778401122,
+          "held_out_recall@1": 0.7039473684210527
+        },
+        {
+          "fold": 3,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.0
+          ],
+          "fit_recall@1": 0.7682584269662921,
+          "held_out_recall@1": 0.6601307189542484
+        },
+        {
+          "fold": 4,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.0
+          ],
+          "fit_recall@1": 0.7514044943820225,
+          "held_out_recall@1": 0.738562091503268
+        }
+      ],
+      "retention_vs_canine": 2.5523609338638242
+    },
+    "bm25_plus_char_plus_canine": {
+      "vs_bm25_plus_char": {
+        "n_paired": 865,
+        "combiner_recall@1": 0.7445086705202312,
+        "bm25_recall@1": 0.7491329479768786,
+        "delta": -0.004624277456647399,
+        "delta_ci95": [
+          -0.016184971098265895,
+          0.005780346820809248
+        ],
+        "ci_excludes_zero": false,
+        "n_gained": 9,
+        "n_lost": 13
+      },
+      "vs_bm25_alone": {
+        "n_paired": 865,
+        "combiner_recall@1": 0.7445086705202312,
+        "bm25_recall@1": 0.63121387283237,
+        "delta": 0.11329479768786127,
+        "delta_ci95": [
+          0.08436416184971099,
+          0.13991329479768785
+        ],
+        "ci_excludes_zero": true,
+        "n_gained": 126,
+        "n_lost": 28
+      },
+      "per_fold": [
+        {
+          "fold": 0,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.1
+          ],
+          "fit_recall@1": 0.7262295081967213,
+          "held_out_recall@1": 0.8235294117647058
+        },
+        {
+          "fold": 1,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            2.0,
+            0.75
+          ],
+          "fit_recall@1": 0.7489481065918654,
+          "held_out_recall@1": 0.756578947368421
+        },
+        {
+          "fold": 2,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.5
+          ],
+          "fit_recall@1": 0.7671809256661991,
+          "held_out_recall@1": 0.6842105263157895
+        },
+        {
+          "fold": 3,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.1
+          ],
+          "fit_recall@1": 0.773876404494382,
+          "held_out_recall@1": 0.6666666666666666
+        },
+        {
+          "fold": 4,
+          "selected": [
+            [
+              4,
+              6
+            ],
+            0.75,
+            0.1
+          ],
+          "fit_recall@1": 0.7584269662921348,
+          "held_out_recall@1": 0.738562091503268
+        }
+      ]
+    }
+  },
+  "decision": {
+    "primary_statistic": "I = held-out recall@1 delta of BM25+char+CANINE over BM25+char",
+    "I": -0.004624277456647399,
+    "I_ci95": [
+      -0.016184971098265895,
+      0.005780346820809248
+    ],
+    "I_ci_excludes_zero": false,
+    "R": 0.11791907514450867,
+    "retention_vs_canine": 2.5523609338638242,
+    "verdict": "CANINE_REDUNDANT"
+  }
+}

@@ -503,6 +503,31 @@ never read `cu`, Gate 3 closed. Additionally:
    dev-only 876-fragment index, so its absolute numbers are NOT comparable to
    the published dev figures and the easier setup may itself compress the
    headroom.
+   **UPDATE 2026-08-04, fourth and current — THE RUNG QUESTION IS ANSWERED.**
+   Two controls closed it. (i) Contamination
+   (`reports/phase5_contamination_results.md`, pre-registered `786db09`):
+   five bijective length-preserving sign permutations, BM25 exactly invariant
+   on all five, CANINE **retention 1.016** — MEMORISATION_REJECTED. The gain
+   is real, and it survives destroying the Hittite language, so **it is not
+   knowledge of Hittite**; it is generic character-sequence similarity.
+   (ii) That observation motivated a classical control
+   (`reports/phase5_char_ngram_control_results.md`, pre-registered
+   `2580d85`): **BM25 + character n-gram TF-IDF (4,6) reaches Task A
+   +0.1179 (CI [+0.0913, +0.1445]) — 2.55x CANINE — and is significant in
+   EVERY Task B cell (joins +0.1099, duplicates +0.0879, pooled +0.1098),
+   where CANINE reached none. Stacking CANINE on top adds nothing:
+   I = -0.0046, CI [-0.0162, +0.0058].** Verdict CANINE_REDUNDANT.
+   **Recommendation: do not write either owed Gate-3 proposal on retrieval
+   grounds.** The ladder's position on rungs 4/6 has now moved three times
+   (withdrawn inductively -> reinstated on measurement -> answered against a
+   proper control); the third rests on a head-to-head that did not exist for
+   the first two. Also on the table and NOT acted on: the char n-gram feature
+   is a real, near-zero-cost improvement to the shipping BM25-retrieve-deep
+   stage, but it needs (a) Ixca's decision, (b) test-side validation, which
+   is one-shot and gated, and (c) a statistics-universe fix, since this run
+   fits TF-IDF over the 876 dev fragments — a query-derived subset AGENTS.md
+   forbids for deployed statistics. The BM25 reference is fit the same way,
+   so the deltas stand; an absolute deployed number does not.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified
