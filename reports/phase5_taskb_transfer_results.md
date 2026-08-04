@@ -155,12 +155,26 @@ language dataset does not cover it**, not because the material is
 non-Hittite. That is a fixable engineering deficit, and it is a different
 finding from the estimand choice.
 
-On the common population, absolute recall@1 under the unrestricted scope is
-equal or marginally higher in all three cells (joins 0.6395 vs 0.6550 — here
-`HITTITE_ONLY` is higher; duplicates 0.4429 vs 0.4426; pooled 0.5857 vs
-0.5888), while the deltas differ in the other direction. Language restriction
-remains an **evidence-policy and coverage choice buying a named estimand**, not
-a performance improvement.
+### Absolute accuracy on the common population
+
+Restricted to the queries both scopes can serve, final-system (pair-arm)
+recall@1 is:
+
+| cell | `HITTITE_ONLY` | unrestricted | difference |
+|---|---:|---:|---:|
+| joins | **0.6550** | 0.6395 | +0.0155 to `HITTITE_ONLY` |
+| duplicates | 0.4426 | **0.4429** | +0.0003 to unrestricted |
+| pooled | **0.5888** | 0.5857 | +0.0031 to `HITTITE_ONLY` |
+
+**Neither scope uniformly dominates**, and these between-scope differences are
+tiny — one of them is three ten-thousandths. **No dedicated inference was
+pre-registered for them and none is offered**: they are not part of the primary
+family, they have no interval reported here, and they must not be read as a
+ranking of the scopes.
+
+Language restriction remains an **evidence-policy and coverage choice buying a
+named estimand**. Its measurable cost is coverage — 97 queries, 768 candidates,
+2,832 relations — not accuracy.
 
 ## Bin-parent physical joins — descriptive
 
