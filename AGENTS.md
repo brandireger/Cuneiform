@@ -358,23 +358,32 @@ arbitrary lost span. Therefore:
    and full scale).
 3. ByT5 (small→base) — primary neural candidate (byte-level; T5
    lineage comparable to Yavasan & Gordin).
-   **WITHDRAWN from publication scope, ratified 2026-08-04** — see
-   `reports/phase5_model_ladder_amendment.md`. Never run.
+   **WITHDRAWN, confirmed by direct measurement 2026-08-04** — frozen
+   Task A recall@1 0.2462, LOWEST of the four screened
+   (`reports/phase5_ladder_screen_results.md`). Never trained.
 4. CANINE — alternate tokenization-free encoder.
-   **WITHDRAWN from publication scope, ratified 2026-08-04.** Never run.
+   **SCREENED IN 2026-08-04**: frozen recall@1 **0.3711**, highest of the
+   four and the only CI clearing the bar outright; 78 queries correct that
+   BM25 misses. Owes a Gate-3 proposal; not trained.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on
    one GPU.
 6. XLM-R / mT5 — subword control, expected to lose; run it anyway.
-   **WITHDRAWN from publication scope, ratified 2026-08-04.** Never run.
+   **SPLIT 2026-08-04.** XLM-R **SCREENED IN** (frozen recall@1 0.3225,
+   51.1% of BM25 — but its CI straddles the bar, so a thinner advance than
+   CANINE's); mT5 **WITHDRAWN, confirmed** (0.2717). Neither trained.
 
 Model selection on dev split only. All results, including losers, go
 in the paper. Single consumer GPU is the compute budget; if a design
 exceeds it, redesign.
 
-**AMENDED 2026-08-04 (ratified by Ixca).** Rungs 3, 4 and 6 were never
-run and are **withdrawn from publication scope**, satisfying the
+**AMENDED 2026-08-04, then PARTIALLY OVERTURNED the same day by a
+training-free screen (`reports/phase5_ladder_screen_results.md`): CANINE
+and XLM-R cleared its pre-registered bar and are reinstated pending
+Gate-3 proposals; ByT5 and mT5 are confirmed withdrawn on direct
+evidence. The original amendment said rungs 3, 4 and 6 were never
+run and were **withdrawn from publication scope**, satisfying the
 "completed or explicitly amended" requirement the standing commitment
 carries. Rungs 1, 2 and 5 were run and are reported. Evidence: BM25
 beats the from-scratch architecture family decisively at every scale

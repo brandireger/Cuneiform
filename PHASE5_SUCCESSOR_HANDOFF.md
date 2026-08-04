@@ -455,7 +455,16 @@ never read `cu`, Gate 3 closed. Additionally:
    `reports/phase5_model_ladder_amendment.md`): rungs 3 (ByT5), 4 (CANINE)
    and 6 (XLM-R/mT5) were never run and are **withdrawn from publication
    scope**, reinstatable by a Gate-3-style proposal. Rungs 1, 2 and 5 are
-   run and reported. **This is no longer a blocker.** The binding
+   run and reported. **This is no longer a blocker.** **UPDATE 2026-08-04:** a ratified
+   training-free screen (`reports/phase5_ladder_screen_results.md`) then
+   partially overturned that amendment — CANINE (frozen Task A recall@1
+   0.3711) and XLM-R (0.3225) cleared its pre-registered bar of 0.50 x BM25
+   and are REINSTATED pending Gate-3 proposals; ByT5 (0.2462) and mT5
+   (0.2717) are confirmed withdrawn on direct evidence. Two proposals are
+   owed and nothing has been trained. The screen also found the candidates
+   are largely redundant with BM25 (76-81% overlap) but not wholly — CANINE
+   is right on 78 queries BM25 misses, oracle union +0.090 — so those
+   proposals should test COMBINATION with BM25, not replacement. The binding
    consequence travels with it: the research question's "modern
    representation learning" clause is answered only for the architecture
    family actually tested, so no claim may generalize to neural methods at

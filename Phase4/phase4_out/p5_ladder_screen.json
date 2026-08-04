@@ -1,0 +1,123 @@
+{
+  "protocol": "reports/phase5_ladder_screen_protocol.md (RATIFIED 2026-08-04)",
+  "advance_ratio": 0.5,
+  "n_dev_fragments": 876,
+  "n_compositions": 53,
+  "chance_recall_at_1": 0.01887,
+  "stage1": {
+    "n_fragments": 876,
+    "sign_level_tokens": 161020,
+    "candidates": {
+      "google/byt5-small": {
+        "rung": 3,
+        "tokens_emitted": 552058,
+        "fertility_vs_sign_level": 3.429,
+        "mean_len": 630.2,
+        "p95_len": 2359,
+        "max_len": 11805,
+        "frac_fragments_over_512": 0.2991,
+        "frac_truncated_at_model_limit": 0.1541,
+        "max_tokens_used": 1024,
+        "unk_tokens": 0
+      },
+      "google/canine-s": {
+        "rung": 4,
+        "tokens_emitted": 495072,
+        "fertility_vs_sign_level": 3.075,
+        "mean_len": 565.2,
+        "p95_len": 2077,
+        "max_len": 10452,
+        "frac_fragments_over_512": 0.2637,
+        "frac_truncated_at_model_limit": 0.0502,
+        "max_tokens_used": 2048,
+        "unk_tokens": 0
+      },
+      "xlm-roberta-base": {
+        "rung": 6,
+        "tokens_emitted": 213972,
+        "fertility_vs_sign_level": 1.329,
+        "mean_len": 244.3,
+        "p95_len": 914,
+        "max_len": 4598,
+        "frac_fragments_over_512": 0.1107,
+        "frac_truncated_at_model_limit": 0.1107,
+        "max_tokens_used": 512,
+        "unk_tokens": 8429
+      },
+      "google/mt5-small": {
+        "rung": 6,
+        "tokens_emitted": 245890,
+        "fertility_vs_sign_level": 1.527,
+        "mean_len": 280.7,
+        "p95_len": 1037,
+        "max_len": 5508,
+        "frac_fragments_over_512": 0.1347,
+        "frac_truncated_at_model_limit": 0.0514,
+        "max_tokens_used": 1024,
+        "unk_tokens": 334
+      }
+    }
+  },
+  "bm25_reference": {
+    "recall@1": 0.63121387283237,
+    "recall@5": 0.8578034682080925,
+    "mrr": 0.7336098814260973,
+    "n": 865,
+    "n_excluded_single_witness": 11
+  },
+  "advance_threshold": 0.315606936416185,
+  "candidates": {
+    "google/byt5-small": {
+      "rung": 3,
+      "recall@1": 0.24624277456647398,
+      "recall@1_ci": [
+        0.2184971098265896,
+        0.27517341040462423
+      ],
+      "recall@5": 0.5907514450867052,
+      "mrr": 0.40198542213170896,
+      "n": 865,
+      "verdict": "CONFIRMED_WITHDRAWN",
+      "ratio_of_bm25": 0.3901
+    },
+    "google/canine-s": {
+      "rung": 4,
+      "recall@1": 0.37109826589595374,
+      "recall@1_ci": [
+        0.3398554913294798,
+        0.4046242774566474
+      ],
+      "recall@5": 0.6994219653179191,
+      "mrr": 0.5208650783785999,
+      "n": 865,
+      "verdict": "ADVANCE",
+      "ratio_of_bm25": 0.5879
+    },
+    "xlm-roberta-base": {
+      "rung": 6,
+      "recall@1": 0.3225433526011561,
+      "recall@1_ci": [
+        0.29364161849710985,
+        0.353757225433526
+      ],
+      "recall@5": 0.6971098265895954,
+      "mrr": 0.4857361701278726,
+      "n": 865,
+      "verdict": "ADVANCE",
+      "ratio_of_bm25": 0.511
+    },
+    "google/mt5-small": {
+      "rung": 6,
+      "recall@1": 0.27167630057803466,
+      "recall@1_ci": [
+        0.24046242774566473,
+        0.30060693641618497
+      ],
+      "recall@5": 0.6485549132947976,
+      "mrr": 0.43862187553117105,
+      "n": 865,
+      "verdict": "CONFIRMED_WITHDRAWN",
+      "ratio_of_bm25": 0.4304
+    }
+  }
+}

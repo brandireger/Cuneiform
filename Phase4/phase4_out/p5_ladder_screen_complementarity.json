@@ -1,0 +1,27 @@
+{
+  "note": "NOT part of the pre-registered decision rule; written after seeing Stage 2 verdicts, to inform the Gate-3 proposal an ADVANCE requires. Does not revise any verdict.",
+  "bm25_recall@1": 0.63121387283237,
+  "n_queries": 865,
+  "candidates": {
+    "google/canine-s": {
+      "recall@1": 0.37109826589595374,
+      "both_correct": 243,
+      "only_candidate_correct": 78,
+      "only_bm25_correct": 303,
+      "neither_correct": 241,
+      "oracle_union_recall@1": 0.7213872832369942,
+      "oracle_gain_over_bm25": 0.09017341040462423,
+      "frac_of_candidate_correct_also_bm25_correct": 0.7570093457943925
+    },
+    "xlm-roberta-base": {
+      "recall@1": 0.3225433526011561,
+      "both_correct": 225,
+      "only_candidate_correct": 54,
+      "only_bm25_correct": 321,
+      "neither_correct": 265,
+      "oracle_union_recall@1": 0.6936416184971098,
+      "oracle_gain_over_bm25": 0.06242774566473985,
+      "frac_of_candidate_correct_also_bm25_correct": 0.8064516129032258
+    }
+  }
+}

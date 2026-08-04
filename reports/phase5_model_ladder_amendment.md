@@ -1,6 +1,30 @@
 # Model-ladder amendment — rungs 3, 4 and 6 withdrawn from publication scope
 
-**Status: RATIFIED by Ixca 2026-08-04.**
+**Status: RATIFIED by Ixca 2026-08-04 — then PARTIALLY OVERTURNED the same
+day by its own reinstatement mechanism. Read
+`reports/phase5_ladder_screen_results.md` before citing anything here.**
+
+> **What changed.** Ixca was uncomfortable that this amendment dismissed
+> three untested candidates on the evidence of two failures of a different
+> architecture family, and commissioned a training-free screen. Two of the
+> three cleared its pre-registered bar:
+>
+> | rung | model | frozen recall@1 | vs BM25 0.6312 | outcome |
+> |---|---|---|---|---|
+> | 4 | CANINE-s | 0.3711 | 58.8% | **REINSTATED (screened in)** |
+> | 6 | XLM-R | 0.3225 | 51.1% | **REINSTATED (screened in)** |
+> | 6 | mT5-small | 0.2717 | 43.0% | withdrawal CONFIRMED |
+> | 3 | ByT5-small | 0.2462 | 39.0% | withdrawal CONFIRMED |
+>
+> **Rung 3's withdrawal is now better supported than when written** — it
+> rests on measurement rather than on an inductive leap. **Rungs 4 and 6 are
+> reinstated to the extent of CANINE and XLM-R respectively** and each owes a
+> Gate-3-style proposal before any training. Rung 6's two models split: XLM-R
+> in, mT5 out.
+>
+> The claim-limits below are revised accordingly and are restated in the
+> results report. The reasoning about *why* the amendment was made stands;
+> its conclusion for two of three rungs did not survive measurement.
 
 `AGENTS.md` commits to a six-rung model ladder, "run in this order; every rung
 reported," and `PHASE5_SUCCESSOR_HANDOFF.md` item 8 requires that commitment
