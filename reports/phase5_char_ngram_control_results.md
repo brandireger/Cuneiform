@@ -1,8 +1,18 @@
 # Classical character n-gram control — results
 
-**Status: COMPLETE 2026-08-04. Verdict CANINE_REDUNDANT.**
-**A classical n-gram model beats every pretrained candidate, on
-every task cell, with no GPU and no pretrained weights.**
+> **CORRECTIVE REVIEW 2026-08-04.** `CANINE_REDUNDANT` below is the historical
+> preregistered label. The interval [-0.0162, +0.0058] has an upper endpoint
+> below the declared +0.010 useful margin, supporting only the bounded claim
+> that no ≥+0.010 frozen CANINE increment is measured in this setup, pending
+> composition-cluster and declared-universe confirmation. A post-hoc unigram
+> TF-IDF control also shows that +0.052 of the classical arm's gain does not
+> require n-gram context. See `reports/phase5_classical_control_review.md`.
+
+**Status: COMPLETE 2026-08-04. Historical preregistered verdict:
+CANINE_REDUNDANT. Current interpretation: no ≥+0.010 frozen CANINE increment
+is measured over the char arm in this setup.**
+**A classical lexical ensemble is stronger than the frozen candidates in
+this dev setup, with no GPU and no pretrained weights.**
 `[PROBE — not for citation]`; dev split only, test never loaded.
 
 > **CORRECTION 2026-08-04, from `reports/phase5_bigram_control_results.md`.**
@@ -37,9 +47,10 @@ committed as `2580d85` before the run). Training-free.
 - **(b) Increment — PRIMARY**: `I = −0.0046`, 95% CI **[−0.0162, +0.0058]**.
   **Includes zero, point estimate negative.**
 
-**Verdict by the pre-registered rule: CANINE_REDUNDANT.** Adding a frozen
-pretrained character encoder on top of character n-grams contributes
-nothing — nine queries gained, thirteen lost.
+**Historical verdict by the preregistered rule: CANINE_REDUNDANT.** The
+corrected interpretation uses the +0.010 margin: the CI upper endpoint is
++0.0058, so no frozen increment as large as +0.010 is measured in this setup.
+Nine queries gained and thirteen lost; literal “nothing” is too strong.
 
 `(4, 6)` was selected in **all five folds**, and α_char at 0.75 in four of
 five. This is not a fragile configuration.
@@ -90,7 +101,7 @@ with bigrams, which is the measurement that would actually separate the two.)*
 
 ## What this settles, and what it costs
 
-**Rungs 4 and 6 are answered on direct evidence.** The ladder's position on
+**Frozen mean-pooled retrieval is bounded by direct evidence.** The ladder's position on
 them has now moved three times, and it is worth being explicit that this is
 the third:
 
@@ -98,15 +109,14 @@ the third:
    failures of a different architecture family.
 2. **Reinstated** by the screen, which measured them and found the leap
    wrong.
-3. **Answered now**: the gain they were reinstated for is real, is not
-   memorisation, is not linguistic, and is captured better by a classical
-   method that adds nothing when they are stacked on top of it.
+3. **Bounded now**: correct passage sequence is unnecessary for the relabeled
+   aggregate gain; a classical lexical ensemble is stronger; and no ≥+0.010
+   frozen CANINE increment is measured over the char arm in this setup.
 
-Each move followed evidence, and the third is the best supported: it rests on
-a direct head-to-head with a control that did not exist in steps 1 or 2. The
-recommendation is that **neither owed Gate-3 proposal be written on retrieval
-grounds** — not because pretrained models were dismissed, but because they
-were measured against the right control and lost.
+Each move followed evidence, but the current scope is retrieval with frozen
+generic pooling. The recommendation is that neither Gate-3 proposal be
+prioritized before the specialist session. That is a resource decision, not
+closure of fine-tuned adaptation, restoration, or span infilling.
 
 **The pretrained-model excursion was not wasted.** It produced the
 contamination control, and it produced the observation — from the relabeling

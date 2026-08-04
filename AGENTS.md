@@ -372,28 +372,31 @@ arbitrary lost span. Therefore:
    tie-breaker (α=0.5); unfitted equal-weight rank fusion is 7-8 points worse
    than BM25 alone, and 32 queries regress.
    `reports/phase5_bm25_combiner_results.md`.
-   **Task A ONLY — it does not clearly transfer** (2026-08-04,
+   **Task A ONLY — the individual Task B strata are inconclusive** (2026-08-04,
    `reports/phase5_combiner_taskb_results.md`): on Task B, joins +0.0165
-   (CI includes 0) and duplicates +0.0197 (CI includes 0); only the pooled
-   cell is significant, which is the cell the three-way rule exists to stop
-   us reporting alone. Name the task in any claim.
-   **ANSWERED 2026-08-04 — CANINE IS REDUNDANT**
-   (`reports/phase5_char_ngram_control_results.md`). Contamination was
-   rejected first (relabeling retention 1.016), which showed the gain is
-   NOT knowledge of Hittite but generic character-sequence similarity — so a
-   classical control was run. **BM25 + char n-gram TF-IDF (4,6) beats it
-   2.55x on Task A (+0.1179 vs +0.0462) and 5-7x on every Task B cell, and
-   CANINE adds NOTHING on top (I = -0.0046, CI [-0.0162, +0.0058]).**
-   Recommendation: neither owed Gate-3 proposal should be written on
-   retrieval grounds — the pretrained models were measured against the right
-   control and lost.
-   **CORRECTED same day** (`reports/phase5_bigram_control_results.md`): the
-   win is **n-gram CONTEXT, not character granularity**. Sign bigrams —
-   unused in the repo since P3 — recover 86.3% of it (+0.1017), and char
-   granularity's increment is +0.0162, CI [-0.0012, +0.0324], includes zero.
-   They are near-substitutes. Measurements stand; the explanation did not.
-   Handoff + second-opinion packet:
-   `reports/phase5_classical_control_handoff.md`.
+   (CI includes 0) and duplicates +0.0197 (CI includes 0). The pooled
+   any-relation cell is positive and must be reported alongside, not used as
+   a substitute for, the individual cells. Name the task and estimand in any
+   claim; do not treat non-significance as evidence of no transfer.
+   **CORRECTED REVIEW 2026-08-04 — FROZEN CANINE HAS NO MEASURED INCREMENT
+   AS LARGE AS +0.010 OVER THE CHAR ARM IN THIS DEV SETUP**
+   (`reports/phase5_classical_control_review.md`). The former label
+   `CANINE_REDUNDANT` was too broad. The increment is -0.0046, CI
+   [-0.0162, +0.0058]; its upper endpoint is below the declared +0.010
+   materiality margin, but the interval still needs composition-cluster and
+   declared-universe confirmation. This does not close fine-tuned CANINE,
+   task-specific pooling, restoration, or span-infilling. Declining a Gate-3
+   proposal remains a priority recommendation, not a general neural result.
+   **RELABELING INTERPRETATION CORRECTED:** retention 1.016 shows that correct
+   Hittite passage sequence is not necessary for aggregate gain. It does not
+   exclude every memorised component or prove the signal is non-linguistic.
+   **CLASSICAL MECHANISM CORRECTED:** the +0.1017 sign-bigram-arm gain is not
+   all n-gram context. A post-hoc unigram TF-IDF control recovers +0.0520;
+   the separately tuned bigram arm adds +0.0497 over it. Character over
+   bigram remains **inconclusive** (+0.0162, CI [-0.0012, +0.0324]), not an
+   equivalence result. See `reports/phase5_unigram_tfidf_control_results.md`.
+   Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
+   `reports/phase5_classical_control_review.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**
    (hyphen-separated signs as tokens; vocab ≈ few thousand) — the
    domain-native candidate; corpus is small enough to pre-train on

@@ -503,7 +503,8 @@ never read `cu`, Gate 3 closed. Additionally:
    dev-only 876-fragment index, so its absolute numbers are NOT comparable to
    the published dev figures and the easier setup may itself compress the
    headroom.
-   **UPDATE 2026-08-04, fourth and current — THE RUNG QUESTION IS ANSWERED.**
+   **HISTORICAL UPDATE 2026-08-04, fourth — SUPERSEDED IN PART BY THE
+   CORRECTIVE REVIEW BELOW.**
    Two controls closed it. (i) Contamination
    (`reports/phase5_contamination_results.md`, pre-registered `786db09`):
    five bijective length-preserving sign permutations, BM25 exactly invariant
@@ -515,12 +516,13 @@ never read `cu`, Gate 3 closed. Additionally:
    `2580d85`): **BM25 + character n-gram TF-IDF (4,6) reaches Task A
    +0.1179 (CI [+0.0913, +0.1445]) — 2.55x CANINE — and is significant in
    EVERY Task B cell (joins +0.1099, duplicates +0.0879, pooled +0.1098),
-   where CANINE reached none. Stacking CANINE on top adds nothing:
-   I = -0.0046, CI [-0.0162, +0.0058].** Verdict CANINE_REDUNDANT.
+   where CANINE reached none. The historical report said stacking CANINE adds
+   nothing: I = -0.0046, CI [-0.0162, +0.0058], and labeled it
+   CANINE_REDUNDANT. The current correction below narrows that interpretation.
    **Recommendation: do not write either owed Gate-3 proposal on retrieval
    grounds.** The ladder's position on rungs 4/6 has now moved three times
-   (withdrawn inductively -> reinstated on measurement -> answered against a
-   proper control); the third rests on a head-to-head that did not exist for
+   (withdrawn inductively -> reinstated on measurement -> historically called
+   answered against a control); the third rests on a head-to-head that did not exist for
    the first two. Also on the table and NOT acted on: the char n-gram feature
    is a real, near-zero-cost improvement to the shipping BM25-retrieve-deep
    stage, but it needs (a) Ixca's decision, (b) test-side validation, which
@@ -548,6 +550,31 @@ never read `cu`, Gate 3 closed. Additionally:
    being that every arm fits its statistics on the 876 dev fragments, a
    query-derived subset AGENTS.md forbids, and that n-gram TF-IDF may benefit
    from that more than unigram BM25 does.
+
+   **UPDATE 2026-08-04, sixth and current — EXPERT REVIEW CORRECTED THE
+   INFERENCE** (`reports/phase5_classical_control_review.md`). The measurements
+   stand, but four conclusions are narrower:
+   - Task B join/duplicate strata are inconclusive, not evidence of no
+     transfer; pooled any-relation retrieval is a distinct positive estimand.
+   - Relabeling retention 1.016 shows correct Hittite passage sequence is not
+     necessary for aggregate gain; it does not exclude every memorised
+     component or prove the signal is non-linguistic.
+   - CANINE's increment over the char arm, -0.0046 CI [-0.0162, +0.0058],
+     bounds a frozen increment of +0.010 in this setup; it does not close
+     fine-tuned adaptation or non-retrieval tasks.
+   - Character over bigram is INCONCLUSIVE because CI [-0.0012, +0.0324]
+     includes both zero and effects larger than the +0.010 margin.
+
+   A reviewer-requested post-hoc control
+   (`reports/phase5_unigram_tfidf_control_results.md`) decomposed the Task A
+   bigram-arm gain: BM25 + unigram TF-IDF contributes +0.0520, and the
+   separately tuned bigram arm contributes another +0.0497 over it. The
+   latter remains positive under composition-cluster resampling; the full
+   +0.1017 may not be called an n-gram-context effect. Current recommendation:
+   do not prioritize a retrieval Gate-3 proposal before the specialist
+   session, as a resource decision. Before P6, run a declared-universe,
+   full-distractor factorial control with explicit language scope, structural
+   boundaries, composition-cluster inference, and join-tier stratification.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

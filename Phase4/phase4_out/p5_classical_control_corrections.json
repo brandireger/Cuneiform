@@ -1,0 +1,39 @@
+{
+  "status": "CORRECTIVE_REVIEW_2026-08-04",
+  "authority": "reports/phase5_classical_control_review.md",
+  "supersedes_interpretation_not_measurements": true,
+  "corrections": {
+    "taskb_canine": {
+      "historical_label": "DOES_NOT_TRANSFER",
+      "corrected_label": "INDIVIDUAL_STRATA_INCONCLUSIVE_POOLED_ANY_RELATION_POSITIVE",
+      "reason": "Failure to exclude zero is not evidence of equivalence or no transfer."
+    },
+    "contamination_relabel": {
+      "historical_label": "MEMORISATION_REJECTED",
+      "corrected_label": "CORRECT_HITTITE_PASSAGE_SEQUENCE_NOT_NECESSARY_FOR_AGGREGATE_GAIN",
+      "reason": "Aggregate retention with refitted alpha and real transliteration replacement strings cannot exclude every memorised component."
+    },
+    "canine_increment": {
+      "historical_label": "CANINE_REDUNDANT",
+      "corrected_label": "NO_MATERIAL_FROZEN_CANINE_INCREMENT_AT_0.010_IN_THIS_SETUP",
+      "delta": -0.0046,
+      "ci95": [-0.0162, 0.0058],
+      "reason": "The CI upper endpoint is below the declared +0.010 useful margin; the claim remains frozen, dev-side, and retrieval-specific."
+    },
+    "character_over_bigram": {
+      "historical_label": "CHARACTER_GRANULARITY_NOT_THE_POINT",
+      "corrected_label": "INCONCLUSIVE",
+      "delta": 0.0162,
+      "ci95": [-0.0012, 0.0324],
+      "reason": "The interval includes both zero and effects larger than the +0.010 margin."
+    },
+    "bigram_mechanism": {
+      "historical_label": "NGRAM_CONTEXT_GAIN_APPROX_0.10",
+      "corrected_label": "LEXICAL_ENSEMBLE_PLUS_SEQUENCE_CONTEXT",
+      "unigram_tfidf_fusion_delta": 0.05202312138728324,
+      "bigram_arm_minus_unigram_arm_delta": 0.04971098265895954,
+      "reason": "A missing unigram TF-IDF fusion control recovers about half of the original bigram-arm gain."
+    }
+  },
+  "protected_test_loaded": false
+}

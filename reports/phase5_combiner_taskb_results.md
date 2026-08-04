@@ -1,7 +1,14 @@
 # Combiner on Task B — results
 
-**Status: COMPLETE 2026-08-04. The Task A gain does NOT clearly transfer to
-pairwise matching.** `[PROBE — not for citation]`; dev split only, dev-only
+> **CORRECTIVE REVIEW 2026-08-04.** “Does not transfer” below is too
+> categorical. The join and duplicate intervals are inconclusive and permit
+> practically meaningful positive effects. The pooled any-relation result is
+> a distinct positive estimand that must be reported alongside, not used as a
+> substitute for, the two individual cells. See
+> `reports/phase5_classical_control_review.md`.
+
+**Status: COMPLETE 2026-08-04. Individual Task B strata are inconclusive;
+pooled any-relation retrieval improves.** `[PROBE — not for citation]`; dev split only, dev-only
 candidate index, test never loaded.
 
 Executes `reports/phase5_combiner_taskb_protocol.md` (PRE-REGISTERED, committed
@@ -25,11 +32,11 @@ Positives: 182 join pairs, 42,826 duplicate pairs, over 876 dev fragments.
 
 ## What this says
 
-**The Task A result does not carry over.** On Task A the combiner gained
-+0.0462 with a CI comfortably clear of zero. On Task B, neither individual
-cell reaches significance: joins +0.0165 and duplicates +0.0197, both with
-intervals spanning zero. The point estimates are positive and consistent in
-sign, but this is not the same finding.
+**The individual Task B effects are unresolved.** On Task A the combiner
+gained +0.0462 with a CI clear of zero. On Task B, joins +0.0165 and
+duplicates +0.0197 have intervals spanning zero but also permitting
+practically meaningful positive effects. The evidence is weaker than Task A;
+it is not evidence of equivalence or no transfer.
 
 **The one significant cell is pooled — and that is exactly the cell the
 standing rule exists to stop us reporting alone.** `AGENTS.md` requires the

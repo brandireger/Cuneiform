@@ -1,6 +1,16 @@
 # Contamination control — results
 
-**Status: COMPLETE 2026-08-04. Verdict MEMORISATION_REJECTED.**
+> **CORRECTIVE REVIEW 2026-08-04.** `MEMORISATION_REJECTED` below is the
+> historical preregistered label, not the current causal interpretation.
+> Retention 1.016 establishes that correct Hittite passage sequence is not
+> necessary for aggregate gain. It does not exclude every memorised component
+> in the original run: replacement tokens remain real transliteration strings,
+> alpha is refit, and per-query mechanism stability was not measured. See
+> `reports/phase5_classical_control_review.md`.
+
+**Status: COMPLETE 2026-08-04. Historical preregistered verdict:
+MEMORISATION_REJECTED. Current interpretation: correct passage sequence is
+not necessary for aggregate gain.**
 `[PROBE — not for citation]`; dev split only, test never loaded.
 
 Executes `reports/phase5_contamination_protocol.md` (PRE-REGISTERED, committed
@@ -32,15 +42,16 @@ queries):
 By the pre-registered rule (retention ≥ 0.50 and CI excludes zero):
 **MEMORISATION REJECTED.**
 
-CANINE's retention is **1.016** — the gain is not merely preserved under
-relabeling, it is statistically indistinguishable from the original, and
-every one of the five individual permutations clears zero on its own. There
-is no detectable memorisation component at all. XLM-R also survives (0.656),
-attenuated, consistent with relabeling disrupting subword segmentation more
-than character-level input.
+CANINE's retention is **1.016** — the aggregate gain is preserved under
+relabeling and every permutation clears zero. This establishes that correct
+passage sequence is unnecessary for the aggregate effect; it does **not**
+measure or exclude a memorised component in the original run. XLM-R also
+survives (0.656), attenuated, consistent with—but not proving—a sensitivity
+to changed subword segmentation.
 
-This is the clean branch of a deliberately one-sided test. Survival rules
-memorisation out; a collapse would have been ambiguous. We got survival.
+This is the survival branch of the historical one-sided rule. The corrected
+causal reading is narrower because the test permits mechanism substitution
+and retains real transliteration strings.
 
 ## The implication is not entirely comfortable
 

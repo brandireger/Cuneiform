@@ -1,5 +1,11 @@
 # Withdrawn-rung screen — results
 
+> **CORRECTIVE REVIEW 2026-08-04.** Later follow-ups in this historical report
+> overstate closure. The current bounded result concerns frozen mean-pooled
+> retrieval only; it does not close fine-tuned adaptation, task-specific
+> pooling, restoration, or span infilling. See
+> `reports/phase5_classical_control_review.md`.
+
 **Status: COMPLETE 2026-08-04. Two of the three withdrawn rungs clear the
 pre-registered bar. The ladder amendment's inductive step was wrong.**
 **Everything here is `[PROBE — not for citation]`.**
@@ -159,13 +165,15 @@ reaches.
 > a down-weighted tie-breaker — and that 32 queries regress. Read that report
 > before writing either owed proposal; it changes what they must ask.
 >
-> **SECOND FOLLOW-UP, 2026-08-04 — and it answers the rung question.**
+> **HISTORICAL SECOND FOLLOW-UP, 2026-08-04 — inference corrected later.**
 > `reports/phase5_char_ngram_control_results.md`: a classical character
 > n-gram TF-IDF reaches **+0.1179 on Task A (2.55× CANINE)** and is
 > significant in **every Task B cell**, where CANINE reached none — and
 > CANINE adds **nothing** on top of it (I = −0.0046, CI [−0.0162, +0.0058]).
-> Verdict **CANINE_REDUNDANT**. The recommendation is now that neither owed
-> proposal be written on retrieval grounds. This screen was still worth
+> Historical verdict **CANINE_REDUNDANT**. Corrected review: the CI bounds a
+> frozen increment of +0.010 in this setup but does not close fine-tuned
+> adaptation or non-retrieval tasks. The recommendation not to prioritize a
+> proposal before the specialist session is a resource decision. This screen was still worth
 > running: it is what produced the candidates whose relabeling behaviour
 > revealed the signal was character-level rather than linguistic, which is
 > what motivated the classical control.

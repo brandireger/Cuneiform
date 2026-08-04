@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import eval_harness as eh  # noqa: E402
+from effect_decision import practical_increment_verdict  # noqa: E402
 
 _screen = __import__("phase5_ladder_screen")
 _comb = __import__("phase5_bm25_combiner")
@@ -103,20 +104,33 @@ def main():
         "per_fold": pf_both}
 
     if not cmp_incr["ci_excludes_zero"]:
-        verdict = "CHARACTER_GRANULARITY_NOT_THE_POINT"
+        historical_verdict = "CHARACTER_GRANULARITY_NOT_THE_POINT"
     elif cmp_incr["delta"] >= INCREMENT_MARGIN:
-        verdict = "CHARACTER_GRANULARITY_EARNS_ITS_KEEP"
+        historical_verdict = "CHARACTER_GRANULARITY_EARNS_ITS_KEEP"
     else:
-        verdict = "INCONCLUSIVE"
+        historical_verdict = "INCONCLUSIVE"
+    corrected_verdict = practical_increment_verdict(
+        cmp_incr["delta"], cmp_incr["delta_ci95"], INCREMENT_MARGIN,
+        positive_label="MATERIAL_CHARACTER_INCREMENT_DETECTED",
+        below_margin_label="CHARACTER_INCREMENT_BELOW_0.010",
+    )
     result["decision"] = {
         "primary_statistic": "I_char = held-out recall@1 delta of "
                              "BM25+bigram+char over BM25+bigram",
         "I_char": cmp_incr["delta"], "I_char_ci95": cmp_incr["delta_ci95"],
         "I_char_ci_excludes_zero": cmp_incr["ci_excludes_zero"],
         "R_bigram": cmp_big["delta"], "ratio_of_char_gain": ratio,
-        "verdict": verdict,
+        "verdict": historical_verdict,
+        "verdict_is_historical": True,
+        "historical_preregistered_verdict": historical_verdict,
+        "corrected_interpretation": corrected_verdict,
+        "correction_note": (
+            "The interval [-0.0012, +0.0324] includes both zero and effects "
+            "larger than the 0.010 margin; it is therefore inconclusive, not "
+            "an equivalence result."),
     }
-    print(f"\n== PRE-REGISTERED VERDICT: {verdict} ==")
+    print(f"\n== HISTORICAL PRE-REGISTERED VERDICT: {historical_verdict} ==")
+    print(f"== CORRECTED INTERPRETATION: {corrected_verdict} ==")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

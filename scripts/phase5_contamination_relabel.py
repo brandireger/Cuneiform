@@ -185,22 +185,34 @@ def main():
 
     p = result["pooled"][_comb.PRIMARY]
     if p["retention_vs_original"] >= RETENTION_REJECT_MEMORISATION and p["ci_excludes_zero"]:
-        verdict = "MEMORISATION_REJECTED"
+        historical_verdict = "MEMORISATION_REJECTED"
     elif p["retention_vs_original"] <= RETENTION_NOT_EXCLUDED or not p["ci_excludes_zero"]:
-        verdict = "MEMORISATION_NOT_EXCLUDED"
+        historical_verdict = "MEMORISATION_NOT_EXCLUDED"
     else:
-        verdict = "INCONCLUSIVE"
+        historical_verdict = "INCONCLUSIVE"
+    corrected_interpretation = (
+        "CORRECT_HITTITE_PASSAGE_SEQUENCE_NOT_NECESSARY_FOR_AGGREGATE_GAIN"
+        if historical_verdict == "MEMORISATION_REJECTED"
+        else "INCONCLUSIVE_ABOUT_PASSAGE_SEQUENCE_DEPENDENCE"
+    )
     result["decision"] = {
         "primary_candidate": _comb.PRIMARY,
         "retention": p["retention_vs_original"],
         "ci_excludes_zero": p["ci_excludes_zero"],
-        "verdict": verdict,
-        "note": ("The rule is one-sided by design: survival rejects "
-                 "memorisation, but collapse is ambiguous between "
-                 "contamination, legitimate transfer, and sensitivity to "
-                 "natural-language character statistics. See the protocol."),
+        "verdict": historical_verdict,
+        "verdict_is_historical": True,
+        "historical_preregistered_verdict": historical_verdict,
+        "corrected_interpretation": corrected_interpretation,
+        "note": (
+            "Survival shows that correct Hittite passage sequence is not "
+            "necessary for the aggregate gain. It does not exclude a "
+            "memorised component in the original run: alpha is refit after "
+            "permutation, the replacement strings remain members of the "
+            "Hittite transliteration vocabulary, and aggregate retention "
+            "does not establish per-query mechanism stability."),
     }
-    print(f"\n== PRE-REGISTERED VERDICT: {verdict} ==")
+    print(f"\n== HISTORICAL PRE-REGISTERED VERDICT: {historical_verdict} ==")
+    print(f"== CORRECTED INTERPRETATION: {corrected_interpretation} ==")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

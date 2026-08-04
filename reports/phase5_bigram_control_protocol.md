@@ -1,5 +1,11 @@
 # Sign-bigram control — pre-registered protocol
 
+> **POST-RUN CORRECTION 2026-08-04.** This historical protocol incorrectly
+> treated CI-includes-zero as evidence that character granularity was
+> unimportant. CI [-0.0012, +0.0324] is inconclusive at the +0.010 margin. The
+> historical rule remains visible; current interpretation is governed by
+> `reports/phase5_classical_control_review.md`.
+
 **Status: PRE-REGISTERED 2026-08-04, written and committed BEFORE the run.**
 Training-free; dev split only; test never loaded.
 

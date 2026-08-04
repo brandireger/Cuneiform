@@ -31,6 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lib"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import eval_harness as eh  # noqa: E402
+from effect_decision import practical_increment_verdict  # noqa: E402
 
 _screen = __import__("phase5_ladder_screen")
 _comb = __import__("phase5_bm25_combiner")
@@ -153,22 +154,38 @@ def main():
         "vs_bm25_plus_char": cmp_incr, "vs_bm25_alone": cmp_both_vs_bm25,
         "per_fold": pf_both}
 
-    # --- the pre-registered rule -----------------------------------------
+    # Preserve the historical pre-registered rule, but do not repeat its
+    # statistical error in the current interpretation.  "CI includes zero"
+    # is not, by itself, an equivalence/redundancy test.
     if not cmp_incr["ci_excludes_zero"]:
-        verdict = "CANINE_REDUNDANT"
+        historical_verdict = "CANINE_REDUNDANT"
     elif cmp_incr["delta"] >= INCREMENT_MARGIN:
-        verdict = "CANINE_ADDS_BEYOND_CLASSICAL"
+        historical_verdict = "CANINE_ADDS_BEYOND_CLASSICAL"
     else:
-        verdict = "INCONCLUSIVE"
+        historical_verdict = "INCONCLUSIVE"
+    corrected_verdict = practical_increment_verdict(
+        cmp_incr["delta"], cmp_incr["delta_ci95"], INCREMENT_MARGIN,
+        positive_label="MATERIAL_CANINE_INCREMENT_DETECTED",
+        below_margin_label="NO_MATERIAL_CANINE_INCREMENT_AT_0.010",
+    )
     result["decision"] = {
         "primary_statistic": "I = held-out recall@1 delta of "
                              "BM25+char+CANINE over BM25+char",
         "I": cmp_incr["delta"], "I_ci95": cmp_incr["delta_ci95"],
         "I_ci_excludes_zero": cmp_incr["ci_excludes_zero"],
         "R": cmp_char["delta"], "retention_vs_canine": retention,
-        "verdict": verdict,
+        "verdict": historical_verdict,
+        "verdict_is_historical": True,
+        "historical_preregistered_verdict": historical_verdict,
+        "corrected_interpretation": corrected_verdict,
+        "correction_note": (
+            "The historical rule treated CI-includes-zero as redundancy. "
+            "The corrected rule compares the CI upper bound with the declared "
+            "0.010 smallest worthwhile increment. Interval validity still "
+            "requires composition-cluster confirmation."),
     }
-    print(f"\n== PRE-REGISTERED VERDICT: {verdict} ==")
+    print(f"\n== HISTORICAL PRE-REGISTERED VERDICT: {historical_verdict} ==")
+    print(f"== CORRECTED INTERPRETATION: {corrected_verdict} ==")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

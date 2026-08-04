@@ -548,6 +548,16 @@ fields:
     rationale: "BM25 relevance score; a retrieval-model output, not corpus content, even though its inputs are EDITORIAL_TRANSCRIPTION."
     source_path: "computed at scoring time via lib/eval_harness.bm25_score_matrix"
     depends_on: [sign_attested]
+  tfidf_cosine_score:
+    class: MODEL_DERIVED
+    rationale: "TF-IDF cosine relevance score; a deterministic retrieval-model output, not corpus evidence."
+    source_path: "computed at scoring time via lib/eval_harness.tfidf_score_matrix or a governed equivalent"
+    depends_on: [sign_attested]
+  frozen_pretrained_similarity_score:
+    class: MODEL_DERIVED
+    rationale: "Cosine similarity from a frozen external pretrained encoder; an outside-model output that must remain separable from corpus evidence."
+    source_path: "scripts/phase5_ladder_screen.py; scripts/phase5_bm25_combiner.py"
+    depends_on: [sign_attested]
 
   # ---- EXPLICITLY DENIED (out of scope project-wide, per CLAUDE.md) ----
   mrp_selected:
