@@ -28,12 +28,12 @@
   "dataset_manifest_hash": "c987de370237c9c9209d94530bb665762a82586f61ca5cc0b70bb1de0444d1d2",
   "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
   "config_hash": "c8f88191cf278eee6e1a284cd3324a54efd9ea121c737a81427788c668c39648",
-  "git_commit": "c697082d9e6c71456a49e4f4251c3401a5814ed5",
-  "git_dirty": true,
+  "git_commit": "17115e16819fd0321c0772cbc8c14329c8dda486",
+  "git_dirty": false,
   "corpus_version": "TLHdig 0.2.0-beta",
   "seed": 20260722,
   "declared_statistics_universe": "historical reproduction: 876 dev fragments; prohibited for promotion until full_non_test refit",
-  "created_utc": "2026-08-04T15:21:56.280112+00:00",
+  "created_utc": "2026-08-04T15:28:54.331398+00:00",
   "language_scope": "LEGACY_LANGUAGE_BLIND_REPRODUCTION_ONLY",
   "governance_warning": "Legacy language-blind rendering is reproduced only to audit the historical number; it is prohibited for a promoted scorer."
 }
