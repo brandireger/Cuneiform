@@ -1,0 +1,70 @@
+{
+  "task": "phase6_blinded_surrogate_retrieval_review",
+  "evidence_policy": "transcription_assisted",
+  "features_requested": [
+    "token",
+    "line_index_in_doc"
+  ],
+  "features_observed": [
+    "token",
+    "line_index_in_doc"
+  ],
+  "evidence_classes_used": [
+    "EDITORIAL_TRANSCRIPTION",
+    "OBSERVED_DOCUMENT_STRUCTURE"
+  ],
+  "prohibited_features_encountered": [],
+  "editorial_content_fraction": 0.5,
+  "restored_content_fraction": 0.0,
+  "model_derived_content_fraction": 0.0,
+  "dataset_manifest_hash": "N/A: file not found",
+  "split_manifest_hash": "309d917cd2aa39d4634d1d27b28f4c6280a514845e47b273b9ee031bf6d62312",
+  "config_hash": "e79cf63d3ac5beb41b710935a12992648f33f1f4c0bfc25809a405c3c356267e",
+  "git_commit": "2dce0b5c735813c9ae08b269edba0b7e88588939",
+  "git_dirty": true,
+  "corpus_version": "TLHdig 0.2.0-beta",
+  "seed": 20260804,
+  "declared_statistics_universe": "balanced diagnostic sample from persisted cross-fitted HITTITE_ONLY dev gained/lost Task B records; not prevalence weighted",
+  "created_utc": "2026-08-05T04:17:49.491864+00:00",
+  "reviewer_status": "AI_SURROGATE_NOT_HITTITE_SPECIALIST",
+  "protected_test_loaded": false,
+  "blind_packet_sha256": "213de284ef529b83eea84797dac5f71e1af8b05fc7883e4ee681aa6bac709e0e",
+  "sealed_reveal_sha256": "76b42613f9229eb7473687a58960e8b3fc6a03a223093a96a162968ebe757c4a",
+  "authoritative_taskb_result_sha256": "665a64038f9253052026ae9340d2661d3e3a21f8a74ccf768b67866acf8f398d",
+  "authoritative_per_query_sha256": "b215c6e0f9d6ea51f643b6444cb9d1645cbbb139bb54ff323a641780dcdefbcd",
+  "sampling_metadata_not_visible_to_reviewer": [
+    "method identity",
+    "correctness",
+    "editorial relation labels",
+    "CTH",
+    "fold",
+    "fragment identifiers"
+  ],
+  "sampling_accounting": {
+    "duplicates::gained": {
+      "requested": 6,
+      "available": 93,
+      "selected": 6,
+      "shortfall": 0
+    },
+    "duplicates::lost": {
+      "requested": 6,
+      "available": 45,
+      "selected": 6,
+      "shortfall": 0
+    },
+    "joins::gained": {
+      "requested": 5,
+      "available": 22,
+      "selected": 5,
+      "shortfall": 0
+    },
+    "joins::lost": {
+      "requested": 3,
+      "available": 3,
+      "selected": 3,
+      "shortfall": 0
+    }
+  },
+  "correctness_bits_reproduced": 1874
+}
