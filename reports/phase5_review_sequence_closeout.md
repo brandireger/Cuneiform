@@ -1,5 +1,12 @@
 # Corrective-review sequence — closeout for steps 1–3
 
+> **LABEL-VALIDITY CORRECTION (2026-08-04, post-closeout review):** the
+> historical `duplicates` cell is a same-CTH non-join affinity proxy, not an
+> annotated duplicate/parallel truth set. Read every `duplicates` number in
+> this closeout under that operational definition. The measurements survive;
+> the duplicate-discovery interpretation does not. See
+> `reports/phase6_surrogate_specialist_review.md`.
+
 **Date: 2026-08-04. Status: steps 1, 2 and 3 complete. Steps 4–6 open.**
 
 This closes the required sequence in

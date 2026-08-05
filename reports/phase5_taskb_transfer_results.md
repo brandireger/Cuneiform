@@ -1,5 +1,14 @@
 # Task B relation retrieval, language scopes, and Task-A-frozen portability
 
+> **LABEL-VALIDITY CORRECTION (2026-08-04, post-closeout review):** the cell
+> named `duplicates` below is constructed as every same-CTH fragment pair
+> after excluding physical joins and catch-all bins
+> (`eval_harness.build_duplicate_positives`). It is therefore a
+> **same-CTH non-join affinity proxy**, not an annotated duplicate/parallel
+> truth set. All numeric results and checks remain valid for that operational
+> benchmark. Any claim that the +0.0627 establishes duplicate-witness
+> retrieval is withdrawn. See `reports/phase6_surrogate_specialist_review.md`.
+
 **Status: AUTHORITATIVE. Four scopes, cross-fitted, plus the matching-scope
 Task-A-frozen arm. 2026-08-04.**
 Protocol: `reports/phase5_taskb_transfer_protocol.md`, pre-registered `318e153`,

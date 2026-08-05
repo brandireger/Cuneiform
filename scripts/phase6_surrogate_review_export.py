@@ -155,6 +155,14 @@ def assert_expected_degenerate_self_joins(degenerate: list[str]) -> None:
         )
 
 
+def benchmark_positive_basis(cell: str) -> str:
+    if cell == "joins":
+        return "EDITORIAL_PHYSICAL_JOIN_PARTNER"
+    if cell == "duplicates":
+        return "SAME_CTH_NON_JOIN_BENCHMARK_PROXY"
+    raise ValueError(f"unsupported review cell: {cell}")
+
+
 def reproduce_predictions(rows: list[dict], result: dict, persisted: list[dict]):
     """Return held-out records after exact agreement with saved correctness."""
     base_ok = [r for r in rows if tb.n_content(r, tb.BASE_SCOPE) >= tb.MIN_CONTENT_TOKENS]
@@ -259,7 +267,7 @@ def main() -> None:
         blind = {
             "case_id": case_id,
             "task": ("physical_join_retrieval" if cell == "joins"
-                     else "duplicate_parallel_retrieval"),
+                     else "same_cth_non_join_retrieval_proxy"),
             "query": visible_fragment(by_id[qid], "QUERY"),
             "candidate_A": visible_fragment(by_id[assignment[0][1]], "A"),
             "candidate_B": visible_fragment(by_id[assignment[1][1]], "B"),
@@ -270,6 +278,7 @@ def main() -> None:
         blind_cases.append(blind)
 
         positives = reproduced["positives"][cell].get(qid, set())
+        positive_basis = benchmark_positive_basis(cell)
         reveal_cases.append({
             "case_id": case_id,
             "query_id": qid,
@@ -277,15 +286,16 @@ def main() -> None:
             "sampling_outcome": selection["outcome"],
             "cth": cth_of[qid],
             "fold": int(reproduced["fold_of"][cth_of[qid]]),
+            "positive_basis": positive_basis,
             "candidate_A": {
                 "method": assignment[0][0], "fragment_id": assignment[0][1],
-                "editorial_relation_positive": assignment[0][1] in positives,
+                "benchmark_positive": assignment[0][1] in positives,
             },
             "candidate_B": {
                 "method": assignment[1][0], "fragment_id": assignment[1][1],
-                "editorial_relation_positive": assignment[1][1] in positives,
+                "benchmark_positive": assignment[1][1] in positives,
             },
-            "all_editorial_relation_positives": sorted(positives),
+            "all_benchmark_positives": sorted(positives),
         })
 
     blind_payload = {
@@ -305,6 +315,13 @@ def main() -> None:
         "seed": SEED,
         "sampling_accounting": accounting,
         "correctness_bits_reproduced": reproduced["n_correctness_bits_checked"],
+        "label_semantics": {
+            "joins": "editor-encoded physical join partner",
+            "duplicates": (
+                "same-CTH non-join fragment; benchmark proxy, not an annotated "
+                "duplicate or parallel relation"
+            ),
+        },
         "cases": reveal_cases,
     }
 
@@ -338,7 +355,7 @@ def main() -> None:
         "authoritative_taskb_result_sha256": sha256_file(TASKB_RESULT),
         "authoritative_per_query_sha256": sha256_file(TASKB_PER_QUERY),
         "sampling_metadata_not_visible_to_reviewer": [
-            "method identity", "correctness", "editorial relation labels",
+            "method identity", "correctness", "benchmark positive labels",
             "CTH", "fold", "fragment identifiers"],
         "sampling_accounting": accounting,
         "correctness_bits_reproduced": reproduced["n_correctness_bits_checked"],

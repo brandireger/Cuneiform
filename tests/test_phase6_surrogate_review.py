@@ -57,6 +57,18 @@ class TestSurrogateReviewExport(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             sr.assert_expected_degenerate_self_joins(expected + ["NEW::1"])
 
+    def test_benchmark_positive_basis_does_not_overclaim_duplicates(self):
+        self.assertEqual(
+            sr.benchmark_positive_basis("duplicates"),
+            "SAME_CTH_NON_JOIN_BENCHMARK_PROXY",
+        )
+        self.assertEqual(
+            sr.benchmark_positive_basis("joins"),
+            "EDITORIAL_PHYSICAL_JOIN_PARTNER",
+        )
+        with self.assertRaises(ValueError):
+            sr.benchmark_positive_basis("pooled")
+
     def test_selection_is_deterministic_and_prefers_distinct_cth(self):
         pool = [
             {"query_id": "q1", "cell": "duplicates", "outcome": "gained"},

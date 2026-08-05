@@ -1,5 +1,13 @@
 # Phase 6 successor handoff — the retrieval line is closed; the specialist session is the blocker
 
+> **2026-08-04 surrogate-review addendum.** A pre-registered, method-blinded
+> AI-assisted review has been completed to support mentor-paper drafting; see
+> `reports/phase6_surrogate_specialist_review.md`. It is explicitly **not** a
+> Hittite specialist session, so the blocker named below remains. The review
+> also corrected a task-label overclaim: the historical `duplicates` cell is
+> operationally a same-CTH non-join proxy, not annotated duplicate/parallel
+> truth. The provisional paper draft is `reports/mentor_paper_draft.md`.
+
 **Handoff date:** 2026-08-04
 **Branch merged to `master`:** `codex/phase5-classical-control-review`
 **Protected test split: CLOSED. GPU training: unauthorized. Gate 3 Stage 2:

@@ -248,6 +248,14 @@ but neither may redefine the project around forced joining.
   sparsity demands, but ALWAYS evaluate and report joins-only,
   duplicates-only, and pooled — the full three-way matrix for every
   model.** This separation is a standing user decision.
+  **Operational label correction (2026-08-04):** the historical evaluation
+  implementation does not contain relation-specific duplicate/parallel labels.
+  `eval_harness.build_duplicate_positives` constructs every same-CTH fragment
+  pair after excluding join pairs and bins. In papers and product claims, call
+  this cell **same-CTH non-join affinity proxy** unless and until a specialist-
+  validated duplicate/parallel truth set replaces or supplements it. Existing
+  numeric results remain benchmark results for that proxy; they do not by
+  themselves validate duplicate discovery.
 - Metrics: recall@k (k=1,5,10,100), MRR; stratify by fragment length
   and by genre where CTH metadata allows.
 
