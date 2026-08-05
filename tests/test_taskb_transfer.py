@@ -268,6 +268,150 @@ class TestTierCPairInstances(unittest.TestCase):
 
 
 @unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
+class TestQueryRelativePopulation(unittest.TestCase):
+    """The third amendment.
+
+    Both query-relative scopes originally selected queries AND candidates under
+    each fragment's OWN resolved language. For CROSS_LANGUAGE_PARALLEL that
+    tested a monolingual query for content in a language it does not contain,
+    which reported zero evaluable queries while the ceiling code simultaneously
+    found thousands of reachable targets. Given how many population-construction
+    defects this line has produced, each rule is pinned separately."""
+
+    def _rows(self):
+        def frag(fid, lang, hit_lines, akk_lines, split="dev"):
+            r = {"fragment_id": fid, "parent_doc": fid, "cth": 1,
+                 "main_split": split, "language": lang,
+                 "SAME_LANGUAGE_AS_QUERY::Hit": hit_lines,
+                 "SAME_LANGUAGE_AS_QUERY::Akk": akk_lines,
+                 "CROSS_LANGUAGE_PARALLEL::Hit": akk_lines,
+                 "CROSS_LANGUAGE_PARALLEL::Akk": hit_lines}
+            return r
+        four = [["a", "b", "c", "d"]]
+        return {
+            # monolingual Hittite query: plenty of Hit, no Akk
+            "qh": frag("qh", "Hit", four, []),
+            # fragment-level UNRESOLVED candidate that still has ample Hittite
+            "cmix": frag("cmix", tb.UNRESOLVED, four, four, split="train"),
+            # pure Akkadian candidate
+            "cakk": frag("cakk", "Akk", [], four, split="train"),
+            # unresolved QUERY -- must be refused outright
+            "qmix": frag("qmix", tb.UNRESOLVED, four, four),
+        }
+
+    def test_query_is_rendered_in_its_own_language(self):
+        rows = self._rows()
+        self.assertEqual(tb.query_rendering_key(rows["qh"]),
+                         "SAME_LANGUAGE_AS_QUERY::Hit")
+
+    def test_unresolved_query_is_refused(self):
+        rows = self._rows()
+        self.assertIsNone(tb.query_rendering_key(rows["qmix"]))
+
+    def test_candidate_key_follows_the_query_language(self):
+        self.assertEqual(
+            tb.candidate_rendering_key("CROSS_LANGUAGE_PARALLEL", "Hit"),
+            "CROSS_LANGUAGE_PARALLEL::Hit")
+        self.assertEqual(
+            tb.candidate_rendering_key("SAME_LANGUAGE_AS_QUERY", "Akk"),
+            "SAME_LANGUAGE_AS_QUERY::Akk")
+        # fixed scopes ignore the query language entirely
+        self.assertEqual(
+            tb.candidate_rendering_key("HITTITE_ONLY", "Akk"), "HITTITE_ONLY")
+
+    def test_unresolved_candidate_with_enough_query_language_content_is_eligible(self):
+        """The point of amendment (b): a fragment that resolves to no single
+        language may still answer a Hittite query with its Hittite lines."""
+        rows = self._rows()
+        dev = [rows["qh"]]
+        labeled = [rows["cmix"], rows["cakk"]]
+        base_pos = {"joins": {}, "duplicates": {"qh": {"cmix"}},
+                    "pooled": {"qh": {"cmix"}}}
+        groups = tb.build_language_groups(dev, labeled,
+                                          "SAME_LANGUAGE_AS_QUERY", base_pos)
+        hit = [g for g in groups if g["language"] == "Hit"][0]
+        cand_ids = {r["fragment_id"] for r in hit["c_rows"]}
+        self.assertIn("cmix", cand_ids,
+                      "an unresolved candidate with ample Hittite content must "
+                      "remain eligible for a Hittite query")
+        self.assertNotIn("cakk", cand_ids)
+
+    def test_cross_language_flips_which_candidates_are_eligible(self):
+        rows = self._rows()
+        dev = [rows["qh"]]
+        labeled = [rows["cmix"], rows["cakk"]]
+        base_pos = {"joins": {}, "duplicates": {"qh": {"cakk"}},
+                    "pooled": {"qh": {"cakk"}}}
+        groups = tb.build_language_groups(dev, labeled,
+                                          "CROSS_LANGUAGE_PARALLEL", base_pos)
+        hit = [g for g in groups if g["language"] == "Hit"][0]
+        cand_ids = {r["fragment_id"] for r in hit["c_rows"]}
+        self.assertIn("cakk", cand_ids)
+        # the query itself is still selected by its OWN-language rendering
+        self.assertEqual(hit["qkey"], "SAME_LANGUAGE_AS_QUERY::Hit")
+        self.assertEqual(hit["ckey"], "CROSS_LANGUAGE_PARALLEL::Hit")
+        self.assertEqual([r["fragment_id"] for r in hit["q_rows"]], ["qh"])
+
+    def test_query_without_a_reachable_positive_is_dropped(self):
+        rows = self._rows()
+        dev = [rows["qh"]]
+        labeled = [rows["cakk"]]          # only an Akkadian candidate
+        base_pos = {"joins": {}, "duplicates": {"qh": {"cmix"}},
+                    "pooled": {"qh": {"cmix"}}}   # target not in the universe
+        groups = tb.build_language_groups(dev, labeled,
+                                          "SAME_LANGUAGE_AS_QUERY", base_pos)
+        hit = [g for g in groups if g["language"] == "Hit"][0]
+        self.assertEqual(hit["q_rows"], [])
+        self.assertEqual(hit["n_eligible_queries"], 1,
+                         "eligibility and reachability are reported separately")
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
+class TestTaskAScopeMatching(unittest.TestCase):
+
+    def test_matching_step2_rendering_per_scope(self):
+        self.assertEqual(tb.TASK_A_RENDERING_FOR["HITTITE_ONLY"], "SCOPED")
+        self.assertEqual(
+            tb.TASK_A_RENDERING_FOR["ALL_LANGUAGES_UNCONDITIONED"], "BOUNDARY")
+
+    def test_query_relative_scopes_get_no_arm(self):
+        """No matching Step 2 arm exists, so transporting a Hittite-scoped
+        configuration there would be a different claim."""
+        for s in tb.QUERY_RELATIVE_SCOPES:
+            self.assertIsNone(tb.TASK_A_RENDERING_FOR[s])
+            self.assertIsNone(tb.load_task_a_frozen(tb.TASK_A_RENDERING_FOR[s]))
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
+class TestCommonPopulationAndFinalSystem(unittest.TestCase):
+
+    def test_cross_language_is_outside_the_common_comparison(self):
+        """§3.2. Letting the assistance channel in would collapse the per-cell
+        intersection onto its small asymmetric population."""
+        self.assertNotIn("CROSS_LANGUAGE_PARALLEL", tb.COMMON_POPULATION_SCOPES)
+        self.assertEqual(tb.COMMON_POPULATION_SCOPES,
+                         ["HITTITE_ONLY", "ALL_LANGUAGES_UNCONDITIONED",
+                          "SAME_LANGUAGE_AS_QUERY"])
+
+    def test_final_system_comparison_uses_identical_query_ids(self):
+        frozen = {"a": {"recall@1": 1}, "b": {"recall@1": 0},
+                  "only_in_frozen": {"recall@1": 1}}
+        fitted = {"a": {"recall@1": 0}, "b": {"recall@1": 0},
+                  "only_in_fitted": {"recall@1": 1}}
+        clusters = {"a": "c1", "b": "c2"}
+        res = tb.paired_final_system(frozen, fitted, clusters)
+        self.assertEqual(res["n_paired"], 2,
+                         "queries present in only one arm must be dropped")
+        self.assertAlmostEqual(res["delta_frozen_minus_fitted"], 0.5)
+        self.assertIn("NOT a comparison of within-arm increments",
+                      res["estimand"])
+
+    def test_final_system_comparison_returns_none_without_overlap(self):
+        self.assertIsNone(tb.paired_final_system(
+            {"a": {"recall@1": 1}}, {"b": {"recall@1": 1}}, {}))
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
 class TestScopeSelection(unittest.TestCase):
 
     def test_unresolved_query_language_has_no_query_relative_rendering(self):

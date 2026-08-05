@@ -62,6 +62,11 @@ QUERY_RELATIVE_SCOPES = ["SAME_LANGUAGE_AS_QUERY", "CROSS_LANGUAGE_PARALLEL"]
 PRIMARY_SCOPE = "HITTITE_ONLY"
 BASE_SCOPE = "ALL_LANGUAGES_UNCONDITIONED"      # most permissive; base population
 PRIMARY_CELLS = ["joins", "duplicates", "pooled"]
+# Symmetric retrieval scopes only. CROSS_LANGUAGE_PARALLEL is excluded by
+# protocol §3.2 -- it is an assistance channel over a different-language
+# candidate universe, so it does not belong in a like-for-like scope table.
+COMMON_POPULATION_SCOPES = ["HITTITE_ONLY", "ALL_LANGUAGES_UNCONDITIONED",
+                            "SAME_LANGUAGE_AS_QUERY"]
 FAMILY_ALPHA = 0.05                              # Holm-Bonferroni family-wise
 MIN_CONTENT_TOKENS = 4
 KS = (1, 5, 10, 100)
@@ -225,10 +230,15 @@ def build_language_groups(dev_rows, labeled, scope_name, base_positives):
                   and n_content(r, qkey) >= MIN_CONTENT_TOKENS]
         c_rows = [r for r in labeled
                   if n_content(r, ckey) >= MIN_CONTENT_TOKENS]
+        # `n_eligible_queries` is always the TRUE count of queries eligible
+        # under their own-language rendering, even when the candidate universe
+        # is empty. Collapsing it to 0 would conflate "no eligible queries"
+        # with "no candidates to answer them" in the coverage report.
         if not q_rows or not c_rows:
             groups.append({"language": lang, "q_rows": [], "c_rows": c_rows,
                            "positives": {c: {} for c in PRIMARY_CELLS},
-                           "qkey": qkey, "ckey": ckey, "n_eligible_queries": 0})
+                           "qkey": qkey, "ckey": ckey,
+                           "n_eligible_queries": len(q_rows)})
             continue
         c_ids = {r["fragment_id"] for r in c_rows}
         positives = {}
@@ -1038,25 +1048,12 @@ def main():
             print(f"  Task-A-frozen arm for {_sc}: matching Step 2 rendering "
                   f"{rend!r}, weights {task_a_cache[_sc]['pair_by_fold']}")
 
-    # §4 common population: the queries EVERY run scope can serve. Cross-scope
-    # absolute numbers are otherwise on different query sets and are not
-    # comparable -- the sensitivity analysis exists to make that visible.
-    # Only scopes that are actually evaluable may enter the intersection. A
-    # scope that leaves nothing scorable (CROSS_LANGUAGE_PARALLEL does, in a
-    # corpus this predominantly Hittite) would otherwise zero the common
-    # population and silently delete the comparison for every other scope.
-    common_scopes, common_ids = [], None
-    for name in scope_names:
-        ids = {r["fragment_id"] for r in scorable(dev_rows, name)}
-        if len(ids) < _comb.N_FOLDS:
-            print(f"  common population EXCLUDES {name}: only {len(ids)} "
-                  "scorable queries")
-            continue
-        common_scopes.append(name)
-        common_ids = ids if common_ids is None else (common_ids & ids)
-    common_ids = common_ids or set()
-    print(f"  common population across {common_scopes}: "
-          f"{len(common_ids)} queries")
+    # The common population is computed ONCE, after all scopes have run, by
+    # intersecting the query IDs actually SCORED in each relation cell (third
+    # amendment (f)). An earlier eligibility-based calculation lived here and
+    # is deleted: it used `scorable()`, which is the wrong selector for
+    # query-relative scopes, and it wrote root-level fields that would disagree
+    # with the per-cell intersection produced later.
 
     result = {
         "protocol": f"{PROTOCOL} (PRE-REGISTERED and amended 2026-08-04, "
@@ -1065,8 +1062,6 @@ def main():
                                "training; fusion weights fitted out of fold"),
         "split": "dev queries only; protected test split closed and never loaded",
         "scopes_run": scope_names,
-        "common_population_scopes": common_scopes,
-        "n_common_population_queries": len(common_ids),
         "dev_query_languages": dev_langs,
         "population": {
             "base_scope": BASE_SCOPE, "n_labeled_index": len(labeled),
@@ -1202,39 +1197,13 @@ def main():
             "positive_relations_lost": base_rel - scope_rel,
             "eligible_candidate_set_size": len(s_index) - 1,
         }
-        # CROSS_LANGUAGE_PARALLEL: a positive is only REACHABLE if the target
-        # survives the different-language admission. Without this ceiling the
-        # cell's recall is uninterpretable -- a low number would look like a
-        # scoring failure when it is an admission bound.
-        if scope_name == "CROSS_LANGUAGE_PARALLEL":
-            ceiling = {}
-            for cell in PRIMARY_CELLS:
-                total = reachable = 0
-                for q, targets in positives[cell].items():
-                    qrow = by_id.get(q)
-                    if qrow is None or qrow["language"] == UNRESOLVED:
-                        continue
-                    qkey = rendering_key(scope_name, qrow["language"])
-                    for t in targets:
-                        total += 1
-                        trow = by_id.get(t)
-                        if trow is not None and n_content(
-                                trow, qkey) >= MIN_CONTENT_TOKENS:
-                            reachable += 1
-                ceiling[cell] = {
-                    "positives_considered": total,
-                    "positives_reachable": reachable,
-                    "reachable_ceiling": (reachable / total) if total else None,
-                }
-            coverage["cross_language_reachable_ceiling"] = ceiling
-            coverage["positive_semantics"] = (
-                "Positives here are DIFFERENT-LANGUAGE SAME-CTH relations. "
-                "They are not independently annotated as actual textual "
-                "parallels; shared CTH membership plus a language difference "
-                "is what the corpus supports. Any recall figure is bounded "
-                "above by reachable_ceiling.")
-            print(f"  cross-language reachable ceiling: "
-                  f"{ {k: round(v['reachable_ceiling'] or 0, 4) for k, v in ceiling.items()} }")
+        # NOTE: this branch handles FIXED scopes only -- query-relative scopes
+        # return earlier, via the per-query-language group path. The former
+        # CROSS_LANGUAGE_PARALLEL ceiling block that lived here has been
+        # DELETED rather than left unreachable: it computed reachability with
+        # the candidate-side key applied to targets while selecting queries
+        # with the same key, which is the defect the third amendment corrects.
+        # Leaving dead code of that shape invites its revival.
 
         # Pre-registered: lost positive relations broken down BY CELL and by
         # the refusal reason of the endpoint(s) that became unscorable.
@@ -1612,7 +1581,13 @@ def main():
     # IDs actually SCORED in that cell. Intersecting eligibility is not enough:
     # a query with no reachable positive in a cell is dropped by the retrieval
     # runner, so cell denominators differ even on a common eligibility set.
-    evaluable = [s for s in scored_ids if scored_ids[s]]
+    # §3.2 places CROSS_LANGUAGE_PARALLEL OUTSIDE the common population: it is
+    # an asymmetric assistance channel over a different-language candidate
+    # universe, not a symmetric retrieval scope. Letting it into the per-cell
+    # intersection would collapse the comparison onto its small assistance
+    # population and silently shrink every other scope's denominator.
+    evaluable = [s for s in COMMON_POPULATION_SCOPES
+                 if s in scored_ids and scored_ids[s]]
     if len(evaluable) > 1:
         common_cells = {}
         for cell in PRIMARY_CELLS:
@@ -1642,6 +1617,9 @@ def main():
                      "so every scope shares one denominator per cell. No "
                      "dedicated inference was pre-registered for between-scope "
                      "differences and none is offered."),
+            "scopes_compared": evaluable,
+            "excluded_by_protocol_3_2": [s for s in scope_names
+                                         if s not in COMMON_POPULATION_SCOPES],
             "cells": common_cells,
         }
 
