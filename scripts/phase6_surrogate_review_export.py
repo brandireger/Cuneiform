@@ -46,6 +46,12 @@ REQUESTED = {
     ("joins", "lost"): 3,
 }
 
+# Corpus data-quality exceptions already excluded and recorded by the
+# authoritative Step 3 evaluator. ``build_positives`` reports them even when
+# they are outside the dev population because it scans the full join-pair file
+# before applying the requested fragment universe.
+EXPECTED_DEGENERATE_SELF_JOINS = {"KBo 22.130a+::1", "KUB 28.89+::1"}
+
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
@@ -139,6 +145,16 @@ def assert_blind_case(case: dict) -> None:
     walk(case)
 
 
+def assert_expected_degenerate_self_joins(degenerate: list[str]) -> None:
+    observed = set(degenerate)
+    if observed != EXPECTED_DEGENERATE_SELF_JOINS:
+        raise RuntimeError(
+            "self-join exclusions differ from the authoritative Step 3 set: "
+            f"expected {sorted(EXPECTED_DEGENERATE_SELF_JOINS)}, "
+            f"observed {sorted(observed)}"
+        )
+
+
 def reproduce_predictions(rows: list[dict], result: dict, persisted: list[dict]):
     """Return held-out records after exact agreement with saved correctness."""
     base_ok = [r for r in rows if tb.n_content(r, tb.BASE_SCOPE) >= tb.MIN_CONTENT_TOKENS]
@@ -149,9 +165,7 @@ def reproduce_predictions(rows: list[dict], result: dict, persisted: list[dict])
 
     frags, _splits, _doc = eh.load_fragment_universe()
     positives, join_meta, degenerate = tb.build_positives(s_queries, frags)
-    if degenerate:
-        # The known self-pairs are discovery-side and must not reach this path.
-        raise RuntimeError(f"unexpected dev self-positive(s): {degenerate}")
+    assert_expected_degenerate_self_joins(degenerate)
     family_map = eh.build_family_map(frags)
     fold_of, _loads = tb._comb.assign_folds(s_queries)  # noqa: SLF001
 

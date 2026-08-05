@@ -49,6 +49,14 @@ class TestSurrogateReviewExport(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             sr.assert_blind_case({"case_id": "SR001", "candidate_A": {"correct": True}})
 
+    def test_only_authoritative_self_join_exclusions_are_accepted(self):
+        expected = sorted(sr.EXPECTED_DEGENERATE_SELF_JOINS)
+        sr.assert_expected_degenerate_self_joins(expected)
+        with self.assertRaises(RuntimeError):
+            sr.assert_expected_degenerate_self_joins([])
+        with self.assertRaises(RuntimeError):
+            sr.assert_expected_degenerate_self_joins(expected + ["NEW::1"])
+
     def test_selection_is_deterministic_and_prefers_distinct_cth(self):
         pool = [
             {"query_id": "q1", "cell": "duplicates", "outcome": "gained"},
