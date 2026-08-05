@@ -718,8 +718,13 @@ Expert workbench events are append-only quarantined annotations
 and never become corpus truth automatically.
 
 See `PHASE4_SUCCESSOR_HANDOFF.md` for accepted hashes, rebuild commands, and
-the cache-collision warning. Continue operational work from
-`PHASE5_SUCCESSOR_HANDOFF.md`.
+the cache-collision warning. **Continue operational work from
+`PHASE6_SUCCESSOR_HANDOFF.md`**; `PHASE5_SUCCESSOR_HANDOFF.md` stays current
+for the workbench, cross-line calibration and Gate 3 history. The
+corrective-review sequence (steps 1–3) is CLOSED — read
+`reports/phase5_review_sequence_closeout.md` for what stands, what was
+withdrawn and why, and eleven methodological traps. **Steps 4–6 are open and
+the binding blocker is the first specialist session.**
 
 Gate 2 found that the historical decomposed-token cache conflates at least
 one distinct archive-stem pair under one `doc_id`. Phase 4 token construction

@@ -681,8 +681,13 @@ deliverables:
    language tags, and anomalies with context for expert grouping.
 
 `PHASE4_SUCCESSOR_HANDOFF.md` preserves the accepted hashes, rebuild commands,
-and Gates 0–2 history. The current operational status and next bounded work are
-recorded in `PHASE5_SUCCESSOR_HANDOFF.md`.
+and Gates 0–2 history. **Current operational status and next bounded work are
+in `PHASE6_SUCCESSOR_HANDOFF.md`**; `PHASE5_SUCCESSOR_HANDOFF.md` stays current
+for the workbench, cross-line calibration and Gate 3 history. The
+corrective-review sequence (steps 1–3) is CLOSED — read
+`reports/phase5_review_sequence_closeout.md` for what stands, what was
+withdrawn and why, and eleven methodological traps. **Steps 4–6 are open and
+the binding blocker is the first specialist session.**
 
 **Phase 4 Gate 2 passed 2026-07-25.** The deterministic, split-gated
 language-span migration and 2,923,640-row multilingual token dataset are

@@ -1,5 +1,13 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
+> **SUPERSEDED FOR FORWARD WORK 2026-08-04. Continue from
+> `PHASE6_SUCCESSOR_HANDOFF.md`.** This file remains current for everything
+> *before* the corrective-review sequence — the unresolved-evidence workbench,
+> cross-line calibration, Gate 3, the expert surfaces, and their ratified
+> decisions. The retrieval line it ends with (item 8) is closed; its complete
+> arc, surviving claims, withdrawn claims and methodological traps are in
+> `reports/phase5_review_sequence_closeout.md`.
+
 **Handoff date:** 2026-07-28
 **Refreshed:** 2026-08-03 (session 4 — open items 3, 4 and 7 are CLOSED.
 The copy review and the second queue shipped 2026-08-02; **Gate 3 was
