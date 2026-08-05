@@ -491,16 +491,23 @@ arbitrary lost span. Therefore:
    language rather than relative to the QUERY language.
    Corrected: `SAME_LANGUAGE_AS_QUERY` joins +0.0897, duplicates +0.0664,
    pooled +0.0858 (all p ≤ 0.002), with a reachability ceiling of **1.000
-   joins / 0.973 duplicates**. **`CROSS_LANGUAGE_PARALLEL` is evaluable and
-   NULL**: 410 queries, **+0.0049 CI [−0.0194, +0.0414] p=0.654**, on a
-   genuinely low ceiling (0.0295 joins / 0.0741 duplicates); its positives are
-   different-language same-CTH relations, NOT annotated parallels.
+   joins / 0.973 duplicates**. **`CROSS_LANGUAGE_PARALLEL` is evaluable; its
+   increment is INCONCLUSIVE**: 410 queries, **+0.0049 CI [−0.0194, +0.0414]
+   p=0.654** — no detected increment, but the interval permits both harm and a
+   material gain, so this is **NOT an absence of effect**. What IS established
+   is the low reachable-positive coverage (ceiling 0.0295 joins / 0.0741
+   duplicates). Its positives are different-language same-CTH relations, NOT
+   annotated parallels.
    **Task-A-frozen arm uses the MATCHING Step 2 rendering only**
    (`HITTITE_ONLY`→`SCOPED`, `ALL_LANGUAGES`→`BOUNDARY`; query-relative scopes
    get no arm). Compared as FINAL SYSTEMS on identical query IDs:
-   **+0.0026 CI [−0.0024, +0.0104] p=0.422** — **equivalence, not "matches or
-   beats"**; the old reading compared within-arm increments, which a weaker
-   baseline inflates. Task A's configuration PORTS to Task B without retuning.
+   **+0.0026 CI [−0.0024, +0.0104] p=0.422 — NO DETECTED DIFFERENCE, and
+   EQUIVALENCE IS NOT ESTABLISHED** (no equivalence margin or TOST was
+   pre-registered; even reusing ±0.010 the upper endpoint +0.0104 lies just
+   outside it). `ALL_LANGUAGES` +0.0117 is a **positive descriptive difference
+   only** — that arm is outside the corrected primary family. The valid claim
+   is that **the Task-A-selected weights retain utility on Task B** (+0.0888
+   within-arm, no retuning); never that the weights are task-independent.
    Common population is intersected **per cell** over actually-scored IDs
    across the three symmetric scopes; **no scope uniformly dominates** and no
    inference is offered.

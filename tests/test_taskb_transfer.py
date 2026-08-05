@@ -406,6 +406,32 @@ class TestCommonPopulationAndFinalSystem(unittest.TestCase):
         self.assertIn("NOT a comparison of within-arm increments",
                       res["estimand"])
 
+    def test_final_system_comparison_never_claims_equivalence(self):
+        """Correction 1 of the corrective review -- non-significance is not
+        equivalence -- has been re-made in prose more than once in this line.
+        The payload now carries the verdict mechanically so the writeup cannot
+        quietly upgrade 'no detected difference' to 'equivalent'."""
+        frozen = {f"q{i}": {**{f"recall@{k}": (i % 2) for k in tb.KS},
+                            "rr": 1.0, "rank": 1, "n_positives": 1}
+                  for i in range(10)}
+        fitted = {f"q{i}": {**{f"recall@{k}": (i % 2) for k in tb.KS},
+                            "rr": 1.0, "rank": 1, "n_positives": 1}
+                  for i in range(10)}
+        clusters = {f"q{i}": f"c{i}" for i in range(10)}
+        res = tb.paired_final_system(frozen, fitted, clusters)
+        self.assertFalse(res["equivalence_established"])
+        self.assertIn("never equivalence", res["equivalence_note"])
+        self.assertIn("margin_verdict", res)
+
+    def test_wide_interval_around_zero_is_inconclusive_not_null(self):
+        """A CI that spans both harm and a material gain must NOT be labelled
+        below-margin. This is the cross-language duplicates case."""
+        self.assertEqual(
+            tb.practical_increment_verdict(
+                0.0049, [-0.0194, 0.0414], tb.DECISION_MARGIN,
+                below_margin_label="INCREMENT_BELOW_MARGIN"),
+            "INCONCLUSIVE")
+
     def test_final_system_comparison_returns_none_without_overlap(self):
         self.assertIsNone(tb.paired_final_system(
             {"a": {"recall@1": 1}}, {"b": {"recall@1": 1}}, {}))

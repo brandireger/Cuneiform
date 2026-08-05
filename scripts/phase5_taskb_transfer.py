@@ -45,6 +45,7 @@ import evidence_policy as ep  # noqa: E402
 import hittite_tokenizer as ht  # noqa: E402
 import language_lookup_v2 as llv2  # noqa: E402
 import language_scope as ls  # noqa: E402
+from effect_decision import practical_increment_verdict  # noqa: E402
 
 _comb = __import__("phase5_bm25_combiner")
 _uni = __import__("phase5_unigram_tfidf_control")
@@ -68,6 +69,12 @@ PRIMARY_CELLS = ["joins", "duplicates", "pooled"]
 COMMON_POPULATION_SCOPES = ["HITTITE_ONLY", "ALL_LANGUAGES_UNCONDITIONED",
                             "SAME_LANGUAGE_AS_QUERY"]
 FAMILY_ALPHA = 0.05                              # Holm-Bonferroni family-wise
+# The declared smallest worthwhile effect, inherited from this whole line of
+# work. It was previously carried only in the protocol prose; encoding it here
+# is what lets every reported effect emit a mechanical margin verdict instead
+# of relying on the writeup to distinguish "no detected effect" from "no
+# effect".
+DECISION_MARGIN = 0.010
 MIN_CONTENT_TOKENS = 4
 KS = (1, 5, 10, 100)
 UNRESOLVED = "QUERY_LANGUAGE_UNRESOLVED"
@@ -612,6 +619,19 @@ def paired_final_system(records_frozen, records_fitted, cluster_of):
         "cluster_p": bootstrap_p_value(by_cluster),
         "estimand": ("final-system recall@1 difference on identical query "
                      "IDs; NOT a comparison of within-arm increments"),
+        "margin_verdict": practical_increment_verdict(
+            delta if delta is not None else 0.0,
+            ci if ci[0] is not None else [0.0, 0.0], DECISION_MARGIN,
+            positive_label="FROZEN_BETTER_BY_MARGIN",
+            below_margin_label="DIFFERENCE_BELOW_MARGIN"),
+        "equivalence_established": False,
+        "equivalence_note": (
+            "No equivalence margin or TOST was pre-registered, so a "
+            "non-significant difference here establishes NO DETECTED "
+            "DIFFERENCE and never equivalence. Reusing the 0.010 materiality "
+            "margin post hoc does not rescue it either: the interval's upper "
+            "endpoint must lie inside the margin for that reading, and "
+            "`margin_verdict` records whether it does."),
     }
 
 
@@ -763,6 +783,17 @@ def cell_result(records_u, records_ub, cluster_of, label):
         "n_clusters": len(by_cluster), "n_paired": len(common),
         "n_gained": int(sum(1 for q in common if cub[q] > cu[q])),
         "n_lost": int(sum(1 for q in common if cub[q] < cu[q])),
+        # Mechanical margin verdict, so "no detected increment" can never be
+        # written up as "no effect". Correction 1 of the corrective review --
+        # non-significance is not equivalence -- has now been re-made more than
+        # once in prose; emitting the label from the shared helper removes the
+        # opportunity.
+        "margin_verdict": practical_increment_verdict(
+            delta if delta is not None else 0.0,
+            ci if ci[0] is not None else [0.0, 0.0], DECISION_MARGIN,
+            positive_label="MATERIAL_INCREMENT",
+            below_margin_label="INCREMENT_BELOW_MARGIN"),
+        "margin": DECISION_MARGIN,
     }, cu, cub
 
 

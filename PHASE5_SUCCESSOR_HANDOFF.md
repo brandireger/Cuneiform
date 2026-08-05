@@ -796,10 +796,14 @@ never read `cu`, Gate 3 closed. Additionally:
    query eligibility is 1.000 joins / 0.973 duplicates** — nearly every
    positive is reachable, the opposite of what the withdrawn figure implied.
 
-   **`CROSS_LANGUAGE_PARALLEL` is evaluable and NULL.** 410 queries retain a
-   reachable duplicate positive; the channel gives **+0.0049, CI [−0.0194,
-   +0.0414], p=0.654**. Its ceiling is genuinely low (**0.0295 joins / 0.0741
-   duplicates**), and its joins cell (n=7, 5 clusters) is descriptive only.
+   **`CROSS_LANGUAGE_PARALLEL` is evaluable; its increment is INCONCLUSIVE.**
+   410 queries retain a reachable duplicate positive; the channel gives
+   **+0.0049, CI [−0.0194, +0.0414], p=0.654** — **no detected increment**, and
+   that interval still permits both harm and a materially useful gain. **This
+   is NOT an absence of effect** (upper endpoint +0.0414 exceeds the 0.010
+   margin, so the shared rule returns `INCONCLUSIVE`). What IS established is
+   the **low reachable-positive coverage**: ceiling **0.0295 joins / 0.0741
+   duplicates**. Its joins cell (n=7, 5 clusters) is descriptive only.
    Positives are **different-language same-CTH relations**, NOT annotated
    parallels. Candidate counts are **renderings with ≥4 admitted tokens**, not
    "fragments of language X" — parents may be multilingual or unresolved.
@@ -808,11 +812,17 @@ never read `cu`, Gate 3 closed. Additionally:
    `ALL_LANGUAGES`→`BOUNDARY`; neither query-relative scope has a matching arm,
    so none is reported). Compared as **final systems on identical query IDs**,
    not as within-arm increments: `HITTITE_ONLY` **+0.0026, CI [−0.0024,
-   +0.0104], p=0.422** — statistically indistinguishable; `ALL_LANGUAGES`
-   **+0.0117, CI [+0.0018, +0.0182]**. **The claim is EQUIVALENCE, not
-   "matches or beats"** — the earlier reading compared increments, which a
-   weaker baseline inflates. Task A's configuration **ports** to Task B without
-   retuning; that is configuration portability, not a cross-task gain.
+   +0.0104], p=0.422** — **no detected difference**; `ALL_LANGUAGES` **+0.0117,
+   CI [+0.0018, +0.0182]**, a **positive descriptive difference only**, since
+   that secondary arm sits outside the corrected primary family.
+   **EQUIVALENCE IS NOT ESTABLISHED.** No equivalence margin or TOST was
+   pre-registered, and even reusing the ±0.010 materiality margin post hoc the
+   upper endpoint +0.0104 lies just outside it. The valid claim is narrower:
+   **Task A's frozen configuration retains a positive within-arm benefit on
+   Task B without retuning (+0.0888), and its final accuracy is close to the
+   Task-B-fitted configuration — but the two are not shown equivalent.** Say
+   "the Task-A-selected weights retain utility on Task B", never "the weights
+   are not task-specific".
 
    **Common population, intersected PER CELL over actually-scored IDs**, three
    symmetric scopes (`CROSS_LANGUAGE_PARALLEL` excluded by §3.2): joins n=150

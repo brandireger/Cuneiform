@@ -109,11 +109,22 @@ cross-language admission at most **3–7%** ever were — so any recall figure
 there is bounded by that, and a low number is an admission bound, not a scoring
 failure.
 
-**`CROSS_LANGUAGE_PARALLEL` is evaluable and null.** 410 queries retain a
-reachable duplicate positive, and the bigram channel shows **+0.0049, CI
-[−0.0194, +0.0414], p=0.654** — no effect. Its joins cell has 7 queries across
-5 clusters and is reported descriptively only; nothing may be concluded from
-it.
+**`CROSS_LANGUAGE_PARALLEL` is evaluable; the increment is INCONCLUSIVE.** 410
+queries retain a reachable duplicate positive, and the bigram channel shows
+**+0.0049, CI [−0.0194, +0.0414], p=0.654** — **no detected increment**. That
+interval still permits both harm and a materially useful gain, so this is not
+an absence of effect. Applying the shared margin rule
+(`lib/effect_decision.practical_increment_verdict`, margin 0.010) the upper
+endpoint +0.0414 exceeds the margin, so the verdict is **`INCONCLUSIVE`**, not
+below-margin. Its joins cell has 7 queries across 5 clusters and is descriptive
+only.
+
+The defensible statement is therefore:
+
+> Cross-language evidence has **low reachable-positive coverage** (ceiling
+> 0.0295 joins / 0.0741 duplicates), and **within that restricted population
+> the bigram increment is inconclusive.** The low ceiling is established;
+> absence of effect is not.
 
 **On what these positives are:** **different-language same-CTH relations**, not
 independently annotated textual parallels. Shared CTH membership plus a
@@ -182,21 +193,30 @@ on Task B.
 | `SAME_LANGUAGE_AS_QUERY` | — | — | **arm omitted** | | | |
 | `CROSS_LANGUAGE_PARALLEL` | — | — | **arm omitted** | | | |
 
-**The correct claim is equivalence, not superiority.** On the primary scope the
-Task A configuration is **statistically indistinguishable** from the
-Task-B-fitted one (p=0.422). The earlier "matches or beats" reading came from
-comparing within-arm increments, which a weaker baseline can inflate. Only the
-unrestricted scope shows a small real advantage for the frozen configuration
-(+0.0117), and even there the effect is an order of magnitude below the bigram
-channel's own.
+**There is no detected final-system difference on the primary scope, and
+equivalence is NOT established.** +0.0026, CI [−0.0024, +0.0104], p=0.422 says
+only that no difference was detected. **No equivalence margin or TOST was
+pre-registered**, and even if the existing ±0.010 materiality margin were
+reused post hoc, the interval's upper endpoint **+0.0104 lies just outside it**
+— so the data do not support an equivalence claim under that margin either.
+The earlier "matches or beats" reading came from comparing within-arm
+increments, which a weaker baseline can inflate.
 
-**So: the Task A configuration ports to Task B without retuning.** That is
-worth having — it means the fusion weights are not task-specific — but it is a
-statement about configuration portability, not about the channel gaining
-anything from cross-task use. Neither query-relative scope has a matching Step 2
-arm, so no such claim exists for them; transporting a Hittite-scoped
-configuration there would be cross-task *plus* cross-scope portability, a
-different question.
+For `ALL_LANGUAGES_UNCONDITIONED`, **+0.0117 is a positive descriptive
+difference only**: this secondary arm sits outside the corrected primary
+family and carries no confirmatory claim.
+
+The valid portability statement is narrower than either:
+
+> **Task A's frozen configuration retains a positive within-arm benefit on
+> Task B without retuning** (+0.0888 under `HITTITE_ONLY`). Its final accuracy
+> is **close to** the Task-B-fitted configuration, but **their equivalence is
+> not established.**
+
+So what is shown is that **the Task-A-selected weights retain utility on Task
+B** — not that the weights are task-independent, which would require an
+equivalence test that was never designed. Neither query-relative scope has a
+matching Step 2 arm, so no such claim exists for them at all.
 
 ## Bin-parent physical joins — descriptive
 
