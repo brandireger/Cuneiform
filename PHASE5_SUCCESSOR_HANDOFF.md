@@ -779,9 +779,37 @@ never read `cu`, Gate 3 closed. Additionally:
    discovery-side). Excluded and counted — a self-positive is unretrievable by
    construction, so keeping it manufactures guaranteed misses.
 
-   **Owed and not run:** the two query-relative scopes are implemented but
-   deferred to a second pass, and the **cross-task transfer arm** (Task-A
-   frozen weights applied to Task B, protocol §2) was never implemented.
+   **ALL DEFERRED ARMS NOW RUN (2026-08-04).**
+
+   `SAME_LANGUAGE_AS_QUERY` is evaluable and shows the effect (joins +0.0867,
+   duplicates +0.0457, pooled +0.0637, all p ≤ 0.009). Its coverage cost is
+   **12,482 relations, every one to `QUERY_LANGUAGE_UNRESOLVED`** — 4.4× what
+   `HITTITE_ONLY` loses, and attributable to protocol §3.3, OUR fail-closed
+   rule refusing any fragment whose lines resolve to more than one language,
+   not to line-level language evidence. Record it as a design cost.
+
+   **`CROSS_LANGUAGE_PARALLEL` is NOT EVALUABLE — and that is the finding.**
+   Reachable-positive ceiling 0.0295 joins / 0.0741 duplicates; after the
+   ≥4-token floor on both endpoints, **zero** scorable queries. Fragment-level
+   cross-language parallel evidence is essentially unavailable in this corpus
+   under a strict different-language line admission. Its positives are
+   **different-language same-CTH relations**, NOT annotated textual parallels;
+   any future figure must carry that and the ceiling.
+
+   **Task-A-frozen arm (exact step-2 weights + Task A's own fold map, no Task B
+   tuning):** pooled +0.0888 under `HITTITE_ONLY`, +0.0712 unrestricted,
+   +0.0770 same-language — matching or beating the Task-B-fitted configuration
+   everywhere. **"Transfer" is now usable for that specific claim and nothing
+   broader.** Caveat that must travel with it: under `HITTITE_ONLY` the two
+   weight sets differ only in fold 3, so that row largely shows two tasks
+   selecting nearly the same configuration; the informative rows are the other
+   two scopes, where the weights genuinely differ.
+
+   **Common population (658 queries, three evaluable scopes): no scope
+   uniformly dominates** — `SAME_LANGUAGE` best on joins (0.6759),
+   `HITTITE_ONLY` on duplicates (0.4284) and pooled (0.5840), the unrestricted
+   ablation never best. No dedicated inference was pre-registered for these
+   differences and none is offered.
    **Do not report geometry as an independent stratum** — in this dev slice
    horizontal ≡ tier C and vertical ≡ tiers A+B, perfectly confounded. **The
    site stratum is empty of contrast**: all 171 dev join queries are Hattusa,

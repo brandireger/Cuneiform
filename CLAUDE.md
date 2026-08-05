@@ -513,6 +513,21 @@ arbitrary lost span. Therefore:
    independent stratum (perfectly confounded with tier on dev), and all 171 dev
    join queries are Hattusa, so nothing here speaks to provincial
    generalization.
+   **ALL FOUR LANGUAGE SCOPES AND THE TASK-A-FROZEN ARM RUN 2026-08-04.**
+   `SAME_LANGUAGE_AS_QUERY` is evaluable (pooled +0.0637) but loses **12,482
+   relations, all to `QUERY_LANGUAGE_UNRESOLVED`** — a cost of OUR fail-closed
+   query-language rule, not of the corpus. **`CROSS_LANGUAGE_PARALLEL` is NOT
+   EVALUABLE**: reachable-positive ceiling 0.0295 joins / 0.0741 duplicates,
+   and zero scorable queries after the token floor — fragment-level
+   cross-language parallel evidence is essentially unavailable under a strict
+   different-language admission, and its positives are different-language
+   same-CTH relations, NOT annotated parallels. **Task-A-frozen arm** (exact
+   step-2 weights, Task A's fold map, no Task B tuning) reaches pooled +0.0888
+   / +0.0712 / +0.0770 across the three evaluable scopes, matching or beating
+   the Task-B-fitted configuration — so **"transfer" is usable for that
+   specific claim only**, and under `HITTITE_ONLY` the two weight sets differ
+   in just one fold. On the 658-query common population **no scope uniformly
+   dominates** and no inference is offered for those differences.
    Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
    `reports/phase5_classical_control_review.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**

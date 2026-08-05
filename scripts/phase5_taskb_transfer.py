@@ -842,12 +842,22 @@ def main():
     # §4 common population: the queries EVERY run scope can serve. Cross-scope
     # absolute numbers are otherwise on different query sets and are not
     # comparable -- the sensitivity analysis exists to make that visible.
-    common_ids = None
+    # Only scopes that are actually evaluable may enter the intersection. A
+    # scope that leaves nothing scorable (CROSS_LANGUAGE_PARALLEL does, in a
+    # corpus this predominantly Hittite) would otherwise zero the common
+    # population and silently delete the comparison for every other scope.
+    common_scopes, common_ids = [], None
     for name in scope_names:
         ids = {r["fragment_id"] for r in scorable(dev_rows, name)}
+        if len(ids) < _comb.N_FOLDS:
+            print(f"  common population EXCLUDES {name}: only {len(ids)} "
+                  "scorable queries")
+            continue
+        common_scopes.append(name)
         common_ids = ids if common_ids is None else (common_ids & ids)
     common_ids = common_ids or set()
-    print(f"  common population across {scope_names}: {len(common_ids)} queries")
+    print(f"  common population across {common_scopes}: "
+          f"{len(common_ids)} queries")
 
     result = {
         "protocol": f"{PROTOCOL} (PRE-REGISTERED and amended 2026-08-04, "
@@ -856,6 +866,8 @@ def main():
                                "training; fusion weights fitted out of fold"),
         "split": "dev queries only; protected test split closed and never loaded",
         "scopes_run": scope_names,
+        "common_population_scopes": common_scopes,
+        "n_common_population_queries": len(common_ids),
         "dev_query_languages": dev_langs,
         "population": {
             "base_scope": BASE_SCOPE, "n_labeled_index": len(labeled),
