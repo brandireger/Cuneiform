@@ -1,85 +1,63 @@
-# Task B relation retrieval, language scopes, and Task-A-frozen transfer
+# Task B relation retrieval, language scopes, and Task-A-frozen portability
 
-> **PARTIAL WITHDRAWAL 2026-08-04 (third amendment).** Ixca's review found the
-> query-relative scopes selected their populations under each fragment's *own*
-> resolved language rather than relative to the query language.
->
-> **STANDS:** the cross-fitted `HITTITE_ONLY` primary family, its per-fold
-> weights and Holm decisions, the zero-overlap qualification, paired Tier C,
-> the bin-exception row, the `HITTITE_ONLY` lost-relation decomposition, the
-> self-join corpus finding, and the `HITTITE_ONLY` Task-A-frozen row (which
-> uses the matching Step 2 `SCOPED` weights).
->
-> **WITHDRAWN — DO NOT QUOTE:** every `SAME_LANGUAGE_AS_QUERY` metric and its
-> "12,482 relations all lost to query refusal" attribution; the
-> `CROSS_LANGUAGE_PARALLEL` "not evaluable" verdict and its 3–7% ceiling as
-> interpreted; the `ALL_LANGUAGES_UNCONDITIONED` and `SAME_LANGUAGE_AS_QUERY`
-> Task-A-frozen rows (they transported Hittite-scoped weights across scope, so
-> they are cross-task *plus* cross-scope portability at best); the
-> "matches or beats" claim, which compared increments rather than final
-> systems; and the common-population scope table, which was intersected on
-> eligibility rather than per-cell scored IDs.
->
-> A corrective rerun is pre-registered in the protocol's third amendment.
-
-**Status: PARTIALLY WITHDRAWN — `HITTITE_ONLY` primary family valid;
-query-relative scopes and non-Hittite transfer rows superseded. 2026-08-04.**
+**Status: AUTHORITATIVE. Four scopes, cross-fitted, plus the matching-scope
+Task-A-frozen arm. 2026-08-04.**
 Protocol: `reports/phase5_taskb_transfer_protocol.md`, pre-registered `318e153`,
-amendments `3f334b9` and `2735e49` — all before the runs they govern.
-Dev queries only; the protected test split is closed and was never loaded.
-No representation learning or gradient training; two fusion weights per scope
-fitted **out of fold**, and one arm using weights fitted on a different task
-entirely.
+amendments `3f334b9`, `2735e49`, `d1052d1` — each committed before the run it
+governs. Dev queries only; the protected test split is closed and was never
+loaded. No representation learning or gradient training; fusion weights fitted
+**out of fold**, plus one arm using weights fitted on a different task.
 
-## Provenance — why this file was rewritten once
+## Provenance — three corrections behind this file
 
-An earlier version was **withdrawn in full**: it searched weights out of fold
-but then discarded the held-out predictions, took modal weights across all
-folds, and re-scored all of dev, so every query was scored under weights partly
-chosen using its own fold. Those numbers were adaptive dev results, not
-cross-fitted tests. They are **not reproduced here and not used as a comparison
-target**. This note records that the correction happened; it does not invite a
-before/after reading.
+1. **Not cross-fitted.** The first run searched weights out of fold, then
+   discarded the held-out predictions, took modal weights across all folds and
+   re-scored all of dev. Withdrawn in full.
+2. **Query-relative scopes selected populations under each fragment's own
+   language**, not relative to the query language. This reported
+   `CROSS_LANGUAGE_PARALLEL` as having **zero** evaluable queries while its own
+   ceiling code found thousands of reachable targets, and it produced a
+   `SAME_LANGUAGE_AS_QUERY` "12,482 relations lost to query refusal" figure
+   that was an artifact. Both withdrawn.
+3. **The Task-A-frozen arm used `SCOPED` weights for every scope**, and
+   "matches or beats" compared *within-arm increments* rather than final
+   systems. Both corrected below.
+
+Superseded numbers are **not reproduced and not used as comparison targets**.
 
 ## Primary family — cross-fitted, `HITTITE_ONLY`
 
-Contrast: `BM25 + unigram + bigram_only` over `BM25 + unigram`. Weights fitted
-per fold on the pooled objective, applied **only to that fold's held-out
-queries**, predictions concatenated; deltas, intervals, p-values, Holm
-decisions and strata all computed on that concatenation.
+`BM25 + unigram + bigram_only` over `BM25 + unigram`. Weights fitted per fold
+on the pooled objective, applied **only to that fold's held-out queries**,
+predictions concatenated.
 
-| cell | n | clusters | r@1 unigram → +bigram | Δ | cluster CI | p | Holm thresh | reject H₀ | gained / lost |
+| cell | n | clusters | r@1 unigram → +bigram | Δ | cluster CI | p | Holm thresh | reject H₀ | +/− |
 |---|---:|---:|---:|---:|---:|---:|---:|:--:|---:|
-| joins | 171 | 54 | 0.5439 → 0.6550 | **+0.1111** | [+0.0602, +0.1768] | 0.0010 | 0.0167 | **yes** | +22 / −3 |
-| pooled | 766 | 35 | 0.5013 → 0.5888 | **+0.0875** | [+0.0591, +0.1230] | 0.0010 | 0.0250 | **yes** | +106 / −39 |
-| duplicates | 766 | 35 | 0.3799 → 0.4426 | **+0.0627** | [+0.0378, +0.1076] | 0.0070 | 0.0500 | **yes** | +93 / −45 |
+| joins | 171 | 54 | 0.5439 → 0.6550 | **+0.1111** | [+0.0602, +0.1768] | 0.0010 | 0.0167 | **yes** | +22/−3 |
+| pooled | 766 | 35 | 0.5013 → 0.5888 | **+0.0875** | [+0.0591, +0.1230] | 0.0010 | 0.0250 | **yes** | +106/−39 |
+| duplicates | 766 | 35 | 0.3799 → 0.4426 | **+0.0627** | [+0.0378, +0.1076] | 0.0070 | 0.0500 | **yes** | +93/−45 |
 
-Per-fold weights actually used:
+Per-fold weights: fold 0 α_u 1.0 / (0.40, 0.40); fold 1 0.5 / (0.15, 1.00);
+fold 2 0.75 / (0.15, 1.00); fold 3 0.75 / (0.10, 0.75); fold 4 0.5 / (0.00,
+1.00). **C5** confirms weights are constant across cells and strata within each
+fold and differ across folds, as cross-fitting requires. The modal
+configuration is retained as a deployment candidate and **no reported number
+was computed from it**.
 
-| fold | α_u | (α_u, α_b) | held-out queries |
-|---|---:|---:|---:|
-| 0 | 1.0 | (0.40, 0.40) | 249 |
-| 1 | 0.5 | (0.15, 1.00) | 133 |
-| 2 | 0.75 | (0.15, 1.00) | 133 |
-| 3 | 0.75 | (0.10, 0.75) | 132 |
-| 4 | 0.5 | (0.00, 1.00) | 132 |
-
-**C5** confirms weights are constant across cells and strata *within* each fold;
-they differ across folds, as cross-fitting requires. The modal configuration
-(α_u = 0.5, pair = (0.15, 1.0)) is retained as a deployment candidate and
-**carries no dev performance claim** — no number above was computed from it.
+**Unaffected by every correction above** — the three amendments touched the
+query-relative scopes and the frozen arm only.
 
 ## The load-bearing qualification: zero-overlap joins
 
-| shared lines | n | clusters | r@1 unigram → +bigram | Δ | cluster CI |
+| shared lines | n | clusters | r@1 → | Δ | cluster CI |
 |---|---:|---:|---:|---:|---:|
 | **0** | 34 | 18 | 0.2059 → 0.2353 | **+0.0294** | **[−0.0645, +0.1481]** |
 | 1–2 | 43 | 19 | 0.4651 → 0.5814 | +0.1163 | [+0.0357, +0.2286] |
 | 3–9 | 69 | 30 | 0.6957 → 0.8261 | +0.1304 | [+0.0541, +0.2154] |
 | 10+ | 25 | 15 | 0.7200 → 0.8800 | +0.1600 | [+0.0385, +0.3203] |
 
-Under the unrestricted control the zero-overlap cell is **−0.0278, CI [−0.0968,
-0.0000]**. Indirect `(+)` joins agree: +0.0526, CI includes zero.
+Zero-overlap is **−0.0278, CI [−0.0968, 0.0000]** under the unrestricted
+control; indirect `(+)` joins +0.0526, CI includes zero.
 
 > The bigram channel improves duplicate-witness retrieval, and its help on
 > physical joins **is concentrated where editor-aligned text is shared**. On
@@ -87,86 +65,73 @@ Under the unrestricted control the zero-overlap cell is **−0.0278, CI [−0.09
 > solve — there is no evidence it helps.
 
 Shared-line count is **not a dose**: it is confounded with tier (0 shared lines
-is exactly tier A here), with fragment length, and with other pair properties.
+is exactly tier A here), with length, and with other pair properties.
 
 ## Tier C, paired
 
-Pair instances, each with its own exclusive renderings; full and exclusive on
-**exactly the same instances and the same candidate universe** (asserted in
-code); clustered by **physical join component**.
+Pair instances with their own exclusive renderings; full and exclusive on the
+**same instances and same candidate universe** (asserted in code); clustered by
+**physical join component**.
 
-| `HITTITE_ONLY`, 51 instances → 102 query-instances, 23 clusters | r@1 unigram → +bigram | Δ | cluster CI | p |
+| `HITTITE_ONLY`, 51 instances → 102 query-instances, 23 clusters | r@1 → | Δ | cluster CI | p |
 |---|---:|---:|---:|---:|
 | full rendering — **contaminated** | 0.3039 → 0.3824 | +0.0784 | [0.0000, +0.1875] | 0.109 |
 | **overlap-exclusive** | **0.0392 → 0.0000** | −0.0392 | [−0.0938, 0.0000] | 0.123 |
-| exclusive, **single-partner fragments only** (24 instances, 11 clusters) | 0.0000 → 0.0000 | 0.0000 | [0.0000, 0.0000] | 1.000 |
+| exclusive, single-partner only (24 instances, 11 clusters) | 0.0000 → 0.0000 | 0.0000 | [0.0000, 0.0000] | 1.000 |
 
 Removing shared editor-aligned lines collapses absolute recall@1 from ~0.38 to
-**0.00–0.04** on the same instances against the same distractors, and the
-single-partner sensitivity lands at exactly 0.0000 — so the collapse is not an
-artifact of the multi-partner rendering problem the first version had.
+**0.00–0.04**; the single-partner sensitivity lands at exactly 0.0000, so the
+collapse is not an artifact of multi-partner rendering. **The bigram
+contribution *within* Tier C is unresolved** on 23 clusters. **Do not compare
+these absolutes to the tier-C strata row** — a stratum query may hit *any*
+partner, a pair instance must hit the *specific* one.
 
-**The bigram contribution *within* Tier C is unresolved**: neither delta clears
-significance on 23 clusters. **Do not compare these absolutes to the tier-C row
-in the strata table** — a stratum query may hit *any* of its partners, a pair
-instance must hit the *specific* one. Different estimands.
-
-## Language scopes
-
-| scope | queries | index | relations | status |
-|---|---:|---:|---:|---|
-| `ALL_LANGUAGES_UNCONDITIONED` (ablation) | 876 | 7,490 | 43,008 | evaluable |
-| `HITTITE_ONLY` | 779 | 6,722 | 40,176 | evaluable |
-| `SAME_LANGUAGE_AS_QUERY` | 734 | 6,412 | 30,526 | evaluable |
-| `CROSS_LANGUAGE_PARALLEL` | **0** | **0** | **0** | **NOT EVALUABLE** |
+## Language scopes — all four evaluable
 
 Cross-fitted deltas (pair arm over unigram arm):
 
 | scope | joins | duplicates | pooled |
 |---|---:|---:|---:|
-| `HITTITE_ONLY` | +0.1111 [+0.0602, +0.1768] | +0.0627 [+0.0378, +0.1076] | +0.0875 [+0.0591, +0.1230] |
-| `ALL_LANGUAGES_UNCONDITIONED` | +0.0824 [+0.0389, +0.1287] | +0.0393 [+0.0141, +0.0814] | +0.0566 [+0.0321, +0.0918] |
-| `SAME_LANGUAGE_AS_QUERY` | +0.0867 [+0.0338, +0.1464] | +0.0457 [+0.0224, +0.0822] | +0.0637 [+0.0356, +0.0927] |
+| `HITTITE_ONLY` | +0.1111 [+0.0602, +0.1768] · 54 cl | +0.0627 [+0.0378, +0.1076] | +0.0875 [+0.0591, +0.1230] |
+| `ALL_LANGUAGES_UNCONDITIONED` | +0.0824 [+0.0389, +0.1287] · 59 cl | +0.0393 [+0.0141, +0.0814] | +0.0566 [+0.0321, +0.0918] |
+| `SAME_LANGUAGE_AS_QUERY` | +0.0897 [+0.0400, +0.1397] · 56 cl | +0.0664 [+0.0359, +0.1009] | +0.0858 [+0.0486, +0.1163] |
+| `CROSS_LANGUAGE_PARALLEL` | n=7, 5 cl — **descriptive only** | +0.0049 [−0.0194, +0.0414] p=0.654 | +0.0049 [−0.0194, +0.0414] |
 
-The effect is present under every evaluable scope. Between-scope differences
-are **not** part of the primary family and carry no dedicated inference.
+### Reachable-positive ceilings, conditional on query eligibility
 
-### `CROSS_LANGUAGE_PARALLEL` — a coverage result, and its ceiling
+| scope | joins | duplicates |
+|---|---:|---:|
+| `SAME_LANGUAGE_AS_QUERY` | **1.000** | **0.9726** |
+| `CROSS_LANGUAGE_PARALLEL` | **0.0295** | **0.0741** |
 
-**Reachable-positive ceiling** (a positive counts as reachable only if the
-target survives the different-language admission):
+Under same-language admission virtually every positive remains reachable. Under
+cross-language admission at most **3–7%** ever were — so any recall figure
+there is bounded by that, and a low number is an admission bound, not a scoring
+failure.
 
-| cell | positives considered | reachable | ceiling |
-|---|---:|---:|---:|
-| joins | — | — | **0.0295** |
-| duplicates | — | — | **0.0741** |
-| pooled | — | — | 0.0739 |
+**`CROSS_LANGUAGE_PARALLEL` is evaluable and null.** 410 queries retain a
+reachable duplicate positive, and the bigram channel shows **+0.0049, CI
+[−0.0194, +0.0414], p=0.654** — no effect. Its joins cell has 7 queries across
+5 clusters and is reported descriptively only; nothing may be concluded from
+it.
 
-At most **3–7%** of positives were ever reachable, and after requiring ≥4
-admitted tokens on both endpoints, **zero queries remain scorable**. Without
-the ceiling this would look like a scoring failure; it is an admission bound.
+**On what these positives are:** **different-language same-CTH relations**, not
+independently annotated textual parallels. Shared CTH membership plus a
+language difference is what the corpus supports.
 
-**Fragment-level cross-language parallel evidence is essentially unavailable in
-this corpus under a strict different-language line admission.** That is a real
-finding about the encoded evidence, not about the scorer.
+**On the candidate universes:** the per-language counts below are **candidate
+renderings with ≥4 tokens admitted as being in (or, for cross-language,
+differing from) the query language** — not "fragments of language X". Parent
+fragments may be multilingual or fragment-level unresolved, which is exactly
+what the corrected candidate admission preserves.
 
-**On what these positives are:** they are **different-language same-CTH
-relations**. They are *not* independently annotated as actual textual
-parallels — shared CTH membership plus a language difference is what the corpus
-supports. Any future recall figure here must carry that caveat and its ceiling.
-
-### `SAME_LANGUAGE_AS_QUERY` — the cost is my own fail-closed rule
-
-It loses **12,482 relations, every one to `QUERY_LANGUAGE_UNRESOLVED`** — 4.4×
-what `HITTITE_ONLY` loses. That is not line-level language evidence: it is
-protocol §3.3, the rule I chose, which refuses any fragment whose lines resolve
-to more than one language rather than assigning a majority label. 142 of 876
-dev queries are refused outright on that basis.
-
-The rule is defensible — assigning a majority language to a demonstrably
-multilingual object is the fabrication `EXCLUDE_LINE` exists to prevent — but
-its cost should be recorded as a **design choice**, not attributed to the
-corpus.
+| query language | same-language: queries / eligible / candidates | cross-language: queries / eligible / candidates |
+|---|---:|---:|
+| Hit | 649 / 658 / 6,722 | 344 / 658 / 1,349 |
+| Akk | 40 / 42 / 386 | 32 / 42 / 7,109 |
+| Hur | 24 / 24 / 566 | 24 / 24 / 7,216 |
+| Hat | 7 / 7 / 244 | 7 / 7 / 7,318 |
+| Luw | 3 / 3 / 109 | 3 / 3 / 7,405 |
 
 ### What `HITTITE_ONLY` costs, by cause
 
@@ -174,121 +139,114 @@ corpus.
 |---|---:|---|
 | joins | **7** | `OUT_OF_SCOPE_LANGUAGE` 9, `LINE_NOT_IN_LANGUAGE_DATASET` 4 |
 | duplicates | **2,825** | `LINE_NOT_IN_LANGUAGE_DATASET` 1,693, `OUT_OF_SCOPE_LANGUAGE` 1,614 |
-| pooled | 2,832 | `LINE_NOT_IN_LANGUAGE_DATASET` 1,697, `OUT_OF_SCOPE_LANGUAGE` 1,623 |
 
 **Two causes that must stay separate.** `OUT_OF_SCOPE_LANGUAGE` is an
 affirmative classification — the corpus records those lines as another
-language, and excluding them is the scope doing its declared job.
-`LINE_NOT_IN_LANGUAGE_DATASET` is a **coverage gap in our own derived Gate-2
-dataset**, saying nothing about the tablet. For duplicates the two are nearly
-equal, so **roughly half the duplicate evidence `HITTITE_ONLY` discards is lost
-to our own pipeline's coverage** — a fixable engineering deficit, distinct from
-the estimand choice.
+language. `LINE_NOT_IN_LANGUAGE_DATASET` is a **coverage gap in our own derived
+Gate-2 dataset**, saying nothing about the tablet. They are nearly equal for
+duplicates, so **roughly half the duplicate evidence `HITTITE_ONLY` discards is
+lost to our own pipeline's coverage** — a fixable engineering deficit, distinct
+from the estimand choice.
 
-### Absolute accuracy on the common population
+### Common population, intersected per cell
 
-658 queries scorable under all three evaluable scopes. Final-system (pair arm)
-recall@1:
+Over query IDs **actually scored** in each cell, across the three symmetric
+scopes. `CROSS_LANGUAGE_PARALLEL` is excluded by §3.2: it is an asymmetric
+assistance channel, and admitting it would collapse the intersection onto its
+small population.
 
-| cell | `HITTITE_ONLY` | `ALL_LANGUAGES` | `SAME_LANGUAGE` |
-|---|---:|---:|---:|
-| joins | 0.6733 | 0.6600 | **0.6759** |
-| duplicates | **0.4284** | 0.4240 | 0.3889 |
-| pooled | **0.5840** | 0.5760 | 0.5401 |
+| cell | n | `HITTITE_ONLY` | `ALL_LANGUAGES` | `SAME_LANGUAGE` |
+|---|---:|---:|---:|---:|
+| joins | 150 | **0.6733** | 0.6600 | 0.6667 |
+| duplicates | 649 | 0.4284 | 0.4253 | **0.4330** |
+| pooled | 649 | 0.5840 | 0.5778 | **0.5871** |
 
-**No scope uniformly dominates.** `SAME_LANGUAGE_AS_QUERY` is best on joins,
-`HITTITE_ONLY` on duplicates and pooled, the unrestricted ablation never best.
-Differences on joins span 0.016. **No dedicated inference was pre-registered
-for these and none is offered.** (Scored counts differ slightly — 145–150 joins,
-648–651 duplicates — because a query with no reachable positive under a scope
-is dropped by the retrieval runner.)
+**No scope uniformly dominates.** `HITTITE_ONLY` leads on joins,
+`SAME_LANGUAGE_AS_QUERY` on duplicates and pooled, the unrestricted ablation
+never. Spans are 0.013 / 0.008 / 0.009. **No dedicated inference was
+pre-registered for these differences and none is offered.**
 
 Language restriction remains an **evidence-policy and coverage choice buying a
-named estimand**. Its measurable cost is coverage, not accuracy.
+named estimand**, not a performance improvement.
 
-## Task-A-frozen arm
+## Task-A-frozen arm — matching scope only
 
-Task A's committed per-fold weights (step 2, `SCOPED` rendering, conditional
-`bigram_only` arm) and **Task A's own CTH→fold mapping**, applied unchanged.
-Nothing selected or retuned on Task B. Queries whose CTH had no Task A fold are
-excluded and counted, never reassigned.
+Task A's committed per-fold weights from the **matching** Step 2 rendering, with
+Task A's own CTH→fold mapping, applied unchanged. Nothing selected or retuned
+on Task B.
 
-| scope | Task-A-frozen (pooled) | Task-B-fitted (pooled) | excluded |
-|---|---:|---:|---:|
-| `HITTITE_ONLY` | **+0.0888** [+0.0597, +0.1264] | +0.0875 | 0 |
-| `ALL_LANGUAGES_UNCONDITIONED` | **+0.0712** [+0.0472, +0.1115] | +0.0566 | 10 |
-| `SAME_LANGUAGE_AS_QUERY` | **+0.0770** [+0.0539, +0.1051] | +0.0637 | 10 |
+| Task B scope | Step 2 rendering | within-arm Δ | **final system vs Task-B-fitted** | cluster CI | p | n |
+|---|---|---:|---:|---:|---:|---:|
+| `HITTITE_ONLY` | `SCOPED` | +0.0888 | **+0.0026** | [−0.0024, +0.0104] | **0.422** | 766 |
+| `ALL_LANGUAGES_UNCONDITIONED` | `BOUNDARY` | +0.0665 | **+0.0117** | [+0.0018, +0.0182] | 0.014 | 857 |
+| `SAME_LANGUAGE_AS_QUERY` | — | — | **arm omitted** | | | |
+| `CROSS_LANGUAGE_PARALLEL` | — | — | **arm omitted** | | | |
 
-**The Task A configuration works on Task B without any retuning**, matching or
-beating the Task-B-fitted configuration in all three scopes.
+**The correct claim is equivalence, not superiority.** On the primary scope the
+Task A configuration is **statistically indistinguishable** from the
+Task-B-fitted one (p=0.422). The earlier "matches or beats" reading came from
+comparing within-arm increments, which a weaker baseline can inflate. Only the
+unrestricted scope shows a small real advantage for the frozen configuration
+(+0.0117), and even there the effect is an order of magnitude below the bigram
+channel's own.
 
-**How strong this evidence is, honestly.** Under `HITTITE_ONLY` the two weight
-sets differ **only in fold 3** — Task A chose (0.15, 1.0) where Task B chose
-(0.10, 0.75) — so that row mostly shows *the two tasks independently selecting
-nearly the same configuration*, which is a weaker claim than a distinct
-configuration transferring. The informative rows are `ALL_LANGUAGES` and
-`SAME_LANGUAGE`, where the weight sets genuinely differ and the frozen Task A
-configuration still does better. Both arms also share the same corpus, index
-and feature statistics; this is cross-**task** evidence, not cross-corpus.
-
-With this arm in place, the word **transfer** is now usable for the specific
-claim above — Task A's fitted configuration carries to Task B — and for nothing
-broader.
+**So: the Task A configuration ports to Task B without retuning.** That is
+worth having — it means the fusion weights are not task-specific — but it is a
+statement about configuration portability, not about the channel gaining
+anything from cross-task use. Neither query-relative scope has a matching Step 2
+arm, so no such claim exists for them; transporting a Hittite-scoped
+configuration there would be cross-task *plus* cross-scope portability, a
+different question.
 
 ## Bin-parent physical joins — descriptive
 
-| `HITTITE_ONLY` | n | clusters | r@1 unigram → +bigram | Δ | cluster CI |
+| `HITTITE_ONLY` | n | clusters | r@1 → | Δ | cluster CI |
 |---|---:|---:|---:|---:|---:|
 | bin-exception population | 504 | **198** | 0.5952 → 0.7302 | +0.1349 | [+0.1000, +0.1687] |
 
-**Status `DESCRIPTIVE_NOT_CROSS_FITTED`.** External to weight fitting (these
-fragments never enter any fold), but **not** cross-fitted and **not**
-independent confirmation: same corpus construction, same index, same fitted
-feature statistics as the dev cells. Its value is that it is where the join
-evidence is — 198 independent join components against 54 in the labelled dev
-cell. **C6** confirmed on every run that no bin fragment became a duplicate
-positive, entered the non-bin candidate index, or appeared in the duplicates or
-pooled cells.
+**`DESCRIPTIVE_NOT_CROSS_FITTED`.** External to weight fitting, but not
+cross-fitted and not independent confirmation: same corpus construction, index
+and fitted feature statistics as the dev cells. Its value is that it is where
+the join evidence is — 198 independent join components against 54 in the
+labelled dev cell. **C6** confirmed all three prohibitions on every run.
 
 ## Corpus data-quality finding
 
 Two `join_pairs.jsonl` rows give **both members the same siglum**, asserting a
-fragment joins itself: `KUB 28.89+` (member 1 = KUB 48.20, twice) and
-`KBo 22.130a+` (member 1 = KBo 22.130a, twice); both bin-parent and
-discovery-side. Excluded and counted — `run_retrieval` excludes a query from its
-own ranking, so a self-positive is **unretrievable by construction** and would
-manufacture guaranteed misses. Worth reporting upstream to the TLHdig team.
+fragment joins itself: `KUB 28.89+` and `KBo 22.130a+`, both bin-parent and
+discovery-side. Excluded and counted — a self-positive is unretrievable by
+construction and would manufacture guaranteed misses. Worth reporting upstream
+to the TLHdig team.
 
 ## Checks
 
 | check | result |
 |---|---|
-| **C1** same family **AND different parent_doc** | PASSED — 0 excluded; **364 same-family/same-parent join positives correctly kept** |
-| C2 identity control, per scope | PASSED in all evaluable scopes |
+| **C1** same family **AND different parent_doc** | PASSED — 364 same-family/same-parent join positives correctly kept |
+| C2 identity control, per scope | PASSED |
 | C3 split purity | PASSED |
 | C4 joins/duplicates partition | PASSED |
-| **C5** weights constant **within each fold** | PASSED in all evaluable scopes |
+| **C5** weights constant within each fold | PASSED in all four scopes |
 | C6 bin-exception prohibitions | PASSED |
-| C7 Tier C paired, same universe, component-clustered | PASSED — asserted in code |
+| C7 Tier C paired, same universe, component-clustered | PASSED |
 
 ## Limits
 
-1. **Dev-side characterization.** The design was developed adaptively across
-   six pre-registered runs on this same dev material. The protected test split
-   remains one-shot and closed.
-2. **Few clusters.** 54 join components and 35 composition clusters carry the
-   primary family; 23 carry Tier C.
-3. **Geometry is not an independent stratum** — on this dev slice horizontal ≡
-   tier C and vertical ≡ tiers A+B.
-4. **Site has no contrast** — all dev join queries are Hattusa, so nothing here
+1. **Dev-side characterization**, developed adaptively across nine
+   pre-registered runs on this same material. The protected test split remains
+   one-shot and closed.
+2. **Few clusters** — 54 join components and 35 composition clusters carry the
+   primary family; 23 carry Tier C; 5 carry the cross-language joins cell,
+   which is why it is descriptive only.
+3. **Geometry is not an independent stratum** (horizontal ≡ tier C on dev), and
+   **site has no contrast** (all dev join queries are Hattusa), so nothing here
    speaks to Hattusa→provincial generalization.
-5. **`CROSS_LANGUAGE_PARALLEL` produced no scored result**, only a ceiling and
-   a coverage account.
-6. **Abstention** is reported as coverage, not as a rate: this setup has no
-   calibrated abstention rule.
+4. Query-relative scopes do **not** carry Tier C, bin-exception or join-strata
+   analyses; their join populations are too thin to support them.
+5. **Abstention** is reported as coverage, not as a rate.
 
 ## Artifacts
 
-- `reports/phase5_taskb_transfer_protocol.md` (`318e153`, `3f334b9`, `2735e49`)
-- `scripts/phase5_taskb_transfer.py`, `tests/test_taskb_transfer.py`
+- `reports/phase5_taskb_transfer_protocol.md` (`318e153`, `3f334b9`, `2735e49`, `d1052d1`)
+- `scripts/phase5_taskb_transfer.py`, `tests/test_taskb_transfer.py` (35 tests)
 - `Phase4/phase4_out/p5_taskb_transfer{,_per_query,_manifest}.json`

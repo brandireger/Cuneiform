@@ -410,6 +410,30 @@ class TestCommonPopulationAndFinalSystem(unittest.TestCase):
         self.assertIsNone(tb.paired_final_system(
             {"a": {"recall@1": 1}}, {"b": {"recall@1": 1}}, {}))
 
+    def test_joins_and_duplicates_use_different_resampling_units(self):
+        """§6. Two fragments of one physical object are one join cluster but
+        may be two composition rows; using composition for joins understates
+        cluster count and narrows the interval. The query-relative path got
+        this wrong once -- it clustered every cell by composition."""
+        meta = {frozenset(("P::1", "P::2")): {}}
+        comps = tb.join_components(meta)
+        self.assertEqual(comps["P::1"], comps["P::2"])
+        def rec(hit):
+            r = {f"recall@{k}": hit for k in tb.KS}
+            r.update(rr=float(hit), rank=1 if hit else None, n_positives=1)
+            return r
+        recs_u = {"P::1": rec(0), "P::2": rec(0)}
+        recs_ub = {"P::1": rec(1), "P::2": rec(1)}
+        join_cluster = {f: f"joincomp::{c}" for f, c in comps.items()}
+        by_comp, _c, _d = tb.cell_result(recs_u, recs_ub, join_cluster, "joins")
+        by_cth, _e, _f = tb.cell_result(
+            recs_u, recs_ub, {"P::1": "cth::1", "P::2": "cth::1"}, "duplicates")
+        self.assertEqual(by_comp["n_clusters"], 1)
+        self.assertEqual(by_cth["n_clusters"], 1)
+        # and two unrelated objects must not collapse into one join cluster
+        meta2 = {frozenset(("A::1", "A::2")): {}, frozenset(("B::1", "B::2")): {}}
+        self.assertEqual(len(set(tb.join_components(meta2).values())), 2)
+
 
 @unittest.skipUnless(TORCH_AVAILABLE, "torch not installed (not in requirements-ci.txt)")
 class TestScopeSelection(unittest.TestCase):

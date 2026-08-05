@@ -513,21 +513,27 @@ arbitrary lost span. Therefore:
    independent stratum (perfectly confounded with tier on dev), and all 171 dev
    join queries are Hattusa, so nothing here speaks to provincial
    generalization.
-   **ALL FOUR LANGUAGE SCOPES AND THE TASK-A-FROZEN ARM RUN 2026-08-04.**
-   `SAME_LANGUAGE_AS_QUERY` is evaluable (pooled +0.0637) but loses **12,482
-   relations, all to `QUERY_LANGUAGE_UNRESOLVED`** — a cost of OUR fail-closed
-   query-language rule, not of the corpus. **`CROSS_LANGUAGE_PARALLEL` is NOT
-   EVALUABLE**: reachable-positive ceiling 0.0295 joins / 0.0741 duplicates,
-   and zero scorable queries after the token floor — fragment-level
-   cross-language parallel evidence is essentially unavailable under a strict
-   different-language admission, and its positives are different-language
-   same-CTH relations, NOT annotated parallels. **Task-A-frozen arm** (exact
-   step-2 weights, Task A's fold map, no Task B tuning) reaches pooled +0.0888
-   / +0.0712 / +0.0770 across the three evaluable scopes, matching or beating
-   the Task-B-fitted configuration — so **"transfer" is usable for that
-   specific claim only**, and under `HITTITE_ONLY` the two weight sets differ
-   in just one fold. On the 658-query common population **no scope uniformly
-   dominates** and no inference is offered for those differences.
+   **ALL FOUR SCOPES AND THE MATCHING-SCOPE FROZEN ARM RUN 2026-08-04.**
+   Two earlier query-relative claims are **WITHDRAWN as wrong**: that
+   `CROSS_LANGUAGE_PARALLEL` is not evaluable, and that
+   `SAME_LANGUAGE_AS_QUERY` loses 12,482 relations to query refusal. Both came
+   from selecting queries AND candidates under each fragment's own resolved
+   language rather than relative to the QUERY language.
+   Corrected: `SAME_LANGUAGE_AS_QUERY` joins +0.0897, duplicates +0.0664,
+   pooled +0.0858 (all p ≤ 0.002), with a reachability ceiling of **1.000
+   joins / 0.973 duplicates**. **`CROSS_LANGUAGE_PARALLEL` is evaluable and
+   NULL**: 410 queries, **+0.0049 CI [−0.0194, +0.0414] p=0.654**, on a
+   genuinely low ceiling (0.0295 joins / 0.0741 duplicates); its positives are
+   different-language same-CTH relations, NOT annotated parallels.
+   **Task-A-frozen arm uses the MATCHING Step 2 rendering only**
+   (`HITTITE_ONLY`→`SCOPED`, `ALL_LANGUAGES`→`BOUNDARY`; query-relative scopes
+   get no arm). Compared as FINAL SYSTEMS on identical query IDs:
+   **+0.0026 CI [−0.0024, +0.0104] p=0.422** — **equivalence, not "matches or
+   beats"**; the old reading compared within-arm increments, which a weaker
+   baseline inflates. Task A's configuration PORTS to Task B without retuning.
+   Common population is intersected **per cell** over actually-scored IDs
+   across the three symmetric scopes; **no scope uniformly dominates** and no
+   inference is offered.
    Handoff + review packet: `reports/phase5_classical_control_handoff.md` and
    `reports/phase5_classical_control_review.md`.
 5. From-scratch small transformer with a **sign-level tokenizer**

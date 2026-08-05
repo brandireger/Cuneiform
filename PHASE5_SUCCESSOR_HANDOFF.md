@@ -779,37 +779,46 @@ never read `cu`, Gate 3 closed. Additionally:
    discovery-side). Excluded and counted — a self-positive is unretrievable by
    construction, so keeping it manufactures guaranteed misses.
 
-   **ALL DEFERRED ARMS NOW RUN (2026-08-04).**
+   **ALL FOUR SCOPES AND THE MATCHING-SCOPE FROZEN ARM RUN (2026-08-04),
+   after three further corrections. Read the results file, not this summary,
+   before quoting any query-relative number.**
 
-   `SAME_LANGUAGE_AS_QUERY` is evaluable and shows the effect (joins +0.0867,
-   duplicates +0.0457, pooled +0.0637, all p ≤ 0.009). Its coverage cost is
-   **12,482 relations, every one to `QUERY_LANGUAGE_UNRESOLVED`** — 4.4× what
-   `HITTITE_ONLY` loses, and attributable to protocol §3.3, OUR fail-closed
-   rule refusing any fragment whose lines resolve to more than one language,
-   not to line-level language evidence. Record it as a design cost.
+   Two of my earlier query-relative claims were **wrong and are withdrawn**:
+   that `CROSS_LANGUAGE_PARALLEL` was not evaluable, and that
+   `SAME_LANGUAGE_AS_QUERY` loses 12,482 relations to query refusal. Both came
+   from selecting queries AND candidates under each fragment's OWN resolved
+   language instead of relative to the query language. Corrected, per query
+   language L: queries eligible under `SAME_LANGUAGE_AS_QUERY::L`, candidates
+   under the scope's L-relative key, all scoring inside that universe.
 
-   **`CROSS_LANGUAGE_PARALLEL` is NOT EVALUABLE — and that is the finding.**
-   Reachable-positive ceiling 0.0295 joins / 0.0741 duplicates; after the
-   ≥4-token floor on both endpoints, **zero** scorable queries. Fragment-level
-   cross-language parallel evidence is essentially unavailable in this corpus
-   under a strict different-language line admission. Its positives are
-   **different-language same-CTH relations**, NOT annotated textual parallels;
-   any future figure must carry that and the ceiling.
+   `SAME_LANGUAGE_AS_QUERY`: joins +0.0897 [+0.0400, +0.1397] (56 clusters),
+   duplicates +0.0664, pooled +0.0858, all p ≤ 0.002. **Ceiling conditional on
+   query eligibility is 1.000 joins / 0.973 duplicates** — nearly every
+   positive is reachable, the opposite of what the withdrawn figure implied.
 
-   **Task-A-frozen arm (exact step-2 weights + Task A's own fold map, no Task B
-   tuning):** pooled +0.0888 under `HITTITE_ONLY`, +0.0712 unrestricted,
-   +0.0770 same-language — matching or beating the Task-B-fitted configuration
-   everywhere. **"Transfer" is now usable for that specific claim and nothing
-   broader.** Caveat that must travel with it: under `HITTITE_ONLY` the two
-   weight sets differ only in fold 3, so that row largely shows two tasks
-   selecting nearly the same configuration; the informative rows are the other
-   two scopes, where the weights genuinely differ.
+   **`CROSS_LANGUAGE_PARALLEL` is evaluable and NULL.** 410 queries retain a
+   reachable duplicate positive; the channel gives **+0.0049, CI [−0.0194,
+   +0.0414], p=0.654**. Its ceiling is genuinely low (**0.0295 joins / 0.0741
+   duplicates**), and its joins cell (n=7, 5 clusters) is descriptive only.
+   Positives are **different-language same-CTH relations**, NOT annotated
+   parallels. Candidate counts are **renderings with ≥4 admitted tokens**, not
+   "fragments of language X" — parents may be multilingual or unresolved.
 
-   **Common population (658 queries, three evaluable scopes): no scope
-   uniformly dominates** — `SAME_LANGUAGE` best on joins (0.6759),
-   `HITTITE_ONLY` on duplicates (0.4284) and pooled (0.5840), the unrestricted
-   ablation never best. No dedicated inference was pre-registered for these
-   differences and none is offered.
+   **Task-A-frozen arm, MATCHING scope only** (`HITTITE_ONLY`→Step 2 `SCOPED`,
+   `ALL_LANGUAGES`→`BOUNDARY`; neither query-relative scope has a matching arm,
+   so none is reported). Compared as **final systems on identical query IDs**,
+   not as within-arm increments: `HITTITE_ONLY` **+0.0026, CI [−0.0024,
+   +0.0104], p=0.422** — statistically indistinguishable; `ALL_LANGUAGES`
+   **+0.0117, CI [+0.0018, +0.0182]**. **The claim is EQUIVALENCE, not
+   "matches or beats"** — the earlier reading compared increments, which a
+   weaker baseline inflates. Task A's configuration **ports** to Task B without
+   retuning; that is configuration portability, not a cross-task gain.
+
+   **Common population, intersected PER CELL over actually-scored IDs**, three
+   symmetric scopes (`CROSS_LANGUAGE_PARALLEL` excluded by §3.2): joins n=150
+   `HITTITE_ONLY` 0.6733 best; duplicates n=649 and pooled n=649
+   `SAME_LANGUAGE` best (0.4330 / 0.5871); unrestricted never best. Spans are
+   0.008–0.013. **No scope uniformly dominates and no inference is offered.**
    **Do not report geometry as an independent stratum** — in this dev slice
    horizontal ≡ tier C and vertical ≡ tiers A+B, perfectly confounded. **The
    site stratum is empty of contrast**: all 171 dev join queries are Hattusa,

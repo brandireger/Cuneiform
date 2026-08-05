@@ -1156,15 +1156,24 @@ def main():
             per_fold, held = cross_fitted_groups(groups, qr_fold_of, family_map)
             c5 = check_c5_weights_constant_within_fold(per_fold)
             print(f"  C5 weights constant within each fold: {c5['passed']}")
-            qr_clusters = {r["fragment_id"]: f"cth::{r['cth']}"
-                           for r in qr_queries}
+            # §6 resampling units apply here exactly as in the fixed-scope
+            # path: joins cluster by PHYSICAL JOIN COMPONENT, duplicates and
+            # pooled by composition. A physical object does not change with
+            # language scope, so the component map comes from the base join
+            # metadata. Clustering joins by composition here would have
+            # reported 12 clusters where the objects supply ~50.
+            qr_cth = {r["fragment_id"]: f"cth::{r['cth']}" for r in qr_queries}
+            qr_clusters_for = {
+                "joins": {f: f"joincomp::{c}"
+                          for f, c in join_components(join_meta).items()},
+                "duplicates": qr_cth, "pooled": qr_cth}
             block = {"per_fold_weight_selection": per_fold,
                      "coverage": coverage, "cells": {}, "strata": {},
                      "checks": {"C5": c5},
                      "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"}
             for cell in PRIMARY_CELLS:
                 res, cu, cub = cell_result(held[cell]["u"], held[cell]["ub"],
-                                           qr_clusters, cell)
+                                           qr_clusters_for[cell], cell)
                 block["cells"][cell] = res
                 print(f"  {cell:11s} d={res['delta_recall@1']:+.4f} "
                       f"CI [{res['cluster_ci95'][0]:+.4f},"

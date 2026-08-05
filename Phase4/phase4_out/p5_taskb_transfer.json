@@ -8,12 +8,6 @@
     "SAME_LANGUAGE_AS_QUERY",
     "CROSS_LANGUAGE_PARALLEL"
   ],
-  "common_population_scopes": [
-    "HITTITE_ONLY",
-    "ALL_LANGUAGES_UNCONDITIONED",
-    "SAME_LANGUAGE_AS_QUERY"
-  ],
-  "n_common_population_queries": 658,
   "dev_query_languages": [
     "Akk",
     "Hat",
@@ -545,8 +539,9 @@
           "n_paired": 766,
           "n_gained": 107,
           "n_lost": 39,
-          "status": "SECONDARY_ARM_TASK_A_FROZEN",
+          "status": "SECONDARY_ARM_TASK_A_FROZEN_MATCHING_SCOPE",
           "weights_source": "Phase4\\phase4_out\\p5_factorial_control.json",
+          "task_a_rendering": "SCOPED",
           "weights_used_by_fold": {
             "0": {
               "alpha_unigram_only": 1.0,
@@ -585,7 +580,20 @@
             }
           },
           "queries_without_task_a_fold": 0,
-          "note": "Task A's committed per-fold weights and Task A's own fold mapping, applied unchanged. Nothing here is selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned."
+          "note": "Task A's committed per-fold weights from the MATCHING Step 2 rendering (SCOPED) and Task A's own fold mapping, applied unchanged. Nothing selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned.",
+          "vs_task_b_fitted_final_system": {
+            "n_paired": 766,
+            "n_clusters": 35,
+            "recall@1_task_a_frozen": 0.5913838120104439,
+            "recall@1_task_b_fitted": 0.5887728459530026,
+            "delta_frozen_minus_fitted": 0.0026109660574412533,
+            "cluster_ci95": [
+              -0.002416122524818177,
+              0.010417210334029226
+            ],
+            "cluster_p": 0.422,
+            "estimand": "final-system recall@1 difference on identical query IDs; NOT a comparison of within-arm increments"
+          }
         }
       },
       "strata": {
@@ -960,41 +968,6 @@
           "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
         }
       },
-      "common_population": {
-        "joins": {
-          "n_queries": 150,
-          "n_clusters": 53,
-          "recall@1_unigram": 0.5733333333333334,
-          "recall@1_unigram_bigram": 0.6733333333333333,
-          "delta_recall@1": 0.1,
-          "cluster_ci95": [
-            0.047295967227069594,
-            0.1575432588320115
-          ]
-        },
-        "duplicates": {
-          "n_queries": 649,
-          "n_clusters": 33,
-          "recall@1_unigram": 0.3667180277349769,
-          "recall@1_unigram_bigram": 0.4283513097072419,
-          "delta_recall@1": 0.061633281972265024,
-          "cluster_ci95": [
-            0.03022817667992464,
-            0.10318591167036761
-          ]
-        },
-        "pooled": {
-          "n_queries": 649,
-          "n_clusters": 33,
-          "recall@1_unigram": 0.49922958397534667,
-          "recall@1_unigram_bigram": 0.5839753466872111,
-          "delta_recall@1": 0.0847457627118644,
-          "cluster_ci95": [
-            0.049034568847872426,
-            0.11900638585807324
-          ]
-        }
-      },
       "degenerate_self_join_pairs_excluded": [
         "KBo 22.130a+::1",
         "KUB 28.89+::1"
@@ -1078,7 +1051,7 @@
             "recall@5": 0.0,
             "recall@10": 0.0,
             "recall@100": 0.041666666666666664,
-            "mrr": 0.0014534205204204736,
+            "mrr": 0.0014534205204204738,
             "n_scored": 24,
             "mean_positives": 1.0
           },
@@ -1454,74 +1427,88 @@
         "task_a_frozen_pooled": {
           "label": "task_a_frozen_pooled",
           "bm25_unigram": {
-            "recall@1": 0.5227537922987164,
-            "recall@5": 0.6802800466744457,
+            "recall@1": 0.5297549591598599,
+            "recall@5": 0.6837806301050176,
             "recall@10": 0.7584597432905484,
-            "recall@100": 0.9241540256709452,
-            "mrr": 0.5982424707975105,
+            "recall@100": 0.9299883313885647,
+            "mrr": 0.6045862199663028,
             "n_scored": 857,
             "mean_positives": 100.35005834305717
           },
           "bm25_unigram_bigram": {
-            "recall@1": 0.5939323220536756,
+            "recall@1": 0.5962660443407235,
             "recall@5": 0.7841306884480747,
-            "recall@10": 0.8366394399066511,
+            "recall@10": 0.8413068844807468,
             "recall@100": 0.9544924154025671,
-            "mrr": 0.6789696682013199,
+            "mrr": 0.682742861384675,
             "n_scored": 857,
             "mean_positives": 100.35005834305717
           },
-          "delta_recall@1": 0.07117852975495916,
+          "delta_recall@1": 0.06651108518086347,
           "cluster_ci95": [
-            0.04719551066519622,
-            0.11153478932570791
+            0.04444220430107527,
+            0.0988215128185188
           ],
           "cluster_p": 0.001,
           "n_clusters": 39,
           "n_paired": 857,
-          "n_gained": 109,
-          "n_lost": 48,
-          "status": "SECONDARY_ARM_TASK_A_FROZEN",
+          "n_gained": 101,
+          "n_lost": 44,
+          "status": "SECONDARY_ARM_TASK_A_FROZEN_MATCHING_SCOPE",
           "weights_source": "Phase4\\phase4_out\\p5_factorial_control.json",
+          "task_a_rendering": "BOUNDARY",
           "weights_used_by_fold": {
             "0": {
               "alpha_unigram_only": 1.0,
               "alpha_pair": [
-                0.4,
+                0.15,
                 0.4
               ]
             },
             "1": {
-              "alpha_unigram_only": 0.5,
+              "alpha_unigram_only": 1.0,
               "alpha_pair": [
-                0.15,
+                0.2,
                 1.0
               ]
             },
             "2": {
-              "alpha_unigram_only": 0.5,
+              "alpha_unigram_only": 1.0,
               "alpha_pair": [
-                0.15,
+                0.2,
                 1.0
               ]
             },
             "3": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 1.0,
               "alpha_pair": [
-                0.15,
+                0.2,
                 1.0
               ]
             },
             "4": {
-              "alpha_unigram_only": 0.5,
+              "alpha_unigram_only": 1.0,
               "alpha_pair": [
-                0.0,
+                0.2,
                 1.0
               ]
             }
           },
           "queries_without_task_a_fold": 10,
-          "note": "Task A's committed per-fold weights and Task A's own fold mapping, applied unchanged. Nothing here is selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned."
+          "note": "Task A's committed per-fold weights from the MATCHING Step 2 rendering (BOUNDARY) and Task A's own fold mapping, applied unchanged. Nothing selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned.",
+          "vs_task_b_fitted_final_system": {
+            "n_paired": 857,
+            "n_clusters": 39,
+            "recall@1_task_a_frozen": 0.5962660443407235,
+            "recall@1_task_b_fitted": 0.5845974329054843,
+            "delta_frozen_minus_fitted": 0.011668611435239206,
+            "cluster_ci95": [
+              0.0017888289036544851,
+              0.01821543446808002
+            ],
+            "cluster_p": 0.014,
+            "estimand": "final-system recall@1 difference on identical query IDs; NOT a comparison of within-arm increments"
+          }
         }
       },
       "strata": {
@@ -1951,41 +1938,6 @@
           "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
         }
       },
-      "common_population": {
-        "joins": {
-          "n_queries": 150,
-          "n_clusters": 53,
-          "recall@1_unigram": 0.5733333333333334,
-          "recall@1_unigram_bigram": 0.66,
-          "delta_recall@1": 0.08666666666666667,
-          "cluster_ci95": [
-            0.03647046642853445,
-            0.14189298169136877
-          ]
-        },
-        "duplicates": {
-          "n_queries": 651,
-          "n_clusters": 35,
-          "recall@1_unigram": 0.3778801843317972,
-          "recall@1_unigram_bigram": 0.423963133640553,
-          "delta_recall@1": 0.04608294930875576,
-          "cluster_ci95": [
-            0.017296336946083138,
-            0.10454688094332446
-          ]
-        },
-        "pooled": {
-          "n_queries": 651,
-          "n_clusters": 35,
-          "recall@1_unigram": 0.5099846390168971,
-          "recall@1_unigram_bigram": 0.576036866359447,
-          "delta_recall@1": 0.06605222734254992,
-          "cluster_ci95": [
-            0.03673069727337802,
-            0.1159504550050556
-          ]
-        }
-      },
       "degenerate_self_join_pairs_excluded": [
         "KBo 22.130a+::1",
         "KUB 28.89+::1"
@@ -2078,7 +2030,7 @@
             "recall@5": 0.0,
             "recall@10": 0.0,
             "recall@100": 0.10714285714285714,
-            "mrr": 0.005208176693744615,
+            "mrr": 0.005208176693744614,
             "n_scored": 28,
             "mean_positives": 1.0
           },
@@ -2105,10 +2057,8 @@
             0.3,
             0.4
           ],
-          "fit_recall@1_unigram": 0.4708171206225681,
-          "fit_recall@1_pair": 0.5525291828793775,
-          "n_fit": 526,
-          "n_eval": 208,
+          "fit_recall@1_unigram": 0.5262135922330097,
+          "fit_recall@1_pair": 0.6,
           "weights_by_cell": {
             "joins": {
               "alpha_unigram_only": 1.0,
@@ -2135,70 +2085,66 @@
         },
         {
           "fold": 1,
-          "alpha_unigram_only": 0.75,
+          "alpha_unigram_only": 0.5,
           "alpha_pair": [
-            0.15,
-            0.75
+            0.0,
+            1.0
           ],
-          "fit_recall@1_unigram": 0.4781144781144781,
-          "fit_recall@1_pair": 0.5606060606060606,
-          "n_fit": 602,
-          "n_eval": 132,
+          "fit_recall@1_unigram": 0.5336700336700336,
+          "fit_recall@1_pair": 0.6212121212121212,
           "weights_by_cell": {
             "joins": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.15,
-                0.75
+                0.0,
+                1.0
               ]
             },
             "duplicates": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.15,
-                0.75
+                0.0,
+                1.0
               ]
             },
             "pooled": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.15,
-                0.75
+                0.0,
+                1.0
               ]
             }
           }
         },
         {
           "fold": 2,
-          "alpha_unigram_only": 0.75,
+          "alpha_unigram_only": 0.5,
           "alpha_pair": [
-            0.3,
-            0.4
+            0.1,
+            0.75
           ],
-          "fit_recall@1_unigram": 0.4898989898989899,
-          "fit_recall@1_pair": 0.5774410774410774,
-          "n_fit": 602,
-          "n_eval": 132,
+          "fit_recall@1_unigram": 0.531986531986532,
+          "fit_recall@1_pair": 0.6279461279461279,
           "weights_by_cell": {
             "joins": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             },
             "duplicates": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             },
             "pooled": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             }
           }
@@ -2207,676 +2153,220 @@
           "fold": 3,
           "alpha_unigram_only": 0.75,
           "alpha_pair": [
-            0.0,
-            1.0
+            0.1,
+            0.75
           ],
-          "fit_recall@1_unigram": 0.4822934232715008,
-          "fit_recall@1_pair": 0.5480607082630692,
-          "n_fit": 603,
-          "n_eval": 131,
+          "fit_recall@1_unigram": 0.5134680134680135,
+          "fit_recall@1_pair": 0.5909090909090909,
           "weights_by_cell": {
             "joins": {
               "alpha_unigram_only": 0.75,
               "alpha_pair": [
-                0.0,
-                1.0
+                0.1,
+                0.75
               ]
             },
             "duplicates": {
               "alpha_unigram_only": 0.75,
               "alpha_pair": [
-                0.0,
-                1.0
+                0.1,
+                0.75
               ]
             },
             "pooled": {
               "alpha_unigram_only": 0.75,
               "alpha_pair": [
-                0.0,
-                1.0
+                0.1,
+                0.75
               ]
             }
           }
         },
         {
           "fold": 4,
-          "alpha_unigram_only": 0.75,
+          "alpha_unigram_only": 0.5,
           "alpha_pair": [
-            0.3,
-            0.4
+            0.1,
+            0.75
           ],
-          "fit_recall@1_unigram": 0.4688026981450253,
-          "fit_recall@1_pair": 0.5446880269814502,
-          "n_fit": 603,
-          "n_eval": 131,
+          "fit_recall@1_unigram": 0.5176470588235295,
+          "fit_recall@1_pair": 0.6033613445378151,
           "weights_by_cell": {
             "joins": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             },
             "duplicates": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             },
             "pooled": {
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
               ]
             }
           }
         }
       ],
-      "deployment_candidate_config": {
-        "alpha_unigram_only": 0.75,
-        "alpha_pair": [
-          0.3,
-          0.4
-        ],
-        "status": "MODAL_ACROSS_FOLDS -- retained for possible future deployment; carries NO dev performance claim, since every reported number is cross-fitted"
-      },
       "coverage": {
         "n_dev_queries_base": 876,
-        "n_dev_queries_scorable": 734,
-        "queries_lost": 142,
-        "n_index_base": 7490,
-        "n_index_scorable": 6412,
-        "candidates_lost": 1078,
-        "positive_relations_base": 43008,
-        "positive_relations_scorable": 30526,
-        "positive_relations_lost": 12482,
-        "eligible_candidate_set_size": 6411,
-        "relations_lost_by_cell": {
+        "n_queries_eligible_own_language": 734,
+        "n_queries_with_reachable_positive": 723,
+        "queries_lost": 153,
+        "reachable_ceiling_conditional_on_query_eligibility": {
           "joins": {
-            "relations_lost": 40,
-            "endpoint_refusal_reasons": {
-              "QUERY_LANGUAGE_UNRESOLVED": 59
-            }
+            "positives_considered_from_eligible_queries": 305,
+            "positives_reachable": 305,
+            "reachable_ceiling": 1.0
           },
           "duplicates": {
-            "relations_lost": 12442,
-            "endpoint_refusal_reasons": {
-              "QUERY_LANGUAGE_UNRESOLVED": 13895
-            }
+            "positives_considered_from_eligible_queries": 71757,
+            "positives_reachable": 69794,
+            "reachable_ceiling": 0.9726437838817119
           },
           "pooled": {
-            "relations_lost": 12482,
-            "endpoint_refusal_reasons": {
-              "QUERY_LANGUAGE_UNRESOLVED": 13954
-            }
+            "positives_considered_from_eligible_queries": 72062,
+            "positives_reachable": 70099,
+            "reachable_ceiling": 0.9727595681496489
           }
-        }
+        },
+        "per_language": [
+          {
+            "language": "Akk",
+            "eligible_queries": 42,
+            "queries_with_reachable_positive": 40,
+            "candidate_universe": 386
+          },
+          {
+            "language": "Hat",
+            "eligible_queries": 7,
+            "queries_with_reachable_positive": 7,
+            "candidate_universe": 244
+          },
+          {
+            "language": "Hit",
+            "eligible_queries": 658,
+            "queries_with_reachable_positive": 649,
+            "candidate_universe": 6722
+          },
+          {
+            "language": "Hur",
+            "eligible_queries": 24,
+            "queries_with_reachable_positive": 24,
+            "candidate_universe": 566
+          },
+          {
+            "language": "Luw",
+            "eligible_queries": 3,
+            "queries_with_reachable_positive": 3,
+            "candidate_universe": 109
+          }
+        ]
       },
       "cells": {
         "joins": {
           "label": "joins",
           "bm25_unigram": {
-            "recall@1": 0.6,
-            "recall@5": 0.7266666666666667,
-            "recall@10": 0.7933333333333333,
-            "recall@100": 0.8666666666666667,
-            "mrr": 0.6570444911725115,
-            "n_scored": 150,
-            "mean_positives": 1.8933333333333333
+            "recall@1": 0.5897435897435898,
+            "recall@5": 0.7115384615384616,
+            "recall@10": 0.7564102564102564,
+            "recall@100": 0.8397435897435898,
+            "mrr": 0.646356052918662,
+            "n_scored": 156,
+            "mean_positives": 1.955128205128205
           },
           "bm25_unigram_bigram": {
-            "recall@1": 0.6866666666666666,
-            "recall@5": 0.8,
-            "recall@10": 0.8266666666666667,
-            "recall@100": 0.9066666666666666,
-            "mrr": 0.7357706815073071,
-            "n_scored": 150,
-            "mean_positives": 1.8933333333333333
+            "recall@1": 0.6794871794871795,
+            "recall@5": 0.782051282051282,
+            "recall@10": 0.8269230769230769,
+            "recall@100": 0.8910256410256411,
+            "mrr": 0.7298370267811854,
+            "n_scored": 156,
+            "mean_positives": 1.955128205128205
           },
-          "delta_recall@1": 0.08666666666666667,
+          "delta_recall@1": 0.08974358974358974,
           "cluster_ci95": [
-            0.03378188581840268,
-            0.14635939741750356
+            0.03998039215686275,
+            0.13971933285509325
           ],
-          "cluster_p": 0.003,
-          "n_clusters": 50,
-          "n_paired": 150,
-          "n_gained": 15,
-          "n_lost": 2
+          "cluster_p": 0.001,
+          "n_clusters": 56,
+          "n_paired": 156,
+          "n_gained": 17,
+          "n_lost": 3
         },
         "duplicates": {
           "label": "duplicates",
           "bm25_unigram": {
-            "recall@1": 0.3490304709141274,
-            "recall@5": 0.5761772853185596,
-            "recall@10": 0.6842105263157895,
-            "recall@100": 0.907202216066482,
-            "mrr": 0.4588107323714886,
-            "n_scored": 722,
-            "mean_positives": 84.16620498614958
+            "recall@1": 0.3817427385892116,
+            "recall@5": 0.6390041493775933,
+            "recall@10": 0.7275242047026279,
+            "recall@100": 0.9156293222683264,
+            "mrr": 0.5000284514537556,
+            "n_scored": 723,
+            "mean_positives": 96.53388658367912
           },
           "bm25_unigram_bigram": {
-            "recall@1": 0.39473684210526316,
-            "recall@5": 0.6620498614958449,
-            "recall@10": 0.7548476454293629,
-            "recall@100": 0.9390581717451524,
-            "mrr": 0.5211818669480132,
-            "n_scored": 722,
-            "mean_positives": 84.16620498614958
+            "recall@1": 0.44813278008298757,
+            "recall@5": 0.7468879668049793,
+            "recall@10": 0.8105117565698479,
+            "recall@100": 0.9598893499308437,
+            "mrr": 0.579681618708345,
+            "n_scored": 723,
+            "mean_positives": 96.53388658367912
           },
-          "delta_recall@1": 0.045706371191135735,
+          "delta_recall@1": 0.06639004149377593,
           "cluster_ci95": [
-            0.022361128853164585,
-            0.08215314144077371
+            0.035858374384236454,
+            0.10086982120169811
           ],
-          "cluster_p": 0.009,
-          "n_clusters": 39,
-          "n_paired": 722,
-          "n_gained": 72,
-          "n_lost": 39
+          "cluster_p": 0.001,
+          "n_clusters": 41,
+          "n_paired": 723,
+          "n_gained": 86,
+          "n_lost": 38
         },
         "pooled": {
           "label": "pooled",
           "bm25_unigram": {
-            "recall@1": 0.47368421052631576,
-            "recall@5": 0.6412742382271468,
-            "recall@10": 0.7354570637119113,
-            "recall@100": 0.9182825484764543,
-            "mrr": 0.5540814099585284,
-            "n_scored": 722,
-            "mean_positives": 84.5595567867036
+            "recall@1": 0.5089903181189488,
+            "recall@5": 0.6915629322268326,
+            "recall@10": 0.7634854771784232,
+            "recall@100": 0.9294605809128631,
+            "mrr": 0.5935917331240804,
+            "n_scored": 723,
+            "mean_positives": 96.95573997233748
           },
           "bm25_unigram_bigram": {
-            "recall@1": 0.5373961218836565,
-            "recall@5": 0.7229916897506925,
-            "recall@10": 0.7922437673130194,
-            "recall@100": 0.9418282548476454,
-            "mrr": 0.6261799849510967,
-            "n_scored": 722,
-            "mean_positives": 84.5595567867036
+            "recall@1": 0.5947441217150761,
+            "recall@5": 0.7939142461964038,
+            "recall@10": 0.8450899031811895,
+            "recall@100": 0.9612724757952974,
+            "mrr": 0.6836959877333267,
+            "n_scored": 723,
+            "mean_positives": 96.95573997233748
           },
-          "delta_recall@1": 0.06371191135734072,
+          "delta_recall@1": 0.08575380359612725,
           "cluster_ci95": [
-            0.03557061879072749,
-            0.09270345596432553
+            0.04860970616570327,
+            0.11625958552917307
           ],
           "cluster_p": 0.001,
-          "n_clusters": 39,
-          "n_paired": 722,
-          "n_gained": 79,
+          "n_clusters": 41,
+          "n_paired": 723,
+          "n_gained": 95,
           "n_lost": 33
-        },
-        "joins_bin_exception_population": {
-          "label": "joins_bin_exception_population",
-          "bm25_unigram": {
-            "recall@1": 0.0,
-            "recall@5": 0.0,
-            "recall@10": 0.0,
-            "recall@100": 0.0,
-            "mrr": 0.00015053666008836718,
-            "n_scored": 451,
-            "mean_positives": 1.4501108647450112
-          },
-          "bm25_unigram_bigram": {
-            "recall@1": 0.0,
-            "recall@5": 0.0,
-            "recall@10": 0.0,
-            "recall@100": 0.0,
-            "mrr": 0.00015053666008836718,
-            "n_scored": 451,
-            "mean_positives": 1.4501108647450112
-          },
-          "delta_recall@1": 0.0,
-          "cluster_ci95": [
-            0.0,
-            0.0
-          ],
-          "cluster_p": 1.0,
-          "n_clusters": 182,
-          "n_paired": 451,
-          "n_gained": 0,
-          "n_lost": 0,
-          "weights": {
-            "alpha_unigram_only": 0.75,
-            "alpha_pair": [
-              0.3,
-              0.4
-            ]
-          },
-          "status": "DESCRIPTIVE_NOT_CROSS_FITTED",
-          "weight_provenance": "deployment-candidate config; EXTERNAL TO WEIGHT FITTING, since bin-exception fragments never enter any fold's fit. This is NOT a cross-fitted result and NOT independent confirmation: these fragments share the same corpus construction, the same index, and the same fitted feature statistics as the dev cells. Descriptive only."
-        },
-        "task_a_frozen_pooled": {
-          "label": "task_a_frozen_pooled",
-          "bm25_unigram": {
-            "recall@1": 0.469187675070028,
-            "recall@5": 0.6456582633053222,
-            "recall@10": 0.7380952380952381,
-            "recall@100": 0.9145658263305322,
-            "mrr": 0.550637476102468,
-            "n_scored": 714,
-            "mean_positives": 85.48459383753502
-          },
-          "bm25_unigram_bigram": {
-            "recall@1": 0.5462184873949579,
-            "recall@5": 0.726890756302521,
-            "recall@10": 0.7983193277310925,
-            "recall@100": 0.9397759103641457,
-            "mrr": 0.6329488026576364,
-            "n_scored": 714,
-            "mean_positives": 85.48459383753502
-          },
-          "delta_recall@1": 0.07703081232492998,
-          "cluster_ci95": [
-            0.05389969059169564,
-            0.10513353115727003
-          ],
-          "cluster_p": 0.001,
-          "n_clusters": 36,
-          "n_paired": 714,
-          "n_gained": 87,
-          "n_lost": 32,
-          "status": "SECONDARY_ARM_TASK_A_FROZEN",
-          "weights_source": "Phase4\\phase4_out\\p5_factorial_control.json",
-          "weights_used_by_fold": {
-            "0": {
-              "alpha_unigram_only": 1.0,
-              "alpha_pair": [
-                0.4,
-                0.4
-              ]
-            },
-            "1": {
-              "alpha_unigram_only": 0.5,
-              "alpha_pair": [
-                0.15,
-                1.0
-              ]
-            },
-            "2": {
-              "alpha_unigram_only": 0.5,
-              "alpha_pair": [
-                0.15,
-                1.0
-              ]
-            },
-            "3": {
-              "alpha_unigram_only": 0.75,
-              "alpha_pair": [
-                0.15,
-                1.0
-              ]
-            },
-            "4": {
-              "alpha_unigram_only": 0.5,
-              "alpha_pair": [
-                0.0,
-                1.0
-              ]
-            }
-          },
-          "queries_without_task_a_fold": 10,
-          "note": "Task A's committed per-fold weights and Task A's own fold mapping, applied unchanged. Nothing here is selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned."
         }
       },
-      "strata": {
-        "joins": {
-          "damage_band": {
-            "high": {
-              "n_queries": 35,
-              "n_clusters": 19,
-              "delta_recall@1": 0.08571428571428572,
-              "cluster_ci95": [
-                0.0,
-                0.17954545454545448
-              ],
-              "recall@1_unigram": 0.6285714285714286,
-              "recall@1_unigram_bigram": 0.7142857142857143
-            },
-            "low": {
-              "n_queries": 81,
-              "n_clusters": 39,
-              "delta_recall@1": 0.09876543209876543,
-              "cluster_ci95": [
-                0.02631578947368421,
-                0.18751838235294116
-              ],
-              "recall@1_unigram": 0.6296296296296297,
-              "recall@1_unigram_bigram": 0.7283950617283951
-            },
-            "medium": {
-              "n_queries": 34,
-              "n_clusters": 21,
-              "delta_recall@1": 0.058823529411764705,
-              "cluster_ci95": [
-                0.0,
-                0.15384615384615385
-              ],
-              "recall@1_unigram": 0.5,
-              "recall@1_unigram_bigram": 0.5588235294117647
-            }
-          },
-          "genre_band": {
-            "0": {
-              "n_queries": 31,
-              "n_clusters": 11,
-              "delta_recall@1": 0.06451612903225806,
-              "cluster_ci95": [
-                -0.07692307692307693,
-                0.25
-              ],
-              "recall@1_unigram": 0.5806451612903226,
-              "recall@1_unigram_bigram": 0.6451612903225806
-            },
-            "200": {
-              "n_queries": 6,
-              "n_clusters": 1,
-              "delta_recall@1": 0.16666666666666666,
-              "cluster_ci95": [
-                0.16666666666666666,
-                0.16666666666666666
-              ],
-              "recall@1_unigram": 0.6666666666666666,
-              "recall@1_unigram_bigram": 0.8333333333333334
-            },
-            "300": {
-              "n_queries": 3,
-              "n_clusters": 1,
-              "delta_recall@1": 0.0,
-              "cluster_ci95": [
-                0.0,
-                0.0
-              ],
-              "recall@1_unigram": 1.0,
-              "recall@1_unigram_bigram": 1.0
-            },
-            "600": {
-              "n_queries": 108,
-              "n_clusters": 36,
-              "delta_recall@1": 0.09259259259259259,
-              "cluster_ci95": [
-                0.03569862155388471,
-                0.1579473684210526
-              ],
-              "recall@1_unigram": 0.5833333333333334,
-              "recall@1_unigram_bigram": 0.6759259259259259
-            },
-            "700": {
-              "n_queries": 2,
-              "n_clusters": 1,
-              "delta_recall@1": 0.0,
-              "cluster_ci95": [
-                0.0,
-                0.0
-              ],
-              "recall@1_unigram": 1.0,
-              "recall@1_unigram_bigram": 1.0
-            }
-          },
-          "geometry": {
-            "horizontal": {
-              "n_queries": 85,
-              "n_clusters": 38,
-              "delta_recall@1": 0.11764705882352941,
-              "cluster_ci95": [
-                0.05880642954856361,
-                0.1794871794871795
-              ],
-              "recall@1_unigram": 0.7647058823529411,
-              "recall@1_unigram_bigram": 0.8823529411764706
-            },
-            "vertical": {
-              "n_queries": 65,
-              "n_clusters": 28,
-              "delta_recall@1": 0.046153846153846156,
-              "cluster_ci95": [
-                -0.016129032258064516,
-                0.12904719235364395
-              ],
-              "recall@1_unigram": 0.38461538461538464,
-              "recall@1_unigram_bigram": 0.4307692307692308
-            }
-          },
-          "join_type": {
-            "direct": {
-              "n_queries": 76,
-              "n_clusters": 41,
-              "delta_recall@1": 0.09210526315789473,
-              "cluster_ci95": [
-                0.013884132420091323,
-                0.17110964912280696
-              ],
-              "recall@1_unigram": 0.6052631578947368,
-              "recall@1_unigram_bigram": 0.6973684210526315
-            },
-            "indirect": {
-              "n_queries": 16,
-              "n_clusters": 7,
-              "delta_recall@1": 0.0625,
-              "cluster_ci95": [
-                0.0,
-                0.21428571428571427
-              ],
-              "recall@1_unigram": 0.1875,
-              "recall@1_unigram_bigram": 0.25
-            },
-            "inferred_from_shared_lines": {
-              "n_queries": 58,
-              "n_clusters": 16,
-              "delta_recall@1": 0.08620689655172414,
-              "cluster_ci95": [
-                0.0322452636968766,
-                0.15217391304347827
-              ],
-              "recall@1_unigram": 0.7068965517241379,
-              "recall@1_unigram_bigram": 0.7931034482758621
-            }
-          },
-          "language": {
-            "Hat": {
-              "n_queries": 2,
-              "n_clusters": 1,
-              "delta_recall@1": 0.0,
-              "cluster_ci95": [
-                0.0,
-                0.0
-              ],
-              "recall@1_unigram": 1.0,
-              "recall@1_unigram_bigram": 1.0
-            },
-            "Hit": {
-              "n_queries": 145,
-              "n_clusters": 48,
-              "delta_recall@1": 0.0896551724137931,
-              "cluster_ci95": [
-                0.03653878726287263,
-                0.15127899159663863
-              ],
-              "recall@1_unigram": 0.5862068965517241,
-              "recall@1_unigram_bigram": 0.6758620689655173
-            },
-            "Hur": {
-              "n_queries": 3,
-              "n_clusters": 1,
-              "delta_recall@1": 0.0,
-              "cluster_ci95": [
-                0.0,
-                0.0
-              ],
-              "recall@1_unigram": 1.0,
-              "recall@1_unigram_bigram": 1.0
-            }
-          },
-          "length_band": {
-            "long": {
-              "n_queries": 73,
-              "n_clusters": 34,
-              "delta_recall@1": 0.1232876712328767,
-              "cluster_ci95": [
-                0.05194805194805195,
-                0.21333333333333335
-              ],
-              "recall@1_unigram": 0.6027397260273972,
-              "recall@1_unigram_bigram": 0.726027397260274
-            },
-            "medium": {
-              "n_queries": 61,
-              "n_clusters": 35,
-              "delta_recall@1": 0.06557377049180328,
-              "cluster_ci95": [
-                -0.015873015873015872,
-                0.14285714285714285
-              ],
-              "recall@1_unigram": 0.6065573770491803,
-              "recall@1_unigram_bigram": 0.6721311475409836
-            },
-            "short": {
-              "n_queries": 16,
-              "n_clusters": 11,
-              "delta_recall@1": 0.0,
-              "cluster_ci95": [
-                0.0,
-                0.0
-              ],
-              "recall@1_unigram": 0.5625,
-              "recall@1_unigram_bigram": 0.5625
-            }
-          },
-          "no_overlap": {
-            "False": {
-              "n_queries": 124,
-              "n_clusters": 45,
-              "delta_recall@1": 0.0967741935483871,
-              "cluster_ci95": [
-                0.05041865667130162,
-                0.15517241379310345
-              ],
-              "recall@1_unigram": 0.6774193548387096,
-              "recall@1_unigram_bigram": 0.7741935483870968
-            },
-            "True": {
-              "n_queries": 26,
-              "n_clusters": 13,
-              "delta_recall@1": 0.038461538461538464,
-              "cluster_ci95": [
-                -0.08830213903743316,
-                0.18190235690235684
-              ],
-              "recall@1_unigram": 0.23076923076923078,
-              "recall@1_unigram_bigram": 0.2692307692307692
-            }
-          },
-          "parent_is_bin": {
-            "False": {
-              "n_queries": 150,
-              "n_clusters": 50,
-              "delta_recall@1": 0.08666666666666667,
-              "cluster_ci95": [
-                0.03378188581840268,
-                0.14635939741750356
-              ],
-              "recall@1_unigram": 0.6,
-              "recall@1_unigram_bigram": 0.6866666666666666
-            }
-          },
-          "shared_line_band": {
-            "0": {
-              "n_queries": 26,
-              "n_clusters": 13,
-              "delta_recall@1": 0.038461538461538464,
-              "cluster_ci95": [
-                -0.08830213903743316,
-                0.18190235690235684
-              ],
-              "recall@1_unigram": 0.23076923076923078,
-              "recall@1_unigram_bigram": 0.2692307692307692
-            },
-            "1-2": {
-              "n_queries": 39,
-              "n_clusters": 17,
-              "delta_recall@1": 0.05128205128205128,
-              "cluster_ci95": [
-                0.0,
-                0.13795498084291186
-              ],
-              "recall@1_unigram": 0.48717948717948717,
-              "recall@1_unigram_bigram": 0.5384615384615384
-            },
-            "10+": {
-              "n_queries": 25,
-              "n_clusters": 14,
-              "delta_recall@1": 0.12,
-              "cluster_ci95": [
-                0.0,
-                0.2592995169082125
-              ],
-              "recall@1_unigram": 0.76,
-              "recall@1_unigram_bigram": 0.88
-            },
-            "3-9": {
-              "n_queries": 60,
-              "n_clusters": 28,
-              "delta_recall@1": 0.11666666666666667,
-              "cluster_ci95": [
-                0.05,
-                0.19362039170506906
-              ],
-              "recall@1_unigram": 0.7666666666666667,
-              "recall@1_unigram_bigram": 0.8833333333333333
-            }
-          },
-          "site": {
-            "Hattusa": {
-              "n_queries": 150,
-              "n_clusters": 50,
-              "delta_recall@1": 0.08666666666666667,
-              "cluster_ci95": [
-                0.03378188581840268,
-                0.14635939741750356
-              ],
-              "recall@1_unigram": 0.6,
-              "recall@1_unigram_bigram": 0.6866666666666666
-            }
-          },
-          "tier": {
-            "A": {
-              "n_queries": 26,
-              "n_clusters": 13,
-              "delta_recall@1": 0.038461538461538464,
-              "cluster_ci95": [
-                -0.08830213903743316,
-                0.18190235690235684
-              ],
-              "recall@1_unigram": 0.23076923076923078,
-              "recall@1_unigram_bigram": 0.2692307692307692
-            },
-            "B": {
-              "n_queries": 39,
-              "n_clusters": 17,
-              "delta_recall@1": 0.05128205128205128,
-              "cluster_ci95": [
-                0.0,
-                0.13795498084291186
-              ],
-              "recall@1_unigram": 0.48717948717948717,
-              "recall@1_unigram_bigram": 0.5384615384615384
-            },
-            "C": {
-              "n_queries": 85,
-              "n_clusters": 38,
-              "delta_recall@1": 0.11764705882352941,
-              "cluster_ci95": [
-                0.05880642954856361,
-                0.1794871794871795
-              ],
-              "recall@1_unigram": 0.7647058823529411,
-              "recall@1_unigram_bigram": 0.8823529411764706
-            }
-          }
-        }
-      },
+      "strata": {},
       "checks": {
         "C5": {
           "passed": true,
@@ -2892,170 +2382,286 @@
             },
             {
               "fold": 1,
-              "alpha_unigram_only": 0.75,
-              "alpha_pair": [
-                0.15,
-                0.75
-              ]
-            },
-            {
-              "fold": 2,
-              "alpha_unigram_only": 0.75,
-              "alpha_pair": [
-                0.3,
-                0.4
-              ]
-            },
-            {
-              "fold": 3,
-              "alpha_unigram_only": 0.75,
+              "alpha_unigram_only": 0.5,
               "alpha_pair": [
                 0.0,
                 1.0
               ]
             },
             {
-              "fold": 4,
+              "fold": 2,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            {
+              "fold": 3,
               "alpha_unigram_only": 0.75,
               "alpha_pair": [
-                0.3,
-                0.4
+                0.1,
+                0.75
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
               ]
             }
           ],
           "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
         }
       },
-      "common_population": {
-        "joins": {
-          "n_queries": 145,
-          "n_clusters": 48,
-          "recall@1_unigram": 0.5862068965517241,
-          "recall@1_unigram_bigram": 0.6758620689655173,
-          "delta_recall@1": 0.0896551724137931,
-          "cluster_ci95": [
-            0.03653878726287263,
-            0.15127899159663863
-          ]
+      "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"
+    },
+    "CROSS_LANGUAGE_PARALLEL": {
+      "per_fold_weight_selection": [
+        {
+          "fold": 0,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            1.0,
+            0.2
+          ],
+          "fit_recall@1_unigram": 0.11386138613861387,
+          "fit_recall@1_pair": 0.13861386138613863,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            }
+          }
         },
-        "duplicates": {
-          "n_queries": 648,
-          "n_clusters": 32,
-          "recall@1_unigram": 0.35030864197530864,
-          "recall@1_unigram_bigram": 0.3888888888888889,
-          "delta_recall@1": 0.038580246913580245,
-          "cluster_ci95": [
-            0.012498273480662984,
-            0.07723327502147877
-          ]
+        {
+          "fold": 1,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.07102272727272728,
+          "fit_recall@1_pair": 0.08238636363636363,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
         },
-        "pooled": {
-          "n_queries": 648,
-          "n_clusters": 32,
-          "recall@1_unigram": 0.48148148148148145,
-          "recall@1_unigram_bigram": 0.5401234567901234,
-          "delta_recall@1": 0.05864197530864197,
-          "cluster_ci95": [
-            0.0250672500494082,
-            0.08969815296049663
-          ]
+        {
+          "fold": 2,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.06906077348066299,
+          "fit_recall@1_pair": 0.08011049723756906,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.1,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.0055248618784530384,
+          "fit_recall@1_pair": 0.008287292817679558,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.06906077348066299,
+          "fit_recall@1_pair": 0.08011049723756906,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
         }
-      },
-      "degenerate_self_join_pairs_excluded": [
-        "KBo 22.130a+::1",
-        "KUB 28.89+::1"
       ],
-      "tier_c": {
-        "counts": {
-          "considered": 76,
-          "exclusive_untestable": 38,
-          "no_reconstruction": 0,
-          "empty_exclusive": 0,
-          "usable": 38,
-          "usable_single_partner_only": 14
+      "coverage": {
+        "n_dev_queries_base": 876,
+        "n_queries_eligible_own_language": 734,
+        "n_queries_with_reachable_positive": 410,
+        "queries_lost": 466,
+        "reachable_ceiling_conditional_on_query_eligibility": {
+          "joins": {
+            "positives_considered_from_eligible_queries": 305,
+            "positives_reachable": 9,
+            "reachable_ceiling": 0.029508196721311476
+          },
+          "duplicates": {
+            "positives_considered_from_eligible_queries": 71757,
+            "positives_reachable": 5315,
+            "reachable_ceiling": 0.07406942876653148
+          },
+          "pooled": {
+            "positives_considered_from_eligible_queries": 72062,
+            "positives_reachable": 5324,
+            "reachable_ceiling": 0.07388082484527213
+          }
         },
-        "n_pair_instances": 38,
-        "full_rendering_contaminated": {
-          "label": "tier_c_full_CONTAMINATED",
-          "bm25_unigram": {
-            "recall@1": 0.3684210526315789,
-            "recall@5": 0.6842105263157895,
-            "recall@10": 0.75,
-            "recall@100": 0.8552631578947368,
-            "mrr": 0.5035201605095875,
-            "n_scored": 76,
-            "mean_positives": 1.0
+        "per_language": [
+          {
+            "language": "Akk",
+            "eligible_queries": 42,
+            "queries_with_reachable_positive": 32,
+            "candidate_universe": 7109
           },
-          "bm25_unigram_bigram": {
-            "recall@1": 0.4473684210526316,
-            "recall@5": 0.8026315789473685,
-            "recall@10": 0.8289473684210527,
-            "recall@100": 0.9736842105263158,
-            "mrr": 0.6059651345769311,
-            "n_scored": 76,
-            "mean_positives": 1.0
+          {
+            "language": "Hat",
+            "eligible_queries": 7,
+            "queries_with_reachable_positive": 7,
+            "candidate_universe": 7318
           },
-          "delta_recall@1": 0.07894736842105263,
-          "cluster_ci95": [
-            0.0,
-            0.16666666666666666
-          ],
-          "cluster_p": 0.073,
-          "n_clusters": 24,
-          "n_paired": 76,
-          "n_gained": 9,
-          "n_lost": 3
-        },
-        "overlap_exclusive": {
-          "label": "tier_c_overlap_exclusive",
-          "bm25_unigram": {
-            "recall@1": 0.05263157894736842,
-            "recall@5": 0.13157894736842105,
-            "recall@10": 0.17105263157894737,
-            "recall@100": 0.3157894736842105,
-            "mrr": 0.08999745921836474,
-            "n_scored": 76,
-            "mean_positives": 1.0
+          {
+            "language": "Hit",
+            "eligible_queries": 658,
+            "queries_with_reachable_positive": 344,
+            "candidate_universe": 1349
           },
-          "bm25_unigram_bigram": {
-            "recall@1": 0.039473684210526314,
-            "recall@5": 0.21052631578947367,
-            "recall@10": 0.25,
-            "recall@100": 0.40789473684210525,
-            "mrr": 0.10303422711431558,
-            "n_scored": 76,
-            "mean_positives": 1.0
+          {
+            "language": "Hur",
+            "eligible_queries": 24,
+            "queries_with_reachable_positive": 24,
+            "candidate_universe": 7216
           },
-          "delta_recall@1": -0.013157894736842105,
-          "cluster_ci95": [
-            -0.05555555555555555,
-            0.030326704545454525
-          ],
-          "cluster_p": 0.664,
-          "n_clusters": 24,
-          "n_paired": 76,
-          "n_gained": 1,
-          "n_lost": 2
-        },
-        "overlap_exclusive_single_partner_only": {
-          "label": "tier_c_exclusive_single_partner",
+          {
+            "language": "Luw",
+            "eligible_queries": 3,
+            "queries_with_reachable_positive": 3,
+            "candidate_universe": 7405
+          }
+        ],
+        "positive_semantics": "DIFFERENT-LANGUAGE SAME-CTH relations, not independently annotated as actual textual parallels."
+      },
+      "cells": {
+        "joins": {
+          "label": "joins",
           "bm25_unigram": {
             "recall@1": 0.0,
             "recall@5": 0.0,
-            "recall@10": 0.03571428571428571,
-            "recall@100": 0.14285714285714285,
-            "mrr": 0.00989423347348824,
-            "n_scored": 28,
-            "mean_positives": 1.0
+            "recall@10": 0.0,
+            "recall@100": 0.0,
+            "mrr": 0.0013114218751427477,
+            "n_scored": 7,
+            "mean_positives": 1.2857142857142858
           },
           "bm25_unigram_bigram": {
             "recall@1": 0.0,
-            "recall@5": 0.03571428571428571,
-            "recall@10": 0.07142857142857142,
-            "recall@100": 0.25,
-            "mrr": 0.01694763265006968,
-            "n_scored": 28,
-            "mean_positives": 1.0
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.0,
+            "mrr": 0.001414170354891831,
+            "n_scored": 7,
+            "mean_positives": 1.2857142857142858
           },
           "delta_recall@1": 0.0,
           "cluster_ci95": [
@@ -3063,72 +2669,204 @@
             0.0
           ],
           "cluster_p": 1.0,
-          "n_clusters": 13,
-          "n_paired": 28,
+          "n_clusters": 5,
+          "n_paired": 7,
           "n_gained": 0,
           "n_lost": 0
         },
-        "note": "Full and exclusive are computed on EXACTLY the same pair instances and the SAME candidate universe -- identical index membership, identical content for every fragment except the pair's own two -- so the drop between them is paired and isolates the rendering factor. Each pair instance carries its own exclusive rendering, so a fragment with several Tier C partners is several instances rather than one overwritten rendering. Instances are clustered by PHYSICAL JOIN COMPONENT, so two pairs from one object are not counted as independent evidence."
-      }
-    },
-    "CROSS_LANGUAGE_PARALLEL": {
-      "coverage": {
-        "n_dev_queries_base": 876,
-        "n_dev_queries_scorable": 0,
-        "queries_lost": 876,
-        "n_index_base": 7490,
-        "n_index_scorable": 0,
-        "candidates_lost": 7490,
-        "positive_relations_base": 43008,
-        "positive_relations_scorable": 0,
-        "positive_relations_lost": 43008,
-        "eligible_candidate_set_size": -1,
-        "cross_language_reachable_ceiling": {
-          "joins": {
-            "positives_considered": 305,
-            "positives_reachable": 9,
-            "reachable_ceiling": 0.029508196721311476
+        "duplicates": {
+          "label": "duplicates",
+          "bm25_unigram": {
+            "recall@1": 0.05853658536585366,
+            "recall@5": 0.08048780487804878,
+            "recall@10": 0.09268292682926829,
+            "recall@100": 0.2048780487804878,
+            "mrr": 0.0726297224302396,
+            "n_scored": 410,
+            "mean_positives": 12.963414634146341
           },
-          "duplicates": {
-            "positives_considered": 71757,
-            "positives_reachable": 5315,
-            "reachable_ceiling": 0.07406942876653148
+          "bm25_unigram_bigram": {
+            "recall@1": 0.06341463414634146,
+            "recall@5": 0.07804878048780488,
+            "recall@10": 0.0951219512195122,
+            "recall@100": 0.24878048780487805,
+            "mrr": 0.07826452634147353,
+            "n_scored": 410,
+            "mean_positives": 12.963414634146341
           },
-          "pooled": {
-            "positives_considered": 72062,
-            "positives_reachable": 5324,
-            "reachable_ceiling": 0.07388082484527213
-          }
+          "delta_recall@1": 0.004878048780487805,
+          "cluster_ci95": [
+            -0.01935640463513937,
+            0.04141320365458293
+          ],
+          "cluster_p": 0.654,
+          "n_clusters": 18,
+          "n_paired": 410,
+          "n_gained": 5,
+          "n_lost": 3
         },
-        "positive_semantics": "Positives here are DIFFERENT-LANGUAGE SAME-CTH relations. They are not independently annotated as actual textual parallels; shared CTH membership plus a language difference is what the corpus supports. Any recall figure is bounded above by reachable_ceiling.",
-        "relations_lost_by_cell": {
-          "joins": {
-            "relations_lost": 182,
-            "endpoint_refusal_reasons": {
-              "OUT_OF_SCOPE_LANGUAGE": 305,
-              "QUERY_LANGUAGE_UNRESOLVED": 59
-            }
+        "pooled": {
+          "label": "pooled",
+          "bm25_unigram": {
+            "recall@1": 0.05853658536585366,
+            "recall@5": 0.08048780487804878,
+            "recall@10": 0.09268292682926829,
+            "recall@100": 0.2048780487804878,
+            "mrr": 0.07263240368191304,
+            "n_scored": 410,
+            "mean_positives": 12.985365853658537
           },
-          "duplicates": {
-            "relations_lost": 42826,
-            "endpoint_refusal_reasons": {
-              "OUT_OF_SCOPE_LANGUAGE": 71757,
-              "QUERY_LANGUAGE_UNRESOLVED": 13895
-            }
+          "bm25_unigram_bigram": {
+            "recall@1": 0.06341463414634146,
+            "recall@5": 0.07804878048780488,
+            "recall@10": 0.0951219512195122,
+            "recall@100": 0.24878048780487805,
+            "mrr": 0.07826695559136716,
+            "n_scored": 410,
+            "mean_positives": 12.985365853658537
           },
-          "pooled": {
-            "relations_lost": 43008,
-            "endpoint_refusal_reasons": {
-              "OUT_OF_SCOPE_LANGUAGE": 72062,
-              "QUERY_LANGUAGE_UNRESOLVED": 13954
+          "delta_recall@1": 0.004878048780487805,
+          "cluster_ci95": [
+            -0.01935640463513937,
+            0.04141320365458293
+          ],
+          "cluster_p": 0.654,
+          "n_clusters": 18,
+          "n_paired": 410,
+          "n_gained": 5,
+          "n_lost": 3
+        }
+      },
+      "strata": {},
+      "checks": {
+        "C5": {
+          "passed": true,
+          "offenders": [],
+          "weights_per_fold": [
+            {
+              "fold": 0,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            {
+              "fold": 1,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            {
+              "fold": 2,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            {
+              "fold": 3,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
             }
+          ],
+          "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
+        }
+      },
+      "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"
+    }
+  },
+  "common_population_per_cell": {
+    "note": "Intersected over query IDs actually SCORED in each cell, so every scope shares one denominator per cell. No dedicated inference was pre-registered for between-scope differences and none is offered.",
+    "scopes_compared": [
+      "HITTITE_ONLY",
+      "ALL_LANGUAGES_UNCONDITIONED",
+      "SAME_LANGUAGE_AS_QUERY"
+    ],
+    "excluded_by_protocol_3_2": [
+      "CROSS_LANGUAGE_PARALLEL"
+    ],
+    "cells": {
+      "joins": {
+        "n_scored_common": 150,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.6733333333333333
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.66
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.6666666666666666
           }
         }
       },
-      "cells": {},
-      "strata": {},
-      "status": "NOT_EVALUABLE",
-      "reason": "0 scorable queries and 0 reachable positives under this scope; too few to fold or to score"
+      "duplicates": {
+        "n_scored_common": 649,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.3667180277349769,
+            "recall@1_unigram_bigram": 0.4283513097072419
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.3790446841294299,
+            "recall@1_unigram_bigram": 0.4252696456086287
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.3667180277349769,
+            "recall@1_unigram_bigram": 0.43297380585516176
+          }
+        }
+      },
+      "pooled": {
+        "n_scored_common": 649,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.49922958397534667,
+            "recall@1_unigram_bigram": 0.5839753466872111
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.5115562403697997,
+            "recall@1_unigram_bigram": 0.5778120184899846
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.49922958397534667,
+            "recall@1_unigram_bigram": 0.5870570107858244
+          }
+        }
+      }
     }
   },
   "primary_family": {
