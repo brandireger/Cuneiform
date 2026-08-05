@@ -1,5 +1,11 @@
 # Contamination control by consistent sign relabeling — pre-registered protocol
 
+> **POST-RUN CORRECTION 2026-08-04.** This historical protocol is preserved,
+> but its “memorisation rejected” label was causally too broad. Survival can
+> show that correct passage sequence is unnecessary for aggregate gain; it
+> cannot exclude every memorised component. Do not alter the historical rule;
+> use `reports/phase5_classical_control_review.md` for current interpretation.
+
 **Status: PRE-REGISTERED 2026-08-04, written and committed BEFORE the run.**
 Training-free; dev split only; test never loaded.
 

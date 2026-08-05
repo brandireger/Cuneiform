@@ -1,5 +1,11 @@
 # Classical character n-gram control — pre-registered protocol
 
+> **POST-RUN CORRECTION 2026-08-04.** This historical protocol incorrectly
+> treated CI-includes-zero as redundancy. The script now preserves that
+> historical verdict separately and applies the declared +0.010 margin to the
+> CI upper bound for the current interpretation. See
+> `reports/phase5_classical_control_review.md`.
+
 **Status: PRE-REGISTERED 2026-08-04, written and committed BEFORE the run.**
 Training-free; no pretrained weights; dev split only; test never loaded.
 

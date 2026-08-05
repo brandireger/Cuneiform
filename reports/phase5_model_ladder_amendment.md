@@ -1,5 +1,12 @@
 # Model-ladder amendment — rungs 3, 4 and 6 withdrawn from publication scope
 
+> **CORRECTIVE REVIEW 2026-08-04.** The classical controls support a resource
+> decision not to prioritize a retrieval Gate-3 proposal before the specialist
+> session. They do not scientifically close pretrained adaptation or
+> non-retrieval tasks. Relabeling shows that correct passage sequence is not
+> necessary for aggregate gain; it does not exclude every memorised component.
+> See `reports/phase5_classical_control_review.md`.
+
 **Status: RATIFIED by Ixca 2026-08-04 — then PARTIALLY OVERTURNED the same
 day by its own reinstatement mechanism. Read
 `reports/phase5_ladder_screen_results.md` before citing anything here.**
@@ -33,16 +40,15 @@ day by its own reinstatement mechanism. Read
 > all. That adds one claim the paper may now make and removes none; see the
 > "may claim" list below.
 >
-> **Third follow-up, same day — the amendment's CONCLUSION is vindicated on
-> new evidence, though its reasoning still was not.**
+> **Historical third follow-up, same day — corrected by the expert review.**
 > `reports/phase5_char_ngram_control_results.md`: a classical character
 > n-gram TF-IDF beats the frozen CANINE combiner 2.55× on Task A and is
-> significant in every Task B cell where CANINE reached none, and CANINE adds
-> nothing when stacked on it (I = −0.0046, CI includes zero). Rungs 4 and 6
-> are therefore answered — but by *measurement against the right control*,
-> which is what the screen correctly insisted on and what this amendment
-> originally skipped. The right lesson is unchanged: the inductive leap was
-> not acceptable, even though its conclusion happened to survive.
+> significant in every Task B cell where CANINE reached none. The former
+> reading treated I = −0.0046, CI [−0.0162, +0.0058] as “adds nothing” and
+> called rungs 4 and 6 answered. Current correction: the interval bounds a
+> frozen +0.010 increment in this setup, but fine-tuned adaptation and
+> non-retrieval tasks remain untested. The original inductive leap was still
+> not acceptable.
 
 `AGENTS.md` commits to a six-rung model ladder, "run in this order; every rung
 reported," and `PHASE5_SUCCESSOR_HANDOFF.md` item 8 requires that commitment
@@ -138,13 +144,16 @@ It **may** claim, and should:
   down-weight (unfitted equal-weight fusion is 7–8 points worse than BM25
   alone), and it is dev-side only against a 0.6312 reference that is not the
   published test-side 0.7831;
-- **(added 2026-08-04, from the contamination and char n-gram controls)** that
-  the useful signal in that frozen encoder is **not knowledge of Hittite** —
-  it survives a bijective relabeling of the entire sign vocabulary at
-  retention 1.016 — and that a **classical character n-gram model captures it
-  better** (Task A +0.1179 vs +0.0462; significant in all three Task B cells,
-  where the pretrained encoder was significant in none), with the pretrained
-  encoder adding nothing on top. Both dev-side.
+- **(corrected 2026-08-04, from the contamination and classical controls)**
+  that correct Hittite passage sequence is not necessary for the relabeled
+  aggregate gain (retention 1.016); that a classical lexical ensemble is
+  stronger in this dev setup; and that the CI for frozen CANINE's increment
+  over the char arm has an upper endpoint below the declared +0.010 useful
+  margin. Do **not** claim that relabeling excludes every memorised component,
+  that pretrained adaptation is closed, or that the full +0.10 classical gain
+  comes from n-gram context. The post-hoc decomposition attributes +0.052 to
+  unigram TF-IDF fusion and a further +0.050 to the separately tuned bigram
+  arm. All are dev-side exploratory results.
 
 ## Why now, and why not later
 

@@ -1,5 +1,13 @@
 # Phase 5 successor handoff — cross-line calibration applied; expert surfaces made usable
 
+> **SUPERSEDED FOR FORWARD WORK 2026-08-04. Continue from
+> `PHASE6_SUCCESSOR_HANDOFF.md`.** This file remains current for everything
+> *before* the corrective-review sequence — the unresolved-evidence workbench,
+> cross-line calibration, Gate 3, the expert surfaces, and their ratified
+> decisions. The retrieval line it ends with (item 8) is closed; its complete
+> arc, surviving claims, withdrawn claims and methodological traps are in
+> `reports/phase5_review_sequence_closeout.md`.
+
 **Handoff date:** 2026-07-28
 **Refreshed:** 2026-08-03 (session 4 — open items 3, 4 and 7 are CLOSED.
 The copy review and the second queue shipped 2026-08-02; **Gate 3 was
@@ -503,7 +511,8 @@ never read `cu`, Gate 3 closed. Additionally:
    dev-only 876-fragment index, so its absolute numbers are NOT comparable to
    the published dev figures and the easier setup may itself compress the
    headroom.
-   **UPDATE 2026-08-04, fourth and current — THE RUNG QUESTION IS ANSWERED.**
+   **HISTORICAL UPDATE 2026-08-04, fourth — SUPERSEDED IN PART BY THE
+   CORRECTIVE REVIEW BELOW.**
    Two controls closed it. (i) Contamination
    (`reports/phase5_contamination_results.md`, pre-registered `786db09`):
    five bijective length-preserving sign permutations, BM25 exactly invariant
@@ -515,12 +524,13 @@ never read `cu`, Gate 3 closed. Additionally:
    `2580d85`): **BM25 + character n-gram TF-IDF (4,6) reaches Task A
    +0.1179 (CI [+0.0913, +0.1445]) — 2.55x CANINE — and is significant in
    EVERY Task B cell (joins +0.1099, duplicates +0.0879, pooled +0.1098),
-   where CANINE reached none. Stacking CANINE on top adds nothing:
-   I = -0.0046, CI [-0.0162, +0.0058].** Verdict CANINE_REDUNDANT.
+   where CANINE reached none. The historical report said stacking CANINE adds
+   nothing: I = -0.0046, CI [-0.0162, +0.0058], and labeled it
+   CANINE_REDUNDANT. The current correction below narrows that interpretation.
    **Recommendation: do not write either owed Gate-3 proposal on retrieval
    grounds.** The ladder's position on rungs 4/6 has now moved three times
-   (withdrawn inductively -> reinstated on measurement -> answered against a
-   proper control); the third rests on a head-to-head that did not exist for
+   (withdrawn inductively -> reinstated on measurement -> historically called
+   answered against a control); the third rests on a head-to-head that did not exist for
    the first two. Also on the table and NOT acted on: the char n-gram feature
    is a real, near-zero-cost improvement to the shipping BM25-retrieve-deep
    stage, but it needs (a) Ixca's decision, (b) test-side validation, which
@@ -548,6 +558,289 @@ never read `cu`, Gate 3 closed. Additionally:
    being that every arm fits its statistics on the 876 dev fragments, a
    query-derived subset AGENTS.md forbids, and that n-gram TF-IDF may benefit
    from that more than unigram BM25 does.
+
+   **UPDATE 2026-08-04, sixth and current — EXPERT REVIEW CORRECTED THE
+   INFERENCE** (`reports/phase5_classical_control_review.md`). The measurements
+   stand, but four conclusions are narrower:
+   - Task B join/duplicate strata are inconclusive, not evidence of no
+     transfer; pooled any-relation retrieval is a distinct positive estimand.
+   - Relabeling retention 1.016 shows correct Hittite passage sequence is not
+     necessary for aggregate gain; it does not exclude every memorised
+     component or prove the signal is non-linguistic.
+   - CANINE's increment over the char arm, -0.0046 CI [-0.0162, +0.0058],
+     bounds a frozen increment of +0.010 in this setup; it does not close
+     fine-tuned adaptation or non-retrieval tasks.
+   - Character over bigram is INCONCLUSIVE because CI [-0.0012, +0.0324]
+     includes both zero and effects larger than the +0.010 margin.
+
+   A reviewer-requested post-hoc control
+   (`reports/phase5_unigram_tfidf_control_results.md`) decomposed the Task A
+   bigram-arm gain: BM25 + unigram TF-IDF contributes +0.0520, and the
+   separately tuned bigram arm contributes another +0.0497 over it. The
+   latter remains positive under composition-cluster resampling; the full
+   +0.1017 may not be called an n-gram-context effect. Current recommendation:
+   do not prioritize a retrieval Gate-3 proposal before the specialist
+   session, as a resource decision. Before P6, run a declared-universe,
+   full-distractor factorial control with explicit language scope, structural
+   boundaries, composition-cluster inference, and join-tier stratification.
+
+   **UPDATE 2026-08-04, seventh and current — STEP 1 OF THAT SEQUENCE IS DONE**
+   (`reports/phase5_statistics_universe_results.md`, pre-registered `b83c96e`).
+   The declared-universe refit and full labeled distractor index ran together
+   as one three-universe design, holding the arm set and the rendering fixed so
+   the universe was the only moving part. Verdict
+   **`SURVIVES_DECLARED_UNIVERSE`**: the bigram arm reads **+0.0601,
+   composition-cluster CI [+0.0368, +0.0905]** against 7,490 candidates over
+   490 compositions — real, but **41% below the +0.1017 it was reported at**.
+   The reproduction check recovered both published deltas to four decimals
+   before any new number was read, so the shrinkage is the universe, not a
+   reimplementation.
+
+   Handoff self-doubts 6.1 and 6.2 are both answered, and both split by arm.
+   The 876-fragment fitting set flattered the n-gram arms roughly twice as
+   much as the unigram arm (T1 −0.0162 bigram, −0.0185 char, −0.0081 unigram);
+   and adding distractors **helps** the unigram arm (+0.0116) while **hurting**
+   the n-gram arms (−0.0254 bigram, −0.0370 char). §6.2 asked for a principled
+   prediction and got one: both of its candidate stories are true, of different
+   arms.
+
+   **What actually changes the project: the arms converge.** At full scale they
+   are +0.0555 / +0.0601 / +0.0624 — a spread smaller than the declared 0.010
+   margin — and the paired "sequence context" component that the corrective
+   review put at +0.0497 falls to **+0.0046, CI [−0.0146, +0.0236]**. Review
+   correction 2 is superseded. The supportable claim is now that **a second
+   lexical similarity score is worth ~+0.055–0.062 held-out Task A recall@1**;
+   which one is unresolved, and every pairwise contrast between the three
+   contains zero. **Stop quoting +0.10 anywhere**, including the shipping-stage
+   suggestion, which becomes ~+0.06 and keeps all three of its unmet
+   preconditions.
+
+   Consequences for the remaining steps. Step 2's factorial must run at full
+   scale from the start — the unigram/bigram/character question it exists to
+   answer is precisely the one that collapsed here, and running it at dev scale
+   would re-measure the artifact. Step 3's Task B matrix inherits a known bias:
+   every Task B cell in this line was measured under the dev-fit/dev-index
+   universe, now shown to be the one most generous to n-gram arms, so those
+   numbers should be expected to shrink too. The frozen-CANINE increment has
+   the same problem in a sharper form — it was measured *over the char arm*, in
+   that same universe, and the char arm's edge over the cheapest classical arm
+   is what evaporated. Re-measuring it at full scale needs no training (frozen
+   embeddings for 7,490 fragments) and was deliberately left outside the
+   protocol.
+
+   **UPDATE 2026-08-04, eighth and current — STEP 2 IS DONE, AND IT CORRECTS
+   STEP 1** (`reports/phase5_factorial_control_results.md`, pre-registered
+   `318e153`). Verdict **`CHANNEL_ADDS`**. Two crossed factors: rendering
+   (flat / line-boundary-respecting / ratified word-aware `HITTITE_ONLY`) and
+   channel (unigram, bigram-only, unigram+bigram, within-sign char,
+   across-sign char), all weights fitted jointly inside composition folds.
+
+   **The headline is that step 1's central reading was a parameterization
+   artifact.** Every step-1 number reproduces here — the merged
+   `unigram+bigram` arm reads +0.0601 against step 1's +0.0601 — but
+   `unigram+bigram TF-IDF` puts two feature families into ONE L2-normalized
+   vector, and the unigram mass that `BM25 + unigram` already carries dominates
+   it. Step 1 therefore measured "what does adding bigram mass to an existing
+   unigram vector buy" and reported it as the value of sequence context. On the
+   factorial population that merged contrast reads **+0.00261, cluster CI
+   [−0.0192, +0.0192]** — indistinguishable from zero — while a separately
+   weighted bigram channel over the same reference reads **+0.0431, CI
+   [+0.0096, +0.0821]**, rising to **+0.0718** once line boundaries are
+   respected and **+0.0940, CI [+0.0641, +0.1497]** under `HITTITE_ONLY`. Two
+   parameterizations of one feature family, two different answers. **Do not
+   express this as a ratio** — the denominator's interval spans zero, so any
+   multiplier is unstable. **The review was right to demand a factorial with a
+   bigram-only cell**; had the line stopped at step 1 the project would have
+   concluded sign-sequence context contributes nothing measurable.
+
+   Three results that now stand on their own:
+
+   - **Review correction 4 is vindicated with a number.** Cross-line bigrams —
+     the fabricated adjacencies the flat loader permits — were not neutral
+     noise. Forbidding them is worth **+0.0287** of conditional increment and
+     lifts the marginal bigram arm from +0.1044 to +0.1266. Because the
+     `BOUNDARY` reference is identical to `LEGACY`'s (check C1), this one is a
+     genuine **accuracy** gain: the absolute system moves 0.5039 → 0.5326.
+   - **The within-sign transliteration proxy is rejected.** `char_within_sign`,
+     which cannot see across a sign, contributes **exactly 0.0000** (the joint
+     fit chose weight 0 in all five folds — the identity property working).
+     `char_across_sign` gives +0.0470, half of sign bigrams' +0.0940. Within
+     the transliteration signal this project has, character n-grams are a
+     **cruder proxy for cross-sign context**. Note the bound: this tests a
+     Latin-transliteration proxy, **not** physical partial-glyph evidence,
+     which TLHdig does not encode and which is out of scope for this project.
+   - **Merging dilutes, as a general caution.** `bigram_only` beats
+     `unigram_plus_bigram` in every rendering. Two feature families in one
+     TF-IDF vector is not a factorial, and a contrast between such arms does
+     not measure either family's marginal value.
+
+   **`HITTITE_ONLY` IS NOT AN ACCURACY GAIN — read this before quoting
+   +0.0940.** The scope raises the conditional increment only because the
+   reference weakens faster than the system does:
+
+   | rendering | BM25 + unigram | final (+ `bigram_only`) | increment |
+   |---|---:|---:|---:|
+   | `BOUNDARY` | 0.4608 | **0.5326** | +0.0718 |
+   | `SCOPED` | 0.4256 | **0.5196** | +0.0940 |
+
+   Held-out recall@1 **falls −0.0131** under the scope. Language restriction is
+   an **evidence-policy and coverage choice buying a named estimand**, not a
+   performance improvement, and which trade is right is not something this
+   measurement settles.
+
+   The scope refuses 15.07% of lines (22,343 `OUT_OF_SCOPE_LANGUAGE` against
+   4,868 `LINE_NOT_IN_LANGUAGE_DATASET`, 2,129 `MIXED_LANGUAGE_LINE`, 21
+   `UNRESOLVED_LEXICAL_LANGUAGE`). Dev denominators reconcile as **883 raw →
+   779 passing the ≥4-token floor under all three renderings → 766 actually
+   scored**; the final 13 are single-witness queries whose CTH has no other
+   `parent_doc` in the population, excluded and counted by
+   `n_excluded_single_witness` rather than scored as silent failures.
+
+   The defensible framing of the language finding is that **historical Task A
+   was language-unrestricted despite being described as Hittite fragment
+   retrieval**. That is a **task-definition** gap, not contamination:
+   multilingual material is legitimate evidence here, and the standing rule is
+   not to discard non-Hittite layers. What was missing was a *declared* scope
+   naming the estimand.
+
+   **Framing constraint:** the factorial design was developed adaptively on
+   this same dev material across three pre-registered runs that each reacted to
+   the last. These are dev-side characterization results, not independent
+   confirmation.
+
+   **UPDATE 2026-08-04, ninth and current — STEP 3 DONE for the two fixed
+   scopes, CROSS-FITTED** (`reports/phase5_taskb_transfer_results.md`; protocol
+   `318e153`, amendments `3f334b9` and `2735e49`).
+
+   **An earlier version of this run was withdrawn in full**: it searched
+   weights out of fold but then discarded the held-out predictions, took the
+   modal weights across all folds and re-scored all of dev, so every query was
+   scored under weights partly chosen using its own fold. Those were adaptive
+   dev numbers, not cross-fitted tests. **Do not quote them or use them as a
+   comparison target.** The current numbers below are cross-fitted: weights
+   fitted per fold on the pooled objective, applied to that fold's held-out
+   queries only, predictions concatenated.
+
+   **All three Task B cells reject H₀ under Holm–Bonferroni**, the first time
+   in this line that they do: joins **+0.1111** CI [+0.0602, +0.1768] p=0.001
+   (n=171, 54 clusters, +22/−3), pooled **+0.0875** CI [+0.0591, +0.1230]
+   p=0.001 (n=766, 35 clusters), duplicates **+0.0627** CI [+0.0378, +0.1076]
+   p=0.007. Frozen CANINE reached none of them; the step-2 results were Task A
+   only. It is **robust to** the unrestricted control — overlapping evidence on
+   largely the same queries, NOT independent replication.
+   **The word "transfer" is withheld** from every claim until the Task-A-frozen
+   arm exists: the system evaluated here is fitted to Task B.
+
+   **Read the qualification before quoting the joins number.** The
+   load-bearing one is the **zero-overlap stratum**, which rests on the primary
+   cells' own cross-fitted predictions: 0 shared lines **+0.0294 CI [−0.0645,
+   +0.1481]** (−0.0278 under the control), 1–2 +0.1163, 3–9 +0.1304, 10+
+   +0.1600; indirect `(+)` joins +0.0526 CI includes 0. **The channel improves
+   duplicate retrieval, and its help on joins is CONCENTRATED WHERE
+   EDITOR-ALIGNED TEXT IS SHARED; on joins with no shared lines — the case the
+   matrix model exists to solve — there is no evidence it helps.** Shared-line
+   count is confounded with tier, length and other pair properties, so this is
+   NOT a dose-response relationship.
+
+   **Tier C, now properly paired** (pair instances, same candidate universe,
+   clustered by physical join component): on the SAME instances, absolute
+   recall@1 falls from 0.3824 (full rendering) to **0.0000–0.0392**
+   (overlap-exclusive), and the single-partner sensitivity analysis lands at
+   exactly 0.0000 for both arms — so the collapse is not an artifact of the
+   multi-partner rendering problem the first version had. **But the bigram
+   contribution within Tier C is unresolved**: neither the full (p=0.109) nor
+   the exclusive (p=0.123) delta clears significance on 23 clusters.
+   **Never compare these absolutes to the tier-C row in the strata table** —
+   a stratum query may hit ANY of its partners, a pair instance must hit the
+   SPECIFIC one. Different estimands.
+
+   **Language scope, on the common population** (the only comparable basis,
+   since the scopes serve 766 vs 865 queries): the unrestricted scope is equal
+   or marginally BETTER in absolute recall in all three cells (joins 0.6686 vs
+   0.6667, duplicates 0.4597 vs 0.4543, pooled 0.6091 vs 0.6031) while
+   `HITTITE_ONLY` shows the larger increment — the step-2 pattern again, the
+   reference weakening faster than the system. Cost of the restriction: **97
+   queries, 768 candidates, 2,832 positive relations**. Still an
+   evidence-policy and coverage choice, not an accuracy gain.
+
+   **The bin exception is where the join evidence actually is** — 504 queries
+   across **198 join components** against 54 in the labelled dev cell, Δ
+   +0.1349 CI [+0.1000, +0.1687]. C6 confirmed all three prohibitions on every
+   run. **Status `DESCRIPTIVE_NOT_CROSS_FITTED`:** these fragments are external
+   to weight fitting (they never enter any fold), but that is NOT cross-fitting
+   and NOT independent confirmation — they share the same corpus construction,
+   index, and fitted feature statistics as the dev cells.
+
+   **Lost-relation decomposition is a standalone finding.** Of 2,832 relations
+   `HITTITE_ONLY` removes, **2,825 are duplicates and 7 are joins** — the scope
+   barely touches join evidence. And the two causes must be kept separate:
+   `OUT_OF_SCOPE_LANGUAGE` (1,614 duplicate endpoints) is an affirmative
+   non-Hittite classification, while `LINE_NOT_IN_LANGUAGE_DATASET` (1,693) is
+   a **coverage gap in our own Gate-2 dataset**, not a statement about the
+   tablet. Roughly half the discarded duplicate evidence is lost to our own
+   pipeline's coverage — a fixable engineering deficit, distinct from the
+   estimand choice.
+
+   **Corpus data-quality finding to carry to the TLHdig team:** two
+   `join_pairs.jsonl` rows give both members the same siglum, asserting a
+   fragment joins itself (`KUB 28.89+`, `KBo 22.130a+`; both bin-parent and
+   discovery-side). Excluded and counted — a self-positive is unretrievable by
+   construction, so keeping it manufactures guaranteed misses.
+
+   **ALL FOUR SCOPES AND THE MATCHING-SCOPE FROZEN ARM RUN (2026-08-04),
+   after three further corrections. Read the results file, not this summary,
+   before quoting any query-relative number.**
+
+   Two of my earlier query-relative claims were **wrong and are withdrawn**:
+   that `CROSS_LANGUAGE_PARALLEL` was not evaluable, and that
+   `SAME_LANGUAGE_AS_QUERY` loses 12,482 relations to query refusal. Both came
+   from selecting queries AND candidates under each fragment's OWN resolved
+   language instead of relative to the query language. Corrected, per query
+   language L: queries eligible under `SAME_LANGUAGE_AS_QUERY::L`, candidates
+   under the scope's L-relative key, all scoring inside that universe.
+
+   `SAME_LANGUAGE_AS_QUERY`: joins +0.0897 [+0.0400, +0.1397] (56 clusters),
+   duplicates +0.0664, pooled +0.0858, all p ≤ 0.002. **Ceiling conditional on
+   query eligibility is 1.000 joins / 0.973 duplicates** — nearly every
+   positive is reachable, the opposite of what the withdrawn figure implied.
+
+   **`CROSS_LANGUAGE_PARALLEL` is evaluable; its increment is INCONCLUSIVE.**
+   410 queries retain a reachable duplicate positive; the channel gives
+   **+0.0049, CI [−0.0194, +0.0414], p=0.654** — **no detected increment**, and
+   that interval still permits both harm and a materially useful gain. **This
+   is NOT an absence of effect** (upper endpoint +0.0414 exceeds the 0.010
+   margin, so the shared rule returns `INCONCLUSIVE`). What IS established is
+   the **low reachable-positive coverage**: ceiling **0.0295 joins / 0.0741
+   duplicates**. Its joins cell (n=7, 5 clusters) is descriptive only.
+   Positives are **different-language same-CTH relations**, NOT annotated
+   parallels. Candidate counts are **renderings with ≥4 admitted tokens**, not
+   "fragments of language X" — parents may be multilingual or unresolved.
+
+   **Task-A-frozen arm, MATCHING scope only** (`HITTITE_ONLY`→Step 2 `SCOPED`,
+   `ALL_LANGUAGES`→`BOUNDARY`; neither query-relative scope has a matching arm,
+   so none is reported). Compared as **final systems on identical query IDs**,
+   not as within-arm increments: `HITTITE_ONLY` **+0.0026, CI [−0.0024,
+   +0.0104], p=0.422** — **no detected difference**; `ALL_LANGUAGES` **+0.0117,
+   CI [+0.0018, +0.0182]**, a **positive descriptive difference only**, since
+   that secondary arm sits outside the corrected primary family.
+   **EQUIVALENCE IS NOT ESTABLISHED.** No equivalence margin or TOST was
+   pre-registered, and even reusing the ±0.010 materiality margin post hoc the
+   upper endpoint +0.0104 lies just outside it. The valid claim is narrower:
+   **Task A's frozen configuration retains a positive within-arm benefit on
+   Task B without retuning (+0.0888), and its final accuracy is close to the
+   Task-B-fitted configuration — but the two are not shown equivalent.** Say
+   "the Task-A-selected weights retain utility on Task B", never "the weights
+   are not task-specific".
+
+   **Common population, intersected PER CELL over actually-scored IDs**, three
+   symmetric scopes (`CROSS_LANGUAGE_PARALLEL` excluded by §3.2): joins n=150
+   `HITTITE_ONLY` 0.6733 best; duplicates n=649 and pooled n=649
+   `SAME_LANGUAGE` best (0.4330 / 0.5871); unrestricted never best. Spans are
+   0.008–0.013. **No scope uniformly dominates and no inference is offered.**
+   **Do not report geometry as an independent stratum** — in this dev slice
+   horizontal ≡ tier C and vertical ≡ tiers A+B, perfectly confounded. **The
+   site stratum is empty of contrast**: all 171 dev join queries are Hattusa,
+   so this run says nothing about Hattusa→provincial generalization.
 
 Cross-line multi-sign is **not** an open implementation item: P2-E10 is a
 completed negative result, and leaving it unapplied is the ratified

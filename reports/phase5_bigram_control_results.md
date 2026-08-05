@@ -1,8 +1,18 @@
 # Sign-bigram control — results
 
-**Status: COMPLETE 2026-08-04. Verdict CHARACTER_GRANULARITY_NOT_THE_POINT.**
-**The gain is about n-gram CONTEXT, not character granularity. My own
-conclusion in the char n-gram report was overstated and is corrected there.**
+> **CORRECTIVE REVIEW 2026-08-04.** The historical verdict
+> `CHARACTER_GRANULARITY_NOT_THE_POINT` is not supported by an equivalence
+> test. CI [-0.0012, +0.0324] permits both zero and effects larger than the
+> +0.010 margin, so character-over-bigram is **INCONCLUSIVE**. A post-hoc
+> unigram TF-IDF decomposition further shows +0.052 unigram ensemble gain and
+> +0.050 additional bigram-arm gain; the full +0.1017 is not all context.
+> See `reports/phase5_unigram_tfidf_control_results.md`.
+
+**Status: COMPLETE 2026-08-04. Historical preregistered verdict:
+CHARACTER_GRANULARITY_NOT_THE_POINT. Current interpretation:
+character-over-bigram is INCONCLUSIVE.**
+**The bigram arm adds sequence context, but a post-hoc control shows that the
+full gain also includes unigram TF-IDF scoring complementarity.**
 `[PROBE — not for citation]`; dev split only, test never loaded.
 
 Executes `reports/phase5_bigram_control_protocol.md` (PRE-REGISTERED,
@@ -24,7 +34,9 @@ Primary statistic — the increment of character granularity:
 
 > **`I_char` = +0.0162, 95% CI [−0.0012, +0.0324]** — **includes zero.**
 
-By the pre-registered rule: **CHARACTER_GRANULARITY_NOT_THE_POINT.**
+By the historical preregistered rule:
+**CHARACTER_GRANULARITY_NOT_THE_POINT.** Under a valid margin interpretation,
+the result is **INCONCLUSIVE**.
 
 ## An important subtlety in how that increment was measured
 
@@ -44,13 +56,14 @@ distinguishable from zero at this sample size.
 "character-level." **That framing is wrong and has been corrected there.** The
 measured facts are unchanged — BM25 + char n-gram really does reach +0.1179
 on Task A and clear zero in all three Task B cells — but the *explanation*
-was not established. What is established:
+was not established. After the unigram TF-IDF audit, what is established is:
 
-- **n-gram context beyond single signs is what helps** (+0.10 to +0.12);
-- character granularity specifically buys at most a further +0.0162, with a
-  CI including zero;
-- the simplest sufficient implementation is sign bigrams, which the project
-  already has.
+- a second unigram TF-IDF/cosine score adds +0.0520 to BM25 in the historical
+  dev setup;
+- the separately tuned sign-bigram arm adds a further +0.0497 over that arm;
+- character-over-bigram is unresolved: +0.0162, CI [-0.0012, +0.0324]; and
+- no implementation is sufficient for promotion before the declared-universe
+  and full-distractor gates.
 
 I caught this myself, before handing the work over, by asking what a reviewer
 would ask first. It should have been the control run *alongside* the char
@@ -73,8 +86,10 @@ conclusion its design could not support.
 
 ## Revised recommendation to Ixca
 
-The improvement worth having is a **token n-gram context feature added to
-BM25**, on dev worth roughly **+0.10 recall@1 on Task A**. Two
+The improvement worth investigating is a **lexical ensemble with explicit
+sequence context**, on this dev setup worth roughly **+0.10 recall@1 on Task
+A**, split approximately evenly between unigram TF-IDF complementarity and
+the further bigram-arm difference. Two
 implementations are within noise of each other:
 
 - **sign bigrams** — simpler, already half-implemented (`add_bigrams`,

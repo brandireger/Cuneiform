@@ -1,0 +1,2899 @@
+{
+  "protocol": "reports\\phase5_taskb_transfer_protocol.md (PRE-REGISTERED and amended 2026-08-04, committed before this run)",
+  "training_statement": "no representation learning or gradient training; fusion weights fitted out of fold",
+  "split": "dev queries only; protected test split closed and never loaded",
+  "scopes_run": [
+    "HITTITE_ONLY",
+    "ALL_LANGUAGES_UNCONDITIONED",
+    "SAME_LANGUAGE_AS_QUERY",
+    "CROSS_LANGUAGE_PARALLEL"
+  ],
+  "dev_query_languages": [
+    "Akk",
+    "Hat",
+    "Hit",
+    "Hur",
+    "Luw"
+  ],
+  "population": {
+    "base_scope": "ALL_LANGUAGES_UNCONDITIONED",
+    "n_labeled_index": 7490,
+    "n_dev_queries": 876,
+    "n_bin_exception_fragments": 527,
+    "n_join_pairs_dev": 182,
+    "n_bin_parent_join_pairs": 411
+  },
+  "corpus_data_quality": {
+    "degenerate_self_join_pairs_excluded": [
+      "KBo 22.130a+::1",
+      "KUB 28.89+::1"
+    ],
+    "note": "join_pairs.jsonl rows whose two members carry the SAME siglum, asserting that a fragment joins itself. Excluded from positives and counted. Both known cases are bin-parent and discovery-side, so they reach an evaluation only through the §5.1 exception."
+  },
+  "fold_query_loads": [
+    255,
+    156,
+    155,
+    155,
+    155
+  ],
+  "refusals_by_rendering": {
+    "HITTITE_ONLY": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "OUT_OF_SCOPE_LANGUAGE": 37075,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "SAME_LANGUAGE_AS_QUERY::Akk": {
+      "OUT_OF_SCOPE_LANGUAGE": 336558,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "SAME_LANGUAGE_AS_QUERY::Hat": {
+      "OUT_OF_SCOPE_LANGUAGE": 344099,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "SAME_LANGUAGE_AS_QUERY::Hit": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "OUT_OF_SCOPE_LANGUAGE": 37075,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "SAME_LANGUAGE_AS_QUERY::Hur": {
+      "OUT_OF_SCOPE_LANGUAGE": 336780,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "SAME_LANGUAGE_AS_QUERY::Luw": {
+      "OUT_OF_SCOPE_LANGUAGE": 347828,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "CROSS_LANGUAGE_PARALLEL::Akk": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "OUT_OF_SCOPE_LANGUAGE": 13602,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "CROSS_LANGUAGE_PARALLEL::Hat": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "OUT_OF_SCOPE_LANGUAGE": 6061,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "CROSS_LANGUAGE_PARALLEL::Hit": {
+      "OUT_OF_SCOPE_LANGUAGE": 313085,
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "CROSS_LANGUAGE_PARALLEL::Hur": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "OUT_OF_SCOPE_LANGUAGE": 13380,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    },
+    "CROSS_LANGUAGE_PARALLEL::Luw": {
+      "LINE_NOT_IN_LANGUAGE_DATASET": 7610,
+      "MIXED_LANGUAGE_LINE": 2583,
+      "OUT_OF_SCOPE_LANGUAGE": 2332,
+      "UNRESOLVED_LEXICAL_LANGUAGE": 31
+    }
+  },
+  "checks": {
+    "C1_same_family_different_parent": {
+      "joins": {
+        "n_positives_excluded_by_predicate": 0,
+        "examples": [],
+        "n_same_family_same_parent_kept": 364,
+        "passed": true,
+        "predicate": "same family AND different parent_doc"
+      },
+      "duplicates": {
+        "n_positives_excluded_by_predicate": 0,
+        "examples": [],
+        "n_same_family_same_parent_kept": 258,
+        "passed": true,
+        "predicate": "same family AND different parent_doc"
+      },
+      "pooled": {
+        "n_positives_excluded_by_predicate": 0,
+        "examples": [],
+        "n_same_family_same_parent_kept": 622,
+        "passed": true,
+        "predicate": "same family AND different parent_doc"
+      }
+    },
+    "C3_split_purity_passed": true,
+    "C4_joins_duplicates_partition": {
+      "n_queries_with_overlap": 0,
+      "examples": [],
+      "passed": true
+    },
+    "C6_bin_exception": {
+      "n_bin_fragments": 527,
+      "prohibition_1_never_a_duplicate_positive": {
+        "as_query": [],
+        "as_target": [],
+        "passed": true
+      },
+      "prohibition_2_never_in_non_bin_candidate_index": {
+        "offenders": [],
+        "passed": true
+      },
+      "prohibition_3_never_in_duplicates_or_pooled_cells": {
+        "offenders": [],
+        "passed": true
+      },
+      "passed": true
+    }
+  },
+  "scopes": {
+    "HITTITE_ONLY": {
+      "per_fold_weight_selection": [
+        {
+          "fold": 0,
+          "alpha_unigram_only": 1.0,
+          "alpha_pair": [
+            0.4,
+            0.4
+          ],
+          "fit_recall@1_unigram": 0.4951644100580271,
+          "fit_recall@1_pair": 0.5841392649903289,
+          "n_fit": 530,
+          "n_eval": 249,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.4,
+                0.4
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.4,
+                0.4
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.4,
+                0.4
+              ]
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "alpha_unigram_only": 0.5,
+          "alpha_pair": [
+            0.15,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5062893081761006,
+          "fit_recall@1_pair": 0.589622641509434,
+          "n_fit": 646,
+          "n_eval": 133,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.15,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5345911949685535,
+          "fit_recall@1_pair": 0.6257861635220126,
+          "n_fit": 646,
+          "n_eval": 133,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.1,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.5290423861852434,
+          "fit_recall@1_pair": 0.6122448979591837,
+          "n_fit": 647,
+          "n_eval": 132,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "alpha_unigram_only": 0.5,
+          "alpha_pair": [
+            0.0,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5235109717868338,
+          "fit_recall@1_pair": 0.6081504702194357,
+          "n_fit": 647,
+          "n_eval": 132,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          }
+        }
+      ],
+      "deployment_candidate_config": {
+        "alpha_unigram_only": 0.5,
+        "alpha_pair": [
+          0.15,
+          1.0
+        ],
+        "status": "MODAL_ACROSS_FOLDS -- retained for possible future deployment; carries NO dev performance claim, since every reported number is cross-fitted"
+      },
+      "coverage": {
+        "n_dev_queries_base": 876,
+        "n_dev_queries_scorable": 779,
+        "queries_lost": 97,
+        "n_index_base": 7490,
+        "n_index_scorable": 6722,
+        "candidates_lost": 768,
+        "positive_relations_base": 43008,
+        "positive_relations_scorable": 40176,
+        "positive_relations_lost": 2832,
+        "eligible_candidate_set_size": 6721,
+        "relations_lost_by_cell": {
+          "joins": {
+            "relations_lost": 7,
+            "endpoint_refusal_reasons": {
+              "OUT_OF_SCOPE_LANGUAGE": 9,
+              "LINE_NOT_IN_LANGUAGE_DATASET": 4
+            }
+          },
+          "duplicates": {
+            "relations_lost": 2825,
+            "endpoint_refusal_reasons": {
+              "LINE_NOT_IN_LANGUAGE_DATASET": 1693,
+              "OUT_OF_SCOPE_LANGUAGE": 1614
+            }
+          },
+          "pooled": {
+            "relations_lost": 2832,
+            "endpoint_refusal_reasons": {
+              "LINE_NOT_IN_LANGUAGE_DATASET": 1697,
+              "OUT_OF_SCOPE_LANGUAGE": 1623
+            }
+          }
+        }
+      },
+      "cells": {
+        "joins": {
+          "label": "joins",
+          "bm25_unigram": {
+            "recall@1": 0.543859649122807,
+            "recall@5": 0.6900584795321637,
+            "recall@10": 0.7309941520467836,
+            "recall@100": 0.8304093567251462,
+            "mrr": 0.6074826851426608,
+            "n_scored": 171,
+            "mean_positives": 2.046783625730994
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.6549707602339181,
+            "recall@5": 0.7660818713450293,
+            "recall@10": 0.8011695906432749,
+            "recall@100": 0.8771929824561403,
+            "mrr": 0.7090061903946164,
+            "n_scored": 171,
+            "mean_positives": 2.046783625730994
+          },
+          "delta_recall@1": 0.1111111111111111,
+          "cluster_ci95": [
+            0.06016351118760758,
+            0.17680426203630623
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 54,
+          "n_paired": 171,
+          "n_gained": 22,
+          "n_lost": 3
+        },
+        "duplicates": {
+          "label": "duplicates",
+          "bm25_unigram": {
+            "recall@1": 0.37989556135770236,
+            "recall@5": 0.6292428198433421,
+            "recall@10": 0.7219321148825065,
+            "recall@100": 0.9086161879895561,
+            "mrr": 0.4946127043817114,
+            "n_scored": 766,
+            "mean_positives": 104.44125326370757
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.4425587467362924,
+            "recall@5": 0.7428198433420365,
+            "recall@10": 0.814621409921671,
+            "recall@100": 0.9543080939947781,
+            "mrr": 0.5788373776780316,
+            "n_scored": 766,
+            "mean_positives": 104.44125326370757
+          },
+          "delta_recall@1": 0.06266318537859007,
+          "cluster_ci95": [
+            0.03783594783594784,
+            0.10762153188197114
+          ],
+          "cluster_p": 0.007,
+          "n_clusters": 35,
+          "n_paired": 766,
+          "n_gained": 93,
+          "n_lost": 45
+        },
+        "pooled": {
+          "label": "pooled",
+          "bm25_unigram": {
+            "recall@1": 0.5013054830287206,
+            "recall@5": 0.6801566579634465,
+            "recall@10": 0.7506527415143603,
+            "recall@100": 0.9203655352480418,
+            "mrr": 0.5833741243371932,
+            "n_scored": 766,
+            "mean_positives": 104.8981723237598
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.5887728459530026,
+            "recall@5": 0.7845953002610966,
+            "recall@10": 0.8407310704960835,
+            "recall@100": 0.9556135770234987,
+            "mrr": 0.6806595221047604,
+            "n_scored": 766,
+            "mean_positives": 104.8981723237598
+          },
+          "delta_recall@1": 0.08746736292428199,
+          "cluster_ci95": [
+            0.059125087637298436,
+            0.1230048924792354
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 35,
+          "n_paired": 766,
+          "n_gained": 106,
+          "n_lost": 39
+        },
+        "joins_bin_exception_population": {
+          "label": "joins_bin_exception_population",
+          "bm25_unigram": {
+            "recall@1": 0.5952380952380952,
+            "recall@5": 0.6746031746031746,
+            "recall@10": 0.7003968253968254,
+            "recall@100": 0.7857142857142857,
+            "mrr": 0.6304993899257827,
+            "n_scored": 504,
+            "mean_positives": 1.5317460317460319
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.7301587301587301,
+            "recall@5": 0.7876984126984127,
+            "recall@10": 0.8273809523809523,
+            "recall@100": 0.8888888888888888,
+            "mrr": 0.7587187981423068,
+            "n_scored": 504,
+            "mean_positives": 1.5317460317460319
+          },
+          "delta_recall@1": 0.1349206349206349,
+          "cluster_ci95": [
+            0.1,
+            0.16870045731707317
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 198,
+          "n_paired": 504,
+          "n_gained": 71,
+          "n_lost": 3,
+          "weights": {
+            "alpha_unigram_only": 0.5,
+            "alpha_pair": [
+              0.15,
+              1.0
+            ]
+          },
+          "status": "DESCRIPTIVE_NOT_CROSS_FITTED",
+          "weight_provenance": "deployment-candidate config; EXTERNAL TO WEIGHT FITTING, since bin-exception fragments never enter any fold's fit. This is NOT a cross-fitted result and NOT independent confirmation: these fragments share the same corpus construction, the same index, and the same fitted feature statistics as the dev cells. Descriptive only."
+        },
+        "task_a_frozen_pooled": {
+          "label": "task_a_frozen_pooled",
+          "bm25_unigram": {
+            "recall@1": 0.5026109660574413,
+            "recall@5": 0.6788511749347258,
+            "recall@10": 0.7480417754569191,
+            "recall@100": 0.9216710182767625,
+            "mrr": 0.5842153840037253,
+            "n_scored": 766,
+            "mean_positives": 104.8981723237598
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.5913838120104439,
+            "recall@5": 0.783289817232376,
+            "recall@10": 0.8433420365535248,
+            "recall@100": 0.9556135770234987,
+            "mrr": 0.6819583384261184,
+            "n_scored": 766,
+            "mean_positives": 104.8981723237598
+          },
+          "delta_recall@1": 0.08877284595300261,
+          "cluster_ci95": [
+            0.059732835403143246,
+            0.1264107336292772
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 35,
+          "n_paired": 766,
+          "n_gained": 107,
+          "n_lost": 39,
+          "status": "SECONDARY_ARM_TASK_A_FROZEN_MATCHING_SCOPE",
+          "weights_source": "Phase4\\phase4_out\\p5_factorial_control.json",
+          "task_a_rendering": "SCOPED",
+          "weights_used_by_fold": {
+            "0": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.4,
+                0.4
+              ]
+            },
+            "1": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "2": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "3": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            "4": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          "queries_without_task_a_fold": 0,
+          "note": "Task A's committed per-fold weights from the MATCHING Step 2 rendering (SCOPED) and Task A's own fold mapping, applied unchanged. Nothing selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned.",
+          "vs_task_b_fitted_final_system": {
+            "n_paired": 766,
+            "n_clusters": 35,
+            "recall@1_task_a_frozen": 0.5913838120104439,
+            "recall@1_task_b_fitted": 0.5887728459530026,
+            "delta_frozen_minus_fitted": 0.0026109660574412533,
+            "cluster_ci95": [
+              -0.002416122524818177,
+              0.010417210334029226
+            ],
+            "cluster_p": 0.422,
+            "estimand": "final-system recall@1 difference on identical query IDs; NOT a comparison of within-arm increments"
+          }
+        }
+      },
+      "strata": {
+        "joins": {
+          "damage_band": {
+            "high": {
+              "n_queries": 37,
+              "n_clusters": 20,
+              "delta_recall@1": 0.10810810810810811,
+              "cluster_ci95": [
+                0.02564102564102564,
+                0.21621621621621623
+              ],
+              "recall@1_unigram": 0.5675675675675675,
+              "recall@1_unigram_bigram": 0.6756756756756757
+            },
+            "low": {
+              "n_queries": 94,
+              "n_clusters": 42,
+              "delta_recall@1": 0.1276595744680851,
+              "cluster_ci95": [
+                0.058823529411764705,
+                0.21428571428571427
+              ],
+              "recall@1_unigram": 0.5638297872340425,
+              "recall@1_unigram_bigram": 0.6914893617021277
+            },
+            "medium": {
+              "n_queries": 40,
+              "n_clusters": 25,
+              "delta_recall@1": 0.075,
+              "cluster_ci95": [
+                0.0,
+                0.17142857142857143
+              ],
+              "recall@1_unigram": 0.475,
+              "recall@1_unigram_bigram": 0.55
+            }
+          },
+          "genre_band": {
+            "0": {
+              "n_queries": 31,
+              "n_clusters": 11,
+              "delta_recall@1": 0.06451612903225806,
+              "cluster_ci95": [
+                -0.07692307692307693,
+                0.25
+              ],
+              "recall@1_unigram": 0.5806451612903226,
+              "recall@1_unigram_bigram": 0.6451612903225806
+            },
+            "200": {
+              "n_queries": 6,
+              "n_clusters": 1,
+              "delta_recall@1": 0.16666666666666666,
+              "cluster_ci95": [
+                0.16666666666666666,
+                0.16666666666666666
+              ],
+              "recall@1_unigram": 0.6666666666666666,
+              "recall@1_unigram_bigram": 0.8333333333333334
+            },
+            "600": {
+              "n_queries": 134,
+              "n_clusters": 42,
+              "delta_recall@1": 0.11940298507462686,
+              "cluster_ci95": [
+                0.06398730158730159,
+                0.19119357045143637
+              ],
+              "recall@1_unigram": 0.5298507462686567,
+              "recall@1_unigram_bigram": 0.6492537313432836
+            }
+          },
+          "geometry": {
+            "horizontal": {
+              "n_queries": 94,
+              "n_clusters": 39,
+              "delta_recall@1": 0.13829787234042554,
+              "cluster_ci95": [
+                0.07865168539325842,
+                0.2073289515362686
+              ],
+              "recall@1_unigram": 0.7021276595744681,
+              "recall@1_unigram_bigram": 0.8404255319148937
+            },
+            "vertical": {
+              "n_queries": 77,
+              "n_clusters": 34,
+              "delta_recall@1": 0.07792207792207792,
+              "cluster_ci95": [
+                0.012496141975308643,
+                0.15390624999999997
+              ],
+              "recall@1_unigram": 0.35064935064935066,
+              "recall@1_unigram_bigram": 0.42857142857142855
+            }
+          },
+          "join_type": {
+            "direct": {
+              "n_queries": 83,
+              "n_clusters": 44,
+              "delta_recall@1": 0.12048192771084337,
+              "cluster_ci95": [
+                0.047619047619047616,
+                0.2117830882352941
+              ],
+              "recall@1_unigram": 0.5421686746987951,
+              "recall@1_unigram_bigram": 0.6626506024096386
+            },
+            "indirect": {
+              "n_queries": 19,
+              "n_clusters": 9,
+              "delta_recall@1": 0.05263157894736842,
+              "cluster_ci95": [
+                0.0,
+                0.18781249999999972
+              ],
+              "recall@1_unigram": 0.15789473684210525,
+              "recall@1_unigram_bigram": 0.21052631578947367
+            },
+            "inferred_from_shared_lines": {
+              "n_queries": 69,
+              "n_clusters": 17,
+              "delta_recall@1": 0.11594202898550725,
+              "cluster_ci95": [
+                0.05061708860759494,
+                0.20344207104713255
+              ],
+              "recall@1_unigram": 0.6521739130434783,
+              "recall@1_unigram_bigram": 0.7681159420289855
+            }
+          },
+          "language": {
+            "Hit": {
+              "n_queries": 150,
+              "n_clusters": 53,
+              "delta_recall@1": 0.1,
+              "cluster_ci95": [
+                0.047295967227069594,
+                0.1575432588320115
+              ],
+              "recall@1_unigram": 0.5733333333333334,
+              "recall@1_unigram_bigram": 0.6733333333333333
+            },
+            "QUERY_LANGUAGE_UNRESOLVED": {
+              "n_queries": 21,
+              "n_clusters": 10,
+              "delta_recall@1": 0.19047619047619047,
+              "cluster_ci95": [
+                0.0,
+                0.4666666666666667
+              ],
+              "recall@1_unigram": 0.3333333333333333,
+              "recall@1_unigram_bigram": 0.5238095238095238
+            }
+          },
+          "length_band": {
+            "long": {
+              "n_queries": 88,
+              "n_clusters": 39,
+              "delta_recall@1": 0.1590909090909091,
+              "cluster_ci95": [
+                0.08232900136798905,
+                0.2626395534290271
+              ],
+              "recall@1_unigram": 0.5227272727272727,
+              "recall@1_unigram_bigram": 0.6818181818181818
+            },
+            "medium": {
+              "n_queries": 67,
+              "n_clusters": 38,
+              "delta_recall@1": 0.07462686567164178,
+              "cluster_ci95": [
+                0.0,
+                0.1466885245901639
+              ],
+              "recall@1_unigram": 0.5671641791044776,
+              "recall@1_unigram_bigram": 0.6417910447761194
+            },
+            "short": {
+              "n_queries": 16,
+              "n_clusters": 11,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 0.5625,
+              "recall@1_unigram_bigram": 0.5625
+            }
+          },
+          "no_overlap": {
+            "False": {
+              "n_queries": 137,
+              "n_clusters": 47,
+              "delta_recall@1": 0.13138686131386862,
+              "cluster_ci95": [
+                0.07518327067669173,
+                0.2040852256395516
+              ],
+              "recall@1_unigram": 0.6277372262773723,
+              "recall@1_unigram_bigram": 0.7591240875912408
+            },
+            "True": {
+              "n_queries": 34,
+              "n_clusters": 18,
+              "delta_recall@1": 0.029411764705882353,
+              "cluster_ci95": [
+                -0.06451612903225806,
+                0.14814814814814814
+              ],
+              "recall@1_unigram": 0.20588235294117646,
+              "recall@1_unigram_bigram": 0.23529411764705882
+            }
+          },
+          "parent_is_bin": {
+            "False": {
+              "n_queries": 171,
+              "n_clusters": 54,
+              "delta_recall@1": 0.1111111111111111,
+              "cluster_ci95": [
+                0.06016351118760758,
+                0.17680426203630623
+              ],
+              "recall@1_unigram": 0.543859649122807,
+              "recall@1_unigram_bigram": 0.6549707602339181
+            }
+          },
+          "shared_line_band": {
+            "0": {
+              "n_queries": 34,
+              "n_clusters": 18,
+              "delta_recall@1": 0.029411764705882353,
+              "cluster_ci95": [
+                -0.06451612903225806,
+                0.14814814814814814
+              ],
+              "recall@1_unigram": 0.20588235294117646,
+              "recall@1_unigram_bigram": 0.23529411764705882
+            },
+            "1-2": {
+              "n_queries": 43,
+              "n_clusters": 19,
+              "delta_recall@1": 0.11627906976744186,
+              "cluster_ci95": [
+                0.03571428571428571,
+                0.22857142857142856
+              ],
+              "recall@1_unigram": 0.46511627906976744,
+              "recall@1_unigram_bigram": 0.5813953488372093
+            },
+            "10+": {
+              "n_queries": 25,
+              "n_clusters": 15,
+              "delta_recall@1": 0.16,
+              "cluster_ci95": [
+                0.038461538461538464,
+                0.320333333333333
+              ],
+              "recall@1_unigram": 0.72,
+              "recall@1_unigram_bigram": 0.88
+            },
+            "3-9": {
+              "n_queries": 69,
+              "n_clusters": 30,
+              "delta_recall@1": 0.13043478260869565,
+              "cluster_ci95": [
+                0.05405405405405406,
+                0.2154054054054054
+              ],
+              "recall@1_unigram": 0.6956521739130435,
+              "recall@1_unigram_bigram": 0.8260869565217391
+            }
+          },
+          "site": {
+            "Hattusa": {
+              "n_queries": 171,
+              "n_clusters": 54,
+              "delta_recall@1": 0.1111111111111111,
+              "cluster_ci95": [
+                0.06016351118760758,
+                0.17680426203630623
+              ],
+              "recall@1_unigram": 0.543859649122807,
+              "recall@1_unigram_bigram": 0.6549707602339181
+            }
+          },
+          "tier": {
+            "A": {
+              "n_queries": 34,
+              "n_clusters": 18,
+              "delta_recall@1": 0.029411764705882353,
+              "cluster_ci95": [
+                -0.06451612903225806,
+                0.14814814814814814
+              ],
+              "recall@1_unigram": 0.20588235294117646,
+              "recall@1_unigram_bigram": 0.23529411764705882
+            },
+            "B": {
+              "n_queries": 43,
+              "n_clusters": 19,
+              "delta_recall@1": 0.11627906976744186,
+              "cluster_ci95": [
+                0.03571428571428571,
+                0.22857142857142856
+              ],
+              "recall@1_unigram": 0.46511627906976744,
+              "recall@1_unigram_bigram": 0.5813953488372093
+            },
+            "C": {
+              "n_queries": 94,
+              "n_clusters": 39,
+              "delta_recall@1": 0.13829787234042554,
+              "cluster_ci95": [
+                0.07865168539325842,
+                0.2073289515362686
+              ],
+              "recall@1_unigram": 0.7021276595744681,
+              "recall@1_unigram_bigram": 0.8404255319148937
+            }
+          }
+        }
+      },
+      "checks": {
+        "C5": {
+          "passed": true,
+          "offenders": [],
+          "weights_per_fold": [
+            {
+              "fold": 0,
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.4,
+                0.4
+              ]
+            },
+            {
+              "fold": 1,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            {
+              "fold": 2,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.15,
+                1.0
+              ]
+            },
+            {
+              "fold": 3,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
+        }
+      },
+      "degenerate_self_join_pairs_excluded": [
+        "KBo 22.130a+::1",
+        "KUB 28.89+::1"
+      ],
+      "tier_c": {
+        "counts": {
+          "considered": 92,
+          "exclusive_untestable": 41,
+          "no_reconstruction": 0,
+          "empty_exclusive": 0,
+          "usable": 51,
+          "usable_single_partner_only": 12
+        },
+        "n_pair_instances": 51,
+        "full_rendering_contaminated": {
+          "label": "tier_c_full_CONTAMINATED",
+          "bm25_unigram": {
+            "recall@1": 0.30392156862745096,
+            "recall@5": 0.6078431372549019,
+            "recall@10": 0.7058823529411765,
+            "recall@100": 0.8333333333333334,
+            "mrr": 0.44252488677115637,
+            "n_scored": 102,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.38235294117647056,
+            "recall@5": 0.7843137254901961,
+            "recall@10": 0.8235294117647058,
+            "recall@100": 0.9215686274509803,
+            "mrr": 0.563914785843514,
+            "n_scored": 102,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": 0.0784313725490196,
+          "cluster_ci95": [
+            0.0,
+            0.18752948113207543
+          ],
+          "cluster_p": 0.109,
+          "n_clusters": 23,
+          "n_paired": 102,
+          "n_gained": 13,
+          "n_lost": 5
+        },
+        "overlap_exclusive": {
+          "label": "tier_c_overlap_exclusive",
+          "bm25_unigram": {
+            "recall@1": 0.0392156862745098,
+            "recall@5": 0.10784313725490197,
+            "recall@10": 0.1568627450980392,
+            "recall@100": 0.3137254901960784,
+            "mrr": 0.07602804450016483,
+            "n_scored": 102,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.17647058823529413,
+            "recall@10": 0.21568627450980393,
+            "recall@100": 0.39215686274509803,
+            "mrr": 0.07124626739424686,
+            "n_scored": 102,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": -0.0392156862745098,
+          "cluster_ci95": [
+            -0.09376474056603773,
+            0.0
+          ],
+          "cluster_p": 0.123,
+          "n_clusters": 23,
+          "n_paired": 102,
+          "n_gained": 0,
+          "n_lost": 4
+        },
+        "overlap_exclusive_single_partner_only": {
+          "label": "tier_c_exclusive_single_partner",
+          "bm25_unigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.041666666666666664,
+            "mrr": 0.0014534205204204738,
+            "n_scored": 24,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.08333333333333333,
+            "mrr": 0.0032750815298932152,
+            "n_scored": 24,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": 0.0,
+          "cluster_ci95": [
+            0.0,
+            0.0
+          ],
+          "cluster_p": 1.0,
+          "n_clusters": 11,
+          "n_paired": 24,
+          "n_gained": 0,
+          "n_lost": 0
+        },
+        "note": "Full and exclusive are computed on EXACTLY the same pair instances and the SAME candidate universe -- identical index membership, identical content for every fragment except the pair's own two -- so the drop between them is paired and isolates the rendering factor. Each pair instance carries its own exclusive rendering, so a fragment with several Tier C partners is several instances rather than one overwritten rendering. Instances are clustered by PHYSICAL JOIN COMPONENT, so two pairs from one object are not counted as independent evidence."
+      }
+    },
+    "ALL_LANGUAGES_UNCONDITIONED": {
+      "per_fold_weight_selection": [
+        {
+          "fold": 0,
+          "alpha_unigram_only": 1.0,
+          "alpha_pair": [
+            0.75,
+            0.4
+          ],
+          "fit_recall@1_unigram": 0.5032786885245901,
+          "fit_recall@1_pair": 0.5737704918032787,
+          "n_fit": 621,
+          "n_eval": 255,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.75,
+                0.4
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.75,
+                0.4
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.75,
+                0.4
+              ]
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.3,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.5329593267882188,
+          "fit_recall@1_pair": 0.605890603085554,
+          "n_fit": 720,
+          "n_eval": 156,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.3,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.3,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.3,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.0,
+            0.4
+          ],
+          "fit_recall@1_unigram": 0.5357643758765779,
+          "fit_recall@1_pair": 0.6086956521739131,
+          "n_fit": 721,
+          "n_eval": 155,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                0.4
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                0.4
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                0.4
+              ]
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.0,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5407303370786517,
+          "fit_recall@1_pair": 0.6123595505617978,
+          "n_fit": 721,
+          "n_eval": 155,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.0,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5308988764044944,
+          "fit_recall@1_pair": 0.6067415730337079,
+          "n_fit": 721,
+          "n_eval": 155,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          }
+        }
+      ],
+      "deployment_candidate_config": {
+        "alpha_unigram_only": 0.75,
+        "alpha_pair": [
+          0.0,
+          1.0
+        ],
+        "status": "MODAL_ACROSS_FOLDS -- retained for possible future deployment; carries NO dev performance claim, since every reported number is cross-fitted"
+      },
+      "coverage": {
+        "n_dev_queries_base": 876,
+        "n_dev_queries_scorable": 876,
+        "queries_lost": 0,
+        "n_index_base": 7490,
+        "n_index_scorable": 7490,
+        "candidates_lost": 0,
+        "positive_relations_base": 43008,
+        "positive_relations_scorable": 43008,
+        "positive_relations_lost": 0,
+        "eligible_candidate_set_size": 7489,
+        "relations_lost_by_cell": {
+          "joins": {
+            "relations_lost": 0,
+            "endpoint_refusal_reasons": {}
+          },
+          "duplicates": {
+            "relations_lost": 0,
+            "endpoint_refusal_reasons": {}
+          },
+          "pooled": {
+            "relations_lost": 0,
+            "endpoint_refusal_reasons": {}
+          }
+        }
+      },
+      "cells": {
+        "joins": {
+          "label": "joins",
+          "bm25_unigram": {
+            "recall@1": 0.5659340659340659,
+            "recall@5": 0.6978021978021978,
+            "recall@10": 0.7417582417582418,
+            "recall@100": 0.8241758241758241,
+            "mrr": 0.6252035769306742,
+            "n_scored": 182,
+            "mean_positives": 2.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.6483516483516484,
+            "recall@5": 0.7637362637362637,
+            "recall@10": 0.7967032967032966,
+            "recall@100": 0.8681318681318682,
+            "mrr": 0.7035037409609948,
+            "n_scored": 182,
+            "mean_positives": 2.0
+          },
+          "delta_recall@1": 0.08241758241758242,
+          "cluster_ci95": [
+            0.03888888888888889,
+            0.12866440294284096
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 59,
+          "n_paired": 182,
+          "n_gained": 18,
+          "n_lost": 3
+        },
+        "duplicates": {
+          "label": "duplicates",
+          "bm25_unigram": {
+            "recall@1": 0.4046242774566474,
+            "recall@5": 0.6346820809248555,
+            "recall@10": 0.7260115606936416,
+            "recall@100": 0.9109826589595376,
+            "mrr": 0.5131428075458415,
+            "n_scored": 865,
+            "mean_positives": 99.01965317919075
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.4439306358381503,
+            "recall@5": 0.7317919075144509,
+            "recall@10": 0.8092485549132948,
+            "recall@100": 0.9491329479768786,
+            "mrr": 0.5735390639485446,
+            "n_scored": 865,
+            "mean_positives": 99.01965317919075
+          },
+          "delta_recall@1": 0.03930635838150289,
+          "cluster_ci95": [
+            0.014118352237208693,
+            0.08137899592362151
+          ],
+          "cluster_p": 0.03,
+          "n_clusters": 42,
+          "n_paired": 865,
+          "n_gained": 86,
+          "n_lost": 52
+        },
+        "pooled": {
+          "label": "pooled",
+          "bm25_unigram": {
+            "recall@1": 0.5236994219653179,
+            "recall@5": 0.6820809248554913,
+            "recall@10": 0.7583815028901734,
+            "recall@100": 0.9271676300578034,
+            "mrr": 0.6001224795090647,
+            "n_scored": 865,
+            "mean_positives": 99.44046242774566
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.5803468208092486,
+            "recall@5": 0.7745664739884393,
+            "recall@10": 0.8393063583815029,
+            "recall@100": 0.953757225433526,
+            "mrr": 0.669908484498896,
+            "n_scored": 865,
+            "mean_positives": 99.44046242774566
+          },
+          "delta_recall@1": 0.056647398843930635,
+          "cluster_ci95": [
+            0.03209454038441522,
+            0.09184407928238474
+          ],
+          "cluster_p": 0.003,
+          "n_clusters": 42,
+          "n_paired": 865,
+          "n_gained": 96,
+          "n_lost": 47
+        },
+        "joins_bin_exception_population": {
+          "label": "joins_bin_exception_population",
+          "bm25_unigram": {
+            "recall@1": 0.6049618320610687,
+            "recall@5": 0.6889312977099237,
+            "recall@10": 0.7118320610687023,
+            "recall@100": 0.7977099236641222,
+            "mrr": 0.641277632410317,
+            "n_scored": 524,
+            "mean_positives": 1.5305343511450382
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.7366412213740458,
+            "recall@5": 0.7900763358778626,
+            "recall@10": 0.8244274809160306,
+            "recall@100": 0.8874045801526718,
+            "mrr": 0.7624429988764436,
+            "n_scored": 524,
+            "mean_positives": 1.5305343511450382
+          },
+          "delta_recall@1": 0.1316793893129771,
+          "cluster_ci95": [
+            0.09999529190207157,
+            0.16667383820998277
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 206,
+          "n_paired": 524,
+          "n_gained": 72,
+          "n_lost": 3,
+          "weights": {
+            "alpha_unigram_only": 0.75,
+            "alpha_pair": [
+              0.0,
+              1.0
+            ]
+          },
+          "status": "DESCRIPTIVE_NOT_CROSS_FITTED",
+          "weight_provenance": "deployment-candidate config; EXTERNAL TO WEIGHT FITTING, since bin-exception fragments never enter any fold's fit. This is NOT a cross-fitted result and NOT independent confirmation: these fragments share the same corpus construction, the same index, and the same fitted feature statistics as the dev cells. Descriptive only."
+        },
+        "task_a_frozen_pooled": {
+          "label": "task_a_frozen_pooled",
+          "bm25_unigram": {
+            "recall@1": 0.5297549591598599,
+            "recall@5": 0.6837806301050176,
+            "recall@10": 0.7584597432905484,
+            "recall@100": 0.9299883313885647,
+            "mrr": 0.6045862199663028,
+            "n_scored": 857,
+            "mean_positives": 100.35005834305717
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.5962660443407235,
+            "recall@5": 0.7841306884480747,
+            "recall@10": 0.8413068844807468,
+            "recall@100": 0.9544924154025671,
+            "mrr": 0.682742861384675,
+            "n_scored": 857,
+            "mean_positives": 100.35005834305717
+          },
+          "delta_recall@1": 0.06651108518086347,
+          "cluster_ci95": [
+            0.04444220430107527,
+            0.0988215128185188
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 39,
+          "n_paired": 857,
+          "n_gained": 101,
+          "n_lost": 44,
+          "status": "SECONDARY_ARM_TASK_A_FROZEN_MATCHING_SCOPE",
+          "weights_source": "Phase4\\phase4_out\\p5_factorial_control.json",
+          "task_a_rendering": "BOUNDARY",
+          "weights_used_by_fold": {
+            "0": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.15,
+                0.4
+              ]
+            },
+            "1": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.2,
+                1.0
+              ]
+            },
+            "2": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.2,
+                1.0
+              ]
+            },
+            "3": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.2,
+                1.0
+              ]
+            },
+            "4": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.2,
+                1.0
+              ]
+            }
+          },
+          "queries_without_task_a_fold": 10,
+          "note": "Task A's committed per-fold weights from the MATCHING Step 2 rendering (BOUNDARY) and Task A's own fold mapping, applied unchanged. Nothing selected or retuned on Task B. Queries whose CTH had no Task A fold are excluded and counted, never reassigned.",
+          "vs_task_b_fitted_final_system": {
+            "n_paired": 857,
+            "n_clusters": 39,
+            "recall@1_task_a_frozen": 0.5962660443407235,
+            "recall@1_task_b_fitted": 0.5845974329054843,
+            "delta_frozen_minus_fitted": 0.011668611435239206,
+            "cluster_ci95": [
+              0.0017888289036544851,
+              0.01821543446808002
+            ],
+            "cluster_p": 0.014,
+            "estimand": "final-system recall@1 difference on identical query IDs; NOT a comparison of within-arm increments"
+          }
+        }
+      },
+      "strata": {
+        "joins": {
+          "damage_band": {
+            "high": {
+              "n_queries": 40,
+              "n_clusters": 22,
+              "delta_recall@1": 0.1,
+              "cluster_ci95": [
+                0.025,
+                0.19513520678685048
+              ],
+              "recall@1_unigram": 0.55,
+              "recall@1_unigram_bigram": 0.65
+            },
+            "low": {
+              "n_queries": 100,
+              "n_clusters": 45,
+              "delta_recall@1": 0.08,
+              "cluster_ci95": [
+                0.020393008688623964,
+                0.14772727272727273
+              ],
+              "recall@1_unigram": 0.6,
+              "recall@1_unigram_bigram": 0.68
+            },
+            "medium": {
+              "n_queries": 42,
+              "n_clusters": 27,
+              "delta_recall@1": 0.07142857142857142,
+              "cluster_ci95": [
+                0.0,
+                0.17647058823529413
+              ],
+              "recall@1_unigram": 0.5,
+              "recall@1_unigram_bigram": 0.5714285714285714
+            }
+          },
+          "genre_band": {
+            "0": {
+              "n_queries": 31,
+              "n_clusters": 11,
+              "delta_recall@1": 0.06451612903225806,
+              "cluster_ci95": [
+                -0.07692307692307693,
+                0.25
+              ],
+              "recall@1_unigram": 0.5806451612903226,
+              "recall@1_unigram_bigram": 0.6451612903225806
+            },
+            "200": {
+              "n_queries": 6,
+              "n_clusters": 1,
+              "delta_recall@1": 0.16666666666666666,
+              "cluster_ci95": [
+                0.16666666666666666,
+                0.16666666666666666
+              ],
+              "recall@1_unigram": 0.6666666666666666,
+              "recall@1_unigram_bigram": 0.8333333333333334
+            },
+            "300": {
+              "n_queries": 3,
+              "n_clusters": 1,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 1.0,
+              "recall@1_unigram_bigram": 1.0
+            },
+            "600": {
+              "n_queries": 138,
+              "n_clusters": 44,
+              "delta_recall@1": 0.07246376811594203,
+              "cluster_ci95": [
+                0.033316993464052286,
+                0.11852758352758352
+              ],
+              "recall@1_unigram": 0.5507246376811594,
+              "recall@1_unigram_bigram": 0.6231884057971014
+            },
+            "700": {
+              "n_queries": 4,
+              "n_clusters": 2,
+              "delta_recall@1": 0.5,
+              "cluster_ci95": [
+                0.5,
+                0.5
+              ],
+              "recall@1_unigram": 0.5,
+              "recall@1_unigram_bigram": 1.0
+            }
+          },
+          "geometry": {
+            "horizontal": {
+              "n_queries": 102,
+              "n_clusters": 43,
+              "delta_recall@1": 0.12745098039215685,
+              "cluster_ci95": [
+                0.07339449541284404,
+                0.18604651162790697
+              ],
+              "recall@1_unigram": 0.7156862745098039,
+              "recall@1_unigram_bigram": 0.8431372549019608
+            },
+            "vertical": {
+              "n_queries": 80,
+              "n_clusters": 36,
+              "delta_recall@1": 0.025,
+              "cluster_ci95": [
+                -0.023809523809523808,
+                0.08539220114423364
+              ],
+              "recall@1_unigram": 0.375,
+              "recall@1_unigram_bigram": 0.4
+            }
+          },
+          "join_type": {
+            "direct": {
+              "n_queries": 90,
+              "n_clusters": 48,
+              "delta_recall@1": 0.08888888888888889,
+              "cluster_ci95": [
+                0.019430147058823538,
+                0.16279069767441862
+              ],
+              "recall@1_unigram": 0.5555555555555556,
+              "recall@1_unigram_bigram": 0.6444444444444445
+            },
+            "indirect": {
+              "n_queries": 21,
+              "n_clusters": 10,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 0.19047619047619047,
+              "recall@1_unigram_bigram": 0.19047619047619047
+            },
+            "inferred_from_shared_lines": {
+              "n_queries": 71,
+              "n_clusters": 18,
+              "delta_recall@1": 0.09859154929577464,
+              "cluster_ci95": [
+                0.03836206896551725,
+                0.15791562238930656
+              ],
+              "recall@1_unigram": 0.6901408450704225,
+              "recall@1_unigram_bigram": 0.7887323943661971
+            }
+          },
+          "language": {
+            "Hat": {
+              "n_queries": 3,
+              "n_clusters": 2,
+              "delta_recall@1": 0.3333333333333333,
+              "cluster_ci95": [
+                0.0,
+                0.5
+              ],
+              "recall@1_unigram": 0.6666666666666666,
+              "recall@1_unigram_bigram": 1.0
+            },
+            "Hit": {
+              "n_queries": 150,
+              "n_clusters": 53,
+              "delta_recall@1": 0.08666666666666667,
+              "cluster_ci95": [
+                0.03647046642853445,
+                0.14189298169136877
+              ],
+              "recall@1_unigram": 0.5733333333333334,
+              "recall@1_unigram_bigram": 0.66
+            },
+            "Hur": {
+              "n_queries": 3,
+              "n_clusters": 1,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 1.0,
+              "recall@1_unigram_bigram": 1.0
+            },
+            "QUERY_LANGUAGE_UNRESOLVED": {
+              "n_queries": 26,
+              "n_clusters": 13,
+              "delta_recall@1": 0.038461538461538464,
+              "cluster_ci95": [
+                0.0,
+                0.17647058823529413
+              ],
+              "recall@1_unigram": 0.46153846153846156,
+              "recall@1_unigram_bigram": 0.5
+            }
+          },
+          "length_band": {
+            "long": {
+              "n_queries": 93,
+              "n_clusters": 42,
+              "delta_recall@1": 0.11827956989247312,
+              "cluster_ci95": [
+                0.05171969427657305,
+                0.19545551298424857
+              ],
+              "recall@1_unigram": 0.5698924731182796,
+              "recall@1_unigram_bigram": 0.6881720430107527
+            },
+            "medium": {
+              "n_queries": 71,
+              "n_clusters": 41,
+              "delta_recall@1": 0.056338028169014086,
+              "cluster_ci95": [
+                -0.013000175500175501,
+                0.12349537037037032
+              ],
+              "recall@1_unigram": 0.5774647887323944,
+              "recall@1_unigram_bigram": 0.6338028169014085
+            },
+            "short": {
+              "n_queries": 18,
+              "n_clusters": 12,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 0.5,
+              "recall@1_unigram_bigram": 0.5
+            }
+          },
+          "no_overlap": {
+            "False": {
+              "n_queries": 146,
+              "n_clusters": 51,
+              "delta_recall@1": 0.1095890410958904,
+              "cluster_ci95": [
+                0.06076016774279438,
+                0.16429249547920433
+              ],
+              "recall@1_unigram": 0.6506849315068494,
+              "recall@1_unigram_bigram": 0.7602739726027398
+            },
+            "True": {
+              "n_queries": 36,
+              "n_clusters": 19,
+              "delta_recall@1": -0.027777777777777776,
+              "cluster_ci95": [
+                -0.09679386309992132,
+                0.0
+              ],
+              "recall@1_unigram": 0.2222222222222222,
+              "recall@1_unigram_bigram": 0.19444444444444445
+            }
+          },
+          "parent_is_bin": {
+            "False": {
+              "n_queries": 182,
+              "n_clusters": 59,
+              "delta_recall@1": 0.08241758241758242,
+              "cluster_ci95": [
+                0.03888888888888889,
+                0.12866440294284096
+              ],
+              "recall@1_unigram": 0.5659340659340659,
+              "recall@1_unigram_bigram": 0.6483516483516484
+            }
+          },
+          "shared_line_band": {
+            "0": {
+              "n_queries": 36,
+              "n_clusters": 19,
+              "delta_recall@1": -0.027777777777777776,
+              "cluster_ci95": [
+                -0.09679386309992132,
+                0.0
+              ],
+              "recall@1_unigram": 0.2222222222222222,
+              "recall@1_unigram_bigram": 0.19444444444444445
+            },
+            "1-2": {
+              "n_queries": 44,
+              "n_clusters": 20,
+              "delta_recall@1": 0.06818181818181818,
+              "cluster_ci95": [
+                0.0,
+                0.15789473684210525
+              ],
+              "recall@1_unigram": 0.5,
+              "recall@1_unigram_bigram": 0.5681818181818182
+            },
+            "10+": {
+              "n_queries": 27,
+              "n_clusters": 16,
+              "delta_recall@1": 0.14814814814814814,
+              "cluster_ci95": [
+                0.034482758620689655,
+                0.2858630952380951
+              ],
+              "recall@1_unigram": 0.7407407407407407,
+              "recall@1_unigram_bigram": 0.8888888888888888
+            },
+            "3-9": {
+              "n_queries": 75,
+              "n_clusters": 33,
+              "delta_recall@1": 0.12,
+              "cluster_ci95": [
+                0.05553652968036529,
+                0.189873417721519
+              ],
+              "recall@1_unigram": 0.7066666666666667,
+              "recall@1_unigram_bigram": 0.8266666666666667
+            }
+          },
+          "site": {
+            "Hattusa": {
+              "n_queries": 180,
+              "n_clusters": 58,
+              "delta_recall@1": 0.08333333333333333,
+              "cluster_ci95": [
+                0.041431949632485844,
+                0.12903225806451613
+              ],
+              "recall@1_unigram": 0.5722222222222222,
+              "recall@1_unigram_bigram": 0.6555555555555556
+            },
+            "unknown": {
+              "n_queries": 2,
+              "n_clusters": 1,
+              "delta_recall@1": 0.0,
+              "cluster_ci95": [
+                0.0,
+                0.0
+              ],
+              "recall@1_unigram": 0.0,
+              "recall@1_unigram_bigram": 0.0
+            }
+          },
+          "tier": {
+            "A": {
+              "n_queries": 36,
+              "n_clusters": 19,
+              "delta_recall@1": -0.027777777777777776,
+              "cluster_ci95": [
+                -0.09679386309992132,
+                0.0
+              ],
+              "recall@1_unigram": 0.2222222222222222,
+              "recall@1_unigram_bigram": 0.19444444444444445
+            },
+            "B": {
+              "n_queries": 44,
+              "n_clusters": 20,
+              "delta_recall@1": 0.06818181818181818,
+              "cluster_ci95": [
+                0.0,
+                0.15789473684210525
+              ],
+              "recall@1_unigram": 0.5,
+              "recall@1_unigram_bigram": 0.5681818181818182
+            },
+            "C": {
+              "n_queries": 102,
+              "n_clusters": 43,
+              "delta_recall@1": 0.12745098039215685,
+              "cluster_ci95": [
+                0.07339449541284404,
+                0.18604651162790697
+              ],
+              "recall@1_unigram": 0.7156862745098039,
+              "recall@1_unigram_bigram": 0.8431372549019608
+            }
+          }
+        }
+      },
+      "checks": {
+        "C5": {
+          "passed": true,
+          "offenders": [],
+          "weights_per_fold": [
+            {
+              "fold": 0,
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.75,
+                0.4
+              ]
+            },
+            {
+              "fold": 1,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.3,
+                0.75
+              ]
+            },
+            {
+              "fold": 2,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                0.4
+              ]
+            },
+            {
+              "fold": 3,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
+        }
+      },
+      "degenerate_self_join_pairs_excluded": [
+        "KBo 22.130a+::1",
+        "KUB 28.89+::1"
+      ],
+      "tier_c": {
+        "counts": {
+          "considered": 97,
+          "exclusive_untestable": 43,
+          "no_reconstruction": 0,
+          "empty_exclusive": 0,
+          "usable": 54,
+          "usable_single_partner_only": 14
+        },
+        "n_pair_instances": 54,
+        "full_rendering_contaminated": {
+          "label": "tier_c_full_CONTAMINATED",
+          "bm25_unigram": {
+            "recall@1": 0.35185185185185186,
+            "recall@5": 0.6203703703703703,
+            "recall@10": 0.7129629629629629,
+            "recall@100": 0.8425925925925926,
+            "mrr": 0.475735756596228,
+            "n_scored": 108,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.4074074074074074,
+            "recall@5": 0.8148148148148148,
+            "recall@10": 0.8611111111111112,
+            "recall@100": 0.9444444444444444,
+            "mrr": 0.5854127394819252,
+            "n_scored": 108,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": 0.05555555555555555,
+          "cluster_ci95": [
+            -0.014296218487394957,
+            0.13636363636363635
+          ],
+          "cluster_p": 0.149,
+          "n_clusters": 26,
+          "n_paired": 108,
+          "n_gained": 10,
+          "n_lost": 4
+        },
+        "overlap_exclusive": {
+          "label": "tier_c_overlap_exclusive",
+          "bm25_unigram": {
+            "recall@1": 0.037037037037037035,
+            "recall@5": 0.1111111111111111,
+            "recall@10": 0.1574074074074074,
+            "recall@100": 0.3055555555555556,
+            "mrr": 0.07382592379990671,
+            "n_scored": 108,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.027777777777777776,
+            "recall@5": 0.17592592592592593,
+            "recall@10": 0.19444444444444445,
+            "recall@100": 0.37962962962962965,
+            "mrr": 0.08446272365518889,
+            "n_scored": 108,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": -0.009259259259259259,
+          "cluster_ci95": [
+            -0.04412581699346405,
+            0.023269656699889243
+          ],
+          "cluster_p": 0.684,
+          "n_clusters": 26,
+          "n_paired": 108,
+          "n_gained": 1,
+          "n_lost": 2
+        },
+        "overlap_exclusive_single_partner_only": {
+          "label": "tier_c_exclusive_single_partner",
+          "bm25_unigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.03571428571428571,
+            "mrr": 0.0024361715007124537,
+            "n_scored": 28,
+            "mean_positives": 1.0
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.10714285714285714,
+            "mrr": 0.005208176693744614,
+            "n_scored": 28,
+            "mean_positives": 1.0
+          },
+          "delta_recall@1": 0.0,
+          "cluster_ci95": [
+            0.0,
+            0.0
+          ],
+          "cluster_p": 1.0,
+          "n_clusters": 13,
+          "n_paired": 28,
+          "n_gained": 0,
+          "n_lost": 0
+        },
+        "note": "Full and exclusive are computed on EXACTLY the same pair instances and the SAME candidate universe -- identical index membership, identical content for every fragment except the pair's own two -- so the drop between them is paired and isolates the rendering factor. Each pair instance carries its own exclusive rendering, so a fragment with several Tier C partners is several instances rather than one overwritten rendering. Instances are clustered by PHYSICAL JOIN COMPONENT, so two pairs from one object are not counted as independent evidence."
+      }
+    },
+    "SAME_LANGUAGE_AS_QUERY": {
+      "per_fold_weight_selection": [
+        {
+          "fold": 0,
+          "alpha_unigram_only": 1.0,
+          "alpha_pair": [
+            0.3,
+            0.4
+          ],
+          "fit_recall@1_unigram": 0.5262135922330097,
+          "fit_recall@1_pair": 0.6,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.3,
+                0.4
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.3,
+                0.4
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.3,
+                0.4
+              ]
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "alpha_unigram_only": 0.5,
+          "alpha_pair": [
+            0.0,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.5336700336700336,
+          "fit_recall@1_pair": 0.6212121212121212,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "alpha_unigram_only": 0.5,
+          "alpha_pair": [
+            0.1,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.531986531986532,
+          "fit_recall@1_pair": 0.6279461279461279,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            0.1,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.5134680134680135,
+          "fit_recall@1_pair": 0.5909090909090909,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "alpha_unigram_only": 0.5,
+          "alpha_pair": [
+            0.1,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.5176470588235295,
+          "fit_recall@1_pair": 0.6033613445378151,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            }
+          }
+        }
+      ],
+      "coverage": {
+        "n_dev_queries_base": 876,
+        "n_queries_eligible_own_language": 734,
+        "n_queries_with_reachable_positive": 723,
+        "queries_lost": 153,
+        "reachable_ceiling_conditional_on_query_eligibility": {
+          "joins": {
+            "positives_considered_from_eligible_queries": 305,
+            "positives_reachable": 305,
+            "reachable_ceiling": 1.0
+          },
+          "duplicates": {
+            "positives_considered_from_eligible_queries": 71757,
+            "positives_reachable": 69794,
+            "reachable_ceiling": 0.9726437838817119
+          },
+          "pooled": {
+            "positives_considered_from_eligible_queries": 72062,
+            "positives_reachable": 70099,
+            "reachable_ceiling": 0.9727595681496489
+          }
+        },
+        "per_language": [
+          {
+            "language": "Akk",
+            "eligible_queries": 42,
+            "queries_with_reachable_positive": 40,
+            "candidate_universe": 386
+          },
+          {
+            "language": "Hat",
+            "eligible_queries": 7,
+            "queries_with_reachable_positive": 7,
+            "candidate_universe": 244
+          },
+          {
+            "language": "Hit",
+            "eligible_queries": 658,
+            "queries_with_reachable_positive": 649,
+            "candidate_universe": 6722
+          },
+          {
+            "language": "Hur",
+            "eligible_queries": 24,
+            "queries_with_reachable_positive": 24,
+            "candidate_universe": 566
+          },
+          {
+            "language": "Luw",
+            "eligible_queries": 3,
+            "queries_with_reachable_positive": 3,
+            "candidate_universe": 109
+          }
+        ]
+      },
+      "cells": {
+        "joins": {
+          "label": "joins",
+          "bm25_unigram": {
+            "recall@1": 0.5897435897435898,
+            "recall@5": 0.7115384615384616,
+            "recall@10": 0.7564102564102564,
+            "recall@100": 0.8397435897435898,
+            "mrr": 0.646356052918662,
+            "n_scored": 156,
+            "mean_positives": 1.955128205128205
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.6794871794871795,
+            "recall@5": 0.782051282051282,
+            "recall@10": 0.8269230769230769,
+            "recall@100": 0.8910256410256411,
+            "mrr": 0.7298370267811854,
+            "n_scored": 156,
+            "mean_positives": 1.955128205128205
+          },
+          "delta_recall@1": 0.08974358974358974,
+          "cluster_ci95": [
+            0.03998039215686275,
+            0.13971933285509325
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 56,
+          "n_paired": 156,
+          "n_gained": 17,
+          "n_lost": 3
+        },
+        "duplicates": {
+          "label": "duplicates",
+          "bm25_unigram": {
+            "recall@1": 0.3817427385892116,
+            "recall@5": 0.6390041493775933,
+            "recall@10": 0.7275242047026279,
+            "recall@100": 0.9156293222683264,
+            "mrr": 0.5000284514537556,
+            "n_scored": 723,
+            "mean_positives": 96.53388658367912
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.44813278008298757,
+            "recall@5": 0.7468879668049793,
+            "recall@10": 0.8105117565698479,
+            "recall@100": 0.9598893499308437,
+            "mrr": 0.579681618708345,
+            "n_scored": 723,
+            "mean_positives": 96.53388658367912
+          },
+          "delta_recall@1": 0.06639004149377593,
+          "cluster_ci95": [
+            0.035858374384236454,
+            0.10086982120169811
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 41,
+          "n_paired": 723,
+          "n_gained": 86,
+          "n_lost": 38
+        },
+        "pooled": {
+          "label": "pooled",
+          "bm25_unigram": {
+            "recall@1": 0.5089903181189488,
+            "recall@5": 0.6915629322268326,
+            "recall@10": 0.7634854771784232,
+            "recall@100": 0.9294605809128631,
+            "mrr": 0.5935917331240804,
+            "n_scored": 723,
+            "mean_positives": 96.95573997233748
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.5947441217150761,
+            "recall@5": 0.7939142461964038,
+            "recall@10": 0.8450899031811895,
+            "recall@100": 0.9612724757952974,
+            "mrr": 0.6836959877333267,
+            "n_scored": 723,
+            "mean_positives": 96.95573997233748
+          },
+          "delta_recall@1": 0.08575380359612725,
+          "cluster_ci95": [
+            0.04860970616570327,
+            0.11625958552917307
+          ],
+          "cluster_p": 0.001,
+          "n_clusters": 41,
+          "n_paired": 723,
+          "n_gained": 95,
+          "n_lost": 33
+        }
+      },
+      "strata": {},
+      "checks": {
+        "C5": {
+          "passed": true,
+          "offenders": [],
+          "weights_per_fold": [
+            {
+              "fold": 0,
+              "alpha_unigram_only": 1.0,
+              "alpha_pair": [
+                0.3,
+                0.4
+              ]
+            },
+            {
+              "fold": 1,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "fold": 2,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            {
+              "fold": 3,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 0.5,
+              "alpha_pair": [
+                0.1,
+                0.75
+              ]
+            }
+          ],
+          "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
+        }
+      },
+      "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"
+    },
+    "CROSS_LANGUAGE_PARALLEL": {
+      "per_fold_weight_selection": [
+        {
+          "fold": 0,
+          "alpha_unigram_only": 0.75,
+          "alpha_pair": [
+            1.0,
+            0.2
+          ],
+          "fit_recall@1_unigram": 0.11386138613861387,
+          "fit_recall@1_pair": 0.13861386138613863,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            }
+          }
+        },
+        {
+          "fold": 1,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.07102272727272728,
+          "fit_recall@1_pair": 0.08238636363636363,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.06906077348066299,
+          "fit_recall@1_pair": 0.08011049723756906,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.1,
+            1.0
+          ],
+          "fit_recall@1_unigram": 0.0055248618784530384,
+          "fit_recall@1_pair": 0.008287292817679558,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "alpha_unigram_only": 2.0,
+          "alpha_pair": [
+            0.2,
+            0.75
+          ],
+          "fit_recall@1_unigram": 0.06906077348066299,
+          "fit_recall@1_pair": 0.08011049723756906,
+          "weights_by_cell": {
+            "joins": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "duplicates": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            "pooled": {
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          }
+        }
+      ],
+      "coverage": {
+        "n_dev_queries_base": 876,
+        "n_queries_eligible_own_language": 734,
+        "n_queries_with_reachable_positive": 410,
+        "queries_lost": 466,
+        "reachable_ceiling_conditional_on_query_eligibility": {
+          "joins": {
+            "positives_considered_from_eligible_queries": 305,
+            "positives_reachable": 9,
+            "reachable_ceiling": 0.029508196721311476
+          },
+          "duplicates": {
+            "positives_considered_from_eligible_queries": 71757,
+            "positives_reachable": 5315,
+            "reachable_ceiling": 0.07406942876653148
+          },
+          "pooled": {
+            "positives_considered_from_eligible_queries": 72062,
+            "positives_reachable": 5324,
+            "reachable_ceiling": 0.07388082484527213
+          }
+        },
+        "per_language": [
+          {
+            "language": "Akk",
+            "eligible_queries": 42,
+            "queries_with_reachable_positive": 32,
+            "candidate_universe": 7109
+          },
+          {
+            "language": "Hat",
+            "eligible_queries": 7,
+            "queries_with_reachable_positive": 7,
+            "candidate_universe": 7318
+          },
+          {
+            "language": "Hit",
+            "eligible_queries": 658,
+            "queries_with_reachable_positive": 344,
+            "candidate_universe": 1349
+          },
+          {
+            "language": "Hur",
+            "eligible_queries": 24,
+            "queries_with_reachable_positive": 24,
+            "candidate_universe": 7216
+          },
+          {
+            "language": "Luw",
+            "eligible_queries": 3,
+            "queries_with_reachable_positive": 3,
+            "candidate_universe": 7405
+          }
+        ],
+        "positive_semantics": "DIFFERENT-LANGUAGE SAME-CTH relations, not independently annotated as actual textual parallels."
+      },
+      "cells": {
+        "joins": {
+          "label": "joins",
+          "bm25_unigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.0,
+            "mrr": 0.0013114218751427477,
+            "n_scored": 7,
+            "mean_positives": 1.2857142857142858
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall@100": 0.0,
+            "mrr": 0.001414170354891831,
+            "n_scored": 7,
+            "mean_positives": 1.2857142857142858
+          },
+          "delta_recall@1": 0.0,
+          "cluster_ci95": [
+            0.0,
+            0.0
+          ],
+          "cluster_p": 1.0,
+          "n_clusters": 5,
+          "n_paired": 7,
+          "n_gained": 0,
+          "n_lost": 0
+        },
+        "duplicates": {
+          "label": "duplicates",
+          "bm25_unigram": {
+            "recall@1": 0.05853658536585366,
+            "recall@5": 0.08048780487804878,
+            "recall@10": 0.09268292682926829,
+            "recall@100": 0.2048780487804878,
+            "mrr": 0.0726297224302396,
+            "n_scored": 410,
+            "mean_positives": 12.963414634146341
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.06341463414634146,
+            "recall@5": 0.07804878048780488,
+            "recall@10": 0.0951219512195122,
+            "recall@100": 0.24878048780487805,
+            "mrr": 0.07826452634147353,
+            "n_scored": 410,
+            "mean_positives": 12.963414634146341
+          },
+          "delta_recall@1": 0.004878048780487805,
+          "cluster_ci95": [
+            -0.01935640463513937,
+            0.04141320365458293
+          ],
+          "cluster_p": 0.654,
+          "n_clusters": 18,
+          "n_paired": 410,
+          "n_gained": 5,
+          "n_lost": 3
+        },
+        "pooled": {
+          "label": "pooled",
+          "bm25_unigram": {
+            "recall@1": 0.05853658536585366,
+            "recall@5": 0.08048780487804878,
+            "recall@10": 0.09268292682926829,
+            "recall@100": 0.2048780487804878,
+            "mrr": 0.07263240368191304,
+            "n_scored": 410,
+            "mean_positives": 12.985365853658537
+          },
+          "bm25_unigram_bigram": {
+            "recall@1": 0.06341463414634146,
+            "recall@5": 0.07804878048780488,
+            "recall@10": 0.0951219512195122,
+            "recall@100": 0.24878048780487805,
+            "mrr": 0.07826695559136716,
+            "n_scored": 410,
+            "mean_positives": 12.985365853658537
+          },
+          "delta_recall@1": 0.004878048780487805,
+          "cluster_ci95": [
+            -0.01935640463513937,
+            0.04141320365458293
+          ],
+          "cluster_p": 0.654,
+          "n_clusters": 18,
+          "n_paired": 410,
+          "n_gained": 5,
+          "n_lost": 3
+        }
+      },
+      "strata": {},
+      "checks": {
+        "C5": {
+          "passed": true,
+          "offenders": [],
+          "weights_per_fold": [
+            {
+              "fold": 0,
+              "alpha_unigram_only": 0.75,
+              "alpha_pair": [
+                1.0,
+                0.2
+              ]
+            },
+            {
+              "fold": 1,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            {
+              "fold": 2,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            },
+            {
+              "fold": 3,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.1,
+                1.0
+              ]
+            },
+            {
+              "fold": 4,
+              "alpha_unigram_only": 2.0,
+              "alpha_pair": [
+                0.2,
+                0.75
+              ]
+            }
+          ],
+          "note": "weights differ ACROSS folds by construction; a single global weight would mean the evaluation was not cross-fitted"
+        }
+      },
+      "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"
+    }
+  },
+  "common_population_per_cell": {
+    "note": "Intersected over query IDs actually SCORED in each cell, so every scope shares one denominator per cell. No dedicated inference was pre-registered for between-scope differences and none is offered.",
+    "scopes_compared": [
+      "HITTITE_ONLY",
+      "ALL_LANGUAGES_UNCONDITIONED",
+      "SAME_LANGUAGE_AS_QUERY"
+    ],
+    "excluded_by_protocol_3_2": [
+      "CROSS_LANGUAGE_PARALLEL"
+    ],
+    "cells": {
+      "joins": {
+        "n_scored_common": 150,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.6733333333333333
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.66
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.5733333333333334,
+            "recall@1_unigram_bigram": 0.6666666666666666
+          }
+        }
+      },
+      "duplicates": {
+        "n_scored_common": 649,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.3667180277349769,
+            "recall@1_unigram_bigram": 0.4283513097072419
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.3790446841294299,
+            "recall@1_unigram_bigram": 0.4252696456086287
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.3667180277349769,
+            "recall@1_unigram_bigram": 0.43297380585516176
+          }
+        }
+      },
+      "pooled": {
+        "n_scored_common": 649,
+        "scopes": [
+          "HITTITE_ONLY",
+          "ALL_LANGUAGES_UNCONDITIONED",
+          "SAME_LANGUAGE_AS_QUERY"
+        ],
+        "by_scope": {
+          "HITTITE_ONLY": {
+            "recall@1_unigram": 0.49922958397534667,
+            "recall@1_unigram_bigram": 0.5839753466872111
+          },
+          "ALL_LANGUAGES_UNCONDITIONED": {
+            "recall@1_unigram": 0.5115562403697997,
+            "recall@1_unigram_bigram": 0.5778120184899846
+          },
+          "SAME_LANGUAGE_AS_QUERY": {
+            "recall@1_unigram": 0.49922958397534667,
+            "recall@1_unigram_bigram": 0.5870570107858244
+          }
+        }
+      }
+    }
+  },
+  "primary_family": {
+    "scope": "HITTITE_ONLY",
+    "cells": [
+      "joins",
+      "duplicates",
+      "pooled"
+    ],
+    "family_wise_alpha": 0.05,
+    "holm_bonferroni": {
+      "joins": {
+        "p": 0.001,
+        "adjusted_threshold": 0.016666666666666666,
+        "reject": true
+      },
+      "pooled": {
+        "p": 0.001,
+        "adjusted_threshold": 0.025,
+        "reject": true
+      },
+      "duplicates": {
+        "p": 0.007,
+        "adjusted_threshold": 0.05,
+        "reject": true
+      }
+    },
+    "note": "Everything outside this family -- other scopes, all strata, the bin-exception row, Tier C, and the cross-task arm -- is DESCRIPTIVE and carries no confirmatory claim."
+  }
+}
