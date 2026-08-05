@@ -1,7 +1,29 @@
 # Task B relation retrieval, language scopes, and Task-A-frozen transfer
 
-**Status: COMPLETE — four scopes, cross-fitted, plus the Task-A-frozen arm.
-2026-08-04.**
+> **PARTIAL WITHDRAWAL 2026-08-04 (third amendment).** Ixca's review found the
+> query-relative scopes selected their populations under each fragment's *own*
+> resolved language rather than relative to the query language.
+>
+> **STANDS:** the cross-fitted `HITTITE_ONLY` primary family, its per-fold
+> weights and Holm decisions, the zero-overlap qualification, paired Tier C,
+> the bin-exception row, the `HITTITE_ONLY` lost-relation decomposition, the
+> self-join corpus finding, and the `HITTITE_ONLY` Task-A-frozen row (which
+> uses the matching Step 2 `SCOPED` weights).
+>
+> **WITHDRAWN — DO NOT QUOTE:** every `SAME_LANGUAGE_AS_QUERY` metric and its
+> "12,482 relations all lost to query refusal" attribution; the
+> `CROSS_LANGUAGE_PARALLEL` "not evaluable" verdict and its 3–7% ceiling as
+> interpreted; the `ALL_LANGUAGES_UNCONDITIONED` and `SAME_LANGUAGE_AS_QUERY`
+> Task-A-frozen rows (they transported Hittite-scoped weights across scope, so
+> they are cross-task *plus* cross-scope portability at best); the
+> "matches or beats" claim, which compared increments rather than final
+> systems; and the common-population scope table, which was intersected on
+> eligibility rather than per-cell scored IDs.
+>
+> A corrective rerun is pre-registered in the protocol's third amendment.
+
+**Status: PARTIALLY WITHDRAWN — `HITTITE_ONLY` primary family valid;
+query-relative scopes and non-Hittite transfer rows superseded. 2026-08-04.**
 Protocol: `reports/phase5_taskb_transfer_protocol.md`, pre-registered `318e153`,
 amendments `3f334b9` and `2735e49` — all before the runs they govern.
 Dev queries only; the protected test split is closed and was never loaded.

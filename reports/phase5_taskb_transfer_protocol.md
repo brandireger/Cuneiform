@@ -23,6 +23,68 @@ out of fold.**
 > made a partner-dependent rendering fragment-dependent; and §4 is amended to
 > break lost relations down by cell and endpoint refusal reason.
 
+> **THIRD AMENDMENT, 2026-08-04, after Ixca reviewed the four-scope run.**
+> The cross-fitted `HITTITE_ONLY` primary family and its zero-overlap
+> qualification **stand**. Withdrawn: **both query-relative scopes**, the
+> **cross-language ceiling interpretation**, and the **non-Hittite
+> Task-A-frozen rows**. Five corrections, all pre-registered here before the
+> corrective rerun.
+>
+> **(a) Query-relative population selection was scope-inconsistent.** Both
+> scopes selected queries *and* candidates with `scope_key_for`, i.e. under
+> each fragment's **own** resolved language. For `CROSS_LANGUAGE_PARALLEL`
+> that tested a monolingual query for four tokens in a *different* language —
+> exactly the rendering §3.2 says cannot render a query — which is why the
+> main path reported zero evaluable queries while the ceiling code found
+> thousands of reachable targets. The score matrices were already built
+> correctly (query under own language, index under the relative admission);
+> only the population selection was wrong. **Corrected rule, per query
+> language L:**
+> - queries: dev fragments of language L with ≥4 tokens under
+>   `SAME_LANGUAGE_AS_QUERY::L` (their own-language rendering);
+> - candidates: labeled fragments with ≥4 tokens under the scope's
+>   L-relative key (`SAME_LANGUAGE_AS_QUERY::L` or `CROSS_LANGUAGE_PARALLEL::L`);
+> - positives intersected with that L-specific candidate set;
+> - a query is evaluable only if **at least one positive remains reachable**;
+> - **z-normalization, ranking and all metrics computed within that
+>   L-specific candidate universe**, never over a global index.
+>
+> **(b) `SAME_LANGUAGE_AS_QUERY` had the same defect on the candidate side.**
+> Candidate admission must depend on the **query** language, not on the
+> candidate's own fragment-level language. A candidate whose fragment-level
+> language is `QUERY_LANGUAGE_UNRESOLVED` may still carry ample correctly
+> resolved Hittite lines able to answer a Hittite query. **Query resolution
+> fails closed; candidate evidence is selected line-by-line relative to the
+> resolved query language.** The reported metrics and the claim that all
+> 12,482 lost relations arise from query refusal are withdrawn.
+>
+> **(c) The reachable-positive ceiling must be conditional on query
+> eligibility.** The current ceiling applies the token floor to targets only.
+> Recompute it over queries that are themselves eligible under their
+> own-language rendering.
+>
+> **(d) Task-A-frozen weights must come from the MATCHING Step 2 rendering.**
+> `HITTITE_ONLY` → Step 2 `SCOPED` (as run, valid).
+> `ALL_LANGUAGES_UNCONDITIONED` → Step 2 `BOUNDARY`.
+> `SAME_LANGUAGE_AS_QUERY` → **no matching Step 2 arm exists**; that row is
+> not a matching-scope transfer and may only be reported if separately
+> declared, or omitted. Any row that transports a Hittite-scoped
+> configuration to another scope must be labeled **cross-task *plus*
+> cross-scope portability**, never matching-scope transfer.
+>
+> **(e) "Matches or beats" requires a direct paired comparison.** Comparing
+> two within-system increments does not establish it: a larger increment can
+> come from a weaker baseline. The comparison is
+> **Task-A-frozen final system − Task-B-fitted final system, on identical
+> query IDs, with a paired composition-cluster interval**, reported separately
+> from the within-arm bigram increments.
+>
+> **(f) The common population must be intersected per relation cell**, over
+> the query IDs actually **scored** in that cell, not over query eligibility.
+> A query with no reachable positive in a cell is dropped by the retrieval
+> runner, so cell denominators differ even on a "common" eligibility set. No
+> scope comparison is final until (a)–(b) are corrected.
+
 Executes **step 3** of the required sequence in
 `reports/phase5_classical_control_review.md`. Steps 1 and 2 are complete
 (`reports/phase5_statistics_universe_results.md`,
