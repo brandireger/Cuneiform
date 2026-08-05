@@ -188,6 +188,66 @@ def scope_key_for(row, scope_name):
     return rendering_key(scope_name, row["language"])
 
 
+def query_rendering_key(row):
+    """A query is ALWAYS rendered in its OWN resolved language.
+
+    `CROSS_LANGUAGE_PARALLEL` admits only lines whose language differs from the
+    query's, so it cannot render the query side at all (protocol §3.2). Using
+    it to select queries tested a monolingual fragment for four tokens in a
+    language it does not contain -- the defect the third amendment corrects."""
+    if row["language"] == UNRESOLVED:
+        return None
+    return rendering_key("SAME_LANGUAGE_AS_QUERY", row["language"])
+
+
+def candidate_rendering_key(scope_name, query_language):
+    """Candidate admission is relative to the QUERY language, never to the
+    candidate's own fragment-level language. A candidate whose fragment
+    resolves to no single language may still carry ample lines in the query's
+    language, and those lines are legitimate evidence."""
+    if scope_name in FIXED_SCOPES:
+        return rendering_key(scope_name)
+    return rendering_key(scope_name, query_language)
+
+
+def build_language_groups(dev_rows, labeled, scope_name, base_positives):
+    """Per query-language evaluation units for a query-relative scope.
+
+    Each group has its OWN candidate universe, and every score, normalization
+    and rank is computed inside it -- never over a global index."""
+    groups = []
+    langs = sorted({r["language"] for r in dev_rows} - {UNRESOLVED})
+    for lang in langs:
+        qkey = rendering_key("SAME_LANGUAGE_AS_QUERY", lang)
+        ckey = candidate_rendering_key(scope_name, lang)
+        q_rows = [r for r in dev_rows
+                  if r["language"] == lang
+                  and n_content(r, qkey) >= MIN_CONTENT_TOKENS]
+        c_rows = [r for r in labeled
+                  if n_content(r, ckey) >= MIN_CONTENT_TOKENS]
+        if not q_rows or not c_rows:
+            groups.append({"language": lang, "q_rows": [], "c_rows": c_rows,
+                           "positives": {c: {} for c in PRIMARY_CELLS},
+                           "qkey": qkey, "ckey": ckey, "n_eligible_queries": 0})
+            continue
+        c_ids = {r["fragment_id"] for r in c_rows}
+        positives = {}
+        for cell in PRIMARY_CELLS:
+            positives[cell] = {
+                q["fragment_id"]: base_positives[cell].get(q["fragment_id"], set()) & c_ids
+                for q in q_rows}
+            positives[cell] = {q: v for q, v in positives[cell].items() if v}
+        # A query is evaluable only where at least one positive survives.
+        keep = {q for cell in PRIMARY_CELLS for q in positives[cell]}
+        groups.append({
+            "language": lang, "qkey": qkey, "ckey": ckey,
+            "q_rows": [r for r in q_rows if r["fragment_id"] in keep],
+            "c_rows": c_rows, "positives": positives,
+            "n_eligible_queries": len(q_rows),
+        })
+    return groups
+
+
 def scorable(rows, scope_name):
     """Rows this scope can actually serve.
 
@@ -464,7 +524,19 @@ def cross_fitted_predictions(query_rows, cand_rows, zb, zu, zg, pooled_positives
     return per_fold, held
 
 
-def load_task_a_frozen():
+# Step 2 rendering that MATCHES each Task B scope. `SAME_LANGUAGE_AS_QUERY`
+# has no Step 2 counterpart, so no matching-scope transfer exists for it; a
+# Hittite-scoped configuration applied there would be cross-task PLUS
+# cross-scope portability, which is a different claim.
+TASK_A_RENDERING_FOR = {
+    "HITTITE_ONLY": "SCOPED",
+    "ALL_LANGUAGES_UNCONDITIONED": "BOUNDARY",
+    "SAME_LANGUAGE_AS_QUERY": None,
+    "CROSS_LANGUAGE_PARALLEL": None,
+}
+
+
+def load_task_a_frozen(rendering):
     """The EXACT Task A weights and fold mapping from step 2 — no re-selection.
 
     Weights come from the committed step-2 artifact
@@ -477,17 +549,19 @@ def load_task_a_frozen():
     Nothing in this path may consult Task B. If the artifact is missing the arm
     is skipped, never silently re-fitted.
     """
+    if rendering is None:
+        return None
     path = OUT_DIR / "p5_factorial_control.json"
     if not path.exists():
         return None
     doc = json.loads(path.read_text(encoding="utf-8"))
     try:
-        arm = doc["renderings"]["SCOPED"]["conditional"]["bigram_only_tfidf"]
+        arm = doc["renderings"][rendering]["conditional"]["bigram_only_tfidf"]
+        uni = doc["renderings"][rendering]["marginal"]["unigram_tfidf"]
     except KeyError:
         return None
     weights_by_fold = {d["fold"]: [float(d["weights"][0]), float(d["weights"][1])]
                        for d in arm["per_fold"]}
-    uni = doc["renderings"]["SCOPED"]["marginal"]["unigram_tfidf"]
     unigram_by_fold = {d["fold"]: float(d["weights"][0]) for d in uni["per_fold"]}
 
     # Replay step 2's population to recover its CTH -> fold map exactly.
@@ -500,7 +574,126 @@ def load_task_a_frozen():
     return {"pair_by_fold": weights_by_fold, "unigram_by_fold": unigram_by_fold,
             "fold_of": fold_of, "fold_loads": loads,
             "n_task_a_queries": len(task_a_queries),
-            "source": str(path)}
+            "task_a_rendering": rendering, "source": str(path)}
+
+
+def paired_final_system(records_frozen, records_fitted, cluster_of):
+    """Fix (e): compare the two FINAL SYSTEMS directly on identical query IDs.
+
+    Comparing two within-system increments does not establish "matches or
+    beats" -- a larger increment can come from a weaker baseline. This is the
+    frozen system's recall@1 minus the fitted system's, paired per query, with
+    a composition-cluster interval."""
+    common = sorted(set(records_frozen) & set(records_fitted))
+    if not common:
+        return None
+    by_cluster = defaultdict(list)
+    for q in common:
+        by_cluster[cluster_of.get(q, q)].append(
+            float(records_frozen[q]["recall@1"] - records_fitted[q]["recall@1"]))
+    delta, ci = cluster_bootstrap(by_cluster)
+    return {
+        "n_paired": len(common), "n_clusters": len(by_cluster),
+        "recall@1_task_a_frozen": float(np.mean(
+            [records_frozen[q]["recall@1"] for q in common])),
+        "recall@1_task_b_fitted": float(np.mean(
+            [records_fitted[q]["recall@1"] for q in common])),
+        "delta_frozen_minus_fitted": delta, "cluster_ci95": ci,
+        "cluster_p": bootstrap_p_value(by_cluster),
+        "estimand": ("final-system recall@1 difference on identical query "
+                     "IDs; NOT a comparison of within-arm increments"),
+    }
+
+
+def prepare_group_matrices(groups, scope_name):
+    """z-normalized BM25 / unigram / bigram similarity INSIDE each group's own
+    candidate universe."""
+    for g in groups:
+        if not g["q_rows"]:
+            continue
+        g["zb"] = _comb.znorm_rows(_fc.bm25_similarity(
+            g["c_rows"], g["q_rows"], g["ckey"], query_rendering=g["qkey"]))
+        g["zu"] = _comb.znorm_rows(_fc.channel_similarity(
+            g["c_rows"], g["q_rows"], g["ckey"], "unigram_tfidf",
+            query_rendering=g["qkey"]))
+        g["zg"] = _comb.znorm_rows(_fc.channel_similarity(
+            g["c_rows"], g["q_rows"], g["ckey"], "bigram_only_tfidf",
+            query_rendering=g["qkey"]))
+    return groups
+
+
+def group_retrieve(groups, cell, weights, fold_of, family_map, fold=None,
+                   invert=False):
+    """Retrieve across every group, concatenating per-query records.
+
+    fold=None scores everything; otherwise `invert=False` scores that fold's
+    queries (held-out) and `invert=True` scores the others (the fit set)."""
+    au, ab = weights
+    out = {}
+    for g in groups:
+        if not g["q_rows"]:
+            continue
+        pos = g["positives"][cell]
+        if not pos:
+            continue
+        idx = []
+        for i, r in enumerate(g["q_rows"]):
+            f = fold_of.get(r["cth"])
+            if fold is None or (f != fold if invert else f == fold):
+                idx.append(i)
+        if not idx:
+            continue
+        scores = g["zb"] + au * g["zu"] + (ab * g["zg"] if ab else 0.0)
+        pq, _agg = eh.run_retrieval(
+            [g["q_rows"][i]["fragment_id"] for i in idx], [None] * len(idx),
+            [r["fragment_id"] for r in g["c_rows"]],
+            [None] * len(g["c_rows"]),
+            pos, ks=KS, family_map=family_map,
+            precomputed_scores=np.asarray(scores)[idx, :])
+        out.update({r["query_id"]: r for r in pq})
+    return out
+
+
+def cross_fitted_groups(groups, fold_of, family_map):
+    """Cross-fitting for a query-relative scope: weights fitted per fold on the
+    pooled objective across ALL groups, applied to that fold's held-out queries
+    inside each group's own candidate universe."""
+    per_fold = []
+    held = {cell: {"u": {}, "ub": {}} for cell in PRIMARY_CELLS}
+    for f in range(_comb.N_FOLDS):
+        best_u, best_ru = None, -1.0
+        for au in _comb.ALPHA_GRID:
+            recs = group_retrieve(groups, "pooled", (au, 0.0), fold_of,
+                                  family_map, fold=f, invert=True)
+            r = (float(np.mean([x["recall@1"] for x in recs.values()]))
+                 if recs else 0.0)
+            if r > best_ru + 1e-12:
+                best_u, best_ru = au, r
+        best_pair, best_rp = None, -1.0
+        for au in _comb.ALPHA_GRID:
+            for ab in _fc.SECOND_GRID:
+                recs = group_retrieve(groups, "pooled", (au, ab), fold_of,
+                                      family_map, fold=f, invert=True)
+                r = (float(np.mean([x["recall@1"] for x in recs.values()]))
+                     if recs else 0.0)
+                if r > best_rp + 1e-12:
+                    best_pair, best_rp = (au, ab), r
+        weights_by_cell = {}
+        for cell in PRIMARY_CELLS:
+            held[cell]["u"].update(group_retrieve(
+                groups, cell, (best_u, 0.0), fold_of, family_map, fold=f))
+            held[cell]["ub"].update(group_retrieve(
+                groups, cell, best_pair, fold_of, family_map, fold=f))
+            weights_by_cell[cell] = {"alpha_unigram_only": best_u,
+                                     "alpha_pair": list(best_pair)}
+        per_fold.append({"fold": f, "alpha_unigram_only": best_u,
+                         "alpha_pair": list(best_pair),
+                         "fit_recall@1_unigram": best_ru,
+                         "fit_recall@1_pair": best_rp,
+                         "weights_by_cell": weights_by_cell})
+        print(f"    fold {f}: a_u={best_u} pair={best_pair} "
+              f"fit_u={best_ru:.4f} fit_pair={best_rp:.4f}")
+    return per_fold, held
 
 
 def check_c5_weights_constant_within_fold(per_fold):
@@ -830,14 +1023,20 @@ def main():
 
     reconstructed = eh.load_reconstructed()
     raw_fields = raw_join_fields()
-    task_a = load_task_a_frozen()
-    if task_a is None:
-        print("  Task-A-frozen arm SKIPPED: step-2 artifact absent "
-              "(never silently re-fitted)")
-    else:
-        print(f"  Task-A-frozen arm available: weights from {task_a['source']}, "
-              f"fold map replayed over {task_a['n_task_a_queries']} Task A "
-              f"queries, loads {task_a['fold_loads']}")
+    task_a_cache = {}
+    for _sc in scope_names:
+        rend = TASK_A_RENDERING_FOR.get(_sc)
+        task_a_cache[_sc] = load_task_a_frozen(rend)
+        if rend is None:
+            print(f"  Task-A-frozen arm for {_sc}: NO MATCHING Step 2 "
+                  "rendering exists; arm omitted rather than transporting a "
+                  "differently-scoped configuration")
+        elif task_a_cache[_sc] is None:
+            print(f"  Task-A-frozen arm for {_sc}: step-2 artifact absent "
+                  "(never silently re-fitted)")
+        else:
+            print(f"  Task-A-frozen arm for {_sc}: matching Step 2 rendering "
+                  f"{rend!r}, weights {task_a_cache[_sc]['pair_by_fold']}")
 
     # §4 common population: the queries EVERY run scope can serve. Cross-scope
     # absolute numbers are otherwise on different query sets and are not
@@ -894,10 +1093,96 @@ def main():
     }
 
     per_query_out = defaultdict(dict)
+    scored_ids = defaultdict(dict)      # scope -> cell -> set of scored ids
+    cell_records = defaultdict(dict)    # scope -> cell -> (recs_u, recs_ub)
     for scope_name in [s for s in scope_names
                        if s in FIXED_SCOPES or s == "SAME_LANGUAGE_AS_QUERY"
                        or s == "CROSS_LANGUAGE_PARALLEL"]:
         print(f"\n=== scope {scope_name} ===")
+        task_a = task_a_cache.get(scope_name)
+        is_qr = scope_name in QUERY_RELATIVE_SCOPES
+
+        if is_qr:
+            # Third amendment (a)/(b): queries in their OWN language, candidates
+            # under the scope's admission RELATIVE TO THE QUERY LANGUAGE.
+            groups = build_language_groups(dev_rows, labeled, scope_name,
+                                           positives)
+            n_q = sum(len(g["q_rows"]) for g in groups)
+            n_eligible = sum(g["n_eligible_queries"] for g in groups)
+            print("  language groups: " + ", ".join(
+                f"{g['language']}={len(g['q_rows'])}/{g['n_eligible_queries']}q"
+                f"/{len(g['c_rows'])}c" for g in groups))
+            # (c) ceiling conditional on QUERY eligibility
+            ceiling = {}
+            for cell in PRIMARY_CELLS:
+                total = reachable = 0
+                for g in groups:
+                    c_ids = {r["fragment_id"] for r in g["c_rows"]}
+                    for q in [r["fragment_id"] for r in dev_rows
+                              if r["language"] == g["language"]
+                              and n_content(r, g["qkey"]) >= MIN_CONTENT_TOKENS]:
+                        for t in positives[cell].get(q, set()):
+                            total += 1
+                            if t in c_ids:
+                                reachable += 1
+                ceiling[cell] = {
+                    "positives_considered_from_eligible_queries": total,
+                    "positives_reachable": reachable,
+                    "reachable_ceiling": (reachable / total) if total else None}
+            coverage = {
+                "n_dev_queries_base": len(dev_rows),
+                "n_queries_eligible_own_language": n_eligible,
+                "n_queries_with_reachable_positive": n_q,
+                "queries_lost": len(dev_rows) - n_q,
+                "reachable_ceiling_conditional_on_query_eligibility": ceiling,
+                "per_language": [
+                    {"language": g["language"],
+                     "eligible_queries": g["n_eligible_queries"],
+                     "queries_with_reachable_positive": len(g["q_rows"]),
+                     "candidate_universe": len(g["c_rows"])} for g in groups],
+            }
+            if scope_name == "CROSS_LANGUAGE_PARALLEL":
+                coverage["positive_semantics"] = (
+                    "DIFFERENT-LANGUAGE SAME-CTH relations, not independently "
+                    "annotated as actual textual parallels.")
+            print(f"  ceiling (conditional on query eligibility): "
+                  f"{ {k: (round(v['reachable_ceiling'], 4) if v['reachable_ceiling'] is not None else None) for k, v in ceiling.items()} }")
+            if n_q < _comb.N_FOLDS:
+                block = {"coverage": coverage, "cells": {}, "strata": {},
+                         "status": "NOT_EVALUABLE",
+                         "reason": f"{n_q} queries retain a reachable positive"}
+                print(f"  NOT EVALUABLE: {block['reason']}")
+                result["scopes"][scope_name] = block
+                continue
+
+            prepare_group_matrices(groups, scope_name)
+            qr_queries = [r for g in groups for r in g["q_rows"]]
+            qr_fold_of, _loads = _comb.assign_folds(qr_queries)
+            per_fold, held = cross_fitted_groups(groups, qr_fold_of, family_map)
+            c5 = check_c5_weights_constant_within_fold(per_fold)
+            print(f"  C5 weights constant within each fold: {c5['passed']}")
+            qr_clusters = {r["fragment_id"]: f"cth::{r['cth']}"
+                           for r in qr_queries}
+            block = {"per_fold_weight_selection": per_fold,
+                     "coverage": coverage, "cells": {}, "strata": {},
+                     "checks": {"C5": c5},
+                     "status": "EVALUATED_PER_QUERY_LANGUAGE_GROUP"}
+            for cell in PRIMARY_CELLS:
+                res, cu, cub = cell_result(held[cell]["u"], held[cell]["ub"],
+                                           qr_clusters, cell)
+                block["cells"][cell] = res
+                print(f"  {cell:11s} d={res['delta_recall@1']:+.4f} "
+                      f"CI [{res['cluster_ci95'][0]:+.4f},"
+                      f"{res['cluster_ci95'][1]:+.4f}] p={res['cluster_p']:.4f} "
+                      f"n={res['n_paired']} clusters={res['n_clusters']}")
+                for q in set(cu) & set(cub):
+                    per_query_out[q][f"{scope_name}::{cell}::unigram"] = int(cu[q])
+                    per_query_out[q][f"{scope_name}::{cell}::unigram_bigram"] = int(cub[q])
+                scored_ids[scope_name][cell] = set(cu) & set(cub)
+                cell_records[scope_name][cell] = (held[cell]["u"], held[cell]["ub"])
+            result["scopes"][scope_name] = block
+            continue
+
         # §4: the scope's own scorable index and query set. What it refuses is
         # counted, not scored as failure.
         s_index = scorable(labeled, scope_name)
@@ -1082,24 +1367,11 @@ def main():
             for q in set(cu) & set(cub):
                 per_query_out[q][f"{scope_name}::{cell}::unigram"] = int(cu[q])
                 per_query_out[q][f"{scope_name}::{cell}::unigram_bigram"] = int(cub[q])
+            scored_ids[scope_name][cell] = set(cu) & set(cub)
+            cell_records[scope_name][cell] = (held[cell]["u"], held[cell]["ub"])
             if cell == "joins":
                 block["strata"]["joins"] = descriptive_strata(
                     cu, cub, strata, clusters)
-            # §4 sensitivity: same frozen system, restricted to the queries
-            # every scope can serve, so scopes become comparable.
-            cu_c = {q: v for q, v in cu.items() if q in common_ids}
-            cub_c = {q: v for q, v in cub.items() if q in common_ids}
-            if cu_c:
-                by_cl = defaultdict(list)
-                for q in cu_c:
-                    by_cl[clusters.get(q, q)].append(float(cub_c[q] - cu_c[q]))
-                d_c, ci_c = cluster_bootstrap(by_cl)
-                block.setdefault("common_population", {})[cell] = {
-                    "n_queries": len(cu_c), "n_clusters": len(by_cl),
-                    "recall@1_unigram": float(np.mean(list(cu_c.values()))),
-                    "recall@1_unigram_bigram": float(np.mean(list(cub_c.values()))),
-                    "delta_recall@1": d_c, "cluster_ci95": ci_c,
-                }
 
         # --- §5.1 joins-only, second row: the bin-exception population ------
         # Bin-exception fragments never enter any weight fit -- they are
@@ -1309,23 +1581,69 @@ def main():
             if ta_u:
                 res_ta, _x, _y = cell_result(
                     ta_u, ta_ub, s_clusters["pooled"], "task_a_frozen_pooled")
-                res_ta["status"] = "SECONDARY_ARM_TASK_A_FROZEN"
+                res_ta["status"] = "SECONDARY_ARM_TASK_A_FROZEN_MATCHING_SCOPE"
                 res_ta["weights_source"] = task_a["source"]
+                res_ta["task_a_rendering"] = task_a["task_a_rendering"]
                 res_ta["weights_used_by_fold"] = used
                 res_ta["queries_without_task_a_fold"] = len(miss)
                 res_ta["note"] = (
-                    "Task A's committed per-fold weights and Task A's own "
-                    "fold mapping, applied unchanged. Nothing here is "
-                    "selected or retuned on Task B. Queries whose CTH had no "
-                    "Task A fold are excluded and counted, never reassigned.")
+                    "Task A's committed per-fold weights from the MATCHING "
+                    f"Step 2 rendering ({task_a['task_a_rendering']}) and Task "
+                    "A's own fold mapping, applied unchanged. Nothing selected "
+                    "or retuned on Task B. Queries whose CTH had no Task A "
+                    "fold are excluded and counted, never reassigned.")
+                # (e) direct paired comparison of FINAL SYSTEMS
+                fitted_ub = cell_records[scope_name]["pooled"][1]
+                res_ta["vs_task_b_fitted_final_system"] = paired_final_system(
+                    ta_ub, fitted_ub, s_clusters["pooled"])
                 block["cells"]["task_a_frozen_pooled"] = res_ta
-                print(f"  taskA-frozen pooled d={res_ta['delta_recall@1']:+.4f} "
-                      f"CI [{res_ta['cluster_ci95'][0]:+.4f},"
-                      f"{res_ta['cluster_ci95'][1]:+.4f}] "
-                      f"n={res_ta['n_paired']} (excluded {len(miss)} "
-                      "queries with no Task A fold)")
+                cmp_fs = res_ta["vs_task_b_fitted_final_system"]
+                print(f"  taskA-frozen({task_a['task_a_rendering']}) pooled "
+                      f"within-arm d={res_ta['delta_recall@1']:+.4f}; "
+                      f"FINAL-SYSTEM vs Task-B-fitted "
+                      f"{cmp_fs['delta_frozen_minus_fitted']:+.4f} "
+                      f"CI [{cmp_fs['cluster_ci95'][0]:+.4f},"
+                      f"{cmp_fs['cluster_ci95'][1]:+.4f}] "
+                      f"p={cmp_fs['cluster_p']:.4f} n={cmp_fs['n_paired']}")
 
         result["scopes"][scope_name] = block
+
+    # --- (f) common population, intersected PER RELATION CELL over the query
+    # IDs actually SCORED in that cell. Intersecting eligibility is not enough:
+    # a query with no reachable positive in a cell is dropped by the retrieval
+    # runner, so cell denominators differ even on a common eligibility set.
+    evaluable = [s for s in scored_ids if scored_ids[s]]
+    if len(evaluable) > 1:
+        common_cells = {}
+        for cell in PRIMARY_CELLS:
+            ids = None
+            for s in evaluable:
+                got = scored_ids[s].get(cell, set())
+                ids = got if ids is None else (ids & got)
+            ids = ids or set()
+            if not ids:
+                continue
+            entry = {"n_scored_common": len(ids), "scopes": evaluable,
+                     "by_scope": {}}
+            for s in evaluable:
+                ru, rub = cell_records[s][cell]
+                entry["by_scope"][s] = {
+                    "recall@1_unigram": float(np.mean(
+                        [ru[q]["recall@1"] for q in ids])),
+                    "recall@1_unigram_bigram": float(np.mean(
+                        [rub[q]["recall@1"] for q in ids])),
+                }
+            common_cells[cell] = entry
+            print(f"  common-scored {cell:11s} n={len(ids)} " + " ".join(
+                f"{s.split('_')[0]}={entry['by_scope'][s]['recall@1_unigram_bigram']:.4f}"
+                for s in evaluable))
+        result["common_population_per_cell"] = {
+            "note": ("Intersected over query IDs actually SCORED in each cell, "
+                     "so every scope shares one denominator per cell. No "
+                     "dedicated inference was pre-registered for between-scope "
+                     "differences and none is offered."),
+            "cells": common_cells,
+        }
 
     # --- §6 Holm-Bonferroni on the one declared family ---------------------
     if PRIMARY_SCOPE in result["scopes"]:
