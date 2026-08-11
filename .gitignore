@@ -27,6 +27,9 @@ __pycache__/
 # Local Claude Code session config, not project content
 .claude/
 
+# macOS Finder metadata, not project content
+.DS_Store
+
 # Ad-hoc local backups, not project content
 results.zip
 
