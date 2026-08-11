@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuneiform Lab Binder</title>
+<style>
+:root{
+  --clay:#c96f3f;        /* wedge accent */
+  --clay-deep:#9c4d26;
+  --ink:#231c14;         /* dark umber ink */
+  --ink-soft:#5c5142;
+  --tablet:#e9dcc3;      /* clay tablet */
+  --tablet-dk:#dcc9a6;
+  --page:#f6efe0;        /* paper */
+  --page-line:#e4d8c1;
+  --rule:#cdb48c;
+  --lapis:#2f5d78;       /* dated */
+  --verd:#5f7a4a;        /* status good */
+  --edge:#b79b6d;
+  --shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px -12px rgba(60,40,10,.35);
+  --mono:"SFMono-Regular",ui-monospace,"Cascadia Mono",Menlo,Consolas,monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--sans);color:var(--ink);
+  background:
+    radial-gradient(circle at 12% -5%, #f0e6d0, transparent 45%),
+    radial-gradient(circle at 100% 0%, #efe3c9, transparent 40%),
+    #c8b48d;
+  background-color:#c8b48d;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:22px 16px 80px}
+
+/* masthead */
+.mast{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  padding:14px 20px;margin-bottom:6px;border-bottom:2px solid var(--ink);}
+.wedge{font-size:30px;letter-spacing:2px;color:var(--clay-deep);line-height:1}
+.mast h1{font-family:var(--serif);font-weight:600;margin:0;font-size:26px;letter-spacing:.2px}
+.mast .sub{font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.14em;margin-top:3px}
+.mast .spacer{flex:1}
+.mast .repo{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.mast .repo a{color:var(--clay-deep);text-decoration:none}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 4px 2px}
+.search{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;
+  background:var(--page);border:1px solid var(--edge);border-radius:8px;padding:8px 12px;box-shadow:var(--shadow)}
+.search input{border:0;background:transparent;outline:0;flex:1;font-size:14px;color:var(--ink);font-family:var(--sans)}
+.search .k{font-family:var(--mono);font-size:10px;color:var(--ink-soft);border:1px solid var(--edge);border-radius:4px;padding:1px 5px}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--tablet);border:1px solid var(--edge);color:var(--ink);border-radius:7px;padding:8px 11px;cursor:pointer;box-shadow:var(--shadow)}
+.btn:hover{background:var(--tablet-dk)}
+.btn.on{background:var(--clay);color:#fff;border-color:var(--clay-deep)}
+
+/* binder body: tab rail + page */
+.binder{display:grid;grid-template-columns:186px 1fr;gap:0;margin-top:14px}
+.rail{display:flex;flex-direction:column;gap:6px;padding-top:10px}
+.tab{position:relative;text-align:left;cursor:pointer;border:0;
+  font-family:var(--sans);color:var(--ink);
+  background:var(--tablet);border:1px solid var(--edge);border-right:0;
+  border-radius:9px 0 0 9px;padding:11px 12px 11px 14px;box-shadow:var(--shadow);
+  transition:transform .12s ease, background .12s ease}
+.tab:hover{background:var(--tablet-dk);transform:translateX(2px)}
+.tab.active{background:var(--page);transform:translateX(6px);z-index:3;border-color:var(--ink)}
+.tab .lab{display:block;font-weight:600;font-size:14.5px;font-family:var(--serif)}
+.tab .sb{display:block;font-size:10.5px;color:var(--ink-soft);margin-top:2px;line-height:1.25}
+.tab .ct{position:absolute;top:9px;right:10px;font-family:var(--mono);font-size:10px;color:var(--ink-soft)}
+.tab .spine{position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:3px;background:var(--clay)}
+.tab[data-c="now"] .spine{background:#8a6d3b}
+.tab[data-c="p1"] .spine{background:#9a8352}
+.tab[data-c="p2"] .spine{background:#7a8a4a}
+.tab[data-c="p3"] .spine{background:#4a8a7e}
+.tab[data-c="p4"] .spine{background:#4a6f8a}
+.tab[data-c="p5"] .spine{background:#8a4a63}
+.tab[data-c="exp"] .spine{background:#8a5a2f}
+.tab[data-c="ref"] .spine{background:#6b5a3f}
+
+.page{background:var(--page);border:1px solid var(--ink);border-radius:0 12px 12px 12px;
+  min-height:70vh;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.page:before{content:"";position:absolute;left:34px;top:0;bottom:0;width:1px;background:var(--clay);opacity:.35}
+.page:after{content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;
+  background:repeating-linear-gradient(transparent,transparent 31px,var(--page-line) 31px,var(--page-line) 32px);opacity:.5}
+.pagehead{position:relative;z-index:2;padding:18px 26px 12px 52px;border-bottom:1.5px solid var(--rule)}
+.pagehead h2{font-family:var(--serif);margin:0;font-size:22px;font-weight:600}
+.pagehead .meta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:4px;letter-spacing:.05em}
+.pagenote{position:relative;z-index:2;margin:12px 26px 4px 52px;padding:10px 14px;font-size:13px;
+  background:#fff6e2;border:1px dashed var(--edge);border-radius:8px;color:var(--ink-soft);line-height:1.5}
+
+/* doc cards */
+.docs{position:relative;z-index:2;padding:8px 22px 26px 44px}
+.doc{border:1px solid var(--page-line);border-left:3px solid var(--clay);
+  background:rgba(255,255,255,.62);border-radius:8px;margin:12px 0;padding:12px 14px 12px 16px;
+  transition:box-shadow .12s ease, border-color .12s ease}
+.doc:hover{box-shadow:0 6px 18px -10px rgba(60,40,10,.4);border-left-color:var(--clay-deep)}
+.doc.star{border-left-color:#c79a2e;background:linear-gradient(90deg,#fff7e0,rgba(255,255,255,.62) 60%)}
+.doc .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.doc .nm{font-family:var(--mono);font-size:13.5px;color:var(--clay-deep);text-decoration:none;font-weight:600;word-break:break-word}
+.doc .nm:hover{text-decoration:underline}
+.doc .star-b{color:#c79a2e;font-size:13px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:20px;border:1px solid transparent;white-space:nowrap}
+.chip.date{background:#e5eef3;color:var(--lapis);border-color:#bcd2de}
+.chip.undated{background:#efe7d6;color:var(--ink-soft);border-color:var(--edge)}
+.chip.st{background:#eaf0e2;color:var(--verd);border-color:#c6d5b2}
+.chip.st.Superseded,.chip.st.Probe,.chip.st.Audit{background:#f3e6dd;color:var(--clay-deep);border-color:#e0c3ad}
+.chip.st.Frozen{background:#e8e4da;color:#6b5a3f;border-color:#cdbc9c}
+.doc .an{font-size:13px;color:var(--ink);margin:7px 0 0;line-height:1.5;font-family:var(--serif)}
+.doc .why{font-size:12.5px;color:var(--clay-deep);margin:6px 0 0;line-height:1.45;font-style:italic}
+.doc .refs{margin-top:9px;font-size:11px;color:var(--ink-soft);font-family:var(--mono);line-height:1.9}
+.doc .refs a{color:var(--lapis);text-decoration:none;border-bottom:1px dotted #9db9c6}
+.doc .refs a:hover{color:var(--clay-deep)}
+.doc .refs .lbl{color:var(--ink-soft);opacity:.7}
+.doc .actions{margin-top:9px;display:flex;gap:7px;flex-wrap:wrap}
+.mini{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+  border:1px solid var(--edge);background:var(--tablet);border-radius:6px;padding:4px 8px;cursor:pointer;color:var(--ink)}
+.mini:hover{background:var(--tablet-dk)}
+.mini.reading{border-color:var(--clay);color:var(--clay-deep)}
+.doc.read{opacity:.62}
+.doc.read .nm:before{content:"✓ ";color:var(--verd)}
+.notebox{margin-top:9px;width:100%;min-height:0;height:0;overflow:hidden;transition:height .18s ease;
+  border:0;background:transparent}
+.notebox.open{height:78px}
+.notebox textarea{width:100%;height:70px;resize:vertical;font-family:var(--sans);font-size:13px;
+  border:1px solid var(--edge);border-radius:7px;padding:8px;background:#fffdf6;color:var(--ink);outline:0}
+.notebox textarea:focus{border-color:var(--clay)}
+
+.empty{padding:40px 52px;color:var(--ink-soft);font-family:var(--serif);font-style:italic}
+
+/* footer helpers */
+.foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  margin:16px 4px 0;font-family:var(--mono);font-size:11px;color:#4a3f2e}
+.legend{display:flex;gap:14px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.prog{display:flex;align-items:center;gap:8px}
+.bar{width:120px;height:7px;border-radius:5px;background:#d9c6a0;overflow:hidden;border:1px solid var(--edge)}
+.bar i{display:block;height:100%;background:var(--verd);width:0}
+
+@media (max-width:720px){
+  .binder{grid-template-columns:1fr}
+  .rail{flex-direction:row;overflow-x:auto;padding-bottom:6px;gap:6px}
+  .tab{border-radius:9px;border-right:1px solid var(--edge);min-width:150px;flex:0 0 auto}
+  .tab.active{transform:translateY(-3px)}
+  .page{border-radius:12px}
+  .page:before{left:20px}
+  .docs{padding-left:22px}.pagehead,.pagenote{padding-left:26px;margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mast">
+    <div class="wedge">𒀭𒌋𒁀</div>
+    <div>
+      <h1>Cuneiform Lab Binder</h1>
+      <div class="sub">Hittite fragment matching · evidence-bounded reconstruction</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="repo">repo · <a id="repolink" href="#" target="_blank" rel="noopener">brandireger/Cuneiform</a><br>
+      <span id="stamp">reader compiled 2026-08-10</span></div>
+  </div>
+
+  <div class="tools">
+    <div class="search">
+      <span class="wedge" style="font-size:14px">𒁹</span>
+      <input id="q" placeholder="Filter documents, annotations, references…" autocomplete="off">
+      <span class="k">/</span>
+    </div>
+    <button class="btn" id="starBtn">★ One-hour path</button>
+    <button class="btn" id="unreadBtn">Unread only</button>
+    <button class="btn" id="resetBtn">Reset marks</button>
+  </div>
+
+  <div class="binder">
+    <div class="rail" id="rail"></div>
+    <div class="page">
+      <div class="pagehead">
+        <h2 id="ph-title">—</h2>
+        <div class="meta" id="ph-meta"></div>
+      </div>
+      <div id="ph-note"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="legend">
+      <span><i class="dot" style="background:var(--lapis)"></i>dated (pinned)</span>
+      <span><i class="dot" style="background:var(--edge)"></i>undated (dependency-ordered)</span>
+      <span><i class="dot" style="background:#c79a2e"></i>one-hour path</span>
+      <span><i class="dot" style="background:var(--verd)"></i>read</span>
+    </div>
+    <div class="prog">
+      <span id="progtxt">0 / 0 read</span>
+      <span class="bar"><i id="progbar"></i></span>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {"repo": "brandireger/Cuneiform", "gh": "https://github.com/brandireger/Cuneiform/blob/master/", "tabs": [{"key": "now", "label": "Now", "sub": "Orientation & current state", "color": "now", "docs": [{"path": "README.md", "name": "README.md", "date": null, "star": true, "status": "", "annot": "Research code and governed artifacts for evidence-bounded reconstruction of", "why": "The thesis and current standings, in one place. Re-read after the Phase 6 handoff.", "refs": ["AGENTS.md", "CLAUDE.md", "P5_CLOSEOUT.md", "PHASE2_CHARTER.md", "PHASE2_CLOSEOUT.md", "PHASE2_SUCCESSOR_HANDOFF.md", "PHASE4_CHARTER.md", "PHASE4_SUCCESSOR_HANDOFF.md", "PHASE5_SUCCESSOR_HANDOFF.md", "SANDBOX_RULES.md"]}, {"path": "CLAUDE.md", "name": "CLAUDE.md", "date": "2026-07-23", "star": false, "status": "", "annot": "Standing context for all Claude Code sessions in this repository. Read", "why": "The design constitution: identity, research question, epistemic commitments. When a report conflicts with this, stop and flag.", "refs": ["EXPERT_OPINION.md", "P5_CLOSEOUT.md", "PHASE4_CHARTER.md", "PHASE4_SUCCESSOR_HANDOFF.md", "PHASE5_SUCCESSOR_HANDOFF.md", "PHASE6_SUCCESSOR_HANDOFF.md", "Phase3/real_gaps_out/real_gap_census_report.md", "README.md", "reports/p5c2_report.md", "reports/p5c_report.md"]}, {"path": "AGENTS.md", "name": "AGENTS.md", "date": "2026-07-23", "star": false, "status": "", "annot": "Standing context for all Codex sessions in this repository. Read", "why": "The Codex twin of CLAUDE.md — they drift, so diff them before trusting either.", "refs": ["EXPERT_OPINION.md", "P5_CLOSEOUT.md", "PHASE4_CHARTER.md", "PHASE4_SUCCESSOR_HANDOFF.md", "PHASE5_SUCCESSOR_HANDOFF.md", "PHASE6_SUCCESSOR_HANDOFF.md", "Phase3/real_gaps_out/real_gap_census_report.md", "README.md", "reports/p5c2_report.md", "reports/p5c_report.md"]}, {"path": "SANDBOX_RULES.md", "name": "SANDBOX_RULES.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Ratified jointly (Ixca + architect session) 2026-07-22. Phase 1's", "why": "Why so much is 'gated': protected test split, GPU/training authorization.", "refs": []}, {"path": "PHASE6_SUCCESSOR_HANDOFF.md", "name": "PHASE6_SUCCESSOR_HANDOFF.md", "date": "2026-08-04", "star": true, "status": "Closed", "annot": "Handoff date: 2026-08-04", "why": "Current operational reality: the retrieval line is closed, the specialist session is the blocker.", "refs": ["AGENTS.md", "CLAUDE.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_review_sequence_closeout.md", "name": "phase5_review_sequence_closeout.md", "date": "2026-08-04", "star": true, "status": "", "annot": "Date: 2026-08-04. Status: steps 1, 2 and 3 complete. Steps 4–6 open.", "why": "Where the headline result got reframed. The eleven methodological traps and every withdrawal.", "refs": ["reports/phase5_factorial_control_protocol.md", "reports/phase5_factorial_control_results.md", "reports/phase5_statistics_universe_protocol.md", "reports/phase5_statistics_universe_results.md", "reports/phase5_taskb_transfer_protocol.md", "reports/phase5_taskb_transfer_results.md"]}, {"path": "PHASE5_SUCCESSOR_HANDOFF.md", "name": "PHASE5_SUCCESSOR_HANDOFF.md", "date": "2026-08-04", "star": false, "status": "Ratified", "annot": "> SUPERSEDED FOR FORWARD WORK 2026-08-04. Continue from", "why": "Still authoritative for the workbench, cross-line calibration, Gate 3, expert surfaces.", "refs": ["AGENTS.md", "CLAUDE.md", "PHASE4_CHARTER.md", "PHASE4_SUCCESSOR_HANDOFF.md", "PHASE6_SUCCESSOR_HANDOFF.md", "README.md"]}]}, {"key": "p1", "label": "Phase 1", "sub": "Corpus + classical baselines", "color": "p1", "docs": [{"path": "Archive/p1_out/inventory_report.md", "name": "inventory_report.md", "date": "2023-02-01", "star": false, "status": "Frozen", "annot": "Corpus inventory of the TLHdig source.", "why": "", "refs": []}, {"path": "Archive/p2_out/parse_report.md", "name": "parse_report.md", "date": null, "star": false, "status": "Frozen", "annot": "XML parsing of the corpus and its error census.", "why": "", "refs": []}, {"path": "Archive/p2_out/dataset_report.md", "name": "dataset_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Dataset construction from parsed documents.", "why": "", "refs": []}, {"path": "Archive/p2_out/split_report.md", "name": "split_report.md", "date": null, "star": false, "status": "Frozen", "annot": "The frozen train/dev/test splits everything downstream depends on.", "why": "", "refs": []}, {"path": "Archive/p25_out/p25_report.md", "name": "p25_report.md", "date": "2026-07-21", "star": false, "status": "Frozen", "annot": "Join tiering (Tier A/B/C) and provenance patching.", "why": "", "refs": []}, {"path": "Archive/p25_out/join_tiers_report.md", "name": "join_tiers_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Detail on the join-tier structure that recurs as 'Tier C' later.", "why": "", "refs": []}, {"path": "Archive/reports/p3_report.md", "name": "p3_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Classical retrieval baselines — the publishable lexical baseline (BM25 / TF-IDF).", "why": "", "refs": []}, {"path": "Archive/reports/p4_report.md", "name": "p4_report.md", "date": null, "star": false, "status": "Frozen", "annot": "First neural pass — bi-encoder retrieval.", "why": "", "refs": []}, {"path": "Archive/reports/p4b_report.md", "name": "p4b_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Neural diagnostics.", "why": "", "refs": []}, {"path": "Archive/reports/biencoder_report.md", "name": "biencoder_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Bi-encoder training report.", "why": "", "refs": []}, {"path": "Archive/reports/pretrain_report.md", "name": "pretrain_report.md", "date": null, "star": false, "status": "Frozen", "annot": "Pretraining report.", "why": "", "refs": []}, {"path": "Archive/reports/p5_report.md", "name": "p5_report.md", "date": "2026-07-22", "star": false, "status": "Frozen", "annot": "First Phase-5 rerank attempt — superseded by the live tree.", "why": "", "refs": []}], "note": "Phase 1 is frozen in Archive/ and intentionally excluded from the live-tree dates. Read for lineage — how the corpus was built and what classical methods established before any neural work."}, {"key": "p2", "label": "Phase 2", "sub": "Recoverability & calibration", "color": "p2", "docs": [{"path": "PHASE2_CHARTER.md", "name": "PHASE2_CHARTER.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Ratified jointly (Ixca + architect session) 2026-07-22. This is a", "why": "", "refs": ["PHASE2_CLOSEOUT.md", "SANDBOX_RULES.md"]}, {"path": "reports/phase2_premise_audit_1.md", "name": "phase2_premise_audit_1.md", "date": null, "star": false, "status": "Audit", "annot": "Triggered after P2-A, P2-D, and P2-B under SANDBOX_RULES.md rule 13.", "why": "", "refs": ["SANDBOX_RULES.md"]}, {"path": "reports/phase2_readiness_report.md", "name": "phase2_readiness_report.md", "date": "2026-07-23", "star": false, "status": "Probe", "annot": "- Review date: 2026-07-23", "why": "", "refs": []}, {"path": "reports/phase2_p2a_feasibility.md", "name": "phase2_p2a_feasibility.md", "date": null, "star": false, "status": "Probe", "annot": "Does TLHdig/P2 encode a true within-line seam and offset that can serve as the target for P2-A's handed-over-truth localization test?", "why": "", "refs": []}, {"path": "reports/phase2_p2b_materiality_inventory.md", "name": "phase2_p2b_materiality_inventory.md", "date": null, "star": false, "status": "Probe", "annot": "Which physical and structural signals used to assess cuneiform joins are encoded in TLHdig, and which are absent?", "why": "", "refs": []}, {"path": "reports/phase2_p2d_reliability.md", "name": "phase2_p2d_reliability.md", "date": null, "star": false, "status": "Probe", "annot": "Does TLHdig record different evidential bases for dev join labels, and is the frozen 46-query BM25 hard set enriched for weaker bases?", "why": "", "refs": []}, {"path": "reports/phase2_p2e_witness_recoverability.md", "name": "phase2_p2e_witness_recoverability.md", "date": null, "star": true, "status": "Probe", "annot": "- Carried-forward 00_tracers.py: PASS; 0 blocking failures (its D18 T4 diagnostic remains visible and non-blocking).", "why": "The project's central question, first answered: when do independent witnesses constrain a hidden span?", "refs": []}, {"path": "reports/phase2_p2e2_abstention_calibration.md", "name": "phase2_p2e2_abstention_calibration.md", "date": null, "star": false, "status": "Probe", "annot": "- 00_tracers.py: PASS, zero blocking failures; the existing D18 diagnostic remains visible and non-blocking.", "why": "", "refs": []}, {"path": "reports/phase2_p2e3_cross_calibration.md", "name": "phase2_p2e3_cross_calibration.md", "date": null, "star": false, "status": "Probe", "annot": "- Base tracers: PASS, zero blocking failures; D18's historical diagnostic remains visible and non-blocking.", "why": "", "refs": []}, {"path": "reports/phase2_p2e4_candidate_set_audit.md", "name": "phase2_p2e4_candidate_set_audit.md", "date": null, "star": true, "status": "Probe", "annot": "- Base tracers: PASS, zero blocking failures; historical D18 T4 remains diagnostic and non-blocking.", "why": "The pivot from top-1 accuracy to 'does the shown set contain the truth' — the metric that fits an expert tool.", "refs": []}, {"path": "reports/phase2_p2e5_alignment_probe.md", "name": "phase2_p2e5_alignment_probe.md", "date": null, "star": false, "status": "Probe", "annot": "- Base tracers: PASS, zero blocking failures; historical D18 T4 remains diagnostic and non-blocking.", "why": "", "refs": []}, {"path": "reports/phase2_p2e6_multisign_horizon.md", "name": "phase2_p2e6_multisign_horizon.md", "date": null, "star": false, "status": "Probe", "annot": "- Base tracers: PASS, zero blocking failures; historical D18 T4 remains diagnostic and non-blocking.", "why": "", "refs": []}, {"path": "reports/phase2_p2e7_contract.md", "name": "phase2_p2e7_contract.md", "date": null, "star": false, "status": "Probe", "annot": "Contract v1.1.0 now represents single- and multi-sign candidate sets, explicit abstention, typed evidence, assistance layers, collapsed equal-support tails, and hash-bound expert decisions. The executable validator forbi…", "why": "", "refs": []}, {"path": "reports/phase2_p2e8_cross_line_recoverability.md", "name": "phase2_p2e8_cross_line_recoverability.md", "date": null, "star": false, "status": "", "annot": "This is a census, not a calibration. It establishes whether cross-line anchors have recoverable witness support at all. No number here is a probability, and none may be applied to a real gap as a rate — that requires the…", "why": "", "refs": []}, {"path": "reports/phase2_p2e9_cross_line_calibration.md", "name": "phase2_p2e9_cross_line_calibration.md", "date": "2026-07-28", "star": true, "status": "Ratified", "annot": "Cell a2_m1 — the cell the real-gap single-sign pipeline applies. Composition-folded, fit on calibration compositions and reported on held-out ones, witness support required from an independent source family.", "why": "The sharpest epistemic line in the project: a calibrated rate is a property of many past comparisons, never one lost reading's probability.", "refs": []}, {"path": "reports/phase2_p2e9_ratification.md", "name": "phase2_p2e9_ratification.md", "date": "2026-07-28", "star": false, "status": "Ratified", "annot": "Decided by: Ixca, 2026-07-28.", "why": "", "refs": []}, {"path": "reports/phase2_p2e10_cross_line_multisign.md", "name": "phase2_p2e10_cross_line_multisign.md", "date": "2026-07-28", "star": false, "status": "Ratified", "annot": "The multi-sign analogue of P2-E9, and the last piece needed before a cross-line real gap longer than one sign can be shown to an expert.", "why": "", "refs": []}, {"path": "PHASE2_CLOSEOUT.md", "name": "PHASE2_CLOSEOUT.md", "date": "2026-07-23", "star": false, "status": "Probe", "annot": "Closed 2026-07-23 on branch codex/phase2-readiness.", "why": "", "refs": []}, {"path": "PHASE2_SUCCESSOR_HANDOFF.md", "name": "PHASE2_SUCCESSOR_HANDOFF.md", "date": "2026-07-23", "star": false, "status": "Audit", "annot": "Prepared 2026-07-23 for the next maintainer of the Cuneiform/Takšan project.", "why": "", "refs": ["AGENTS.md", "PHASE2_CLOSEOUT.md"]}]}, {"key": "p3", "label": "Phase 3", "sub": "Playground & real gaps", "color": "p3", "docs": [{"path": "PHASE3_SUCCESSOR_HANDOFF.md", "name": "PHASE3_SUCCESSOR_HANDOFF.md", "date": "2026-07-25", "star": false, "status": "Closed", "annot": "Prepared 2026-07-25 for the next maintainer of the Cuneiform/Takšan project,", "why": "", "refs": ["CLAUDE.md", "PHASE2_CLOSEOUT.md", "PHASE2_SUCCESSOR_HANDOFF.md", "PHASE4_CHARTER.md", "Phase3/real_gaps_out/real_gap_calibration_report.md", "Phase3/real_gaps_out/real_gap_multisign_calibration_report.md", "Phase3/real_gaps_out/real_gap_witness_check_report.md"]}, {"path": "Phase3/demo_out/missing_text_demo_data_report.md", "name": "missing_text_demo_data_report.md", "date": null, "star": false, "status": "", "annot": "Sources: Phase2/phase2_out/p2e4_candidate_set_packets.jsonl (16 packets) + Phase2/phase2_out/p2e6_multisign_packets.jsonl (12 packets).", "why": "", "refs": ["CLAUDE.md"]}, {"path": "Phase3/real_gaps_out/real_gap_census_report.md", "name": "real_gap_census_report.md", "date": "2026-07-26", "star": false, "status": "", "annot": "<!-- p4d-staleness-stamp -->", "why": "", "refs": []}, {"path": "Phase3/real_gaps_out/real_gap_calibration_report.md", "name": "real_gap_calibration_report.md", "date": "2026-07-31", "star": false, "status": "Ratified", "annot": "Reuses already-computed, composition-disjoint fold calibrations -- P2-E4 for same-line gaps and the separately ratified P2-E9 calibration for cross-line gaps. No recalibration happens here, and their rates and counts are…", "why": "", "refs": []}, {"path": "Phase3/real_gaps_out/real_gap_multisign_calibration_report.md", "name": "real_gap_multisign_calibration_report.md", "date": null, "star": false, "status": "", "annot": "Reuses the already-computed, already-frozen fold calibration from Phase2/phase2_out/p2e6_multisign_horizon.json -- no recalibration. Unlike step 3's per-rank P2-E4 rates, this calibration is a set-inclusion rate, keyed b…", "why": "", "refs": []}, {"path": "Phase3/real_gaps_out/real_gap_empty_middle_census_report.md", "name": "real_gap_empty_middle_census_report.md", "date": null, "star": false, "status": "", "annot": "This is a census, not a scoring change. Nothing in the real-gap pipeline was altered by running it. It closes the measurement half of PHASE5_SUCCESSOR_HANDOFF.md open item 4; the decision half is Ixca's.", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "Phase3/real_gaps_out/real_gap_witness_check_report.md", "name": "real_gap_witness_check_report.md", "date": null, "star": false, "status": "", "annot": "Scope: top 5 CTHs by gap count from step 1 -- CTH [628, 627, 701, 577, 647], 867 documents. Cross-line anchor search capped at 3 lines per side (Ixca's call, after seeing the uncapped distribution ran as far as 39 lines …", "why": "", "refs": []}]}, {"key": "p4", "label": "Phase 4", "sub": "Gates, APIs, workbench", "color": "p4", "docs": [{"path": "PHASE4_CHARTER.md", "name": "PHASE4_CHARTER.md", "date": "2026-07-26", "star": false, "status": "Ratified", "annot": "Status: GATE 2 PASSED; P4-D AND P4-E IMPLEMENTED (2026-07-26) AND", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "Phase4/phase4_out/gate0_language_audit_report.md", "name": "gate0_language_audit_report.md", "date": null, "star": false, "status": "Audit", "annot": "GATE 0 DECISION EVIDENCE — not a model result.", "why": "", "refs": []}, {"path": "reports/phase4_gate0_ratification.md", "name": "phase4_gate0_ratification.md", "date": "2026-07-25", "star": false, "status": "", "annot": "Status: PASSED — Gate 1 migration implementation authorized (2026-07-25).", "why": "", "refs": []}, {"path": "Phase4/phase4_out/gate2_token_dataset_report.md", "name": "gate2_token_dataset_report.md", "date": null, "star": false, "status": "", "annot": "Status: PASS — language-aware API/workbench implementation may proceed; training remains unauthorized.", "why": "", "refs": []}, {"path": "reports/phase4_p4d_language_aware_apis.md", "name": "phase4_p4d_language_aware_apis.md", "date": "2026-07-26", "star": false, "status": "Ratified", "annot": "Status: implemented 2026-07-26. No metric artifact was republished; no", "why": "", "refs": ["CLAUDE.md"]}, {"path": "reports/phase4_p4de_ratification.md", "name": "phase4_p4de_ratification.md", "date": "2026-07-27", "star": false, "status": "", "annot": "Decided by: Ixca, 2026-07-27.", "why": "", "refs": []}, {"path": "reports/phase4_p4e_unresolved_workbench.md", "name": "phase4_p4e_unresolved_workbench.md", "date": "2026-07-26", "star": false, "status": "", "annot": "Status: implemented 2026-07-26. No protected-test payload was opened; no", "why": "", "refs": ["Phase4/phase4_out/unresolved_workbench_report.md"]}, {"path": "reports/phase4_p4e2_expert_interface.md", "name": "phase4_p4e2_expert_interface.md", "date": "2026-07-27", "star": false, "status": "Ratified", "annot": "Status: implemented 2026-07-27; browser smoke-tested 2026-07-29, then fully", "why": "", "refs": []}, {"path": "Phase4/phase4_out/unresolved_workbench_report.md", "name": "unresolved_workbench_report.md", "date": null, "star": false, "status": "", "annot": "Contract: unresolved_evidence_contract v1.1.0. Every record is NOT_CORPUS_TRUTH.", "why": "", "refs": []}, {"path": "reports/phase4_p4f_baseline_diagnostic.md", "name": "phase4_p4f_baseline_diagnostic.md", "date": "2026-08-03", "star": false, "status": "", "annot": "Status: ANSWERED 2026-08-03. The cause is a configuration defect in the", "why": "", "refs": []}, {"path": "reports/phase4_p4f_stage1.md", "name": "phase4_p4f_stage1.md", "date": "2026-08-03", "star": false, "status": "Superseded", "annot": "Status: COMPLETE 2026-08-03. Pre-registered hypothesis REJECTED.", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase4_p4f_stage1_matched.md", "name": "phase4_p4f_stage1_matched.md", "date": "2026-08-04", "star": false, "status": "Probe", "annot": "Status: COMPLETE 2026-08-04. Pre-registered hypothesis REJECTED — on the", "why": "", "refs": []}, {"path": "reports/phase4_p4f_gate3_proposal.md", "name": "phase4_p4f_gate3_proposal.md", "date": "2026-08-02", "star": false, "status": "Ratified", "annot": "Status: RATIFIED 2026-08-02 (Ixca), as drafted, no changes requested.", "why": "", "refs": ["AGENTS.md", "P5_CLOSEOUT.md", "PHASE4_CHARTER.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase4_p4g_rerun.md", "name": "phase4_p4g_rerun.md", "date": "2026-07-27", "star": false, "status": "Closed", "annot": "Run: 2026-07-27. All ten affected artifacts recomputed under the required,", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md", "Phase3/real_gaps_out/real_gap_census_report.md"]}, {"path": "PHASE4_SUCCESSOR_HANDOFF.md", "name": "PHASE4_SUCCESSOR_HANDOFF.md", "date": "2026-07-27", "star": false, "status": "Ratified", "annot": "> Historical handoff, superseded for current operations. Preserve this", "why": "", "refs": ["AGENTS.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}]}, {"key": "p5", "label": "Phase 5", "sub": "Controls & the review", "color": "p5", "docs": [{"path": "reports/p5_report.md", "name": "p5_report.md", "date": "2026-07-22", "star": false, "status": "", "annot": "Per specs/P5_RERANK_SPEC.md. All computation is analysis + one small", "why": "", "refs": ["CLAUDE.md", "reports/h1_patch_report.md", "reports/h2_audit_report.md", "specs/P5C_AMENDMENT_1.md", "specs/P5C_AMENDMENT_2.md"]}, {"path": "reports/p5c_report.md", "name": "p5c_report.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Per specs/P5C_SPEC.md, amended by specs/P5C_AMENDMENT_1.md. E1.3's", "why": "", "refs": ["CLAUDE.md", "reports/p5_report.md", "specs/P5C_AMENDMENT_1.md"]}, {"path": "reports/p5c2_report.md", "name": "p5c2_report.md", "date": "2026-07-22", "star": false, "status": "Audit", "annot": "Per specs/P5C_AMENDMENT_2.md. Order followed exactly as specified:", "why": "", "refs": ["CLAUDE.md", "reports/p5_report.md", "reports/p5c_report.md", "specs/P5C_AMENDMENT_2.md", "specs/P5C_SPEC.md"]}, {"path": "reports/phase5_real_gap_scope_widening.md", "name": "phase5_real_gap_scope_widening.md", "date": "2026-07-28", "star": false, "status": "", "annot": "Run: 2026-07-28. Protected-test access, model training, and recalibration", "why": "", "refs": []}, {"path": "reports/phase5_empty_middle_census.md", "name": "phase5_empty_middle_census.md", "date": "2026-07-30", "star": false, "status": "", "annot": "Status: measured 2026-07-30. Closes the *measurement* half of", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_empty_middle_display_treatment.md", "name": "phase5_empty_middle_display_treatment.md", "date": "2026-07-30", "star": false, "status": "Ratified", "annot": "Status: implemented 2026-07-30. Not browser-verified — see \"What is", "why": "", "refs": ["CLAUDE.md"]}, {"path": "reports/phase5_empty_middle_copy_review.md", "name": "phase5_empty_middle_copy_review.md", "date": "2026-08-02", "star": false, "status": "", "annot": "Status: DONE 2026-08-02. Closes handoff item 3. The four branch texts in", "why": "", "refs": []}, {"path": "reports/phase5_lacuna_scope_decision.md", "name": "phase5_lacuna_scope_decision.md", "date": "2026-07-31", "star": false, "status": "Ratified", "annot": "Status: RATIFIED 2026-07-31 (split estimand); IMPLEMENTED AND VERIFIED", "why": "", "refs": []}, {"path": "reports/phase5_workbench_readability_and_language_selection.md", "name": "phase5_workbench_readability_and_language_selection.md", "date": "2026-07-30", "star": false, "status": "Ratified", "annot": "Status: implemented 2026-07-30. Not browser-verified — see \"What is", "why": "", "refs": ["CLAUDE.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_p4e2_browser_smoke.md", "name": "phase5_p4e2_browser_smoke.md", "date": "2026-07-29", "star": false, "status": "", "annot": "Status: PASS after two bounded interface fixes, 2026-07-29.", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_p4e2_queue_policy_ratification.md", "name": "phase5_p4e2_queue_policy_ratification.md", "date": "2026-07-31", "star": false, "status": "Ratified", "annot": "Decided 2026-07-31 by Ixca. Closes handoff item 2. Policy record:", "why": "", "refs": []}, {"path": "reports/phase5_browser_verification.md", "name": "phase5_browser_verification.md", "date": "2026-07-31", "star": false, "status": "", "annot": "Status: PASS, 2026-07-31. Closes open item 1 in", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_second_queue.md", "name": "phase5_second_queue.md", "date": "2026-08-02", "star": false, "status": "", "annot": "Status: DONE 2026-08-02. Closes handoff item 4 (data/export layer only", "why": "", "refs": ["PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_deferred_issues_sweep.md", "name": "phase5_deferred_issues_sweep.md", "date": "2026-08-02", "star": false, "status": "", "annot": "Prompted by one bug surfaced as a side effect of the lacuna split-estimand", "why": "", "refs": ["AGENTS.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_model_ladder_amendment.md", "name": "phase5_model_ladder_amendment.md", "date": "2026-08-04", "star": false, "status": "Ratified", "annot": "> CORRECTIVE REVIEW 2026-08-04. The classical controls support a resource", "why": "", "refs": ["AGENTS.md", "P5_CLOSEOUT.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_bigram_control_protocol.md", "name": "phase5_bigram_control_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> POST-RUN CORRECTION 2026-08-04. This historical protocol incorrectly", "why": "", "refs": []}, {"path": "reports/phase5_bigram_control_results.md", "name": "phase5_bigram_control_results.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> CORRECTIVE REVIEW 2026-08-04. The historical verdict", "why": "", "refs": []}, {"path": "reports/phase5_char_ngram_control_protocol.md", "name": "phase5_char_ngram_control_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> POST-RUN CORRECTION 2026-08-04. This historical protocol incorrectly", "why": "", "refs": []}, {"path": "reports/phase5_char_ngram_control_results.md", "name": "phase5_char_ngram_control_results.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> CORRECTIVE REVIEW 2026-08-04. CANINE_REDUNDANT below is the historical", "why": "", "refs": ["AGENTS.md", "P5_CLOSEOUT.md"]}, {"path": "reports/phase5_unigram_tfidf_control_protocol.md", "name": "phase5_unigram_tfidf_control_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: REVIEWER-REQUESTED POST-HOC DECOMPOSITION, 2026-08-04.", "why": "", "refs": []}, {"path": "reports/phase5_unigram_tfidf_control_results.md", "name": "phase5_unigram_tfidf_control_results.md", "date": "2026-08-04", "star": false, "status": "Superseded", "annot": "Status: COMPLETE POST-HOC REVIEWER AUDIT, 2026-08-04.", "why": "", "refs": []}, {"path": "reports/phase5_bm25_combiner_protocol.md", "name": "phase5_bm25_combiner_protocol.md", "date": "2026-08-04", "star": false, "status": "Closed", "annot": "Status: PRE-REGISTERED 2026-08-04, written and committed BEFORE the run.", "why": "", "refs": []}, {"path": "reports/phase5_bm25_combiner_results.md", "name": "phase5_bm25_combiner_results.md", "date": "2026-08-04", "star": false, "status": "Probe", "annot": "Status: COMPLETE 2026-08-04. The pre-registered rule returns REALIZABLE.", "why": "", "refs": []}, {"path": "reports/phase5_factorial_control_protocol.md", "name": "phase5_factorial_control_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: PRE-REGISTERED 2026-08-04, committed before the run.", "why": "", "refs": []}, {"path": "reports/phase5_factorial_control_results.md", "name": "phase5_factorial_control_results.md", "date": "2026-08-04", "star": false, "status": "Ratified", "annot": "Status: COMPLETE, PRE-REGISTERED, 2026-08-04.", "why": "", "refs": []}, {"path": "reports/phase5_combiner_taskb_protocol.md", "name": "phase5_combiner_taskb_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: PRE-REGISTERED 2026-08-04, written and committed BEFORE the run.", "why": "", "refs": ["AGENTS.md", "P5_CLOSEOUT.md"]}, {"path": "reports/phase5_combiner_taskb_results.md", "name": "phase5_combiner_taskb_results.md", "date": "2026-08-04", "star": false, "status": "Probe", "annot": "> CORRECTIVE REVIEW 2026-08-04. “Does not transfer” below is too", "why": "", "refs": ["AGENTS.md"]}, {"path": "reports/phase5_taskb_transfer_protocol.md", "name": "phase5_taskb_transfer_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: PRE-REGISTERED 2026-08-04, committed before the run.", "why": "", "refs": ["CLAUDE.md"]}, {"path": "reports/phase5_taskb_transfer_results.md", "name": "phase5_taskb_transfer_results.md", "date": "2026-08-04", "star": true, "status": "Authoritative", "annot": "Status: AUTHORITATIVE. Four scopes, cross-fitted, plus the matching-scope", "why": "The headline number. All three relation cells reject under Holm–Bonferroni — but see the closeout's caveat on no-shared-lines joins.", "refs": []}, {"path": "reports/phase5_ladder_screen_protocol.md", "name": "phase5_ladder_screen_protocol.md", "date": "2026-08-04", "star": false, "status": "Ratified", "annot": "Status: RATIFIED by Ixca 2026-08-04, as drafted. Execution in progress;", "why": "", "refs": ["AGENTS.md"]}, {"path": "reports/phase5_ladder_screen_results.md", "name": "phase5_ladder_screen_results.md", "date": "2026-08-04", "star": false, "status": "Probe", "annot": "> CORRECTIVE REVIEW 2026-08-04. Later follow-ups in this historical report", "why": "", "refs": ["AGENTS.md"]}, {"path": "reports/phase5_statistics_universe_protocol.md", "name": "phase5_statistics_universe_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: PRE-REGISTERED 2026-08-04, committed before the run.", "why": "", "refs": ["CLAUDE.md"]}, {"path": "reports/phase5_statistics_universe_results.md", "name": "phase5_statistics_universe_results.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Status: COMPLETE, PRE-REGISTERED, 2026-08-04.", "why": "", "refs": []}, {"path": "reports/phase5_contamination_protocol.md", "name": "phase5_contamination_protocol.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> POST-RUN CORRECTION 2026-08-04. This historical protocol is preserved,", "why": "", "refs": []}, {"path": "reports/phase5_contamination_results.md", "name": "phase5_contamination_results.md", "date": "2026-08-04", "star": false, "status": "", "annot": "> CORRECTIVE REVIEW 2026-08-04. MEMORISATION_REJECTED below is the", "why": "", "refs": []}, {"path": "reports/phase5_classical_control_handoff.md", "name": "phase5_classical_control_handoff.md", "date": "2026-08-04", "star": false, "status": "Superseded", "annot": "> CORRECTIVE REVIEW ADOPTED 2026-08-04. Read", "why": "", "refs": ["AGENTS.md", "P5_CLOSEOUT.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "reports/phase5_classical_control_review.md", "name": "phase5_classical_control_review.md", "date": "2026-08-04", "star": false, "status": "", "annot": "Date: 2026-08-04. Status: corrective review adopted on the review branch.", "why": "", "refs": ["AGENTS.md", "EXPERT_OPINION.md", "P5_CLOSEOUT.md", "PHASE5_SUCCESSOR_HANDOFF.md"]}, {"path": "P5_CLOSEOUT.md", "name": "P5_CLOSEOUT.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Ratified jointly (Ixca + architect session) 2026-07-22. This document", "why": "", "refs": ["CLAUDE.md", "demo/data_card_notes.md", "reports/h1_patch_report.md", "reports/p5_report.md", "specs/P5C_SPEC.md"]}]}, {"key": "exp", "label": "Expansion", "sub": "TLHdig 0.3 side-thread", "color": "exp", "docs": [{"path": "reports/corpus_expansion_tlhdig_03_audit.md", "name": "corpus_expansion_tlhdig_03_audit.md", "date": null, "star": false, "status": "Audit", "annot": "Candidate checksum: PASS. Payload reads were limited to unique filename stems mapped to frozen train/dev/discovery. 714 candidate test entries and 2,464 unmatched candidate entries were not opened. Frozen splits, the 0.2…", "why": "", "refs": []}, {"path": "reports/corpus_expansion_tlhdig_03_migration_design.md", "name": "corpus_expansion_tlhdig_03_migration_design.md", "date": null, "star": false, "status": "Audit", "annot": "KEEP TLHdig 0.2 PINNED; PREPARE A VERSIONED 0.3 INGESTION PROTOTYPE, NOT A DIRECT REPLACEMENT. The expansion is material, but most candidate additions are discovery-bin records and 0.3 contains identifier collisions that…", "why": "", "refs": []}, {"path": "specs/CORPUS_EXPANSION_AUDIT.md", "name": "CORPUS_EXPANSION_AUDIT.md", "date": "2026-07-23", "star": false, "status": "Audit", "annot": "Status: authorized feasibility audit, not corpus migration.", "why": "", "refs": []}]}, {"key": "ref", "label": "Reference", "sub": "Specs, rulings, migrations", "color": "ref", "docs": [{"path": "specs/EVIDENCE_POLICY.md", "name": "EVIDENCE_POLICY.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Status: implemented, reversible Phase 2 infrastructure. Adapted from", "why": "", "refs": ["CLAUDE.md", "EXPERT_OPINION.md", "PHASE2_CHARTER.md", "SANDBOX_RULES.md"]}, {"path": "reports/evidence_policy_implementation_report.md", "name": "evidence_policy_implementation_report.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Per Archive/superseded_docs/IMPLEMENTATION_REQUEST_FOR_CLAUDE.md.", "why": "", "refs": ["CLAUDE.md", "EXPERT_OPINION.md", "PHASE2_CHARTER.md", "SANDBOX_RULES.md"]}, {"path": "specs/EXPERT_DECISION_CONTRACT.md", "name": "EXPERT_DECISION_CONTRACT.md", "date": "2026-07-23", "star": false, "status": "", "annot": "Version 1.0.0, ratification candidate, 2026-07-23.", "why": "", "refs": []}, {"path": "specs/UNRESOLVED_EVIDENCE_WORKBENCH.md", "name": "UNRESOLVED_EVIDENCE_WORKBENCH.md", "date": "2026-07-27", "star": false, "status": "Ratified", "annot": "Status: IMPLEMENTED; machine schema version 1.1.0, ratified", "why": "", "refs": []}, {"path": "specs/P5C_SPEC.md", "name": "P5C_SPEC.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Authority: CLAUDE.md + P5_RERANK_SPEC.md + p5_report.md review.", "why": "", "refs": ["CLAUDE.md", "reports/h1_patch_report.md", "reports/p5_report.md", "reports/p5c_report.md", "specs/P5C_AMENDMENT_2.md"]}, {"path": "specs/P5C_AMENDMENT_1.md", "name": "P5C_AMENDMENT_1.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Authority: amends P5C_SPEC.md E1.3. Ratified jointly (Ixca +", "why": "", "refs": ["CLAUDE.md", "reports/p5_report.md", "reports/p5c_report.md", "specs/P5C_SPEC.md"]}, {"path": "specs/P5C_AMENDMENT_2.md", "name": "P5C_AMENDMENT_2.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Authority: amends P5C_SPEC.md (+ Amendment 1). Ratified jointly", "why": "", "refs": ["CLAUDE.md", "demo/data_card_notes.md", "reports/h2_audit_report.md", "reports/p5_report.md", "reports/p5c2_report.md", "reports/p5c_report.md", "specs/P5C_SPEC.md"]}, {"path": "specs/LANGUAGE_LAYERS_V2.md", "name": "LANGUAGE_LAYERS_V2.md", "date": "2026-07-25", "star": false, "status": "", "annot": "Status: GATE 2 PASSED; LANGUAGE-AWARE API/WORKBENCH WORK AUTHORIZED (2026-07-25).", "why": "", "refs": []}, {"path": "specs/LINE_LANG_MIGRATION.md", "name": "LINE_LANG_MIGRATION.md", "date": "2026-07-25", "star": false, "status": "Ratified", "annot": "- Status: RATIFIED AND IMPLEMENTED (2026-07-25). Steps A-D below are", "why": "", "refs": ["PHASE4_CHARTER.md"]}, {"path": "specs/DM0_RULING.md", "name": "DM0_RULING.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Authority: amends TAKSAN_DEMO_SPEC.md §4. Ratified jointly", "why": "", "refs": ["specs/TAKSAN_DEMO_SPEC.md"]}, {"path": "specs/TAKSAN_DEMO_SPEC.md", "name": "TAKSAN_DEMO_SPEC.md", "date": "2026-07-21", "star": false, "status": "Ratified", "annot": "Authority: CLAUDE.md + P2.5 freeze + P3 accepted. This single", "why": "", "refs": ["CLAUDE.md"]}, {"path": "EXPERT_OPINION.md", "name": "EXPERT_OPINION.md", "date": "2026-07-22", "star": false, "status": "Ratified", "annot": "Prepared: 2026-07-22", "why": "", "refs": ["CLAUDE.md", "PHASE2_CHARTER.md", "SANDBOX_RULES.md"]}, {"path": "configs/tokenizer_report_line_lang_v1.md", "name": "tokenizer_report_line_lang_v1.md", "date": null, "star": false, "status": "Ratified", "annot": "Supersedes the vocab (not the report) in tokenizer_report.md (Phase 1, Archive/scripts/17_tokenizer.py, untouched since Phase 1 closeout). That vocab was built without any language check -- non-Hittite lines (Akkadian, S…", "why": "", "refs": []}, {"path": "migrations/language_layers_v2/README.md", "name": "README.md", "date": "2026-07-25", "star": false, "status": "", "annot": "Phase 4 Gate 1 passed on 2026-07-25.", "why": "", "refs": ["migrations/language_layers_v2/rebuild_report.md", "migrations/language_layers_v2/verification_report.md"]}, {"path": "migrations/language_layers_v2/rebuild_report.md", "name": "rebuild_report.md", "date": null, "star": false, "status": "", "annot": "Status: PASS — Gate 2 token-dataset implementation authorized.", "why": "", "refs": []}, {"path": "migrations/language_layers_v2/verification_report.md", "name": "verification_report.md", "date": null, "star": false, "status": "", "annot": "All Gate 1 acceptance checks passed:", "why": "", "refs": []}, {"path": "migrations/line_lang_v1/audit_report.md", "name": "audit_report.md", "date": null, "star": false, "status": "Audit", "annot": "Read-only. No canonical field is written; no frozen artifact is modified. Test-side line_lang values were never read -- the corpus.parquet query itself excludes main_split==\"test\" documents, and the raw-XML re-walk below…", "why": "", "refs": ["CLAUDE.md"]}, {"path": "migrations/line_lang_v1/rebuild_report.md", "name": "rebuild_report.md", "date": "2026-07-25", "star": false, "status": "Ratified", "annot": "Ratified 2026-07-25 (Ixca): 7-code canonical vocabulary (Hit, Akk, Sum, Hat, Hur, Luw, Pal), Hattian -> Hat mapped, Lu/5f_/ign (and anything else outside the vocabulary) quarantined as unrecognized, XML-markup-like value…", "why": "", "refs": []}, {"path": "migrations/line_lang_v1/verification_report.md", "name": "verification_report.md", "date": "2026-07-25", "star": false, "status": "", "annot": "All acceptance checks from specs/LINE_LANG_MIGRATION.md verified 2026-07-25:", "why": "", "refs": ["migrations/language_layers_v2/rebuild_report.md", "migrations/line_lang_v1/audit_report.md"]}, {"path": "reports/repository_hardening_report.md", "name": "repository_hardening_report.md", "date": "2026-07-22", "star": false, "status": "Probe", "annot": "Date: 2026-07-22", "why": "", "refs": ["README.md"]}, {"path": "reports/h1_patch_report.md", "name": "h1_patch_report.md", "date": "2026-07-22", "star": false, "status": "", "annot": "- Family pairs found (exhaustive regex sweep over all corpus doc_ids, base form independently verified to exist): 5", "why": "", "refs": ["CLAUDE.md"]}, {"path": "reports/h2_audit_report.md", "name": "h2_audit_report.md", "date": null, "star": false, "status": "Audit", "annot": "Per specs/P5C_AMENDMENT_2.md H2. Every call site in the repo that", "why": "", "refs": ["reports/p5_report.md", "specs/P5C_AMENDMENT_2.md"]}]}]};
+document.getElementById('repolink').href = 'https://github.com/brandireger/Cuneiform';
+const GH = DATA.gh;
+const store = {
+  read: JSON.parse(localStorage.getItem('cf_read')||'{}'),
+  reading: JSON.parse(localStorage.getItem('cf_reading')||'{}'),
+  notes: JSON.parse(localStorage.getItem('cf_notes')||'{}'),
+  tab: localStorage.getItem('cf_tab')||DATA.tabs[0].key,
+};
+function save(){localStorage.setItem('cf_read',JSON.stringify(store.read));
+  localStorage.setItem('cf_reading',JSON.stringify(store.reading));
+  localStorage.setItem('cf_notes',JSON.stringify(store.notes));
+  localStorage.setItem('cf_tab',store.tab);}
+let filterStar=false, filterUnread=false, query='';
+
+const rail=document.getElementById('rail');
+function totalRead(){let r=0,t=0;DATA.tabs.forEach(tb=>tb.docs.forEach(d=>{t++;if(store.read[d.path])r++}));return[r,t]}
+
+function buildRail(){
+  rail.innerHTML='';
+  DATA.tabs.forEach(tb=>{
+    const b=document.createElement('button');
+    b.className='tab'+(tb.key===store.tab?' active':'');
+    b.dataset.c=tb.color;
+    const readN=tb.docs.filter(d=>store.read[d.path]).length;
+    b.innerHTML=`<span class="spine"></span><span class="lab">${tb.label}</span>
+      <span class="sb">${tb.sub}</span><span class="ct">${readN}/${tb.docs.length}</span>`;
+    b.onclick=()=>{store.tab=tb.key;save();render()};
+    rail.appendChild(b);
+  });
+}
+
+const docsEl=document.getElementById('docs');
+function refName(p){return p.split('/').pop()}
+function matches(d){
+  if(filterStar && !d.star) return false;
+  if(filterUnread && store.read[d.path]) return false;
+  if(query){
+    const hay=(d.name+' '+(d.annot||'')+' '+(d.why||'')+' '+d.refs.join(' ')+' '+(d.status||'')).toLowerCase();
+    if(!hay.includes(query)) return false;
+  }
+  return true;
+}
+function render(){
+  buildRail();
+  const tb=DATA.tabs.find(t=>t.key===store.tab);
+  document.getElementById('ph-title').textContent=tb.label+' — '+tb.sub;
+  const dated=tb.docs.filter(d=>d.date).length, und=tb.docs.length-dated;
+  document.getElementById('ph-meta').textContent=
+    `${tb.docs.length} documents · ${dated} dated · ${und} undated`;
+  const nb=document.getElementById('ph-note');
+  nb.innerHTML = tb.note? `<div class="pagenote">${tb.note}</div>`:'';
+  docsEl.innerHTML='';
+  const shown=tb.docs.filter(matches);
+  if(!shown.length){docsEl.innerHTML='<div class="empty">No documents match here. Clear the filter or switch tabs.</div>';}
+  shown.forEach(d=>{
+    const card=document.createElement('div');
+    card.className='doc'+(d.star?' star':'')+(store.read[d.path]?' read':'');
+    const dateChip = d.date
+      ? `<span class="chip date">🗓 ${d.date}</span>`
+      : `<span class="chip undated">◦ undated</span>`;
+    const stChip = d.status? `<span class="chip st ${d.status.replace(/\s/g,'')}">${d.status}</span>`:'';
+    const refs = d.refs.length
+      ? `<div class="refs"><span class="lbl">↪ references:</span> `+
+        d.refs.map(r=>`<a href="${GH}${r}" target="_blank" rel="noopener" title="${r}">${refName(r)}</a>`).join(' · ')+`</div>`
+      : '';
+    const noteVal = store.notes[d.path]||'';
+    card.innerHTML=`
+      <div class="top">
+        <a class="nm" href="${GH}${d.path}" target="_blank" rel="noopener">${d.name}</a>
+        ${d.star?'<span class="star-b">★</span>':''}
+        ${dateChip}${stChip}
+      </div>
+      ${d.annot?`<p class="an">${d.annot}</p>`:''}
+      ${d.why?`<p class="why">${d.why}</p>`:''}
+      ${refs}
+      <div class="actions">
+        <button class="mini toggleRead">${store.read[d.path]?'Mark unread':'Mark read'}</button>
+        <button class="mini toggleReading ${store.reading[d.path]?'reading':''}">${store.reading[d.path]?'★ Reading':'Add to reading'}</button>
+        <button class="mini toggleNote">${noteVal?'Note ✎':'Add note'}</button>
+        <span style="flex:1"></span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-soft)">${d.path}</span>
+      </div>
+      <div class="notebox ${noteVal?'open':''}"><textarea placeholder="Notes & quotations for ${d.name}…">${noteVal.replace(/</g,'&lt;')}</textarea></div>
+    `;
+    card.querySelector('.toggleRead').onclick=()=>{store.read[d.path]=!store.read[d.path];save();render();updateProg()};
+    card.querySelector('.toggleReading').onclick=()=>{store.reading[d.path]=!store.reading[d.path];save();render()};
+    const nbx=card.querySelector('.notebox'), ta=nbx.querySelector('textarea');
+    card.querySelector('.toggleNote').onclick=()=>{nbx.classList.toggle('open');if(nbx.classList.contains('open'))ta.focus()};
+    ta.oninput=()=>{store.notes[d.path]=ta.value;save()};
+    docsEl.appendChild(card);
+  });
+  updateProg();
+}
+function updateProg(){
+  const [r,t]=totalRead();
+  document.getElementById('progtxt').textContent=`${r} / ${t} read`;
+  document.getElementById('progbar').style.width=(t?Math.round(r/t*100):0)+'%';
+}
+
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();render()});
+document.getElementById('starBtn').addEventListener('click',e=>{filterStar=!filterStar;e.target.classList.toggle('on',filterStar);render()});
+document.getElementById('unreadBtn').addEventListener('click',e=>{filterUnread=!filterUnread;e.target.classList.toggle('on',filterUnread);render()});
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  if(confirm('Clear all read marks, reading list, and notes?')){store.read={};store.reading={};store.notes={};save();render()}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'&&document.activeElement.tagName!=='TEXTAREA'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();document.getElementById('q').focus()}
+});
+render();
+</script>
+</body>
+</html>
